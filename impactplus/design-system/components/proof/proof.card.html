@@ -1,0 +1,23 @@
+<!-- @dsCard group="Proof" viewport="1100x360" name="Result Tiles" subtitle="Logo + result metric proof strip" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--surface-page);font-family:var(--font-body)}.pad{padding:40px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { ResultTileGrid } = window.IMPACTDesignSystem_9efa99;
+const PHOTO = "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/homepage/Homepage_Featured_image.jpg";
+const ALIGN = "https://www.impactplus.com/hs-fs/hubfs/impact_site_2025_IM-UI/assets/images/services/how-it-works/alignment-day.png";
+const JOURNEY = "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/endless-customer-graphics/Endless-Customers-Journey-graphic-only.svg";
+ReactDOM.createRoot(document.getElementById("root")).render(<ResultTileGrid title="Real Results From" highlight="Real Companies" columns={4} results={[{logoAlt:"Bill Ragan Roofing",metric:"3\u00d7",label:"qualified opportunities in 12 months"},{logoAlt:"Berry Insurance",metric:"45%",label:"more newsletter signups"},{logoAlt:"Mazzella",metric:"192%",label:"increase in key event rate"},{logoAlt:"Fire & Ice",metric:"10\u00d7",label:"industry standard raised"}]}/>);
+</script>
+</body>
+</html>

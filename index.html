@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>IMPACT Websites — Page Index</title>
+<link rel="stylesheet" href="impactplus/design-system/styles.css">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  .page { max-width: 940px; margin: 0 auto; padding: 64px 24px 96px; }
+
+  .masthead { border-bottom: 6px solid; border-image: var(--ec-gradient) 1; padding-bottom: 26px; margin-bottom: 12px; }
+  .masthead h1 { font-size: clamp(34px, 4.5vw, 52px); margin: 0 0 14px; }
+  .masthead p { max-width: 620px; margin: 0; }
+
+  .note { background: var(--surface-muted); border-left: 4px solid var(--accent-ui); padding: 16px 20px; margin: 34px 0 0; border-radius: 0 8px 8px 0; }
+  .note p { margin: 0; font-size: 16px; }
+
+  .site { margin-top: 56px; }
+  .site-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-bottom: 4px; }
+  .site-head h2 { font-size: clamp(22px, 2.4vw, 28px); margin: 0; }
+  .site-domain { font-size: 15px; color: var(--text-muted); }
+  .site-note { font-size: 16px; color: var(--text-body); margin: 14px 0 20px; max-width: 640px; }
+
+  .status { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .status-live   { background: var(--ec-green-strong); color: #fff; }
+  .status-wip    { background: var(--ec-blue-strong);  color: #fff; }
+  .status-none   { background: var(--ec-gray-200);     color: var(--ec-gray-700); }
+
+  .pages { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+  .pages li { border: 1px solid var(--border-subtle); border-radius: 10px; transition: border-color .15s, transform .15s; }
+  .pages li:hover { border-color: var(--accent-ui); transform: translateY(-1px); }
+  .pages a { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 22px; text-decoration: none; }
+  .pages a:hover { text-decoration: none; }
+  .p-name { font-family: var(--font-heading); font-weight: 700; font-size: 18px; color: var(--text-heading); }
+  .p-meta { font-size: 15px; color: var(--text-muted); margin-top: 3px; }
+  .p-go { flex: 0 0 auto; font-weight: 700; font-size: 15px; color: var(--accent-text); }
+
+  .empty { border: 1px dashed var(--border-subtle); border-radius: 10px; padding: 20px 22px; color: var(--text-muted); font-size: 16px; }
+
+  footer { margin-top: 72px; padding-top: 22px; border-top: 1px solid var(--border-subtle); font-size: 15px; color: var(--text-muted); }
+  footer a { color: var(--text-link); }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <div class="masthead">
+    <h1>IMPACT Websites</h1>
+    <p class="prose-body">Every page built locally for IMPACT's three website workstreams. One repo, one index, no hunting.</p>
+  </div>
+
+  <div class="note">
+    <p><strong>Internal working index.</strong> These are in-progress builds for review and sharing, not production sites. Finished pages get rebuilt natively in HubSpot by the web team.</p>
+  </div>
+
+  <!-- ============ CURRENT IMPACTPLUS.COM ============ -->
+  <section class="site accent-blue">
+    <div class="site-head">
+      <h2>impactplus.com</h2>
+      <span class="site-domain">current, live site</span>
+      <span class="status status-wip">Active</span>
+    </div>
+    <p class="site-note">New service pages built here as a bridge until the full redesign. Uses the <a href="impactplus/design-system/guidelines/">impact-website-2025-style</a> design system, re-based on the Endless Customers brand July 2026.</p>
+    <ul class="pages">
+      <li>
+        <a href="impactplus/services/deep-diagnostic-roadmap/">
+          <span>
+            <span class="p-name">Deep Diagnostic &amp; Roadmap</span>
+            <span class="p-meta">Service page · Overview section done; four sections still need the design sweep</span>
+          </span>
+          <span class="p-go">View →</span>
+        </a>
+      </li>
+    </ul>
+    <div class="empty" style="margin-top:12px">
+      <strong>Money-Back Guarantee</strong> — not started. Will live at <code>impactplus/services/money-back-guarantee/</code>.
+    </div>
+  </section>
+
+  <!-- ============ FUTURE IMPACTPLUS REDESIGN ============ -->
+  <section class="site accent-magenta">
+    <div class="site-head">
+      <h2>impactplus.com redesign</h2>
+      <span class="site-domain">future, full rebuild</span>
+      <span class="status status-none">Not started</span>
+    </div>
+    <p class="site-note">Planned late 2026 / early 2027. Gets its own design system when it starts.</p>
+    <div class="empty">No pages yet.</div>
+  </section>
+
+  <!-- ============ ENDLESS CUSTOMERS ============ -->
+  <section class="site accent-green">
+    <div class="site-head">
+      <h2>endlesscustomers.com</h2>
+      <span class="site-domain">redesign, launching Oct 2026</span>
+      <span class="status status-none">Built elsewhere</span>
+    </div>
+    <p class="site-note">Built directly in HubSpot content staging by the web team, so there are no local files here. Reference build lives at <a href="https://new-ec-website.pages.dev/">new-ec-website.pages.dev</a>.</p>
+    <div class="empty">No local pages — intentionally.</div>
+  </section>
+
+  <footer>
+    Working index for the <code>websites</code> repo. Structure and rules: see <code>README.md</code>.
+  </footer>
+
+</main>
+</body>
+</html>

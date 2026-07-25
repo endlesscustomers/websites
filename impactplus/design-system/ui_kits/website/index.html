@@ -1,0 +1,54 @@
+<!-- @dsCard group="Website" viewport="1280x900" name="Marketing Website" subtitle="Interactive homepage + pricing recreation, built from the components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMPACT — Website UI Kit</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; background: var(--surface-page); }
+  #root { min-height: 100vh; }
+  .kit-switch {
+    position: fixed; top: 50%; left: 16px; transform: translateY(-50%); z-index: 100;
+    display: flex; flex-direction: column; gap: 8px;
+    background: rgba(29,29,31,.9); padding: 10px; border-radius: 14px; box-shadow: var(--shadow-lg);
+  }
+  .kit-switch button {
+    font-family: var(--font-body); font-weight: 700; font-size: 13px; cursor: pointer;
+    padding: 9px 14px; border-radius: 8px; border: none; background: transparent; color: #fff; opacity: .6;
+  }
+  .kit-switch button.on { background: var(--color-brand); opacity: 1; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="Home.jsx"></script>
+<script type="text/babel" src="Pricing.jsx"></script>
+<script type="text/babel" src="HowItWorks.jsx"></script>
+<script type="text/babel">
+function App() {
+  const [screen, setScreen] = React.useState("home");
+  return (
+    <div>
+      <div className="kit-switch">
+        <button className={screen === "home" ? "on" : ""} onClick={() => setScreen("home")}>Home</button>
+        <button className={screen === "how" ? "on" : ""} onClick={() => setScreen("how")}>How it Works</button>
+        <button className={screen === "pricing" ? "on" : ""} onClick={() => setScreen("pricing")}>Pricing</button>
+      </div>
+      {screen === "home" ? <window.Home /> : screen === "how" ? <window.HowItWorks /> : <window.Pricing />}
+    </div>
+  );
+}
+function mount() {
+  if (!window.Home || !window.Pricing || !window.HowItWorks || !window.IMPACTDesignSystem_9efa99) { setTimeout(mount, 40); return; }
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+}
+mount();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="640" viewBox="0 0 880 640">
+<rect width="880" height="640" fill="#FFFFFF"/>
+<text x="220" y="64" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#1D1D1F">The old way</text>
+<text x="220" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#4F5465">Ten tabs, a homemade short list</text>
+<rect x="70" y="116" width="300" height="404" rx="14" fill="#F6F9FC" stroke="#E1E7F4"/>
+<g font-family="Arial, sans-serif" font-size="13" fill="#0A6CFF">
+<rect x="94" y="140" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="160">Result 1 — www.option-one.com</text>
+<rect x="94" y="178" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="198">Result 2 — www.option-two.com</text>
+<rect x="94" y="216" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="236">Result 3 — www.option-three.com</text>
+<rect x="94" y="254" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="274">Result 4 — www.option-four.com</text>
+<rect x="94" y="292" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="312">Result 5 — www.option-five.com</text>
+<rect x="94" y="330" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="350">Result 6 — www.option-six.com</text>
+<rect x="94" y="368" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="388">Result 7 — www.option-seven.com</text>
+<rect x="94" y="406" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="426">Result 8 — www.option-eight.com</text>
+<rect x="94" y="444" width="252" height="30" rx="6" fill="#FFFFFF" stroke="#E1E7F4"/><text x="106" y="464">Result 9 — www.option-nine.com</text>
+</g>
+<path d="M 396 318 C 430 300, 450 300, 484 318" stroke="#0A6CFF" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M 470 306 L 486 319 L 466 326" stroke="#0A6CFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="660" y="64" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="700" fill="#1D1D1F">Today</text>
+<text x="660" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" fill="#4F5465">One question to AI, one or two names</text>
+<rect x="510" y="116" width="300" height="404" rx="14" fill="#1D1D1F"/>
+<rect x="534" y="146" width="252" height="46" rx="10" fill="#2B2F36"/>
+<text x="548" y="175" font-family="Arial, sans-serif" font-size="14" fill="#C8CEDA">Who should I trust for this?</text>
+<rect x="534" y="216" width="252" height="86" rx="10" fill="#FFFFFF"/>
+<circle cx="560" cy="248" r="12" fill="#01C4A2"/>
+<path d="M 554 248 l 4.5 4.5 L 567 243" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="582" y="245" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1D1D1F">The trusted specialist</text>
+<text x="582" y="266" font-family="Arial, sans-serif" font-size="13" fill="#4F5465">Recommended first, with reasons</text>
+<rect x="534" y="316" width="252" height="60" rx="10" fill="#FFFFFF" opacity="0.55"/>
+<text x="548" y="342" font-family="Arial, sans-serif" font-size="14" fill="#4F5465">Maybe one backup option</text>
+<rect x="534" y="400" width="252" height="88" rx="10" fill="#2B2F36"/>
+<text x="548" y="430" font-family="Arial, sans-serif" font-size="13" fill="#8A93A5">Everyone else</text>
+<text x="548" y="452" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#C8CEDA">Never mentioned at all</text>
+</svg>

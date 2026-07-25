@@ -1,0 +1,28 @@
+/* IMPACT webfonts.
+   Heading  = General Sans  (Fontshare) — CHANGED 2026-07-25, was Merriweather
+   Script   = Kalam         (Google Fonts — matches brand spec)
+   Body     = Proxima Nova  (PROPRIETARY) — SELF-HOSTED from licensed files
+              in /fonts, wired below. --font-sans resolves to these locally.
+
+   General Sans matches the Endless Customers brand system. IMPACT keeps
+   Proxima Nova for body copy, which is a deliberate divergence from EC's
+   single-family system — see typography.css.
+
+   Merriweather is still imported for any legacy component calling
+   --font-serif directly. Drop the import once nothing references it. */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700&family=Kalam:wght@300;400;700&display=swap');
+
+/* ---- Proxima Nova (self-hosted, brand body face) ---- */
+@font-face{font-family:'Proxima Nova';font-style:normal;font-weight:300;font-display:swap;src:url('../fonts/ProximaNova-Light.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:italic;font-weight:300;font-display:swap;src:url('../fonts/ProximaNova-LightItalic.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/ProximaNova-Regular.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:italic;font-weight:400;font-display:swap;src:url('../fonts/ProximaNova-RegularItalic.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/Proxima_Nova_SemiBold.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:normal;font-weight:700;font-display:swap;src:url('../fonts/ProximaNova-Bold.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:italic;font-weight:700;font-display:swap;src:url('../fonts/proximanova-boldit-webfont.ttf') format('truetype');}
+@font-face{font-family:'Proxima Nova';font-style:normal;font-weight:800;font-display:swap;src:url('../fonts/Proxima_Nova_Extrabold.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova';font-style:normal;font-weight:900;font-display:swap;src:url('../fonts/Proxima_Nova_Black.otf') format('opentype');}
+/* Condensed cut — for tight eyebrow / data labels */
+@font-face{font-family:'Proxima Nova Condensed';font-style:normal;font-weight:400;font-display:swap;src:url('../fonts/ProximaNovaCond-Regular.otf') format('opentype');}
+@font-face{font-family:'Proxima Nova Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('../fonts/ProximaNovaCond-Semibold.otf') format('opentype');}

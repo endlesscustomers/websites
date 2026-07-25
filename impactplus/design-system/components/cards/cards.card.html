@@ -1,0 +1,56 @@
+<!-- @dsCard group="Components" viewport="700x620" name="Cards — Testimonial, Feature, Program, Step" subtitle="The white shadow-card family and its specialized variants" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:26px;background:var(--surface-muted);font-family:var(--font-body)}.lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);font-weight:700;margin:0 0 12px}.block{margin-bottom:26px}.grid{display:grid;gap:20px}</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { TestimonialCard, FeatureCard, ProgramCard, StepCard } = window.IMPACTDesignSystem_9efa99;
+const EC_LOGO = "https://www.impactplus.com/hubfs/Imported%20sitepage%20images/Endless%20Customers%20Logo%20-%20Black.svg";
+function Demo(){
+  return (
+    <div>
+      <div className="block">
+        <p className="lbl">Testimonial &nbsp;•&nbsp; Feature</p>
+        <div className="grid" style={{gridTemplateColumns:"1.2fr 1fr", alignItems:"stretch"}}>
+          <TestimonialCard rating={5} title="Clarity That Drove Growth"
+            quote="We had a great product, but IMPACT helped us clarify our message and show our value through transparency. By educating instead of selling, we built trust and accelerated growth."
+            name="Jeffery Linta, CEO" company="Linta Roofing" />
+          <FeatureCard title="A Team of Coaches">
+            Guidance across strategy, content, sales, and video from IMPACT's experts — every step of the journey.
+          </FeatureCard>
+        </div>
+      </div>
+      <div className="block">
+        <p className="lbl">Program card</p>
+        <div className="grid" style={{gridTemplateColumns:"repeat(2,1fr)", alignItems:"stretch"}}>
+          <ProgramCard logoSrc={EC_LOGO} logoAlt="Endless Customers"
+            ctaHref="#" linkLabel="Get a Free Chapter of the Book" linkHref="#" />
+          <ProgramCard logoAlt="Endless Customers LIVE"
+            ctaHref="#" linkLabel="Register for Hartford" linkHref="#" />
+        </div>
+      </div>
+      <div className="block">
+        <p className="lbl">Process steps</p>
+        <div className="grid" style={{gridTemplateColumns:"repeat(4,1fr)"}}>
+          <StepCard number="01" title="Learn" color="var(--ec-blue-600)" caption="Read the book & align." />
+          <StepCard number="02" title="Align" color="var(--ec-green-500)" caption="Run Alignment Day." />
+          <StepCard number="03" title="Build" color="var(--ec-ai-primary)" caption="First 90-day plan." />
+          <StepCard number="04" title="Scale" color="var(--ec-website-primary)" caption="Achieve mastery." />
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo/>);
+</script>
+</body>
+</html>

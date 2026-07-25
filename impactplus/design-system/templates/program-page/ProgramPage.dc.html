@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Program Page" description="Full Endless Customers coaching program page — hero, explainer, competitor benchmark, qualifier, what-you-get/gain, proof, team, journey diagram, quote, testimonials, pricing, FAQ, and CTA — assembled from IMPACT modules." -->
+<helmet>
+<script src="./ds-base.js"></script>
+<style>body{margin:0;font-family:var(--font-body,'Proxima Nova',sans-serif);color:var(--text-body,#4F5465);background:var(--surface-page,#fff)}.pad{padding:96px 24px}.pad-sm{padding:72px 24px}</style>
+</helmet>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.NavBar" hint-size="100%,72px"></x-import>
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.HelloBar" message="Enroll in Marketing Summer School!" highlight="Next Session July 23" hint-size="100%,52px"></x-import>
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.SubNav" label="EC Coaching &amp; Training" active-href="/overview" cta-label="Schedule Call" cta-href="#" links="{{ subNavLinks }}" hint-size="100%,64px"></x-import>
+
+<div style="background:var(--surface-muted)">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.Hero" eyebrow="Endless Customers" title="Your Path to" highlight="Endless Customers Starts Here" subtitle="If your marketing isn't delivering and you're ready for a proven, future-ready system built for the age of AI — one your team can run in-house — you've come to the right place." primary-cta="Schedule a Call" primary-href="#" secondary-cta="Get a Free Chapter" secondary-href="#" hint-size="100%,520px"></x-import>
+</div>
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.PeekingVideo" label="See the Endless Customers program in action" top-surface="muted" hint-size="100%,600px"></x-import>
+
+<div class="pad">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.SplitFeature" title="What is The Endless Customers Coaching &amp; Training Program?" image-src="{{ chartImg }}" mask="rounded" hint-size="100%,520px">
+<p style="font-size:var(--text-lg);line-height:var(--leading-normal);color:var(--text-heading);margin:0 0 22px">Take control of your sales and marketing with a proven system based on the national bestselling book <em>Endless Customers</em>.</p>
+<p style="font-size:var(--text-base);line-height:var(--leading-relaxed);margin:0 0 1em">This program gives your team the tools, training, and guidance to build an in-house marketing engine, align leadership, and unify sales and marketing.</p>
+<p style="font-size:var(--text-base);line-height:var(--leading-relaxed);margin:0">We're with you every step of the way — helping you create content that builds trust, use tools like HubSpot and AI with confidence, and generate more qualified opportunities, faster.</p>
+</x-import>
+</div>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.ComparisonBlock" eyebrow="Why IMPACT" title="Coaching vs." highlight="the Alternatives" subtitle="How building capability in-house compares to the usual options." columns="{{ comparisonColumns }}" rows="{{ comparisonRows }}" on-muted="{{ tru }}" hint-size="100%,560px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.QualifierBand" title="Is This Program" highlight="Right for You?" subtitle="Built for companies doing between $3M and $100M in annual revenue that want to drive serious growth with a strategy their team can own." items="{{ qualifiers }}" note="Industries that thrive with Endless Customers include home improvement, construction, B2B services, professional services, manufacturing, insurance, healthcare, and more." hint-size="100%,560px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.FeatureGrid" title="What You'll" highlight="Get" subtitle="Everything you need to build a high-powered customer acquisition function inside your business." columns="{{ two }}" items="{{ features }}" hint-size="100%,900px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.FeatureGrid" title="What You'll" highlight="Gain" subtitle="By the time you complete the program — typically around 24 months — your company will be the most known, trusted, and recommended brand in your market." columns="{{ three }}" title-only="{{ tru }}" items="{{ gains }}" on-muted="{{ tru }}" hint-size="100%,560px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.ResultTileGrid" title="Real Results From" highlight="Real Companies" columns="{{ four }}" results="{{ results }}" hint-size="100%,360px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.TeamGrid" title="Meet Your" highlight="Team" subtitle="You get an entire team dedicated to guiding you through implementation." columns="{{ three }}" members="{{ team }}" on-muted="{{ tru }}" hint-size="100%,520px"></x-import>
+
+<div class="pad">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.SectionHeading" eyebrow="IMPACT's Proven Process" title="Path to" highlight="Endless Customers" hint-size="100%,120px"></x-import>
+<div style="max-width:1040px;margin:44px auto 0">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.BrandDiagram" src="{{ journeyImg }}" caption="The typical 24-month Endless Customers journey" hint-size="100%,360px"></x-import>
+</div>
+</div>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.QuoteBand" variant="muted" quote="Our coach brought our teams together — aligned them on a single methodology. The results speak for themselves." name="Kurt Uhlir" title="Chief Marketing Officer" hint-size="100%,360px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.TestimonialWall" eyebrow="Success Stories" title="Companies Growing With" highlight="IMPACT" carousel="{{ tru }}" perView="{{ three }}" testimonials="{{ testimonials }}" hint-size="100%,520px"></x-import>
+
+<div class="pad" style="background:var(--surface-muted,#F6F9FC)">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.PriceHighlight" eyebrow="First Month" title="Kickoff &amp; Alignment Day" prices="{{ kickoffPrices }}" includes="{{ kickoffIncludes }}" image-src="{{ alignImg }}" hint-size="100%,520px"></x-import>
+</div>
+
+<div class="pad">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.SectionHeading" eyebrow="Monthly Coaching Plans" title="Choose the Plan That's" highlight="Right for You" subtitle="Below is what's typically included at each level — the exact services can be adjusted to fit your team's needs." hint-size="100%,160px"></x-import>
+<div style="margin-top:48px">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.PricingMatrix" plans="{{ pricingPlans }}" rows="{{ pricingRows }}" cta-label="Schedule Call" cta-href="#" hint-size="100%,640px"></x-import>
+</div>
+</div>
+
+<div class="pad">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.SectionHeading" title="Frequently Asked" highlight="Questions" hint-size="100%,120px"></x-import>
+<div style="max-width:820px;margin:48px auto 0">
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.FaqAccordion" items="{{ faqs }}" default-open="{{ zero }}" hint-size="100%,520px"></x-import>
+</div>
+</div>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.CtaBand" title="Ready to" highlight="take control?" subtitle="If you're ready to control your growth, stop relying on agencies, and become the most known and trusted brand in your market, it's time to start your Endless Customers Mastery journey." primary-cta="Schedule an Initial Call" primary-href="#" hint-size="100%,460px"></x-import>
+
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.Footer" hint-size="100%,420px"></x-import>
+<x-import component-from-global-scope="IMPACTDesignSystem_9efa99.ChatWidget" hint-size="0,0"></x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const IMG = "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/services/";
+    const HFS = "https://www.impactplus.com/hs-fs/hubfs/impact_site_2025_IM-UI/assets/images/services/";
+    return {
+      tru: true, zero: 0, two: 2, three: 3, four: 4,
+      explainerParas: [
+        "This program gives your team the tools, training, and guidance to build an in-house marketing engine, align leadership, and unify sales and marketing.",
+        "We're with you every step of the way — helping you create content that builds trust, use tools like HubSpot and AI with confidence, and generate more qualified opportunities, faster.",
+      ],
+      chartImg: HFS + "proven-system-endless-customers-chart.jpg?width=1117&height=547&name=proven-system-endless-customers-chart.jpg",
+      alignImg: HFS + "how-it-works/alignment-day.png?width=482&height=546&name=alignment-day.png",
+      journeyImg: "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/endless-customer-graphics/Endless-Customers-Journey-graphic-only.svg",
+      ctaImg: "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/homepage/Homepage_Featured_image.jpg",
+      subNavLinks: [
+        { label: "Overview", href: "/overview" },
+        { label: "How it Works", href: "/how-it-works" },
+        { label: "What You'll Learn", href: "/whats-covered" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Success Stories", href: "/success-stories" },
+      ],
+      comparisonColumns: ["Endless Customers", "Marketing Agency", "Do It Yourself"],
+      comparisonRows: [
+        { label: "Builds real in-house capability", values: [true, false, true] },
+        { label: "Predictable monthly cost", values: [true, "Varies", "Low"] },
+        { label: "Owns your brand voice", values: [true, false, true] },
+        { label: "Expert coaching & accountability", values: [true, true, false] },
+        { label: "Content built by your team", values: [true, false, true] },
+        { label: "Time to first results", values: ["Weeks", "Months", "Varies"] },
+      ],
+      qualifiers: [
+        "Your buyers research heavily before reaching out, and you're not showing up enough.",
+        "You already have or want to build an in-house marketing team.",
+        "You need more sales opportunities, shorter cycles, and better close rates.",
+        "You're tired of outsourcing content and seeing little return.",
+        "You want practical ways to use AI while maintaining trust with buyers.",
+        "You want to be the most known, trusted, and recommended brand in your market.",
+      ],
+      features: [
+        { iconName: "team", title: "A Team of Coaches", body: "Guiding you every step of your Endless Customers journey." },
+        { iconName: "alignment", title: "Alignment Across Your Organization", body: "Everyone working off the same strategy for driving sales." },
+        { iconName: "hiring", title: "Assistance in Building Your Team", body: "Helping you staff the right content team, including a content manager and videographer." },
+        { iconName: "content", title: "Content Training", body: "Making sure every piece of content published supports goals and drives sales." },
+        { iconName: "hubspot", title: "CRM & Technology Support", body: "So you get the most from your CRM — often HubSpot." },
+        { iconName: "ai", title: "AI Implementation", body: "Improve data quality, productivity, and the overall buyer experience." },
+        { iconName: "video", title: "Guidance for Publishing Videos", body: "For your website, sales process, YouTube, and social media." },
+        { iconName: "website", title: "Website Strategy", body: "Optimize your site and add self-service tools to drive sales-ready leads." },
+        { iconName: "onCamera", title: "On-Camera Performance Training", body: "Help leaders and sellers become confident and engaging on video." },
+        { iconName: "sales", title: "Sales Enablement Training", body: "Including Assignment Selling and 1:1 video to help deals close faster." },
+      ],
+      gains: [
+        { iconName: "endlessCustomers", title: "Internal Mastery of ALL the Principles of Endless Customers" },
+        { iconName: "moreSales", title: "Dramatically More Sales Opportunities From Your Marketing" },
+        { iconName: "salesPerformance", title: "Improved Sales Performance and Deals That Close Faster" },
+        { iconName: "targetBuyer", title: "Showing Up Whenever a Buyer Is Looking For What You Sell" },
+        { iconName: "strategy", title: "A Future-Proof Customer Acquisition Strategy" },
+      ],
+      results: [
+        { logoAlt: "Bill Ragan Roofing", metric: "3\u00d7", label: "qualified opportunities in 12 months" },
+        { logoAlt: "Berry Insurance", metric: "45%", label: "more newsletter signups" },
+        { logoAlt: "Mazzella", metric: "192%", label: "increase in key event rate" },
+        { logoAlt: "Fire & Ice", metric: "10\u00d7", label: "raised the industry standard" },
+      ],
+      team: [
+        { avatar: IMG + "coaches.png?width=100&height=100&name=coaches.png", role: "Coaches", body: "Leadership guidance and accountability — ensuring your whole company is aligned and executing." },
+        { avatar: IMG + "trainers.png?width=100&height=100&name=trainers.png", role: "Trainers", body: "Hands-on skill-building across content, video, sales enablement, HubSpot, and AI." },
+        { avatar: IMG + "website-strategists.png?width=100&height=100&name=website-strategists.png", role: "Website Strategists", body: "Turning your site into a 24/7 sales engine through messaging, structure, and self-service tools." },
+      ],
+      testimonials: [
+        { title: "Aligned on One Methodology", quote: "Every single call with my coach, I'm challenged with a new approach — a new way to handle the problems we're facing.", name: "Isabelle Braeutigam", company: "Custom Built Design & Remodeling" },
+        { title: "A Smarter Business", quote: "We've gained deeper insights into our operations, making us a more intelligent business than we were before.", name: "Jessica Turner", company: "Combined" },
+        { title: "Clear Vision & Strategy", quote: "Now we have a very clear vision and strategy, and we know what we need to do to keep growing.", name: "Chris Brandt", company: "Motion Therapy" },
+        { title: "Completely Changed Our Company", quote: "IMPACT has completely changed our company. We would not be here without me picking up that book.", name: "Taffy Ragan", company: "Bill Ragan Roofing" },
+        { title: "Raising the Standard", quote: "By what we're doing, we're raising the standard tenfold in the industry. Our competition doesn't like it.", name: "Scott Merritt", company: "Fire & Ice" },
+      ],
+      kickoffPrices: [
+        { label: "Virtual", amount: "$10,000" },
+        { label: "In-Person", amount: "$12,500 + travel" },
+      ],
+      kickoffIncludes: [
+        "Pre-Alignment Day kickoff meeting",
+        "Company-wide, 3-hour Endless Customers training",
+        "Content, technology, and strategy/alignment audits",
+        "Your first Endless Customers planning session",
+      ],
+      pricingPlans: [
+        { name: "Guidance", price: "$5,500", period: "/mo" },
+        { name: "Mastery", price: "$8,000", period: "/mo", recommended: true },
+        { name: "Mastery Accelerated", price: "$10,500", period: "/mo" },
+      ],
+      pricingRows: [
+        { label: "IMPACT+ Membership", values: [true, true, true] },
+        { label: "Quarterly Planning Sessions", values: [true, true, true] },
+        { label: "Coaching Sessions", values: ["2 / qtr", "5 / qtr", "5 / qtr"] },
+        { label: "Team Trainings", values: ["Up to 2 / qtr", "Up to 10 / qtr", "Up to 24 / qtr"] },
+        { label: "Content & Video Reviews", values: ["2 / mo", "5 / mo", "8 / mo"] },
+        { label: "Website Strategy", values: [false, true, true] },
+        { label: "HubSpot Training", values: [false, true, true] },
+        { label: "Endless Customers Live Passes", values: ["3", "3", "3"] },
+      ],
+      faqs: [
+        { q: "Should I do Endless Customers or hire a marketing agency?", a: "If you want a hands-off solution where someone else owns your marketing, an agency may fit. But this program is for companies that want to build real in-house capability and content that reflects their team's unique voice." },
+        { q: "Can we implement Endless Customers without coaching?", a: "Yes — the book and Academy lay out the principles. But without outside guidance it's easy to lose focus, skip steps, or struggle with alignment. Coaching adds structure, accountability, and expert insight." },
+        { q: "How much of our team's time is required?", a: "You'll need dedicated staff for content and video — at minimum a content manager. Leadership joins coaching 1-2 times per month, and sales participates in Revenue Team meetings and content." },
+        { q: "What if we don't have a content manager or videographer yet?", a: "We can start without those roles in place. Helping you find, hire, and onboard the right person is a core part of what we do together." },
+        { q: "How much does it cost?", a: "Most companies choose from three coaching plans ranging $5,500 to $10,500 per month. Add-on services like website development and paid media are scoped separately." },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

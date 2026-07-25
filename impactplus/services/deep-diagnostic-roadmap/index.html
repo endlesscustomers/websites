@@ -1,0 +1,711 @@
+<!-- DDR Service Page — Cowork preview build. FULL PAGE (v4).
+     Hero: directional scrim, left text, in-hero trust row, guaranteed video straddle.
+     All five sections built to landing-page-build-spec.md. -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Diagnostic &amp; Roadmap — Full Page Preview</title>
+<link rel="stylesheet" href="../../design-system/styles.css">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<style>
+  /* PROMOTED 2026-07-25 — the heading font (General Sans), the accent
+     system, the prose scale, section openers, layout primitives, the
+     highlight box and the numbered badge all now live in the design
+     system (design-system/tokens/). They were removed from this page
+     rather than duplicated. Only page-specific styles remain below. */
+  :root { --peek: 150px; }
+  html { scroll-behavior: smooth; }
+  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #video { scroll-margin-top: 76px; }
+  body { margin: 0; background: var(--surface-page, #fff); }
+  #root { min-height: 100vh; }
+
+  .hero-wrap {
+    /* --ec-blue-strong, not --ec-blue. The hero carries white text down
+       to 14px (eyebrow, trust row, micro-copy); white on the raw brand
+       blue is only 4.05:1 and fails AA below 24px. -strong is 5.41:1. */
+    background: var(--ec-blue-strong);
+    min-height: calc(100vh - 52px);
+    min-height: calc(100svh - 52px);
+    border-bottom: 3px solid #000;
+    display: flex; flex-direction: column;
+    box-sizing: border-box;
+  }
+  .hero-grid {
+    flex: 1; align-self: center;
+    width: calc(100% - 48px); max-width: var(--container-max, 1150px); margin: 0 auto;
+    display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+    gap: clamp(36px, 4.5vw, 72px); align-items: center;
+    padding: 28px 0 56px;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 34px; padding-top: 10px; } }
+  .hero-eyebrow { font-family: var(--font-body); font-size: 14px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; opacity: .92; margin-bottom: 20px; }
+  .hero-h1 { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: clamp(40px, 4.5vw, 60px); line-height: 1.03; letter-spacing: -0.02em; color: #fff; margin: 0; }
+  .hero-h1 .swoosh { display: block; margin-top: 10px; width: min(380px, 78%); height: 15px; }
+  .hero-sub { font-family: var(--font-body); font-size: clamp(18px, 1.5vw, 22px); font-weight: 500; line-height: 1.5; color: #fff; margin: 22px 0 0; max-width: 520px; }
+  .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+  .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-body); font-weight: 700; font-size: 16px; color: #fff; text-decoration: none; border: 2px solid rgba(255,255,255,0.85); border-radius: 999px; padding: 13px 24px; }
+  .btn-ghost-white:hover { background: rgba(255,255,255,0.12); }
+  .btn-ghost-white:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  .hero-micro { font-family: var(--font-body); font-size: 15px; color: #fff; margin: 14px 0 0; }
+  .hero-video-card { border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 16px 16px 0 rgba(0,0,0,0.85); }
+  .hero-video-poster { display: block; }
+  .hero-video-poster img { display: block; width: 100%; height: auto; }
+  .hero-video-caption { display: flex; align-items: center; gap: 14px; text-decoration: none; padding: 16px 20px; background: #fff; border-top: 1px solid var(--border-hairline); font-family: var(--font-body); color: var(--text-heading); font-weight: 700; font-size: 16px; }
+  .hero-video-caption .play { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 50%; background: #111; display: inline-flex; align-items: center; justify-content: center; }
+  .hero-video-caption:hover .play { background: #000; transform: scale(1.05); transition: .15s; }
+  .cap-text { display: flex; flex-direction: column; line-height: 1.25; }
+  .cap-title { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 16px; color: var(--text-heading); }
+  .cap-sub { font-family: var(--font-body); font-weight: 600; font-size: 13px; color: var(--text-muted); }
+  .hero-video-badge { margin-top: 24px; display: flex; align-items: center; }
+  .hero-video-badge img { height: 104px; width: auto; }
+  .hero-inner {
+    flex: 1; display: flex; align-items: center; width: 100%;
+    --text-display: clamp(34px, 4.4vw, 54px);
+    --text-lg: clamp(16px, 1.45vw, 19px);
+    --section-py: clamp(16px, 3vh, 44px);
+  }
+  .hero-inner > section { width: 100%; }
+  .hero-inner h1 {
+    font-family: 'General Sans', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: clamp(40px, 5vw, 66px) !important;
+    line-height: 1.03 !important;
+    letter-spacing: -0.015em;
+    max-width: 820px;
+  }
+  .hero-swoosh { display: block; margin-top: 6px; width: min(430px, 78%); height: 16px; }
+  @media (max-height: 800px) {
+    .hero-inner { --section-py: 10px; --text-display: clamp(30px, 4vw, 42px); }
+    .hero-trust img { height: 48px !important; }
+  }
+
+  .hero-trust {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px 28px;
+    margin-top: 26px; font-family: var(--font-body);
+    color: #fff; font-size: 17px;
+  }
+  .hero-trust b { color: #fff; }
+  .hero-trust > span, .hero-trust > a { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; }
+  .guarantee-chip {
+    font-weight: 700; color: #fff;
+    text-decoration: underline;
+    text-decoration-color: var(--ec-green);
+    text-decoration-thickness: 2.5px;
+    text-underline-offset: 6px;
+  }
+
+  /* Diamond badge: anchored lower-right of the hero, big enough to read. */
+  .hero-badge {
+    position: absolute; right: clamp(20px, 4.5vw, 72px); bottom: calc(var(--peek) + 64px);
+    z-index: 3;
+  }
+  .hero-badge img { height: clamp(120px, 12vw, 168px); width: auto; display: block; }
+  @media (max-width: 1180px) { .hero-badge { display: none; } }
+
+  .video-straddle { background: var(--surface-page, #fff); padding: 72px 24px 8px; }
+  .video-card {
+    max-width: 860px; margin: 0 auto; position: relative;
+    border-radius: var(--radius-lg, 16px); overflow: hidden;
+    box-shadow: 0 18px 50px rgba(10, 14, 22, 0.35);
+  }
+
+  .subnav-fixed {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    animation: subnav-in .22s ease;
+  }
+  @keyframes subnav-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+  /* Section openers (.sec-open/.sec-line/.chapter-eyebrow/.sec-desc)
+     promoted to the design system 2026-07-25. */
+  .bucket { }
+  .chapter-rule { height: 5px; background: #000; width: 100%; }
+  .chapter .wrap { padding-top: 30px; padding-bottom: 6px; }
+  .get-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 48px; }
+  @media (max-width: 900px) { .get-grid { grid-template-columns: 1fr; gap: 30px; } }
+  .get-item { border-top: 1px solid var(--border-hairline); padding-top: 20px; }
+  .get-icon { width: 38px; height: 38px; stroke: var(--accent-ui); stroke-width: 1.7; fill: none; stroke-linecap: round; stroke-linejoin: round; display: block; margin-bottom: 14px; }
+  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 48px; margin-top: 30px; max-width: 980px; }
+  @media (max-width: 820px) { .fit-grid { grid-template-columns: 1fr; } }
+  .fit-item { display: flex; align-items: flex-start; gap: 12px; font-family: var(--font-body); font-size: 17px; font-weight: 600; color: var(--text-heading); }
+  .fit-item svg { flex: 0 0 auto; margin-top: 2px; }
+  .fit-note { border-left: 4px solid #000; padding-left: 18px; margin-top: 34px; max-width: 760px; font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--text-body); }
+  .chapter-desc-2 { font-family: var(--font-body); font-size: 18px; color: var(--text-body); margin: 0; }
+  /* Demote secondary module headings inside a bucket so the bucket opener stays the loudest */
+  .demote h2 { font-size: clamp(24px, 2.3vw, 30px) !important; }
+
+  /* Wynter-style sections: bold two-part headers, solid highlight boxes, numbered cols, offset cards */
+  .wynter-eyebrow { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 16px; }
+  .wynter-h2 { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: clamp(30px, 3.3vw, 46px); line-height: 1.06; letter-spacing: -0.02em; color: var(--text-heading); margin: 0; max-width: 900px; }
+  /* .hl-box promoted to the design system 2026-07-25. */
+  .wynter-sub { font-family: var(--font-body); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: var(--text-body); margin: 20px 0 0; max-width: 640px; }
+  .wynter-rule { height: 1px; background: var(--border-hairline); margin: 44px 0; }
+  .wynter-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; }
+  @media (max-width: 820px) { .wynter-cols { grid-template-columns: 1fr; gap: 32px; } }
+  /* .num-badge promoted to the design system 2026-07-25. */
+  .wynter-col-title { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 21px; color: var(--text-heading); margin: 14px 0 8px; }
+  .wynter-col-body { font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--text-body); margin: 0; }
+  .wynter-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 72px); align-items: center; }
+  @media (max-width: 900px) { .wynter-split { grid-template-columns: 1fr; gap: 36px; } }
+  .wynter-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 14px 14px 0 rgba(0,0,0,0.85); }
+  .shift-card { background: transparent; border: none; }
+  .shift-card img, .shift-card svg { display: block; width: 100%; height: auto; }
+  /* Roadmap + coach composite */
+  .doc-composite { position: relative; padding: 0 26px 30px 0; }
+  .doc-img { display: block; width: 100%; height: auto; }
+  .coach-chip { position: absolute; right: 0; bottom: 0; width: clamp(120px, 12vw, 170px); height: auto; border-radius: 50%; border: 5px solid #fff; box-shadow: 0 10px 28px rgba(10,14,22,0.22); }
+  .kalam-note { position: absolute; right: -6px; top: 44%; display: flex; gap: 8px; align-items: flex-start; font-family: var(--font-script, 'Kalam', cursive); font-size: 19px; line-height: 1.25; color: var(--ec-blue); transform: rotate(-2deg); }
+  @media (max-width: 1240px) { .kalam-note { display: none; } }
+  /* Right-for-you two-column contrast */
+  .fit2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 34px; align-items: start; }
+  @media (max-width: 820px) { .fit2 { grid-template-columns: 1fr; } }
+  .fit2-title { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 21px; color: var(--text-heading); margin: 0 0 18px; }
+  .fit2-col .fit-item { margin-bottom: 14px; }
+  .fit2-not { background: var(--surface-muted); border-radius: 12px; padding: 26px 28px; }
+  .fit2-not .fit-item { font-weight: 500; color: var(--text-body); }
+  .dash { flex: 0 0 auto; width: 18px; height: 4px; border-radius: 2px; background: #B7C2D4; margin-top: 10px; }
+  .shift-card img, .shift-card svg { display: block; width: 100%; height: auto; }
+  .shift-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 5vw, 72px); align-items: center; }
+  /* Prose scale (.prose-lead/.prose-body/.prose-bridge) promoted to the
+     design system 2026-07-25. */
+  @media (max-width: 900px) { .shift-split { grid-template-columns: 1fr; gap: 36px; } }
+  .wynter-card img { display: block; width: 100%; height: auto; }
+
+  /* .band/.band-sm/.wrap/.wrap-narrow promoted to the design system 2026-07-25. */
+  .center { text-align: center; }
+
+  .logo-ph {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 118px; height: 34px; border-radius: 6px;
+    background: #EDF1F7; color: #9AA3B2;
+    font-family: var(--font-body); font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script src="../../design-system/_ds_bundle.js"></script>
+
+<script type="text/babel">
+const PLACEHOLDER_ROADMAP = "data:image/svg+xml;utf8," + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620"><rect width="800" height="620" fill="#F6F9FC"/><rect x="14" y="14" width="772" height="592" fill="none" stroke="#C6D2E4" stroke-width="3" stroke-dasharray="12 10" rx="18"/><text x="400" y="295" text-anchor="middle" font-family="Helvetica" font-size="26" fill="#7A879B">Roadmap deliverable</text><text x="400" y="335" text-anchor="middle" font-family="Helvetica" font-size="18" fill="#9AA6B8">(screenshot of the real document)</text></svg>'
+);
+
+const PLACEHOLDER_SHIFT = "data:image/svg+xml;utf8," + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="620"><rect width="800" height="620" fill="#F6F9FC"/><rect x="14" y="14" width="772" height="592" fill="none" stroke="#C6D2E4" stroke-width="3" stroke-dasharray="12 10" rx="18"/><text x="400" y="295" text-anchor="middle" font-family="Helvetica" font-size="26" fill="#7A879B">Old way vs. new way diagram</text><text x="400" y="335" text-anchor="middle" font-family="Helvetica" font-size="18" fill="#9AA6B8">(10 blue links vs. 1 AI answer - to be designed)</text></svg>'
+);
+
+class Boundary extends React.Component {
+  constructor(p){ super(p); this.state = { err: null }; }
+  static getDerivedStateFromError(err){ return { err }; }
+  render(){
+    if (this.state.err) return (
+      <pre style={{ padding: 40, color: "#B00020", whiteSpace: "pre-wrap" }}>
+        Render error: {String(this.state.err && this.state.err.message || this.state.err)}
+      </pre>
+    );
+    return this.props.children;
+  }
+}
+
+const CLARITY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="920" height="640" viewBox="0 0 920 640">
+<rect width="920" height="640" fill="none"/>
+<!-- LEFT: the everything list (crowded, grey, anxious) -->
+<rect x="24" y="46" width="400" height="548" rx="14" fill="#FFFFFF" stroke="#D0DFEF" stroke-width="2"/>
+<text x="52" y="92" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#4F5465">Everything we could do</text>
+<g font-family="Arial, sans-serif" font-size="15" fill="#6B7280">
+<rect x="52" y="112" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="125">Redesign the website</text>
+<rect x="52" y="148" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="161">Run Google ads</text>
+<rect x="52" y="184" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="197">Post more on social</text>
+<rect x="52" y="220" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="233">Try the new AI tools</text>
+<rect x="52" y="256" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="269">Hire a marketer</text>
+<rect x="52" y="292" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="305">SEO audit</text>
+<rect x="52" y="328" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="341">More blog posts</text>
+<rect x="52" y="364" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="377">Start doing video</text>
+<rect x="52" y="400" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="413">Switch the CRM</text>
+<rect x="52" y="436" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="449">Email campaigns</text>
+<rect x="52" y="472" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="485">Update the branding</text>
+<rect x="52" y="508" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="521">AI search visibility</text>
+</g>
+<!-- hand-drawn anxious accents -->
+<path d="M 66 218 C 40 226, 44 250, 74 252 C 208 262, 250 246, 246 232 C 242 216, 130 210, 66 218 Z" fill="none" stroke="#DD2D2D" stroke-width="2.6" opacity="0.75"/>
+<text x="262" y="238" font-family="Kalam, cursive" font-size="21" fill="#DD2D2D" transform="rotate(-3 262 238)">this one??</text>
+<path d="M 66 398 C 42 406, 46 428, 76 430 C 190 438, 232 426, 228 412 C 224 398, 128 392, 66 398 Z" fill="none" stroke="#DD2D2D" stroke-width="2.6" opacity="0.75"/>
+<text x="246" y="420" font-family="Kalam, cursive" font-size="21" fill="#DD2D2D" transform="rotate(2 246 420)">or this??</text>
+<text x="300" y="580" font-family="Kalam, cursive" font-size="22" fill="#8A93A5" transform="rotate(-2 300 580)">...where do we start?</text>
+<!-- hand-drawn arrow -->
+<path d="M 452 320 C 490 296, 510 296, 546 316" stroke="#1D1D1F" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+<path d="M 530 300 L 549 317 L 524 324" stroke="#1D1D1F" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- RIGHT: fix first (calm, small, confident) -->
+<rect x="568" y="140" width="328" height="360" rx="14" fill="#FFFFFF" stroke="var(--ec-blue)" stroke-width="2.5"/>
+<text x="596" y="190" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#1D1D1F">Fix first</text>
+<g>
+<circle cx="614" cy="238" r="17" fill="var(--ec-blue)"/><text x="608" y="245" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">1</text>
+<rect x="646" y="228" width="222" height="13" rx="6.5" fill="#C9DEFF"/>
+<circle cx="614" cy="304" r="17" fill="var(--ec-blue)"/><text x="606" y="311" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">2</text>
+<rect x="646" y="294" width="184" height="13" rx="6.5" fill="#C9DEFF"/>
+<circle cx="614" cy="370" r="17" fill="var(--ec-green)"/><text x="606" y="377" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">3</text>
+<rect x="646" y="360" width="204" height="13" rx="6.5" fill="#B5F0E3"/>
+</g>
+<text x="596" y="446" font-family="Arial, sans-serif" font-size="15" fill="#4F5465">In order. With the reasons why.</text>
+<text x="686" y="540" font-family="Kalam, cursive" font-size="22" fill="var(--ec-blue)" transform="rotate(-2 686 540)">ignore the rest, for now</text>
+</svg>`;
+
+function Page() {
+  const DS = window.IMPACTDesignSystem_9efa99;
+  const {
+    NavBar, SubNav, Hero, VideoFeature, StarRating, StatCallout, Button,
+    SectionHeading, Prose, SplitFeature, FeatureGrid, QualifierBand,
+    ComparisonBlock, StepBand, PriceHighlight, CheckItem, TestimonialWall,
+    QuoteBand, FaqAccordion, CtaBand, FlowDiagram, Footer,
+  } = DS;
+
+  const [showSubNav, setShowSubNav] = React.useState(false);
+  const [activeAnchor, setActiveAnchor] = React.useState("#overview");
+  React.useEffect(() => {
+    const ids = ["overview", "what-you-get", "how-it-works", "pricing", "reviews"];
+    const onScroll = () => {
+      setShowSubNav(window.scrollY > window.innerHeight * 0.55);
+      let current = "#overview";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 90) current = "#" + id;
+      }
+      setActiveAnchor(current);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const subNavLinks = [
+    { label: "Overview", href: "#overview" },
+    { label: "What You Get", href: "#what-you-get" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Pricing", href: "#pricing" },
+    { label: "Reviews", href: "#reviews" },
+  ];
+
+  const badgeSrc = "assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg";
+  const hubspotUrl = "https://ecosystem.hubspot.com/marketplace/solutions/impact";
+
+  return (
+    <div>
+      {showSubNav && (
+        <div className="subnav-fixed">
+          <SubNav
+            label="Deep Diagnostic & Roadmap"
+            links={subNavLinks}
+            activeHref={activeAnchor}
+            ctaLabel="Schedule an Explore Call"
+            ctaHref="#"
+            style={{ background: "var(--accent-tint)", boxShadow: "none", borderBottom: "1px solid rgba(10,92,224,0.16)" }}
+          />
+        </div>
+      )}
+
+      {/* ================= SECTION 1 · OVERVIEW ================= */}
+
+      <div className="hero-wrap">
+        <NavBar ctaVariant="dark" style={{ background: "transparent", position: "relative", zIndex: 3 }} />
+        <div className="hero-grid">
+          <div className="hero-left">
+            <div className="hero-eyebrow">The Endless Customers Deep Diagnostic &amp; Roadmap</div>
+            <h1 className="hero-h1">
+              Find Out Why You're Not Winning More Customers
+            </h1>
+            <p className="hero-sub">Your buyers decide who to trust before they ever call, more and more by asking AI. A coach shows you where you stand, and what to fix first.</p>
+            <div className="hero-cta-row">
+              <Button variant="dark" size="lg" withArrow href="#">Schedule an Explore Call</Button>
+            </div>
+            <p className="hero-micro">A real first conversation. No pitch, no obligation.</p>
+            <div className="hero-trust">
+              <span><StarRating rating={5} /><b>5.0 on HubSpot</b>&nbsp;· 327 reviews</span>
+              <span><b>300+</b> companies coached</span>
+              <span className="guarantee-chip">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="11" fill="var(--ec-green)"/>
+                  <path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Money-Back Guarantee
+              </span>
+            </div>
+          </div>
+          <div className="hero-right" id="video">
+            <div className="hero-video-card">
+              <a className="hero-video-poster" href="#" aria-label="Play the 2-minute overview">
+                <img src="assets/bob-video-poster-clean-1.png" alt="Bob Ruffolo, your Endless Customers coach" />
+              </a>
+              <a className="hero-video-caption" href="#">
+                <span className="play"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7 5 20 12 7 19"/></svg></span>
+                <span className="cap-text">
+                  <span className="cap-title">How the Deep Diagnostic &amp; Roadmap Works</span>
+                  <span className="cap-sub">Watch a 2-minute overview</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bucket" style={{ background: "#fff" }}>
+      {/* The Shift — header + copy left, Then/Now visual right, one balanced 50/50 block */}
+      <div className="sec-open" id="overview" style={{ paddingBottom: 0 }}>
+        <div className="wrap shift-split">
+          <div className="shift-copy">
+            <div className="sec-line"></div>
+            <div className="chapter-eyebrow">Overview</div>
+            <h2 className="wynter-h2" style={{ marginBottom: 26 }}>Buyers Don't Research Companies Like They Used To. <span className="hl-box">They Ask AI.</span></h2>
+            <p className="prose-lead">For most companies we talk to, website traffic is down, and the leads that still come in have mostly decided before they call. It's not a slow season, and more ads won't bring it back.</p>
+            <p className="prose-body">Buyers used to compare you across a dozen tabs. Now they ask AI one question and trust the answer, one or two names. If you're not one of them, you're out before the conversation starts.</p>
+            <p className="prose-body"><strong>It's elimination, not ranking.</strong> AI doesn't push you to page two. It leaves you out of the answer, and recommends whoever it can clearly vouch for.</p>
+            <p className="prose-body"><strong>Most owners are stuck right here.</strong> They can see the traffic drop. What they can't see is whether AI recommends them, or how to become the name it gives.</p>
+            <p className="prose-bridge">The Deep Diagnostic shows you whether AI recommends you or your competitors, why, and what it would take to change that.</p>
+          </div>
+          <div className="shift-visual">
+            <div className="shift-card">
+              <img src="assets/shift-then-now.svg" alt="Then: ten Google links you researched. Now: one AI answer that recommends a single company." />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Beat 2 — Clarity: visual left, copy right */}
+      <div className="band" style={{ paddingBottom: 44 }}>
+        <div className="wrap shift-split">
+          <div className="shift-visual">
+            <div className="shift-card" role="img" aria-label="A crowded list of competing marketing to-dos, resolving into a short fix-first list of three" dangerouslySetInnerHTML={{ __html: CLARITY_SVG }} />
+          </div>
+          <div className="shift-copy">
+            <h2 className="wynter-h2" style={{ marginBottom: 26 }}>The Hard Part Is Knowing What to <span className="hl-box">Fix First</span></h2>
+            <p className="prose-lead">Most owners aren't behind because they aren't trying. They're buried in options. Website, SEO, ads, AI search, content, hiring, the tool everyone's talking about.</p>
+            <p className="prose-body">With no clear order, the safe move is no move. So nothing happens, and another quarter goes by.</p>
+            <p className="prose-body"><strong>More effort isn't the answer.</strong> Doing more of the old playbook can't fix a trust problem. Knowing which two or three moves actually matter, and ignoring the rest for now, can.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Beat 3 — What It Is: copy left, roadmap + coach composite right, Overview's single CTA */}
+      <div className="band" style={{ paddingTop: 44 }}>
+        <div className="wrap shift-split">
+          <div className="shift-copy">
+            <h2 className="wynter-h2" style={{ marginBottom: 26 }}>What the Deep Diagnostic &amp; Roadmap <span className="hl-box">Actually Is</span></h2>
+            <p className="prose-lead">A clear read on your business, not another opinion.</p>
+            <p className="prose-body">A coach studies your business, your market, and the competitors you actually lose to. Using AI to dig deep, and their experience to make sense of what it finds.</p>
+            <p className="prose-body">They check how you show up in Google and AI, where you're invisible, and where marketing and sales leak customers. Then they tell you <strong>what we'd do if it were our business.</strong></p>
+            <p className="prose-body"><strong>What it is:</strong> a clear read on what's going on, and what to fix first, second, and third.</p>
+            <p className="prose-body"><strong>What it isn't:</strong> a generic scorecard, an SEO scan, or a five-minute quiz.</p>
+            <div style={{ marginTop: 28 }}>
+              <Button variant="primary" size="lg" withArrow href="#">Schedule an Explore Call</Button>
+              <p className="prose-body" style={{ fontSize: 15, marginTop: 12, color: "var(--text-muted)" }}>A real first conversation. No pitch, no obligation.</p>
+            </div>
+          </div>
+          <div className="shift-visual">
+            <div className="doc-composite">
+              <img className="doc-img" src="assets/roadmap-mock.svg" alt="The Deep Diagnostic and Roadmap document" />
+              <img className="coach-chip" src="assets/bob-walkthrough.png" alt="Your Endless Customers Coach" />
+              <div className="kalam-note">
+                <svg width="46" height="30" viewBox="0 0 46 30" fill="none" aria-hidden="true"><path d="M 42 4 C 30 20, 18 24, 6 22" stroke="var(--ec-blue)" strokeWidth="3" fill="none" strokeLinecap="round"/><path d="M 14 16 L 5 23 L 16 27" stroke="var(--ec-blue)" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                walked through live,<br/>page by page
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Beat 4 — Is This Right for You: two-column contrast */}
+      <div className="band" style={{ paddingTop: 30 }}>
+        <div className="wrap">
+          <h2 className="wynter-h2">Is This <span className="hl-box">Right for You?</span></h2>
+          <p className="prose-lead" style={{ marginTop: 22 }}>Built for owners and leaders of businesses doing roughly $5M to $50M, where customers do real research before they buy.</p>
+          <div className="fit2">
+            <div className="fit2-col">
+              <h3 className="fit2-title">This is for you if...</h3>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Growth has stalled or plateaued and you're not sure why</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>The referrals still come, but the pipeline feels softer than it used to</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Competitors you don't respect keep showing up ahead of you</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Fixing how you get customers is near the top of your list right now</span></div>
+            </div>
+            <div className="fit2-col fit2-not">
+              <h3 className="fit2-title">It's probably not if...</h3>
+              <div className="fit-item"><span className="dash"></span><span>Customer acquisition isn't a priority today</span></div>
+              <div className="fit-item"><span className="dash"></span><span>You're happy with your marketing and sales performance</span></div>
+              <div className="fit-item"><span className="dash"></span><span>Your buyers don't do much research before they buy</span></div>
+              <p className="prose-body" style={{ fontSize: 16, marginTop: 8, marginBottom: 0 }}>We'd rather tell you that up front.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= SECTION 2 · WHAT YOU GET ================= */}
+
+      </div>
+      <div className="bucket" style={{ background: "var(--surface-muted)" }}>
+      <div className="sec-open" id="what-you-get">
+        <div className="wrap">
+          <div className="sec-line"></div>
+          <div className="chapter-eyebrow">What You Get</div>
+          <h2 className="wynter-h2">What You <span className="hl-box">Walk Away With</span></h2>
+          <p className="sec-desc">Six things you'll have in hand when it's done.</p>
+        </div>
+      </div>
+
+      <div className="band" style={{ paddingTop: 36, paddingBottom: 64 }}>
+        <div className="wrap">
+          <div className="get-grid">
+            <div className="get-item">
+              <svg className="get-icon" viewBox="0 0 24 24"><path d="M3 21h18"/><rect x="5" y="10" width="4.5" height="10" rx="1"/><rect x="14.5" y="5" width="4.5" height="15" rx="1"/></svg>
+              <h3 className="wynter-col-title">Where You Stand vs. Real Competitors</h3>
+              <p className="wynter-col-body">Side by side with the companies you actually lose to.</p>
+            </div>
+            <div className="get-item">
+              <svg className="get-icon" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>
+              <h3 className="wynter-col-title">Your AI Visibility</h3>
+              <p className="wynter-col-body">Whether AI recommends you, and where you're invisible.</p>
+            </div>
+            <div className="get-item">
+              <svg className="get-icon" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4.5h11l-2.2 3.8L16 12H5"/></svg>
+              <h3 className="wynter-col-title">Your First Moves</h3>
+              <p className="wynter-col-body">The changes that matter most, quick wins flagged.</p>
+            </div>
+            <div className="get-item">
+              <svg className="get-icon" viewBox="0 0 24 24"><path d="M4 20c3-1 4-5 8-6s5-4 8-6"/><circle cx="4" cy="20" r="1.5"/><circle cx="12" cy="14" r="1.5"/><circle cx="20" cy="8" r="1.5"/></svg>
+              <h3 className="wynter-col-title">A 3, 6, and 12-Month Roadmap</h3>
+              <p className="wynter-col-body">Where you could be, and the work to get there.</p>
+            </div>
+            <div className="get-item">
+              <svg className="get-icon" viewBox="0 0 24 24"><path d="M4 4v16h16"/><polyline points="7 15 11 11 14 13 20 6"/></svg>
+              <h3 className="wynter-col-title">The Revenue Math</h3>
+              <p className="wynter-col-body">The numbers behind your goal, and what moves them.</p>
+            </div>
+            <div className="get-item">
+              <svg className="get-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5.5"/></svg>
+              <h3 className="wynter-col-title">A Clear Recommendation</h3>
+              <p className="wynter-col-body">The best way to work together. No obligation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Competitor benchmark (signature) */}
+      <div className="demote">
+      <ComparisonBlock
+        title="See How You Stack Up Against"
+        highlight="Real Competitors"
+        subtitle="Not a textbook grade. We line you up against the three or four companies you actually lose to."
+        columns={["Free scorecards", "Typical audit", "Deep Diagnostic & Roadmap"]}
+        highlightIndex={2}
+        onMuted={true}
+        rows={[
+          { label: "Benchmarks you against named competitors", values: [false, false, true] },
+          { label: "Checks whether AI recommends you to buyers", values: [false, "Sometimes", true] },
+          { label: "A live working session with a coach", values: [false, false, true] },
+          { label: "A prioritized what-to-fix-first roadmap", values: [false, "A findings list", true] },
+          { label: "Someone who stays to run it with you", values: [false, false, true] },
+        ]}
+      />
+      </div>
+
+      {/* Revenue angle */}
+      <div className="band demote">
+        <div className="wrap-narrow center">
+          <SectionHeading
+            title="We Show You What's Possible,"
+            highlight="and the Math"
+          />
+          <Prose align="center" paragraphs={[
+            "We name a number worth chasing, then show the math: inquiries, close rate, cycle, customer value.",
+            "Then we tie every recommendation to the piece of that math it moves. You leave seeing the path, and that these are the moves down it.",
+          ]} style={{ marginTop: 24 }} />
+          <div style={{ marginTop: 36 }}>
+            <FlowDiagram layout="linear" nodes={["Revenue goal", "Qualified inquiries", "Close rate", "Sales cycle", "Customer value"]} />
+          </div>
+          <div style={{ marginTop: 32 }}>
+            <Button variant="primary" size="lg" withArrow href="#">Schedule an Explore Call</Button>
+          </div>
+        </div>
+      </div>
+
+      {/* The Coach */}
+      <div className="band demote" style={{ background: "var(--surface-muted)" }}>
+        <div className="wrap">
+          <SplitFeature
+            title="You're Gaining a Partner Who Does the Work With You"
+            imageSrc="assets/bob-video-poster-clean-2.png"
+            imageAlt="Your Endless Customers Coach"
+            mask="arch"
+          >
+            <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-lg)", fontWeight: 700, color: "var(--text-heading)", margin: "0 0 16px" }}>
+              Then your team owns it.
+            </p>
+            <Prose paragraphs={[
+              "Most marketing firms keep you dependent on purpose. We do the opposite.",
+              "Early on, we roll up our sleeves: the website, the content, the sales process, whatever's costing you customers.",
+              "Over time you lean on us less to do the work, and more for the outside view and the hard calls.",
+              "And you'll want us around for years.",
+            ]} />
+          </SplitFeature>
+        </div>
+      </div>
+
+      {/* ================= SECTION 3 · HOW IT WORKS ================= */}
+
+      </div>
+      <div className="bucket" style={{ background: "#fff" }}>
+      <div className="sec-open" id="how-it-works">
+        <div className="wrap">
+          <p className="sec-desc" style={{ marginTop: 0 }}>The whole process, start to finish.</p>
+        </div>
+      </div>
+
+      <div>
+        <StepBand
+          title="How It"
+          highlight="Works"
+          steps={[
+            { number: 1, title: "A Short Explore Call", caption: "See if it's a fit, both ways, before anyone commits." },
+            { number: 2, title: "The Deep Dive & Working Session", caption: "We study your business; your coach spends an hour filling in what we can't see." },
+            { number: 3, title: "Your Findings & Roadmap", caption: "What we found, what it's costing you, what to do, in order." },
+            { number: 4, title: "A Clear Recommendation", caption: "The best way to work together. No pressure." },
+          ]}
+        />
+      </div>
+
+      {/* ================= SECTION 4 · PRICING ================= */}
+
+      </div>
+      <div className="bucket" style={{ background: "var(--surface-muted)" }}>
+      <div className="sec-open" id="pricing">
+        <div className="wrap">
+          <p className="sec-desc" style={{ marginTop: 0 }}>One price. No surprises.</p>
+        </div>
+      </div>
+
+      <div className="band" style={{ paddingTop: 40 }}>
+        <div className="wrap">
+          <PriceHighlight
+            title={<span>What It Costs — One Time. No Retainer, No Strings.</span>}
+            prices={[{ label: "One-time engagement", amount: "$5,000" }]}
+            includesTitle="What's included"
+            includes={[
+              "A deep external inspection, benchmarked against your real competitors",
+              "An AI-visibility check: does AI recommend you, where you're invisible",
+              "A live 90-minute working session with your Endless Customers Coach",
+              "A prioritized 3, 6, and 12-month roadmap",
+              "A clear recommendation, with no obligation",
+            ]}
+            imageSrc="assets/roadmap-mock.svg"
+            imageAlt="What's included"
+            cta={<Button variant="primary" size="lg" withArrow href="#">Schedule an Explore Call</Button>}
+          />
+          <div className="wrap-narrow" style={{ marginTop: 40 }}>
+            <Prose paragraphs={[
+              "A free scorecard hands you an automated grade and disappears. This is a coach studying your real business, benchmarking your real competitors, and building the plan, then staying to run it with you.",
+              "The roadmap is yours either way.",
+            ]} />
+          </div>
+        </div>
+      </div>
+
+      {/* Guarantee */}
+      <div className="band-sm demote" style={{ background: "var(--surface-muted)" }}>
+        <div className="wrap-narrow center">
+          <SectionHeading
+            title="Backed by Our"
+            highlight="Money-Back Guarantee"
+          />
+          <Prose align="center" paragraphs={[
+            "Not happy with your diagnostic? Tell us why in writing and we'll redo it. Still not happy? We'll refund you in full.",
+            "We can offer that because we only take on companies we can help.",
+          ]} style={{ marginTop: 20 }} />
+          <div style={{ marginTop: 16 }}>
+            <a href="#" style={{ fontFamily: "var(--font-body)", fontWeight: 700, color: "var(--color-brand, var(--ec-blue))", textDecoration: "none" }}>
+              How Our Money-Back Guarantee Works →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= SECTION 5 · REVIEWS ================= */}
+
+      </div>
+      <div className="bucket" style={{ background: "#fff" }}>
+      <div className="sec-open" id="reviews">
+        <div className="wrap">
+          <p className="sec-desc" style={{ marginTop: 0 }}>Companies growing with Endless Customers.</p>
+        </div>
+      </div>
+
+      <div>
+        <QuoteBand
+          variant="dark"
+          quote="Now we have a very clear vision, a very clear strategy, and we know what we need to do to keep growing."
+          name="Chris Brandt"
+          title="Director of Marketing and Sales, Motion Therapy"
+        />
+        <TestimonialWall
+          title="Companies Growing With"
+          highlight="Endless Customers"
+          onMuted={true}
+          columns={3}
+          testimonials={[
+            { rating: 5, title: "Clarity That Drove Growth", quote: "IMPACT helped us clarify our message and show our value through transparency. By educating instead of selling, we built trust and accelerated growth.", name: "Jeffery Linta", company: "CEO, Linta Roofing" },
+            { rating: 5, title: "Aligned on One Methodology", quote: "Our coach brought our teams together and aligned them on a single methodology. The results speak for themselves.", name: "Isabelle Braeutigam", company: "Marketing Manager, Custom Built" },
+            { rating: 5, title: "Raising the Standard", quote: "IMPACT has changed how we even look at business. Our competition doesn't like it. We're raising the standard 10 fold in the industry.", name: "Scott Merritt", company: "Owner, Fire & Ice" },
+          ]}
+        />
+      </div>
+
+      {/* FAQ */}
+      <div className="band demote">
+        <div className="wrap-narrow">
+          <SectionHeading title="Frequently Asked" highlight="Questions" align="center" />
+          <div style={{ marginTop: 40 }}>
+            <FaqAccordion
+              defaultOpen={0}
+              items={[
+                { q: "What Is the Endless Customers Deep Diagnostic & Roadmap?", a: "An expert, AI-powered review of how your company actually gets customers. It looks at how you show up in search and in AI tools, how you compare to the competitors you actually lose to, and how well your marketing and sales work together, then ends in a prioritized plan of what to fix first. It combines deep AI analysis with the judgment of an Endless Customers Coach, includes a live 90-minute working session and a 3, 6, and 12-month roadmap, and it's the starting point of a coaching relationship built to get you more customers." },
+                { q: "Why Does This Cost $5,000 When Other Diagnostics Are Free?", a: "Free tools stop where the software stops. You answer a few questions or paste your URL, and you get an automated score. We use AI too, and we push it a lot further, benchmarking you against the competitors you actually lose to and checking whether AI even mentions you to buyers. Then an Endless Customers Coach adds what the software can't: judgment from years of doing this, and a real read on what has and hasn't worked for companies like yours. You're paying for AI-powered analysis plus expert human judgment, and a roadmap tied to your revenue goal, not just a grade." },
+                { q: "What If I Already Have a Marketing Person or Team?", a: "Good. That makes this more useful, not less. The diagnostic tells your team exactly where to focus and in what order, and gives them the outside read and the competitive benchmark that's hard to get from the inside. A lot of our clients have capable people who just needed a clear set of priorities and someone in their corner." },
+                { q: "Do I Have to Keep Working With You Afterward?", a: "No. The roadmap is yours whether you hire us or not. Most clients choose to keep going, because the diagnostic is the start of a coaching relationship, but there's no obligation and no pressure at the end." },
+                { q: "How Is This Different From an Audit?", a: "An audit tells you what's wrong. This tells you what to do first, shows you where you could be in a year, benchmarks you against the competitors you actually lose to, and gives you a coach to get you there. An audit is a document. This is a starting point and a partner." },
+                { q: "What Happens on the Explore Call?", a: "It's a working conversation, usually about an hour, where a coach digs into your business, your goals, and your challenges, and you both decide whether this is a fit. No pitch deck, no pressure. If it makes sense to keep going, we'll walk you through exactly what happens next." },
+                { q: "How Long Does the Whole Thing Take?", a: "Less than two weeks, from kickoff to your roadmap presentation." },
+                { q: "What If I Already Know Most of What's Wrong?", a: "Maybe you do, in broad strokes. What most owners don't have is the specific order to fix things in, an outside benchmark against the competitors they actually lose to, and a straight answer on whether AI even mentions them when a buyer goes looking. If the diagnostic doesn't give you something you can act on, our money-back guarantee has you covered." },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+      {/* Closing CTA */}
+      <CtaBand
+        title="Stop Guessing About"
+        highlight="Why Growth Stalled"
+        subtitle="In one conversation, find out where you stand and what we'd do first if it were our business. Not the decision-maker? This is the diagnostic that gets your leadership aligned. Bring us in."
+        primaryCta="Schedule an Explore Call"
+        primaryHref="#"
+      />
+
+      <Footer />
+    </div>
+  );
+}
+
+function mount() {
+  if (!window.IMPACTDesignSystem_9efa99) { setTimeout(mount, 40); return; }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Boundary><Page /></Boundary>);
+}
+mount();
+</script>
+</body>
+</html>

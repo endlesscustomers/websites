@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="640" viewBox="0 0 920 640">
+<rect width="920" height="640" fill="none"/>
+<!-- LEFT: the everything list (crowded, grey, anxious) -->
+<rect x="24" y="46" width="400" height="548" rx="14" fill="#FFFFFF" stroke="#D0DFEF" stroke-width="2"/>
+<text x="52" y="92" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#4F5465">Everything we could do</text>
+<g font-family="Arial, sans-serif" font-size="15" fill="#6B7280">
+<rect x="52" y="112" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="125">Redesign the website</text>
+<rect x="52" y="148" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="161">Run Google ads</text>
+<rect x="52" y="184" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="197">Post more on social</text>
+<rect x="52" y="220" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="233">Try the new AI tools</text>
+<rect x="52" y="256" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="269">Hire a marketer</text>
+<rect x="52" y="292" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="305">SEO audit</text>
+<rect x="52" y="328" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="341">More blog posts</text>
+<rect x="52" y="364" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="377">Start doing video</text>
+<rect x="52" y="400" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="413">Switch the CRM</text>
+<rect x="52" y="436" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="449">Email campaigns</text>
+<rect x="52" y="472" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="485">Update the branding</text>
+<rect x="52" y="508" width="15" height="15" rx="3" fill="none" stroke="#B7C2D4" stroke-width="2"/><text x="78" y="521">AI search visibility</text>
+</g>
+<!-- hand-drawn anxious accents -->
+<path d="M 66 218 C 40 226, 44 250, 74 252 C 208 262, 250 246, 246 232 C 242 216, 130 210, 66 218 Z" fill="none" stroke="#DD2D2D" stroke-width="2.6" opacity="0.75"/>
+<text x="262" y="238" font-family="Kalam, cursive" font-size="21" fill="#DD2D2D" transform="rotate(-3 262 238)">this one??</text>
+<path d="M 66 398 C 42 406, 46 428, 76 430 C 190 438, 232 426, 228 412 C 224 398, 128 392, 66 398 Z" fill="none" stroke="#DD2D2D" stroke-width="2.6" opacity="0.75"/>
+<text x="246" y="420" font-family="Kalam, cursive" font-size="21" fill="#DD2D2D" transform="rotate(2 246 420)">or this??</text>
+<text x="300" y="580" font-family="Kalam, cursive" font-size="22" fill="#8A93A5" transform="rotate(-2 300 580)">...where do we start?</text>
+<!-- hand-drawn arrow -->
+<path d="M 452 320 C 490 296, 510 296, 546 316" stroke="#1D1D1F" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+<path d="M 530 300 L 549 317 L 524 324" stroke="#1D1D1F" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- RIGHT: fix first (calm, small, confident) -->
+<rect x="568" y="140" width="328" height="360" rx="14" fill="#FFFFFF" stroke="#0A5CE0" stroke-width="2.5"/>
+<text x="596" y="190" font-family="Arial, sans-serif" font-size="19" font-weight="700" fill="#1D1D1F">Fix first</text>
+<g>
+<circle cx="614" cy="238" r="17" fill="#0A5CE0"/><text x="608" y="245" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">1</text>
+<rect x="646" y="228" width="222" height="13" rx="6.5" fill="#C9DEFF"/>
+<circle cx="614" cy="304" r="17" fill="#0A5CE0"/><text x="606" y="311" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">2</text>
+<rect x="646" y="294" width="184" height="13" rx="6.5" fill="#C9DEFF"/>
+<circle cx="614" cy="370" r="17" fill="#01C4A2"/><text x="606" y="377" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#FFFFFF">3</text>
+<rect x="646" y="360" width="204" height="13" rx="6.5" fill="#B5F0E3"/>
+</g>
+<text x="596" y="446" font-family="Arial, sans-serif" font-size="15" fill="#4F5465">In order. With the reasons why.</text>
+<text x="686" y="540" font-family="Kalam, cursive" font-size="22" fill="#0A5CE0" transform="rotate(-2 686 540)">ignore the rest, for now</text>
+</svg>

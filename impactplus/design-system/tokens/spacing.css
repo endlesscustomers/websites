@@ -1,0 +1,35 @@
+/* ============================================================
+   IMPACT — SPACING & LAYOUT TOKENS
+   ============================================================ */
+:root {
+  /* ---- Spacing scale (4px base) ------------------------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* ---- Section rhythm ----------------------------------- */
+  --section-py:      96px;  /* default vertical padding of a page section */
+  --section-py-lg:   128px;
+  --section-gap:     64px;  /* gap between heading block and content */
+
+  /* ---- Container ---------------------------------------- */
+  --container-max:   1150px; /* main content column (matches live impactplus.com, 2026-07-23) */
+  --container-wide:  1320px;
+  --container-narrow: 820px; /* prose / centered copy */
+  --gutter:          24px;   /* page side padding */
+
+  /* ---- Grid gaps ---------------------------------------- */
+  --grid-gap:        32px;
+  --grid-gap-sm:     20px;
+}

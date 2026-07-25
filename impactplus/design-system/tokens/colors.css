@@ -1,0 +1,250 @@
+/* ============================================================
+   IMPACT — COLOR TOKENS
+
+   REBASED 2026-07-25 (Bob's decision) onto the Endless Customers
+   color system, sourced from endlesscustomers.com/brand-guidelines.
+   The two brands now share one palette so IMPACT's site and the EC
+   site read as one company during the transition.
+
+   The EC core:
+     EC Navy      #0A0F1F    EC Blue     #1C78FF
+     EC Magenta   #C026D3    EC Green    #22C55E
+     Surface Gray #F4F5F7    White       #FFFFFF
+   Plus HubSpot Orange #FC9639 as a full fifth accent (Bob, 2026-07-25).
+   NOTE this is a deliberate divergence from EC's guidelines, which fence
+   amber to alerts only. IMPACT uses orange as a real service accent.
+
+   THE GRADIENT RULE (from EC brand guidelines, non-negotiable):
+   the Magenta -> Blue -> Green gradient is for BORDERS, LINES, and
+   UNDERLINES only, 2-6px. Never a background fill, button fill, or
+   text color. Overusing it dilutes it.
+
+   Legacy IMPACT values are kept below the new ones where components
+   still reference them. New work uses the semantic aliases.
+   ============================================================ */
+:root {
+  /* ---- EC core palette (primary source of truth) --------- */
+  --ec-navy:         #0A0F1F; /* deepest ink, dark sections */
+  --ec-blue:         #1C78FF; /* EC Blue — primary brand */
+  --ec-magenta:      #C026D3; /* EC Magenta */
+  --ec-green:        #22C55E; /* EC Green */
+  --ec-orange:       #FC9639; /* HubSpot Orange — full accent, per Bob 2026-07-25 */
+  --ec-surface-gray: #F4F5F7; /* default alternating section background */
+  --ec-amber:        #F59E0B; /* ALERTS ONLY — never decorative */
+  --ec-error-red:    #EF4444; /* ERRORS ONLY */
+
+  /* The brand gradient. BORDERS / LINES / UNDERLINES ONLY. */
+  --ec-gradient: linear-gradient(90deg, #C026D3 0%, #1C78FF 50%, #22C55E 100%); /* @kind color */
+
+  /* ==========================================================
+     ACCESSIBLE VARIANTS — added 2026-07-25 (Bob's instruction).
+
+     THE PROBLEM THIS SOLVES: the brand hues are chosen to look
+     right, not to pass contrast. Measured against white:
+       EC Blue   #1C78FF = 4.05:1  (fails 4.5 body text)
+       EC Green  #22C55E = 2.28:1  (fails even 3:1 graphical)
+       HS Orange #FC9639 = 2.20:1  (fails even 3:1 graphical)
+     Using the raw brand hue for text or a thin rule produces an
+     inaccessible page that still looks on-brand, which is the
+     worst kind of bug because nothing looks wrong.
+
+     THE FIX: every hue carries three roles. Pick by JOB, not by
+     eye. All values below were computed and verified, not guessed.
+
+       --X            BRAND. Large decorative fills only, where no
+                      text sits on it and it isn't carrying meaning
+                      on its own. Never text. Never a thin rule.
+       --X-ui         >= 3:1 on white. Rules, bars, icons, borders,
+                      focus rings, and LARGE text (>=24px / 18.66px bold).
+       --X-text       >= 4.5:1 on white. Body text, links, small text.
+                      Also safe on that hue's tint.
+       --X-strong     Fill dark enough that WHITE text on it passes
+                      4.5:1. Buttons, badges, any filled element with
+                      a white label.
+
+     Blue is the one to watch: white-on-#1C78FF FAILS at 4.05:1, so a
+     blue button with white text must use --ec-blue-strong, not --ec-blue.
+     ========================================================== */
+  --ec-blue-ui:        #0F63E0; /* 5.41:1 */
+  --ec-blue-text:      #0F63E0; /* 5.41:1 */
+  --ec-blue-strong:    #0F63E0; /* white text on it: 5.41:1 */
+
+  --ec-magenta-ui:     #C026D3; /* 4.71:1 — brand hue already passes */
+  --ec-magenta-text:   #A21DB2; /* 6.26:1 */
+  --ec-magenta-strong: #A21DB2; /* white text on it: 6.26:1 */
+
+  --ec-green-ui:       #17914A; /* 4.05:1 */
+  --ec-green-text:     #15803D; /* 5.02:1 */
+  --ec-green-strong:   #15803D; /* white text on it: 5.02:1 */
+
+  --ec-orange-ui:      #C25E04; /* 4.29:1 */
+  --ec-orange-text:    #A34D09; /* 5.80:1 */
+  --ec-orange-strong:  #A34D09; /* white text on it: 5.80:1 */
+
+  /* Dark ink for placing text ON a light brand fill (green/orange). */
+  --ec-ink-on-light:   #0A0F1F; /* on green 8.37:1 · on orange 8.68:1 */
+
+  /* ---- Grayscale ramp -----------------------------------
+     500 was #7C838F (3.82:1) and failed as body text; it is now
+     a contrast-safe value that also clears 4.5:1 on the gray
+     surface, not just on white. ---------------------------- */
+  --ec-gray-50:  #FAFBFC;
+  --ec-gray-100: #F4F5F7;
+  --ec-gray-200: #E8EAED;
+  --ec-gray-300: #D6DAE0;
+  --ec-gray-400: #AEB4BE; /* decorative only — never text */
+  --ec-gray-500: #626974; /* 5.54:1 white · 5.08:1 on gray surface */
+  --ec-gray-600: #545B67;
+  --ec-gray-700: #343A44;
+  --ec-gray-800: #1D2129;
+  --ec-gray-900: #0A0F1F;
+
+  /* ---- Legacy IMPACT Blues (pre-2026-07-25) ------------- */
+  --ec-blue-100: #F3F7FF; /* form-field background */
+  --ec-blue-200: #E2ECFF; /* accent */
+  --ec-blue-300: #D1E0FF; /* accent */
+  --ec-blue-400: #ADDCFF; /* accent used on marketing pages */
+  --ec-blue-500: #AFCAFF; /* accent */
+  --ec-blue-600: #0A6CFF; /* old IMPACT Blue — superseded by --ec-blue */
+
+  /* ---- Brand Greens ------------------------------------- */
+  --ec-green-100: #C3FFE8;
+  --ec-green-200: #3EFEDD;
+  --ec-green-300: #0BFED4;
+  --ec-green-400: #01E6BE; /* pill shapes */
+  --ec-green-500: #01C4A2; /* checkmark icons */
+  --ec-green-600: #00B59C;
+
+  /* ---- Brand Grey-Blues (Livid) ------------------------- */
+  --ec-livid-100: #F6F9FC; /* default section background */
+  --ec-livid-200: #E1EFF4; /* inactive pager dots */
+  --ec-livid-300: #E1E7F4; /* border + background */
+  --ec-livid-400: #D0DFEF;
+  --ec-livid-500: #C3D7EB;
+  --ec-livid-600: #AAC6E3;
+
+  /* ---- Neutrals ----------------------------------------- */
+  --ec-white:       #FFFFFF;
+  --ec-neutral-100: #F6F6F6;
+  --ec-neutral-200: #EEEEEE;
+  --ec-neutral-300: #DDDDDD;
+  --ec-neutral-400: #C4C4C4;
+  --ec-neutral-500: #999999;
+  --ec-neutral-600: #2B2B2B; /* divider-line stroke */
+  --ec-neutral-700: #1D1D1F; /* content headers */
+  --ec-black:       #000000;
+
+  /* ---- Slate / Misc ------------------------------------- */
+  --ec-slate-500: #4F5465; /* body copy */
+  --ec-red-500:   #DD2D2D; /* warnings + required fields */
+
+  /* ---- Service accent palettes (per-service theming) ---- */
+  --ec-sales-primary:   #33B748;
+  --ec-sales-accent:    #C2E9C8;
+  --ec-hubspot-primary: #FC9639;
+  --ec-hubspot-accent:  #FFDCDC;
+  --ec-website-primary: #E4319A;
+  --ec-website-accent:  #F9C1C1;
+  --ec-ai-primary:      #02B4CA;
+  --ec-ai-accent:       #B3D9F2;
+  --ec-marketing-primary: #0A6CFF;
+  --ec-marketing-accent:  #B9D5FD;
+
+  /* Service gradients (dark = bold fill, light = soft fill) */
+  --ec-grad-sales-dark:  linear-gradient(90deg, #B6DF50 0%, #33B748 100%); /* @kind color */
+  --ec-grad-sales-light: linear-gradient(90deg, #E9F5CB 0%, #C2E9C8 100%); /* @kind color */
+  --ec-grad-hubspot-dark:  linear-gradient(90deg, #FBB12F 0%, #FF5250 100%); /* @kind color */
+  --ec-grad-hubspot-light: linear-gradient(90deg, #FEEFD5 0%, #FFDCDC 100%); /* @kind color */
+  --ec-grad-website-dark:  linear-gradient(90deg, #DE30E5 0%, #FF5250 100%); /* @kind color */
+  --ec-grad-website-light: linear-gradient(90deg, #F5C1F7 0%, #F9C1C1 100%); /* @kind color */
+  --ec-grad-ai-dark:  linear-gradient(90deg, #01E6BE 0%, #0281D4 100%); /* @kind color */
+  --ec-grad-ai-light: linear-gradient(90deg, #B3F7EC 0%, #B3D9F2 100%); /* @kind color */
+  --ec-grad-marketing-dark:  linear-gradient(90deg, #00C0FF 0%, #5558FF 100%); /* @kind color */
+  --ec-grad-marketing-light: linear-gradient(90deg, #EAF6FF 0%, #ADDCFF 100%); /* @kind color */
+  /* Ecee AI chat widget bubble */
+  --ec-grad-ai-chat: linear-gradient(135deg, #5558FF 0%, #E4319A 100%); /* @kind color */
+
+  /* ==========================================================
+     SEMANTIC ALIASES — reach for these in components.
+     Repointed 2026-07-25 to the EC palette above.
+     ========================================================== */
+  --color-brand:            var(--ec-blue);        /* decorative fill */
+  --color-brand-strong:     var(--ec-blue-strong);  /* USE THIS for buttons w/ white text */
+  --color-brand-hover:      #0B54C4;                /* strong, darkened for hover */
+  --color-secondary:        var(--ec-green);
+
+  --text-heading:           var(--ec-gray-900); /* 19.07:1 */
+  --text-body:              var(--ec-gray-700); /* 11.45:1 */
+  --text-muted:             var(--ec-gray-500); /*  5.54:1 — was 3.82:1 and failing */
+  --text-inverse:           var(--ec-white);
+  --text-link:              var(--ec-blue-text); /* 5.41:1 — was raw brand blue at 4.05:1, failing */
+  --text-link-hover:        var(--color-brand-hover);
+  --text-error:             #D42020; /* 5.21:1 — the raw #EF4444 is 3.76:1 and fails as text */
+
+  --surface-page:           var(--ec-white);
+  --surface-muted:          var(--ec-surface-gray); /* alternating sections */
+  --surface-card:           var(--ec-white);
+  --surface-field:          var(--ec-gray-50);
+  --surface-dark:           var(--ec-navy); /* dark hero / bands */
+  --surface-black:          var(--ec-black);
+
+  --border-subtle:          var(--ec-gray-200);
+  --border-hairline:        var(--ec-gray-200); /* alias used by page components */
+  --border-strong:          var(--ec-gray-700);
+  --divider:                var(--ec-gray-200);
+
+  --accent-pill:            var(--ec-green);
+  --accent-check:           var(--ec-green);
+  --star-rating:            #F5B72F; /* gold review stars */
+
+  /* ==========================================================
+     ACCENT SYSTEM — promoted from the DD&R page, 2026-07-25.
+     Rebuilt on the accessible variants above, 2026-07-25.
+
+     Set a variant class on any wrapper to re-theme the block:
+       .accent-blue (default) .accent-magenta .accent-green
+       .accent-orange .accent-grey
+
+     Five roles, so a component never has to pick a hex or think
+     about contrast. Reach for the one matching the JOB:
+       --accent        brand fill. LARGE decorative areas only.
+       --accent-ui     >=3:1 on white. Rules, bars, icons, borders,
+                       focus rings, large text. THIS is what the
+                       section-opener line and icon strokes use.
+       --accent-text   >=4.5:1 on white. Body text and links.
+       --accent-strong fill for a button/badge with a WHITE label.
+       --accent-ink    correct text colour to place on --accent.
+       --accent-tint   pale wash; --accent-text is legible on it.
+
+     Every pair below is verified, not estimated. Note green and
+     orange flip --accent-ink to near-black: their brand hues are
+     too light for white text at any size.
+     ========================================================== */
+  --accent:        var(--ec-blue);
+  --accent-ui:     var(--ec-blue-ui);
+  --accent-text:   var(--ec-blue-text);
+  --accent-strong: var(--ec-blue-strong);
+  --accent-ink:    #FFFFFF;
+  --accent-tint:   #E7F0FF;
+}
+
+.accent-blue {
+  --accent:#1C78FF; --accent-ui:#0F63E0; --accent-text:#0F63E0;
+  --accent-strong:#0F63E0; --accent-ink:#FFFFFF; --accent-tint:#E7F0FF;
+}
+.accent-magenta {
+  --accent:#C026D3; --accent-ui:#C026D3; --accent-text:#A21DB2;
+  --accent-strong:#A21DB2; --accent-ink:#FFFFFF; --accent-tint:#FAE8FD;
+}
+.accent-green {
+  --accent:#22C55E; --accent-ui:#17914A; --accent-text:#15803D;
+  --accent-strong:#15803D; --accent-ink:#0A0F1F; --accent-tint:#DCFCE7;
+}
+.accent-orange {
+  --accent:#FC9639; --accent-ui:#C25E04; --accent-text:#A34D09;
+  --accent-strong:#A34D09; --accent-ink:#0A0F1F; --accent-tint:#FEEFD5;
+}
+.accent-grey {
+  --accent:#343A44; --accent-ui:#343A44; --accent-text:#343A44;
+  --accent-strong:#343A44; --accent-ink:#FFFFFF; --accent-tint:#F4F5F7;
+}

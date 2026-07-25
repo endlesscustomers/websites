@@ -1,0 +1,83 @@
+/* ============================================================
+   IMPACT — TYPOGRAPHY TOKENS
+   Heading = General Sans (Fontshare) · Body = Proxima Nova
+   (self-hosted from /fonts) · Script = Kalam.
+
+   CHANGED 2026-07-25 (Bob's decision). Headings moved from
+   Merriweather serif to General Sans, matching the Endless
+   Customers brand system at endlesscustomers.com/brand-guidelines.
+   IMPACT deliberately DIVERGES from EC on body copy: EC is a
+   single-family General Sans system; IMPACT keeps Proxima Nova
+   for running text. Do not "fix" that to match EC.
+
+   Merriweather is retired, kept below only as --font-serif for
+   any legacy component still calling it directly. Nothing new
+   should reference it.
+   ============================================================ */
+:root {
+  /* ---- Families ----------------------------------------- */
+  --font-display: 'General Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans:   'Proxima Nova', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-cond:   'Proxima Nova Condensed', 'Proxima Nova', system-ui, sans-serif;
+  --font-script: 'Kalam', 'Comic Sans MS', cursive;
+  --font-serif:  'Merriweather', Georgia, 'Times New Roman', serif; /* RETIRED 2026-07-25 — legacy only */
+
+  /* semantic role aliases */
+  --font-heading: var(--font-display); /* was var(--font-serif) until 2026-07-25 */
+  --font-body:    var(--font-sans);
+  --font-accent:  var(--font-script);
+
+  /* ---- Type scale (px) ---------------------------------- */
+  --text-display: 60px; /* Display H1 */
+  --text-h1:      48px;
+  --text-h2:      36px;
+  --text-h3:      30px;
+  --text-h4:      24px;
+  --text-h5:      20px;
+
+  --text-lg:      20px; /* P / H6 large */
+  --text-base:    18px; /* P default */
+  --text-sm:      16px; /* P small */
+  --text-xs:      14px; /* P x-small */
+
+  --script-xl:    64px;
+  --script-lg:    44px;
+  --script-md:    32px;
+  --script-sm:    28px;
+  --script-xs:    20px;
+
+  /* ---- Prose scale (promoted from the DD&R page, 2026-07-25)
+     ONE lead size and ONE body size. Emphasis comes from a bold
+     lead-in phrase, never from a different font size. Added after
+     three competing sizes were found yo-yoing down a single page.
+     Classes: .prose-lead / .prose-body / .prose-bridge (base.css)
+     ------------------------------------------------------- */
+  --prose-lead:   clamp(19px, 1.5vw, 22px);
+  --prose-body:   18px;
+  --prose-measure: 620px; /* max line length for readable prose */
+
+  /* ---- Weights ------------------------------------------ */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extrabold: 800; /* General Sans display weight, per EC brand spec */
+  --weight-black:    900;
+
+  /* ---- Heading role weights (EC brand spec) ------------- */
+  --weight-h1: var(--weight-extrabold); /* 800 — display / hero */
+  --weight-h2: var(--weight-bold);      /* 700 — section headings */
+  --weight-h3: var(--weight-semibold);  /* 600 — labels, eyebrows */
+
+  /* ---- Line heights ------------------------------------- */
+  --leading-tight:   1.12; /* display headings */
+  --leading-snug:    1.25; /* sub-headings */
+  --leading-normal:  1.5;  /* body */
+  --leading-relaxed: 1.65; /* long-form paragraphs */
+
+  /* ---- Letter spacing ----------------------------------- */
+  --tracking-eyebrow: 0.14em;  /* uppercase eyebrow labels */
+  --tracking-display: -0.02em; /* General Sans display/H1, per EC brand spec */
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+}
