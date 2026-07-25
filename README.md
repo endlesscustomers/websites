@@ -62,6 +62,14 @@ Project tracking: [[../../30-projects/websites/impactplus/index|30-projects/webs
 3. Add a row to the table above **and a card in `index.html`**.
 4. Put the strategy/copy/decision docs in `30-projects/websites/<site>/`, not here.
 
+## ⚠️ Do not delete `.nojekyll`
+
+The empty `.nojekyll` file at this folder's root is load-bearing. GitHub Pages runs Jekyll by default, and **Jekyll refuses to publish any file whose name starts with an underscore** — it treats them as internal templates. The design system's React bundle is `_ds_bundle.js`, so without this file Pages returns 503 for it and every page renders **blank**: the HTML, CSS, and fonts all load fine, then the components are missing and nothing draws.
+
+Found the hard way on 2026-07-25, the first time the DD&R page was served from Pages. Also affects `_ds_manifest.json` and `_adherence.oxlintrc.json`.
+
+`.nojekyll` turns Jekyll off entirely and serves every file as-is. It must stay at the repo root, and it's empty on purpose.
+
 ## GitHub setup
 
 Repo: **`endlesscustomers/websites`** (public). Linked via GitHub Desktop → Add Local Repository → this folder. Pages serves from `main` / `/root`.
