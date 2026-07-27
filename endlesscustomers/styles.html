@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- =====================================================================
+    Flash-free theme init — must run before <body> renders.
+    Reads saved preference or system setting and applies data-theme immediately.
+    HubSpot migration: keep this inline script in the <head> template.
+    ===================================================================== -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('ec-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved === 'dark' || saved === 'light' ? saved : (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <!-- Page meta — HubSpot: {{ content.html_title }} / {{ content.meta_description }} -->
+  <title>Endless Customers — Style System</title>
+  <meta name="description" content="Endless Customers helps businesses generate a consistent, predictable flow of new customers." />
+
+  <meta property="og:title"       content="Endless Customers" />
+  <meta property="og:description" content="A consistent, predictable flow of new customers." />
+  <meta property="og:type"        content="website" />
+
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./css/main.css?v=2026060929r" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Global Header — HubSpot: {% global_partial path="global/header.html" %} -->
+  <div id="nav-placeholder"></div>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+      HERO
+      =================================================================== -->
+    <section class="hero section" aria-labelledby="hero-headline">
+      <div class="container hero__inner">
+
+        <span class="hero__eyebrow">Endless Customers</span>
+
+        <h1 class="hero__headline" id="hero-headline">
+          Turn Your Website Into a<br>
+          Customer-Generating Machine
+        </h1>
+
+        <p class="hero__subheadline">
+          A proven system that helps service businesses attract, convert, and
+          close more customers — consistently and predictably.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#" class="btn btn--primary btn--lg">Get Started</a>
+          <a href="#" class="btn btn--ghost btn--lg">See How It Works</a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      STYLE GUIDE — Color System
+      =================================================================== -->
+    <section class="section section--alt" id="style-colors">
+      <div class="container">
+
+        <div class="guide-label">Style Guide · Colors</div>
+
+        <!-- Surface colors -->
+        <p class="section__eyebrow mb-6">Surface &amp; Background</p>
+        <div class="swatch-grid mb-8">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#FFFFFF; border-bottom:1px solid #e2e8f0;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Background</span>
+              <span class="swatch__hex">#FFFFFF</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#F8FAFC;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Surface</span>
+              <span class="swatch__hex">#F8FAFC</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#F1F5F9;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Subtle</span>
+              <span class="swatch__hex">#F1F5F9</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#E2E8F0;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Border</span>
+              <span class="swatch__hex">#E2E8F0</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#CBD5E1;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Border Strong</span>
+              <span class="swatch__hex">#CBD5E1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text colors -->
+        <p class="section__eyebrow mb-6">Text &amp; Type</p>
+        <div class="swatch-grid mb-8">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#94A3B8;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Text Muted</span>
+              <span class="swatch__hex">#94A3B8</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#334155;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Text Body</span>
+              <span class="swatch__hex">#334155</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#1E293B;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Text Strong</span>
+              <span class="swatch__hex">#1E293B</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#0F172A;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Heading</span>
+              <span class="swatch__hex">#0F172A</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dark mode surfaces (always shown at their actual hex) -->
+        <p class="section__eyebrow mb-6">Dark Mode Surfaces</p>
+        <div class="swatch-grid mb-8">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#0F172A;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Dark BG</span>
+              <span class="swatch__hex">#0F172A</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#152033;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Dark Subtle</span>
+              <span class="swatch__hex">#152033</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#1E293B;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Dark Surface</span>
+              <span class="swatch__hex">#1E293B</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#263348;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Dark Elevated</span>
+              <span class="swatch__hex">#263348</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#334155;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Dark Border</span>
+              <span class="swatch__hex">#334155</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accent colors -->
+        <p class="section__eyebrow mb-6">Accent Colors</p>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch__color" style="background:#D6269B;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Magenta</span>
+              <span class="swatch__hex">#D6269B</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#0a6cff;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Blue</span>
+              <span class="swatch__hex">#0a6cff</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#078A07;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">Green</span>
+              <span class="swatch__hex">#078A07</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch__color" style="background:#FF4701;"></div>
+            <div class="swatch__info">
+              <span class="swatch__name">HubSpot Orange</span>
+              <span class="swatch__hex">#FF4701</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      STYLE GUIDE — Gradient System
+      =================================================================== -->
+
+
+    <!-- ===================================================================
+      STYLE GUIDE — Typography
+      =================================================================== -->
+    <section class="section section--alt" id="style-type">
+      <div class="container">
+
+        <div class="guide-label">Style Guide · Typography</div>
+
+        <div class="type-specimen">
+          <p style="font-size:var(--text-sm); color:var(--color-text-muted); margin-bottom:var(--space-2);">
+            Headings use <strong style="color:var(--color-heading); font-weight:600;">General Sans</strong>. Body &amp; UI text use <strong style="color:var(--color-heading); font-weight:600;">Inter</strong>.
+          </p>
+          <div class="type-row">
+            <span class="type-row__label">80px · 6xl</span>
+            <span class="type-row__sample" style="font-size:var(--text-6xl);">Display</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">60px · 5xl</span>
+            <span class="type-row__sample" style="font-size:var(--text-5xl);">Hero Headline</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">44px · 4xl</span>
+            <span class="type-row__sample" style="font-size:var(--text-4xl);">Page Title</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">32px · 3xl</span>
+            <span class="type-row__sample" style="font-size:var(--text-3xl);">Section Heading</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">24px · 2xl</span>
+            <span class="type-row__sample" style="font-size:var(--text-2xl); letter-spacing:-0.02em;">Subheading</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">20px · xl</span>
+            <span class="type-row__sample" style="font-size:var(--text-xl); letter-spacing:-0.01em; font-weight:600;">Card Title</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">24px · lg</span>
+            <span class="type-row__sample" style="font-family:var(--font-sans); font-size:var(--text-lg); font-weight:600; color:var(--color-text); letter-spacing:-0.01em; line-height:1.3;">Body large — The quick brown fox jumps over the lazy dog.</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">18px · base</span>
+            <span class="type-row__sample" style="font-family:var(--font-sans); font-size:var(--text-base); font-weight:600; color:var(--color-text); letter-spacing:-0.01em; line-height:1.3;">Body — The quick brown fox jumps over the lazy dog. Used for most paragraph text.</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">15px · sm</span>
+            <span class="type-row__sample" style="font-family:var(--font-sans); font-size:var(--text-sm); font-weight:600; color:var(--color-text-muted); letter-spacing:-0.01em; line-height:1.4;">Body small / UI — captions, labels, nav links, secondary info.</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">12px · xs</span>
+            <span class="type-row__sample" style="font-family:var(--font-sans); font-size:var(--text-xs); font-weight:600; color:var(--color-text-muted); letter-spacing:0; line-height:1.4;">Fine print — legal text, disclaimers, footnotes, and other fine details.</span>
+          </div>
+          <div class="type-row">
+            <span class="type-row__label">12px · xs</span>
+            <span class="type-row__sample" style="font-size:var(--text-xs); font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-muted);">Eyebrow / Badge / Tag</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      STYLE GUIDE — Buttons
+      =================================================================== -->
+    <section class="section" id="style-buttons">
+      <div class="container">
+
+        <div class="guide-label">Style Guide · Buttons</div>
+
+        <!-- Filled -->
+        <p class="section__eyebrow mb-6">Filled</p>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <button class="btn btn--primary">Primary (Charcoal)</button>
+          <button class="btn btn--blue">Blue</button>
+          <button class="btn btn--magenta">Magenta</button>
+          <button class="btn btn--green">Green</button>
+          <button class="btn btn--hubspot">HubSpot Orange</button>
+        </div>
+
+        <!-- Outline -->
+        <p class="section__eyebrow mb-6">Outline &amp; Ghost</p>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <button class="btn btn--ghost">Ghost</button>
+        </div>
+
+        <!-- Sizes -->
+        <p class="section__eyebrow mb-6">Sizes</p>
+        <div class="flex flex-wrap gap-3 mb-8" style="align-items:center;">
+          <button class="btn btn--primary btn--sm">Small</button>
+          <button class="btn btn--primary">Default</button>
+          <button class="btn btn--primary btn--lg">Large</button>
+        </div>
+
+        <!-- Badges -->
+        <p class="section__eyebrow mb-6">Badges &amp; Tags</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="badge badge--blue">Blue</span>
+          <span class="badge badge--magenta">Magenta</span>
+          <span class="badge badge--green">Green</span>
+          <span class="badge badge--hubspot">HubSpot</span>
+          <span class="badge badge--muted">Neutral</span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      STYLE GUIDE — Cards & Surfaces
+      =================================================================== -->
+    <section class="section section--alt" id="style-cards">
+      <div class="container">
+
+        <div class="guide-label">Style Guide · Cards &amp; Surfaces</div>
+
+        <div class="card-grid">
+
+          <!-- Default card -->
+          <div class="card">
+            <div class="card__eyebrow">Default Card</div>
+            <h3 class="card__title">Standard Surface</h3>
+            <p class="card__body">Uses <code>--color-bg-surface</code> with a 1px <code>--color-border</code> edge. Clean and minimal for most use cases.</p>
+          </div>
+
+          <!-- Elevated card -->
+          <div class="card card--elevated">
+            <div class="card__eyebrow">Elevated Card</div>
+            <h3 class="card__title">Shadow Surface</h3>
+            <p class="card__body">Drops the border in favor of <code>--shadow-md</code>. Hover triggers <code>--shadow-lg</code> and a subtle lift.</p>
+          </div>
+
+          <!-- Highlighted card (gradient border) -->
+          <div class="card card--highlight">
+            <div class="card__eyebrow">Highlighted Card</div>
+            <h3 class="card__title">Highlighted Surface</h3>
+            <p class="card__body">Use for featured plans, selected states, or key call-outs. The gradient border draws the eye without being loud.</p>
+          </div>
+
+          <!-- Accent subtle backgrounds -->
+          <div class="card" style="background:var(--color-blue-subtle); border-color: transparent;">
+            <div class="card__eyebrow" style="color:var(--color-blue);">Blue Subtle</div>
+            <h3 class="card__title">Tinted Surface</h3>
+            <p class="card__body">Subtle accent tints for informational blocks, tooltips, or feature callouts.</p>
+          </div>
+
+          <div class="card" style="background:var(--color-magenta-subtle); border-color: transparent;">
+            <div class="card__eyebrow" style="color:var(--color-magenta);">Magenta Subtle</div>
+            <h3 class="card__title">Tinted Surface</h3>
+            <p class="card__body">Draws attention without committing to a full accent fill. Great for highlights and announcements.</p>
+          </div>
+
+          <div class="card" style="background:var(--color-hubspot-subtle); border-color: transparent;">
+            <div class="card__eyebrow" style="color:var(--color-hubspot);">HubSpot Subtle</div>
+            <h3 class="card__title">Tinted Surface</h3>
+            <p class="card__body">Reserve for HubSpot-specific features, integration notes, or partner content.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      MEDIA TREATMENTS — the locked visual system (June 2026)
+      See docs/reference/visual-style-guide.md. Rounded + shadow, no borders on imagery.
+      =================================================================== -->
+    <section class="section" id="style-media">
+      <div class="container">
+
+        <div class="guide-label">Style Guide · Media Treatments</div>
+
+        <p class="section__eyebrow mb-6">Photo Card — rounded + shadow, no border</p>
+        <div style="display:grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-10); align-items:start; margin-bottom: var(--space-12);">
+
+          <!-- Hero treatment: xl card + accent light spill + glass chip -->
+          <div class="media-card media-card--xl media-card--spill">
+            <img src="assets/images/coaching-action-shots/Endless-Customers-Coach.webp" alt="Coach leading a workshop — hero media-card treatment with light spill">
+            <div class="glass-chip glass-chip--overlap">
+              <span style="display:block; width:120px; height:8px; border-radius:var(--radius-full); background:var(--color-bg-subtle); overflow:hidden;"><span style="display:block; width:66%; height:100%; border-radius:inherit; background:var(--media-accent);"></span></span>
+            </div>
+          </div>
+
+          <!-- Standard in-content photo card -->
+          <div class="media-card">
+            <img src="assets/images/coaching-action-shots/jess-client-laptop-coaching.png" alt="Coaching session — standard media-card treatment">
+          </div>
+
+        </div>
+
+        <p class="section__eyebrow mb-6">Dark Statement Panel — one per page, max</p>
+        <div class="statement-panel" style="padding: var(--space-16); display:grid; place-items:center; margin-bottom: var(--space-12);">
+          <div class="statement-panel__float media-card" style="max-width:420px;">
+            <img src="assets/images/coaching-action-shots/_slides/slide-big-5-helps.jpg" alt="Real EC slide floating in the dark statement panel">
+          </div>
+        </div>
+
+        <p class="section__eyebrow mb-6">Placeholder for TODO(gemini) slots</p>
+        <!-- TODO(gemini): sample slot — this is the placeholder treatment itself -->
+        <div class="media-placeholder" style="min-height:180px;">
+          Image coming — described in the page's TODO(gemini) comment
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      HOW IT WORKS (Real Content Section)
+      =================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+
+        <header class="section__header">
+          <span class="section__eyebrow">The System</span>
+          <h2 class="section__title section__title--lg">How It Works</h2>
+          <p class="section__subtitle">
+            Three straightforward steps that turn strangers into loyal customers.
+          </p>
+        </header>
+
+        <ul class="card-grid" role="list">
+          <li class="card card--elevated">
+            <div class="card__eyebrow">Step 01</div>
+            <h3 class="card__title">Attract</h3>
+            <p class="card__body">
+              We build content and campaigns that pull in the right people at the
+              right time — people actively looking for what you offer.
+            </p>
+            <div class="progress mt-6"><div class="progress__fill progress__fill--animated" style="width:100%;"></div></div>
+          </li>
+          <li class="card card--elevated">
+            <div class="card__eyebrow">Step 02</div>
+            <h3 class="card__title">Convert</h3>
+            <p class="card__body">
+              Your website becomes a conversion engine — with clear messaging,
+              trust-building content, and frictionless calls to action.
+            </p>
+            <div class="progress mt-6"><div class="progress__fill progress__fill--animated" style="width:100%;"></div></div>
+          </li>
+          <li class="card card--elevated">
+            <div class="card__eyebrow">Step 03</div>
+            <h3 class="card__title">Close</h3>
+            <p class="card__body">
+              Sales and marketing align so no lead slips through the cracks and
+              your team closes deals faster with less effort.
+            </p>
+            <div class="progress mt-6"><div class="progress__fill progress__fill--animated" style="width:100%;"></div></div>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+      CTA BAND
+      =================================================================== -->
+    <section class="section section--alt text-center" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 class="section__title" id="cta-title">Ready to Get Started?</h2>
+        <p class="section__subtitle" style="margin-bottom: var(--space-10);">
+          Let's build your system for endless customers.
+        </p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="#" class="btn btn--primary btn--lg">Book a Free Strategy Call</a>
+          <a href="#" class="btn btn--ghost btn--lg">View Our Work</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Footer — HubSpot: {% global_partial path="global/footer.html" %} -->
+  <div id="footer-placeholder"></div>
+
+
+  <script src="./js/main.js?v=2026060925r"></script>
+
+</body>
+</html>

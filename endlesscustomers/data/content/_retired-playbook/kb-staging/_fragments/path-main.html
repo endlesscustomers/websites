@@ -1,0 +1,46 @@
+<main id="main-content">
+    <div class="lc-wrap">
+      <section class="section section--sm">
+        <div id="kb-root" class="container"><p class="ec-empty">Loading…</p></div>
+      </section>
+      <section class="section section--alt"><div class="container"><div class="lc-cta">
+        <h2 class="lc-cta__title">Finished the path? See where you stand.</h2>
+        <p class="lc-cta__sub">Get a free AI diagnosis of your marketing and a prioritized plan to close the gaps.</p>
+        <div class="lc-cta__actions"><a href="/diagnostic" class="btn btn--primary btn--lg">Get your free AI diagnosis</a><a href="/lets-talk" class="btn btn--ghost btn--lg">Talk to our team</a></div>
+      </div></div></section>
+    </div>
+  </main>
+  <script>
+    (function(){
+      var id=EC.param('id');
+      EC.kbLoad().then(function(d){
+        var p=d.paths.filter(function(x){return x.id===id;})[0];
+        if(!p){ document.getElementById('kb-root').innerHTML='<div style="text-align:center"><h1 class="ar-title">Path not found</h1><a href="/learn/knowledge-base" class="btn btn--primary btn--lg">Back to Knowledge Base</a></div>'; return; }
+        var byId=EC.indexBy(d.evergreen);
+        var arts=p.article_ids.map(function(i){return byId[i];}).filter(function(e){return e&&e.status==='published';});
+        var totalMin=arts.reduce(function(n,e){return n+(EC.kbIsStub(e)?0:(e.estimated_read_time||0));},0);
+
+        var crumbs='<nav class="lc-crumbs" aria-label="Breadcrumb"><a href="/learn">Learn</a><span>/</span><a href="/learn/knowledge-base">Knowledge Base</a><span>/</span>'+EC.escapeHtml(p.label)+'</nav>';
+        var head='<div class="kbt-head">'+
+          '<span class="kba-eyebrow" style="cursor:default"><i class="ti ti-route"></i> Curated learning path</span>'+
+          '<h1 class="kbt-title">'+EC.escapeHtml(p.label)+'</h1>'+
+          '<p class="kbt-desc">'+EC.escapeHtml(p.description)+'</p>'+
+          '<div class="kbt-facts"><span><i class="ti ti-files"></i> '+arts.length+' guides</span><span><i class="ti ti-clock"></i> ~'+totalMin+' min total</span><span><i class="ti ti-list-numbers"></i> Read in order</span></div>'+
+          '</div>';
+
+        var steps='<div class="kbp-steps">'+arts.map(function(e){
+          var sec=d.sections.filter(function(x){return x.id===e.topic_id;})[0];
+          return '<div class="kbp-step"><span class="kbp-step__n"></span><div>'+
+            '<a class="kbp-step__title" href="'+EC.kbArticleUrl(e.id)+'">'+EC.escapeHtml(e.title)+'</a>'+
+            (e.excerpt&&!EC.kbIsStub(e)?'<p class="kbp-step__excerpt">'+EC.escapeHtml(e.excerpt)+'</p>':'')+
+            '<div class="kbp-step__meta">'+(sec?EC.escapeHtml(sec.label):'')+(e.estimated_read_time&&!EC.kbIsStub(e)?' · '+e.estimated_read_time+' min read':'')+'</div>'+
+            '</div></div>';
+        }).join('')+'</div>';
+
+        document.getElementById('kb-root').outerHTML=EC.kbShell(EC.kbSidebar(d,null),'<div>'+crumbs+head+steps+'</div>');
+        EC.kbSidebarInit(document);
+        EC.setSEO(null,{title:p.label+' | Knowledge Base',description:p.description,ogType:'website'});
+        EC.jsonLD(EC.breadcrumbSchema([{name:'Learn',url:'https://www.endlesscustomers.com/learn'},{name:'Knowledge Base',url:'https://www.endlesscustomers.com/learn/knowledge-base'},{name:p.label,url:location.href}]));
+      }).catch(function(e){console.error(e);});
+    })();
+  </script>

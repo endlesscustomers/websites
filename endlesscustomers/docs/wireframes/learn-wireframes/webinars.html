@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — Webinars + shared subnav</title>
+<link rel="stylesheet" href="wf.css">
+</head>
+<body>
+<div class="ws-bar">
+  <b>LEARN IA WIREFRAMES</b>
+  <a href="index.html">Overview</a>
+  <a href="learn-home.html">Learn Front Door</a>
+  <a href="dropdown.html">Nav Dropdown</a>
+  <a href="topics.html">Topic Panel</a>
+  <a href="topic-page.html">Topic Hub Page</a>
+  <a class="on" href="webinars.html">Webinars + Subnav</a>
+  <a href="playbook.html">The Playbook</a>
+</div>
+
+<div class="page">
+  <div class="page-title">Screen 05 · Webinars, wearing the shared Learn subnav</div>
+  <p class="page-sub">The page that kicked this whole thing off. Upcoming webinars are <b>events</b>; the on-demand library is <b>inventory</b> that increasingly serves topics and search rather than being browsed.</p>
+
+  <div class="wf">
+    <div class="wf-label">Wireframe</div>
+
+    <div class="fnav">
+      <span class="logo">EC▮</span>
+      <span class="item item--on">Learn</span>
+      <span class="item">How We Help</span>
+      <span class="item">Our Team</span>
+      <span class="item">The Conference</span>
+      <span class="sp"></span>
+      <span class="pill">Free AI Diagnostic</span>
+      <span class="pill pill--on">Let's Talk →</span>
+    </div>
+
+    <div class="subnav">
+      <div class="crumb">
+        <span class="root">Learn ›</span>
+        <span class="cur">Webinars</span>
+      </div>
+      <span class="pill">Playbook</span>
+      <span class="pill">Topics ▾</span>
+      <span class="pill">Latest</span>
+      <span class="pill pill--on">Webinars</span>
+      <span class="pill">Podcast</span>
+      <span class="pill">Tools</span>
+      <span class="util">🔍</span>
+    </div>
+    <div class="note"><span class="tag">1</span> The shared subnav: crumb left, the six section links + Topics trigger, search at the right end where services pages put their CTA. <b>No CTA</b> — so the main nav's Diagnostic + Let's Talk stay full-strength (existing JS already behaves this way when no <code>.subnav__cta</code> is present).</div>
+
+    <!-- next webinar billboard -->
+    <div class="box" style="margin-top:14px; padding:20px;">
+      <div class="row">
+        <div style="flex:2;" class="stack">
+          <div class="t-xs">NEXT LIVE WEBINAR · THU JUN 18 · 2:00 PM ET</div>
+          <div class="t-big">▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮</div>
+          <div class="t-sm">▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ with ▮▮▮▮▮ &amp; ▮▮▮▮▮</div>
+          <div><span class="btn">Save your seat</span> &nbsp; <span class="t-xs">1,240 registered</span></div>
+        </div>
+        <div class="ph ph--thumb" style="flex:1.2;"></div>
+      </div>
+    </div>
+    <div class="note"><span class="tag">2</span> The next event gets a <b>billboard, not a card</b>. Registration urgency is this page's whole live-side job. If a second upcoming exists it sits as a slim row beneath; if none, this slot becomes the Subscribe prompt.</div>
+
+    <!-- on-demand library -->
+    <div class="box box--ghost" style="border-style:solid; margin-top:14px;">
+      <div class="t-xs" style="margin-bottom:8px;">ON-DEMAND LIBRARY · 47 recordings &nbsp;·&nbsp;
+        <span class="pill pill--on">All</span> <span class="pill">Video</span> <span class="pill">HubSpot</span> <span class="pill">AI</span> <span class="pill">Sales</span> <span class="pill">SEO &amp; AEO</span> <span class="pill">All topics ▾</span>
+      </div>
+      <div class="grid g3">
+        <div class="card"><div class="ph ph--thumb" style="margin-bottom:8px;"></div><div class="title">▮▮▮▮▮▮▮▮▮▮▮▮</div><div class="sub">46 min · Video · ▮▮▮▮▮</div></div>
+        <div class="card"><div class="ph ph--thumb" style="margin-bottom:8px;"></div><div class="title">▮▮▮▮▮▮▮▮</div><div class="sub">52 min · HubSpot · ▮▮▮▮</div></div>
+        <div class="card"><div class="ph ph--thumb" style="margin-bottom:8px;"></div><div class="title">▮▮▮▮▮▮▮▮▮▮</div><div class="sub">38 min · AI · ▮▮▮▮▮▮</div></div>
+        <div class="card"><div class="ph ph--thumb" style="margin-bottom:8px;"></div><div class="title">▮▮▮▮▮▮▮</div><div class="sub">61 min · Sales · ▮▮▮▮</div></div>
+        <div class="card"><div class="ph ph--thumb" style="margin-bottom:8px;"></div><div class="title">▮▮▮▮▮▮▮▮▮</div><div class="sub">44 min · Video · ▮▮▮▮</div></div>
+        <div class="card"><div class="ph ph--thumb" style="margin-bottom:8px;"></div><div class="title">▮▮▮▮▮▮▮▮▮▮▮</div><div class="sub">49 min · SEO · ▮▮▮▮▮</div></div>
+      </div>
+    </div>
+    <div class="note"><span class="tag">3</span> Chip row shows only this library's <b>top topics by count</b> (never 100 chips) + "All topics ▾" opening the panel from Screen 03. Chips filter in place; panel topics navigate to hub pages. Two behaviors, visually distinct, never ambiguous.</div>
+    <div class="note"><span class="tag">4</span> Each recording card links its topic ("Video") to the topic hub — every webinar becomes a doorway into the cross-format library.</div>
+  </div>
+</div>
+</body>
+</html>

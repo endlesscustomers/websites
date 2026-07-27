@@ -1,0 +1,50 @@
+{
+  "id": "reviews-content",
+  "slug": "reviews-content",
+  "title": "Reviews Content",
+  "nav_title": "Reviews",
+  "status": "published",
+  "topic_id": "right-content",
+  "parent_id": "the-big-5",
+  "child_ids": [],
+  "article_body": "Rarely do we make a significant purchase without reading reviews first. Whether the platform is Amazon, Google, Yelp, or Reddit, buyers want to know what real customers experienced before they commit. And when they read reviews, they're not looking at the five-star entries. They're going straight to the one-star complaints, the criticisms, the accounts of what went wrong. That's where they find the truth they need to make a decision.\n\nDespite knowing how important reviews are, most companies take a passive approach. They wait for reviews to arrive rather than asking for them. They leave their reputation entirely in the hands of third-party sites. And when they do create review content themselves, they only show the positives, which means the content comes across as promotional rather than trustworthy.\n\n## Why Reviews Matter More Than Ever\n\nIn an AI-driven search environment, reviews are not just a buyer's tool — they're a signal that AI systems use to evaluate and recommend businesses. AI models factor in platforms like Google Reviews when determining which businesses to surface in a response. A company with a thin review profile or unaddressed negative reviews is less likely to be recommended by AI than one with an active, honest review presence.\n\nThis means generating and managing reviews is no longer optional. It's a core part of how you build trust in the marketplace, both with buyers who read them and with the AI systems that increasingly mediate those buyers' search journeys.\n\n## Getting More Reviews Intentionally\n\nAsking for reviews needs to become part of every delivery process. Ask every customer, every time, immediately after the experience is complete. Don't wait — the moment someone is most enthusiastic about working with you is the moment right after you've delivered something valuable. That enthusiasm fades quickly.\n\nWhere possible, automate the follow-up. Triggered emails or text messages sent immediately after a purchase or project completion can dramatically increase review volume. Include a direct link to your Google Business profile or preferred review platform. Remove every possible point of friction between the customer's positive experience and their published review.\n\nSmall incentives can help — a discount on a future purchase, a token of appreciation — as long as you're not pushing people toward only positive reviews. What you want is honest feedback at scale, not manufactured five-star ratings. Buyers can tell the difference, and so can AI.\n\nRespond to every review, including the negative ones. This is one of the most overlooked trust-building opportunities available. A sincere, non-defensive response to a critical review signals to every future buyer who reads it that you take problems seriously and care about your customers' experiences. Handled well, a negative review followed by a thoughtful response can be more trust-building than a string of unaddressed five-star ratings.\n\n## Creating Your Own Review Content\n\nBeyond managing third-party reviews, companies that sell products should also create their own review content — articles, videos, or audio recordings that honestly review what they sell. The instinct of many businesses is to leave this to Amazon, YouTube influencers, or editorial sites. But that means leaving the conversation about your own products in someone else's hands.\n\nSelf-created review content works because it follows the Law of the Coin. A review that covers both who the product is a good fit for and who it is not carries far more credibility than a marketing page that only talks about the benefits. Buyers expect marketing to be promotional. A review that acknowledges limitations is a surprise — and that surprise creates trust.\n\n## BTOD.com: Review Content as a Business Model\n\nGreg Knighton started BTOD.com (Beyond the Office Door) as an office furniture ecommerce company at a time when the space was crowded and competitive. His path to differentiation was total commitment to reviews: honest, thorough, creative, and relentless.\n\nHis homepage prominently displays more than 3,200 Trustpilot reviews with a 4.8 TrustScore. Every product on his site shows a review score. His YouTube channel, BTODtv, has produced dozens of review videos with titles like \"We Picked the Best Office Chair for EVERY Price,\" \"I Tested 1-Star Office Chairs,\" and \"I Picked the Most Comfortable Office Chair for the Lowest Price.\" The videos have generated millions of views and turned BTOD.com into one of the most recognized names in the office furniture space.\n\nOne comment on the BTODtv channel captures what happens when a company commits to honest reviews: \"Checked out all your reviews with the Herman Miller and Steelcase chairs. Out of all of them, the Mirra 2 was the most adjustable and it ticked all the boxes for me. Ended up buying the fully loaded Mirra 2. My butt and back thanks your in-depth reviews!\"\n\nThat's what reviews content at its best looks like: a buyer using your content to make a confident decision, and then crediting your honesty for the outcome. That's the business you're building when you take reviews seriously.",
+  "excerpt": "Reviews shape buying decisions more than almost any other factor. Businesses that take an intentional approach to generating, showcasing, and creating their own reviews consistently build stronger trust.",
+  "what_youll_learn": [
+    "Reviews are one of the primary signals AI models use when recommending businesses. A weak review profile hurts your visibility in AI-driven search.",
+    "Most companies make three mistakes with reviews: no intentional plan to generate them, no original review content, and review content that only shows the positive.",
+    "Ask for reviews consistently and immediately after delivering value — don't wait. Strike while the experience is fresh.",
+    "When creating your own product or service reviews, always apply the Law of the Coin: state clearly who it is a good fit for and who it is not.",
+    "Responding to negative reviews publicly builds more trust than a string of unaddressed five-star ratings because it shows how you handle problems.",
+    "BTOD.com built a category-defining brand in office furniture almost entirely through a deep commitment to honest review content and testimonials."
+  ],
+  "key_questions": [
+    {
+      "question": "Should we create review content about our own products and services?",
+      "answer": "Yes. Leaving your reputation solely in the hands of third-party sites is a risk. Create your own review content, apply the Law of the Coin honestly, and distribute it across your website, YouTube, email, and social media."
+    },
+    {
+      "question": "What is the Law of the Coin in the context of reviews?",
+      "answer": "It means showing both sides of the purchase: who the product or service is a good fit for, and who it is not. Reviews that only celebrate the product feel promotional. Reviews that acknowledge real limitations feel trustworthy."
+    },
+    {
+      "question": "How do we get more customer reviews without bribing people?",
+      "answer": "Ask every customer, immediately after delivery. Automate follow-up requests by email or text. Make it easy with a direct link. Respond to all existing reviews, including negative ones. The more friction you remove, the more reviews you'll get."
+    },
+    {
+      "question": "How should we respond to negative reviews?",
+      "answer": "Thoughtfully and publicly. Potential buyers pay close attention to how businesses respond when something goes wrong. A sincere, non-defensive response to a critical review often builds more trust than a batch of perfect five-star ratings."
+    },
+    {
+      "question": "Do reviews matter for AI-driven search?",
+      "answer": "Yes, significantly. AI models factor in review signals from platforms like Google Reviews when determining whether to recommend a business. A thin or poor review profile reduces your likelihood of appearing in AI recommendations."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

@@ -1,0 +1,50 @@
+{
+  "id": "the-right-technology",
+  "slug": "the-right-technology",
+  "title": "The Right Technology",
+  "nav_title": "The Right Technology",
+  "status": "published",
+  "topic_id": "right-technology",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Great content, a strong website, and a well-trained sales team are not enough on their own. To support your sales and marketing efforts effectively, you need the right tools and systems in place. Technology provides the foundation for your team to work efficiently, stay aligned, and deliver a seamless buyer experience.\n\nBy centralizing customer data, automating repetitive tasks, and integrating tools that connect marketing activity to revenue, the right technology allows your team to focus on what matters most: building trust and driving results. Without it, even the best content strategy produces inconsistent outcomes because the system for tracking, learning, and improving simply does not exist.\n\n## Five Key Activities\n\nAdopting The Right Technology involves five activities. The first is centralizing your customer data with a CRM. A customer relationship management system is essential for breaking down the silos between sales, marketing, and customer service and giving everyone access to the same information. Without it, decisions get made on incomplete data and opportunities fall through the cracks.\n\nThe second is training your team for proper CRM usage and maintaining accountability. A CRM is only as effective as the data entered into it. Far too often, companies invest in a CRM and then neglect the ongoing work required to keep the data clean and ensure consistent adoption. The mantra should be: if it is not in the CRM, it did not happen.\n\nThe third is setting AI guidelines for your company. The use of AI in sales and marketing is no longer optional. But AI without guardrails creates inconsistency, risk, and confusion. Your organization needs clear boundaries around data security, fact-checking, transparency, and accountability before your team can experiment effectively.\n\nThe fourth is training your team on AI. Not just the technically inclined members — everyone. When only a few people understand how to use AI effectively, the rest of the organization is left behind. AI education needs to reach every role and make clear how these tools change the work each person does.\n\nThe fifth is creating a culture of AI and technology experimentation. Guidelines and training create the permission to explore. A culture of experimentation creates the expectation that everyone is actively looking for new ways to use technology to improve. When that becomes part of how the organization operates, the compounding benefits of technology adoption accelerate dramatically.\n\n## Why This Matters Now\n\nThe pace of change in marketing and sales technology is not slowing down. AI tools are reshaping how buyers research, how content gets produced, how salespeople communicate, and how companies measure results. The organizations that build the right technical foundation now — and the culture to keep improving it — will have an increasingly large advantage over those still operating on outdated systems and instinct-driven decisions.",
+  "excerpt": "Content and strategy without the right technology underneath them produces inconsistent results. Here is how to build the technical foundation Endless Customers requires.",
+  "what_youll_learn": [
+    "Technology provides the foundation for your team to work efficiently, stay aligned, and deliver a seamless buyer experience. Without the right tools in place, content and sales strategy produce inconsistent results.",
+    "A CRM is not optional in an Endless Customers business. It centralizes customer data, tracks every touchpoint in the buyer's journey, and connects marketing activity to revenue.",
+    "AI is no longer optional either. But AI without guardrails creates risk. The right approach is to set clear guidelines, train your team, and build a culture where experimentation is part of everyone's job.",
+    "The five key activities for The Right Technology are: centralize data with a CRM, train for proper CRM usage, set AI guidelines, train your team on AI, and create a culture of AI and technology experimentation.",
+    "HubSpot stands out as the only platform that connects specific content on your website to actual sales revenue — the insight that makes Endless Customers measurable.",
+    "Technology adoption fails when it is treated as a one-time implementation. Ongoing training, accountability, and a culture that rewards experimentation are what make technology investments pay off."
+  ],
+  "key_questions": [
+    {
+      "question": "Does our company need a CRM to implement Endless Customers?",
+      "answer": "Yes. A CRM is the connective tissue between your content, your sales team, and your results. Without one, you cannot track which content a prospect has consumed, which conversations have happened, or which marketing activities are actually driving revenue. That visibility is what allows you to improve. Operating without a CRM is like running a sales process with no record of what has happened."
+    },
+    {
+      "question": "Which CRM does IMPACT recommend?",
+      "answer": "HubSpot. It integrates marketing, sales, and service tools in one platform and is the only CRM that allows you to trace actual sales revenue back to specific content on your website. For Endless Customers businesses that want to know which articles and videos are driving real revenue, not just traffic, HubSpot is the right choice."
+    },
+    {
+      "question": "How do AI guidelines protect our business?",
+      "answer": "Without guidelines, AI usage across your team will be inconsistent. Some team members will use AI tools in ways that expose sensitive data. Others will publish AI-generated content without fact-checking it. Clear guidelines — covering data security, fact-checking, transparency, and the requirement that humans remain accountable for AI outputs — allow your team to experiment and improve without creating compliance or reputational risk."
+    },
+    {
+      "question": "What if some of our team members are afraid AI will take their jobs?",
+      "answer": "That fear is common, and it deserves a direct response. AI amplifies human expertise — it does not replace it. Companies that train their teams on AI produce better work faster. The employees who have nothing to fear are the ones who learn to use AI effectively. The ones who refuse to engage with it are the ones most likely to fall behind."
+    },
+    {
+      "question": "How does technology connect to the other four components of Endless Customers?",
+      "answer": "Technology is the infrastructure that makes everything else measurable and scalable. Your content strategy produces better results when your CRM tracks which pieces are driving leads. Your sales process works better when salespeople can find assigned content quickly and track prospect engagement. Your website optimization improves when analytics tools show you exactly how visitors behave. The right technology amplifies the impact of every other component."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-22",
+  "last_updated": "2026-04-22",
+  "estimated_read_time": 2,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

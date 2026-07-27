@@ -1,0 +1,50 @@
+{
+  "id": "quarterly-planning-sessions-90-day-execution-cycles",
+  "slug": "quarterly-planning-sessions-90-day-execution-cycles",
+  "title": "Quarterly Planning Sessions: 90-Day Execution Cycles",
+  "nav_title": "Quarterly Planning Sessions",
+  "status": "published",
+  "topic_id": "putting-it-together",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "After Alignment Day, your team will be energized and ready to move. The challenge is that there is more opportunity than any team can act on at once. Content to create. Website improvements to make. Sales processes to define. Technology to implement. Culture to build. If you try to do all of it simultaneously, you spread your resources across too many fronts, make partial progress everywhere, and see decisive results nowhere.\n\nThe Quarterly Planning Session is how you avoid that trap. It is a structured working session where your leadership team deliberately narrows focus to the three to five most impactful initiatives for the next 90 days. Everything else waits. The initiatives you choose become your Focus Areas, and each Focus Area gets a Game Plan that specifies exactly what needs to happen, who is responsible for each step, and when it will be done.\n\n## Why 90 Days\n\nThe 90-day interval is not arbitrary. It is the cycle that most organizations find produces the best combination of urgency and progress. Shorter cycles, monthly or bi-monthly, do not give enough time to produce meaningful results on complex initiatives. Longer cycles, semi-annually or annually, allow priorities to drift and let accountability slip. Ninety days is long enough to move the needle on something important and short enough to keep the work from losing momentum.\n\nThe cadence also creates a natural rhythm of reflection and renewal. At the end of each quarter, the team reviews what was accomplished, identifies what the results reveal about where to focus next, and re-energizes around a new set of priorities. Over time, this iterative process builds on itself and produces the compounding progress that distinguishes the best Endless Customers implementations from the ones that plateau.\n\n## Choosing Your Focus Areas\n\nThe right Focus Areas come directly from your Scorecard. Where are the scores lowest? Which gaps, if closed, would have the biggest downstream impact on leads, conversions, and customer trust? Your Focus Areas should reflect genuine priorities, not comfortable ones. The tendency is to choose initiatives that feel manageable rather than ones that are most important. Resist that tendency. A quarterly plan that avoids the hard work will produce modest results and justify more avoidance in the next quarter.\n\nThree to five Focus Areas is the right range. Fewer than three means you may be underusing the 90 days. More than five means you are probably still trying to do everything at once.\n\n## The Game Plan\n\nA Focus Area without a Game Plan is a wish. The Game Plan is what makes a priority real. For each Focus Area, your team identifies the specific action steps required to accomplish it, assigns a named owner to each step, and sets a realistic timeline for completion. The Game Plan then becomes the management document for the quarter: what you check against in weekly meetings, what you review at the end of the 90 days, and what the next planning session uses as its starting point.\n\nLeadership's job during the quarter is not to manage the steps, it is to remove the obstacles that come up and ensure that the priorities defined in the planning session do not get crowded out by tactical urgency. The Game Plan is a leadership accountability tool as much as it is a team execution tool.",
+  "excerpt": "The Quarterly Planning Session is how you turn the energy from Alignment Day into focused, accountable execution. Every 90 days, your leadership team identifies the three to five most impactful initiatives and builds a concrete Game Plan to execute them.",
+  "what_youll_learn": [
+    "The quarterly cadence strikes the right balance: long enough to make real progress, short enough to maintain urgency.",
+    "Focus Areas are the three to five most impactful initiatives for the next 90 days, selected based on where the Scorecard shows the biggest gaps.",
+    "Every Focus Area needs a Game Plan: specific action steps, assigned owners, and a timeline. Without this, priorities remain aspirations.",
+    "At the end of each quarter, the team reviews progress, celebrates wins, and sets Focus Areas for the next 90 days.",
+    "You cannot tackle everything at once. The power of quarterly planning is in choosing what not to do as much as in choosing what to prioritize.",
+    "Quarterly Planning Sessions work best when leadership takes them seriously and uses the Game Plan to hold people accountable throughout the 90 days."
+  ],
+  "key_questions": [
+    {
+      "question": "How long should a Quarterly Planning Session take?",
+      "answer": "Most organizations schedule two to four hours for the full session: reviewing Scorecard results, analyzing the previous quarter's progress, identifying the next quarter's Focus Areas, and building Game Plans for each. Trying to rush it into 60 minutes typically produces shallow Focus Areas and incomplete Game Plans. Give it the time it requires."
+    },
+    {
+      "question": "Who should attend the Quarterly Planning Session?",
+      "answer": "The core leadership team, including the people responsible for content, sales, marketing, and operations. This does not need to be the whole organization. It is a planning session for the people who will own the Focus Areas and be held accountable for the Game Plans. The results are then communicated to the broader team."
+    },
+    {
+      "question": "What do we do when a Focus Area gets stalled mid-quarter?",
+      "answer": "Address it directly and early. If an action step is behind schedule, diagnose why: missing resources, unclear ownership, competing priorities, or an original estimate that was unrealistic. Quarterly planning is not a set-and-forget process. The Game Plan should be reviewed in standing meetings throughout the quarter so that problems surface in time to be solved, not discovered at the end."
+    },
+    {
+      "question": "What if we cannot complete all our Focus Areas in 90 days?",
+      "answer": "A Focus Area that carries over into the next quarter is not a failure, as long as you understand why it did not close in the original timeline. Was the scope too large? Was ownership unclear? Were resources unavailable? Carrying the right answer to those questions into the next planning session produces better Focus Areas and more realistic Game Plans."
+    },
+    {
+      "question": "Can a coach facilitate our Quarterly Planning Sessions?",
+      "answer": "Yes, and many organizations find that outside facilitation produces better planning sessions, particularly when the team is stuck in familiar patterns or when internal political dynamics make it hard to prioritize honestly. A coach who understands your Scorecard and your history with the system can challenge your Focus Area choices and ask the questions that sharpen the Game Plans."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-22",
+  "last_updated": "2026-04-22",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "the-foundation",
+    "label": "The Foundation",
+    "zone": "frameworks",
+    "order": 1,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "What Endless Customers is, the 4 Pillars of trust, the 5 Components, who the skeptical buyer is, and how the methodology evolved from They Ask, You Answer."
+  },
+  {
+    "id": "right-content",
+    "label": "The Right Content",
+    "zone": "frameworks",
+    "order": 2,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "The Big 5, the Selling 7, video strategy, AI for content creation, and how a content team operates inside an Endless Customers business."
+  },
+  {
+    "id": "right-website",
+    "label": "The Right Website",
+    "zone": "frameworks",
+    "order": 3,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "Learning Centers, self-service tools, messaging, trust signals, and ongoing website optimization that works for buyers before they contact you."
+  },
+  {
+    "id": "right-sales",
+    "label": "The Right Sales Activities",
+    "zone": "frameworks",
+    "order": 4,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "Assignment Selling, 1:1 video, the modern discovery call, and on-camera performance for sales reps who want to close more deals."
+  },
+  {
+    "id": "right-technology",
+    "label": "The Right Technology",
+    "zone": "frameworks",
+    "order": 5,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "CRM setup, HubSpot adoption, marketing technology, AI for marketing and sales, and analytics that reflect what buyers actually do."
+  },
+  {
+    "id": "right-culture",
+    "label": "The Right Culture of Performance",
+    "zone": "frameworks",
+    "order": 6,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "Sales-marketing alignment, revenue teams, ongoing learning, and the leadership habits that make results compound over time."
+  },
+  {
+    "id": "planning-your-investment",
+    "label": "Planning Your Investment & Optimizing ROI",
+    "zone": "frameworks",
+    "order": 7,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "How to budget for Endless Customers, set realistic expectations, measure what matters, and optimize your return over time."
+  },
+  {
+    "id": "putting-it-together",
+    "label": "Putting It All Together",
+    "zone": "frameworks",
+    "order": 8,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "The typical journey, Alignment Day, the Scorecard, quarterly planning, coaching, and the Pride Cycle."
+  },
+  {
+    "id": "support-and-community",
+    "label": "Support & Community",
+    "zone": "frameworks",
+    "order": 9,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "IMPACT coaching, live events, and the Endless Customers Academy — everything you need to implement the methodology with expert guidance."
+  },
+  {
+    "id": "age-of-ai",
+    "label": "Thrive in the Age of AI",
+    "zone": "start-here",
+    "order": 1,
+    "curator_id": "marcus-sheridan",
+    "reviewer_id": "ashley-jensen",
+    "description": "How to increase your AI visibility, understand agentic AI buying behavior, and adopt AI safely."
+  }
+]

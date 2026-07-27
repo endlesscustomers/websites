@@ -1,0 +1,58 @@
+[
+  {
+    "id": "the-system",
+    "num": "01",
+    "label": "The System",
+    "pillar": null,
+    "description": "What Endless Customers is, the worldview behind it, and why it works in the AI era."
+  },
+  {
+    "id": "ai",
+    "num": "02",
+    "label": "Thriving in an AI-First World",
+    "pillar": "AI-First World",
+    "description": "Why AI rewrote the rules of customer acquisition, and how Endless Customers makes you the brand both buyers and AI recommend."
+  },
+  {
+    "id": "say",
+    "num": "03",
+    "label": "Say — Content & The Big 5",
+    "pillar": "Pillar 1: Say",
+    "description": "Say what others in your space aren't willing to say."
+  },
+  {
+    "id": "show",
+    "num": "04",
+    "label": "Show — Video & YouTube",
+    "pillar": "Pillar 2: Show",
+    "description": "Show what others in your space aren't willing to show."
+  },
+  {
+    "id": "sell",
+    "num": "05",
+    "label": "Sell — Sales, Assignment Selling & Self-Service",
+    "pillar": "Pillar 3: Sell",
+    "description": "Sell in a way others in your space aren't willing to sell."
+  },
+  {
+    "id": "be-more-human",
+    "num": "06",
+    "label": "Be More Human — Messaging, Brand & AI",
+    "pillar": "Pillar 4: Be More Human",
+    "description": "Be more human than others in your space are willing to be."
+  },
+  {
+    "id": "the-program",
+    "num": "07",
+    "label": "The Program — Getting Started, Milestones & Measurement",
+    "pillar": "The Program",
+    "description": "How implementation actually works, what to measure, and who you need on the team."
+  },
+  {
+    "id": "fit-and-decision",
+    "num": "08",
+    "label": "Fit & Decision",
+    "pillar": "Fit & Decision",
+    "description": "Honest answers about whether Endless Customers is right for you."
+  }
+]

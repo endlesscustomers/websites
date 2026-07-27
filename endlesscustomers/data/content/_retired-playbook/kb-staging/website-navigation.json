@@ -1,0 +1,50 @@
+{
+  "id": "website-navigation",
+  "slug": "website-navigation",
+  "title": "Website Navigation",
+  "nav_title": "Website Navigation",
+  "status": "draft",
+  "topic_id": "right-website",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Most company websites are organized around internal convenience rather than buyer behavior. Categories that make sense to the people who built the site — arranged by department, product line, or historical sequence — create friction for buyers who just want to find information relevant to their decision. Confusing navigation is invisible, but the lost leads it creates are real.\n\nSimplifying your navigation means organizing it entirely around the buyer's journey: what do they need to find first when they arrive, what do they need next as they consider their options, and how do they take action when they're ready? Structure that question correctly, and the navigation writes itself.\n\n## What Belongs in the Main Navigation\n\nThe main navigation should include four types of content: links to product or service pages, your Learning Center, pricing information, and a clear way to contact you or request the primary CTA. That is generally enough. Every item you add beyond that increases cognitive load and the chance that a buyer gets distracted or confused. If an element doesn't directly help a buyer make a decision, it belongs in the footer.\n\n## Pricing Must Be Findable\n\nPricing is one of the most searched topics on any business website, and one of the most commonly hidden. When buyers can't easily find pricing information, many assume the company has something to hide and move on. Including pricing — or at minimum a link to a pricing or cost page — in the main navigation signals transparency and respects the buyer's time. It also supports your content strategy: cost and price pages are consistently among the highest-traffic pages on Endless Customers sites.\n\n## The Learning Center in the Navigation\n\nThe Learning Center should be prominently placed in the main navigation and should remain accessible from every page on the site. It is not a sub-page or a buried resource. It is one of the most important destinations on the site for both buyers doing research and your sales team looking for content to share. Position it on the left side of the navigation, where users naturally begin scanning, so it's the first stop for any visitor who wants to learn more before taking action.\n\n## Order by Journey\n\nArrange navigation items in the order a buyer would naturally use them. Education and content come first — the Learning Center on the left for visitors who are exploring. Products and services follow. Pricing comes further right for buyers who are evaluating and comparing. Contact and the primary call to action are always visible. This sequence mirrors how buyers actually think and move, rather than how the company is internally organized.\n\n## Move the Rest to the Footer\n\nThe detailed 'About Us' page, the careers section, press mentions, legal pages, and other information that serves the company rather than the buyer all belong in the footer. Visitors who need those things know to look there. Keeping them out of the main navigation gives the navigation room to do its actual job: helping buyers find what they need to make a decision.",
+  "excerpt": "Navigation that confuses buyers is invisible friction that costs leads every day. Here's how to structure your navigation around the buyer's journey rather than your company's org chart.",
+  "what_youll_learn": [
+    "Navigation should be organized around how buyers make decisions, not around how your company is structured internally.",
+    "Include only the elements that directly contribute to the buyer's journey in the main navigation. Everything else belongs in the footer or gets removed.",
+    "The Learning Center belongs in the navigation — prominently, so buyers can find your content without hunting for it.",
+    "Pricing information must be in the navigation. Buyers who can't find pricing information quickly often leave to find a competitor who is more transparent.",
+    "Your primary call to action — the thing you most want buyers to do — should be clearly visible in the navigation at all times, not buried on a contact page.",
+    "Simple navigation increases engagement. Visitors who can easily find what they need explore more, stay longer, and convert at higher rates."
+  ],
+  "key_questions": [
+    {
+      "question": "What should be in the main navigation?",
+      "answer": "The essentials: links to your product or service pages, your Learning Center, pricing information (or a link to a pricing page), and a clear way to contact you. That's generally enough. Every additional item in the main navigation introduces cognitive load and potential confusion. Ask yourself whether each item directly supports a buyer making a decision. If it doesn't, it belongs in the footer."
+    },
+    {
+      "question": "Should pricing be in the navigation?",
+      "answer": "Yes. Buyers who can't easily find pricing information often assume the worst, feel like they're being hidden from, and leave to find a competitor who is more transparent. Including pricing — or at minimum a link to a pricing or cost page — in the navigation signals transparency and confidence. It also supports the content strategy: your pricing page and cost articles are some of the most-visited content on any Endless Customers site."
+    },
+    {
+      "question": "Where does the Learning Center go in the navigation?",
+      "answer": "Prominently in the main navigation, often on the left side where users naturally begin scanning. The Learning Center should stay in the navigation no matter where a visitor goes on the site — it is not a sub-page or a buried resource, it is a core feature of the site that buyers and your sales team both need to be able to find quickly."
+    },
+    {
+      "question": "What doesn't belong in the main navigation?",
+      "answer": "Internal company information that serves the company rather than the buyer: detailed 'About Us' pages, careers, press releases, internal tools, and similar content. These are important, but they belong in the footer. The main navigation should be entirely focused on what a buyer at various stages of their journey needs to find quickly."
+    },
+    {
+      "question": "How should navigation items be ordered?",
+      "answer": "In alignment with the buyer's journey. Content and education come first, on the left, where buyers naturally begin exploring. Products and services follow. Pricing comes further right, where decision-ready buyers look. Contact and the primary call to action are clearly visible at all times. This mirrors how buyers actually move through their research rather than imposing an arbitrary order."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-05-01",
+  "last_updated": "2026-05-01",
+  "estimated_read_time": 2,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

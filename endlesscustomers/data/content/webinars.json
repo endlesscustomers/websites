@@ -1,0 +1,542 @@
+[
+  {
+    "id": "ai-search-visibility-2026",
+    "slug": "winning-ai-search-how-buyers-find-you-in-2026",
+    "title": "Winning AI Search: How Buyers Will Find You in the Second Half of 2026",
+    "status": "upcoming",
+    "event_date": "2026-06-17T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "ChatGPT, Gemini, and AI Overviews are now answering your buyers' questions before they ever reach your website. In this live session, we'll show you exactly how AI engines choose which businesses to recommend, how to audit your current AI visibility, and the specific content moves that get you cited. You'll leave with a 90-day plan you can hand to your team.",
+    "featured_image_url": "",
+    "speaker_ids": [
+      "brian-casey"
+    ],
+    "host_ids": [
+      "stephanie-baiocchi"
+    ],
+    "guest_ids": [],
+    "topic_ids": [
+      "ai-marketing",
+      "seo-aeo"
+    ],
+    "form_id": "hs-form-ai-search-visibility-2026",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "",
+      "meta_description": "",
+      "og_image_url": "",
+      "canonical_url": "",
+      "noindex": false
+    }
+  },
+  {
+    "id": "self-selection-pricing-pages",
+    "slug": "let-buyers-sell-themselves-self-selection-pricing",
+    "title": "Let Buyers Sell Themselves: Building Self-Selection and Pricing Pages That Convert",
+    "status": "upcoming",
+    "event_date": "2026-07-15T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Today's buyers want to qualify themselves, estimate cost, and choose a path without talking to sales first. We'll walk through real client examples of pricing pages, self-assessment tools, and product configurators that turned passive traffic into ready-to-buy conversations, and show you how to build your first one.",
+    "featured_image_url": "",
+    "speaker_ids": [
+      "allison-belles"
+    ],
+    "host_ids": [
+      "stephanie-baiocchi"
+    ],
+    "guest_ids": [],
+    "topic_ids": [
+      "self-selection",
+      "pricing-transparency",
+      "website-conversion"
+    ],
+    "form_id": "hs-form-self-selection-pricing",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "",
+      "meta_description": "",
+      "og_image_url": "",
+      "canonical_url": "",
+      "noindex": false
+    }
+  },
+  {
+    "id": "accelerating-growth-with-ads",
+    "slug": "accelerating-your-growth-with-ads-paid-strategy-workshop",
+    "title": "Accelerating Your Growth with Ads: A Paid Strategy Workshop",
+    "status": "on-demand",
+    "event_date": "2026-05-06T13:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Most companies run ads to get attention, but the best companies run ads that amplify trust. In this virtual workshop, you'll learn how to adapt your best content into paid campaigns that stop the scroll and build credibility. You won't just learn the strategy, you'll build ad creative during the session.",
+    "featured_image_url": "/assets/images/webinars/accelerating-growth-with-ads.jpg",
+    "speaker_ids": [
+      "sarah-schreck"
+    ],
+    "host_ids": [
+      "stephanie-baiocchi"
+    ],
+    "guest_ids": [],
+    "topic_ids": [
+      "paid-media",
+      "content-strategy"
+    ],
+    "form_id": "hs-form-accelerating-growth-ads",
+    "registration_url": "",
+    "recording_url": "https://www.youtube.com/embed/PLACEHOLDER_ADS_WORKSHOP",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [
+      {
+        "quote": "We have seen so much growth, and not just in revenue, but in the way our team interacts with each other, in how we cross-train, and how we collaborate so much better now.",
+        "guest_id": "kaitlyn-pintarich"
+      },
+      {
+        "quote": "We've gained deeper insights into our operations, making us a more intelligent business now than we were before these coaching sessions.",
+        "guest_id": "jessica-turner"
+      }
+    ],
+    "seo": {
+      "meta_title": "",
+      "meta_description": "",
+      "og_image_url": "",
+      "canonical_url": "",
+      "noindex": false
+    }
+  },
+  {
+    "id": "full-funnel-buyer-journey",
+    "slug": "the-full-funnel-buyer-journey",
+    "title": "The Full-Funnel Buyer Journey: Content That Converts Before & During Sales",
+    "status": "on-demand",
+    "event_date": "2026-04-29T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Buyers want clarity, confidence, and a frictionless path to a decision. In this workshop, you'll learn how to use content strategically before a prospect ever talks to you and throughout the sales process so you can educate faster, reduce confusion, address concerns proactively, and create the best possible buyer experience. We'll break down the buyer journey (including key stages before and after the Zero Moment of Truth) and show how to map the right content to the moments that matter most.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/Brian%20March%20Webinar-2-1.png",
+    "speaker_ids": [
+      "brian-casey"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "content-strategy",
+      "assignment-selling"
+    ],
+    "form_id": "hs-form-full-funnel-buyer-journey",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "The Full-Funnel Buyer Journey: Content That Converts Before & During Sales",
+      "meta_description": "Learn how to use content strategically before and during the sales process to educate faster, reduce friction, and build buyer confidence.",
+      "og_image_url": "https://www.impactplus.com/hubfs/Brian%20March%20Webinar-2-1.png",
+      "canonical_url": "https://www.impactplus.com/the-full-funnel-buyer-journey",
+      "noindex": false
+    }
+  },
+  {
+    "id": "7-invisible-buyer-decisions",
+    "slug": "the-7-invisible-buyer-decisions-that-control-revenue",
+    "title": "The 7 Invisible Buyer Decisions That Control Revenue",
+    "status": "on-demand",
+    "event_date": "2026-03-16T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "In this webinar, we'll break down the 7 invisible buyer decisions that control revenue while prospects are researching on their own, before your team ever knows they exist. You'll walk away with a clear understanding of where revenue is being won or lost today and what business leaders must focus on to influence buyer decisions earlier, faster, and with more consistency in 2026. If your team is doing all the right things but growth still feels unpredictable, this session will show you where buyers are deciding without you.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/Brian%20March%20Webinar-1.png",
+    "speaker_ids": [
+      "brian-casey"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "content-strategy",
+      "sales-alignment"
+    ],
+    "form_id": "hs-form-7-invisible-buyer-decisions",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "The 7 Invisible Buyer Decisions That Control Revenue",
+      "meta_description": "Join us March 16th for a live webinar with IMPACT Coach Brian Casey to cover The 7 Invisible Buyer Decisions That Control Revenue.",
+      "og_image_url": "https://www.impactplus.com/hubfs/Brian%20March%20Webinar-1.png",
+      "canonical_url": "https://www.impactplus.com/webinar/the-7-invisible-buyer-decisions-that-control-revenue",
+      "noindex": false
+    }
+  },
+  {
+    "id": "2026-game-plan",
+    "slug": "the-2026-game-plan-for-winning-more-customers",
+    "title": "The 2026 Game Plan for Winning More Customers",
+    "status": "on-demand",
+    "event_date": "2026-02-25T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Customer acquisition in 2026 is harder, more expensive, and far less forgiving of unfocused effort. In this session, we'll break down what's changed, why many teams feel busy without seeing traction, and what it really takes to become a known and trusted brand. You'll be introduced to a clear system for driving customer growth, a tool to diagnose where your teams are misaligned, how to prioritize what to do next, and how this system translates into quarterly plans and CEO-level KPIs that matter.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/Brett%20February%20Webinar-1.png",
+    "speaker_ids": [
+      "brett-ingram"
+    ],
+    "host_ids": [
+      "stephanie-baiocchi"
+    ],
+    "guest_ids": [],
+    "topic_ids": [
+      "content-strategy",
+      "sales-alignment"
+    ],
+    "form_id": "hs-form-2026-game-plan",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [
+      "endless-customers-toolkit"
+    ],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "The 2026 Game Plan for Winning More Customers",
+      "meta_description": "In this webinar, we'll break down what it really takes to compete in 2026. You'll get a system for driving growth, how to diagnose where you stand now, what to prioritize next.",
+      "og_image_url": "https://www.impactplus.com/hubfs/Brett%20February%20Webinar-1.png",
+      "canonical_url": "https://www.impactplus.com/webinar/the-2026-game-plan-for-winning-more-customers",
+      "noindex": false
+    }
+  },
+  {
+    "id": "6-ai-sales-plays",
+    "slug": "6-ai-sales-plays-that-actually-work",
+    "title": "Close More Deals in 2026: 6 AI Selling Plays That Actually Work",
+    "status": "on-demand",
+    "event_date": "2026-01-21T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "A gameshow-style webinar with Vidyard + IMPACT, focused on AI-powered sales plays revenue teams can use to drive real results. You'll learn 6 proven AI-powered sales plays helping teams accelerate deal velocity and reduce no-shows, agentic video strategies that scale trust, how to use AI Avatars to extend top-performer messaging, and how to prove performance with HubSpot-triggered workflows that connect engagement to pipeline and revenue.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/FF-Header-Img-2-3.jpg%20copy.png",
+    "speaker_ids": [
+      "stephanie-baiocchi"
+    ],
+    "host_ids": [],
+    "guest_ids": [
+      "jenna-scapinello"
+    ],
+    "topic_ids": [
+      "ai-marketing",
+      "sales-alignment"
+    ],
+    "form_id": "hs-form-6-ai-sales-plays",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "Close more deals in 2026: 6 AI-sales plays that actually work",
+      "meta_description": "On-demand webinar to unlock AI-driven sales strategies that will enhance deal velocity and engagement. Learn from industry experts from Vidyard and IMPACT.",
+      "og_image_url": "https://www.impactplus.com/hubfs/FF-Header-Img-2-3.jpg%20copy.png",
+      "canonical_url": "https://www.impactplus.com/webinar/6-ai-sales-plays-that-actually-work",
+      "noindex": false
+    }
+  },
+  {
+    "id": "endless-customers-overview",
+    "slug": "endless-customers",
+    "title": "Endless Customers: The Solution to Common 2026 Customer Acquisition Challenges",
+    "status": "on-demand",
+    "event_date": "2025-12-18T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 30,
+    "description": "Traditional marketing isn't cutting it anymore. Customer acquisition has changed forever, and what worked just a few years ago now costs more and converts less. In this fast-paced 30-minute session, Marcus Sheridan teaches the proven framework behind the businesses that are thriving in the new era of marketing: the 4 Pillars of a Known and Trusted Brand, Assignment Selling, Self-Service Tools, AI Trust Signals, The Big 5, and the small shifts that create massive results in visibility, leads, and revenue.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/Endless%20Customers:%20The%20Solution%20to%20Common%202026%20Customer%20Acquisition%20Challenges%20Webinar.png",
+    "speaker_ids": [
+      "marcus-sheridan"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "they-ask-you-answer",
+      "content-strategy"
+    ],
+    "form_id": "hs-form-endless-customers-overview",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [
+      "90-day-starter-guide"
+    ],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "IMPACT On-Demand | Endless Customers Overview",
+      "meta_description": "Traditional marketing isn't cutting it anymore. Learn how the Endless Customers framework is helping businesses build unstoppable trust and steady growth in 2026.",
+      "og_image_url": "https://www.impactplus.com/hubfs/Endless%20Customers:%20The%20Solution%20to%20Common%202026%20Customer%20Acquisition%20Challenges%20Webinar.png",
+      "canonical_url": "https://www.impactplus.com/webinar/endless-customers",
+      "noindex": false
+    }
+  },
+  {
+    "id": "13-trust-signals",
+    "slug": "13-trust-signals",
+    "title": "13 Trust Signals Reshaping Human and AI Visibility in 2026 and Beyond",
+    "status": "on-demand",
+    "event_date": "2025-11-21T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "AI is rewriting the rules of trust and visibility. 2026 is coming fast and visibility rules are changing even faster. The signals buyers and AI look for aren't just about content or keywords anymore. They're about credibility, clarity, and proof. Join Marcus Sheridan to see how today's most trusted brands are already gaining ground for the year ahead.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/7%20Practical%20Ways%201920x1080%20%20%281%29.png",
+    "speaker_ids": [
+      "marcus-sheridan"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "seo-aeo",
+      "ai-marketing"
+    ],
+    "form_id": "hs-form-13-trust-signals",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "IMPACT Live Workshop | 13 Trust-Signals You Can't Ignore",
+      "meta_description": "Watch the recording of Marcus Sheridan's 13 Trust Signals Reshaping Human and AI Visibility in 2026 and Beyond to learn how to build the trust signals that will put you ahead in the new year.",
+      "og_image_url": "https://www.impactplus.com/hubfs/7%20Practical%20Ways%201920x1080%20%20%281%29.png",
+      "canonical_url": "https://www.impactplus.com/webinar/13-trust-signals",
+      "noindex": false
+    }
+  },
+  {
+    "id": "build-to-sell",
+    "slug": "build-to-sell-training",
+    "title": "Build to Sell: Create a Marketing & Sales Engine That Makes Your Business Irresistible to Acquirers",
+    "status": "on-demand",
+    "event_date": "2025-09-22T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "This live session teaches you what it takes to end owner-reliant marketing so your business is always ready for acquisition and set up for long-term scale. When potential buyers look to acquire your business, they're thinking: can this company scale without you? Join IMPACT's CEO Bob Ruffolo and Rework Capital partner and IMPACT fractional CFO Alexander Ronzino to learn how to build a brand that acquirers can't ignore, remove owner dependence on sales and marketing, and understand the top things acquirers look for in a business.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/Build%20to%20Sell%20Opt%201%201920x1080.png",
+    "speaker_ids": [
+      "bob-ruffolo"
+    ],
+    "host_ids": [],
+    "guest_ids": [
+      "alexander-ronzino"
+    ],
+    "topic_ids": [
+      "sales-alignment",
+      "content-strategy"
+    ],
+    "form_id": "hs-form-build-to-sell",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "Build to Sell: Create a Marketing & Sales Engine That Makes Your Business Irresistible to Acquirers",
+      "meta_description": "This live session will teach you what it takes to end owner-reliant marketing so your business is always ready for acquisition and set up for long-term scale.",
+      "og_image_url": "https://www.impactplus.com/hubfs/Build%20to%20Sell%20Opt%201%201920x1080.png",
+      "canonical_url": "https://www.impactplus.com/webinar/build-to-sell-training",
+      "noindex": false
+    }
+  },
+  {
+    "id": "5-ways-ai-avatars",
+    "slug": "5-ways-ai-avatars",
+    "title": "5 Ways to Start Using AI Avatars in Your Sales & Marketing Today",
+    "status": "on-demand",
+    "event_date": "2025-09-30T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "AI avatars are transforming how businesses connect, convert, and create trust at scale, but it can be overwhelming to get started. In this exclusive joint webinar from IMPACT and Vidyard, you'll discover 5 practical, proven ways to start using AI avatars today to attract more of the right buyers, accelerate the sales process, and deliver personalized experiences. You'll see Vidyard's AI avatar tools in action and learn how these strategies fit with the Endless Customers System so you can combine the power of human trust with the efficiency of AI.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/AI%20Avatars%20LP%20graphic-1.png",
+    "speaker_ids": [
+      "stephanie-baiocchi"
+    ],
+    "host_ids": [],
+    "guest_ids": [
+      "binayak-kanungo"
+    ],
+    "topic_ids": [
+      "ai-marketing",
+      "video-sales"
+    ],
+    "form_id": "hs-form-5-ways-ai-avatars",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "5 Ways to Start Using AI Avatars in Your Sales & Marketing Today",
+      "meta_description": "Discover 5 ways to use AI avatars that boost trust, speed up sales, and keep your marketing human. See how it all connects to Endless Customers and watch Vidyard's tools in action.",
+      "og_image_url": "https://www.impactplus.com/hubfs/AI%20Avatars%20LP%20graphic-1.png",
+      "canonical_url": "https://www.impactplus.com/webinar/5-ways-ai-avatars",
+      "noindex": false
+    }
+  },
+  {
+    "id": "7-ways-integrate-ai",
+    "slug": "webinar-on-demand-7-ways-integrate-ai",
+    "title": "7 Practical Ways to Integrate AI into Your Sales & Marketing in the Next 90 Days",
+    "status": "on-demand",
+    "event_date": "2025-07-16T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Every day your team isn't using AI across core areas of your business, like your marketing, sales, website, and CRM, you're losing time, efficiency, and revenue. In this on-demand training, Marcus Sheridan, Author of Endless Customers, will show you 7 ways to integrate AI into your sales and marketing in the next 90 days, and what you're leaving on the table by not starting now, in a way that's aligned with what actually drives revenue: trust, speed, and real buyer education.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/7%20Practical%20Ways%20Social%20Share-2.png",
+    "speaker_ids": [
+      "marcus-sheridan"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "ai-marketing",
+      "ai-tools-for-content"
+    ],
+    "form_id": "hs-form-7-ways-integrate-ai",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [
+      "endless-customers-gpts-collection"
+    ],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "On-Demand Webinar: 7 Ways to Integrate AI into Your Sales & Marketing",
+      "meta_description": "In this on-demand webinar, Marcus Sheridan, Author of Endless Customers, will show you how to use AI in a way that's aligned with what actually drives revenue: trust, speed, and real buyer education.",
+      "og_image_url": "https://www.impactplus.com/hubfs/7%20Practical%20Ways%20Social%20Share-2.png",
+      "canonical_url": "https://www.impactplus.com/webinar-on-demand-7-ways-integrate-ai",
+      "noindex": false
+    }
+  },
+  {
+    "id": "maximize-your-crm",
+    "slug": "webinar-on-demand-maximize-crm",
+    "title": "Maximize Your CRM: 4 Steps to Turn Your Investment into Sales",
+    "status": "on-demand",
+    "event_date": "2025-06-24T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Businesses invest in CRMs like HubSpot to streamline operations, close more deals, and drive growth. But most companies use less than half of their CRM's capabilities. In this free training, HubSpot Trainer Will Smith breaks down exactly why so many companies underutilize their CRMs and, more importantly, how you can start using yours to increase revenue by up to 41% per salesperson.",
+    "featured_image_url": "https://www.impactplus.com/hubfs/Maximize%20Your%20CRM%20Social%20Share-2.png",
+    "speaker_ids": [],
+    "host_ids": [],
+    "guest_ids": [
+      "will-smith"
+    ],
+    "topic_ids": [
+      "hubspot",
+      "sales-alignment"
+    ],
+    "form_id": "hs-form-maximize-crm",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "On-demand Webinar: Maximize Your CRM: 4 Steps to Turn Your Investment into Sales",
+      "meta_description": "Access the replay from this free training session led by HubSpot Trainer Will Smith, where he breaks down why so many companies underutilize their CRMs and how you can use yours to increase revenue by up to 41% per salesperson.",
+      "og_image_url": "https://www.impactplus.com/hubfs/Maximize%20Your%20CRM%20Social%20Share-2.png",
+      "canonical_url": "https://www.impactplus.com/webinar-on-demand-maximize-crm",
+      "noindex": false
+    }
+  },
+  {
+    "id": "7-things-uncertain-times",
+    "slug": "webinar-on-demand-7-things-uncertain-times",
+    "title": "7 Things to Do Right Now When Uncertain Times are Slowing Down Deals",
+    "status": "on-demand",
+    "event_date": "2025-05-01T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "Economic uncertainty is making buyers more cautious. Buying decisions are getting longer, budgets are under review, and deals that felt like a sure thing just weeks ago are now sitting in limbo. Learn the simple tools you need on your website to drive more new leads during slow times.",
+    "featured_image_url": "",
+    "speaker_ids": [
+      "marcus-sheridan"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "content-strategy",
+      "website-conversion"
+    ],
+    "form_id": "hs-form-7-things-uncertain-times",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "",
+      "meta_description": "Economic uncertainty is making buyers more cautious. Learn the simple tools you need on your website to drive more new leads during slow times.",
+      "og_image_url": "",
+      "canonical_url": "https://www.impactplus.com/webinar-on-demand-7-things-uncertain-times",
+      "noindex": false
+    }
+  },
+  {
+    "id": "disrupt-your-industry",
+    "slug": "webinar-on-demand-disrupt-your-industry",
+    "title": "Disrupt Your Industry: Revenue-Driving Content Your Market isn't Saturated with... Yet.",
+    "status": "on-demand",
+    "event_date": "2025-04-01T11:00:00",
+    "event_timezone": "America/New_York",
+    "duration_minutes": 60,
+    "description": "If you want to become the leader in your market, then you've got to do what your competitors aren't willing to in their marketing. That's the blueprint for how businesses are winning right now, and it's the driving force behind industry-disrupting content. Learn what it means to disrupt your industry, why most industries are stuck in outdated marketing playbooks, how to identify the gaps others are too afraid to address, and how to create content that transcends industry norms beyond The Big 5.",
+    "featured_image_url": "",
+    "speaker_ids": [
+      "john-becker"
+    ],
+    "host_ids": [],
+    "guest_ids": [],
+    "topic_ids": [
+      "content-strategy",
+      "they-ask-you-answer"
+    ],
+    "form_id": "hs-form-disrupt-your-industry",
+    "registration_url": "",
+    "recording_url": "",
+    "is_recording_gated": true,
+    "related_offer_ids": [],
+    "related_insight_ids": [],
+    "testimonials": [],
+    "seo": {
+      "meta_title": "",
+      "meta_description": "Disrupt Your Industry: Revenue-Driving Content Your Market isn't Saturated with... Yet.",
+      "og_image_url": "",
+      "canonical_url": "https://www.impactplus.com/webinar-on-demand-disrupt-your-industry",
+      "noindex": false
+    }
+  }
+]

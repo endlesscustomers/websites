@@ -1,0 +1,50 @@
+{
+  "id": "the-sticky-5",
+  "slug": "the-sticky-5",
+  "title": "The Sticky 5",
+  "nav_title": "The Sticky 5",
+  "status": "published",
+  "topic_id": "right-content",
+  "parent_id": "video-strategy-overview",
+  "child_ids": [],
+  "article_body": "Short-form video lives and dies by one metric: how long viewers watch. Platforms like YouTube, TikTok, and Instagram measure retention rate as one of their primary quality signals. A video that holds viewers until the end gets shown to more people. A video that loses viewers in the first few seconds gets buried. The Sticky 5 is a framework built entirely around retention.\n\nThe guiding phrase is simple: make them click, make them stick. Getting someone to tap on your video is only the first challenge. Keeping them through to the payoff is the real measure of whether the video will perform.\n\n## The Five Principles\n\nThe Hook is the title and the first one to two seconds of the video. This is where you establish a curiosity gap — something that makes the viewer feel they'll miss something important if they keep scrolling. The best hooks are specific, unexpected, or directly address a concern or question the viewer already has. The hook must relate to what the viewer actually sees in that first frame. If the visual doesn't match the hook, viewers feel deceived and leave.\n\nThe 3-Second Rule is about maintaining visual momentum. Ideally, there should be a cut, angle change, or new visual element every three seconds. This keeps the video feeling like it's always moving. Watching a static shot for ten seconds in a short-form video feels like an eternity. Constant visual variety signals that something interesting is always about to happen.\n\nThe Progress Principle means every moment should contribute to a feeling of forward movement. The viewer should feel, moment by moment, that the video is getting somewhere. Any scene, shot, or statement that doesn't clearly advance the story or the point should be cut. Lulls hurt retention more than any other structural problem.\n\nThe Payoff Principle is about delivering a genuine reward at the end. Every viewer who watches a short-form video is implicitly asking \"Was this worth my time?\" The payoff is your answer. It should feel satisfying, complete, and proportionate to the expectation set by the hook. Strong payoffs tend to generate emotional responses — surprise, satisfaction, delight, or even mild shock — and those emotional responses translate into shares and comments.\n\nThe Quit While You're Ahead Principle may be the most counterintuitive of the five. The second the payoff is delivered, the video should end. No summary, no call to action, no waving goodbye. Cut immediately. Even two or three seconds of footage after the peak moment will cause retention rates to drop — and that drop signals to the algorithm that the video lost the viewer's interest, which reduces distribution.\n\n## What Happens When You Get It Right\n\nShort-form videos with strong retention rates can achieve what's called a \"loop\" — where the ending flows naturally back to the beginning, causing viewers to watch again without realizing it. Retention rates above 100% are possible, meaning the average viewer watches the video more than once. This is the signal every platform algorithm is looking for when deciding which videos to push to wider audiences.\n\nMarcus Sheridan's fishing channel, Saltwater Fishing University, offers a clear example. When capturing a large fish, the video ends the instant the fish lands in the boat. The crew celebration afterward is cut entirely, even though it's satisfying to film. The payoff is the catch. Once it's there, the video is over. That discipline is what drives strong retention and, in turn, wider reach for every video the channel publishes.",
+  "excerpt": "The Sticky 5 is a five-part framework for structuring short-form video to maximize retention, boost algorithmic reach, and build the kind of viewer engagement that turns views into followers and followers into buyers.",
+  "what_youll_learn": [
+    "Short-form video performance is measured primarily by retention rate. The Sticky 5 is built to maximize it.",
+    "The Hook must be established in the first one to two seconds. If the opening doesn't create curiosity or intrigue immediately, most viewers will scroll past.",
+    "The 3-Second Rule means keeping cuts, angle changes, or new visuals coming constantly. Things should feel like they're always moving.",
+    "The Progress Principle means every moment should feel like it's getting somewhere. Remove anything that doesn't contribute to forward movement.",
+    "The Payoff Principle is about delivering a genuine emotional or informational reward at the end. The ending should feel satisfying and complete.",
+    "The Quit While You're Ahead Principle says to end the video the instant the payoff is delivered. Even two seconds of unnecessary footage after the peak will hurt retention."
+  ],
+  "key_questions": [
+    {
+      "question": "Why does retention rate matter so much?",
+      "answer": "Retention rate is one of the primary signals short-form platforms use to decide how widely to distribute a video. A video where most viewers watch until the end gets shown to more people. A video where most viewers drop off early gets buried. The Sticky 5 is designed to maximize how long each viewer stays."
+    },
+    {
+      "question": "What makes a good hook for a short-form video?",
+      "answer": "A hook creates a curiosity gap — it makes the viewer feel like they'll miss something important if they keep scrolling. The best hooks are specific, unexpected, or directly address a question or concern the viewer already has. Vague or generic openings don't stop scrolls."
+    },
+    {
+      "question": "How short is short enough for the Quit While You're Ahead Principle?",
+      "answer": "The video should end the moment the payoff is complete. Not after a call to action, not after a summary, not after the presenter waves goodbye. The second the main point or moment has landed, cut. Some of the best-performing short-form videos end so abruptly that the viewer watches again just to confirm they saw it right — which pushes retention above 100%."
+    },
+    {
+      "question": "Does The Sticky 5 apply to all short-form platforms?",
+      "answer": "Yes. The underlying principles of retention, momentum, and a decisive ending apply across YouTube Shorts, Instagram Reels, TikTok, and Facebook Reels. The tactical specifics (ideal length, aspect ratio) vary slightly by platform, but the Sticky 5 framework applies universally."
+    },
+    {
+      "question": "Can we apply The Sticky 5 to repurposed long-form clips?",
+      "answer": "Yes, and this is one of the most common applications. When extracting clips from a longer video, choose moments that already have a natural hook, build toward a clear payoff, and end cleanly. Trim aggressively before and after to preserve the structure."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "id": "webinar-ai-search-2026",
+    "type": "webinar",
+    "priority": 100,
+    "status": "active",
+    "starts": "2026-05-20T00:00:00",
+    "ends": "2026-06-17T12:00:00",
+    "dismissible": true,
+    "sticky": false,
+    "theme": "blue-green",
+    "eyebrow": "Free Live Webinar",
+    "message": "Winning AI Search: how buyers will find you in the second half of 2026",
+    "meta": "June 17 · 11am ET",
+    "cta_label": "Save Your Seat",
+    "cta_url": "/learn/webinar/webinar.html?id=ai-search-visibility-2026",
+    "source_id": "ai-search-visibility-2026"
+  },
+  {
+    "id": "evergreen-community",
+    "type": "evergreen",
+    "priority": 0,
+    "status": "active",
+    "starts": "",
+    "ends": "",
+    "dismissible": true,
+    "sticky": false,
+    "theme": "blue-green",
+    "eyebrow": "Join the Community",
+    "message": "Free strategies, live events, and the playbook to win more customers",
+    "meta": "",
+    "cta_label": "Get Started Free",
+    "cta_url": "/lets-talk",
+    "source_id": ""
+  }
+]

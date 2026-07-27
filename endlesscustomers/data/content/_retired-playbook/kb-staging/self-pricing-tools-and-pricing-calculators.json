@@ -1,0 +1,50 @@
+{
+  "id": "self-pricing-tools-and-pricing-calculators",
+  "slug": "self-pricing-tools-and-pricing-calculators",
+  "title": "Self-Pricing Tools and Pricing Calculators",
+  "nav_title": "Self-Pricing Tools (Pricing Calculators)",
+  "status": "published",
+  "topic_id": "right-website",
+  "parent_id": "self-service-tools",
+  "child_ids": [],
+  "article_body": "At an industry conference in 2018, Marcus Sheridan told a room full of boat manufacturing CEOs that one of them would eventually put a 'build and price your boat' tool on their website — and when they did, it would change the rules of the game. Most of the room laughed. One of them did it: Sportsman Boats. They became the first major boating manufacturer to offer a build-and-price tool, and buyers came to them precisely because they were finally giving customers what everyone else was afraid to provide.\n\nThat is the pattern with pricing tools. The industry hesitates. One company acts. And that company wins a disproportionate share of buyers who were already ready to move forward but could not get basic pricing information anywhere else.\n\n## Why Pricing Tools Work\n\nEvery buyer — in every industry, B2B or B2C — wants at least a price range before they are willing to engage further. They need to know if they can afford this. They need to know if the number is even in the conversation before they invest time in a sales process. When you make them call to get that information, some will call. But many will not. They will go to a competitor who is willing to be transparent, or they will simply delay until they find another way to estimate cost.\n\nA pricing calculator removes that barrier. It answers the affordability question before the first conversation, which means the buyers who do reach out have already crossed a critical threshold. They are not wondering if they can afford it. They know roughly what they are dealing with, they are still interested, and now they want to move forward.\n\n## A Real Example: The Home Improvement Company\n\nIMPACT worked with a home improvement company whose peak season was a critical 90-day window representing 75% of their annual leads. No competitor in their market had a pricing tool. IMPACT built one. Year-over-year, their leads in May jumped from 200 to 700 — a 350% increase, during a market downturn. The tool cost less than $25,000 to build and generated over $1 million in additional revenue. That is the kind of result that a pricing calculator produces when it is the first in an industry to offer one.\n\n## A Real Example: Shasta Pools\n\nShasta Pools, a Phoenix-based pool builder, built a nine-step pricing and configurator tool that guides buyers through selecting pool shape, interior finishes, water features, and decking — with detailed explanations, images, and videos at each step. Shortly after launching, more than 50% of all first appointments scheduled involved customers who had already priced out their pool using the tool. In one month, Shasta scheduled 166 families with a sales designer; 83 had already worked through the calculator. Those meetings ran faster and closed at higher rates because buyers arrived prepared, not surprised.\n\n## How to Build an Effective Pricing Tool\n\nA common mistake with pricing tools is presenting options without explaining them. If a buyer is choosing between patio stone types but has no idea what distinguishes them, the tool creates confusion rather than clarity. Include images, short explanations, and links to articles or videos that help buyers understand each option. Educate as they calculate, just as a good salesperson would in a live conversation.\n\nYou do not need to provide an exact price. A range is almost always sufficient for buyers to answer their real question: 'Can I afford this?' A range with context — here are the factors that push the number toward the high end — is more honest and more useful than false precision. Consider adding monthly payment options alongside total project cost. For large purchases, buyers often think in terms of cash flow, and seeing a manageable monthly figure alongside a large total number can be the factor that moves them to reach out.\n\nWhether you choose a custom-built tool or an off-the-shelf solution, get it live. The competitive advantage belongs to whoever goes first. In most markets, that company is still you.",
+  "excerpt": "Most companies are afraid to put pricing on their website. That fear hands the buyers who are ready to move forward directly to the companies that are willing to be transparent.",
+  "what_youll_learn": [
+    "Pricing calculators consistently generate faster results than almost any other self-service tool. IMPACT helped one home improvement company increase May leads from 200 to 700 — a 350% jump — immediately after launching a pricing tool.",
+    "You do not need to provide an exact price. A range is enough for buyers to answer their real question: 'Can we afford this?' A range with context is more useful than silence.",
+    "Most companies avoid pricing tools because transparency feels uncomfortable. That discomfort is the competitive advantage — because your competitors are avoiding it too.",
+    "Every B2B and B2C buyer wants at least a price range before they are willing to engage further. A pricing tool meets that need before a single conversation has happened.",
+    "The best pricing tools educate buyers as they calculate — explaining the variables that drive cost so buyers arrive at a conversation already understanding the factors involved.",
+    "After launching its pricing tool, Shasta Pools found that more than 50% of all first sales appointments involved customers who had already priced out their pool. Those meetings ran faster and closed at higher rates."
+  ],
+  "key_questions": [
+    {
+      "question": "Does a pricing calculator have to give an exact number?",
+      "answer": "No. A price range is almost always sufficient to answer what buyers really want to know: 'Can I afford this?' and 'Is this in my budget?' An exact number often creates false precision anyway, since final pricing depends on variables that a tool cannot fully capture. A well-explained range does more to build trust than a falsely precise quote."
+    },
+    {
+      "question": "What if our pricing is highly variable or project-specific?",
+      "answer": "That is not a reason to avoid a pricing tool — it is a reason to build one that explains the variables. The goal is to help buyers understand what factors drive cost so they arrive at the first conversation with realistic expectations. A tool that says 'projects like yours typically range from $X to $Y, depending on these three factors' is far more useful than silence."
+    },
+    {
+      "question": "How much does a pricing calculator cost to build?",
+      "answer": "It depends on the complexity of your pricing and the level of customization. Custom-built tools tailored to your business typically perform best. IMPACT has built pricing tools for under $25,000 that generated over $1 million in additional revenue. There are also off-the-shelf and AI-powered pricing calculator tools available for companies that need a faster, lower-cost starting point."
+    },
+    {
+      "question": "Will a pricing tool hurt our ability to have pricing conversations with prospects?",
+      "answer": "It changes those conversations, but for the better. Buyers who have used your pricing tool already know the range and the variables that affect it. They come to the first conversation with calibrated expectations rather than sticker shock. That removes one of the most common sources of friction in early sales conversations."
+    },
+    {
+      "question": "Should we include financing or monthly payment options in our pricing tool?",
+      "answer": "Yes, if financing is relevant to your buyers. Showing monthly payment options alongside total project cost makes large investments feel more manageable and helps buyers who are thinking in terms of cash flow rather than lump sum. It is a useful feature that increases engagement and confidence."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 4,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

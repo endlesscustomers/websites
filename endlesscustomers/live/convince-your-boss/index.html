@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    /* Conference pages always render dark */
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+  <title>Convince Your Boss — Endless Customers Live | Endless Customers</title>
+  <meta name="description" content="Need approval to attend Endless Customers Live? Here's the business case, the cost breakdown, and a ready-to-send approval email." />
+  <meta property="og:title"       content="Convince Your Boss — Endless Customers Live" />
+  <meta property="og:description" content="The business case, cost breakdown, and a ready-to-send approval email for attending Endless Customers Live." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="../../assets/images/endless-customers-live/chicago-2026/ballroom-wide-2.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "The Conference", "item": "https://www.endlesscustomers.com/live/" },
+      { "@type": "ListItem", "position": 2, "name": "Convince Your Boss", "item": "https://www.endlesscustomers.com/live/convince-your-boss" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #main-content section[id] { scroll-margin-top: 120px; }
+  </style>
+  <style>
+  /* ===== Convince Your Boss page-scoped styles ===== */
+  .eclb-hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#0b1020;color:#fff;}
+  .eclb-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.32;}
+  .eclb-hero__scrim{position:absolute;inset:0;background:radial-gradient(120% 120% at 70% 20%,rgba(227,97,183,.20),transparent 45%),linear-gradient(180deg,rgba(11,16,32,.5),rgba(11,16,32,.85));}
+  /* Top padding clears the fixed nav (79px) + sub-nav pill (70px @ 91px) with breathing room */
+  .eclb-hero__inner{position:relative;z-index:2;max-width:var(--max-width);margin:0 auto;padding:calc(var(--nav-height) + 100px) var(--space-6) var(--space-16);width:100%;text-align:center;}
+  .eclb-hero__eyebrow{display:inline-block;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:var(--text-sm);color:rgba(255,255,255,.85);margin-bottom:var(--space-5);}
+  .eclb-hero__title{font-family:var(--font-display);font-weight:800;font-size:var(--headline-medium);line-height:var(--leading-display);letter-spacing:var(--tracking-display);max-width:22ch;margin:0 auto var(--space-5);}
+  .eclb-hero__sub{font-size:var(--text-lg);line-height:1.6;color:rgba(255,255,255,.8);margin:0 auto var(--space-8);max-width:58ch;}
+
+  .eclb-points{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-5);}
+  .eclb-point{background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);padding:var(--space-7) var(--space-6);}
+  .eclb-point__icon{font-size:26px;color:var(--color-blue);margin-bottom:var(--space-4);display:block;}
+  .eclb-point__title{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);color:var(--color-heading);margin:0 0 var(--space-2);}
+  .eclb-point__desc{color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.55;margin:0;}
+
+  .eclb-costs{max-width:680px;margin:0 auto;background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);overflow:hidden;}
+  .eclb-costs__row{display:flex;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--color-border);}
+  .eclb-costs__row:last-child{border-bottom:none;background:var(--color-bg-subtle);}
+  .eclb-costs__label{color:var(--color-text);}
+  .eclb-costs__label small{display:block;color:var(--color-text-muted);font-size:var(--text-xs);margin-top:2px;}
+  .eclb-costs__amt{font-weight:700;color:var(--color-heading);white-space:nowrap;}
+  .eclb-costs__row--total .eclb-costs__label,.eclb-costs__row--total .eclb-costs__amt{font-family:var(--font-display);font-weight:800;font-size:var(--text-lg);color:var(--color-heading);}
+
+  .eclb-letter{max-width:820px;margin:0 auto;background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;}
+  .eclb-letter__bar{display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-6);border-bottom:1px solid var(--color-border);background:var(--color-bg-subtle);}
+  .eclb-letter__bar-title{font-weight:700;color:var(--color-heading);font-size:var(--text-sm);text-transform:uppercase;letter-spacing:.06em;}
+  .eclb-letter__body{padding:var(--space-7) var(--space-7);color:var(--color-text);line-height:1.7;font-size:var(--text-base);}
+  .eclb-letter__body p{margin:0 0 var(--space-4);}
+  .eclb-letter__body ul{margin:0 0 var(--space-4);padding-left:1.2em;}
+  .eclb-letter__body li{margin-bottom:var(--space-2);}
+
+  /* Event toggle — one email per event, same page */
+  .eclb-toggle{display:flex;justify-content:center;gap:0;margin:0 auto var(--space-8);width:max-content;background:var(--color-bg-subtle);border:1px solid var(--color-border);border-radius:var(--radius-full);padding:4px;}
+  .eclb-toggle button{font-family:var(--font-display);font-weight:600;padding:.55rem 1.6rem;border:none;background:transparent;color:var(--color-text-strong);border-radius:var(--radius-full);cursor:pointer;}
+  .eclb-toggle button.is-active{background:var(--color-bg);color:var(--color-heading);box-shadow:var(--shadow-sm);}
+  .eclb-letter-wrap{display:none;}
+  .eclb-letter-wrap.is-active{display:block;}
+  </style>
+</head>
+<body class="page-accent--conf">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Section sub-nav: breadcrumb -->
+  <nav class="subnav subnav--svc" id="subnav" aria-label="Section navigation">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#case" class="subnav__link is-active">The Case</a>
+        <a href="#costs" class="subnav__link">The Costs</a>
+        <a href="#email" class="subnav__link">The Email</a>
+        <a href="/live/hartford-2026" class="btn--nav-primary subnav__cta">Register Now <span class="subnav__cta-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section data-subnav-hero class="eclb-hero" aria-labelledby="eclb-hero-title">
+      <img class="eclb-hero__img" src="../../assets/images/endless-customers-live/chicago-2026/ballroom-wide-2.jpg" alt="" aria-hidden="true" />
+      <div class="eclb-hero__scrim" aria-hidden="true"></div>
+      <div class="eclb-hero__inner">
+        <span class="eclb-hero__eyebrow">Convince Your Boss</span>
+        <h1 class="eclb-hero__title headline-short" id="eclb-hero-title">Need Sign-Off? We Wrote the Email for You.</h1>
+        <p class="eclb-hero__sub">You already know Endless Customers Live is worth it. Here's the business case, the real costs, and a copy-and-paste approval email to get your boss to a fast yes.</p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="#email" class="btn btn--primary btn--lg">Skip to the Email →</a>
+          <a href="#case" class="btn btn--ghost btn--lg" style="color:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);">See the Business Case</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE CASE -->
+    <section class="section" id="case" aria-labelledby="eclb-case-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">The Business Case</span>
+          <h2 class="section__title section__title--lg" id="eclb-case-title">What Your Company Actually Gets</h2>
+        </header>
+        <div class="eclb-points">
+          <div class="eclb-point">
+            <i class="ti ti-map eclb-point__icon" aria-hidden="true"></i>
+            <h3 class="eclb-point__title">A plan, not just notes</h3>
+            <p class="eclb-point__desc">This is a working event. You'll complete the Endless Customers Scorecard for your own business and leave with a prioritized action plan — not a notebook of ideas that never get implemented.</p>
+          </div>
+          <div class="eclb-point">
+            <i class="ti ti-target-arrow eclb-point__icon" aria-hidden="true"></i>
+            <h3 class="eclb-point__title">One system, zero fluff</h3>
+            <p class="eclb-point__desc">Single-track and 100% focused on the Endless Customers framework. Every session builds on the last, so there's no gamble on which breakouts are worth the time.</p>
+          </div>
+          <div class="eclb-point">
+            <i class="ti ti-coin eclb-point__icon" aria-hidden="true"></i>
+            <h3 class="eclb-point__title">Proven ROI</h3>
+            <p class="eclb-point__desc">Companies running this system have grown revenue by $1M, increased leads 1,300%, and doubled revenue multiple years in a row. One implemented idea pays for the trip many times over.</p>
+          </div>
+          <div class="eclb-point">
+            <i class="ti ti-users-group eclb-point__icon" aria-hidden="true"></i>
+            <h3 class="eclb-point__title">Team alignment</h3>
+            <p class="eclb-point__desc">When sales, marketing, and leadership hear the same message at the same time, the months of internal selling disappear. Group pricing makes bringing the team the smart move.</p>
+          </div>
+          <div class="eclb-point">
+            <i class="ti ti-brain eclb-point__icon" aria-hidden="true"></i>
+            <h3 class="eclb-point__title">AI strategy, grounded</h3>
+            <p class="eclb-point__desc">A dedicated AI Day covers where search and buyer behavior are going, and how to stay visible as AI reshapes how customers find you.</p>
+          </div>
+          <div class="eclb-point">
+            <i class="ti ti-shield-check eclb-point__icon" aria-hidden="true"></i>
+            <h3 class="eclb-point__title">Low risk</h3>
+            <p class="eclb-point__desc">Full refund up to 30 days out (minus processing fees), and tickets are transferable any time. All slides are shared within 48 hours, so nothing is lost to a missed session.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE COSTS -->
+    <section class="section section--alt" id="costs" aria-labelledby="eclb-costs-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">The Costs</span>
+          <h2 class="section__title section__title--lg" id="eclb-costs-title">The Honest Budget Number</h2>
+          <p class="section__subtitle">A realistic per-person estimate for Hartford 2026 — no surprises for your finance team.</p>
+        </header>
+        <div class="eclb-costs">
+          <div class="eclb-costs__row">
+            <div class="eclb-costs__label">Conference ticket<small>Individual rate; teams of 3+ start at $999/person</small></div>
+            <div class="eclb-costs__amt">$1,299</div>
+          </div>
+          <div class="eclb-costs__row">
+            <div class="eclb-costs__label">Hotel — 3 nights<small>Hartford Marriott Downtown room block at $265/night</small></div>
+            <div class="eclb-costs__amt">$795</div>
+          </div>
+          <div class="eclb-costs__row">
+            <div class="eclb-costs__label">Travel<small>Varies — Hartford (BDL) is drivable for much of the Northeast</small></div>
+            <div class="eclb-costs__amt">~$350</div>
+          </div>
+          <div class="eclb-costs__row">
+            <div class="eclb-costs__label">Meals not covered<small>Breakfast, lunch, and evening events are included on event days</small></div>
+            <div class="eclb-costs__amt">~$100</div>
+          </div>
+          <div class="eclb-costs__row eclb-costs__row--total">
+            <div class="eclb-costs__label">Estimated total</div>
+            <div class="eclb-costs__amt">~$2,544</div>
+          </div>
+        </div>
+        <p class="text-center" style="margin-top:var(--space-6);color:var(--color-text-muted);font-size:var(--text-sm);">For context: one new customer for most attendees' businesses covers this several times over.</p>
+      </div>
+    </section>
+
+    <!-- THE EMAIL -->
+    <section class="section" id="email" aria-labelledby="eclb-email-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">The Email</span>
+          <h2 class="section__title section__title--lg" id="eclb-email-title">Copy, Personalize, Send</h2>
+          <p class="section__subtitle">Pick your event, swap in your numbers and goals where bracketed, then send it up the chain.</p>
+        </header>
+        <div class="eclb-toggle" role="tablist">
+          <button class="is-active" data-letter="hartford" role="tab">Hartford 2026</button>
+          <button data-letter="chicago" role="tab">Chicago 2027</button>
+        </div>
+
+        <div class="eclb-letter-wrap is-active" id="letter-hartford">
+        <div class="eclb-letter">
+          <div class="eclb-letter__bar">
+            <span class="eclb-letter__bar-title">Approval request — ready to send</span>
+            <button class="btn btn--ghost eclb-copy" type="button" data-target="eclb-letter-text-hartford"><i class="ti ti-copy" aria-hidden="true"></i> Copy Email</button>
+          </div>
+          <div class="eclb-letter__body" id="eclb-letter-text-hartford">
+            <p><strong>Subject: Request to attend Endless Customers Live (Oct 5–7, Hartford)</strong></p>
+            <p>Hi [Boss's name],</p>
+            <p>I'd like approval to attend Endless Customers Live, October 5–7 in Hartford, CT. It's a three-day, single-track training event built entirely around the Endless Customers system — the sales and marketing framework focused on building buyer trust, creating content that closes deals, and staying visible as AI changes how customers find us.</p>
+            <p>Why I think it's worth it for us:</p>
+            <ul>
+              <li><strong>It's a working event, not a listening event.</strong> I'll complete an assessment of our own sales and marketing using their scorecard and come back with a prioritized action plan for [specific goal — e.g., improving lead quality].</li>
+              <li><strong>The track record is real.</strong> Companies using this system report results like $1M in added revenue and lead increases of over 1,000%. If we implement even one main idea, the trip pays for itself.</li>
+              <li><strong>AI is on the agenda.</strong> A dedicated day covers how AI is changing search and buying behavior — directly relevant to [how this affects your company].</li>
+            </ul>
+            <p>The all-in cost is approximately $2,550 (ticket $1,299, hotel $795 at the group rate, plus travel and incidentals). Tickets are refundable up to 30 days out and transferable any time, so there's little risk if priorities change. All session slides are shared within 48 hours, and I'll put together a summary and recommended next steps for the team when I'm back.</p>
+            <p>If we send 3 or more people, the ticket price drops to $999 each — worth considering for [names/teams], since the biggest reported benefit is sales and marketing hearing the same playbook at the same time.</p>
+            <p>Event details: https://www.endlesscustomers.com/live/hartford-2026</p>
+            <p>Can I go ahead and register?</p>
+            <p>Thanks,<br />[Your name]</p>
+          </div>
+        </div>
+        </div>
+
+        <div class="eclb-letter-wrap" id="letter-chicago">
+        <div class="eclb-letter">
+          <div class="eclb-letter__bar">
+            <span class="eclb-letter__bar-title">Approval request — ready to send</span>
+            <button class="btn btn--ghost eclb-copy" type="button" data-target="eclb-letter-text-chicago"><i class="ti ti-copy" aria-hidden="true"></i> Copy Email</button>
+          </div>
+          <div class="eclb-letter__body" id="eclb-letter-text-chicago">
+            <p><strong>Subject: Request to attend Endless Customers Live (Apr 5–7, Chicago)</strong></p>
+            <p>Hi [Boss's name],</p>
+            <p>I'd like approval to attend Endless Customers Live, April 5–7, 2027 in downtown Chicago. It's a three-day, single-track training event built entirely around the Endless Customers system — the sales and marketing framework focused on building buyer trust, creating content that closes deals, and staying visible as AI changes how customers find us.</p>
+            <p>Why I think it's worth it for us:</p>
+            <ul>
+              <li><strong>It's a working event, not a listening event.</strong> I'll complete an assessment of our own sales and marketing using their scorecard and come back with a prioritized action plan for [specific goal — e.g., improving lead quality].</li>
+              <li><strong>The track record is real.</strong> Companies using this system report results like $1M in added revenue and lead increases of over 1,000%. If we implement even one main idea, the trip pays for itself.</li>
+              <li><strong>Booking now saves money.</strong> Early-bird pricing is $999 per ticket through December 31, 2026 — it goes up to $1,299 after that. Tickets are refundable up to 30 days out and transferable any time, so there's little risk if priorities change.</li>
+            </ul>
+            <p>The all-in cost is approximately $2,200 at the early-bird rate (ticket $999, plus roughly $750 for three hotel nights at the attendee room block and travel and incidentals — the venue and room rate are announced this fall). All session slides are shared within 48 hours, and I'll put together a summary and recommended next steps for the team when I'm back.</p>
+            <p>If we send 3 or more people, the early-bird ticket price drops to $849 each — worth considering for [names/teams], since the biggest reported benefit is sales and marketing hearing the same playbook at the same time.</p>
+            <p>Event details: https://www.endlesscustomers.com/live/chicago-2027</p>
+            <p>Can I go ahead and register?</p>
+            <p>Thanks,<br />[Your name]</p>
+          </div>
+        </div>
+        </div>
+
+        <p class="text-center" style="margin-top:var(--space-6);color:var(--color-text-muted);font-size:var(--text-sm);">Prefer to let us do the convincing? Forward this page to your boss — the business case and costs above are written for them too.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band" aria-labelledby="eclb-cta-title">
+      <div class="container">
+        <h2 class="cta-band__title" id="eclb-cta-title">Got the Green Light?</h2>
+        <p class="cta-band__sub">Lock in your seat — and remember, teams of 3+ save $300 per ticket.</p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="/live/hartford-2026" class="btn btn--primary btn--lg">Register for Hartford →</a>
+          <a href="/live/chicago-2027" class="btn btn--ghost btn--lg">Or Chicago 2027 →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Copy-email + event-toggle interactions -->
+  <script>
+    (function(){
+      document.querySelectorAll('.eclb-copy').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          var el=document.getElementById(btn.getAttribute('data-target'));
+          if(!el)return;
+          navigator.clipboard.writeText(el.innerText).then(function(){
+            var orig=btn.innerHTML;
+            btn.innerHTML='<i class="ti ti-check" aria-hidden="true"></i> Copied!';
+            setTimeout(function(){btn.innerHTML=orig;},2000);
+          });
+        });
+      });
+      document.querySelectorAll('.eclb-toggle button').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          document.querySelectorAll('.eclb-toggle button').forEach(function(b){b.classList.remove('is-active');});
+          document.querySelectorAll('.eclb-letter-wrap').forEach(function(w){w.classList.remove('is-active');});
+          btn.classList.add('is-active');
+          var el=document.getElementById('letter-'+btn.getAttribute('data-letter'));
+          if(el)el.classList.add('is-active');
+        });
+      });
+    })();
+  </script>
+
+  <script src="../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

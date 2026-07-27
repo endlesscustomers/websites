@@ -18,7 +18,7 @@
      rather than duplicated. Only page-specific styles remain below. */
   :root { --peek: 150px; }
   html { scroll-behavior: smooth; }
-  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #video { scroll-margin-top: 76px; }
+  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #video, #start { scroll-margin-top: 76px; }
   body { margin: 0; background: var(--surface-page, #fff); }
   #root { min-height: 100vh; }
 
@@ -46,9 +46,6 @@
   .hero-h1 .swoosh { display: block; margin-top: 10px; width: min(380px, 78%); height: 15px; }
   .hero-sub { font-family: var(--font-body); font-size: clamp(18px, 1.5vw, 22px); font-weight: 500; line-height: 1.5; color: #fff; margin: 22px 0 0; max-width: 520px; }
   .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
-  .btn-ghost-white { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-body); font-weight: 700; font-size: 16px; color: #fff; text-decoration: none; border: 2px solid rgba(255,255,255,0.85); border-radius: 999px; padding: 13px 24px; }
-  .btn-ghost-white:hover { background: rgba(255,255,255,0.12); }
-  .btn-ghost-white:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
   .hero-micro { font-family: var(--font-body); font-size: 15px; color: #fff; margin: 14px 0 0; }
   .hero-video-card { border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 16px 16px 0 rgba(0,0,0,0.85); }
   .hero-video-poster { display: block; }
@@ -59,26 +56,7 @@
   .cap-text { display: flex; flex-direction: column; line-height: 1.25; }
   .cap-title { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 16px; color: var(--text-heading); }
   .cap-sub { font-family: var(--font-body); font-weight: 600; font-size: 13px; color: var(--text-muted); }
-  .hero-video-badge { margin-top: 24px; display: flex; align-items: center; }
-  .hero-video-badge img { height: 104px; width: auto; }
-  .hero-inner {
-    flex: 1; display: flex; align-items: center; width: 100%;
-    --text-display: clamp(34px, 4.4vw, 54px);
-    --text-lg: clamp(16px, 1.45vw, 19px);
-    --section-py: clamp(16px, 3vh, 44px);
-  }
-  .hero-inner > section { width: 100%; }
-  .hero-inner h1 {
-    font-family: 'General Sans', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: clamp(40px, 5vw, 66px) !important;
-    line-height: 1.03 !important;
-    letter-spacing: -0.015em;
-    max-width: 820px;
-  }
-  .hero-swoosh { display: block; margin-top: 6px; width: min(430px, 78%); height: 16px; }
   @media (max-height: 800px) {
-    .hero-inner { --section-py: 10px; --text-display: clamp(30px, 4vw, 42px); }
     .hero-trust img { height: 48px !important; }
   }
 
@@ -97,15 +75,6 @@
     text-underline-offset: 6px;
   }
 
-  /* Diamond badge: anchored lower-right of the hero, big enough to read. */
-  .hero-badge {
-    position: absolute; right: clamp(20px, 4.5vw, 72px); bottom: calc(var(--peek) + 64px);
-    z-index: 3;
-  }
-  .hero-badge img { height: clamp(120px, 12vw, 168px); width: auto; display: block; }
-  @media (max-width: 1180px) { .hero-badge { display: none; } }
-
-  .video-straddle { background: var(--surface-page, #fff); padding: 72px 24px 8px; }
   .video-card {
     max-width: 860px; margin: 0 auto; position: relative;
     border-radius: var(--radius-lg, 16px); overflow: hidden;
@@ -120,36 +89,92 @@
 
   /* Section openers (.sec-open/.sec-line/.chapter-eyebrow/.sec-desc)
      promoted to the design system 2026-07-25. */
-  .bucket { }
-  .chapter-rule { height: 5px; background: #000; width: 100%; }
   .chapter .wrap { padding-top: 30px; padding-bottom: 6px; }
-  .get-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px 48px; }
-  @media (max-width: 900px) { .get-grid { grid-template-columns: 1fr; gap: 30px; } }
-  .get-item { border-top: 1px solid var(--border-hairline); padding-top: 20px; }
-  .get-icon { width: 38px; height: 38px; stroke: var(--accent-ui); stroke-width: 1.7; fill: none; stroke-linecap: round; stroke-linejoin: round; display: block; margin-bottom: 14px; }
-  .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 48px; margin-top: 30px; max-width: 980px; }
+  /* 2.1 — the artifact, shown full width and frameless. */
+  .artifact-full { display: block; width: 100%; height: auto; }
+  .artifact-note { font-family: var(--font-body); font-size: 15px; line-height: 1.6; color: var(--text-muted); margin: 14px 0 0; max-width: 62ch; }
+  .honest-rec { margin-top: 40px; padding-top: 26px; border-top: 1px solid var(--border-hairline); max-width: 68ch; }
+
+  /* 2.2 — the 117-point inspection band. Mirrors deck slide 6:
+     full-bleed near-black, deliberately dense, handwritten payoff lands across it.
+     All colours are tokens, no raw hexes. Contrast measured against --ec-navy:
+     white 19.07 · gray-200 15.82 (labels) · gray-300 13.59 (context labels)
+     · gray-400 9.15 (context headers) · ec-blue 4.70 (area headers, clears 4.5
+     for normal text) · ec-green 8.37 (payoff). */
+  .inspect-band { background: var(--ec-navy); padding: clamp(56px, 7vw, 96px) 0 clamp(48px, 6vw, 80px); }
+  .inspect-h2 {
+    font-family: 'General Sans', sans-serif; font-weight: 700;
+    font-size: clamp(30px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.02em;
+    color: var(--text-inverse); margin: 0; max-width: 20ch;
+  }
+  .inspect-lead {
+    font-family: var(--font-body); font-size: clamp(17px, 1.35vw, 19px); line-height: 1.6;
+    color: var(--ec-gray-200); margin: 22px 0 0; max-width: 68ch;
+  }
+  .inspect-lead strong { color: var(--text-inverse); }
+  .ins-grid {
+    margin-top: 44px; column-count: 4; column-gap: 34px;
+    border-top: 1px solid rgba(255,255,255,0.16); padding-top: 30px;
+  }
+  @media (max-width: 1100px) { .ins-grid { column-count: 3; } }
+  @media (max-width: 820px)  { .ins-grid { column-count: 2; column-gap: 24px; } }
+  @media (max-width: 540px)  { .ins-grid { column-count: 1; } }
+  .ins-group { break-inside: avoid; page-break-inside: avoid; margin-bottom: 26px; }
+  .ins-area {
+    font-family: var(--font-body); font-size: 12px; font-weight: 700;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--ec-blue);
+    padding-bottom: 7px; margin-bottom: 9px; border-bottom: 1px solid rgba(255,255,255,0.16);
+  }
+  .ins-ctx .ins-area { color: var(--ec-gray-400); }
+  .ins-group ul { list-style: none; margin: 0; padding: 0; }
+  .ins-group li {
+    font-family: var(--font-body); font-size: 14px; line-height: 1.65;
+    color: var(--ec-gray-200); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .ins-ctx li { color: var(--ec-gray-300); }
+  .ins-payoff {
+    font-family: var(--font-script); font-size: clamp(28px, 3.6vw, 46px); line-height: 1.25;
+    color: var(--ec-green); margin: 40px 0 0; max-width: 22ch;
+  }
+
+  /* §3 — your time / our work / timeline */
+  .effort { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; border-top: 2px solid var(--accent-ui); padding-top: 26px; }
+  @media (max-width: 820px) { .effort { grid-template-columns: 1fr; gap: 24px; } }
+  .effort-h { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
+  .effort-col p { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--text-body); margin: 0; }
+
+  /* §4.3 — conversion block */
+  .convert-card { margin-top: 30px; background: var(--surface-page, #fff); border: 1px solid var(--border-hairline); border-radius: 14px; padding: clamp(24px, 3vw, 38px); }
+  .cf-row { margin-bottom: 18px; }
+  .cf-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 700px) { .cf-2 { grid-template-columns: 1fr; } }
+  .convert-form label { display: block; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: var(--text-heading); }
+  .convert-form input, .convert-form select, .convert-form textarea {
+    display: block; width: 100%; box-sizing: border-box; margin-top: 7px;
+    font-family: var(--font-body); font-size: 16px; color: var(--text-heading);
+    background: var(--surface-field, #fff); border: 1px solid var(--border-strong); border-radius: 8px; padding: 11px 13px;
+  }
+  .convert-form input:focus-visible, .convert-form select:focus-visible, .convert-form textarea:focus-visible { outline: 3px solid var(--accent-ui); outline-offset: 1px; }
+  .cf-opt { font-weight: 500; color: var(--text-muted); }
+  .cf-micro { font-family: var(--font-body); font-size: 14px; color: var(--text-muted); margin: 14px 0 0; }
+  .convert-done-h { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 26px; color: var(--text-heading); margin: 0 0 14px; }
+
+  /* Who Is IMPACT */
+  .whois { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 4vw, 64px); align-items: center; }
+  @media (max-width: 820px) { .whois { grid-template-columns: 1fr; } }
+  .whois-badge img { height: clamp(110px, 11vw, 150px); width: auto; display: block; }
   @media (max-width: 820px) { .fit-grid { grid-template-columns: 1fr; } }
   .fit-item { display: flex; align-items: flex-start; gap: 12px; font-family: var(--font-body); font-size: 17px; font-weight: 600; color: var(--text-heading); }
   .fit-item svg { flex: 0 0 auto; margin-top: 2px; }
-  .fit-note { border-left: 4px solid #000; padding-left: 18px; margin-top: 34px; max-width: 760px; font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--text-body); }
-  .chapter-desc-2 { font-family: var(--font-body); font-size: 18px; color: var(--text-body); margin: 0; }
   /* Demote secondary module headings inside a bucket so the bucket opener stays the loudest */
   .demote h2 { font-size: clamp(24px, 2.3vw, 30px) !important; }
 
   /* Wynter-style sections: bold two-part headers, solid highlight boxes, numbered cols, offset cards */
-  .wynter-eyebrow { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 16px; }
   .wynter-h2 { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: clamp(30px, 3.3vw, 46px); line-height: 1.06; letter-spacing: -0.02em; color: var(--text-heading); margin: 0; max-width: 900px; }
   /* .hl-box promoted to the design system 2026-07-25. */
-  .wynter-sub { font-family: var(--font-body); font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; color: var(--text-body); margin: 20px 0 0; max-width: 640px; }
-  .wynter-rule { height: 1px; background: var(--border-hairline); margin: 44px 0; }
-  .wynter-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; }
   @media (max-width: 820px) { .wynter-cols { grid-template-columns: 1fr; gap: 32px; } }
   /* .num-badge promoted to the design system 2026-07-25. */
-  .wynter-col-title { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 21px; color: var(--text-heading); margin: 14px 0 8px; }
-  .wynter-col-body { font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--text-body); margin: 0; }
-  .wynter-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 72px); align-items: center; }
   @media (max-width: 900px) { .wynter-split { grid-template-columns: 1fr; gap: 36px; } }
-  .wynter-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 14px 14px 0 rgba(0,0,0,0.85); }
   .shift-card { background: transparent; border: none; }
   .shift-card img, .shift-card svg { display: block; width: 100%; height: auto; }
   /* Roadmap + coach composite */
@@ -164,25 +189,16 @@
   .fit2-title { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 21px; color: var(--text-heading); margin: 0 0 18px; }
   .fit2-col .fit-item { margin-bottom: 14px; }
   .fit2-not { background: var(--surface-muted); border-radius: 12px; padding: 26px 28px; }
-  .fit2-not .fit-item { font-weight: 500; color: var(--text-body); }
-  .dash { flex: 0 0 auto; width: 18px; height: 4px; border-radius: 2px; background: #B7C2D4; margin-top: 10px; }
+  .fit2-not .fit-item { color: var(--text-body); }
+  .fit-revenue { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--text-muted); margin: 26px 0 0; max-width: 62ch; }
   .shift-card img, .shift-card svg { display: block; width: 100%; height: auto; }
   .shift-split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 5vw, 72px); align-items: center; }
   /* Prose scale (.prose-lead/.prose-body/.prose-bridge) promoted to the
      design system 2026-07-25. */
   @media (max-width: 900px) { .shift-split { grid-template-columns: 1fr; gap: 36px; } }
-  .wynter-card img { display: block; width: 100%; height: auto; }
 
   /* .band/.band-sm/.wrap/.wrap-narrow promoted to the design system 2026-07-25. */
   .center { text-align: center; }
-
-  .logo-ph {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 118px; height: 34px; border-radius: 6px;
-    background: #EDF1F7; color: #9AA3B2;
-    font-family: var(--font-body); font-size: 11px; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase;
-  }
 </style>
 </head>
 <body>
@@ -305,7 +321,7 @@ function Page() {
             links={subNavLinks}
             activeHref={activeAnchor}
             ctaLabel="Schedule an Explore Call"
-            ctaHref="#"
+            ctaHref="#start"
             style={{ background: "var(--accent-tint)", boxShadow: "none", borderBottom: "1px solid rgba(10,92,224,0.16)" }}
           />
         </div>
@@ -323,7 +339,7 @@ function Page() {
             </h1>
             <p className="hero-sub">Your buyers decide who to trust before they ever call, more and more by asking AI. A coach shows you where you stand, and what to fix first.</p>
             <div className="hero-cta-row">
-              <Button variant="dark" size="lg" withArrow href="#">Schedule an Explore Call</Button>
+              <Button variant="dark" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
             </div>
             <p className="hero-micro">A real first conversation. No pitch, no obligation.</p>
             <div className="hero-trust">
@@ -363,8 +379,8 @@ function Page() {
             <div className="sec-line"></div>
             <div className="chapter-eyebrow">Overview</div>
             <h2 className="wynter-h2" style={{ marginBottom: 26 }}>Buyers Don't Research Companies Like They Used To. <span className="hl-box">They Ask AI.</span></h2>
-            <p className="prose-lead">For most companies we talk to, website traffic is down, and the leads that still come in have mostly decided before they call. It's not a slow season, and more ads won't bring it back.</p>
-            <p className="prose-body">Buyers used to compare you across a dozen tabs. Now they ask AI one question and trust the answer, one or two names. If you're not one of them, you're out before the conversation starts.</p>
+            <p className="prose-lead">For most companies we talk to, traffic is down and ads cost more per lead than they ever have. Sometimes that's a slow market. More often now, it's that AI is recommending someone else.</p>
+            <p className="prose-body">Buyers used to open Google and click in and out of ten blue links to build their own short list. Now they ask AI one question and trust the answer, one or two names. If you're not one of them, you're out before the conversation starts.</p>
             <p className="prose-body"><strong>It's elimination, not ranking.</strong> AI doesn't push you to page two. It leaves you out of the answer, and recommends whoever it can clearly vouch for.</p>
             <p className="prose-body"><strong>Most owners are stuck right here.</strong> They can see the traffic drop. What they can't see is whether AI recommends them, or how to become the name it gives.</p>
             <p className="prose-bridge">The Deep Diagnostic shows you whether AI recommends you or your competitors, why, and what it would take to change that.</p>
@@ -386,7 +402,7 @@ function Page() {
           <div className="shift-copy">
             <h2 className="wynter-h2" style={{ marginBottom: 26 }}>The Hard Part Is Knowing What to <span className="hl-box">Fix First</span></h2>
             <p className="prose-lead">Most owners aren't behind because they aren't trying. They're buried in options. Website, SEO, ads, AI search, content, hiring, the tool everyone's talking about.</p>
-            <p className="prose-body">With no clear order, the safe move is no move. So nothing happens, and another quarter goes by.</p>
+            <p className="prose-body">With no clear order, no move often feels like the safe move. So nothing happens, and another quarter goes by.</p>
             <p className="prose-body"><strong>More effort isn't the answer.</strong> Doing more of the old playbook can't fix a trust problem. Knowing which two or three moves actually matter, and ignoring the rest for now, can.</p>
           </div>
         </div>
@@ -398,12 +414,13 @@ function Page() {
           <div className="shift-copy">
             <h2 className="wynter-h2" style={{ marginBottom: 26 }}>What the Deep Diagnostic &amp; Roadmap <span className="hl-box">Actually Is</span></h2>
             <p className="prose-lead">A clear read on your business, not another opinion.</p>
-            <p className="prose-body">A coach studies your business, your market, and the competitors you actually lose to. Using AI to dig deep, and their experience to make sense of what it finds.</p>
+            <p className="prose-body">A coach studies your business, your market, and the competitors you actually lose to, using AI to dig deep and their own experience to make sense of what it finds.</p>
             <p className="prose-body">They check how you show up in Google and AI, where you're invisible, and where marketing and sales leak customers. Then they tell you <strong>what we'd do if it were our business.</strong></p>
+            <p className="prose-body"><strong>It's the smallest way to start.</strong> One-time, and nothing bigger to decide until you've seen the plan.</p>
             <p className="prose-body"><strong>What it is:</strong> a clear read on what's going on, and what to fix first, second, and third.</p>
             <p className="prose-body"><strong>What it isn't:</strong> a generic scorecard, an SEO scan, or a five-minute quiz.</p>
             <div style={{ marginTop: 28 }}>
-              <Button variant="primary" size="lg" withArrow href="#">Schedule an Explore Call</Button>
+              <Button variant="primary" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
               <p className="prose-body" style={{ fontSize: 15, marginTop: 12, color: "var(--text-muted)" }}>A real first conversation. No pitch, no obligation.</p>
             </div>
           </div>
@@ -424,23 +441,26 @@ function Page() {
       <div className="band" style={{ paddingTop: 30 }}>
         <div className="wrap">
           <h2 className="wynter-h2">Is This <span className="hl-box">Right for You?</span></h2>
-          <p className="prose-lead" style={{ marginTop: 22 }}>Built for owners and leaders of businesses doing roughly $5M to $50M, where customers do real research before they buy.</p>
+          <p className="prose-lead" style={{ marginTop: 22 }}>Here's who this works for, and who it doesn't.</p>
           <div className="fit2">
             <div className="fit2-col">
               <h3 className="fit2-title">This is for you if...</h3>
-              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Growth has stalled or plateaued and you're not sure why</span></div>
-              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>The referrals still come, but the pipeline feels softer than it used to</span></div>
-              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Competitors you don't respect keep showing up ahead of you</span></div>
-              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Fixing how you get customers is near the top of your list right now</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Growth has slowed and the reason isn't clear</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Referrals still come, but the pipeline feels less dependable</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Your team has more ideas than it has priorities</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Competitors with weaker offers keep getting considered first</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>You suspect the website or sales process is leaking customers</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-green)"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/></svg><span>Fixing how you get customers is a priority right now</span></div>
             </div>
             <div className="fit2-col fit2-not">
               <h3 className="fit2-title">It's probably not if...</h3>
-              <div className="fit-item"><span className="dash"></span><span>Customer acquisition isn't a priority today</span></div>
-              <div className="fit-item"><span className="dash"></span><span>You're happy with your marketing and sales performance</span></div>
-              <div className="fit-item"><span className="dash"></span><span>Your buyers don't do much research before they buy</span></div>
-              <p className="prose-body" style={{ fontSize: 16, marginTop: 8, marginBottom: 0 }}>We'd rather tell you that up front.</p>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-gray-500)"/><path d="M7.5 12h9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"/></svg><span>This isn't the year you're working on customer acquisition</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-gray-500)"/><path d="M7.5 12h9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"/></svg><span>Your customers don't tend to research much before they buy</span></div>
+              <div className="fit-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="var(--ec-gray-500)"/><path d="M7.5 12h9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"/></svg><span>You want to know where you stand, but aren't planning to act on it</span></div>
+              <p className="prose-body" style={{ fontSize: 16, marginTop: 18, marginBottom: 0 }}>There's nothing wrong with any of that. It just means this isn't the right tool for you right now, and we'd rather say so up front.</p>
             </div>
           </div>
+          <p className="fit-revenue">Most companies we help do $2 million to $100 million a year. Fit depends more on your customer value and your readiness to act than on an exact number.</p>
         </div>
       </div>
 
@@ -453,44 +473,237 @@ function Page() {
           <div className="sec-line"></div>
           <div className="chapter-eyebrow">What You Get</div>
           <h2 className="wynter-h2">What You <span className="hl-box">Walk Away With</span></h2>
-          <p className="sec-desc">Six things you'll have in hand when it's done.</p>
+          <p className="sec-desc">One written diagnosis and roadmap, walked through live with your coach, page by page.</p>
         </div>
       </div>
 
-      <div className="band" style={{ paddingTop: 36, paddingBottom: 64 }}>
+      {/* 2.1 — THE ARTIFACT. Deliberately thin. The six-card grid that used to
+           live here was cut 2026-07-27: five of its six items repeated the
+           Overview verbatim and the sixth duplicated the Revenue section below.
+           ⚠️ PLACEHOLDER — this is the structural mock. Swap for readable pages
+           of the real deliverable (anonymised, NOT blurred) once the reference
+           sample exists. See build spec §2.1. */}
+      <div className="band" style={{ paddingTop: 26, paddingBottom: 64 }}>
         <div className="wrap">
-          <div className="get-grid">
-            <div className="get-item">
-              <svg className="get-icon" viewBox="0 0 24 24"><path d="M3 21h18"/><rect x="5" y="10" width="4.5" height="10" rx="1"/><rect x="14.5" y="5" width="4.5" height="15" rx="1"/></svg>
-              <h3 className="wynter-col-title">Where You Stand vs. Real Competitors</h3>
-              <p className="wynter-col-body">Side by side with the companies you actually lose to.</p>
-            </div>
-            <div className="get-item">
-              <svg className="get-icon" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.6"/></svg>
-              <h3 className="wynter-col-title">Your AI Visibility</h3>
-              <p className="wynter-col-body">Whether AI recommends you, and where you're invisible.</p>
-            </div>
-            <div className="get-item">
-              <svg className="get-icon" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4.5h11l-2.2 3.8L16 12H5"/></svg>
-              <h3 className="wynter-col-title">Your First Moves</h3>
-              <p className="wynter-col-body">The changes that matter most, quick wins flagged.</p>
-            </div>
-            <div className="get-item">
-              <svg className="get-icon" viewBox="0 0 24 24"><path d="M4 20c3-1 4-5 8-6s5-4 8-6"/><circle cx="4" cy="20" r="1.5"/><circle cx="12" cy="14" r="1.5"/><circle cx="20" cy="8" r="1.5"/></svg>
-              <h3 className="wynter-col-title">A 3, 6, and 12-Month Roadmap</h3>
-              <p className="wynter-col-body">Where you could be, and the work to get there.</p>
-            </div>
-            <div className="get-item">
-              <svg className="get-icon" viewBox="0 0 24 24"><path d="M4 4v16h16"/><polyline points="7 15 11 11 14 13 20 6"/></svg>
-              <h3 className="wynter-col-title">The Revenue Math</h3>
-              <p className="wynter-col-body">The numbers behind your goal, and what moves them.</p>
-            </div>
-            <div className="get-item">
-              <svg className="get-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.5l2.5 2.5 4.5-5.5"/></svg>
-              <h3 className="wynter-col-title">A Clear Recommendation</h3>
-              <p className="wynter-col-body">The best way to work together. No obligation.</p>
-            </div>
+          <p className="prose-lead" style={{ maxWidth: "62ch", marginTop: 0 }}>
+            <strong>We don't hand you an automated 50-page PDF and wish you luck.</strong> You get a prioritized playbook, walked through live with your coach, page by page.
+          </p>
+          <img src="assets/roadmap-mock.svg" alt="Pages from a Deep Diagnostic &amp; Roadmap: where you stand, what to fix first, and the 3, 6 and 12-month plan" className="artifact-full" style={{ marginTop: 30 }} />
+          <p className="artifact-note">You keep both the presentation and a deeper findings document, so you and your team can revisit them any time.</p>
+          <div className="honest-rec">
+            <p className="prose-body" style={{ margin: 0 }}>
+              <strong>And our honest recommendation.</strong> Whether the right next step is working with IMPACT, implementing the roadmap yourself, hiring someone else, or waiting until the timing is right.
+            </p>
           </div>
+        </div>
+      </div>
+
+      {/* 2.2 — THE 117-POINT INSPECTION. Visual anchor 1 of 3.
+           Mirrors slide 6 of the sales deck (assessment-overview-deck-spec.md):
+           full-bleed near-black, the grid DELIBERATELY dense, then the handwritten
+           payoff lands across it. Presenter note on that slide: "do not read it."
+           Same job here — the density IS the argument, the labels are proof.
+           ⚠️ Do NOT reduce this to a tidy list of the 13 area names. Those areas
+           are shared with the FREE Instant Diagnostic (same 13-area structure,
+           automated). Listing them alone makes the $5,000 product look identical
+           to the free one. The depth and the relative grading are the difference.
+           Labels generated from ai-research-100-point-inspection.md. */}
+      <div className="inspect-band">
+        <div className="wrap">
+          <div className="sec-line" style={{ background: "var(--ec-blue)" }}></div>
+          <div className="chapter-eyebrow" style={{ color: "var(--ec-gray-300)" }}>What We Inspect</div>
+          <h2 className="inspect-h2">117 Checkpoints, Graded Against <span className="hl-box">Your Real Competitors</span></h2>
+          <p className="inspect-lead">
+            <strong>Every checkpoint is run twice.</strong> Once on your company, once on the three or four competitors your buyers actually compare you to. The grade is relative, A+ to F, because nobody loses for being imperfect. They lose because someone else is the one AI recommends.
+          </p>
+
+          <div className="ins-grid">
+              <div className="ins-group ins-ctx">
+                <div className="ins-area">What you do and who you serve</div>
+                <ul>
+                  <li>What you actually do</li>
+                  <li>Category buyers search</li>
+                  <li>Ideal customer profile</li>
+                  <li>Bad-fit customers</li>
+                  <li>Buyer needs &amp; fears</li>
+                  <li>Geography served</li>
+                  <li>Buying triggers</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-ctx">
+                <div className="ins-area">Competitors and market</div>
+                <ul>
+                  <li>Named competitors</li>
+                  <li>Who you lose to</li>
+                  <li>Competitor strengths</li>
+                  <li>Market demand now</li>
+                  <li>Economic headwinds</li>
+                  <li>Near-term opening</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-ctx">
+                <div className="ins-area">How buyers choose</div>
+                <ul>
+                  <li>How buyers find you</li>
+                  <li>How buyers compare</li>
+                  <li>Do they have a vendor</li>
+                  <li>What makes them switch</li>
+                  <li>Top decision factors</li>
+                  <li>Deal size &amp; cycle</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Offer and promise superiority</div>
+                <ul>
+                  <li>Bold, clear promise</li>
+                  <li>Promise vs generic</li>
+                  <li>Guarantee</li>
+                  <li>Warranty vs rivals</li>
+                  <li>Risk reversal</li>
+                  <li>Turnaround promise</li>
+                  <li>Proprietary process</li>
+                  <li>Service &amp; support model</li>
+                  <li>Reason to choose you</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Search and AI visibility</div>
+                <ul>
+                  <li>&quot;Best of&quot; rankings</li>
+                  <li>Local &quot;near me&quot; rankings</li>
+                  <li>Service search rankings</li>
+                  <li>Problem-based rankings</li>
+                  <li>Top-two result presence</li>
+                  <li>Competitors outranking</li>
+                  <li>Google Maps presence</li>
+                  <li>Best-of lists &amp; roundups</li>
+                  <li>Directory &amp; trade lists</li>
+                  <li>ChatGPT recommendations</li>
+                  <li>Perplexity &amp; AI answers</li>
+                  <li>AI favors competitors</li>
+                  <li>How AI describes you</li>
+                  <li>Right-audience reach</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Review authority and reputation</div>
+                <ul>
+                  <li>Google review count</li>
+                  <li>Rating vs competitors</li>
+                  <li>Review recency</li>
+                  <li>Reviews on key factors</li>
+                  <li>Reviews on after-sale</li>
+                  <li>1-2 star patterns</li>
+                  <li>Bad reviews answered</li>
+                  <li>Owner response quality</li>
+                  <li>Suspicious reviews</li>
+                  <li>Right review platforms</li>
+                  <li>BBB &amp; complaint signals</li>
+                  <li>Consistent listings</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Education quality (They Ask, You Answer)</div>
+                <ul>
+                  <li>Learning center depth</li>
+                  <li>Answers buyer questions  ⚠️ *+56a/56b/56c — see amendment*</li>
+                  <li>Cost &amp; pricing content</li>
+                  <li>Problems &amp; risks content</li>
+                  <li>Comparison content</li>
+                  <li>&quot;Best of&quot; content</li>
+                  <li>Mistakes to avoid</li>
+                  <li>&quot;How to choose&quot; content</li>
+                  <li>Teaching vs selling  ⚠️ *+63a — see amendment*</li>
+                  <li>New content, 30 days</li>
+                  <li>Video &amp; YouTube cadence</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Pricing clarity</div>
+                <ul>
+                  <li>Pricing addressed</li>
+                  <li>Pricing page in nav</li>
+                  <li>What drives price</li>
+                  <li>Why costs vary</li>
+                  <li>Price ranges &amp; examples</li>
+                  <li>Your market position</li>
+                  <li>Hidden &amp; lifetime costs</li>
+                  <li>&quot;Is it worth it&quot; content</li>
+                  <li>Financing explained</li>
+                  <li>Pricing calculator</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Customer and social proof</div>
+                <ul>
+                  <li>Specific testimonials</li>
+                  <li>Outcome case studies</li>
+                  <li>Proof matches buyer</li>
+                  <li>Project galleries</li>
+                  <li>Before-and-after proof</li>
+                  <li>Video testimonials</li>
+                  <li>Recognizable logos</li>
+                  <li>Awards &amp; certifications</li>
+                  <li>Results &amp; numbers</li>
+                  <li>Proof at decision points</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">People positioning (E-E-A-T)</div>
+                <ul>
+                  <li>Real, visible team</li>
+                  <li>Leadership visibility</li>
+                  <li>Specific expert bios</li>
+                  <li>Named content authors</li>
+                  <li>Real photos &amp; video</li>
+                  <li>Experts, not faceless</li>
+                  <li>E-E-A-T signals</li>
+                  <li>More human than rivals</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Website experience and AI accessibility</div>
+                <ul>
+                  <li>Mobile experience</li>
+                  <li>Design &amp; polish</li>
+                  <li>Page speed</li>
+                  <li>Clear navigation</li>
+                  <li>Key info in 2 clicks</li>
+                  <li>Clear who/what/where</li>
+                  <li>AI-readable structure  ⚠️ *redefined; +100a/100b — see amendment*</li>
+                  <li>Schema coverage  ⚠️ *rescored — entity resolution, NOT citation lift*</li>
+                  <li>Self-service tools</li>
+                  <li>Helps internal case</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Conversion ease</div>
+                <ul>
+                  <li>Clear, specific CTAs</li>
+                  <li>CTAs visible on mobile</li>
+                  <li>Low form friction</li>
+                  <li>Self-book a meeting</li>
+                  <li>AI chat or AI BDR</li>
+                  <li>Self-serve estimate</li>
+                  <li>Next-step clarity</li>
+                </ul>
+              </div>
+              <div className="ins-group ins-grade">
+                <div className="ins-area">Post-contact sales experience</div>
+                <ul>
+                  <li>Sales process shown</li>
+                  <li>First-call expectations</li>
+                  <li>Response-time promise</li>
+                  <li>Follow-up cadence</li>
+                  <li>Reviews on follow-up</li>
+                  <li>Teaches during sale</li>
+                  <li>Proposal clarity</li>
+                  <li>Consultative vs quoting</li>
+                </ul>
+              </div>
+          </div>
+
+          <p className="ins-payoff">We help you make sense out of all of this.</p>
         </div>
       </div>
 
@@ -508,7 +721,7 @@ function Page() {
           { label: "Checks whether AI recommends you to buyers", values: [false, "Sometimes", true] },
           { label: "A live working session with a coach", values: [false, false, true] },
           { label: "A prioritized what-to-fix-first roadmap", values: [false, "A findings list", true] },
-          { label: "Someone who stays to run it with you", values: [false, false, true] },
+          { label: "Revenue math tied to each recommendation", values: [false, false, true] },
         ]}
       />
       </div>
@@ -528,7 +741,7 @@ function Page() {
             <FlowDiagram layout="linear" nodes={["Revenue goal", "Qualified inquiries", "Close rate", "Sales cycle", "Customer value"]} />
           </div>
           <div style={{ marginTop: 32 }}>
-            <Button variant="primary" size="lg" withArrow href="#">Schedule an Explore Call</Button>
+            <Button variant="primary" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
           </div>
         </div>
       </div>
@@ -536,20 +749,26 @@ function Page() {
       {/* The Coach */}
       <div className="band demote" style={{ background: "var(--surface-muted)" }}>
         <div className="wrap">
+          {/* REWRITTEN 2026-07-27. The old copy ("You're Gaining a Partner Who Does
+              the Work With You" … "And you'll want us around for years") described a
+              multi-year engagement on a page selling a one-time product. All of it cut
+              per decision-log D22. Written around process, which is defensible, rather
+              than claims about coach caliber the internal record doesn't support.
+              ⚠️ CONFIRM WITH BOB: is the ~6-hour figure publishable, and is a second
+              reviewer involved? Both lines are marked below. */}
           <SplitFeature
-            title="You're Gaining a Partner Who Does the Work With You"
+            title="Who Performs Your Diagnostic"
             imageSrc="assets/bob-video-poster-clean-2.png"
             imageAlt="Your Endless Customers Coach"
-            mask="arch"
           >
             <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--text-lg)", fontWeight: 700, color: "var(--text-heading)", margin: "0 0 16px" }}>
-              Then your team owns it.
+              A coach, not a crawler.
             </p>
             <Prose paragraphs={[
-              "Most marketing firms keep you dependent on purpose. We do the opposite.",
-              "Early on, we roll up our sleeves: the website, the content, the sales process, whatever's costing you customers.",
-              "Over time you lean on us less to do the work, and more for the outside view and the hard calls.",
-              "And you'll want us around for years.",
+              "An Endless Customers Coach runs it start to finish. The same person you meet on the first call is the one who presents the findings.",
+              "Coaches come up through the work. They've run marketing teams, built content operations, and sat across from owners making these calls.",
+              "Roughly six hours of study go in before your session, on your business and on the competitors you actually lose to.",
+              "The relationship is with IMPACT, so you're never dependent on one person's calendar.",
             ]} />
           </SplitFeature>
         </div>
@@ -561,21 +780,44 @@ function Page() {
       <div className="bucket" style={{ background: "#fff" }}>
       <div className="sec-open" id="how-it-works">
         <div className="wrap">
-          <p className="sec-desc" style={{ marginTop: 0 }}>The whole process, start to finish.</p>
+          <div className="sec-line"></div>
+          <div className="chapter-eyebrow">How It Works</div>
+          <h2 className="wynter-h2">Four Steps, <span className="hl-box">Under Two Weeks</span></h2>
+          <p className="sec-desc">The whole process, start to finish.</p>
         </div>
       </div>
 
       <div>
         <StepBand
-          title="How It"
-          highlight="Works"
           steps={[
             { number: 1, title: "A Short Explore Call", caption: "See if it's a fit, both ways, before anyone commits." },
-            { number: 2, title: "The Deep Dive & Working Session", caption: "We study your business; your coach spends an hour filling in what we can't see." },
+            { number: 2, title: "The Deep Dive & Working Session", caption: "We study your business; your coach spends 90 minutes filling in what we can't see." },
             { number: 3, title: "Your Findings & Roadmap", caption: "What we found, what it's costing you, what to do, in order." },
-            { number: 4, title: "A Clear Recommendation", caption: "The best way to work together. No pressure." },
+            { number: 4, title: "Where You Go From Here", caption: "Our honest read on the right next step. No pressure." },
           ]}
         />
+      </div>
+
+      {/* Time and labour, added 2026-07-27. Without this a reader can conclude
+          $5,000 buys a one-hour meeting and a report. Table only, no prose,
+          so the section stays inside its word budget. */}
+      <div className="band-sm">
+        <div className="wrap">
+          <div className="effort">
+            <div className="effort-col">
+              <div className="effort-h">Your time</div>
+              <p>One Explore Call, plus a 90-minute working session with your leadership.</p>
+            </div>
+            <div className="effort-col">
+              <div className="effort-h">Our work</div>
+              <p>Roughly six hours of independent research, competitor benchmarking and AI-visibility checks before we meet.</p>
+            </div>
+            <div className="effort-col">
+              <div className="effort-h">Timeline</div>
+              <p>The written roadmap is in your hands in under two weeks.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* ================= SECTION 4 · PRICING ================= */}
@@ -584,7 +826,10 @@ function Page() {
       <div className="bucket" style={{ background: "var(--surface-muted)" }}>
       <div className="sec-open" id="pricing">
         <div className="wrap">
-          <p className="sec-desc" style={{ marginTop: 0 }}>One price. No surprises.</p>
+          <div className="sec-line"></div>
+          <div className="chapter-eyebrow">Pricing</div>
+          <h2 className="wynter-h2">What It Costs, <span className="hl-box">One Time</span></h2>
+          <p className="sec-desc">One price. No surprises.</p>
         </div>
       </div>
 
@@ -603,12 +848,12 @@ function Page() {
             ]}
             imageSrc="assets/roadmap-mock.svg"
             imageAlt="What's included"
-            cta={<Button variant="primary" size="lg" withArrow href="#">Schedule an Explore Call</Button>}
+            cta={<Button variant="primary" size="lg" withArrow href="#start">Schedule an Explore Call</Button>}
           />
           <div className="wrap-narrow" style={{ marginTop: 40 }}>
             <Prose paragraphs={[
-              "A free scorecard hands you an automated grade and disappears. This is a coach studying your real business, benchmarking your real competitors, and building the plan, then staying to run it with you.",
-              "The roadmap is yours either way.",
+              "A free scorecard hands you an automated grade and disappears. This is a coach studying your real business, benchmarking your real competitors, and building the plan.",
+              "The roadmap is yours either way, whatever you decide to do next.",
             ]} />
           </div>
         </div>
@@ -633,13 +878,96 @@ function Page() {
         </div>
       </div>
 
+      {/* ===== 4.3 CONVERSION BLOCK — form → HubSpot Meetings → confirmation.
+           Per decision-log D23. Three states, one instance on the page, and every
+           CTA above anchors here (#start). NEVER split form and calendar across
+           two pages or an email: the double form fill costs ~50%.
+           ⚠️ WEB TEAM: portalId / formId / meetingSlug are PROPS on purpose —
+           this repo is public, so no HubSpot IDs are hardcoded. Wire the real
+           HubSpot form embed + Meetings embed into the two marked slots.
+           ⚠️ CONFIRM: routing for the "Under $2M" band. Built to book with a flag
+           on the record rather than dead-end, since $2M is a floor not a wall. */}
+      <div className="band" id="start" style={{ background: "var(--surface-page, #fff)" }}>
+        <div className="wrap-narrow">
+          <div className="sec-line"></div>
+          <div className="chapter-eyebrow">Get Started</div>
+          <h2 className="wynter-h2">Start With a <span className="hl-box">Conversation</span></h2>
+          <p className="prose-lead" style={{ marginTop: 18 }}>
+            Tell us a little about the business and pick a time. About an hour, no pitch, no obligation.
+          </p>
+
+          <div className="convert-card">
+            {/* STATE 1 — the qualifying form. Six fields, single step.
+                Phone is optional and labelled optional with a reason. */}
+            <form className="convert-form" data-state="form" data-hs-form="PLACEHOLDER_FORM_ID" data-hs-portal="PLACEHOLDER_PORTAL_ID">
+              <div className="cf-row cf-2">
+                <label>First name<input type="text" name="firstname" required /></label>
+                <label>Last name<input type="text" name="lastname" required /></label>
+              </div>
+              <div className="cf-row cf-2">
+                <label>Work email<input type="email" name="email" required /></label>
+                <label>Company<input type="text" name="company" required /></label>
+              </div>
+              <div className="cf-row cf-2">
+                <label>Website<input type="text" name="website" placeholder="yourcompany.com" required /></label>
+                <label>Annual revenue
+                  <select name="annualrevenue" required defaultValue="">
+                    <option value="" disabled>Select a range</option>
+                    <option>Under $2M</option>
+                    <option>$2M – $5M</option>
+                    <option>$5M – $15M</option>
+                    <option>$15M – $50M</option>
+                    <option>$50M+</option>
+                  </select>
+                </label>
+              </div>
+              <div className="cf-row">
+                <label>What's driving this right now?
+                  <textarea name="driver" rows={2} placeholder="A sentence is plenty."></textarea>
+                </label>
+              </div>
+              <div className="cf-row">
+                <label>Phone <span className="cf-opt">Optional. Only used if we need to reach you about the call.</span>
+                  <input type="tel" name="phone" />
+                </label>
+              </div>
+              <Button variant="primary" size="lg" withArrow type="submit">See Available Times</Button>
+              <p className="cf-micro">Your calendar appears on this page. We never pass you to a second form.</p>
+            </form>
+
+            {/* STATE 2 — HubSpot Meetings embed, revealed in place on submit.
+                Name, email and company are passed through so nothing is retyped. */}
+            <div className="convert-cal" data-state="calendar" data-hs-meeting="PLACEHOLDER_MEETING_SLUG" hidden>
+              <div className="meetings-iframe-container"></div>
+            </div>
+
+            {/* STATE 3 — confirmation. Four things, nothing else. No upsell. */}
+            <div className="convert-done" data-state="confirmed" hidden>
+              <h3 className="convert-done-h">You're booked.</h3>
+              <p className="prose-body" data-slot="when">[date, time, timezone, and who you're meeting]</p>
+              <p className="prose-body"><strong>What happens on this call.</strong> A working conversation, about an hour. A coach digs into the business, the goals and the challenges, and you both decide whether this is a fit.</p>
+              <p className="prose-body"><strong>One thing to bring.</strong> The two or three competitors you actually lose to.</p>
+              <p className="prose-body"><strong>While you wait,</strong> the two-minute overview is <a href="#video">at the top of this page</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* ================= SECTION 5 · REVIEWS ================= */}
 
       </div>
       <div className="bucket" style={{ background: "#fff" }}>
       <div className="sec-open" id="reviews">
         <div className="wrap">
-          <p className="sec-desc" style={{ marginTop: 0 }}>Companies growing with Endless Customers.</p>
+          <div className="sec-line"></div>
+          <div className="chapter-eyebrow">Reviews</div>
+          <h2 className="wynter-h2">Where the Roadmap <span className="hl-box">Leads</span></h2>
+          {/* Proof is labelled as coaching outcomes on purpose. The diagnostic is
+              new, so there are no diagnostic-specific results yet. Per decision-log
+              D22 this is the NEW-OFFER PROOF GAP state, not a fabrication gap.
+              ⛔ Check testimonials-library.md BANNED section before adding any quote.
+              Dave Owens / Roofsmart is permanently banned. */}
+          <p className="sec-desc">The diagnostic is new. These are results from the coaching work it points toward.</p>
         </div>
       </div>
 
@@ -685,15 +1013,41 @@ function Page() {
         </div>
       </div>
 
+      {/* WHO IS IMPACT — added 2026-07-27 per decision-log D24. This page takes
+          substantial unaware traffic, so institutional credibility belongs here,
+          late, as reassurance rather than a lead argument. The HubSpot Diamond
+          badge lives here, not in the hero and not in the proof band, where a
+          fourth element breaks the three-up symmetry. Say Diamond, never Elite. */}
+      <div className="band-sm" style={{ background: "var(--surface-muted)" }}>
+        <div className="wrap">
+          <div className="whois">
+            <div>
+              <div className="sec-line"></div>
+              <div className="chapter-eyebrow">About Us</div>
+              <h2 className="wynter-h2" style={{ marginBottom: 18 }}>Who You'd Be <span className="hl-box">Working With</span></h2>
+              <p className="prose-body">IMPACT is the coaching and training company behind the Endless Customers system, out of Cheshire, Connecticut.</p>
+              <p className="prose-body"><strong>300+ companies coached.</strong> HubSpot Diamond Solutions Partner. Authors of <em>Endless Customers</em> and <em>They Ask, You Answer</em>.</p>
+              <p className="prose-body">We run our own playbook, which is why our pricing is on our website.</p>
+            </div>
+            <div className="whois-badge">
+              <img src="assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg" alt="HubSpot Diamond Solutions Partner" />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Closing CTA */}
+      </div>
+
+      {/* Closing CTA. Rewritten 2026-07-27. The old subtitle promised the Explore
+          Call would deliver the diagnostic's outcome ("in one conversation, find
+          out where you stand"), which sets the wrong expectation for the call.
+          The decision-maker line is kept but softened to the practical version. */}
       <CtaBand
         title="Stop Guessing About"
         highlight="Why Growth Stalled"
-        subtitle="In one conversation, find out where you stand and what we'd do first if it were our business. Not the decision-maker? This is the diagnostic that gets your leadership aligned. Bring us in."
+        subtitle="Start with a conversation. If it's a fit, the diagnostic tells you where you stand and what to do first. Evaluating this for your leadership team? Bring them to the first conversation so everyone hears the same questions."
         primaryCta="Schedule an Explore Call"
-        primaryHref="#"
+        primaryHref="#start"
       />
 
       <Footer />

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Help — The Path (re-approached)</title>
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+:root{
+  --heading:#0F172A; --text:#475569; --muted:#5B6B7F; --strong:#1E293B;
+  --blue:#0a6cff; --border:#E2E8F0; --border-strong:#CBD5E1;
+  --surface:#F8FAFC; --subtle:#F1F5F9; --ink:#0A0F1F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#E9EDF2;color:var(--text);
+  -webkit-font-smoothing:antialiased;padding:40px 28px 80px;line-height:1.5;}
+.wrap{max-width:1180px;margin:0 auto;}
+h1{font-family:'General Sans';font-weight:700;font-size:27px;letter-spacing:-.02em;color:var(--heading);margin-bottom:10px;}
+.lede{max-width:840px;font-size:15px;color:var(--muted);margin-bottom:20px;}
+.lede b{color:var(--strong);font-weight:600;}
+
+.tab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--heading);
+  background:var(--surface);border:1px solid var(--border);border-bottom:none;
+  padding:9px 16px;border-radius:12px 12px 0 0;position:relative;top:1px;}
+.tab i{font-size:14px;color:var(--muted);}
+.panel{background:#fff;border:1px solid var(--border);border-radius:0 18px 18px 18px;
+  box-shadow:0 30px 70px -34px rgba(15,23,42,.4);padding:22px 26px 18px;}
+
+.dd-parent{display:inline-flex;align-items:center;gap:6px;font-family:'General Sans';font-weight:600;
+  font-size:13px;color:var(--strong);text-decoration:none;margin-bottom:16px;}
+.dd-parent .arr{color:var(--muted);}
+
+.grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:0;}
+.col{padding:0 24px;border-left:1px solid var(--border);}
+.col:first-child{padding-left:4px;border-left:none;}
+.col:last-child{padding-right:4px;}
+.label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:12px;display:block;}
+.group + .group{margin-top:22px;}
+
+/* numbered path */
+.path{position:relative;}
+.path .step{display:flex;gap:15px;align-items:flex-start;padding:12px;border-radius:12px;text-decoration:none;position:relative;transition:background .15s;}
+.path .step:hover{background:var(--subtle);}
+.path .num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-family:'General Sans';}
+.path .step:not(:last-child)::before{content:"";position:absolute;left:25px;top:44px;bottom:-4px;width:2px;background:var(--border-strong);}
+.path .pt{font-family:'General Sans';font-weight:700;font-size:17px;color:var(--heading);letter-spacing:-.02em;
+  line-height:1.2;margin-bottom:4px;}
+.path .ps{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.path .ps .lnk{color:var(--blue);font-weight:600;}
+
+/* small service / utility link */
+.svc{display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:9px;text-decoration:none;transition:background .15s;}
+.svc:hover{background:var(--subtle);}
+.svc i{font-size:16px;color:var(--muted);width:19px;text-align:center;flex-shrink:0;}
+.svc span{font-size:14px;font-weight:500;color:var(--strong);}
+.svc .ext{font-size:12px;color:var(--muted);margin-left:auto;}
+
+/* badge — matches the live nav's .dd-badge-new (accent-subtle bg, accent text).
+   Every typographic property is pinned so it renders identically no matter the
+   parent (the path title is General Sans, a service link is Inter). */
+.badge-new,
+.svc .badge-new,
+.pt .badge-new{
+  display:inline-flex;align-items:center;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:700;line-height:1.45;
+  letter-spacing:.04em;text-transform:none;
+  background:rgba(10,108,255,.08);color:var(--blue);
+  border-radius:999px;padding:1px 7px;margin-left:8px;flex-shrink:0;
+}
+
+/* bottom utility strip */
+.strip{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  margin-top:18px;padding:13px 12px 4px;border-top:1px solid var(--border);}
+.strip a{text-decoration:none;display:inline-flex;align-items:center;gap:8px;font-size:13px;}
+.strip .diag{color:var(--strong);font-weight:500;}
+.strip .diag i{color:var(--blue);font-size:16px;}
+.strip .diag b{color:var(--heading);font-weight:600;}
+.strip .speaker{color:var(--muted);font-weight:600;}
+.strip .speaker i{font-size:15px;}
+
+/* annotations */
+.changes{margin-top:34px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 24px;max-width:1180px;}
+.changes h3{font-family:'General Sans';font-weight:600;font-size:16px;color:var(--heading);margin-bottom:12px;}
+.changes ul{list-style:none;display:grid;gap:11px;}
+.changes li{font-size:13.5px;color:var(--text);line-height:1.55;padding-left:22px;position:relative;}
+.changes li::before{content:"\2713";position:absolute;left:0;top:0;color:#067647;font-weight:700;}
+.changes li b{color:var(--heading);font-weight:600;}
+.flag{margin-top:14px;font-size:13px;color:var(--muted);padding-top:13px;border-top:1px dashed var(--border);}
+.flag b{color:var(--strong);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>How We Help — "The Path," re-approached</h1>
+  <p class="lede">Your three-step path is the spine. The work here was giving <b>pricing</b>, <b>proof</b>, and the awkward <b>Request a Speaker</b> link each a home that actually fits, without crowding the journey or losing the Apple-calm.</p>
+
+  <span class="tab"><i class="ti ti-help-circle"></i> How We Help <i class="ti ti-chevron-down" style="font-size:12px"></i></span>
+  <div class="panel">
+    <a class="dd-parent">How We Help <span class="arr">→</span></a>
+
+    <div class="grid">
+
+      <!-- LEFT: the path -->
+      <div class="col">
+        <span class="label">The Path · Where to Start</span>
+        <div class="path">
+          <a class="step">
+            <span class="num">1</span>
+            <div>
+              <div class="pt">Marketing Audit &amp; Recommendations <span class="badge-new">Start Here</span></div>
+              <div class="ps">A senior coach audits your entire marketing and hands you a prioritized action plan, not just a critique.</div>
+            </div>
+          </a>
+          <a class="step">
+            <span class="num">2</span>
+            <div>
+              <div class="pt">Fix What's Broken</div>
+              <div class="ps">Done-with-you and done-for-you services that earn quick wins and build momentum.</div>
+            </div>
+          </a>
+          <a class="step">
+            <span class="num">3</span>
+            <div>
+              <div class="pt">The Endless Customers Coaching Program</div>
+              <div class="ps">Our flagship. The full system, with a coach in your corner, so it actually sticks.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- MIDDLE: additional services -->
+      <div class="col">
+        <span class="label">Additional Services</span>
+        <a class="svc"><i class="ti ti-layout-2"></i><span>Website Redesign</span></a>
+        <a class="svc"><i class="ti ti-chart-bar"></i><span>Website Optimization</span></a>
+        <a class="svc"><i class="ti ti-library"></i><span>Learning Center Development</span></a>
+        <a class="svc"><i class="ti ti-tool"></i><span>Self-Service Tools</span></a>
+        <a class="svc"><i class="ti ti-speakerphone"></i><span>Paid Advertising</span></a>
+        <a class="svc"><i class="ti ti-brain"></i><span>AI Services</span><span class="badge-new">New</span></a>
+        <a class="svc"><i class="ti ti-plug-connected"></i><span>HubSpot Training &amp; Services</span></a>
+        <a class="svc"><i class="ti ti-palette"></i><span>TRUST Theme for HubSpot</span><span class="ext">↗</span></a>
+      </div>
+
+      <!-- RIGHT: two groups -->
+      <div class="col">
+        <div class="group">
+          <span class="label">Pricing &amp; Fit</span>
+          <a class="svc"><i class="ti ti-tag"></i><span>Pricing</span></a>
+          <a class="svc"><i class="ti ti-scale"></i><span>Compare Your Options</span></a>
+          <a class="svc"><i class="ti ti-users-group"></i><span>Who We Work With</span></a>
+        </div>
+        <div class="group">
+          <span class="label">Proof &amp; Trust</span>
+          <a class="svc"><i class="ti ti-trophy"></i><span>Success Stories</span></a>
+          <a class="svc"><i class="ti ti-star"></i><span>Reviews</span></a>
+          <a class="svc"><i class="ti ti-shield-check"></i><span>Our Guarantee</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM utility strip -->
+    <div class="strip">
+      <a class="diag"><i class="ti ti-sparkles"></i><span>New here? Start with a <b>free AI Diagnostic</b> →</span></a>
+      <a class="speaker"><i class="ti ti-microphone"></i> Request a Speaker →</a>
+    </div>
+
+  </div>
+
+  <!-- what changed -->
+  <div class="changes">
+    <h3>How I read your notes, and what each became</h3>
+    <ul>
+      <li><b>Step 1 reads as an audit AND a plan.</b> Title keeps "&amp; Recommendations"; the sub spells out "a prioritized action plan, not just a critique," so nobody thinks they're just getting graded.</li>
+      <li><b>Step 3 is just the coaching program.</b> No "join," no "The Goal." It's "The Endless Customers Coaching Program," framed as the flagship.</li>
+      <li><b>Badges are back, from the style guide.</b> "Start Here" on the audit and "New" on AI Services both use the existing <code>dd-badge-new</code> component already in the live nav, so nothing new to invent.</li>
+      <li><b>Pricing sits in its own "Pricing &amp; Fit" group</b> with no special emphasis, a plain link like the rest. It is no longer lumped under "Proof &amp; Trust."</li>
+      <li><b>Yes, the header changes.</b> Rather than one awkward combined header, the right column splits: "Pricing &amp; Fit" (Pricing, Compare Your Options, Who We Work With) sits above a clean, pure "Proof &amp; Trust" (Success Stories, Reviews, Guarantee).</li>
+      <li><b>"Additional Services," as you had it.</b> Renamed back from "Jump to a Service," and re-ordered so the website family sits together, then marketing/AI, then HubSpot.</li>
+      <li><b>Request a Speaker found a dignified home.</b> It moves to a slim bottom utility strip for "other ways to work with us," paired with the free diagnostic as the zero-commitment on-ramp that sits even before step 1, which mirrors how you described people actually entering (diagnostic and audit first).</li>
+    </ul>
+    <p class="flag"><b>Two decisions for you.</b> (1) <b>Pricing's URL:</b> it currently lives at <code>/how-we-help/coaching-program/pricing</code>. Making it a standalone nav link reads better as its own page, e.g. <code>/how-we-help/pricing</code>. I'd promote it and 301 the old path. (2) You flagged that this path implies <b>rebuilding the coaching program and pricing section</b>. Agreed. That's a separate workstream I've logged; the dropdown can ship first and the page rebuild can follow.</p>
+  </div>
+
+</div>
+</body>
+</html>

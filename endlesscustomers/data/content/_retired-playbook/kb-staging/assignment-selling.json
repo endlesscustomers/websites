@@ -1,0 +1,50 @@
+{
+  "id": "assignment-selling",
+  "slug": "assignment-selling",
+  "title": "Assignment Selling",
+  "nav_title": "Assignment Selling",
+  "status": "published",
+  "topic_id": "right-sales",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Marcus Sheridan was fighting to save River Pools and Spas when he noticed something in the HubSpot data. He had been comparing buyers to non-buyers — both groups had requested quotes through the website, but their outcomes were completely different. The analysis revealed a pattern that changed everything: if a prospect had consumed 30 or more pages of the website before their first sales appointment, they bought 80% of the time. Prospects who had not hit that threshold bought only 25% of the time.\n\nThe insight was unmistakable. Prospects who consumed 30 pieces of content were four times more likely to buy. Not marginally more likely — four times more likely. The conclusion was clear: education predicts readiness, and readiness predicts purchase.\n\n## What Assignment Selling Is\n\nAssignment Selling is the strategic practice of requiring prospects to consume specific educational content before sales conversations. Rather than waiting for buyers to stumble across articles on their own, salespeople assign them — specific content, sent at specific moments, with the clear expectation that the prospect will review it before the next conversation.\n\nThe effect on the sales conversation is immediate. A salesperson who used to spend the first 30 minutes of every appointment answering basic questions about their product — questions the buyer should have already been able to answer — can now spend that time on the specific situation in front of them. Less teaching, more selling. The buyer already knows the fundamentals. The conversation can move to the things that actually differentiate them from the competition.\n\n## What It Did for River Pools\n\nAfter discovering the data, River Pools revamped their entire sales process. No more rushing to give quotes through quick qualifying calls. Every prospect had to hit the 30-page content threshold before a sales appointment was scheduled. The results in the first year: 95 pools sold from 120 appointments — a 79% close rate. The year before had been 75 pools from 250 appointments — a 30% close rate.\n\nThe sales team's quality of life improved dramatically. Gone were the 60-hour weeks and the late nights. They were having fewer appointments with much better outcomes. The filtering effect of content consumption had removed the unready buyers from the calendar, leaving only the ones genuinely prepared to make a decision.\n\n## How to Map Content to Your Sales Process\n\nAssignment Selling requires a defined sales process. You need to know the stages a buyer moves through before you can match the right content to each one. Once the process is mapped, the content assignment follows a logical pattern.\n\nBefore the first appointment, the goal is personal connection and framing. A bio video introduces the salesperson. A 'what to expect' video explains how the first meeting will run. This immediately differentiates your team from the competitors who send a plain confirmation email.\n\nDuring the needs assessment phase, self-assessment tools and cost and price content help buyers self-identify their gaps and calibrate their budget expectations before sitting down to evaluate options. Before the presentation, the 80% video addresses the most common questions and the Claims We Make video validates key statements. Customer journey videos — stories of real clients — build confidence at the moment buyers need it most.\n\nPost-sale content matters too. A welcome video after the contract is signed prevents buyer's remorse by sustaining the excitement of the decision. Implementation guides prepare new clients for what comes next. These touchpoints transform a single transaction into the beginning of a lasting relationship.\n\n## A Prospect's Willingness to Consume Content\n\nOne of Assignment Selling's underappreciated benefits is its filtering function. A prospect who is willing to spend 15 minutes reading an article and watching a video before a meeting is demonstrating something important about their engagement and readiness. A prospect who ignores the assignment is showing you something too. Both signals are valuable, and paying attention to them saves enormous time for every member of your sales team.",
+  "excerpt": "At River Pools, one insight changed everything: prospects who had read 30 or more pages of content before their first appointment bought 80% of the time. That discovery became Assignment Selling.",
+  "what_youll_learn": [
+    "Prospects who consumed 30 or more pages of River Pools' website content before their first appointment bought 80% of the time. Those who had not consumed that threshold bought only 25% of the time.",
+    "By making content consumption a prerequisite for a sales appointment, River Pools went from selling 75 pools in 250 appointments (30% close rate) to 95 pools in 120 appointments (79% close rate) in a single year.",
+    "A prospect's willingness to consume content before a sales conversation is a reliable signal of their readiness to buy. It filters out tire-kickers before the conversation begins.",
+    "Assignment Selling maps specific content to specific stages of the sales process — before the first appointment, during needs assessment, before the presentation, and post-sale.",
+    "Without a defined sales process, Assignment Selling cannot work effectively. You need to know the stages to know which content to assign at each one.",
+    "Even a short video or a single article sent before a first call has a measurable impact on engagement and close rates. Start simple."
+  ],
+  "key_questions": [
+    {
+      "question": "How do you actually require a prospect to consume content before a meeting?",
+      "answer": "You frame it as preparation that will make the meeting more valuable for them. Salespeople send specific content — a bio video, a 'what to expect' video, key articles — along with a message explaining that this will make the conversation more useful and focused on their specific situation. Prospects who are serious about moving forward will complete it. Those who are not are filtered out early."
+    },
+    {
+      "question": "What happens if a prospect refuses to consume the assigned content?",
+      "answer": "That reluctance is itself useful information. A prospect who will not spend 10 minutes reading an article before a meeting is signaling they are not sufficiently ready to buy. In most cases, it is worth pausing the sales conversation until they are more engaged, rather than investing hours in a meeting with someone who has not invested minutes in preparation."
+    },
+    {
+      "question": "What content should we assign at each stage of the sales process?",
+      "answer": "Before the first appointment: bio video, 'what to expect' video, and any Big 5 content relevant to their situation. During needs assessment: self-assessment tools and cost and price content. Before the presentation: the 80% video, claims we make video, and customer journey video. Post-sale: welcome video, implementation guide, and regular updates. The exact content depends on what you have available and what addresses the most common buyer questions at each stage."
+    },
+    {
+      "question": "Can Assignment Selling work with a short sales cycle?",
+      "answer": "Yes. Even in fast-moving sales environments, a short video or a single article sent before a call has a measurable impact. The principle scales to the length of the cycle. In a quick sale, a two-minute bio video and a brief overview article can be enough to warm a prospect and improve conversion. In a complex, months-long sale, there is more content to assign and more stages to map it to."
+    },
+    {
+      "question": "How does Assignment Selling connect to our Learning Center?",
+      "answer": "The Learning Center is where the content lives. Assignment Selling is how your team puts it to work in the sales process. When your Learning Center is organized and searchable, salespeople can quickly find the right article or video to send at the right moment. The two are designed to work together."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

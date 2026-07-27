@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <title>Downloads & Tools — Endless Customers</title>
+  <meta name="description" content="Free Endless Customers guides, checklists, templates, and AI tools you can use in your business today." />
+  <meta property="og:title"       content="Downloads & Tools — Endless Customers" />
+  <meta property="og:description" content="Free Endless Customers guides, checklists, templates, and AI tools you can use in your business today." />
+  <meta property="og:type"        content="website" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <link rel="stylesheet" href="../../css/learn.css?v=2026060925r" />
+  <script src="../../js/cms.js?v=2026060925r"></script>
+  <script src="../../js/learn-nav.js?v=2026060925r"></script>
+</head>
+<body class="page-accent--blue">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="nav-placeholder">
+<nav class="nav nav--docked" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav__logo" aria-label="Endless Customers — home">
+      <img src="../../assets/images/logo-dark.svg"  class="nav__logo-img nav__logo-img--light" alt="Endless Customers" width="111" height="34">
+      <img src="../../assets/images/logo-white.svg" class="nav__logo-img nav__logo-img--dark"  alt="" aria-hidden="true" width="111" height="34">
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="nav__menu" role="list">
+
+      <!-- LEARN -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-learn" data-dropdown="learn">
+          Learning Center
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- Learn: featured diagnostic at top, 2-col grid below -->
+        <div class="nav__dropdown nav__dropdown--learn" id="dd-learn" aria-label="Learn">
+          <a href="/learn/" class="dd-parent">Learning Center <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/diagnostic" class="dd-featured">
+            <div class="dd-featured__eyebrow">✦ Free Tool</div>
+            <div class="dd-featured__title">Get Your Free AI Diagnostic</div>
+            <div class="dd-featured__sub">Enter your website URL — get a full marketing audit instantly</div>
+          </a>
+          <div class="dd-cols dd-cols--3">
+            <div class="dd-col">
+              <span class="dd-label">Learn the System</span>
+              <a href="/learn/what-is-endless-customers" class="dd-item">
+                <svg class="dd-icon dd-icon--ec" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.85,12.16c-.01.44-.05.87-.13,1.29-.17,1.02-.52,2.02-1.04,2.92v.04c-.78,1.34-1.91,2.47-3.26,3.24-1.06.63-2.24,1.01-3.45,1.14v-3.67c.57-.11,1.13-.31,1.64-.61.68-.39,1.23-.9,1.67-1.53h0s-.33-.64-.38-.73c.86-.08.18-.02.2-.02l.66-.06c.11-.24.19-.47.26-.72.15-.5.23-1.03.21-1.55,0-.5-.08-.97-.23-1.44-.01-.08-.05-.15-.07-.24l3.18-1.84c.3.66.5,1.36.62,2.08.09.56.14,1.13.13,1.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M12.02,1.19c5.44,0,9.96,4.05,10.68,9.29h1.09C23.06,4.64,18.06.11,12.02.11S.99,4.64.25,10.48h1.09C2.07,5.24,6.59,1.19,12.02,1.19Z"></path><path d="M12.02,22.77c-5.44,0-9.96-4.05-10.68-9.29H.25c.74,5.84,5.74,10.37,11.77,10.37s11.04-4.53,11.77-10.37h-1.09c-.72,5.25-5.25,9.29-10.68,9.29Z"></path><path d="M7.49,19.54c-.37-.23-.73-.47-1.05-.76-.8-.65-1.49-1.46-2.01-2.36l-.03-.02c-.77-1.35-1.18-2.89-1.17-4.45-.02-1.23.25-2.45.74-3.56l3.18,1.83c-.19.55-.3,1.13-.29,1.72,0,.78.16,1.52.49,2.21h.01s.71.03.81.03c-.36.78-.08.17-.09.19l-.28.6c.15.21.32.4.5.59.35.38.78.71,1.24.96.43.25.88.41,1.36.52.08.03.16.04.24.06v3.67c-.72-.08-1.43-.25-2.1-.5-.53-.2-1.05-.44-1.53-.74Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M7.74,4.02c.39-.21.77-.39,1.19-.53.97-.37,1.97-.57,3.01-.57h.07c1.55,0,3.09.42,4.44,1.21,1.07.6,1.99,1.44,2.71,2.42l-3.18,1.83c-.38-.44-.83-.82-1.34-1.12-.68-.39-1.4-.62-2.16-.68h0s-.38.61-.43.7c-.5-.71-.11-.15-.12-.17l-.38-.54c-.26.03-.51.07-.76.14-.51.12-1.01.32-1.45.59-.43.25-.8.56-1.13.91-.07.05-.11.12-.17.18l-3.18-1.83c.43-.59.93-1.11,1.49-1.57.44-.36.91-.69,1.4-.96Z" fill="none" stroke="currentColor" stroke-miterlimit="2" stroke-width=".75"></path></svg>
+                <div><div class="dd-item__title">What is Endless Customers?<span class="dd-badge-new">Start Here</span></div><div class="dd-item__sub">The system, why it works, and the proof</div></div>
+              </a>
+              <a href="/learn/core-concepts-frameworks" class="dd-item">
+                <i class="ti ti-stack-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Core Concepts &amp; Frameworks</div><div class="dd-item__sub">Every concept, one clear answer</div></div>
+              </a>
+              <a href="/learn/academy" class="dd-item">
+                <i class="ti ti-school dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Endless Customers Academy</div><div class="dd-item__sub">Courses, community, and self-paced learning</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Get an Answer</span>
+              <a href="/learn/topics/" class="dd-item">
+                <i class="ti ti-category dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Browse Topics</div><div class="dd-item__sub">Every subject, every format, one place</div></div>
+              </a>
+              <a href="/learn/" class="dd-item" data-search-trigger>
+                <i class="ti ti-search dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Search the Learning Center</div><div class="dd-item__sub">Articles, webinars, lessons &amp; tools</div></div>
+              </a>
+              <a href="/learn/tools" class="dd-item">
+                <i class="ti ti-download dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Tools &amp; Downloads</div><div class="dd-item__sub">Guides, AI tools, and templates</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Stay Current</span>
+              <a href="/learn/latest" class="dd-item">
+                <i class="ti ti-news dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Latest Insights</div><div class="dd-item__sub">New articles, episodes &amp; events</div></div>
+              </a>
+              <a href="/learn/webinars" class="dd-item">
+                <i class="ti ti-video dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Webinars</div><div class="dd-item__sub">Upcoming live &amp; the on-demand library</div></div>
+              </a>
+              <a href="/learn/podcast" class="dd-item">
+                <i class="ti ti-microphone-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">The Endless Customers Podcast</div><div class="dd-item__sub">Watch or listen to every episode</div></div>
+              </a>
+            </div>
+          </div>
+          <!-- Bottom CTA (full-width) — Subscribe. Moved out of the Stay Current
+               column June 2026 so the three columns balance 3/3/3 after the book
+               left the left column; frames the panel opposite the featured tile. -->
+          <a href="/learn/subscribe" class="dd-cta">
+            <i class="ti ti-bell dd-icon" aria-hidden="true"></i>
+            Subscribe for New Content, Twice a Week, Free
+            <span class="dd-parent__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- HOW WE HELP -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-help" data-dropdown="help">
+          How We Help
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- How We Help: "The Path" (June 2026, per Bob — replaces the 4-col
+             services grid). Everything lives under the Endless Customers brand.
+             Left = the order of operations (audit → fix what's broken → coaching);
+             middle = Additional Services for those who know what they want;
+             right = Pricing & Fit then Proof & Trust; foot = a utility strip
+             (free-diagnostic on-ramp + the one-off Request a Speaker ask).
+             Rides on --4col for the full-width docked panel; --path swaps in the
+             three-column grid, the numbered path, and the strip. -->
+        <div class="nav__dropdown nav__dropdown--4col nav__dropdown--path" id="dd-help" aria-label="How We Help">
+
+          <a href="/how-we-help/" class="dd-parent">How We Help <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+
+          <!-- Col 1: The Path — the order of operations -->
+          <div class="dd-col dd-col--path">
+            <span class="dd-label">The Path to Endless Customers</span>
+            <div class="dd-path">
+              <a href="/how-we-help/audit-and-recommendations" class="dd-step">
+                <span class="dd-step__num">1</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Marketing Audit &amp; Recommendations <span class="dd-badge-new">Start Here</span></div>
+                  <div class="dd-step__sub">Find out what's broken and what to fix first.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/initial-projects" class="dd-step">
+                <span class="dd-step__num">2</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Initial Projects &amp; Fixes</div>
+                  <div class="dd-step__sub">Then fix it together, with quick early wins.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/coaching-program" class="dd-step">
+                <span class="dd-step__num">3</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">The Endless Customers Coaching Program</div>
+                  <div class="dd-step__sub">Finally, go all-in on the full system.</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Additional Services (website family, then marketing/AI, then HubSpot) -->
+          <div class="dd-col">
+            <span class="dd-label">Additional Services</span>
+            <a href="/how-we-help/websites/redesign" class="dd-svc">
+              <i class="ti ti-layout-2 dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Redesign</span>
+            </a>
+            <a href="/how-we-help/websites/optimization" class="dd-svc">
+              <i class="ti ti-chart-bar dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Optimization</span>
+            </a>
+            <a href="/how-we-help/websites/learning-center" class="dd-svc">
+              <i class="ti ti-library dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Learning Center Development</span>
+            </a>
+            <a href="/how-we-help/websites/self-service-tools" class="dd-svc">
+              <i class="ti ti-tool dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Self-Service Tools</span>
+            </a>
+            <a href="/how-we-help/paid-advertising" class="dd-svc">
+              <i class="ti ti-speakerphone dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Paid Advertising</span>
+            </a>
+            <a href="/how-we-help/ai" class="dd-svc">
+              <i class="ti ti-brain dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">AI Services<span class="dd-badge-new">New</span></span>
+            </a>
+            <a href="/how-we-help/hubspot" class="dd-svc">
+              <svg class="dd-icon dd-icon--hubspot" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.164 7.93V5.084a2.198 2.198 0 0 0 1.267-1.978v-.067A2.2 2.2 0 0 0 17.238.845h-.067a2.2 2.2 0 0 0-2.193 2.193v.067a2.196 2.196 0 0 0 1.252 1.973l.013.006v2.852a6.22 6.22 0 0 0-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 1 0 4.3 5.166l-.008.006 7.697 5.991a6.176 6.176 0 0 0-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 0 0-.58-.095h-.002a2.033 2.033 0 1 0 2.033 2.033 1.978 1.978 0 0 0-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 1 0 4.782-11.134l-.036-.005zm-1.02 9.378a3.208 3.208 0 1 1 3.208-3.208 3.207 3.207 0 0 1-3.208 3.207z"></path></svg>
+              <span class="dd-svc__name">HubSpot Training &amp; Services</span>
+            </a>
+            <a href="https://trusttheme.com" class="dd-svc" target="_blank" rel="noopener">
+              <i class="ti ti-palette dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">TRUST Theme for HubSpot</span>
+              <svg class="dd-ext" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="visually-hidden">(opens in new tab)</span>
+            </a>
+          </div>
+
+          <!-- Col 3: Pricing & Fit, then Proof & Trust -->
+          <div class="dd-col">
+            <span class="dd-label">Pricing &amp; Fit</span>
+            <a href="/how-we-help/coaching-program/pricing" class="dd-svc">
+              <i class="ti ti-tag dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Pricing</span>
+            </a>
+            <a href="/how-we-help/compare-your-options" class="dd-svc">
+              <i class="ti ti-scale dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Compare Your Options</span>
+            </a>
+            <a href="/how-we-help/who-we-work-with" class="dd-svc">
+              <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Who We Work With</span>
+            </a>
+            <span class="dd-label dd-label--stacked">Proof &amp; Trust</span>
+            <a href="/how-we-help/success-stories" class="dd-svc">
+              <i class="ti ti-trophy dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Success Stories</span>
+            </a>
+            <a href="/how-we-help/reviews" class="dd-svc">
+              <i class="ti ti-star dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Reviews</span>
+            </a>
+            <a href="/how-we-help/guarantee" class="dd-svc">
+              <i class="ti ti-shield-check dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Our Guarantee</span>
+            </a>
+          </div>
+
+        </div>
+      </li>
+
+      <!-- OUR TEAM -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-team" data-dropdown="team">
+          Our Team
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown" id="dd-team" aria-label="Our Team">
+          <a href="/team/" class="dd-parent">Our Team <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/team/about" class="dd-item">
+            <i class="ti ti-compass dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Our Story, Vision &amp; Values</div><div class="dd-item__sub">Where we came from and what we stand for</div></div>
+          </a>
+          <a href="/team/meet-the-team" class="dd-item">
+            <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Meet the Team</div><div class="dd-item__sub">Endless Customers coaches, specialists, and staff</div></div>
+          </a>
+          <a href="/team/awards" class="dd-item">
+            <i class="ti ti-award dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Awards &amp; Recognition</div><div class="dd-item__sub">Industry honors, dated and sourced</div></div>
+          </a>
+          <a href="/how-we-help/request-a-speaker" class="dd-item">
+            <i class="ti ti-microphone dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Request a Speaker</div><div class="dd-item__sub">Book an EC speaker for your event or conference</div></div>
+          </a>
+          <a href="/team/become-a-coach" class="dd-item">
+            <i class="ti ti-heart-handshake dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Become a Coach</div><div class="dd-item__sub">Want to help businesses implement Endless Customers?</div></div>
+          </a>
+          <a href="/team/join-the-team" class="dd-item">
+            <i class="ti ti-briefcase dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">All Open Positions</div><div class="dd-item__sub">Browse open roles across the company</div></div>
+          </a>
+        </div>
+      </li>
+
+      <!-- THE CONFERENCE -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-conference" data-dropdown="conference">
+          Conference
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--conference nav__dropdown--right" id="dd-conference" data-theme="dark" aria-label="Conference">
+          <div class="conf-image" aria-hidden="true">
+            <div class="conf-scene is-active" id="conf-scene-0" style="background-image:url('../../assets/images/endless-customers-live/ec-live-1.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-1" style="background-image:url('../../assets/images/endless-customers-live/ec-live-2.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-2" style="background-image:url('../../assets/images/endless-customers-live/ec-live-3.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-3" style="background-image:url('../../assets/images/endless-customers-live/ec-live-4.jpg')"></div>
+            <div class="conf-progress" id="conf-progress">
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+            </div>
+          </div>
+          <div class="conf-links">
+            <a href="/live/" class="conf-logo-link" aria-label="Endless Customers Live"><img src="../../assets/images/endless-customers-live/ec-live-logo-white.png" alt="Endless Customers Live" class="conf-logo"></a>
+            <a href="/live/" class="conf-explore">Explore the Conference <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+            <div class="conf-dates-label">Upcoming Dates</div>
+            <a href="/live/hartford-2026" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Hartford, CT</div><div class="conf-date-when">Oct 5–7, 2026</div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <a href="/live/chicago-2027" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Chicago, IL</div><div class="conf-date-when">Apr 5–7, 2027 · <span class="conf-eb">Early Bird</span></div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <div class="dd-sep"></div>
+            <a href="/live/experience/" class="conf-link">
+              <i class="ti ti-sparkles" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">What It's Like</span>
+            </a>
+            <a href="/live/past/" class="conf-link">
+              <i class="ti ti-history" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Past Events</span>
+            </a>
+            <a href="/live/sponsor" class="conf-link">
+              <i class="ti ti-award" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Become a Sponsor</span>
+            </a>
+            <a href="/live/convince-your-boss" class="conf-link">
+              <i class="ti ti-user-check" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Convince Your Boss</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- BOOK -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-book" data-dropdown="book">
+          Book
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--right" id="dd-book" aria-label="Book">
+          <a href="/book/" class="dd-parent">Book <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/book/about" class="dd-item">
+            <i class="ti ti-book-2 dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">About <em>Endless Customers</em></div><div class="dd-item__sub">What it's about, plus where to buy</div></div>
+          </a>
+          <a href="/book/companion-guide" class="dd-item">
+            <i class="ti ti-notebook dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Companion Guide</div><div class="dd-item__sub">The workbook that puts the book to work</div></div>
+          </a>
+          <a href="/book/preview" class="dd-item">
+            <i class="ti ti-file-text dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Preview (Free Chapter)</div><div class="dd-item__sub">Read the opening chapter free</div></div>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- Right actions -->
+    <div class="nav__actions">
+      <!-- Returning-member affordance: quiet account icon, grouped with the
+           theme toggle as an icon-utility pair so it never competes with the
+           two text CTAs. Visible at every width (incl. the ≤1199 collapsed
+           bar) so members can log in top-right without opening the menu.
+           Destination is the EC Academy app login (impactplus.com app). -->
+      <a href="https://app.impactplus.com/users/sign_in" class="nav__account" target="_blank" rel="noopener" aria-label="Endless Customers Academy Login (opens in new tab)" title="Endless Customers Academy Login">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="/diagnostic" class="btn--nav-ghost">Free AI Diagnostic</a>
+      <a href="/lets-talk" class="btn--nav-primary">Let's Talk →</a>
+      <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile menu — drill-down (main panel + one sub-panel per group) -->
+  <div class="nav__mobile" id="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation"></div>
+
+</nav>
+  </div>
+
+
+
+  <main id="main-content">
+
+    <!-- HERO — svc-hero system, compact Learn cut -->
+    <section class="svc-hero svc-hero--learn">
+      <div class="svc-hero__bg" aria-hidden="true"></div>
+      <div class="svc-hero__inner">
+        <div class="subnav__crumb svc-crumb" aria-label="Breadcrumb">
+          <span class="subnav__crumb-trail">
+            <a href="/learn" class="subnav__crumb-root">Learning Center</a>
+            <span class="subnav__crumb-sep" aria-hidden="true">&rsaquo;</span>
+          </span>
+          <span class="subnav__crumb-current" aria-current="page"><span class="svc-crumb__icon" aria-hidden="true"><i class="ti ti-download"></i></span> Downloads &amp; Tools</span>
+        </div>
+        <h1 class="svc-hero__headline headline-short">Put the system to work.</h1>
+        <p class="svc-hero__sub">Guides, checklists, templates, and AI tools you can use in your business today. All free.</p>
+        <div class="lc-hero-tools">
+          <button type="button" data-search-trigger><i class="ti ti-search" aria-hidden="true"></i> Search the library</button>
+          <button type="button" data-topics-trigger><i class="ti ti-category" aria-hidden="true"></i> Browse topics</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="lc-wrap">
+      <section class="section section--sm">
+        <div class="container">
+          <div class="ec-filters" id="of-filters" role="group" aria-label="Filter by type"></div>
+          <div class="ec-grid" id="of-list"></div>
+          <p class="ec-empty" id="of-empty" hidden>No resources of that type yet.</p>
+        </div>
+      </section>
+      <section class="section section--alt"><div class="container"><div class="lc-cta">
+        <h2 class="lc-cta__title">Want the whole system, not just the tools?</h2>
+        <p class="lc-cta__sub">Get a free AI diagnosis of your marketing and a prioritized path forward.</p>
+        <div class="lc-cta__actions"><a href="/diagnostic" class="btn btn--primary btn--lg">Get your free AI diagnosis</a><a href="/lets-talk" class="btn btn--ghost btn--lg">Talk to our team</a></div>
+      </div></div></section>
+    </div>
+  </main>
+  <script>
+    (function(){
+      var FILTER='all', DATA=null, TOPICS={};
+      var TYPE_LABEL={guide:'Guides',tool:'Tools','custom-gpt':'Custom GPTs','claude-skill':'Claude Skills',checklist:'Checklists',template:'Templates','book-preview':'Book Preview',report:'Reports'};
+      function render(){
+        var items=DATA.slice();
+        if(FILTER!=='all') items=items.filter(function(o){return o.type===FILTER;});
+        items.sort(function(a,b){return (b.is_featured?1:0)-(a.is_featured?1:0);});
+        var list=document.getElementById('of-list'), em=document.getElementById('of-empty');
+        if(!items.length){list.innerHTML='';em.hidden=false;return;} em.hidden=true;
+        list.innerHTML=items.map(function(o){return EC.offerCard(o,TOPICS);}).join('');
+      }
+      EC.load({offers:'content/offers', topics:'taxonomy/topics'}).then(function(d){
+        DATA=d.offers; TOPICS=EC.indexBy(d.topics);
+        var types=[]; DATA.forEach(function(o){if(types.indexOf(o.type)<0)types.push(o.type);});
+        var chips=['<button class="ec-filter is-active" data-type="all">All</button>'];
+        types.forEach(function(t){chips.push('<button class="ec-filter" data-type="'+t+'">'+(TYPE_LABEL[t]||t)+'</button>');});
+        var bar=document.getElementById('of-filters'); bar.innerHTML=chips.join('');
+        bar.addEventListener('click',function(e){var b=e.target.closest('.ec-filter');if(!b)return;FILTER=b.getAttribute('data-type');bar.querySelectorAll('.ec-filter').forEach(function(x){x.classList.toggle('is-active',x===b);});render();});
+        render();
+      }).catch(function(e){console.error(e);});
+    })();
+  </script>
+
+  <div id="footer-placeholder">
+    <footer class="footer" role="contentinfo">
+  <div class="container">
+
+    <!-- ================= MASTHEAD: BRAND + SOCIAL ================= -->
+    <div class="footer__masthead">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Endless Customers — home">
+          <img src="../../assets/images/logo-dark.svg"  class="footer__logo-img footer__logo-img--light" alt="Endless Customers" width="150" height="46">
+          <img src="../../assets/images/logo-white.svg" class="footer__logo-img footer__logo-img--dark"  alt="" aria-hidden="true" width="150" height="46">
+        </a>
+        <p class="footer__mission">
+          Become the most trusted voice in your industry — and own your marketing
+          for good. The Endless Customers System, built on They Ask, You Answer.
+        </p>
+      </div>
+      <!-- Endless Customers brand profiles (entity strategy, June 2026):
+           footer socials point at EC-branded handles; the IMPACT connection
+           lives in the NAP line below + parentOrganization in the JSON-LD. -->
+      <div class="footer__social" aria-label="Endless Customers on social media">
+        <a href="https://www.facebook.com/people/Endless-Customers/61555895372069/" class="footer__social-btn" aria-label="Facebook (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/facebook-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.linkedin.com/company/endless-customers" class="footer__social-btn" aria-label="LinkedIn (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/linkedin-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.instagram.com/endlesscustomers" class="footer__social-btn" aria-label="Instagram (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/instagram-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.youtube.com/@EndlessCustomers" class="footer__social-btn" aria-label="YouTube (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/youtube-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://podcasts.apple.com/us/podcast/endless-customers/id1728142460" class="footer__social-btn" aria-label="Podcast on Apple Podcasts (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/apple-podcasts-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu" class="footer__social-btn" aria-label="Podcast on Spotify (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/spotify-brand-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+      </div>
+    </div>
+
+    <!-- ================= LINK COLUMNS (mirror the main nav) ================= -->
+    <nav class="footer__cols" aria-label="Footer">
+
+      <!-- LEARN -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/learn/" class="footer__col-link">Learning Center</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/learn/what-is-endless-customers" class="footer__link">What is Endless Customers?</a></li>
+          <li><a href="/learn/core-concepts-frameworks" class="footer__link">Core Concepts &amp; Frameworks</a></li>
+          <li><a href="/learn/academy" class="footer__link">Endless Customers Academy</a></li>
+          <li><a href="/learn/topics/" class="footer__link">Browse Topics</a></li>
+              <li><a href="/learn/latest" class="footer__link">Latest Insights</a></li>
+          <li><a href="/learn/podcast" class="footer__link">The Endless Customers Podcast</a></li>
+          <li><a href="/learn/webinars" class="footer__link">Webinars</a></li>
+          <li><a href="/learn/tools" class="footer__link">Tools &amp; Downloads</a></li>
+          <li><a href="/learn/subscribe" class="footer__link">Subscribe</a></li>
+          <li><a href="https://app.impactplus.com/users/sign_in" class="footer__link" target="_blank" rel="noopener">Academy Login <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- HOW WE HELP -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/how-we-help/" class="footer__col-link">How We Help</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/how-we-help/coaching-program" class="footer__link">Coaching Program &amp; Pricing</a></li>
+          <li><a href="/how-we-help/who-we-work-with" class="footer__link">Who We Work With</a></li>
+          <li><a href="/how-we-help/audit-and-recommendations" class="footer__link">Marketing Audit &amp; Recommendations <span class="footer__tag">New</span></a></li>
+          <li><a href="/how-we-help/request-a-speaker" class="footer__link">Request a Speaker</a></li>
+          <li><a href="/how-we-help/success-stories" class="footer__link">Success Stories</a></li>
+          <li><a href="/how-we-help/reviews" class="footer__link">Reviews</a></li>
+          <li><a href="/how-we-help/guarantee" class="footer__link">Our Guarantee</a></li>
+          <li><a href="/how-we-help/hubspot" class="footer__link">HubSpot Training &amp; Services</a></li>
+          <li><a href="/how-we-help/websites/redesign" class="footer__link">Website Redesign</a></li>
+          <li><a href="/how-we-help/websites/optimization" class="footer__link">Website Optimization</a></li>
+          <li><a href="/how-we-help/websites/learning-center" class="footer__link">Learning Center Development</a></li>
+          <li><a href="/how-we-help/websites/self-service-tools" class="footer__link">Self-Service Tools</a></li>
+          <li><a href="/how-we-help/paid-advertising" class="footer__link">Paid Advertising</a></li>
+          <li><a href="/how-we-help/ai" class="footer__link">AI Services <span class="footer__tag">New</span></a></li>
+          <li><a href="https://trusttheme.com" class="footer__link" target="_blank" rel="noopener sponsored">TRUST Theme for HubSpot <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- OUR TEAM -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/team/" class="footer__col-link">Our Team</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/team/about" class="footer__link">Our Story, Vision &amp; Values</a></li>
+          <li><a href="/team/meet-the-team" class="footer__link">Meet the Team</a></li>
+          <li><a href="/team/awards" class="footer__link">Awards &amp; Recognition</a></li>
+          <li><a href="/press" class="footer__link">Press &amp; Media</a></li>
+          <li><a href="/team/join-the-team" class="footer__link">Join the Team</a></li>
+          <li><a href="/contact" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONFERENCE -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/live/" class="footer__col-link">Conference</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/live/hartford-2026" class="footer__link">Hartford, CT · Oct 5–7, 2026</a></li>
+          <li><a href="/live/chicago-2027" class="footer__link">Chicago, IL · Apr 5–7, 2027</a></li>
+          <li><a href="/live/experience/" class="footer__link">What It's Like</a></li>
+          <li><a href="/live/past/" class="footer__link">Past Events</a></li>
+          <li><a href="/live/sponsor" class="footer__link">Become a Sponsor</a></li>
+          <li><a href="/live/convince-your-boss" class="footer__link">Convince Your Boss</a></li>
+        </ul>
+
+        <!-- BOOK (stacked beneath Conference; promoted out of Learn, June 2026) -->
+        <h2 class="footer__col-title footer__col-title--stacked"><a href="/book/" class="footer__col-link">Book</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/book/about" class="footer__link">About <em>Endless Customers</em></a></li>
+          <li><a href="/book/companion-guide" class="footer__link">Companion Guide</a></li>
+          <li><a href="/book/preview" class="footer__link">Preview (Free Chapter)</a></li>
+        </ul>
+      </div>
+
+      <!-- TRUST & RESOURCES -->
+      <div class="footer__col">
+        <h2 class="footer__col-title">Trust &amp; Resources</h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/diagnostic" class="footer__link">Free AI Diagnostic</a></li>
+          <li><a href="/lets-talk" class="footer__link">Talk to a Coach</a></li>
+          <li><a href="/how-we-help/when-its-not-working" class="footer__link">When It&rsquo;s Not Working</a></li>
+          <li><a href="/editorial-process" class="footer__link">Editorial Standards &amp; Ethics</a></li>
+          <li><a href="/security" class="footer__link">Security &amp; Data Protection</a></li>
+          <li><a href="/for-ai-agents" class="footer__link">For AI Agents</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ================= META: NAP + CREDENTIAL BADGES ================= -->
+    <div class="footer__meta">
+      <address class="footer__nap">
+        <span class="footer__nap-org">
+          Endless Customers is an
+          <a href="https://www.impactplus.com" class="footer__inline-link" target="_blank" rel="noopener">IMPACT<span class="visually-hidden"> (opens in new tab)</span></a>
+          company.
+        </span>
+        <span class="footer__nap-row">
+          <a href="https://maps.google.com/?q=125+Commerce+Court,+Suite+9,+Cheshire,+CT+06410" class="footer__nap-item" target="_blank" rel="noopener">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>125 Commerce Court, Suite 9, Cheshire, CT 06410<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+          <a href="tel:+12032654377" class="footer__nap-item">
+            <i class="ti ti-phone" aria-hidden="true"></i>(203) 265-4377
+          </a>
+        </span>
+      </address>
+      <div class="footer__badges">
+        <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" class="footer__badge footer__badge--hubspot" target="_blank" rel="noopener" aria-label="IMPACT is a HubSpot Elite Solutions Partner (opens in new tab)">
+          <img src="../../assets/images/logos-and-branding/hubspot-elite-badge-bw.svg" alt="HubSpot Elite Solutions Partner" loading="lazy" decoding="async">
+        </a>
+        <span class="footer__badge">
+          <img src="../../assets/images/logos-and-branding/EOS-We-Run-On-Logo--bw-2.svg" alt="We Run on EOS" loading="lazy" decoding="async">
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= LEGAL BAR ================= -->
+  <div class="footer__legal">
+    <div class="container footer__legal-inner">
+      <p class="footer__copy">
+        &copy; <span id="footer-year"></span> Endless Customers. All rights reserved.
+      </p>
+      <nav class="footer__legal-nav" aria-label="Legal">
+        <ul class="footer__legal-links" role="list">
+          <li><a href="/privacy" class="footer__legal-link">Privacy Policy</a></li>
+          <li><a href="/terms" class="footer__legal-link">Terms of Service</a></li>
+          <li><a href="/cookies" class="footer__legal-link">Cookie Preferences</a></li>
+          <li><a href="/accessibility" class="footer__legal-link">Accessibility</a></li>
+          <li><a href="/trademarks" class="footer__legal-link">Trademarks</a></li>
+          <li><a href="/brand-guidelines" class="footer__legal-link">Brand Guidelines</a></li>
+          <li><a href="/ai-policy" class="footer__legal-link">AI Policy</a></li>
+          <li><a href="/sitemap" class="footer__legal-link">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Organization schema — NAP + entity data for SEO and AI visibility -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "Brand"],
+    "@id": "https://www.endlesscustomers.com/#organization",
+    "name": "Endless Customers",
+    "url": "https://www.endlesscustomers.com/",
+    "logo": "https://www.endlesscustomers.com/assets/images/logo-dark.svg",
+    "description": "Endless Customers is the proven system, built on They Ask, You Answer, that helps service businesses become the most trusted voice in their industry and own their marketing for good.",
+    "telephone": "+1-203-265-4377",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "125 Commerce Court, Suite 9",
+      "addressLocality": "Cheshire",
+      "addressRegion": "CT",
+      "postalCode": "06410",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/Endless-Customers/61555895372069/",
+      "https://www.linkedin.com/company/endless-customers",
+      "https://www.instagram.com/endlesscustomers",
+      "https://www.youtube.com/@EndlessCustomers",
+      "https://podcasts.apple.com/us/podcast/endless-customers/id1728142460",
+      "https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://www.impactplus.com/#organization",
+      "name": "IMPACT",
+      "legalName": "Impact Branding & Design LLC",
+      "url": "https://www.impactplus.com",
+      "brand": { "@id": "https://www.endlesscustomers.com/#organization" },
+      "sameAs": [
+        "https://www.linkedin.com/company/impactbnd",
+        "https://www.facebook.com/impactbnd",
+        "https://www.instagram.com/impactbnd",
+        "https://www.youtube.com/@impactbnd",
+        "https://www.tiktok.com/@impactbnd",
+        "https://www.crunchbase.com/organization/impact-branding-design"
+      ],
+      "telephone": "+1-203-265-4377",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 Commerce Court, Suite 9",
+        "addressLocality": "Cheshire",
+        "addressRegion": "CT",
+        "postalCode": "06410",
+        "addressCountry": "US"
+      }
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-203-265-4377",
+      "contactType": "sales",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+</footer>
+  </div>
+  <script src="../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "id": "ongoing-website-optimization",
+  "slug": "ongoing-website-optimization",
+  "title": "Ongoing Website Optimization",
+  "nav_title": "In-House Management & Ongoing Optimization",
+  "status": "published",
+  "topic_id": "right-website",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Publishing new content multiple times a week matters. But the real impact comes from what you do after you publish. Are your prospects engaging with it? How are they navigating your site? Where are they converting, and where are they dropping off? These questions only have answers if you are tracking performance and acting on what you learn.\n\nThink about what separates a top salesperson from an average one. It is not just effort. It is the habit of reviewing what happened, understanding why, and adjusting. Your website demands the same discipline. The companies that treat their websites as living systems — always improving, always measuring — consistently outperform those that launch and move on.\n\n## The Questions to Ask Every Month\n\nEffective website optimization starts with asking the right questions on a consistent schedule. If you refined the messaging on a key service page, would it improve conversion? Is there a self-service tool you could add that would make the buying experience more seamless? When you view your website on mobile, does anything feel clunky or broken? Are there technical issues in the background — slow load times, crawl errors, broken links — that are costing you search rankings and frustrating visitors?\n\nMake it a priority to evaluate and take action every month. Not every quarter. Every month. The compounding effect of consistent, incremental improvements is dramatic over time. A website that gets a little better every 30 days becomes a fundamentally different asset over the course of a year.\n\n## What to Optimize First\n\nStart with the pages that matter most to your buyers. Your homepage, your pricing page, your key service or product pages, and your highest-traffic articles from the Learning Center. These are the pages where small improvements in messaging, layout, or CTAs have the largest impact on leads and revenue. Your analytics will tell you which pages have high traffic but low conversion — those are the first places to focus.\n\nUse session recording tools to watch how real visitors navigate those pages. You will quickly see where people scroll past your most important content without reading it, where they get confused by navigation, and where they give up on a form. That information is more useful than any survey or focus group.\n\n## Mobile and Technical Performance\n\nA growing portion of your buyers will encounter your website on mobile first. If pages load slowly on a phone, if navigation is hard to use with a thumb, or if forms are difficult to complete on a small screen, you are losing buyers before they have read a word. Mobile performance is not an optional enhancement — it is a baseline requirement for any website that wants to compete for attention in an AI-first world.\n\nTechnical health matters for search performance as well. Slow load times, security vulnerabilities, and crawl errors all hurt your visibility in search engines and in AI tools that surface results for buyers doing research. Someone on your team should know how to audit and address these issues, or you need a partner who does.\n\n## Staying Ahead of Buyer Expectations\n\nAs technology evolves, your website must evolve with it. Chatbots, predictive content suggestions, and advanced analytics are becoming common features on the most competitive websites in any market. These tools allow your site to provide a more personalized and responsive buyer experience. The companies that integrate new capabilities as they become accessible will continue to pull ahead of those waiting to see what competitors do first. Ongoing optimization is how you stay in motion.",
+  "excerpt": "Publishing content is a start. The real leverage comes from tracking how that content performs, optimizing what is not working, and continuously improving the buyer experience across every page.",
+  "what_youll_learn": [
+    "A website is never truly done. Publishing content is only the start. The real impact comes from tracking performance, identifying friction, and continuously improving the buyer experience.",
+    "Treat your website the way a top salesperson treats their pitch: constantly reviewing, adjusting, and refining based on what is actually working.",
+    "Monthly review and action is the right cadence. Every improvement brings your website closer to being the most trusted and best-performing in your market.",
+    "The questions to ask each month: Are prospects engaging with our content? Where are they converting or dropping off? Are there pages that need stronger messaging or a better CTA?",
+    "Mobile performance and technical health are part of optimization. A website that loads slowly or breaks on mobile loses buyers before they read a single word.",
+    "As AI and buyer expectations evolve, your website must evolve with them. Chatbots, predictive content, and advanced analytics are becoming table stakes for the most competitive sites."
+  ],
+  "key_questions": [
+    {
+      "question": "How often should we be reviewing our website performance?",
+      "answer": "At a minimum, monthly. Make it a standing meeting or a scheduled task — not something that happens when someone gets a spare hour. The companies that see compounding results from their websites treat optimization as a discipline, not a one-time project."
+    },
+    {
+      "question": "What should we actually be reviewing each month?",
+      "answer": "Start with traffic patterns: which pages are gaining or losing visitors, and why. Then look at conversion rates: where are people filling out forms, and where are they leaving before they do? Check engagement signals like time on page and scroll depth. Look at your fastest-growing and best-converting content and ask how you can do more of whatever made those pieces work."
+    },
+    {
+      "question": "What tools do we need for website optimization?",
+      "answer": "At minimum, Google Analytics for traffic and behavior data. Session recording and heatmap tools (like Hotjar or Microsoft Clarity) help you see exactly how visitors interact with specific pages — where they click, how far they scroll, where they get stuck. Your CRM can tell you which pages are driving actual leads and revenue, not just traffic."
+    },
+    {
+      "question": "How do we know when to redesign versus optimize?",
+      "answer": "Most websites do not need a full redesign. They need better messaging on key pages, clearer CTAs, faster load times, and stronger content. Start with small, targeted improvements and measure the impact before committing to a redesign. A redesign is often the most expensive and slowest way to improve results."
+    },
+    {
+      "question": "How does mobile performance affect our website optimization?",
+      "answer": "A growing majority of buyers will encounter your website on mobile first. If pages load slowly on mobile, if navigation is hard to use on a phone, or if forms are difficult to complete on a small screen, you are losing buyers before they engage with your content. Mobile performance is not optional — it is foundational."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

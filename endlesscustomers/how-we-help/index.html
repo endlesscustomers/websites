@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <title>How We Help — Endless Customers</title>
+  <meta name="description" content="Coaching, services, and hands-on support to build a marketing engine your team owns and runs in-house." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/main.css?v=2026060929r" />
+  <style>
+    .ph-hero { max-width: 720px; margin: 0 auto; padding: clamp(140px, 22vh, 260px) var(--space-5) var(--space-10); text-align: center; }
+    .ph-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-3); }
+    .ph-hero__title { font-family: var(--font-display); font-weight: 800; font-size: var(--headline-medium); line-height: var(--leading-display); color: var(--color-heading); margin: 0 0 var(--space-4); letter-spacing: var(--tracking-display);}
+    .ph-hero__sub { font-size: 1.125rem; line-height: 1.6; color: var(--color-text-muted); margin: 0 auto var(--space-6); max-width: 560px; }
+    .ph-hero__note { font-size: 13px; color: var(--color-text-muted); opacity: 0.75; margin-top: var(--space-6); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <main id="main-content">
+    <section class="ph-hero">
+      <div class="ph-hero__eyebrow">How We Help</div>
+      <h1 class="ph-hero__title headline-short">How We Help</h1>
+      <p class="ph-hero__sub">Coaching, services, and hands-on support to build a marketing engine your team owns and runs in-house.</p>
+      <a href="/lets-talk" class="btn--nav-primary">Let's Talk →</a>
+      <p class="ph-hero__note">This overview page is a work in progress.</p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../js/main.js?v=2026060925r"></script>
+</body>
+</html>

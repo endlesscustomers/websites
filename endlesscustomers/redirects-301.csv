@@ -1,0 +1,27 @@
+old_path,new_path,note
+/services,/how-we-help,section overview
+/services/hubspot,/how-we-help/hubspot,hubspot hub
+/services/ai,/how-we-help/ai,standalone spoke
+/services/paid-advertising,/how-we-help/paid-advertising,standalone spoke
+/services/website-redesign,/how-we-help/websites/redesign,websites cluster
+/services/website-optimization,/how-we-help/websites/optimization,websites cluster
+/services/self-service-tools,/how-we-help/websites/self-service-tools,websites cluster
+/services/learning-center,/how-we-help/websites/learning-center,websites cluster
+/learn/knowledge-base,/learn/core-concepts-frameworks,kb renamed to playbook then retired June 2026
+/learn/playbook,/learn/core-concepts-frameworks,playbook retired June 2026 — replaced by Core Concepts & Frameworks
+/learn/playbook/article.html,/learn/core-concepts-frameworks,playbook lessons retired June 2026
+/learn/playbook/topic.html,/learn/core-concepts-frameworks,playbook topics retired June 2026
+/learn/playbook/path.html,/learn/core-concepts-frameworks,playbook paths retired June 2026
+/learn/recent-insights,/learn/latest,insights renamed to latest
+/team/story-vision-values,/team/about,combined into story + vision & values page
+/team/our-story,/team/about,merged into combined about page
+/team/vision-and-values,/team/about,merged into combined about page
+/faq,/learn/core-concepts-frameworks,FAQ retired June 2026 — questions live in Core Concepts & Frameworks
+/reviews,/how-we-help/reviews,reviews are buying proof — moved under How We Help (June 2026)
+/team/reviews,/how-we-help/reviews,moved from Our Team to How We Help (June 2026)
+/awards,/team/awards,moved under team section
+/live/archive,/live/experience,recordings merged into experience page
+/live/speakers,/live/hartford-2026#speakers,speakers moved onto event pages
+/how-we-help/coaching-program/how-it-works,/how-we-help/coaching-program#how-it-works
+/how-we-help/coaching-program/whats-covered,/how-we-help/coaching-program#what-youll-learn
+/how-we-help/coaching-program/pricing,/how-we-help/coaching-program#pricing

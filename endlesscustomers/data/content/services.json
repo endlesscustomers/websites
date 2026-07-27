@@ -1,0 +1,406 @@
+[
+  {
+    "id": "hubspot-services",
+    "slug": "hubspot",
+    "url": "/how-we-help/hubspot",
+    "service_name": "HubSpot Training & Services",
+    "headline": "Get the full value out of HubSpot.",
+    "tagline": "Onboarding, training, and ongoing optimization so HubSpot actually drives revenue.",
+    "description_short": "HubSpot onboarding, training, and optimization tied to the Endless Customers system.",
+    "description_long": "With our one-of-a-kind HubSpot training program, you can fully learn the tool, implement it seamlessly, and dominate your market in ways previously unimagined. We help your team implement and master HubSpot, from CRM setup and migration to building the workflows, reporting, and content engine that turn the platform into a growth driver. As a HubSpot Elite Partner, we don't just stand up the platform for you, we teach your team how to own it.",
+    "features": [
+      {
+        "title": "Onboarding & Migration",
+        "description": "Stand up HubSpot cleanly and migrate your data without losing history."
+      },
+      {
+        "title": "Team Training",
+        "description": "Hands-on training so your team uses HubSpot the way it was designed to be used."
+      },
+      {
+        "title": "CRM & Pipeline Optimization",
+        "description": "Configure deal stages, properties, and reporting so sales gets real visibility and can close more deals."
+      },
+      {
+        "title": "Ongoing Optimization",
+        "description": "Continuous improvement of workflows, reporting, and content operations."
+      }
+    ],
+    "pricing_model": "scoped",
+    "starting_price": "",
+    "topic_ids": [
+      "hubspot",
+      "sales-alignment"
+    ],
+    "provider_ids": [],
+    "success_story_ids": [
+      "berry-insurance",
+      "dental-claimsupport"
+    ],
+    "related_evergreen_ids": [
+      "what-is-endless-customers"
+    ],
+    "related_insight_ids": [],
+    "related_offer_ids": [
+      "90-day-starter-guide"
+    ],
+    "faq": [
+      {
+        "question": "Do you work with our existing HubSpot instance?",
+        "answer": "Yes. We start with an audit of your current setup before recommending a scope."
+      },
+      {
+        "question": "Is IMPACT a HubSpot partner?",
+        "answer": "Yes. IMPACT is a HubSpot Elite Solutions Partner, the highest partner tier, with deep experience implementing and training teams across the full platform."
+      }
+    ],
+    "is_active": true,
+    "is_featured": true,
+    "seo": {
+      "meta_title": "HubSpot Training  | IMPACT",
+      "meta_description": "With our one-of-a-kind HubSpot training program, you can fully learn the tool, implement it seamlessly, and dominate your market in ways previously unimagined.",
+      "og_image_url": "https://www.impactplus.com/hubfs/HubSpot-Mastery.jpg",
+      "canonical_url": "https://www.impactplus.com/services/hubspot-training",
+      "noindex": false
+    }
+  },
+  {
+    "id": "ai-services",
+    "slug": "ai",
+    "url": "/how-we-help/ai",
+    "service_name": "AI Services",
+    "headline": "Put AI to work across your marketing and operations.",
+    "tagline": "Practical AI implementation grounded in the Endless Customers system.",
+    "description_short": "AI strategy, tooling, and workflows for content, sales, and operations.",
+    "description_long": "We help you adopt AI where it actually moves the needle, from content production and answer-engine optimization to internal workflows, without losing the human trust that drives buying decisions.",
+    "features": [
+      {
+        "title": "AI Content Workflows",
+        "description": "Build repeatable, on-brand content workflows powered by AI."
+      },
+      {
+        "title": "Answer Engine Optimization",
+        "description": "Position your content to be cited by AI search and assistants."
+      }
+    ],
+    "pricing_model": "quoted",
+    "starting_price": "",
+    "topic_ids": [
+      "ai-marketing",
+      "seo-aeo"
+    ],
+    "provider_ids": [],
+    "success_story_ids": [],
+    "related_evergreen_ids": [],
+    "related_insight_ids": [],
+    "related_offer_ids": [
+      "endless-customers-gpt"
+    ],
+    "faq": [],
+    "is_active": true,
+    "is_featured": true,
+    "seo": {
+      "meta_title": "",
+      "meta_description": "",
+      "og_image_url": "",
+      "canonical_url": "",
+      "noindex": false
+    }
+  },
+  {
+    "id": "website-redesign",
+    "slug": "website-redesign",
+    "url": "/how-we-help/websites/redesign",
+    "service_name": "Website Redesign",
+    "headline": "HubSpot website migrations. Done with your future in mind.",
+    "tagline": "Move or rebuild your website on the HubSpot CMS, the right way, and learn to own it.",
+    "description_short": "HubSpot CMS migration and web design that launches fast and trains your team to run it.",
+    "description_long": "Whether you're looking to move the website you have or create a refreshed lead-generating machine, you've come to the right place. By leveraging our user-focused HubSpot theme, optimized for both the front-end experience and the marketer updating the website, our team of experts will help you get set up quickly and teach you the ins and outs of the new tool. Most sites can be migrated in as little as 4-6 weeks depending on the size of your website. Whether you need a 1:1 migration or need to revamp parts of your site's strategy, you'll have an expert strategist to guide you every step of the way.",
+    "features": [
+      {
+        "title": "Migrate Your Site Fast",
+        "description": "Most sites can be migrated in as little as 4-6 weeks depending on size. Your team works on an exact migration plan to launch as fast as possible."
+      },
+      {
+        "title": "User Journey Optimization",
+        "description": "Your website strategist makes sure you have the right touch points at key parts of the user journey so visitors convert more and buy faster."
+      },
+      {
+        "title": "Easy-to-Use Modules",
+        "description": "Never touch code again. Flexible modules can be updated and tested quickly to find what works best for your buyers."
+      },
+      {
+        "title": "Personalized Training",
+        "description": "Your migration strategist reviews all key settings and functions of your new HubSpot CMS so you can start owning your site right away."
+      }
+    ],
+    "pricing_model": "scoped",
+    "starting_price": "Typically $16,000-$63,000+",
+    "topic_ids": [
+      "website-conversion",
+      "hubspot"
+    ],
+    "provider_ids": [
+      "vin-gaeta",
+      "mary-brown",
+      "janet-mendez-latouche"
+    ],
+    "success_story_ids": [],
+    "related_evergreen_ids": [],
+    "related_insight_ids": [],
+    "related_offer_ids": [],
+    "faq": [
+      {
+        "question": "How much does a HubSpot CMS website migration cost?",
+        "answer": "Our HubSpot CMS migration process typically ranges from about $16,000 up to $63,000+, depending on the size and structure of your website and any customizations needed. The range includes the TRUST Theme from the HubSpot marketplace, which is required for our migration process. HubSpot's monthly costs are not included. After the initial migration, many clients opt to stay on for additional training and site optimization, which can range from $4,500 to $7,500 per month."
+      },
+      {
+        "question": "How long does it take to build a new website with IMPACT?",
+        "answer": "As a general ballpark, expect a full website redesign to last three to six months. A website refresh (aesthetic updating without major structural changes) typically takes two to four months. The biggest variable on the client side is content."
+      },
+      {
+        "question": "Who am I going to talk to first?",
+        "answer": "Instead of starting with a salesperson, our discovery process starts with an actual IMPACT Web Strategist who learns about your challenges and the current state of your website before discussing next steps."
+      }
+    ],
+    "is_active": true,
+    "is_featured": true,
+    "seo": {
+      "meta_title": "HubSpot CMS Migration & Web Design  | IMPACT",
+      "meta_description": "Whether you're looking to move the website you have or create a refreshed lead-generating machine, you've come to the right place. Harness the power of the HubSpot CMS by migrating your site today.",
+      "og_image_url": "https://www.impactplus.com/hubfs/HubSpot-CMS-Migration.jpg",
+      "canonical_url": "https://www.impactplus.com/services/hubspot-cms-migration-and-web-design",
+      "noindex": false
+    }
+  },
+  {
+    "id": "website-optimization",
+    "slug": "website-optimization",
+    "url": "/how-we-help/websites/optimization",
+    "service_name": "Website Optimization",
+    "headline": "Web Design, Development & Optimization.",
+    "tagline": "Turn your website into your highest-performing sales asset, and train your team to keep it that way.",
+    "description_short": "Website Mastery combines design, development, and ongoing training so your team can run and optimize the site in-house.",
+    "description_long": "Website Mastery combines design, development, and training for your team into a single program that turns your website into your highest-performing sales asset, and instills your team with the expertise to keep your website looking and performing at its best for the long term. The companies that generate the best results make continuous, iterative, and data-informed improvements to their website, all while leveraging the site as a key part of their sales process. We teach your team how to become self-sufficient in the key aspects of maintaining and optimizing a website so you can improve your user experience, generate more leads, and ultimately more revenue.",
+    "features": [
+      {
+        "title": "Clear Messaging",
+        "description": "Your team learns to write content that addresses your audience's key questions and performs well in search, using StoryBrand and They Ask, You Answer principles."
+      },
+      {
+        "title": "Conversion Rate Optimization",
+        "description": "We fully optimize your website to generate leads, then train you to sustain results through variant testing and CRO."
+      },
+      {
+        "title": "Search Engine Optimization",
+        "description": "Your team learns keyword research, header optimization, meta descriptions, technical SEO, pillar content, and more."
+      },
+      {
+        "title": "Analytics & Website Health",
+        "description": "Your team learns to analyze data confidently using tools like HubSpot, Hotjar, Lucky Orange, Google Search Console, and Google Analytics 4."
+      },
+      {
+        "title": "A Savvier, Self-Sufficient Team",
+        "description": "You get an easily editable website on HubSpot or WordPress and a team trained to improve it without paying an agency month over month."
+      }
+    ],
+    "pricing_model": "retainer",
+    "starting_price": "Typically $50,000-$120,000+ over 8-12 months",
+    "topic_ids": [
+      "website-conversion",
+      "seo-aeo"
+    ],
+    "provider_ids": [
+      "vin-gaeta",
+      "mary-brown",
+      "janet-mendez-latouche"
+    ],
+    "success_story_ids": [],
+    "related_evergreen_ids": [],
+    "related_insight_ids": [],
+    "related_offer_ids": [],
+    "faq": [
+      {
+        "question": "How much does it cost to create a website with IMPACT?",
+        "answer": "A typical client invests $50,000 to $120,000+ on the Website Mastery program over an 8-12 month period. This range includes your initial website strategy, design, development, and ongoing training and optimization. In addition, there is a one-time $5,000 commitment fee at the beginning that includes an IMPACT+ for Business membership for your entire team."
+      },
+      {
+        "question": "Do I even need website optimization services?",
+        "answer": "Our services aren't for everyone. Website Mastery and Optimization may not be a good fit if you feel you already have the perfect website strategy, don't believe a website should be constantly improved, or would rather call an outside company every time you need a change. We want this decision to be black and white so any time we spend together is time well spent."
+      }
+    ],
+    "is_active": true,
+    "is_featured": true,
+    "seo": {
+      "meta_title": "Web Design, Development, & Optimization | IMPACT",
+      "meta_description": "Website Mastery combines design, development, and training for your team into a single program that turns your website into your highest-performing sales asset.",
+      "og_image_url": "",
+      "canonical_url": "https://www.impactplus.com/services/web-design-development-optimization",
+      "noindex": false
+    }
+  },
+  {
+    "id": "paid-advertising",
+    "slug": "paid-advertising",
+    "url": "/how-we-help/paid-advertising",
+    "service_name": "Paid Advertising",
+    "headline": "Omni-channel ad management.",
+    "tagline": "Maximize your exposure across a prospect's entire digital journey.",
+    "description_short": "Omni-channel paid search and social management through IMPACT's Swell team.",
+    "description_long": "Swell is IMPACT's paid search and social company specializing in helping brands map their paid media strategy, copywriting, designs, media buying, optimization, and reporting. The best companies don't just run ads to get attention, they run ads that amplify trust. We help you adapt your best content into paid campaigns that maximize your exposure across a prospect's entire digital journey, building credibility while driving results. As a Google, Meta, Amazon, Microsoft, and Semrush partner, our team manages campaigns across every channel that matters.",
+    "features": [
+      {
+        "title": "Paid Media Strategy",
+        "description": "Map a paid media strategy across search and social that aligns with your buyer's journey."
+      },
+      {
+        "title": "Creative & Copywriting",
+        "description": "Ad designs and copywriting built to stop the scroll and amplify trust-building content."
+      },
+      {
+        "title": "Media Buying & Optimization",
+        "description": "Hands-on media buying and ongoing optimization across Google, Meta, Amazon, and Microsoft."
+      },
+      {
+        "title": "Reporting",
+        "description": "Clear reporting that ties ad spend to pipeline and revenue outcomes."
+      }
+    ],
+    "pricing_model": "retainer",
+    "starting_price": "",
+    "topic_ids": [
+      "paid-media",
+      "content-strategy"
+    ],
+    "provider_ids": [
+      "sarah-schreck"
+    ],
+    "success_story_ids": [],
+    "related_evergreen_ids": [],
+    "related_insight_ids": [],
+    "related_offer_ids": [],
+    "faq": [],
+    "is_active": true,
+    "is_featured": false,
+    "seo": {
+      "meta_title": "Omni-channel Ad Management | IMPACT",
+      "meta_description": "Maximize your exposure across a prospect's entire digital journey with an omni-channel ad management.",
+      "og_image_url": "https://www.impactplus.com/hubfs/swell-squad-hero.png",
+      "canonical_url": "https://www.impactplus.com/services/paid-search-social",
+      "noindex": false
+    }
+  },
+  {
+    "id": "self-service-tools",
+    "slug": "self-service-tools",
+    "url": "/how-we-help/websites/self-service-tools",
+    "service_name": "Self-Service Tools",
+    "headline": "Empower buyers with self-service tools on your website.",
+    "tagline": "According to Gartner, 75% of buyers prefer a \"seller-free\" sales experience.",
+    "description_short": "Custom self-service tools (assessments, selectors, configurators, schedulers, and pricing calculators) that let buyers move through the buying process on their own.",
+    "description_long": "Self-service tools empower your prospects to navigate the buying process independently, without the immediate need for a salesperson. By adopting these tools, you cater to modern buyer behavior, meeting their expectations for a seamless, efficient, and autonomous shopping experience. We design and build the five main types of self-service tools and experiences for your website, helping you take advantage of the \"seller-free\" phenomenon that's reshaping how buyers research and buy.",
+    "features": [
+      {
+        "title": "Self-Assessment",
+        "description": "Quizzes and questionnaires that answer the buyer question \"Where do I stand?\""
+      },
+      {
+        "title": "Self-Selection",
+        "description": "Tools that help a buyer answer \"What is the best ____ for me?\""
+      },
+      {
+        "title": "Self-Configurator",
+        "description": "Configurators that make something abstract feel concrete, often used for designing or building products."
+      },
+      {
+        "title": "Self-Scheduling",
+        "description": "Booking tools that let prospects schedule appointments based on their availability and preferences."
+      },
+      {
+        "title": "Self-Pricing",
+        "description": "Pricing calculators that answer the question every buyer wants to know: how much is it?"
+      }
+    ],
+    "pricing_model": "scoped",
+    "starting_price": "",
+    "topic_ids": [
+      "self-selection",
+      "website-conversion"
+    ],
+    "provider_ids": [],
+    "success_story_ids": [],
+    "related_evergreen_ids": [],
+    "related_insight_ids": [],
+    "related_offer_ids": [],
+    "faq": [],
+    "is_active": true,
+    "is_featured": false,
+    "seo": {
+      "meta_title": "Self-Service Tools | IMPACT",
+      "meta_description": "Empower buyers with self-service tools on your website. According to Gartner, 75% of buyers prefer a seller-free sales experience.",
+      "og_image_url": "",
+      "canonical_url": "https://www.impactplus.com/self-service-tools",
+      "noindex": false
+    }
+  },
+  {
+    "id": "learning-center-development",
+    "slug": "learning-center-development",
+    "url": "/how-we-help/websites/learning-center",
+    "service_name": "Learning Center Development",
+    "headline": "Build a Learning Center your buyers actually use.",
+    "tagline": "A curated, organized hub for the educational content buyers need to make a decision.",
+    "description_short": "We help you plan, build, and improve a Learning Center that organizes your best content around buyer questions and the buying journey.",
+    "description_long": "A Learning Center is a curated, organized hub for the educational content buyers actually need to make a decision. Most business blogs mix buyer-focused resources with company news and rely on visitors scrolling or hoping search works. A Learning Center is organized around buyer questions and the buying journey, contains only content that helps buyers decide, and is built for browsing and filtering. At IMPACT, we help businesses plan, build, and improve Learning Centers that make it easier for buyers to find answers and take the next step, with the searchable, easy-to-use, filterable, and personalized experience a great Learning Center requires.",
+    "features": [
+      {
+        "title": "Searchable",
+        "description": "Visitors can type a few words and quickly find what they're looking for."
+      },
+      {
+        "title": "Easy to Use",
+        "description": "An intuitive layout that lets visitors sort content in ways that make sense to them."
+      },
+      {
+        "title": "Segmentable & Filterable",
+        "description": "Filters by topic, content type, and audience so each visitor gets a curated experience."
+      },
+      {
+        "title": "Personalized",
+        "description": "Buyers narrow what they see based on who they are and how they prefer to consume information."
+      }
+    ],
+    "pricing_model": "scoped",
+    "starting_price": "",
+    "topic_ids": [
+      "content-strategy",
+      "website-conversion"
+    ],
+    "provider_ids": [
+      "janet-mendez-latouche"
+    ],
+    "success_story_ids": [],
+    "related_evergreen_ids": [],
+    "related_insight_ids": [],
+    "related_offer_ids": [],
+    "faq": [
+      {
+        "question": "What's the difference between a blog and a Learning Center?",
+        "answer": "A blog is time-ordered with recent posts at the top and often mixes buyer resources with company news. A Learning Center is organized around buyer questions and the buying journey, contains only curated content that helps buyers make decisions, and is built for browsing and filtering."
+      },
+      {
+        "question": "What belongs in a Learning Center?",
+        "answer": "Disruptive content that answers real buyer questions, especially The Big 5: cost and price, problems, comparisons, reviews, and best in class. Company news and team updates can live on a separate blog."
+      }
+    ],
+    "is_active": true,
+    "is_featured": false,
+    "seo": {
+      "meta_title": "What Is a 'Learning Center' and Why Does My Website Need One?",
+      "meta_description": "A learning center organizes your educational content so that your site visitors can find everything they need to become customers.",
+      "og_image_url": "https://www.impactplus.com/hubfs/why-you-need-learning-center%20%281%29.jpg",
+      "canonical_url": "https://www.impactplus.com/learn/what-is-a-learning-center",
+      "noindex": false
+    }
+  }
+]

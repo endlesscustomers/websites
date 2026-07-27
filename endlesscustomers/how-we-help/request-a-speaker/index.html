@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <title>Request a Speaker — Endless Customers</title>
+  <meta name="description" content="Book a world-class Endless Customers speaker for your conference, company event, or industry summit. Marcus Sheridan, Bob Ruffolo, and expert coaches available." />
+  <link rel="canonical" href="https://www.endlesscustomers.com/how-we-help/request-a-speaker/" />
+  <meta property="og:title" content="Request a Speaker — Endless Customers" />
+  <meta property="og:description" content="Book a world-class Endless Customers speaker for your conference, company event, or industry summit." />
+  <meta property="og:url" content="https://www.endlesscustomers.com/how-we-help/request-a-speaker/" />
+  <meta property="og:type" content="website" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.endlesscustomers.com/" },
+      { "@type": "ListItem", "position": 2, "name": "How We Help", "item": "https://www.endlesscustomers.com/how-we-help/" },
+      { "@type": "ListItem", "position": 3, "name": "Request a Speaker", "item": "https://www.endlesscustomers.com/how-we-help/request-a-speaker/" }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* ── Featured speaker card ──────────────────────── */
+    .spk-featured {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      align-items: stretch;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-8);
+    }
+    @media (max-width: 840px) {
+      .spk-featured { grid-template-columns: 1fr; }
+    }
+    .spk-featured__photo {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    @media (max-width: 840px) {
+      .spk-featured__photo { min-height: 280px; max-height: 360px; }
+    }
+    .spk-featured__body {
+      padding: var(--space-9) var(--space-9) var(--space-9) var(--space-8);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (max-width: 840px) {
+      .spk-featured__body { padding: var(--space-6); }
+    }
+    .spk-featured__badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      border: 1.5px solid var(--color-accent);
+      border-radius: 99px;
+      padding: 3px 12px;
+      margin-bottom: var(--space-4);
+    }
+    .spk-featured__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      color: var(--color-heading);
+      margin: 0 0 var(--space-2);
+    }
+    .spk-featured__role {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-5);
+    }
+    .spk-featured__bio {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--color-text);
+      margin-bottom: var(--space-5);
+    }
+    .spk-featured__cred {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    /* ── Speaker tags ───────────────────────────────── */
+    .spk-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
+    }
+    .spk-tag {
+      font-size: 11.5px;
+      font-weight: 600;
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      border-radius: 99px;
+      padding: 4px 11px;
+      color: var(--color-text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── Speaker grid ───────────────────────────────── */
+    .spk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+      gap: var(--space-6);
+    }
+    .spk-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .spk-card__photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .spk-card__body {
+      padding: var(--space-5) var(--space-5) var(--space-6);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .spk-card__name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-heading);
+      margin: 0 0 var(--space-1);
+    }
+    .spk-card__role {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+    .spk-card__bio {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      flex: 1;
+      margin-bottom: var(--space-4);
+    }
+
+    /* ── Topics grid ────────────────────────────────── */
+    .spk-topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-5);
+    }
+    .spk-topic {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .spk-topic__icon {
+      font-size: 26px;
+      color: var(--color-accent);
+      margin-bottom: var(--space-3);
+      line-height: 1;
+    }
+    .spk-topic__name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-heading);
+      margin-bottom: var(--space-2);
+    }
+    .spk-topic__desc {
+      font-size: 0.86rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* ── Process steps ──────────────────────────────── */
+    .spk-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: var(--space-8);
+    }
+    .spk-step {
+      text-align: center;
+    }
+    .spk-step__num {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--color-accent-soft);
+      border: 2px solid var(--color-accent);
+      color: var(--color-accent);
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-4);
+    }
+    .spk-step__title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--color-heading);
+      margin-bottom: var(--space-2);
+    }
+    .spk-step__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── Event type pills ───────────────────────────── */
+    .spk-event-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      justify-content: center;
+    }
+    .spk-event-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 99px;
+      padding: 8px 18px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .spk-event-type i { color: var(--color-accent); font-size: 15px; }
+
+    /* ── CTA band ───────────────────────────────────── */
+    .spk-cta {
+      background: var(--color-surface-alt);
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-16) var(--space-5);
+      text-align: center;
+    }
+    .spk-cta__inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .spk-cta__eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+    }
+    .spk-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--color-heading);
+      margin: 0 0 var(--space-4);
+    }
+    .spk-cta__sub {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      margin: 0 auto var(--space-7);
+    }
+    .spk-cta__actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+    .spk-cta__note {
+      margin-top: var(--space-4);
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body class="page-accent--blue">
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Section sub-nav -->
+  <nav class="subnav subnav--svc" id="subnav" aria-label="Speaker section navigation">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#our-speakers" class="subnav__link">Our Speakers</a>
+        <a href="#topics" class="subnav__link">Topics</a>
+        <a href="#how-it-works" class="subnav__link">How It Works</a>
+        <a href="/lets-talk" class="btn--nav-primary subnav__cta">Request a Speaker <span class="subnav__cta-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="svc-hero" aria-labelledby="spk-hero-headline">
+      <div class="svc-hero__bg" aria-hidden="true"></div>
+      <div class="svc-hero__inner">
+        <div class="subnav__crumb svc-crumb" aria-label="Breadcrumb">
+          <span class="subnav__crumb-trail">
+            <a href="/how-we-help" class="subnav__crumb-root">How We Help</a>
+            <span class="subnav__crumb-sep" aria-hidden="true">&rsaquo;</span>
+          </span>
+          <span class="subnav__crumb-current" aria-current="page">
+            <i class="ti ti-microphone svc-crumb__icon" aria-hidden="true"></i> Request a Speaker
+          </span>
+        </div>
+        <h1 class="svc-hero__headline" id="spk-hero-headline">Bring an Endless Customers Expert to Your Stage.</h1>
+        <p class="svc-hero__sub">Whether you're running a conference, a company offsite, or an industry summit, our speakers deliver sessions that give audiences a real plan — not just inspiration to forget on the flight home.</p>
+        <div class="svc-hero__actions">
+          <a href="/lets-talk" class="btn btn--primary btn--lg">Request a Speaker →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT TYPES -->
+    <section class="section" style="padding-top:var(--space-10);padding-bottom:var(--space-10);" aria-label="Event types we speak at">
+      <div class="container">
+        <div class="spk-event-types">
+          <span class="spk-event-type"><i class="ti ti-building-community" aria-hidden="true"></i> Industry Conferences</span>
+          <span class="spk-event-type"><i class="ti ti-users" aria-hidden="true"></i> Company Offsites</span>
+          <span class="spk-event-type"><i class="ti ti-presentation" aria-hidden="true"></i> Leadership Summits</span>
+          <span class="spk-event-type"><i class="ti ti-rocket" aria-hidden="true"></i> Sales Kickoffs</span>
+          <span class="spk-event-type"><i class="ti ti-device-laptop" aria-hidden="true"></i> Virtual Events</span>
+          <span class="spk-event-type"><i class="ti ti-microphone-2" aria-hidden="true"></i> Podcasts &amp; Panels</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR SPEAKERS -->
+    <section class="section section--alt" id="our-speakers" aria-labelledby="spk-speakers-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Our Speakers</span>
+          <h2 class="section__title section__title--lg" id="spk-speakers-title">Real practitioners. Proven frameworks. No fluff.</h2>
+          <p class="section__subtitle">Every speaker on this roster works with companies every day. What they teach from the stage is the same work they do with clients.</p>
+        </header>
+
+        <!-- Featured: Marcus Sheridan -->
+        <div class="spk-featured">
+          <img
+            class="spk-featured__photo"
+            src="../../assets/images/bio-pictures/marcus-sheridan-2026-headshot.jpeg"
+            alt="Marcus Sheridan — Keynote Speaker, Author &amp; Partner"
+            loading="lazy"
+          />
+          <div class="spk-featured__body">
+            <span class="spk-featured__badge">Premier Keynote Speaker</span>
+            <h3 class="spk-featured__name">Marcus Sheridan</h3>
+            <div class="spk-featured__role">Keynote Speaker, Author &amp; Partner</div>
+            <p class="spk-featured__bio">Marcus is one of the most in-demand keynote speakers in the world on sales, marketing, and trust. His book <em>They Ask, You Answer</em> became a required-reading playbook for thousands of companies — and he brings the same directness and clarity to every stage he steps on. He doesn't just move rooms; he sends people back to their desks knowing exactly what to do differently. The New York Times has called him a "web marketing guru." He has spoken at hundreds of events across more than 35 countries.</p>
+            <div class="spk-tags">
+              <span class="spk-tag">Endless Customers</span>
+              <span class="spk-tag">They Ask, You Answer</span>
+              <span class="spk-tag">AI for Business</span>
+              <span class="spk-tag">Trust-Based Selling</span>
+              <span class="spk-tag">Content Strategy</span>
+            </div>
+            <p class="spk-featured__cred">New York Times–featured &nbsp;·&nbsp; Author, <em>They Ask, You Answer</em> &nbsp;·&nbsp; Spoken in 35+ countries</p>
+            <a href="/lets-talk" class="btn btn--primary">Request Marcus →</a>
+          </div>
+        </div>
+
+        <!-- Other speakers grid -->
+        <div class="spk-grid">
+
+          <!-- Bob Ruffolo -->
+          <div class="spk-card">
+            <img
+              class="spk-card__photo"
+              src="https://www.impactplus.com/hubfs/IMPACT%20Team/Assets/Minyan_Photos/1920px/1920px_Bob_Ruffolo.jpg"
+              alt="Bob Ruffolo"
+              loading="lazy"
+            />
+            <div class="spk-card__body">
+              <div class="spk-card__name">Bob Ruffolo</div>
+              <div class="spk-card__role">CEO &amp; Visionary, Endless Customers</div>
+              <p class="spk-card__bio">Bob founded IMPACT in 2009 and has spent 15+ years helping businesses transform how they market, sell, and lead. As host of the Endless Customers podcast, he speaks on building in-house marketing engines, the intersection of AI and business strategy, and what it actually takes to build a company people want to work for.</p>
+              <div class="spk-tags">
+                <span class="spk-tag">Endless Customers</span>
+                <span class="spk-tag">AI &amp; Marketing</span>
+                <span class="spk-tag">Leadership</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Allison Belles -->
+          <div class="spk-card">
+            <img
+              class="spk-card__photo"
+              src="https://www.impactplus.com/hubfs/IMPACT%20Team/Assets/Minyan_Photos/500px_Square/500px_Square_Allison_Riggs.jpg"
+              alt="Allison Belles"
+              loading="lazy"
+            />
+            <div class="spk-card__body">
+              <div class="spk-card__name">Allison Belles</div>
+              <div class="spk-card__role">Executive Endless Customers Coach</div>
+              <p class="spk-card__bio">Allison coaches sales, marketing, and leadership teams worldwide on building cultures of radical transparency — the kind that turns buyers into advocates. Her sessions move fast, cut through the politics, and give leaders a framework they can put to work the same week.</p>
+              <div class="spk-tags">
+                <span class="spk-tag">They Ask, You Answer</span>
+                <span class="spk-tag">Sales &amp; Marketing Alignment</span>
+                <span class="spk-tag">Culture Change</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vin Gaeta -->
+          <div class="spk-card">
+            <img
+              class="spk-card__photo"
+              src="https://www.impactplus.com/hubfs/IMPACT%20Team/Assets/Minyan_Photos/500px_Square/500px_Square_Vin_Gaeta.jpg"
+              alt="Vin Gaeta"
+              loading="lazy"
+            />
+            <div class="spk-card__body">
+              <div class="spk-card__name">Vin Gaeta</div>
+              <div class="spk-card__role">Executive Endless Customers Coach &amp; Head of Web Strategy</div>
+              <p class="spk-card__bio">Vin has been building revenue-generating websites and training companies on digital strategy since the early days of inbound marketing. His sessions are packed with real client examples and specific tactics audiences can implement immediately — no vague advice, no theory.</p>
+              <div class="spk-tags">
+                <span class="spk-tag">Website Strategy</span>
+                <span class="spk-tag">Digital Marketing</span>
+                <span class="spk-tag">Sales Alignment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jessica Palmeri -->
+          <div class="spk-card">
+            <img
+              class="spk-card__photo"
+              src="https://www.impactplus.com/hubfs/IMPACT%20Team/Assets/Minyan_Photos/500px_Square/500px_Square_Jessica_Palmeri.jpg"
+              alt="Jessica Palmeri"
+              loading="lazy"
+            />
+            <div class="spk-card__body">
+              <div class="spk-card__name">Jessica Palmeri</div>
+              <div class="spk-card__role">Lead HubSpot Trainer</div>
+              <p class="spk-card__bio">With 10+ years of hands-on HubSpot experience, Jessica's sessions cut through the noise on marketing automation, AI-powered workflows, and CRM strategy. Audiences leave knowing exactly what to do in HubSpot next week — not next quarter.</p>
+              <div class="spk-tags">
+                <span class="spk-tag">HubSpot</span>
+                <span class="spk-tag">Marketing Automation</span>
+                <span class="spk-tag">AI Tools</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section class="section" id="topics" aria-labelledby="spk-topics-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Speaking Topics</span>
+          <h2 class="section__title section__title--lg" id="spk-topics-title">From keynotes to workshops — we cover what matters most.</h2>
+          <p class="section__subtitle">Every topic is grounded in real client work. Custom sessions available — share your audience and goals and we'll tailor the talk.</p>
+        </header>
+        <div class="spk-topics">
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-infinity" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">Endless Customers</div>
+            <p class="spk-topic__desc">How service businesses become the most trusted voice in their market, build a marketing engine their team owns and runs in-house, and generate predictable demand — even in the age of AI.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-book-2" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">They Ask, You Answer</div>
+            <p class="spk-topic__desc">The foundational playbook. How radical transparency in content — answering the real questions buyers are asking — builds trust at scale, shortens sales cycles, and makes competitors irrelevant.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-brain" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">AI for Marketing &amp; Sales</div>
+            <p class="spk-topic__desc">Practical AI adoption that actually moves the needle — from content workflows to answer-engine optimization — without losing the human trust that drives buying decisions.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-target" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">Sales &amp; Marketing Alignment</div>
+            <p class="spk-topic__desc">Why most sales and marketing teams talk past each other — and how to build the shared content, processes, and culture that put both teams rowing in the same direction.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-world-www" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">Building a Revenue-Generating Website</div>
+            <p class="spk-topic__desc">What separates websites that convert from ones that just exist — and the specific, actionable improvements any organization can make to turn traffic into real conversations.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">HubSpot &amp; Marketing Technology</div>
+            <p class="spk-topic__desc">How to get real, measurable ROI from HubSpot — CRM hygiene, automation, reporting — and build a tech stack that works for your team rather than complicating things.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-users-group" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">Leadership &amp; Organizational Culture</div>
+            <p class="spk-topic__desc">How to build a culture of transparency and accountability that attracts top talent, empowers teams, and creates the conditions for sustainable, repeatable growth.</p>
+          </div>
+          <div class="spk-topic">
+            <div class="spk-topic__icon"><i class="ti ti-video" aria-hidden="true"></i></div>
+            <div class="spk-topic__name">Video in Sales &amp; Marketing</div>
+            <p class="spk-topic__desc">How companies use video to answer objections, build trust, and accelerate deals — including the specific video types every sales team should be creating right now.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section--alt" id="how-it-works" aria-labelledby="spk-process-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">The Process</span>
+          <h2 class="section__title" id="spk-process-title">How to Book a Speaker</h2>
+          <p class="section__subtitle">Straightforward from inquiry to stage — no lengthy forms, no middlemen.</p>
+        </header>
+        <div class="spk-steps">
+          <div class="spk-step">
+            <div class="spk-step__num">1</div>
+            <div class="spk-step__title">Tell Us About Your Event</div>
+            <p class="spk-step__desc">Share your event date, audience size, topic focus, and any speaker you have in mind. The more context you give us, the better the fit.</p>
+          </div>
+          <div class="spk-step">
+            <div class="spk-step__num">2</div>
+            <div class="spk-step__title">We Match You With the Right Speaker</div>
+            <p class="spk-step__desc">We'll recommend the speaker best suited to your audience and goals, then schedule a brief call to confirm fit and logistics.</p>
+          </div>
+          <div class="spk-step">
+            <div class="spk-step__num">3</div>
+            <div class="spk-step__title">Confirm &amp; Customize</div>
+            <p class="spk-step__desc">We finalize the engagement, tailor the talk to your event's theme and audience, and handle everything leading up to the day of.</p>
+          </div>
+          <div class="spk-step">
+            <div class="spk-step__num">4</div>
+            <div class="spk-step__title">Your Audience Leaves With a Plan</div>
+            <p class="spk-step__desc">Not just motivated — equipped. Every session ends with clear, specific next steps your audience can take back to their organizations immediately.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="spk-cta" aria-labelledby="spk-cta-title">
+      <div class="spk-cta__inner">
+        <div class="spk-cta__eyebrow">Book a Speaker</div>
+        <h2 class="spk-cta__title" id="spk-cta-title">Ready to bring this to your event?</h2>
+        <p class="spk-cta__sub">Tell us about your event and we'll find the right speaker for your audience and goals. Most inquiries get a response within one business day.</p>
+        <div class="spk-cta__actions">
+          <a href="/lets-talk" class="btn btn--primary btn--lg">Request a Speaker →</a>
+        </div>
+        <p class="spk-cta__note">International engagements welcome &nbsp;·&nbsp; Virtual and in-person available</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

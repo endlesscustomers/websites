@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <title>Website Services — Endless Customers</title>
+  <meta name="description" content="Website design, optimization, and self-service tools that turn your website into your best salesperson — built on the Endless Customers system." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <style>
+    .ph-hero { max-width: 720px; margin: 0 auto; padding: clamp(140px, 22vh, 260px) var(--space-5) var(--space-10); text-align: center; }
+    .ph-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: var(--space-3); }
+    .ph-hero__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.05; color: var(--color-heading); margin: 0 0 var(--space-4); }
+    .ph-hero__sub { font-size: 1.125rem; line-height: 1.6; color: var(--color-text-muted); margin: 0 auto var(--space-6); max-width: 560px; }
+    .ph-spokes { max-width: 560px; margin: 0 auto var(--space-8); display: grid; gap: var(--space-2); text-align: left; }
+    .ph-spoke { display: block; padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--color-bg-subtle); text-decoration: none; font-weight: 700; color: var(--color-heading); transition: background-color var(--transition-fast); }
+    .ph-spoke:hover { background: var(--color-bg-surface); }
+    .ph-spoke span { display: block; font-weight: 600; font-size: 0.875rem; color: var(--color-text-muted); margin-top: 2px; }
+    .ph-hero__note { font-size: 13px; color: var(--color-text-muted); opacity: 0.75; margin-top: var(--space-6); text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <main id="main-content">
+    <section class="ph-hero">
+      <div class="ph-hero__eyebrow">How We Help</div>
+      <h1 class="ph-hero__title">Website Services</h1>
+      <p class="ph-hero__sub">Your website should be your best salesperson. These services make it one.</p>
+      <div class="ph-spokes">
+        <a class="ph-spoke" href="/how-we-help/websites/redesign">Website Redesign <span>A site rebuilt around trust and conversion</span></a>
+        <a class="ph-spoke" href="/how-we-help/websites/optimization">Website Optimization Training <span>Your team learns to improve what you have</span></a>
+        <a class="ph-spoke" href="/how-we-help/websites/self-service-tools">Self-Service Tools <span>Pricing calculators, assessments, and estimators</span></a>
+        <a class="ph-spoke" href="/how-we-help/websites/learning-center">Learning Center Development <span>The content hub that powers your sales process</span></a>
+      </div>
+      <p class="ph-hero__note">This hub page is a work in progress — future services (vibe-coded websites, HubSpot CMS migrations) will live here too.</p>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

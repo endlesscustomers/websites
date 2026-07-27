@@ -1,0 +1,46 @@
+{
+  "id": "analytics-and-performance-tracking",
+  "slug": "analytics-and-performance-tracking",
+  "title": "Analytics and Performance Tracking",
+  "nav_title": "Analytics",
+  "status": "published",
+  "topic_id": "right-technology",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Most marketing reports measure activity: how many emails were sent, how many posts were published, how many sessions the website received. These numbers are easy to produce and satisfying to report, but they don't answer the question that matters: is what we're doing generating revenue?\n\nEndless Customers analytics start from outcomes and work backward. What does a closed deal look like? What did that buyer do before they closed? Which content did they consume? Which pages did they visit? Which emails did they open? The answers to those questions reveal where to invest more and where to stop spending time. Activity metrics tell you what happened. Outcome metrics tell you what worked.\n\n## The Metrics That Matter\n\nWebsite traffic is a vanity metric unless you know where it's coming from and what it's doing. The useful version of traffic data is: which pages are buyers visiting before they convert? Which content is driving qualified form submissions, not just pageviews? Which channels bring visitors who actually become customers, and which bring visitors who bounce?\n\nContent performance should be measured by the behavior it drives, not the attention it attracts. An article with 500 views that generates 10 qualified leads is more valuable than an article with 5,000 views that generates none. Track time on page, scroll depth, form completions from content pages, and — most importantly — whether contacts who engaged with a piece of content were more likely to close.\n\nSales pipeline metrics tell you how your process is working. Average deal size, close rate, average sales cycle length, and pipeline velocity all indicate whether the changes you're making to the sales process are producing results. If close rates increase after implementing Assignment Selling, the data confirms what you're doing is working. If they don't move, something in the execution needs to change.\n\n## Setting Up Your Analytics Foundation\n\nGoogle Analytics provides the baseline for website behavior. It shows which pages visitors go to, how long they stay, where they drop off, and where leads come from. Google Search Console shows what searches are bringing people to your site — which is essential for understanding whether your Big 5 content is ranking for the questions buyers are actually asking.\n\nYour CRM provides the sales-side data. When your marketing platform and CRM are connected, you can close the loop between a buyer's first content interaction and their eventual close — which is where the most valuable attribution insights come from. A contact who read your pricing article, watched your 80% video, and then closed in half the average time is telling you something important about what your best content does for the sales process.\n\n## Reporting Cadence\n\nData without a review cadence accumulates without improving anything. Monthly reviews of content performance, lead quality, and pipeline metrics give teams enough data to spot trends without drowning in day-to-day noise. Quarterly reviews should assess whether the strategy is moving the outcome metrics that matter — and identify what to prioritize in the next quarter. Annual reviews connect the full year's activity to revenue impact and inform next year's investment decisions.",
+  "excerpt": "Most businesses track activity. Endless Customers businesses track outcomes. The difference determines whether your data leads to better decisions.",
+  "what_youll_learn": [
+    "Most marketing reports measure activity. Endless Customers analytics measure outcomes — the behaviors that actually predict revenue.",
+    "Start from closed deals and work backward. Which content did those buyers consume? Which pages did they visit? That's where your analytics focus should be.",
+    "Content performance should be measured by the behavior it drives: qualified leads generated, content engagement before close, and contribution to pipeline — not just pageviews.",
+    "Google Analytics and Google Search Console provide the essential website analytics foundation. Your CRM provides the sales-side data that closes the loop to revenue.",
+    "When marketing and CRM are connected, you can attribute closed revenue to specific content — revealing which articles and videos are most valuable to the sales process.",
+    "Data without a review cadence accumulates without improving anything. Monthly, quarterly, and annual reviews create the habit of acting on what the data shows."
+  ],
+  "key_questions": [
+    {
+      "question": "What is the most important metric for an Endless Customers business to track?",
+      "answer": "Revenue influenced by content. Specifically: are buyers who engage with your content before their first sales conversation more likely to close, and do they close faster? This metric — sometimes called content-assisted revenue or content-influenced pipeline — is the most direct evidence that your Endless Customers strategy is working."
+    },
+    {
+      "question": "How do we connect marketing data to sales outcomes?",
+      "answer": "The connection happens through your CRM. When your marketing platform (HubSpot, for example) and your CRM are the same system or are tightly integrated, every content interaction a contact has is recorded on their record. When that contact closes, you can look back at every article they read, every video they watched, and every email they opened. That full picture is what allows you to identify which content actually influences deals."
+    },
+    {
+      "question": "We have a lot of data but don't know what to focus on. Where do we start?",
+      "answer": "Start with the question: which of our content is most consumed by contacts who eventually became customers? Pull the list of your last 20 closed deals from your CRM, look at which content each contact engaged with before closing, and identify what shows up most often. Those are your highest-performing assets — the ones worth promoting, updating, and building more of."
+    },
+    {
+      "question": "How often should we review our analytics?",
+      "answer": "Monthly for content performance and lead quality. Quarterly for pipeline metrics and strategy-level decisions. Annually for full revenue attribution and next-year planning. The specific cadence matters less than having one at all — the most common analytics failure is collecting data and never reviewing it in a structured way."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-28",
+  "last_updated": "2026-04-28",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

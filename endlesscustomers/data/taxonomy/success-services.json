@@ -1,0 +1,32 @@
+[
+  {
+    "id": "endless-customers-coaching",
+    "label": "Endless Customers Coaching",
+    "slug": "endless-customers-coaching"
+  },
+  {
+    "id": "they-ask-you-answer",
+    "label": "They Ask, You Answer",
+    "slug": "they-ask-you-answer"
+  },
+  {
+    "id": "sales-coaching",
+    "label": "Sales Coaching & Training",
+    "slug": "sales-coaching-training"
+  },
+  {
+    "id": "web-optimization",
+    "label": "Web Design & Optimization",
+    "slug": "web-design-optimization"
+  },
+  {
+    "id": "hubspot-enablement",
+    "label": "HubSpot Training & Enablement",
+    "slug": "hubspot-training-enablement"
+  },
+  {
+    "id": "indispensable-coaching",
+    "label": "Indispensable Coaching",
+    "slug": "indispensable-coaching"
+  }
+]

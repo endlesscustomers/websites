@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn IA Wireframes — Overview</title>
+<link rel="stylesheet" href="wf.css">
+</head>
+<body>
+<div class="ws-bar">
+  <b>LEARN IA WIREFRAMES</b>
+  <a class="on" href="index.html">Overview</a>
+  <a href="learn-home.html">Learn Front Door</a>
+  <a href="dropdown.html">Nav Dropdown</a>
+  <a href="topics.html">Topic Panel</a>
+  <a href="topic-page.html">Topic Hub Page</a>
+  <a href="webinars.html">Webinars + Subnav</a>
+  <a href="playbook.html">The Playbook</a>
+</div>
+
+<div class="page">
+  <div class="page-title">Reorganizing Learn around the user's job, not our content types</div>
+  <p class="page-sub">Low-fi wireframes only — boxes and labels, zero visual design. The point is structure: what goes where and why. Yellow notes explain the reasoning on every screen.</p>
+
+  <div class="wf">
+    <div class="wf-label">The organizing principle</div>
+    <div class="grid g3">
+      <div class="box stack">
+        <div class="t-mid">1 · Learn the System</div>
+        <div class="t-sm">Depth, in order. For the newcomer ("what is this?") and the student working through it seriously.</div>
+        <div><span class="pill">Start Here</span> <span class="pill">The Playbook</span> <span class="pill">Book</span> <span class="pill">Academy</span></div>
+      </div>
+      <div class="box stack">
+        <div class="t-mid">2 · Get an Answer</div>
+        <div class="t-sm">A problem, today, any format. The biggest segment — the They Ask, You Answer audience by definition.</div>
+        <div><span class="pill">Search</span> <span class="pill">Topics</span> <span class="pill">Tools &amp; Templates</span></div>
+      </div>
+      <div class="box stack">
+        <div class="t-mid">3 · Stay Current</div>
+        <div class="t-sm">"What's new since last time?" Returning subscribers and fans.</div>
+        <div><span class="pill">Latest</span> <span class="pill">Webinars</span> <span class="pill">Podcast</span> <span class="pill">Subscribe</span></div>
+      </div>
+    </div>
+    <div class="note"><span class="tag">!</span> Every page, label, and nav item belongs to exactly one job. The old structure (Knowledge Base / Insights / Podcast / Webinars / Tools) mapped to our CMS, not to anyone's intent.</div>
+  </div>
+
+  <div class="wf">
+    <div class="wf-label">What changed from the current structure</div>
+    <ul class="legend">
+      <li><b>Knowledge Base → "The Playbook."</b>&nbsp;Same content, honest name: the system, in order, free. Sets up "read the book or work the Playbook online."</li>
+      <li><b>Recent Insights → "Latest."</b>&nbsp;Becomes one feed: new articles + new podcast episodes + announced webinars. Fixes the KB-vs-Insights confusion (a first-time visitor can't tell two kinds of "articles" apart).</li>
+      <li><b>"What Is Endless Customers" stops being a menu item.</b>&nbsp;It becomes the front of the Start Here journey.</li>
+      <li><b>Book &amp; Academy demoted from siblings to destinations.</b>&nbsp;They're where the depth track leads, not competing menu entries.</li>
+      <li><b>Topics + Search promoted to primary navigation.</b>&nbsp;~100 topics, two levels (≈12 parents), type-ahead or drill-down, cross-content topic pages. HubDB multilevel dynamic pages handle this natively.</li>
+      <li><b>Learn subnav has no CTA.</b>&nbsp;Main nav keeps Diagnostic + Let's Talk at full strength (services pages keep their conversion-style subnav — different job).</li>
+    </ul>
+  </div>
+
+  <div class="wf">
+    <div class="wf-label">The screens</div>
+    <div class="idx">
+      <a href="learn-home.html"><div class="card"><div class="meta">Screen 01</div><div class="title">/learn — the front door</div><div class="sub">A mode router: search hero, Start Here strip, topic grid, Latest feed with next webinar pinned. One page, four doors.</div></div></a>
+      <a href="dropdown.html"><div class="card"><div class="meta">Screen 02</div><div class="title">Main nav — Learn dropdown</div><div class="sub">Reorganized from format silos into the three jobs. Diagnostic stays featured.</div></div></a>
+      <a href="topics.html"><div class="card"><div class="meta">Screen 03</div><div class="title">Topic panel (interactive demo)</div><div class="sub">How 100 topics stay navigable: type-ahead OR drill down through 12 parents. Try it — it works.</div></div></a>
+      <a href="topic-page.html"><div class="card"><div class="meta">Screen 04</div><div class="title">Topic hub page</div><div class="sub">/learn/topics/[slug] — every format on one subject, in one place. The Solver's landing page and the SEO/LLMO play.</div></div></a>
+      <a href="webinars.html"><div class="card"><div class="meta">Screen 05</div><div class="title">Webinars with the shared subnav</div><div class="sub">The shared Learn subnav in context: crumb, sibling links, search slot, no CTA. Upcoming = events, On-demand = library.</div></div></a>
+      <a href="playbook.html"><div class="card"><div class="meta">Screen 06</div><div class="title">The Playbook (was: Knowledge Base)</div><div class="sub">The depth track: framework sections as an ordered curriculum, learning paths, book/Academy as next steps.</div></div></a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

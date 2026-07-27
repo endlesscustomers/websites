@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Team: Find &amp; Become a Coach (mock)</title>
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+:root{
+  --heading:#0F172A; --text:#475569; --muted:#5B6B7F; --strong:#1E293B;
+  --blue:#0a6cff; --border:#E2E8F0; --border-strong:#CBD5E1;
+  --surface:#F8FAFC; --subtle:#F1F5F9; --ink:#0A0F1F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#E9EDF2;color:var(--text);
+  -webkit-font-smoothing:antialiased;padding:40px 28px 80px;line-height:1.5;}
+.wrap{max-width:1180px;margin:0 auto;}
+h1{font-family:'General Sans';font-weight:700;font-size:27px;letter-spacing:-.02em;color:var(--heading);margin-bottom:10px;}
+.lede{max-width:880px;font-size:15px;color:var(--muted);margin-bottom:20px;}
+.lede b{color:var(--strong);font-weight:600;}
+
+.tab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--heading);
+  background:var(--surface);border:1px solid var(--border);border-bottom:none;
+  padding:9px 16px;border-radius:12px 12px 0 0;position:relative;top:1px;}
+.tab i{font-size:14px;color:var(--muted);}
+.panel{background:#fff;border:1px solid var(--border);border-radius:0 18px 18px 18px;
+  box-shadow:0 30px 70px -34px rgba(15,23,42,.4);padding:22px 26px 18px;}
+
+.dd-parent{display:inline-flex;align-items:center;gap:6px;font-family:'General Sans';font-weight:600;
+  font-size:13px;color:var(--strong);text-decoration:none;margin-bottom:16px;}
+.dd-parent .arr{color:var(--muted);}
+
+.grid{display:grid;grid-template-columns:1.55fr 1fr;gap:0;}
+.col{padding:0 26px;border-left:1px solid var(--border);}
+.col:first-child{padding-left:4px;border-left:none;}
+.col:last-child{padding-right:4px;}
+.label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:14px;display:block;}
+
+/* LEFT: the two prominent doors */
+.door{display:flex;gap:14px;align-items:flex-start;padding:16px;border:1px solid var(--border);
+  border-radius:14px;text-decoration:none;background:var(--surface);transition:border-color .15s, box-shadow .15s, background .15s;}
+.door + .door{margin-top:12px;}
+.door:hover{border-color:var(--border-strong);background:#fff;box-shadow:0 14px 30px -20px rgba(15,23,42,.35);}
+.door .ico{width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:21px;color:var(--blue);flex-shrink:0;}
+.door .dt{font-family:'General Sans';font-weight:700;font-size:18px;color:var(--heading);letter-spacing:-.02em;
+  line-height:1.2;margin-bottom:5px;}
+.door .ds{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:11px;}
+.door .links{display:flex;flex-wrap:wrap;align-items:center;gap:7px 0;}
+.door .links a{font-size:12.5px;font-weight:600;color:var(--blue);text-decoration:none;}
+.door .links .sep{color:var(--border-strong);margin:0 10px;font-size:12px;}
+
+/* RIGHT: company cluster (title + sub items) */
+.item{display:flex;gap:12px;align-items:flex-start;padding:9px 10px;border-radius:10px;text-decoration:none;transition:background .15s;}
+.item:hover{background:var(--subtle);}
+.item i{font-size:18px;color:var(--muted);width:21px;text-align:center;flex-shrink:0;margin-top:2px;}
+.item .it{font-size:14px;font-weight:600;color:var(--strong);line-height:1.25;}
+.item .is{font-size:12px;color:var(--muted);line-height:1.4;margin-top:2px;}
+
+/* badge, matches the live nav's .dd-badge-new */
+.badge-new{display:inline-flex;align-items:center;font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;
+  line-height:1.45;letter-spacing:.04em;text-transform:none;background:rgba(10,108,255,.08);color:var(--blue);
+  border-radius:999px;padding:1px 7px;margin-left:7px;flex-shrink:0;}
+
+/* bottom strip: the advisor concierge on-ramp */
+.strip{display:flex;align-items:center;gap:10px;margin-top:18px;padding:13px 14px 4px;border-top:1px solid var(--border);}
+.strip a{text-decoration:none;display:inline-flex;align-items:center;gap:9px;font-size:13px;color:var(--strong);font-weight:500;}
+.strip a i{color:var(--blue);font-size:17px;}
+.strip a b{color:var(--heading);font-weight:600;}
+
+/* annotations */
+.changes{margin-top:34px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 24px;max-width:1180px;}
+.changes h3{font-family:'General Sans';font-weight:600;font-size:16px;color:var(--heading);margin-bottom:12px;}
+.changes ul{list-style:none;display:grid;gap:11px;}
+.changes li{font-size:13.5px;color:var(--text);line-height:1.55;padding-left:22px;position:relative;}
+.changes li::before{content:"\2713";position:absolute;left:0;top:0;color:#067647;font-weight:700;}
+.changes li b{color:var(--heading);font-weight:600;}
+.changes code{font-family:ui-monospace,monospace;font-size:12px;background:var(--subtle);padding:1px 5px;border-radius:5px;color:var(--strong);}
+.flag{margin-top:14px;font-size:13px;color:var(--muted);padding-top:13px;border-top:1px dashed var(--border);line-height:1.6;}
+.flag b{color:var(--strong);}
+
+/* where each door leads, lightweight page wireframes */
+.where{margin-top:30px;}
+.where > h2{font-family:'General Sans';font-weight:700;font-size:18px;color:var(--heading);margin-bottom:4px;letter-spacing:-.01em;}
+.where > p{font-size:13.5px;color:var(--muted);margin-bottom:16px;max-width:880px;}
+.pages{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.pg{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 20px;}
+.pg .pgh{font-family:'General Sans';font-weight:600;font-size:15px;color:var(--heading);margin-bottom:3px;}
+.pg .pgu{font-family:ui-monospace,monospace;font-size:11.5px;color:var(--blue);margin-bottom:14px;}
+.wf{display:grid;gap:8px;}
+.blk{border:1px dashed var(--border-strong);border-radius:9px;padding:9px 12px;background:var(--surface);}
+.blk b{font-family:'General Sans';font-weight:600;font-size:12.5px;color:var(--strong);display:block;margin-bottom:2px;}
+.blk span{font-size:11.5px;color:var(--muted);line-height:1.45;display:block;}
+.blk.feat{background:rgba(10,108,255,.05);border-color:rgba(10,108,255,.3);border-style:solid;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tags em{font-style:normal;font-size:10.5px;font-weight:600;color:var(--muted);background:#fff;border:1px solid var(--border);border-radius:999px;padding:2px 8px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Our Team: Find &amp; Become a Coach</h1>
+  <p class="lede">Same prominent-left, supporting-right shape we just built for How We Help. The <b>left holds two clear doors</b>, one for prospects and one for the coaches, specialists, and advisors we're recruiting as contractors. The company story moves to a tidy <b>supporting column on the right</b>. The nav label stays "Our Team."</p>
+
+  <span class="tab"><i class="ti ti-users-group"></i> Our Team <i class="ti ti-chevron-down" style="font-size:12px"></i></span>
+  <div class="panel">
+    <a class="dd-parent">Our Team <span class="arr">→</span></a>
+
+    <div class="grid">
+
+      <!-- LEFT: two prominent doors -->
+      <div class="col">
+        <span class="label">Work With Us</span>
+
+        <a class="door">
+          <span class="ico"><i class="ti ti-users-group"></i></span>
+          <div>
+            <div class="dt">Meet the Coaches &amp; Specialists</div>
+            <div class="ds">One coach quarterbacks your whole journey, like a lead strategist, and pulls in specialists (paid media, web, HubSpot) for the work that needs them.</div>
+            <div class="links">
+              <a>Browse Coaches</a><span class="sep">·</span>
+              <a>Browse Specialists</a><span class="sep">·</span>
+              <a>Talk to an Advisor</a>
+            </div>
+          </div>
+        </a>
+
+        <a class="door">
+          <span class="ico"><i class="ti ti-briefcase"></i></span>
+          <div>
+            <div class="dt">Become a Coach or Advisor</div>
+            <div class="ds">Bring the Endless Customers system to businesses as a contractor, the way Vistage brings on Chairs. We're continuously recruiting coaches, specialists, and advisors.</div>
+            <div class="links">
+              <a>Coach</a><span class="sep">·</span>
+              <a>Specialist</a><span class="sep">·</span>
+              <a>Advisor <span class="badge-new">Recruiting Now</span></a>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- RIGHT: supporting company cluster -->
+      <div class="col">
+        <span class="label">The Company</span>
+        <a class="item">
+          <i class="ti ti-compass"></i>
+          <div><div class="it">Our Story, Vision &amp; Values</div><div class="is">Where we came from and what we stand for</div></div>
+        </a>
+        <a class="item">
+          <i class="ti ti-users"></i>
+          <div><div class="it">Meet the Full Team</div><div class="is">Leadership, specialists, and the people behind the scenes</div></div>
+        </a>
+        <a class="item">
+          <i class="ti ti-award"></i>
+          <div><div class="it">Awards &amp; Recognition</div><div class="is">Industry honors, dated and sourced</div></div>
+        </a>
+        <a class="item">
+          <i class="ti ti-heart-handshake"></i>
+          <div><div class="it">Careers</div><div class="is">Open staff roles. Hiring runs through Workable</div></div>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM strip: the advisor concierge, the human front door to the whole funnel -->
+    <div class="strip">
+      <a><i class="ti ti-messages"></i><span>New here? <b>Start with an advisor</b>, who learns about your business and connects you to the right coach &rarr;</span></a>
+    </div>
+
+  </div>
+
+  <!-- what changed -->
+  <div class="changes">
+    <h3>How I read your notes, and what each became</h3>
+    <ul>
+      <li><b>Two doors, not a numbered path.</b> How We Help's left is a 1-2-3 journey for one audience. Here the two left items are <b>parallel doors for opposite audiences</b> (a prospect choosing a coach, and talent wanting to join), so they're equal-weight cards with no numbers and no implied sequence.</li>
+      <li><b>The coach is the quarterback.</b> Door one leads with your GP-and-specialist model: one coach owns the journey, specialists come in for specific work. That sells a real advantage over a solo consultant or a faceless agency, right in the nav.</li>
+      <li><b>"Become a Coach or Advisor," your wording.</b> Specialists still get a track on the page, but the label leads with coach and advisor since those are the priority recruits. The contractor framing (Vistage Chairs, Petra coaches) is set in the sub-copy.</li>
+      <li><b>Advisor is flagged "Recruiting Now."</b> Since business development is the heavy current focus, the advisor track carries the only badge in the menu, the same <code>dd-badge-new</code> component used live elsewhere.</li>
+      <li><b>The advisor owns the first conversation, not a grid card.</b> Rather than tagging advisors as "advisor" in the coaches directory (confusing for a prospect), they surface at the conversion moment: the bottom strip concierge here, and the intro-call CTA on the page. Their visibility goes up, the directory stays clean.</li>
+      <li><b>The full team keeps its own home.</b> "Meet the Full Team" leads the Company cluster on the right, the existing <code>/team/meet-the-team</code> repurposed as the complete roster (leadership, specialists, marketing &amp; ops, everyone) with its role tabs intact. The new <code>/coaches</code> door is the focused, bookable prospect cut of that roster. Leadership and back-office credibility content sits where it belongs, with the company info, not on the buying door.</li>
+      <li><b>Right side is the supporting "Company" cluster.</b> Meet the Full Team, Our Story / Vision &amp; Values, Awards, and Careers. Careers is staff jobs (Workable) and is deliberately separate from the contractor recruiting door on the left.</li>
+    </ul>
+    <p class="flag"><b>Open decisions for you.</b> (1) <b>What we call the contractors in public copy.</b> Vistage has "Chairs," EOS has "Implementers." Are yours "Certified Endless Customers Coaches / Advisors," or something shorter? It sets the tone on both doors. (2) <b>URLs.</b> Proposed: <code>/coaches</code> for Meet the Coaches &amp; Specialists, <code>/team/meet-the-team</code> stays as the full-team roster, <code>/team/become-a-coach</code> for the recruiting page, and Careers stays at <code>/team/join-the-team</code> (or renamed to <code>/careers</code>). (3) <b>Data prerequisite.</b> Find-a-Coach needs real <code>booking_url</code>, <code>specialties</code>, <code>location</code>, and a new <code>industries_served</code> tag per coach. Today none of the nine have booking links. I can scaffold the fields and placeholders so we can build, then you collect real values before launch.</p>
+  </div>
+
+  <!-- where each door leads -->
+  <div class="where">
+    <h2>Where each door leads</h2>
+    <p>A first look at the two destination pages so the system reads end to end. These are rough wireframes, not designs, just enough to see how the dropdown pays off.</p>
+    <div class="pages">
+
+      <div class="pg">
+        <div class="pgh">Meet the Coaches &amp; Specialists</div>
+        <div class="pgu">/coaches</div>
+        <div class="wf">
+          <div class="blk"><b>Hero</b><span>"Meet the coaches who'll be in your corner." The quarterback-plus-bench promise.</span></div>
+          <div class="blk"><b>Filter bar</b><span>Find your fit by:</span>
+            <div class="tags"><em>Specialty</em><em>Industry served</em><em>Location</em><em>Virtual / in-person</em></div>
+          </div>
+          <div class="blk feat"><b>Coaches (featured)</b><span>Larger named cards, each with a "Book an intro call" CTA. The headline tier.</span></div>
+          <div class="blk"><b>Specialists (supporting band)</b><span>Paid media, web, HubSpot. The bench you pull in, shown beneath the coaches.</span></div>
+          <div class="blk feat"><b>Talk to an advisor</b><span>Named human + booking. "Not sure who you need? Start here and we'll match you."</span></div>
+          <div class="blk"><b>Footer link</b><span>"Looking for leadership or the full team?" cross-links to /team/meet-the-team.</span></div>
+        </div>
+      </div>
+
+      <div class="pg">
+        <div class="pgh">Become a Coach or Advisor</div>
+        <div class="pgu">/team/become-a-coach</div>
+        <div class="wf">
+          <div class="blk"><b>Hero</b><span>Contractor pitch to experienced operators. Leverage and income, not a job listing.</span></div>
+          <div class="blk feat"><b>Three tracks</b><span>Coach (own client journeys) · Specialist (deliver your craft) · Advisor (do the talk, network, connect). Advisor flagged as the priority right now.</span></div>
+          <div class="blk"><b>Why coach with EC</b><span>Proven system, established brand, inbound pipeline, peer community, the conference stage, certification.</span></div>
+          <div class="blk"><b>The economics &amp; the freedom</b><span>How contractors are engaged and paid, with the flexibility of running your own book.</span></div>
+          <div class="blk feat"><b>Apply</b><span>Tell us about yourself. Routes by track. Always-on, since recruiting is continuous.</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

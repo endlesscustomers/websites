@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    /* Conference pages always render dark */
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+  <title>Endless Customers Live — The Conference | Endless Customers</title>
+  <meta name="description" content="Endless Customers Live is the only in-person event built entirely around the Endless Customers system. See upcoming dates, find out what to expect, and watch past recordings." />
+  <meta property="og:title"       content="Endless Customers Live — The Conference" />
+  <meta property="og:description" content="The only in-person event 100% focused on Endless Customers. See upcoming dates in Hartford and Chicago." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="../assets/images/endless-customers-live/chicago-2026/ballroom-wide-1.jpg" />
+
+  <!-- Upcoming events structured data — both dates, machine-readable -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Endless Customers Live — Upcoming Events",
+    "itemListElement": [
+      {
+        "@type": "Event",
+        "position": 1,
+        "name": "Endless Customers Live 2026 — Hartford",
+        "startDate": "2026-10-05T11:30:00-04:00",
+        "endDate": "2026-10-07T12:30:00-04:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "url": "https://www.endlesscustomers.com/live/hartford-2026",
+        "image": "https://www.endlesscustomers.com/assets/images/endless-customers-live/hartford-2026/og-graphic.png",
+        "location": { "@type": "Place", "name": "Hartford Marriott Downtown", "address": { "@type": "PostalAddress", "streetAddress": "200 Columbus Blvd", "addressLocality": "Hartford", "addressRegion": "CT", "postalCode": "06103", "addressCountry": "US" } },
+        "organizer": { "@type": "Organization", "@id": "https://www.endlesscustomers.com/#organization", "name": "Endless Customers" },
+        "offers": { "@type": "AggregateOffer", "url": "https://www.accelevents.com/e/endless-customers-live-2026-hartford", "priceCurrency": "USD", "lowPrice": "799", "highPrice": "1299", "availability": "https://schema.org/InStock" }
+      },
+      {
+        "@type": "Event",
+        "position": 2,
+        "name": "Endless Customers Live 2027 — Chicago",
+        "startDate": "2027-04-05T11:30:00-05:00",
+        "endDate": "2027-04-07T12:30:00-05:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "url": "https://www.endlesscustomers.com/live/chicago-2027",
+        "image": "https://www.endlesscustomers.com/assets/images/endless-customers-live/chicago-2026/ballroom-wide-3.jpg",
+        "location": { "@type": "Place", "name": "Downtown Chicago — venue announced Fall 2026", "address": { "@type": "PostalAddress", "addressLocality": "Chicago", "addressRegion": "IL", "addressCountry": "US" } },
+        "organizer": { "@type": "Organization", "@id": "https://www.endlesscustomers.com/#organization", "name": "Endless Customers" },
+        "offers": { "@type": "AggregateOffer", "url": "https://www.accelevents.com/e/endless-customers-live-2027-chicago", "priceCurrency": "USD", "lowPrice": "649", "highPrice": "999", "availability": "https://schema.org/InStock", "priceValidUntil": "2026-12-31" }
+      }
+    ]
+  }
+  </script>
+
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/main.css?v=2026060929r" />
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #main-content section[id] { scroll-margin-top: 120px; }
+  </style>
+  <style>
+  /* ===== EC Live overview page-scoped styles ===== */
+  .eclo-hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#0b1020;color:#fff;}
+  .eclo-hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;}
+  .eclo-hero__scrim{position:absolute;inset:0;background:radial-gradient(120% 120% at 70% 20%,rgba(227,97,183,.20),transparent 45%),linear-gradient(180deg,rgba(11,16,32,.45),rgba(11,16,32,.85));}
+  /* Top padding clears the fixed nav (79px) + sub-nav pill (70px @ 91px) with breathing room */
+  .eclo-hero__inner{position:relative;z-index:2;max-width:var(--max-width);margin:0 auto;padding:calc(var(--nav-height) + 100px) var(--space-6) var(--space-16);width:100%;text-align:center;transform:translateY(-84px);} /* raised 24px — June 2026, per Bob */
+  .eclo-hero__logo{height:120px;width:auto;margin:0 auto var(--space-6);}
+  .eclo-hero__headline{font-family:var(--font-display);font-weight:800;letter-spacing:var(--tracking-display);line-height:var(--leading-display);font-size:var(--headline-medium);max-width:22ch;margin:0 auto var(--space-5);}
+  .eclo-hero__sub{font-size:var(--text-lg);color:rgba(255,255,255,.8);max-width:62ch;margin:0 auto var(--space-8);}
+  .eclo-hero__actions{display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;justify-content:center;}
+  .eclo-hero__actions .btn--ghost{color:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);}
+  .eclo-hero__actions .btn--ghost:hover{color:#fff;box-shadow:inset 0 0 0 1px #fff;}
+
+  /* Upcoming event cards */
+  .eclo-events{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--space-6);max-width:980px;margin:0 auto;}
+  .eclo-event{display:flex;flex-direction:column;background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .15s ease,box-shadow .15s ease;}
+  .eclo-event:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .eclo-event__img{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;}
+  .eclo-event__img img{width:100%;height:100%;object-fit:cover;display:block;}
+  .eclo-event__badge{position:absolute;top:var(--space-4);left:var(--space-4);background:rgba(11,16,32,.85);color:#fff;font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .75rem;border-radius:var(--radius-full);backdrop-filter:blur(4px);}
+  .eclo-event__body{padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-3);flex:1;}
+  .eclo-event__date{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:var(--text-sm);color:var(--color-blue);}
+  .eclo-event__city{font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);color:var(--color-heading);letter-spacing:var(--tracking-display);margin:0;}
+  .eclo-event__desc{color:var(--color-text-muted);font-size:var(--text-base);line-height:1.55;margin:0;flex:1;}
+  .eclo-event__cta{margin-top:var(--space-2);}
+
+  /* Explore router cards — the hub routes, the spokes convert */
+  .eclo-route{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-5);max-width:1060px;margin:0 auto;}
+  .eclo-rcard{display:flex;flex-direction:column;background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .15s ease,box-shadow .15s ease;}
+  .eclo-rcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .eclo-rcard__img{aspect-ratio:16/9;overflow:hidden;}
+  .eclo-rcard__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+  .eclo-rcard:hover .eclo-rcard__img img{transform:scale(1.04);}
+  .eclo-rcard__body{padding:var(--space-5) var(--space-5) var(--space-6);display:flex;flex-direction:column;gap:var(--space-2);flex:1;}
+  .eclo-rcard__title{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);color:var(--color-heading);margin:0;}
+  .eclo-rcard__desc{color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.55;margin:0;flex:1;}
+  .eclo-rcard__cta{font-weight:600;font-size:var(--text-sm);color:var(--color-blue);}
+
+  </style>
+</head>
+<body class="page-accent--conf">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Section sub-nav: breadcrumb (left) + in-page anchors (right, scroll-spy) -->
+  <nav class="subnav subnav--svc" id="subnav" aria-label="Section navigation">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#dates" class="subnav__link is-active">Upcoming Dates</a>
+        <a href="#explore" class="subnav__link">Explore</a>
+        <a href="/live/hartford-2026" class="btn--nav-primary subnav__cta">Register Now <span class="subnav__cta-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section data-subnav-hero class="eclo-hero" aria-labelledby="eclo-hero-headline">
+      <video class="eclo-hero__video" autoplay muted loop playsinline poster="../assets/images/endless-customers-live/hartford-2026/hero-video-placeholder.png">
+        <source src="../assets/images/endless-customers-live/hartford-2026/hero-video.mp4" type="video/mp4" />
+      </video>
+      <div class="eclo-hero__scrim" aria-hidden="true"></div>
+      <div class="eclo-hero__inner">
+        <img class="eclo-hero__logo" src="../assets/images/endless-customers-live/ec-live-logo-white.png" alt="Endless Customers Live" />
+        <h1 class="eclo-hero__headline headline-short" id="eclo-hero-headline">One System. Three Days. Your Entire Team Aligned.</h1>
+        <p class="eclo-hero__sub">Endless Customers Live is the only in-person event built entirely around the Endless Customers system. Business owners, marketers, and sales pros come together to master the framework that attracts better buyers and drives unstoppable growth.</p>
+        <div class="eclo-hero__actions">
+          <a href="#dates" class="btn btn--primary btn--lg">See Upcoming Dates →</a>
+          <a href="/live/experience/" class="btn btn--ghost btn--lg">See What It's Like</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING DATES -->
+    <section class="section" id="dates" aria-labelledby="eclo-dates-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Upcoming Dates</span>
+          <h2 class="section__title section__title--lg" id="eclo-dates-title">Choose Your Event</h2>
+          <p class="section__subtitle">Two chances to experience Endless Customers Live. Same proven system, two great cities.</p>
+        </header>
+        <div class="eclo-events">
+          <article class="eclo-event">
+            <a href="/live/hartford-2026" class="eclo-event__img" aria-hidden="true" tabindex="-1">
+              <img src="../assets/images/endless-customers-live/chicago-2026/marcus-keynote-card.jpg" alt="" />
+              <span class="eclo-event__badge">Registration Open</span>
+            </a>
+            <div class="eclo-event__body">
+              <div class="eclo-event__date">October 5–7, 2026</div>
+              <h3 class="eclo-event__city">Hartford, CT</h3>
+              <p class="eclo-event__desc">Three days at the Hartford Marriott Downtown — pre-event workshops, a full day of main-stage training, breakout sessions, an AI-focused final day, and the legendary casino night.</p>
+              <div class="eclo-event__cta"><a href="/live/hartford-2026" class="btn btn--primary">Learn More &amp; Register →</a></div>
+            </div>
+          </article>
+          <article class="eclo-event">
+            <a href="/live/chicago-2027" class="eclo-event__img" aria-hidden="true" tabindex="-1">
+              <img src="../assets/images/endless-customers-live/chicago-2026/speaker-blue-stage-card.jpg" alt="" />
+              <span class="eclo-event__badge">Early Bird</span>
+            </a>
+            <div class="eclo-event__body">
+              <div class="eclo-event__date">April 5–7, 2027</div>
+              <h3 class="eclo-event__city">Chicago, IL</h3>
+              <p class="eclo-event__desc">Back by demand after a packed 2026 event. Same immersive three-day format — lock in early-bird pricing while we finalize the venue and agenda.</p>
+              <div class="eclo-event__cta"><a href="/live/chicago-2027" class="btn btn--primary">Learn More &amp; Register →</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORE — the hub routes; the spokes convert -->
+    <section class="section section--alt" id="explore" aria-labelledby="eclo-explore-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Explore</span>
+          <h2 class="section__title section__title--lg" id="eclo-explore-title">Everything Endless Customers Live</h2>
+          <p class="section__subtitle">No 40-track agendas. No vendor pitch parade. One room, one system, and a clear plan your whole team leaves with — here's where to dig in.</p>
+        </header>
+        <div class="eclo-route">
+          <a href="/live/experience/" class="eclo-rcard">
+            <div class="eclo-rcard__img"><img src="../assets/images/endless-customers-live/chicago-2026/stage-neon.jpg" alt="" loading="lazy" /></div>
+            <div class="eclo-rcard__body">
+              <h3 class="eclo-rcard__title">What It's Like</h3>
+              <p class="eclo-rcard__desc">The format, the teaser video, free sample sessions, and the photos that explain the rest.</p>
+              <span class="eclo-rcard__cta">See for yourself →</span>
+            </div>
+          </a>
+          <a href="/live/past/" class="eclo-rcard">
+            <div class="eclo-rcard__img"><img src="../assets/images/endless-customers-live/chicago-2026/ballroom-wide-1.jpg" alt="" loading="lazy" /></div>
+            <div class="eclo-rcard__body">
+              <h3 class="eclo-rcard__title">Past Events</h3>
+              <p class="eclo-rcard__desc">Every event since 2018 — recaps, photos, and session recordings from IMPACT Live to Endless Customers Live.</p>
+              <span class="eclo-rcard__cta">Browse the archive →</span>
+            </div>
+          </a>
+          <a href="/live/sponsor" class="eclo-rcard">
+            <div class="eclo-rcard__img"><img src="../assets/images/endless-customers-live/chicago-2026/sponsor-booth.jpg" alt="" loading="lazy" /></div>
+            <div class="eclo-rcard__body">
+              <h3 class="eclo-rcard__title">Become a Sponsor</h3>
+              <p class="eclo-rcard__desc">350+ attendees, 70% owners and executives. Packages start at $4,000.</p>
+              <span class="eclo-rcard__cta">See the packages →</span>
+            </div>
+          </a>
+          <a href="/live/convince-your-boss" class="eclo-rcard">
+            <div class="eclo-rcard__img"><img src="../assets/images/endless-customers-live/chicago-2026/workshop-table.jpg" alt="" loading="lazy" /></div>
+            <div class="eclo-rcard__body">
+              <h3 class="eclo-rcard__title">Convince Your Boss</h3>
+              <p class="eclo-rcard__desc">The business case, the honest costs, and a ready-to-send approval email.</p>
+              <span class="eclo-rcard__cta">Get the email →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band" aria-labelledby="eclo-cta-title">
+      <div class="container">
+        <h2 class="cta-band__title" id="eclo-cta-title">Join Us at Endless Customers Live</h2>
+        <p class="cta-band__sub">Be inspired by what's possible with Endless Customers in your business. Connect with practitioners across sales, marketing, and leadership.</p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="/live/hartford-2026" class="btn btn--primary btn--lg">Hartford · Oct 5–7, 2026 →</a>
+          <a href="/live/chicago-2027" class="btn btn--ghost btn--lg">Chicago · Apr 5–7, 2027 →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../js/main.js?v=2026060925r"></script>
+</body>
+</html>

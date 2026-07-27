@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    /* Conference pages always render dark */
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+  <title>Past Events — Endless Customers Live &amp; IMPACT Live | Endless Customers</title>
+  <meta name="description" content="Every past conference from 2018 to today — IMPACT Live, the They Ask You Answer Summits, and Endless Customers Live. Recaps, photos, and session recordings." />
+  <meta property="og:title"       content="Past Events — Endless Customers Live &amp; IMPACT Live" />
+  <meta property="og:description" content="Every past conference from 2018 to today — recaps, photos, and session recordings." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="../../assets/images/endless-customers-live/chicago-2026/ballroom-wide-1.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "The Conference", "item": "https://www.endlesscustomers.com/live/" },
+      { "@type": "ListItem", "position": 2, "name": "Past Events", "item": "https://www.endlesscustomers.com/live/past/" }
+    ]
+  }
+  </script>
+
+  <!-- Event history — one continuous conference series across two names.
+       Machine-readable so search engines and AI assistants understand that
+       IMPACT Live and Endless Customers Live are the same annual event. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EventSeries",
+    "name": "Endless Customers Live",
+    "alternateName": "IMPACT Live",
+    "description": "The in-person conference series from IMPACT, held since 2018. Known as IMPACT Live through 2025 (Hartford, CT and Chicago, IL editions), renamed Endless Customers Live in 2026 alongside the Endless Customers book and system. The first edition drew 500+ attendees to Hartford with keynotes from Marcus Sheridan, Ann Handley, David Meerman Scott, and Dharmesh Shah.",
+    "url": "https://www.endlesscustomers.com/live/",
+    "organizer": { "@type": "Organization", "@id": "https://www.endlesscustomers.com/#organization", "name": "Endless Customers" }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #main-content section[id] { scroll-margin-top: 120px; }
+  </style>
+  <style>
+  /* ===== Past events listing page-scoped styles ===== */
+  .eclp-hero{position:relative;min-height:62svh;display:flex;align-items:center;overflow:hidden;background:#0b1020;color:#fff;}
+  .eclp-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.38;}
+  .eclp-hero__scrim{position:absolute;inset:0;background:radial-gradient(120% 120% at 70% 20%,rgba(227,97,183,.20),transparent 45%),linear-gradient(180deg,rgba(11,16,32,.45),rgba(11,16,32,.84));}
+  .eclp-hero__inner{position:relative;z-index:2;max-width:var(--max-width);margin:0 auto;padding:calc(var(--nav-height) + 100px) var(--space-6) var(--space-16);width:100%;text-align:center;}
+  .eclp-hero__eyebrow{display:inline-block;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:var(--text-sm);color:rgba(255,255,255,.85);margin-bottom:var(--space-5);}
+  .eclp-hero__title{font-family:var(--font-display);font-weight:800;font-size:var(--headline-medium);line-height:var(--leading-display);letter-spacing:var(--tracking-display);max-width:20ch;margin:0 auto var(--space-5);}
+  .eclp-hero__sub{font-size:var(--text-lg);line-height:1.6;color:rgba(255,255,255,.8);margin:0 auto var(--space-8);max-width:58ch;}
+  .eclp-hero__actions{display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;justify-content:center;}
+  .eclp-hero__actions .btn--ghost{color:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);}
+  .eclp-hero__actions .btn--ghost:hover{color:#fff;box-shadow:inset 0 0 0 1px #fff;}
+
+  /* Event cards — newest first, one card per past event */
+  .eclp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5);max-width:1020px;margin:0 auto;}
+  .eclp-card{display:flex;flex-direction:column;background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);text-decoration:none;transition:transform .15s ease,box-shadow .15s ease;}
+  .eclp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .eclp-card__img{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--color-bg-subtle);}
+  .eclp-card__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+  .eclp-card:hover .eclp-card__img img{transform:scale(1.03);}
+  .eclp-card__badge{position:absolute;top:var(--space-3);left:var(--space-3);background:rgba(11,16,32,.85);color:#fff;font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .7rem;border-radius:var(--radius-full);backdrop-filter:blur(4px);}
+  .eclp-card__body{padding:var(--space-5) var(--space-5) var(--space-6);display:flex;flex-direction:column;gap:var(--space-2);flex:1;}
+  .eclp-card__when{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:var(--text-xs);color:var(--color-blue);}
+  .eclp-card__title{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);color:var(--color-heading);margin:0;line-height:1.3;}
+  .eclp-card__desc{color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.55;margin:0;flex:1;}
+  .eclp-card__cta{font-weight:600;font-size:var(--text-sm);color:var(--color-blue);display:inline-flex;align-items:center;gap:6px;}
+  .eclp-card__ext{font-size:13px;opacity:.7;}
+  </style>
+</head>
+<body class="page-accent--conf">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Section sub-nav -->
+  <nav class="subnav subnav--svc" id="subnav" aria-label="Section navigation">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#events" class="subnav__link is-active">All Past Events</a>
+        <a href="/live/experience/" class="subnav__link">What It's Like</a>
+        <a href="/live/hartford-2026" class="btn--nav-primary subnav__cta">Attend the Next One <span class="subnav__cta-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section data-subnav-hero class="eclp-hero" aria-labelledby="eclp-hero-title">
+      <img class="eclp-hero__img" src="../../assets/images/endless-customers-live/chicago-2026/ballroom-wide-2.jpg" alt="" aria-hidden="true" />
+      <div class="eclp-hero__scrim" aria-hidden="true"></div>
+      <div class="eclp-hero__inner">
+        <span class="eclp-hero__eyebrow">Past Events</span>
+        <h1 class="eclp-hero__title headline-short" id="eclp-hero-title">Eight Years of Being in the Room</h1>
+        <p class="eclp-hero__sub">From 500 marketers in Hartford in 2018 to Endless Customers Live today — every past conference, with real dates, speakers, and session recordings in the IMPACT+ community.</p>
+        <div class="eclp-hero__actions">
+          <a href="#events" class="btn btn--primary btn--lg">Browse Past Events →</a>
+          <a href="/live/hartford-2026" class="btn btn--ghost btn--lg">Attend the Next One</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="section" id="events" aria-labelledby="eclp-events-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">The Archive</span>
+          <h2 class="section__title section__title--lg" id="eclp-events-title">Every Event, Newest First</h2>
+          <p class="section__subtitle">Same conference, two names: IMPACT Live became Endless Customers Live in 2026, alongside the book. Recordings live in the IMPACT+ community — free sessions for everyone, full libraries for Pro members.</p>
+        </header>
+        <!-- TODO(community): verify the IMPACT+ Event Recordings space URL and add
+             per-event deep links when available. All external cards currently point
+             to the Event Recordings space. -->
+        <div class="eclp-grid">
+          <a href="/live/chicago-2026/" class="eclp-card">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/chicago-2026/stage-neon.jpg" alt="" loading="lazy" />
+              <span class="eclp-card__badge">Recap on this site</span>
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Mar 30 – Apr 1, 2026 · Rosemont, IL</span>
+              <h3 class="eclp-card__title">Endless Customers Live 2026</h3>
+              <p class="eclp-card__desc">The first event under the Endless Customers name, at the Loews Chicago O'Hare Hotel — 350+ attendees, the 4 Pillars live, and AI Day. Full recap, photos, and free session recordings.</p>
+              <span class="eclp-card__cta">See the recap →</span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/impact_live_group-min.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Aug 18–20, 2025 · Hartford, CT</span>
+              <h3 class="eclp-card__title">IMPACT Live 2025: Hartford</h3>
+              <p class="eclp-card__desc">Three days at the Hartford Marriott Downtown. Speakers included Marcus Sheridan, Chris Duprey, Allison Belles, Brian Casey, and client stories from Southwest Exteriors, ThoroughCare, and Custom Built.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/MarcusSheridanConference.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Apr 14–16, 2025 · Rosemont, IL</span>
+              <h3 class="eclp-card__title">IMPACT Live 2025: Chicago</h3>
+              <p class="eclp-card__desc">At the Loews Chicago O'Hare Hotel. Free sessions in the community include episodic content, one-to-one video, and the fundamentals of Endless Customers.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/ec-live-1.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Oct 14–16, 2024 · Hartford, CT</span>
+              <h3 class="eclp-card__title">IMPACT Live Fall 2024: Hartford</h3>
+              <p class="eclp-card__desc">The fall edition at the Hartford Marriott Downtown — the event's return to its home state.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/about-impact-events.png" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Apr 15–17, 2024 · Chicago, IL</span>
+              <h3 class="eclp-card__title">IMPACT Live 2024: Chicago</h3>
+              <p class="eclp-card__desc">Full session recordings for Pro members in the IMPACT+ community.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/Building-a-Marketing-Team.webp" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">2023</span>
+              <h3 class="eclp-card__title">IMPACT Live 2023</h3>
+              <p class="eclp-card__desc">Full session recordings for Pro members in the IMPACT+ community.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/ec-live-3.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">2022–2023</span>
+              <h3 class="eclp-card__title">They Ask, You Answer Summits</h3>
+              <p class="eclp-card__desc">The summit series from the They Ask, You Answer era, including the Spring 2023 Summit at Convene in Chicago (May 15–17) with Marcus Sheridan, Chris Duprey, and Zach Basner.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/ec-live-2.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Aug 6–7, 2019 · Hartford, CT</span>
+              <h3 class="eclp-card__title">IMPACT Live 2019</h3>
+              <p class="eclp-card__desc">Two days at the Connecticut Convention Center — innovative minds in digital sales and marketing under one roof.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+          <a href="https://community.impactplus.com/c/event-recordings" class="eclp-card" target="_blank" rel="noopener">
+            <div class="eclp-card__img">
+              <img src="../../assets/images/endless-customers-live/ec-live-4.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="eclp-card__body">
+              <span class="eclp-card__when">Aug 7–8, 2018 · Hartford, CT</span>
+              <h3 class="eclp-card__title">IMPACT Live 2018</h3>
+              <p class="eclp-card__desc">Where it all started: 500+ marketers and business leaders, with keynotes from Marcus Sheridan, Ann Handley, David Meerman Scott, Paul Roetzer, and HubSpot co-founder Dharmesh Shah.</p>
+              <span class="eclp-card__cta">View in the community <span class="eclp-card__ext" aria-hidden="true">↗</span></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band" aria-labelledby="eclp-cta-title">
+      <div class="container">
+        <h2 class="cta-band__title" id="eclp-cta-title">The Next Chapter Is Hartford</h2>
+        <p class="cta-band__sub">Endless Customers Live returns October 5–7, 2026 — then Chicago in April 2027.</p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="/live/hartford-2026" class="btn btn--primary btn--lg">Hartford · Oct 5–7, 2026 →</a>
+          <a href="/live/chicago-2027" class="btn btn--ghost btn--lg">Chicago · Apr 5–7, 2027 →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

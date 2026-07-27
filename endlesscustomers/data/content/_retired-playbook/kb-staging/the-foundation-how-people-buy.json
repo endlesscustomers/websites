@@ -1,0 +1,45 @@
+{
+  "id": "the-foundation-how-people-buy",
+  "slug": "the-foundation-how-people-buy",
+  "title": "How do people actually buy in 2026?",
+  "nav_title": "How Buyers Buy Today",
+  "status": "published",
+  "topic_id": "the-foundation",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "The short answer: The modern buyer runs a five-stage process that is roughly 70–80% complete before a sales rep is ever contacted. They get triggered by a problem, wake up to the fact that they need help, research candidates privately using AI and search, build a shortlist based on trust signals, and arrive at the sales call ready to verify. Your website, content, and videos have to do the work that sales used to do, because the buyer is making most of the decision before sales ever gets a chance.\n\n## What are the five stages of how people buy today?\n\n**Trigger, awakening, research, shortlist, decision. **The buyer moves through these stages largely on their own, with AI answer engines and review sites as their primary research tools. Sales only enters the process at stage four, and usually only if the brand has already earned a spot on the shortlist through content and reputation.\n\nThis is the buyer journey the old marketing funnel was supposed to describe. It no longer does, because the old funnel assumed the buyer would raise their hand early. They don't. They stay anonymous as long as possible, because being anonymous means being unsold to.\n\n## Stage 1: The trigger\n\nSomething changed. A contract expired. A competitor outpaced them. A board member asked an uncomfortable question. A tool stopped doing the job. A new hire surfaced a capability gap. Revenue dipped. Costs climbed. Something specific turned a background concern into a foreground priority.\n\nThe trigger happens inside the buyer's business. You have no line of sight into it. You will not see the trigger. You will only see the behavior that comes next.\n\n## Stage 2: The awakening\n\nThe buyer starts thinking about the problem. Not yet solutions, just the shape of the problem. They talk to peers. They skim articles on LinkedIn. They read a newsletter. They listen to a podcast in the car. They're not yet looking to buy. They're looking to understand.\n\nThis stage is where thought leadership content earns its keep. Podcasts, long-form articles, YouTube videos where a named expert takes a specific position. The buyer in this stage is collecting mental models, not vendors.\n\n## Stage 3: The private research phase\n\nThis is where most of the decision actually gets made. The buyer opens ChatGPT, Perplexity, or Google and starts asking specific questions. \"How much does X cost?\" \"What are the top vendors for Y?\" \"Problems with Z?\" \"How does A compare to B?\"\n\nThey read reviews on G2 or Capterra if it's software, Houzz or Angi if it's a service, case study pages and cost articles if it's a considered B2B purchase. They watch YouTube videos where a user explains what actually happened when they bought from each candidate.\n\nThe critical shift: The private research phase used to happen on your website. It now happens across AI answer engines, review sites, and YouTube. Your website is only one source among many, and it's the one the buyer trusts least because it's yours.\n\n## Stage 4: The shortlist\n\nBy the time the buyer is ready to have a conversation, they've narrowed the field to 2–4 vendors. The shortlist is the outcome of stage 3. If you're on it, it's because your content answered their questions, your pricing felt honest, your review score was high enough, and nothing on your website made them flinch.\n\nThe shortlist filters that knock companies out are almost always the same short list. No pricing information on the website. Cagey answers to straightforward questions. Reviews with a cluster of recent complaints. An About page full of stock photos. A sales rep who answers \"it depends\" when asked a direct question.\n\n## Stage 5: The decision\n\nThis is where sales finally gets the conversation. The buyer shows up with questions that have been pre-formed by their research. They want to verify. They want to see the faces behind the vendor. They want to know whether you're the company they think you are.\n\nThe sales call in 2026 is a verification call. Your rep is not educating them from scratch. They're confirming what the buyer has already half-decided. The way you lose this stage is by being less prepared than the buyer, who has likely read more of your website than your rep has.\n\n## What does this mean for how you sell?\n\nIf the buyer is making 70–80% of the decision before they meet you, three things follow.\n\n1. **Your website, content, and video are your first sales rep. **They do the work of explaining, qualifying, and answering objections. They run 24 hours a day, for every prospect at once.\n1. **Your actual sales team is a verification team, not an education team. **Discovery calls are conversations between two informed parties. The rep who still opens with \"tell me about your business\" is treating the buyer like it's 2015.\n1. **Transparency is leverage. **Publishing prices, problems, and honest comparisons gets you through the shortlist filter. Hiding them gets you eliminated before you're even contacted.\n\nThis is why Assignment Selling works. The content does the explaining. The sales rep does the strategic conversation. Both sides of the call are informed. Cycles shorten. Close rates climb. The buyer leaves feeling respected.",
+  "excerpt": "The modern buyer completes 70–80% of their decision before a sales rep is ever contacted. Five stages, the signals that matter, and what it means for how you sell.",
+  "what_youll_learn": [
+    "Most buyers complete 70–80% of their decision before they ever talk to a salesperson.",
+    "Research now happens primarily through AI answer engines and review sites, not vendor websites.",
+    "Buyers show up to sales calls already shortlisted. If you're on the list, you've already earned it. If you're not, you're not going to be.",
+    "Pricing transparency is a shortlist filter. Companies that hide prices get excluded from consideration before they're ever contacted.",
+    "The sales call in 2026 is a verification call, not an education call. Buyers come with questions, not a blank slate."
+  ],
+  "key_questions": [
+    {
+      "question": "Does this apply to B2B only, or to B2C too?",
+      "answer": "Both, with different weights. In B2B and considered B2C purchases (anything above roughly $2,000, or anything with a long use horizon), the five-stage pattern holds. For impulse purchases and low-consideration commodity buys, stages 2 and 3 compress significantly. But even in fast-cycle B2C, buyers now check reviews and pricing before deciding. The stages are shorter, not absent."
+    },
+    {
+      "question": "If most of the decision is made before sales, should I cut sales headcount?",
+      "answer": "No. You should change what sales does. In 2026, sales teams are more valuable than ever, because the conversations they do have are higher-stakes. A rep who can turn a pre-qualified, pre-researched prospect into a signed contract in two calls is worth more than five reps running 60-minute discovery calls that are actually product explanations."
+    },
+    {
+      "question": "How do I know what stage my prospect is in?",
+      "answer": "Ask what brought them to your website. The answer tells you the stage. 'I read your cost article' means stage 3. 'A colleague recommended you' means stage 4. 'I've been following your newsletter' means stage 2. Most sales teams skip this question and treat every lead like they're starting at zero. That's where cycles stretch."
+    },
+    {
+      "question": "What if my buyer doesn't behave this way?",
+      "answer": "The ones who show up at the top of the buyer profile—VPs, decision-makers, experienced buyers—follow the five-stage pattern almost universally. The ones who behave differently tend to be junior researchers, tire-kickers, or the wrong-fit prospects. The pattern doesn't universally apply to every human who fills out a form, but it applies to almost every human whose business you want."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 4,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

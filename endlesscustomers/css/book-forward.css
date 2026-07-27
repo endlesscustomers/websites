@@ -1,0 +1,232 @@
+/* ==========================================================================
+   book-forward.css — Book-forward grayscale palette re-rank (June 2026, per Bob)
+   --------------------------------------------------------------------------
+   Opt in by adding `book-forward` to <body> alongside the page-accent class.
+   Loaded AFTER main.css. Current scope: homepage + the three "Path" pages
+   (Marketing Audit & Recommendations, Initial Projects & Fixes, Coaching
+   Program). Intended to roll out site-wide; when it does, fold these values
+   into main.css and drop the class scope.
+
+   Principle: the Endless Customers book's near-black anchors structure;
+   blue drops to a true accent (lines, links, in-page buttons/badges). The
+   site's page-accent--* classes derive EVERY neutral from the accent hue via
+   oklch(from accent h) — that cool cast is the real source of "too blue."
+   This file pins the neutrals to true Apple grayscale and re-scopes the nav,
+   sub-nav, and hero glows to neutral, while leaving --color-accent (blue)
+   alone so in-page accents stay blue.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Neutrals → Apple grayscale
+   -------------------------------------------------------------------------- */
+body.book-forward {
+  --color-bg:               #FFFFFF;
+  --color-bg-surface:       #FFFFFF;   /* cards stay white, shadow-separated */
+  --color-bg-subtle:        #F5F5F7;   /* Apple's section gray */
+  --color-bg-elevated:      #FFFFFF;
+  --color-border:           #D2D2D7;   /* Apple hairline */
+  --color-border-strong:    #C7C7CC;
+  --color-text-muted:       #6E6E73;   /* Apple secondary */
+  --color-text-muted-faint: #AEAEB2;
+  --color-text:             #424245;   /* body — a step below the heading */
+  --color-text-strong:      #1D1D1F;
+  --color-heading:          #1D1D1F;   /* Apple near-black — also drives cta-band bg */
+  --color-menu-bg-dark:     #0A0A0A;   /* the near-black "book" panel (statement-panel) */
+  --color-nav-bg:     rgba(251, 251, 253, 0.82);
+  --color-nav-border: rgba(0, 0, 0, 0.08);
+  --color-subnav-bg:  rgba(0, 0, 0, 0.05);
+  --color-glass-tint: rgba(248, 248, 250, 0.60);
+  --color-chrome:     rgba(245, 245, 247, 0.70);
+  --color-menu-bg:    #FFFFFF;
+  --color-curtain:    rgba(0, 0, 0, 0.18);
+}
+[data-theme="dark"] body.book-forward {
+  --color-bg:               #000000;
+  --color-bg-surface:       #1D1D1F;
+  --color-bg-subtle:        #161617;
+  --color-bg-elevated:      #2C2C2E;
+  --color-border:           #2C2C2E;
+  --color-border-strong:    #48484A;
+  --color-text-muted:       #86868B;
+  --color-text-muted-faint: #6E6E73;
+  --color-text:             #D6D6D6;
+  --color-text-strong:      #F5F5F7;
+  --color-heading:          #F5F5F7;
+  --color-menu-bg-dark:     #000000;
+  --color-nav-bg:     rgba(22, 22, 23, 0.82);
+  --color-nav-border: rgba(255, 255, 255, 0.10);
+  --color-subnav-bg:  rgba(255, 255, 255, 0.08);
+  --color-glass-tint: rgba(20, 20, 22, 0.58);
+  --color-chrome:     rgba(28, 28, 30, 0.70);
+  --color-menu-bg:    #1C1C1E;
+  --color-curtain:    rgba(0, 0, 0, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   2. Main nav → grayscale
+   Accent tokens re-scoped to neutral within .nav (featured tile, New /
+   Start-Here badges, path-number hover, sparkle icon, dropdown hovers). The
+   "Let's Talk" pill uses --color-blue-fill directly, so it's set explicitly
+   and made state-aware: white over a dark hero, near-black docked on white,
+   light in dark mode.
+   -------------------------------------------------------------------------- */
+body.book-forward .nav {
+  --color-accent:        #1D1D1F;
+  --color-accent-hover:  #000000;
+  --color-accent-subtle: rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] body.book-forward .nav {
+  --color-accent:        #F5F5F7;
+  --color-accent-hover:  #FFFFFF;
+  --color-accent-subtle: rgba(255, 255, 255, 0.10);
+}
+/* Overlay bar over a dark hero — JS sets data-theme="dark" on the nav until it
+   docks, which re-applies the default cool slate. Keep text light; force the
+   bar's own neutrals/chrome to charcoal. */
+body.book-forward .nav[data-theme="dark"] {
+  --color-accent:        #F5F5F7;
+  --color-accent-hover:  #FFFFFF;
+  --color-accent-subtle: rgba(255, 255, 255, 0.10);
+  --color-bg:             #000000;
+  --color-bg-surface:     #1D1D1F;
+  --color-bg-subtle:      #161617;
+  --color-bg-elevated:    #2C2C2E;
+  --color-border:         #2C2C2E;
+  --color-border-strong:  #48484A;
+  --color-text-muted:       #86868B;
+  --color-text-muted-faint: #6E6E73;
+  --color-text:             #D6D6D6;
+  --color-text-strong:      #F5F5F7;
+  --color-heading:          #F5F5F7;
+  --color-menu-bg:        #1C1C1E;
+  --color-nav-bg:     rgba(22, 22, 23, 0.82);
+  --color-nav-border: rgba(255, 255, 255, 0.10);
+  --color-glass-tint: rgba(20, 20, 22, 0.58);
+  --color-chrome:     rgba(28, 28, 30, 0.70);
+  --color-curtain:    rgba(0, 0, 0, 0.55);
+}
+/* Dropdown panels re-scope themselves to the PAGE theme via their own
+   data-theme (syncDropdownThemes in main.js), which re-applies the default
+   cool SLATE palette. Pin them to neutral grayscale: white in light, charcoal
+   in dark. The conference panel keeps its own dark design and is excluded. */
+body.book-forward .nav__dropdown:not(.nav__dropdown--conference)[data-theme="light"] {
+  --color-menu-bg:        #FFFFFF;
+  --color-bg:             #FFFFFF;
+  --color-bg-surface:     #FFFFFF;
+  --color-bg-subtle:      #F5F5F7;
+  --color-bg-elevated:    #FFFFFF;
+  --color-border:         #D2D2D7;
+  --color-border-strong:  #C7C7CC;
+  --color-text-muted:       #6E6E73;
+  --color-text-muted-faint: #AEAEB2;
+  --color-text:             #424245;
+  --color-text-strong:      #1D1D1F;
+  --color-heading:          #1D1D1F;
+  --color-accent:        #1D1D1F;
+  --color-accent-hover:  #000000;
+  --color-accent-subtle: rgba(0, 0, 0, 0.05);
+}
+body.book-forward .nav__dropdown:not(.nav__dropdown--conference)[data-theme="dark"] {
+  --color-menu-bg:        #1C1C1E;
+  --color-bg:             #000000;
+  --color-bg-surface:     #1D1D1F;
+  --color-bg-subtle:      #161617;
+  --color-bg-elevated:    #2C2C2E;
+  --color-border:         #2C2C2E;
+  --color-border-strong:  #48484A;
+  --color-text-muted:       #86868B;
+  --color-text-muted-faint: #6E6E73;
+  --color-text:             #D6D6D6;
+  --color-text-strong:      #F5F5F7;
+  --color-heading:          #F5F5F7;
+  --color-accent:        #F5F5F7;
+  --color-accent-hover:  #FFFFFF;
+  --color-accent-subtle: rgba(255, 255, 255, 0.10);
+}
+/* "Let's Talk" pill — near-black on white (Apple-style) */
+body.book-forward .btn--nav-primary { background-color: #1D1D1F; }
+body.book-forward .btn--nav-primary:hover { background-color: #000000; }
+/* Over a dark hero (overlay, before docking): white pill, dark text */
+body.book-forward .nav--overlay:not(.is-scrolled) .btn--nav-primary {
+  background-color: #FFFFFF; color: #1D1D1F;
+}
+body.book-forward .nav--overlay:not(.is-scrolled) .btn--nav-primary:hover {
+  background-color: rgba(255, 255, 255, 0.88);
+}
+/* Docked in dark mode: light pill, dark text */
+[data-theme="dark"] body.book-forward .nav:not(.nav--overlay) .btn--nav-primary,
+[data-theme="dark"] body.book-forward .nav--overlay.is-scrolled .btn--nav-primary {
+  background-color: #F5F5F7; color: #1D1D1F;
+}
+[data-theme="dark"] body.book-forward .nav:not(.nav--overlay) .btn--nav-primary:hover,
+[data-theme="dark"] body.book-forward .nav--overlay.is-scrolled .btn--nav-primary:hover {
+  background-color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   3. Sub-nav + step indicator → grayscale (Path / service pages)
+   The sub-nav is navigation chrome, so it follows the nav: neutral accent,
+   neutral pill/CTA. The .psw step indicator (in both the sub-nav switcher and
+   the hero breadcrumb) is wayfinding, so it goes neutral too. In-page content
+   accents are NOT touched here — they stay blue.
+   -------------------------------------------------------------------------- */
+body.book-forward .subnav,
+body.book-forward .subnav-bottom-cta {
+  --color-accent:            #1D1D1F;
+  --color-accent-hover:      #000000;
+  --color-accent-subtle:     rgba(0, 0, 0, 0.05);
+  --color-accent-fill:       #1D1D1F;
+  --color-accent-fill-hover: #000000;
+}
+[data-theme="dark"] body.book-forward .subnav,
+[data-theme="dark"] body.book-forward .subnav-bottom-cta {
+  --color-accent:            #F5F5F7;
+  --color-accent-hover:      #FFFFFF;
+  --color-accent-subtle:     rgba(255, 255, 255, 0.10);
+  --color-accent-fill:       #F5F5F7;
+  --color-accent-fill-hover: #FFFFFF;
+}
+/* The sub-nav CTA pill carries white text on its fill; in dark mode the fill
+   is light, so flip the text dark. */
+[data-theme="dark"] body.book-forward .subnav .btn--nav-primary,
+[data-theme="dark"] body.book-forward .subnav-bottom-cta .btn--nav-primary {
+  color: #1D1D1F;
+}
+/* The .psw step indicator ("Step 1 of 3" badge + the step switcher) stays BLUE
+   (per Bob) — it's a deliberate wayfinding cue. Re-point its accent to blue
+   inside the otherwise-neutral sub-nav and the hero breadcrumb. --color-blue
+   is untouched by this re-rank, so it carries the brand blue in both themes. */
+body.book-forward .psw-details {
+  --color-accent:        var(--color-blue);
+  --color-accent-hover:  var(--color-blue-hover);
+  --color-accent-subtle: var(--color-blue-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero glows → neutral (was accent-tinted blue)
+   The svc-hero / cf-hero washes pull from --color-accent-tint via color-mix.
+   Override the tint to a neutral on those layers only, so each hero keeps its
+   own gradient geometry but the glow reads gray, not blue.
+   -------------------------------------------------------------------------- */
+body.book-forward .svc-hero__bg,
+body.book-forward .cf-hero__bg { --color-accent-tint: #2C2C2E; }
+[data-theme="dark"] body.book-forward .svc-hero__bg,
+[data-theme="dark"] body.book-forward .cf-hero__bg { --color-accent-tint: #FFFFFF; }
+
+/* --------------------------------------------------------------------------
+   5. Dark "moments" re-ranked to book near-black (homepage)
+   Generic rules; only paint where these classes exist (currently the homepage
+   hero video + AI statement panel). The CTA band inherits near-black via
+   --color-heading above, so it needs no rule here.
+   -------------------------------------------------------------------------- */
+body.book-forward .hero--video {
+  background: radial-gradient(115% 90% at 50% 0%, #23232A 0%, #101013 56%, #000 100%);
+}
+body.book-forward .hero__video-overlay {
+  background:
+    radial-gradient(120% 120% at 72% 16%, rgba(10, 108, 255, 0.14), transparent 46%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.42), rgba(0, 0, 0, 0.82));
+}
+body.book-forward .statement-panel::before {
+  background: radial-gradient(46% 56% at 42% 48%, rgba(10, 108, 255, 0.20), transparent 72%);
+}

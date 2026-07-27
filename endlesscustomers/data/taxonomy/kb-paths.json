@@ -1,0 +1,55 @@
+[
+  {
+    "id": "for-business-owners",
+    "label": "For Business Owners & CEOs",
+    "description": "The essential reading path for owners and CEOs who want to understand Endless Customers, make the case internally, and lead the implementation.",
+    "article_ids": [
+      "what-is-endless-customers",
+      "the-foundation-why-growth-is-harder",
+      "the-foundation-how-people-buy",
+      "the-foundation-4-pillars",
+      "the-foundation-5-components",
+      "the-foundation-what-it-requires",
+      "cost-of-inaction",
+      "the-typical-24-month-endless-customers-journey",
+      "the-endless-customers-scorecard-how-to-measure-what-matters",
+      "the-pride-cycle-why-giants-fall"
+    ]
+  },
+  {
+    "id": "for-sales-leaders",
+    "label": "For Sales Leaders",
+    "description": "A focused path through the content, website, and sales activity sections for VPs and directors who own the revenue number.",
+    "article_ids": [
+      "the-foundation-how-people-buy",
+      "the-foundation-they-ask-you-answer",
+      "the-right-sales-activities",
+      "assignment-selling",
+      "documenting-and-following-your-sales-process",
+      "sales-team-participation-and-one-to-one-video",
+      "on-camera-performance",
+      "the-selling-7",
+      "the-80-percent-video",
+      "revenue-teams"
+    ]
+  },
+  {
+    "id": "for-marketing-leaders",
+    "label": "For Marketing Leaders",
+    "description": "The reading path for CMOs and marketing directors — content strategy, the website, technology, and how to measure what matters.",
+    "article_ids": [
+      "the-foundation-they-ask-you-answer",
+      "the-right-content",
+      "the-big-5",
+      "cost-and-price-content",
+      "the-selling-7",
+      "video-strategy-overview",
+      "the-endless-customers-content-team",
+      "hiring-your-content-team",
+      "the-learning-center",
+      "self-service-tools",
+      "analytics-and-performance-tracking",
+      "the-endless-customers-scorecard-how-to-measure-what-matters"
+    ]
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "id": "content-strategy",
+    "label": "Content Strategy",
+    "slug": "content-strategy",
+    "description": "Planning and producing content that earns trust and drives revenue.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "they-ask-you-answer",
+    "label": "They Ask, You Answer",
+    "slug": "they-ask-you-answer",
+    "description": "The foundational EC framework: answer every buyer question openly and honestly.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "video-sales",
+    "label": "Video & The Selling Seven",
+    "slug": "video-sales",
+    "description": "Using video across the buyer journey to build trust and accelerate sales.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "website-conversion",
+    "label": "Website & Conversion",
+    "slug": "website-conversion",
+    "description": "Turning website traffic into qualified leads and self-selecting buyers.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "sales-alignment",
+    "label": "Sales & Marketing Alignment",
+    "slug": "sales-alignment",
+    "description": "Getting sales and marketing rowing in the same direction around content.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "assignment-selling",
+    "label": "Assignment Selling",
+    "slug": "assignment-selling",
+    "description": "Using content within the sales process to close better-prepared buyers faster.",
+    "parent_topic_id": "sales-alignment",
+    "nav": true
+  },
+  {
+    "id": "hubspot",
+    "label": "HubSpot",
+    "slug": "hubspot",
+    "description": "Getting full value out of the HubSpot platform.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "paid-media",
+    "label": "Paid Media",
+    "slug": "paid-media",
+    "description": "Paid advertising that amplifies trust-building content.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "ai-marketing",
+    "label": "AI for Marketing",
+    "slug": "ai-marketing",
+    "description": "Applying AI and LLMs to marketing, content, and operations.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "ai-tools-for-content",
+    "label": "AI Tools for Content",
+    "slug": "ai-tools-for-content",
+    "description": "Practical AI tools and workflows for producing content.",
+    "parent_topic_id": "ai-marketing",
+    "nav": true
+  },
+  {
+    "id": "seo-aeo",
+    "label": "SEO & AEO",
+    "slug": "seo-aeo",
+    "description": "Search and answer-engine optimization for the AI era.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "email-marketing",
+    "label": "Email Marketing",
+    "slug": "email-marketing",
+    "description": "Nurturing and converting audiences through email.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "social-media",
+    "label": "Social Media",
+    "slug": "social-media",
+    "description": "Building presence and distribution on social platforms.",
+    "parent_topic_id": null,
+    "nav": true
+  },
+  {
+    "id": "pricing-transparency",
+    "label": "Pricing Transparency",
+    "slug": "pricing-transparency",
+    "description": "Addressing cost and price openly to build buyer trust.",
+    "parent_topic_id": "they-ask-you-answer",
+    "nav": true
+  },
+  {
+    "id": "self-selection",
+    "label": "Self-Selection",
+    "slug": "self-selection",
+    "description": "Helping buyers qualify themselves through honest content.",
+    "parent_topic_id": "they-ask-you-answer",
+    "nav": true
+  },
+  {
+    "id": "the-foundation",
+    "label": "The Foundation",
+    "slug": "the-foundation",
+    "description": "What Endless Customers is, the 4 Pillars of trust, the 5 Components, who the skeptical buyer is, and how the methodology evolved from They Ask, You Answer.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "right-content",
+    "label": "The Right Content",
+    "slug": "right-content",
+    "description": "The Big 5, the Selling 7, video strategy, AI for content creation, and how a content team operates inside an Endless Customers business.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "right-website",
+    "label": "The Right Website",
+    "slug": "right-website",
+    "description": "Learning Centers, self-service tools, messaging, trust signals, and ongoing website optimization that works for buyers before they contact you.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "right-sales",
+    "label": "The Right Sales Activities",
+    "slug": "right-sales",
+    "description": "Assignment Selling, 1:1 video, the modern discovery call, and on-camera performance for sales reps who want to close more deals.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "right-technology",
+    "label": "The Right Technology",
+    "slug": "right-technology",
+    "description": "CRM setup, HubSpot adoption, marketing technology, AI for marketing and sales, and analytics that reflect what buyers actually do.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "right-culture",
+    "label": "The Right Culture of Performance",
+    "slug": "right-culture",
+    "description": "Sales-marketing alignment, revenue teams, ongoing learning, and the leadership habits that make results compound over time.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "planning-your-investment",
+    "label": "Planning Your Investment & Optimizing ROI",
+    "slug": "planning-your-investment",
+    "description": "How to budget for Endless Customers, set realistic expectations, measure what matters, and optimize your return over time.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "putting-it-together",
+    "label": "Putting It All Together",
+    "slug": "putting-it-together",
+    "description": "The typical journey, Alignment Day, the Scorecard, quarterly planning, coaching, and the Pride Cycle.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "support-and-community",
+    "label": "Support & Community",
+    "slug": "support-and-community",
+    "description": "IMPACT coaching, live events, and the Endless Customers Academy — everything you need to implement the methodology with expert guidance.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  },
+  {
+    "id": "age-of-ai",
+    "label": "Thrive in the Age of AI",
+    "slug": "age-of-ai",
+    "description": "How to increase your AI visibility, understand agentic AI buying behavior, and adopt AI safely.",
+    "parent_topic_id": null,
+    "nav": false,
+    "kind": "framework"
+  }
+]

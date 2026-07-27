@@ -1,5 +1,10 @@
 .DS_Store
 
+# FUSE filesystem artifacts. These appear when a file is deleted while still
+# open on a mounted folder; they are junk, not content. 210 of them were about
+# to be committed on 2026-07-27.
+.fuse_hidden*
+
 # Claude Design export leftovers: ~87MB of reference screenshots of the live
 # site, plus pasted images from the build session. Nothing in any page or
 # stylesheet references them, and they would be ~90% of the repo by size.

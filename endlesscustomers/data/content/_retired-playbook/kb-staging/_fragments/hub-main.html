@@ -1,0 +1,65 @@
+<main id="main-content">
+    <div class="lc-wrap">
+      <section class="section section--sm">
+        <div id="kb-root" class="container"><p class="ec-empty">Loading…</p></div>
+      </section>
+      <section class="section section--alt"><div class="container"><div class="lc-cta">
+        <h2 class="lc-cta__title">Want this implemented in your business?</h2>
+        <p class="lc-cta__sub">Get a free AI diagnosis and a prioritized plan to put these principles to work.</p>
+        <div class="lc-cta__actions"><a href="/diagnostic" class="btn btn--primary btn--lg">Get your free AI diagnosis</a><a href="/lets-talk" class="btn btn--ghost btn--lg">Talk to our team</a></div>
+      </div></div></section>
+    </div>
+  </main>
+  <script>
+    (function(){
+      EC.kbLoad().then(function(d){
+        var byId=EC.indexBy(d.evergreen);
+        var pub=d.evergreen.filter(function(e){return e.status==='published';});
+        var real=pub.filter(function(e){return !EC.kbIsStub(e);});
+        var secs=EC.kbSections(d.sections);
+
+        // hero
+        var hero='<nav class="lc-crumbs" aria-label="Breadcrumb"><a href="/learn">Learn</a><span>/</span>Knowledge Base</nav>'+
+          '<div class="lc-hero" style="text-align:left;margin-inline:0;max-width:760px;padding-bottom:var(--space-6)">'+
+          '<span class="lc-eyebrow"><i class="ti ti-books"></i> Knowledge Base</span>'+
+          '<h1 class="lc-hero__title headline-long">Everything you need to understand and implement Endless Customers</h1>'+
+          '<p class="lc-hero__sub" style="margin-inline:0">Evergreen guides organized around the 4 Pillars and the 5 Components. Written by IMPACT coaches, reviewed by our editor-in-chief, and designed to be just as useful to ChatGPT as they are to your leadership team.</p>'+
+          '<div style="margin-top:var(--space-5)"><span class="kbh-stats"><i class="ti ti-files"></i> '+pub.length+' guides across '+secs.length+' topics</span></div>'+
+          '</div>';
+
+        // featured: the anchor + three picks
+        var anchor=byId['cost-of-inaction'];
+        var picks=['the-big-5','versus-comparisons','assignment-selling'].map(function(i){return byId[i];}).filter(Boolean);
+        var featured='<div style="margin-bottom:var(--space-14)"><div class="lc-rowhead"><h2 class="lc-rowhead__title" style="font-size:var(--text-2xl)">Featured guides</h2><span class="ar-freshness">Start here if you’re new</span></div>'+
+          (anchor?'<a class="kbh-anchor" href="'+EC.kbArticleUrl(anchor.id)+'"><span class="kbh-anchor__label">✦ The Anchor · Read first</span><h3 class="kbh-anchor__title">'+EC.escapeHtml(anchor.title)+'</h3><p class="kbh-anchor__excerpt">'+EC.escapeHtml(anchor.excerpt||'')+'</p><span class="kb-card__more">Read the article <i class="ti ti-arrow-right"></i></span></a>':'')+
+          '<div class="kb-grid">'+picks.map(function(e){
+            var s=secs.filter(function(x){return x.id===e.topic_id;})[0];
+            return '<a class="kb-card" href="'+EC.kbArticleUrl(e.id)+'">'+(s?'<span class="kb-card__topic">'+EC.escapeHtml(s.label)+'</span>':'')+'<h3 class="kb-card__title">'+EC.escapeHtml(e.title)+'</h3><p class="kb-card__excerpt">'+EC.escapeHtml(e.excerpt||'')+'</p><span class="kb-card__more">Read article <i class="ti ti-arrow-right"></i></span></a>';
+          }).join('')+'</div></div>';
+
+        // learning paths
+        var paths='<div style="margin-bottom:var(--space-14)"><div class="lc-rowhead"><h2 class="lc-rowhead__title" style="font-size:var(--text-2xl)">Curated learning paths</h2><span class="ar-freshness">Reading lists by role</span></div><div class="kb-grid">'+
+          d.paths.map(function(p){
+            var n=p.article_ids.filter(function(i){return byId[i]&&byId[i].status==='published';}).length;
+            return '<a class="kbh-topic" href="'+EC.kbPathUrl(p.id)+'"><span class="kbh-topic__n"><i class="ti ti-route"></i> Learning path</span><h3 class="kbh-topic__title">'+EC.escapeHtml(p.label)+'</h3><p class="kbh-topic__desc">'+EC.escapeHtml(p.description)+'</p><span class="kbh-topic__count">'+n+' guides →</span></a>';
+          }).join('')+'</div></div>';
+
+        // browse by topic
+        var topics='<div style="margin-bottom:var(--space-14)"><div class="lc-rowhead"><h2 class="lc-rowhead__title" style="font-size:var(--text-2xl)">Browse by topic</h2><span class="ar-freshness">Topics 3–7 map to the 5 Components</span></div><div class="kb-grid">'+
+          secs.map(function(s,i){
+            var items=pub.filter(function(e){return e.topic_id===s.id;});
+            return '<a class="kbh-topic" href="'+EC.kbTopicUrl(s.id)+'"><span class="kbh-topic__n">'+(i+1)+'. '+(s.id==='the-foundation'?'Start here':'')+'</span><h3 class="kbh-topic__title">'+EC.escapeHtml(s.label)+'</h3><p class="kbh-topic__desc">'+EC.escapeHtml(s.description)+'</p><span class="kbh-topic__count">'+items.length+' guides →</span></a>';
+          }).join('')+'</div></div>';
+
+        // recently updated
+        var recent=real.slice().sort(function(a,b){return String(b.last_updated).localeCompare(String(a.last_updated));}).slice(0,5);
+        var recentBlock='<div><div class="lc-rowhead"><h2 class="lc-rowhead__title" style="font-size:var(--text-2xl)">Recently updated</h2><span class="ar-freshness">Freshness is a discipline</span></div><div class="kbh-recent">'+
+          recent.map(function(e){return '<a href="'+EC.kbArticleUrl(e.id)+'"><span>'+EC.escapeHtml(e.title)+'</span><time>Reviewed '+EC.formatDate(e.last_updated)+'</time></a>';}).join('')+'</div></div>';
+
+        var main=hero+featured+paths+topics+recentBlock;
+        document.getElementById('kb-root').outerHTML=EC.kbShell(EC.kbSidebar(d,null), main);
+        EC.kbSidebarInit(document);
+        EC.jsonLD(EC.breadcrumbSchema([{name:'Learn',url:'https://www.endlesscustomers.com/learn'},{name:'Knowledge Base',url:'https://www.endlesscustomers.com/learn/knowledge-base'}]));
+      }).catch(function(e){console.error(e);});
+    })();
+  </script>

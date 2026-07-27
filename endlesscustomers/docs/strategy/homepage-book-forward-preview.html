@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage book-forward re-rank — preview</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  /* Apple grayscale neutrals (the homepage override) */
+  --heading:#1D1D1F; --text:#424245; --muted:#6E6E73;
+  --border:#D2D2D7; --subtle:#F5F5F7;
+  --blue:#0a6cff; --magenta:#D6269B; --green:#078A07;
+  --space:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5;}
+.note{max-width:1100px;margin:32px auto 8px;padding:0 24px;}
+.note h1{font-family:'General Sans';font-weight:700;font-size:24px;letter-spacing:-.02em;color:var(--heading);margin-bottom:8px;}
+.note p{max-width:80ch;font-size:15px;color:var(--muted);}
+.wrap{max-width:1100px;margin:0 auto;padding:24px;}
+.tag{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;margin:34px 0 10px;}
+
+/* shared brand elements */
+.ec-wordmark{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.04em;}
+.ec-wordmark__row{flex:0 0 auto;white-space:nowrap;font-family:'General Sans';font-weight:800;text-transform:uppercase;letter-spacing:.04em;line-height:1.05;font-size:clamp(2.6rem,7vw,5.4rem);color:#fff;opacity:.05;will-change:transform;}
+.ec-wordmark--cta .ec-wordmark__row{opacity:.035;}
+.ec-wordmark__row:nth-child(odd){animation:ecDriftA 34s ease-in-out infinite alternate;}
+.ec-wordmark__row:nth-child(even){animation:ecDriftB 39s ease-in-out infinite alternate;}
+@keyframes ecDriftA{from{transform:translateX(-4%)}to{transform:translateX(2.5%)}}
+@keyframes ecDriftB{from{transform:translateX(2.5%)}to{transform:translateX(-4%)}}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;border-radius:18px;padding:72px 40px 64px;text-align:center;isolation:isolate;
+  background:radial-gradient(115% 90% at 50% 0%, #23232A 0%, #101013 56%, #000 100%);}
+.hero__overlay{position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(120% 120% at 72% 16%, rgba(10,108,255,.14), transparent 46%),linear-gradient(180deg, rgba(0,0,0,.42), rgba(0,0,0,.82));}
+.hero__eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.82);}
+.hero h1{font-family:'General Sans';font-weight:800;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;letter-spacing:-.03em;color:#fff;margin-top:14px;}
+.ec-swoosh{display:block;width:clamp(116px,20vw,200px);height:5px;margin:22px auto 0;border-radius:5px;
+  background:linear-gradient(90deg,var(--magenta),var(--blue),var(--green));transform-origin:center;
+  animation:ecSwoosh .9s cubic-bezier(.22,1,.36,1) .35s both;}
+@keyframes ecSwoosh{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero p{color:rgba(255,255,255,.9);max-width:52ch;margin:22px auto 0;font-size:17px;line-height:1.55;}
+.hero__cta{display:flex;gap:12px;justify-content:center;margin-top:30px;}
+.btn{font-family:'Inter';font-size:15px;font-weight:600;padding:13px 24px;border-radius:999px;border:1px solid transparent;text-decoration:none;cursor:default;}
+.btn--primary{background:var(--blue);color:#fff;}
+.btn--ghost{background:transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);color:rgba(255,255,255,.92);}
+
+/* AI PANEL (the one true book-black moment) */
+.panel{position:relative;overflow:hidden;border-radius:18px;background:#0A0A0A;isolation:isolate;padding:48px;}
+.panel::before{content:"";position:absolute;inset:12%;z-index:0;background:radial-gradient(46% 56% at 42% 48%, rgba(10,108,255,.20), transparent 72%);}
+.panel__grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+@media(max-width:760px){.panel__grid{grid-template-columns:1fr}}
+.panel__eyebrow{color:#7FB2FF;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
+.panel h2{font-family:'General Sans';font-weight:800;color:#fff;font-size:clamp(1.8rem,2.4vw + 1rem,2.5rem);line-height:1.13;letter-spacing:-.02em;margin:12px 0 16px;}
+.panel p{color:rgba(255,255,255,.82);line-height:1.6;max-width:48ch;}
+.panel__float{background:#fff;border-radius:14px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.5);}
+.panel__float .bar{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+.panel__float .q{font-weight:600;color:var(--heading);background:var(--subtle);border-radius:10px;padding:12px 14px;margin:14px 0;font-size:15px;}
+.panel__float .a{font-size:15px;color:var(--text);line-height:1.6;}
+.panel__float .a b{color:var(--heading);}
+
+/* CTA BAND (charcoal, via --heading token) */
+.cta{position:relative;overflow:hidden;border-radius:18px;background:var(--heading);text-align:center;padding:72px 40px;isolation:isolate;}
+.cta__inner{position:relative;z-index:1;}
+.cta h2{font-family:'General Sans';font-weight:800;color:#fff;font-size:clamp(2rem,3vw,2.8rem);letter-spacing:-.02em;}
+.cta p{color:rgba(255,255,255,.82);max-width:48ch;margin:16px auto 26px;}
+.cta__cta{display:flex;gap:12px;justify-content:center;}
+
+/* FOUNDATION (light section + aperture watermark) */
+.found{position:relative;overflow:hidden;border-radius:18px;background:var(--subtle);padding:48px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;}
+@media(max-width:760px){.found{grid-template-columns:1fr}}
+.found > *:not(.ec-aperture){position:relative;z-index:1;}
+.found__eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.found h2{font-family:'General Sans';font-weight:800;color:var(--heading);font-size:26px;letter-spacing:-.01em;margin:10px 0 14px;}
+.found p{color:var(--text);max-width:54ch;line-height:1.6;}
+.found em{font-style:italic;}
+.ec-aperture{position:absolute;right:-2%;bottom:-16%;width:min(340px,40%);color:var(--heading);opacity:.045;z-index:0;}
+.ec-aperture svg{width:100%;height:auto;display:block;}
+
+@media(prefers-reduced-motion:reduce){.ec-wordmark__row,.ec-swoosh{animation:none!important;transform:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="note">
+  <h1>Homepage book-forward re-rank — live preview</h1>
+  <p>The four moments that change most. Neutrals are now Apple grayscale (no blue tint), the dark sections are book near-black instead of navy, blue survives only as the accent and the one primary button, and the Endless Customers brand is woven in: the drifting wordmark on dark sections, the rainbow swoosh under the hero headline, and the faint aperture-O on the Foundation block. This mirrors what is now live in index.html (scoped to the homepage).</p>
+</div>
+
+<div class="wrap">
+
+  <div class="tag">1 · Hero — near-black, swoosh as the brand spark</div>
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__eyebrow">The Endless Customers System</div>
+    <h1>Win More Customers</h1>
+    <span class="ec-swoosh"></span>
+    <p>The proven system that makes your business the most known, trusted, and recommended brand in your market.</p>
+    <div class="hero__cta">
+      <a class="btn btn--primary">Let's Talk</a>
+      <a class="btn btn--ghost">Get Your Free AI Diagnostic</a>
+    </div>
+  </section>
+
+  <div class="tag">2 · AI panel — the book-black moment, drifting wordmark behind it</div>
+  <section class="panel">
+    <div class="ec-wordmark" aria-hidden="true">
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+    </div>
+    <div class="panel__grid">
+      <div>
+        <div class="panel__eyebrow">Thrive in an AI-First World</div>
+        <h2>When Buyers Ask AI Who to Trust, You Want to Be the Answer</h2>
+        <p>Search is becoming answers. The businesses that win are the ones publishing the helpful, trustworthy content AI surfaces and recommends.</p>
+      </div>
+      <div class="panel__float">
+        <div class="bar">✦ AI Answer</div>
+        <div class="q">Who's the most trusted commercial roofer near me?</div>
+        <div class="a">Based on the most helpful and transparent content available, the company that <b>openly answers pricing, process, and problem questions</b> is consistently surfaced as the most credible choice.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tag">3 · Foundation — faint aperture-O brand watermark</div>
+  <section class="found">
+    <div class="ec-aperture" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.85,12.16c-.01.44-.05.87-.13,1.29-.17,1.02-.52,2.02-1.04,2.92v.04c-.78,1.34-1.91,2.47-3.26,3.24-1.06.63-2.24,1.01-3.45,1.14v-3.67c.57-.11,1.13-.31,1.64-.61.68-.39,1.23-.9,1.67-1.53h0s-.33-.64-.38-.73c.86-.08.18-.02.2-.02l.66-.06c.11-.24.19-.47.26-.72.15-.5.23-1.03.21-1.55,0-.5-.08-.97-.23-1.44-.01-.08-.05-.15-.07-.24l3.18-1.84c.3.66.5,1.36.62,2.08.09.56.14,1.13.13,1.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path>
+        <path d="M12.02,1.19c5.44,0,9.96,4.05,10.68,9.29h1.09C23.06,4.64,18.06.11,12.02.11S.99,4.64.25,10.48h1.09C2.07,5.24,6.59,1.19,12.02,1.19Z"></path>
+        <path d="M12.02,22.77c-5.44,0-9.96-4.05-10.68-9.29H.25c.74,5.84,5.74,10.37,11.77,10.37s11.04-4.53,11.77-10.37h-1.09c-.72,5.25-5.25,9.29-10.68,9.29Z"></path>
+        <path d="M7.49,19.54c-.37-.23-.73-.47-1.05-.76-.8-.65-1.49-1.46-2.01-2.36l-.03-.02c-.77-1.35-1.18-2.89-1.17-4.45-.02-1.23.25-2.45.74-3.56l3.18,1.83c-.19.55-.3,1.13-.29,1.72,0,.78.16,1.52.49,2.21h.01s.71.03.81.03c-.36.78-.08.17-.09.19l-.28.6c.15.21.32.4.5.59.35.38.78.71,1.24.96.43.25.88.41,1.36.52.08.03.16.04.24.06v3.67c-.72-.08-1.43-.25-2.1-.5-.53-.2-1.05-.44-1.53-.74Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path>
+        <path d="M7.74,4.02c.39-.21.77-.39,1.19-.53.97-.37,1.97-.57,3.01-.57h.07c1.55,0,3.09.42,4.44,1.21,1.07.6,1.99,1.44,2.71,2.42l-3.18,1.83c-.38-.44-.83-.82-1.34-1.12-.68-.39-1.4-.62-2.16-.68h0s-.38.61-.43.7c-.5-.71-.11-.15-.12-.17l-.38-.54c-.26.03-.51.07-.76.14-.51.12-1.01.32-1.45.59-.43.25-.8.56-1.13.91-.07.05-.11.12-.17.18l-3.18-1.83c.43-.59.93-1.11,1.49-1.57.44-.36.91-.69,1.4-.96Z" fill="none" stroke="currentColor" stroke-miterlimit="2" stroke-width=".75"></path>
+      </svg>
+    </div>
+    <div>
+      <div class="found__eyebrow">The Foundation</div>
+      <h2>Built on <em>They Ask, You Answer</em>. Evolved Into Endless Customers.</h2>
+      <p>Marcus Sheridan's best-selling framework, evolved into one coached system your team executes, now built for an AI-first world.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
+      <a class="btn btn--primary">Get the Book</a>
+    </div>
+  </section>
+
+  <div class="tag">4 · CTA band — charcoal near-black, wordmark fainter</div>
+  <section class="cta">
+    <div class="ec-wordmark ec-wordmark--cta" aria-hidden="true">
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+      <span class="ec-wordmark__row">ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS ENDLESS CUSTOMERS</span>
+    </div>
+    <div class="cta__inner">
+      <h2>Ready to Win More Customers?</h2>
+      <p>Let's talk. We'll look at where you are, show you what's possible, and map your next step.</p>
+      <div class="cta__cta">
+        <a class="btn btn--primary">Let's Talk</a>
+        <a class="btn btn--ghost">Get Your Free AI Diagnostic</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

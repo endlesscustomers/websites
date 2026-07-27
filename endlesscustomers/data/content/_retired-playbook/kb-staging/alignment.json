@@ -1,0 +1,42 @@
+{
+  "id": "alignment",
+  "slug": "alignment",
+  "title": "Alignment",
+  "nav_title": "Alignment",
+  "status": "published",
+  "topic_id": "right-culture",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "In most organizations, sales and marketing operate as separate functions with separate metrics, separate tools, and a shared resentment that neither side fully articulates. Marketing complains that sales doesn't use the content they produce. Sales complains that marketing generates leads that aren't worth calling. Both are often right, and both problems have the same root cause: the two teams were never aligned on what they are trying to accomplish together.\n\nEndless Customers treats alignment not as a cultural nicety but as a structural requirement. The strategy only works when the content your marketing team produces is the content your sales team uses in their conversations. Assignment Selling only works when salespeople trust the content and believe it will make their calls better. That trust is built through collaboration, not by dropping a content library on a sales team and hoping they adopt it.\n\n## What Misalignment Actually Costs\n\nMisalignment has a measurable cost that most companies never calculate. When marketing produces content that sales ignores, the content investment is wasted. When sales repeats the same objection-handling conversations manually rather than assigning content that would do it for them, the sales cycle stays longer than it needs to be. When the two teams disagree on what a qualified lead looks like, marketing sends prospects that sales dismisses, and sales loses confidence in the pipeline.\n\nEvery hour a salesperson spends educating a prospect who could have been self-educated through content is an hour that could have been spent advancing a ready buyer. Alignment captures that time back.\n\n## How Alignment Is Built\n\nAlignment starts with a shared definition of the buyer. Marketing and sales must agree on who the ideal customer is, what questions they ask before buying, and what objections come up most often. This is not a one-time exercise — it's an ongoing conversation. The sales team is constantly gathering frontline intelligence about buyers. That intelligence should be flowing directly into the content strategy.\n\nRegular joint meetings between content and sales — sometimes called Content Marketing Sales Meetings or weekly content calls — are one of the most practical alignment mechanisms. In these meetings, salespeople share the questions and objections they heard most often that week. The content team turns those into articles, videos, and tools. The sales team then uses that content in Assignment Selling. The loop closes: frontline intelligence becomes content, and content makes sales conversations more effective.\n\n## Shared Metrics\n\nAlignment breaks down when teams are measured on different things. If marketing is measured on traffic and leads while sales is measured on closed revenue, the incentives diverge. Marketing optimizes for volume. Sales optimizes for quality. Neither team is wrong — they're both responding rationally to what they're being measured on. The solution is a shared metric that both teams are accountable for: most commonly, revenue generated from content-influenced deals.\n\nWhen both teams are accountable for the same outcome, collaboration becomes natural. Marketing wants to know which content is actually used in deals. Sales wants more of the content that shortens the sales cycle. Those conversations stop being adversarial and start being productive.",
+  "excerpt": "Sales and marketing misalignment doesn't just create friction. It destroys the effectiveness of everything both teams are trying to do. Here's how to fix it.",
+  "what_youll_learn": [
+    "Sales and marketing misalignment is not a cultural problem — it's a structural one. It's fixed by building shared goals, shared language, and shared processes, not by hoping the teams will get along.",
+    "Assignment Selling only works when salespeople trust and actively use the content marketing produces. That trust is built through collaboration, not delivery.",
+    "Regular joint meetings between content and sales — where salespeople share buyer questions and the content team turns them into assets — are the most practical alignment mechanism.",
+    "When teams are measured on different metrics, their incentives diverge. Shared accountability for content-influenced revenue aligns both teams toward the same outcome.",
+    "The sales team has constant frontline intelligence about buyers. That intelligence should be flowing directly into the content strategy, not staying locked in salespeople's heads.",
+    "Every hour a salesperson spends manually educating a prospect who could have been self-educated through content is an hour that alignment recovers."
+  ],
+  "key_questions": [
+    {
+      "question": "How do we start building alignment if sales and marketing have a contentious relationship?",
+      "answer": "Start with a shared problem both teams care about. Identify the three or four objections that come up in almost every sales conversation and ask marketing to produce content specifically addressing those. When sales sees buyers arriving at meetings already knowing the answers to those objections — because they read or watched the content — the relationship changes. Practical results build trust faster than team-building exercises."
+    },
+    {
+      "question": "What is a Content Marketing Sales Meeting?",
+      "answer": "A Content Marketing Sales Meeting (sometimes called a weekly content call) is a regular meeting between the content team and the sales team where salespeople share the questions, objections, and concerns they heard most often from buyers that week. The content team turns those inputs into articles, videos, and tools. Over time, this meeting becomes the engine that keeps content production tied to real buyer intelligence."
+    },
+    {
+      "question": "How do we define a qualified lead in a way both teams agree on?",
+      "answer": "Build the definition collaboratively. Start with your sales team's criteria: what does a contact need to have done, asked, or expressed for a salesperson to consider them worth a conversation? Then look at your marketing data: which behaviors — content consumed, pages visited, forms submitted — are most predictive of those sales-ready characteristics? The intersection of those two inputs is your shared definition of a qualified lead."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-28",
+  "last_updated": "2026-04-28",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

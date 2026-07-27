@@ -1,1 +1,1724 @@
-{"namespace":"IMPACTDesignSystem_9efa99","components":[{"name":"BlogCard","sourcePath":"components/cards/BlogCard.jsx"},{"name":"Card","sourcePath":"components/cards/Card.jsx"},{"name":"FEATURE_ICONS","sourcePath":"components/cards/FeatureCard.jsx"},{"name":"FeatureCard","sourcePath":"components/cards/FeatureCard.jsx"},{"name":"ProgramCard","sourcePath":"components/cards/ProgramCard.jsx"},{"name":"StepCard","sourcePath":"components/cards/StepCard.jsx"},{"name":"TeamCard","sourcePath":"components/cards/TeamCard.jsx"},{"name":"TestimonialCard","sourcePath":"components/cards/TestimonialCard.jsx"},{"name":"ChatWidget","sourcePath":"components/chrome/ChatWidget.jsx"},{"name":"Footer","sourcePath":"components/chrome/Footer.jsx"},{"name":"HelloBar","sourcePath":"components/chrome/HelloBar.jsx"},{"name":"NavBar","sourcePath":"components/chrome/NavBar.jsx"},{"name":"SubNav","sourcePath":"components/chrome/SubNav.jsx"},{"name":"ComparisonBlock","sourcePath":"components/comparison/ComparisonBlock.jsx"},{"name":"FaqAccordion","sourcePath":"components/content/FaqAccordion.jsx"},{"name":"LogoWall","sourcePath":"components/content/LogoWall.jsx"},{"name":"NewsletterForm","sourcePath":"components/content/NewsletterForm.jsx"},{"name":"PricingTable","sourcePath":"components/content/PricingTable.jsx"},{"name":"Prose","sourcePath":"components/content/Prose.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Callout","sourcePath":"components/core/Callout.jsx"},{"name":"CheckItem","sourcePath":"components/core/CheckItem.jsx"},{"name":"SectionHeading","sourcePath":"components/core/SectionHeading.jsx"},{"name":"StarRating","sourcePath":"components/core/StarRating.jsx"},{"name":"StatCallout","sourcePath":"components/core/StatCallout.jsx"},{"name":"AnnotatedVisual","sourcePath":"components/diagrams/annotated/AnnotatedVisual.jsx"},{"name":"BarChartDiagram","sourcePath":"components/diagrams/bar-chart/BarChartDiagram.jsx"},{"name":"BrandDiagram","sourcePath":"components/diagrams/brand/BrandDiagram.jsx"},{"name":"FlowDiagram","sourcePath":"components/diagrams/flow/FlowDiagram.jsx"},{"name":"DiagramFrame","sourcePath":"components/diagrams/frame/DiagramFrame.jsx"},{"name":"PriceHighlight","sourcePath":"components/pricing/PriceHighlight.jsx"},{"name":"PricingMatrix","sourcePath":"components/pricing/PricingMatrix.jsx"},{"name":"ResultTile","sourcePath":"components/proof/ResultTile.jsx"},{"name":"ResultTileGrid","sourcePath":"components/proof/ResultTileGrid.jsx"},{"name":"CtaBand","sourcePath":"components/sections/cta-band/CtaBand.jsx"},{"name":"FeatureGrid","sourcePath":"components/sections/feature-grid/FeatureGrid.jsx"},{"name":"Hero","sourcePath":"components/sections/hero/Hero.jsx"},{"name":"PeekingVideo","sourcePath":"components/sections/peeking-video/PeekingVideo.jsx"},{"name":"QualifierBand","sourcePath":"components/sections/qualifier-band/QualifierBand.jsx"},{"name":"QuoteBand","sourcePath":"components/sections/quote-band/QuoteBand.jsx"},{"name":"SplitFeature","sourcePath":"components/sections/split-feature/SplitFeature.jsx"},{"name":"StepBand","sourcePath":"components/sections/step-band/StepBand.jsx"},{"name":"TeamGrid","sourcePath":"components/sections/team-grid/TeamGrid.jsx"},{"name":"TestimonialWall","sourcePath":"components/sections/testimonial-wall/TestimonialWall.jsx"},{"name":"VideoFeature","sourcePath":"components/sections/video-feature/VideoFeature.jsx"}],"startingPoints":[{"name":"SubNav","path":"components/chrome/SubNav.jsx","previewPath":"components/chrome/chrome.card.html","kind":"component","section":"Chrome","subtitle":"Sticky section sub-nav","viewport":"1200x120"},{"name":"ComparisonBlock","path":"components/comparison/ComparisonBlock.jsx","previewPath":"components/comparison/ComparisonBlock.card.html","kind":"component","section":"Comparison","subtitle":"You vs. competitors matrix","viewport":"1000x520"},{"name":"Prose","path":"components/content/Prose.jsx","previewPath":"components/content/content.card.html","kind":"component","section":"Content","subtitle":"Lead + body paragraph block","viewport":"820x360"},{"name":"AnnotatedVisual","path":"components/diagrams/annotated/AnnotatedVisual.jsx","previewPath":"components/diagrams/annotated/AnnotatedVisual.card.html","kind":"component","section":"Diagrams","subtitle":"Annotated screenshot diagram","viewport":"820x520"},{"name":"BarChartDiagram","path":"components/diagrams/bar-chart/BarChartDiagram.jsx","previewPath":"components/diagrams/bar-chart/BarChartDiagram.card.html","kind":"component","section":"Diagrams","subtitle":"Branded bar/column chart","viewport":"700x360"},{"name":"BrandDiagram","path":"components/diagrams/brand/BrandDiagram.jsx","previewPath":"components/diagrams/brand/BrandDiagram.card.html","kind":"component","section":"Diagrams","subtitle":"Real-asset diagram slot","viewport":"820x480"},{"name":"DiagramFrame","path":"components/diagrams/frame/DiagramFrame.jsx","previewPath":"components/diagrams/frame/DiagramFrame.card.html","kind":"component","section":"Diagrams","subtitle":"Branded diagram container","viewport":"820x420"},{"name":"FlowDiagram","path":"components/diagrams/flow/FlowDiagram.jsx","previewPath":"components/diagrams/flow/FlowDiagram.card.html","kind":"component","section":"Diagrams","subtitle":"Flow / cycle / hub diagram","viewport":"820x480"},{"name":"PriceHighlight","path":"components/pricing/PriceHighlight.jsx","previewPath":"components/pricing/pricing.card.html","kind":"component","section":"Pricing","subtitle":"Kickoff price highlight block","viewport":"1100x520"},{"name":"PricingMatrix","path":"components/pricing/PricingMatrix.jsx","previewPath":"components/pricing/pricing.card.html","kind":"component","section":"Pricing","subtitle":"Multi-plan comparison matrix","viewport":"1200x640"},{"name":"ResultTile","path":"components/proof/ResultTile.jsx","previewPath":"components/proof/proof.card.html","kind":"component","section":"Proof","subtitle":"Logo + result metric tile","viewport":"360x260"},{"name":"CtaBand","path":"components/sections/cta-band/CtaBand.jsx","previewPath":"components/sections/cta-band/CtaBand.card.html","kind":"component","section":"Sections","subtitle":"Closing CTA band (dark / photo)","viewport":"1200x460"},{"name":"FeatureGrid","path":"components/sections/feature-grid/FeatureGrid.jsx","previewPath":"components/sections/feature-grid/FeatureGrid.card.html","kind":"component","section":"Sections","subtitle":"Heading + feature-card grid","viewport":"1200x620"},{"name":"Hero","path":"components/sections/hero/Hero.jsx","previewPath":"components/sections/hero/Hero.card.html","kind":"component","section":"Sections","subtitle":"Centered page hero with CTAs","viewport":"1200x560"},{"name":"PeekingVideo","path":"components/sections/peeking-video/PeekingVideo.jsx","previewPath":"components/sections/peeking-video/PeekingVideo.card.html","kind":"component","section":"Sections","subtitle":"Video peeking above the fold","viewport":"1100x560"},{"name":"QualifierBand","path":"components/sections/qualifier-band/QualifierBand.jsx","previewPath":"components/sections/qualifier-band/QualifierBand.card.html","kind":"component","section":"Sections","subtitle":"Dark qualifier checklist band","viewport":"1200x560"},{"name":"QuoteBand","path":"components/sections/quote-band/QuoteBand.jsx","previewPath":"components/sections/quote-band/QuoteBand.card.html","kind":"component","section":"Sections","subtitle":"Big serif pull-quote band","viewport":"1200x420"},{"name":"StepBand","path":"components/sections/step-band/StepBand.jsx","previewPath":"components/sections/step-band/StepBand.card.html","kind":"component","section":"Sections","subtitle":"Numbered process step band","viewport":"1200x420"},{"name":"TestimonialWall","path":"components/sections/testimonial-wall/TestimonialWall.jsx","previewPath":"components/sections/testimonial-wall/TestimonialWall.card.html","kind":"component","section":"Sections","subtitle":"Star-review testimonial wall","viewport":"1200x680"}],"cards":[{"path":"guidelines/brand-handwriting.html","group":"Brand","viewport":"700x230","subtitle":"Kalam script + hand-drawn arrows — IMPACT's signature annotation","name":"Handwritten Motif"},{"path":"guidelines/brand-lockups.html","group":"Brand","viewport":"700x210","subtitle":"Endless Customers Coaching & Training and EC Live","name":"Program Lockups"},{"path":"guidelines/brand-logos.html","group":"Brand","viewport":"700x180","subtitle":"IMPACT and Endless Customers marks, on light and dark","name":"Logos"},{"path":"guidelines/colors-blues.html","group":"Colors","viewport":"700x150","subtitle":"Blue 100→600 — backgrounds, accents & the primary #0A6CFF","name":"Brand Blues"},{"path":"guidelines/colors-gradients.html","group":"Colors","viewport":"700x170","subtitle":"Dark gradients used on service-page hero bands","name":"Service Gradients"},{"path":"guidelines/colors-greens.html","group":"Colors","viewport":"700x150","subtitle":"Green 100→600 — pills (400) & checkmarks (500)","name":"Brand Greens"},{"path":"guidelines/colors-livid.html","group":"Colors","viewport":"700x150","subtitle":"Livid 100→600 — section backgrounds, borders & pager dots","name":"Grey-Blues (Livid)"},{"path":"guidelines/colors-neutrals.html","group":"Colors","viewport":"700x150","subtitle":"White→Black — surfaces, dividers & content headers","name":"Neutrals"},{"path":"guidelines/colors-primary.html","group":"Colors","viewport":"700x150","subtitle":"IMPACT Blue, Green 400 & Livid 100 — the three core brand colors","name":"Primary Palette"},{"path":"guidelines/colors-services.html","group":"Colors","viewport":"700x150","subtitle":"Per-service primaries: Sales, HubSpot, Website, AI & Marketing","name":"Service Accents"},{"path":"guidelines/colors-text.html","group":"Colors","viewport":"700x150","subtitle":"Heading (Neutral 700), body (Slate 500), link (Blue 600) & error (Red 500)","name":"Text Colors"},{"path":"components/comparison/ComparisonBlock.card.html","group":"Comparison","viewport":"1000x560","subtitle":"You vs. competitors capability matrix","name":"Competitor Benchmark"},{"path":"components/cards/cards.card.html","group":"Components","viewport":"700x620","subtitle":"The white shadow-card family and its specialized variants","name":"Cards — Testimonial, Feature, Program, Step"},{"path":"components/cards/people.card.html","group":"Components","viewport":"820x520","subtitle":"Team role cards, Learning-Center blog cards, and stat callouts","name":"People, Insights & Stats"},{"path":"components/chrome/chrome.card.html","group":"Components","viewport":"1280x680","subtitle":"Global navigation, sticky section sub-nav, promo bar, footer, and the Ecee AI chat widget","name":"Chrome — Header, Sub-nav, Hello Bar, Footer, Chat"},{"path":"components/content/content.card.html","group":"Components","viewport":"820x640","subtitle":"FAQ accordion, client-logo band, email capture, plan comparison table","name":"Content — FAQ, Logo Wall, Newsletter, Pricing"},{"path":"components/core/core.card.html","group":"Components","viewport":"700x560","subtitle":"Pill CTAs, star ratings, checklist rows, section headings, handwritten call-outs","name":"Core — Buttons, Badges, Callouts"},{"path":"components/diagrams/annotated/AnnotatedVisual.card.html","group":"Diagrams","viewport":"820x520","subtitle":"Labeled-screenshot diagram with callout markers","name":"Annotated Visual"},{"path":"components/diagrams/bar-chart/BarChartDiagram.card.html","group":"Diagrams","viewport":"700x400","subtitle":"Branded column chart for comparison stories","name":"Bar Chart"},{"path":"components/diagrams/brand/BrandDiagram.card.html","group":"Diagrams","viewport":"860x480","subtitle":"Drop-in slot for exported IMPACT diagrams","name":"Brand Diagram (real asset slot)"},{"path":"components/diagrams/flow/FlowDiagram.card.html","group":"Diagrams","viewport":"900x520","subtitle":"Linear, cycle, and hub-and-spoke layouts","name":"Flow Diagram"},{"path":"components/diagrams/frame/DiagramFrame.card.html","group":"Diagrams","viewport":"860x460","subtitle":"Branded container: bg, title, Kalam annotation","name":"Diagram Frame"},{"path":"components/pricing/pricing.card.html","group":"Pricing","viewport":"1200x780","subtitle":"Kickoff price block + multi-plan comparison table","name":"Price Highlight & Comparison Matrix"},{"path":"components/proof/proof.card.html","group":"Proof","viewport":"1100x360","subtitle":"Logo + result metric proof strip","name":"Result Tiles"},{"path":"components/sections/cta-band/CtaBand.card.html","group":"Sections","viewport":"1100x460","subtitle":"Closing CTA band over a scrimmed photo","name":"CTA Band"},{"path":"components/sections/feature-grid/FeatureGrid.card.html","group":"Sections","viewport":"1100x600","subtitle":"Heading over a responsive feature-card grid","name":"Feature Grid"},{"path":"components/sections/hero/Hero.card.html","group":"Sections","viewport":"1100x520","subtitle":"Centered page hero with eyebrow, headline, subtitle, CTAs","name":"Hero"},{"path":"components/sections/peeking-video/PeekingVideo.card.html","group":"Sections","viewport":"1100x560","subtitle":"Hero video that peeks up above the fold, straddling two sections","name":"Peeking Video"},{"path":"components/sections/qualifier-band/QualifierBand.card.html","group":"Sections","viewport":"1100x520","subtitle":"Dark ","name":"Qualifier Band"},{"path":"components/sections/quote-band/QuoteBand.card.html","group":"Sections","viewport":"1100x360","subtitle":"Large serif pull-quote band with attribution","name":"Quote Band"},{"path":"components/sections/split-feature/SplitFeature.card.html","group":"Sections","viewport":"1100x560","subtitle":"Two-column step: text beside an arch-masked photo","name":"Split Feature"},{"path":"components/sections/step-band/StepBand.card.html","group":"Sections","viewport":"1100x420","subtitle":"Numbered ","name":"Step Band"},{"path":"components/sections/team-grid/TeamGrid.card.html","group":"Sections","viewport":"1100x520","name":"Team Grid"},{"path":"components/sections/testimonial-wall/TestimonialWall.card.html","group":"Sections","viewport":"1100x640","subtitle":"Grid of five-star review cards","name":"Testimonial Wall"},{"path":"components/sections/video-feature/VideoFeature.card.html","group":"Sections","viewport":"760x460","subtitle":"Video poster with play button and name overlay","name":"Video Feature"},{"path":"guidelines/spacing-radii.html","group":"Spacing","viewport":"700x160","subtitle":"--radius-xs … --radius-pill","name":"Corner Radii"},{"path":"guidelines/spacing-scale.html","group":"Spacing","viewport":"700x150","subtitle":"4px base — tokens --space-1 … --space-24","name":"Spacing Scale"},{"path":"guidelines/spacing-shadows.html","group":"Spacing","viewport":"700x150","subtitle":"Soft cool-tinted shadows — cards use --shadow-card","name":"Elevation / Shadows"},{"path":"guidelines/type-body.html","group":"Type","viewport":"700x210","subtitle":"P-LG 20 · Default 18 · SM 16 · XS 14 · self-hosted brand face","name":"Body Scale — Proxima Nova"},{"path":"guidelines/type-script.html","group":"Type","viewport":"700x170","subtitle":"Script accent for callouts, statistics & decorative labels","name":"Handwritten — Kalam"},{"path":"guidelines/type-serif.html","group":"Type","viewport":"700x210","subtitle":"Display H1 60 · H1 48 · H2 36 · H4 24 — headings & FAQ questions","name":"Serif Scale — Merriweather"},{"path":"ui_kits/website/index.html","group":"Website","viewport":"1280x900","subtitle":"Interactive homepage + pricing recreation, built from the components","name":"Marketing Website"}],"templates":[{"name":"Marketing Page","description":"IMPACT marketing page starter — dark hero, proof, testimonials, CTA, footer","folder":"templates/marketing-page","entryPath":"templates/marketing-page/MarketingPage.dc.html","thumbnail":{"path":"templates/marketing-page/.thumbnail","kind":"captured"}},{"name":"Program Page","description":"Full Endless Customers coaching program page — hero, explainer, competitor benchmark, qualifier, what-you-get/gain, proof, team, journey diagram, quote, testimonials, pricing, FAQ, and CTA — assembled","folder":"templates/program-page","entryPath":"templates/program-page/ProgramPage.dc.html"}],"hasThumbnailHtml":true,"globalCssPaths":["tokens/fonts.css","tokens/colors.css","tokens/typography.css","tokens/spacing.css","tokens/effects.css","tokens/base.css","styles.css"],"tokens":[{"name":"--ec-blue-100","value":"#F3F7FF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-blue-200","value":"#E2ECFF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-blue-300","value":"#D1E0FF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-blue-400","value":"#ADDCFF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-blue-500","value":"#AFCAFF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-blue-600","value":"#0A6CFF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-green-100","value":"#C3FFE8","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-green-200","value":"#3EFEDD","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-green-300","value":"#0BFED4","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-green-400","value":"#01E6BE","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-green-500","value":"#01C4A2","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-green-600","value":"#00B59C","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-livid-100","value":"#F6F9FC","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-livid-200","value":"#E1EFF4","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-livid-300","value":"#E1E7F4","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-livid-400","value":"#D0DFEF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-livid-500","value":"#C3D7EB","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-livid-600","value":"#AAC6E3","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-white","value":"#FFFFFF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-100","value":"#F6F6F6","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-200","value":"#EEEEEE","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-300","value":"#DDDDDD","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-400","value":"#C4C4C4","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-500","value":"#999999","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-600","value":"#2B2B2B","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-neutral-700","value":"#1D1D1F","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-black","value":"#000000","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-slate-500","value":"#4F5465","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-red-500","value":"#DD2D2D","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-sales-primary","value":"#33B748","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-sales-accent","value":"#C2E9C8","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-hubspot-primary","value":"#FC9639","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-hubspot-accent","value":"#FFDCDC","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-website-primary","value":"#E4319A","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-website-accent","value":"#F9C1C1","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-ai-primary","value":"#02B4CA","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-ai-accent","value":"#B3D9F2","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-marketing-primary","value":"#0A6CFF","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-marketing-accent","value":"#B9D5FD","kind":"color","definedIn":"tokens/colors.css"},{"name":"--ec-grad-sales-dark","value":"linear-gradient(90deg, #B6DF50 0%, #33B748 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-sales-light","value":"linear-gradient(90deg, #E9F5CB 0%, #C2E9C8 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-hubspot-dark","value":"linear-gradient(90deg, #FBB12F 0%, #FF5250 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-hubspot-light","value":"linear-gradient(90deg, #FEEFD5 0%, #FFDCDC 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-website-dark","value":"linear-gradient(90deg, #DE30E5 0%, #FF5250 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-website-light","value":"linear-gradient(90deg, #F5C1F7 0%, #F9C1C1 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-ai-dark","value":"linear-gradient(90deg, #01E6BE 0%, #0281D4 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-ai-light","value":"linear-gradient(90deg, #B3F7EC 0%, #B3D9F2 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-marketing-dark","value":"linear-gradient(90deg, #00C0FF 0%, #5558FF 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-marketing-light","value":"linear-gradient(90deg, #EAF6FF 0%, #ADDCFF 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--ec-grad-ai-chat","value":"linear-gradient(135deg, #5558FF 0%, #E4319A 100%)","kind":"color","definedIn":"tokens/colors.css","annotation":"color"},{"name":"--color-brand","value":"var(--ec-blue-600)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--color-brand-hover","value":"#085AD6","kind":"color","definedIn":"tokens/colors.css"},{"name":"--color-secondary","value":"var(--ec-green-400)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--text-heading","value":"var(--ec-neutral-700)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--text-body","value":"var(--ec-neutral-600)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--text-muted","value":"var(--ec-neutral-500)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--text-inverse","value":"var(--ec-white)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--text-link","value":"var(--ec-blue-600)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--text-link-hover","value":"var(--color-brand-hover)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--text-error","value":"var(--ec-red-500)","kind":"font","definedIn":"tokens/colors.css"},{"name":"--surface-page","value":"var(--ec-white)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--surface-muted","value":"var(--ec-livid-100)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--surface-card","value":"var(--ec-white)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--surface-field","value":"var(--ec-blue-100)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--surface-dark","value":"var(--ec-neutral-700)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--surface-black","value":"var(--ec-black)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--border-subtle","value":"var(--ec-livid-300)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--border-strong","value":"var(--ec-neutral-600)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--divider","value":"var(--ec-neutral-200)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--accent-pill","value":"var(--ec-green-400)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--accent-check","value":"var(--ec-green-500)","kind":"color","definedIn":"tokens/colors.css"},{"name":"--star-rating","value":"#F5B72F","kind":"color","definedIn":"tokens/colors.css"},{"name":"--font-serif","value":"'Merriweather', Georgia, 'Times New Roman', serif","kind":"font","definedIn":"tokens/typography.css"},{"name":"--font-sans","value":"'Proxima Nova', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif","kind":"font","definedIn":"tokens/typography.css"},{"name":"--font-cond","value":"'Proxima Nova Condensed', 'Proxima Nova', system-ui, sans-serif","kind":"font","definedIn":"tokens/typography.css"},{"name":"--font-script","value":"'Kalam', 'Comic Sans MS', cursive","kind":"font","definedIn":"tokens/typography.css"},{"name":"--font-heading","value":"var(--font-serif)","kind":"font","definedIn":"tokens/typography.css"},{"name":"--font-body","value":"var(--font-sans)","kind":"font","definedIn":"tokens/typography.css"},{"name":"--font-accent","value":"var(--font-script)","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-display","value":"60px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-h1","value":"48px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-h2","value":"36px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-h3","value":"30px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-h4","value":"24px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-h5","value":"20px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-lg","value":"20px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-base","value":"18px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-sm","value":"16px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--text-xs","value":"14px","kind":"font","definedIn":"tokens/typography.css"},{"name":"--script-xl","value":"64px","kind":"spacing","definedIn":"tokens/typography.css"},{"name":"--script-lg","value":"44px","kind":"spacing","definedIn":"tokens/typography.css"},{"name":"--script-md","value":"32px","kind":"spacing","definedIn":"tokens/typography.css"},{"name":"--script-sm","value":"28px","kind":"spacing","definedIn":"tokens/typography.css"},{"name":"--script-xs","value":"20px","kind":"spacing","definedIn":"tokens/typography.css"},{"name":"--weight-regular","value":"400","kind":"font","definedIn":"tokens/typography.css"},{"name":"--weight-medium","value":"500","kind":"font","definedIn":"tokens/typography.css"},{"name":"--weight-semibold","value":"600","kind":"font","definedIn":"tokens/typography.css"},{"name":"--weight-bold","value":"700","kind":"font","definedIn":"tokens/typography.css"},{"name":"--weight-black","value":"900","kind":"font","definedIn":"tokens/typography.css"},{"name":"--leading-tight","value":"1.12","kind":"font","definedIn":"tokens/typography.css"},{"name":"--leading-snug","value":"1.25","kind":"font","definedIn":"tokens/typography.css"},{"name":"--leading-normal","value":"1.5","kind":"font","definedIn":"tokens/typography.css"},{"name":"--leading-relaxed","value":"1.65","kind":"font","definedIn":"tokens/typography.css"},{"name":"--tracking-eyebrow","value":"0.14em","kind":"font","definedIn":"tokens/typography.css"},{"name":"--tracking-tight","value":"-0.01em","kind":"font","definedIn":"tokens/typography.css"},{"name":"--tracking-normal","value":"0","kind":"font","definedIn":"tokens/typography.css"},{"name":"--space-0","value":"0","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-1","value":"4px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-2","value":"8px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-3","value":"12px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-4","value":"16px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-5","value":"20px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-6","value":"24px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-8","value":"32px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-10","value":"40px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-12","value":"48px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-16","value":"64px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-20","value":"80px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-24","value":"96px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--space-32","value":"128px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--section-py","value":"96px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--section-py-lg","value":"128px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--section-gap","value":"64px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--container-max","value":"1200px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--container-wide","value":"1320px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--container-narrow","value":"820px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--gutter","value":"24px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--grid-gap","value":"32px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--grid-gap-sm","value":"20px","kind":"spacing","definedIn":"tokens/spacing.css"},{"name":"--radius-xs","value":"4px","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--radius-sm","value":"8px","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--radius-md","value":"12px","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--radius-lg","value":"16px","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--radius-xl","value":"24px","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--radius-pill","value":"999px","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--radius-full","value":"50%","kind":"radius","definedIn":"tokens/effects.css"},{"name":"--shadow-xs","value":"0 1px 2px rgba(29, 29, 31, 0.06)","kind":"shadow","definedIn":"tokens/effects.css"},{"name":"--shadow-sm","value":"0 2px 8px rgba(29, 29, 31, 0.06)","kind":"shadow","definedIn":"tokens/effects.css"},{"name":"--shadow-card","value":"0 10px 30px rgba(31, 45, 61, 0.08)","kind":"shadow","definedIn":"tokens/effects.css"},{"name":"--shadow-md","value":"0 12px 34px rgba(31, 45, 61, 0.10)","kind":"shadow","definedIn":"tokens/effects.css"},{"name":"--shadow-lg","value":"0 24px 60px rgba(31, 45, 61, 0.14)","kind":"shadow","definedIn":"tokens/effects.css"},{"name":"--shadow-focus","value":"0 0 0 4px rgba(10, 108, 255, 0.22)","kind":"shadow","definedIn":"tokens/effects.css"},{"name":"--border-width","value":"1px","kind":"spacing","definedIn":"tokens/effects.css"},{"name":"--border-hair","value":"1px solid var(--border-subtle)","kind":"color","definedIn":"tokens/effects.css"},{"name":"--ease-standard","value":"cubic-bezier(0.2, 0.6, 0.2, 1)","kind":"other","definedIn":"tokens/effects.css","annotation":"other"},{"name":"--ease-out","value":"cubic-bezier(0.16, 1, 0.3, 1)","kind":"other","definedIn":"tokens/effects.css","annotation":"other"},{"name":"--dur-fast","value":"140ms","kind":"other","definedIn":"tokens/effects.css","annotation":"other"},{"name":"--dur-base","value":"220ms","kind":"other","definedIn":"tokens/effects.css","annotation":"other"},{"name":"--dur-slow","value":"360ms","kind":"other","definedIn":"tokens/effects.css","annotation":"other"}],"themes":[],"fonts":[{"family":"Proxima Nova","weight":"300","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/ProximaNova-Light.otf"]},{"family":"Proxima Nova","weight":"300","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/ProximaNova-LightItalic.otf"]},{"family":"Proxima Nova","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/ProximaNova-Regular.otf"]},{"family":"Proxima Nova","weight":"400","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/ProximaNova-RegularItalic.otf"]},{"family":"Proxima Nova","weight":"600","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Proxima_Nova_SemiBold.otf"]},{"family":"Proxima Nova","weight":"700","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/ProximaNova-Bold.otf"]},{"family":"Proxima Nova","weight":"700","style":"italic","cssPath":"tokens/fonts.css","files":["fonts/proximanova-boldit-webfont.ttf"]},{"family":"Proxima Nova","weight":"800","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Proxima_Nova_Extrabold.otf"]},{"family":"Proxima Nova","weight":"900","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/Proxima_Nova_Black.otf"]},{"family":"Proxima Nova Condensed","weight":"400","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/ProximaNovaCond-Regular.otf"]},{"family":"Proxima Nova Condensed","weight":"600","style":"normal","cssPath":"tokens/fonts.css","files":["fonts/ProximaNovaCond-Semibold.otf"]}],"brandFonts":[{"family":"Proxima Nova","status":"ok","tokens":["--font-sans"],"path":"tokens/fonts.css"},{"family":"Proxima Nova Condensed","status":"ok","tokens":["--font-cond"],"path":"tokens/fonts.css"},{"family":"Merriweather","status":"ok","tokens":["--font-serif"],"path":"tokens/typography.css"},{"family":"Kalam","status":"ok","tokens":["--font-script"],"path":"tokens/typography.css"}],"source":"spa"}
+{
+ "namespace": "IMPACTDesignSystem_9efa99",
+ "components": [
+  {
+   "name": "BlogCard",
+   "sourcePath": "components/cards/BlogCard.jsx"
+  },
+  {
+   "name": "Card",
+   "sourcePath": "components/cards/Card.jsx"
+  },
+  {
+   "name": "FEATURE_ICONS",
+   "sourcePath": "components/cards/FeatureCard.jsx"
+  },
+  {
+   "name": "FeatureCard",
+   "sourcePath": "components/cards/FeatureCard.jsx"
+  },
+  {
+   "name": "ProgramCard",
+   "sourcePath": "components/cards/ProgramCard.jsx"
+  },
+  {
+   "name": "StepCard",
+   "sourcePath": "components/cards/StepCard.jsx"
+  },
+  {
+   "name": "TeamCard",
+   "sourcePath": "components/cards/TeamCard.jsx"
+  },
+  {
+   "name": "TestimonialCard",
+   "sourcePath": "components/cards/TestimonialCard.jsx"
+  },
+  {
+   "name": "ChatWidget",
+   "sourcePath": "components/chrome/ChatWidget.jsx"
+  },
+  {
+   "name": "Footer",
+   "sourcePath": "components/chrome/Footer.jsx"
+  },
+  {
+   "name": "HelloBar",
+   "sourcePath": "components/chrome/HelloBar.jsx"
+  },
+  {
+   "name": "NavBar",
+   "sourcePath": "components/chrome/NavBar.jsx"
+  },
+  {
+   "name": "SubNav",
+   "sourcePath": "components/chrome/SubNav.jsx"
+  },
+  {
+   "name": "ComparisonBlock",
+   "sourcePath": "components/comparison/ComparisonBlock.jsx"
+  },
+  {
+   "name": "FaqAccordion",
+   "sourcePath": "components/content/FaqAccordion.jsx"
+  },
+  {
+   "name": "LogoWall",
+   "sourcePath": "components/content/LogoWall.jsx"
+  },
+  {
+   "name": "NewsletterForm",
+   "sourcePath": "components/content/NewsletterForm.jsx"
+  },
+  {
+   "name": "PricingTable",
+   "sourcePath": "components/content/PricingTable.jsx"
+  },
+  {
+   "name": "Prose",
+   "sourcePath": "components/content/Prose.jsx"
+  },
+  {
+   "name": "Badge",
+   "sourcePath": "components/core/Badge.jsx"
+  },
+  {
+   "name": "Button",
+   "sourcePath": "components/core/Button.jsx"
+  },
+  {
+   "name": "Callout",
+   "sourcePath": "components/core/Callout.jsx"
+  },
+  {
+   "name": "CheckItem",
+   "sourcePath": "components/core/CheckItem.jsx"
+  },
+  {
+   "name": "SectionHeading",
+   "sourcePath": "components/core/SectionHeading.jsx"
+  },
+  {
+   "name": "StarRating",
+   "sourcePath": "components/core/StarRating.jsx"
+  },
+  {
+   "name": "StatCallout",
+   "sourcePath": "components/core/StatCallout.jsx"
+  },
+  {
+   "name": "AnnotatedVisual",
+   "sourcePath": "components/diagrams/annotated/AnnotatedVisual.jsx"
+  },
+  {
+   "name": "BarChartDiagram",
+   "sourcePath": "components/diagrams/bar-chart/BarChartDiagram.jsx"
+  },
+  {
+   "name": "BrandDiagram",
+   "sourcePath": "components/diagrams/brand/BrandDiagram.jsx"
+  },
+  {
+   "name": "FlowDiagram",
+   "sourcePath": "components/diagrams/flow/FlowDiagram.jsx"
+  },
+  {
+   "name": "DiagramFrame",
+   "sourcePath": "components/diagrams/frame/DiagramFrame.jsx"
+  },
+  {
+   "name": "PriceHighlight",
+   "sourcePath": "components/pricing/PriceHighlight.jsx"
+  },
+  {
+   "name": "PricingMatrix",
+   "sourcePath": "components/pricing/PricingMatrix.jsx"
+  },
+  {
+   "name": "ResultTile",
+   "sourcePath": "components/proof/ResultTile.jsx"
+  },
+  {
+   "name": "ResultTileGrid",
+   "sourcePath": "components/proof/ResultTileGrid.jsx"
+  },
+  {
+   "name": "CtaBand",
+   "sourcePath": "components/sections/cta-band/CtaBand.jsx"
+  },
+  {
+   "name": "FeatureGrid",
+   "sourcePath": "components/sections/feature-grid/FeatureGrid.jsx"
+  },
+  {
+   "name": "Hero",
+   "sourcePath": "components/sections/hero/Hero.jsx"
+  },
+  {
+   "name": "PeekingVideo",
+   "sourcePath": "components/sections/peeking-video/PeekingVideo.jsx"
+  },
+  {
+   "name": "QualifierBand",
+   "sourcePath": "components/sections/qualifier-band/QualifierBand.jsx"
+  },
+  {
+   "name": "QuoteBand",
+   "sourcePath": "components/sections/quote-band/QuoteBand.jsx"
+  },
+  {
+   "name": "SplitFeature",
+   "sourcePath": "components/sections/split-feature/SplitFeature.jsx"
+  },
+  {
+   "name": "StepBand",
+   "sourcePath": "components/sections/step-band/StepBand.jsx"
+  },
+  {
+   "name": "TeamGrid",
+   "sourcePath": "components/sections/team-grid/TeamGrid.jsx"
+  },
+  {
+   "name": "TestimonialWall",
+   "sourcePath": "components/sections/testimonial-wall/TestimonialWall.jsx"
+  },
+  {
+   "name": "VideoFeature",
+   "sourcePath": "components/sections/video-feature/VideoFeature.jsx"
+  }
+ ],
+ "startingPoints": [
+  {
+   "name": "SubNav",
+   "path": "components/chrome/SubNav.jsx",
+   "previewPath": "components/chrome/chrome.card.html",
+   "kind": "component",
+   "section": "Chrome",
+   "subtitle": "Sticky section sub-nav",
+   "viewport": "1200x120"
+  },
+  {
+   "name": "ComparisonBlock",
+   "path": "components/comparison/ComparisonBlock.jsx",
+   "previewPath": "components/comparison/ComparisonBlock.card.html",
+   "kind": "component",
+   "section": "Comparison",
+   "subtitle": "You vs. competitors matrix",
+   "viewport": "1000x520"
+  },
+  {
+   "name": "Prose",
+   "path": "components/content/Prose.jsx",
+   "previewPath": "components/content/content.card.html",
+   "kind": "component",
+   "section": "Content",
+   "subtitle": "Lead + body paragraph block",
+   "viewport": "820x360"
+  },
+  {
+   "name": "AnnotatedVisual",
+   "path": "components/diagrams/annotated/AnnotatedVisual.jsx",
+   "previewPath": "components/diagrams/annotated/AnnotatedVisual.card.html",
+   "kind": "component",
+   "section": "Diagrams",
+   "subtitle": "Annotated screenshot diagram",
+   "viewport": "820x520"
+  },
+  {
+   "name": "BarChartDiagram",
+   "path": "components/diagrams/bar-chart/BarChartDiagram.jsx",
+   "previewPath": "components/diagrams/bar-chart/BarChartDiagram.card.html",
+   "kind": "component",
+   "section": "Diagrams",
+   "subtitle": "Branded bar/column chart",
+   "viewport": "700x360"
+  },
+  {
+   "name": "BrandDiagram",
+   "path": "components/diagrams/brand/BrandDiagram.jsx",
+   "previewPath": "components/diagrams/brand/BrandDiagram.card.html",
+   "kind": "component",
+   "section": "Diagrams",
+   "subtitle": "Real-asset diagram slot",
+   "viewport": "820x480"
+  },
+  {
+   "name": "DiagramFrame",
+   "path": "components/diagrams/frame/DiagramFrame.jsx",
+   "previewPath": "components/diagrams/frame/DiagramFrame.card.html",
+   "kind": "component",
+   "section": "Diagrams",
+   "subtitle": "Branded diagram container",
+   "viewport": "820x420"
+  },
+  {
+   "name": "FlowDiagram",
+   "path": "components/diagrams/flow/FlowDiagram.jsx",
+   "previewPath": "components/diagrams/flow/FlowDiagram.card.html",
+   "kind": "component",
+   "section": "Diagrams",
+   "subtitle": "Flow / cycle / hub diagram",
+   "viewport": "820x480"
+  },
+  {
+   "name": "PriceHighlight",
+   "path": "components/pricing/PriceHighlight.jsx",
+   "previewPath": "components/pricing/pricing.card.html",
+   "kind": "component",
+   "section": "Pricing",
+   "subtitle": "Kickoff price highlight block",
+   "viewport": "1100x520"
+  },
+  {
+   "name": "PricingMatrix",
+   "path": "components/pricing/PricingMatrix.jsx",
+   "previewPath": "components/pricing/pricing.card.html",
+   "kind": "component",
+   "section": "Pricing",
+   "subtitle": "Multi-plan comparison matrix",
+   "viewport": "1200x640"
+  },
+  {
+   "name": "ResultTile",
+   "path": "components/proof/ResultTile.jsx",
+   "previewPath": "components/proof/proof.card.html",
+   "kind": "component",
+   "section": "Proof",
+   "subtitle": "Logo + result metric tile",
+   "viewport": "360x260"
+  },
+  {
+   "name": "CtaBand",
+   "path": "components/sections/cta-band/CtaBand.jsx",
+   "previewPath": "components/sections/cta-band/CtaBand.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Closing CTA band (dark / photo)",
+   "viewport": "1200x460"
+  },
+  {
+   "name": "FeatureGrid",
+   "path": "components/sections/feature-grid/FeatureGrid.jsx",
+   "previewPath": "components/sections/feature-grid/FeatureGrid.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Heading + feature-card grid",
+   "viewport": "1200x620"
+  },
+  {
+   "name": "Hero",
+   "path": "components/sections/hero/Hero.jsx",
+   "previewPath": "components/sections/hero/Hero.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Centered page hero with CTAs",
+   "viewport": "1200x560"
+  },
+  {
+   "name": "PeekingVideo",
+   "path": "components/sections/peeking-video/PeekingVideo.jsx",
+   "previewPath": "components/sections/peeking-video/PeekingVideo.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Video peeking above the fold",
+   "viewport": "1100x560"
+  },
+  {
+   "name": "QualifierBand",
+   "path": "components/sections/qualifier-band/QualifierBand.jsx",
+   "previewPath": "components/sections/qualifier-band/QualifierBand.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Dark qualifier checklist band",
+   "viewport": "1200x560"
+  },
+  {
+   "name": "QuoteBand",
+   "path": "components/sections/quote-band/QuoteBand.jsx",
+   "previewPath": "components/sections/quote-band/QuoteBand.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Big serif pull-quote band",
+   "viewport": "1200x420"
+  },
+  {
+   "name": "StepBand",
+   "path": "components/sections/step-band/StepBand.jsx",
+   "previewPath": "components/sections/step-band/StepBand.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Numbered process step band",
+   "viewport": "1200x420"
+  },
+  {
+   "name": "TestimonialWall",
+   "path": "components/sections/testimonial-wall/TestimonialWall.jsx",
+   "previewPath": "components/sections/testimonial-wall/TestimonialWall.card.html",
+   "kind": "component",
+   "section": "Sections",
+   "subtitle": "Star-review testimonial wall",
+   "viewport": "1200x680"
+  }
+ ],
+ "cards": [
+  {
+   "path": "guidelines/brand-handwriting.html",
+   "group": "Brand",
+   "viewport": "700x230",
+   "subtitle": "Kalam script + hand-drawn arrows \u2014 IMPACT's signature annotation",
+   "name": "Handwritten Motif"
+  },
+  {
+   "path": "guidelines/brand-lockups.html",
+   "group": "Brand",
+   "viewport": "700x210",
+   "subtitle": "Endless Customers Coaching & Training and EC Live",
+   "name": "Program Lockups"
+  },
+  {
+   "path": "guidelines/brand-logos.html",
+   "group": "Brand",
+   "viewport": "700x180",
+   "subtitle": "IMPACT and Endless Customers marks, on light and dark",
+   "name": "Logos"
+  },
+  {
+   "path": "guidelines/colors-blues.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "Blue 100\u2192600 \u2014 backgrounds, accents & the primary #0A6CFF",
+   "name": "Brand Blues"
+  },
+  {
+   "path": "guidelines/colors-gradients.html",
+   "group": "Colors",
+   "viewport": "700x170",
+   "subtitle": "Dark gradients used on service-page hero bands",
+   "name": "Service Gradients"
+  },
+  {
+   "path": "guidelines/colors-greens.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "Green 100\u2192600 \u2014 pills (400) & checkmarks (500)",
+   "name": "Brand Greens"
+  },
+  {
+   "path": "guidelines/colors-livid.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "Livid 100\u2192600 \u2014 section backgrounds, borders & pager dots",
+   "name": "Grey-Blues (Livid)"
+  },
+  {
+   "path": "guidelines/colors-neutrals.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "White\u2192Black \u2014 surfaces, dividers & content headers",
+   "name": "Neutrals"
+  },
+  {
+   "path": "guidelines/colors-primary.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "IMPACT Blue, Green 400 & Livid 100 \u2014 the three core brand colors",
+   "name": "Primary Palette"
+  },
+  {
+   "path": "guidelines/colors-services.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "Per-service primaries: Sales, HubSpot, Website, AI & Marketing",
+   "name": "Service Accents"
+  },
+  {
+   "path": "guidelines/colors-text.html",
+   "group": "Colors",
+   "viewport": "700x150",
+   "subtitle": "Heading (Neutral 700), body (Slate 500), link (Blue 600) & error (Red 500)",
+   "name": "Text Colors"
+  },
+  {
+   "path": "components/comparison/ComparisonBlock.card.html",
+   "group": "Comparison",
+   "viewport": "1000x560",
+   "subtitle": "You vs. competitors capability matrix",
+   "name": "Competitor Benchmark"
+  },
+  {
+   "path": "components/cards/cards.card.html",
+   "group": "Components",
+   "viewport": "700x620",
+   "subtitle": "The white shadow-card family and its specialized variants",
+   "name": "Cards \u2014 Testimonial, Feature, Program, Step"
+  },
+  {
+   "path": "components/cards/people.card.html",
+   "group": "Components",
+   "viewport": "820x520",
+   "subtitle": "Team role cards, Learning-Center blog cards, and stat callouts",
+   "name": "People, Insights & Stats"
+  },
+  {
+   "path": "components/chrome/chrome.card.html",
+   "group": "Components",
+   "viewport": "1280x680",
+   "subtitle": "Global navigation, sticky section sub-nav, promo bar, footer, and the Ecee AI chat widget",
+   "name": "Chrome \u2014 Header, Sub-nav, Hello Bar, Footer, Chat"
+  },
+  {
+   "path": "components/content/content.card.html",
+   "group": "Components",
+   "viewport": "820x640",
+   "subtitle": "FAQ accordion, client-logo band, email capture, plan comparison table",
+   "name": "Content \u2014 FAQ, Logo Wall, Newsletter, Pricing"
+  },
+  {
+   "path": "components/core/core.card.html",
+   "group": "Components",
+   "viewport": "700x560",
+   "subtitle": "Pill CTAs, star ratings, checklist rows, section headings, handwritten call-outs",
+   "name": "Core \u2014 Buttons, Badges, Callouts"
+  },
+  {
+   "path": "components/diagrams/annotated/AnnotatedVisual.card.html",
+   "group": "Diagrams",
+   "viewport": "820x520",
+   "subtitle": "Labeled-screenshot diagram with callout markers",
+   "name": "Annotated Visual"
+  },
+  {
+   "path": "components/diagrams/bar-chart/BarChartDiagram.card.html",
+   "group": "Diagrams",
+   "viewport": "700x400",
+   "subtitle": "Branded column chart for comparison stories",
+   "name": "Bar Chart"
+  },
+  {
+   "path": "components/diagrams/brand/BrandDiagram.card.html",
+   "group": "Diagrams",
+   "viewport": "860x480",
+   "subtitle": "Drop-in slot for exported IMPACT diagrams",
+   "name": "Brand Diagram (real asset slot)"
+  },
+  {
+   "path": "components/diagrams/flow/FlowDiagram.card.html",
+   "group": "Diagrams",
+   "viewport": "900x520",
+   "subtitle": "Linear, cycle, and hub-and-spoke layouts",
+   "name": "Flow Diagram"
+  },
+  {
+   "path": "components/diagrams/frame/DiagramFrame.card.html",
+   "group": "Diagrams",
+   "viewport": "860x460",
+   "subtitle": "Branded container: bg, title, Kalam annotation",
+   "name": "Diagram Frame"
+  },
+  {
+   "path": "components/pricing/pricing.card.html",
+   "group": "Pricing",
+   "viewport": "1200x780",
+   "subtitle": "Kickoff price block + multi-plan comparison table",
+   "name": "Price Highlight & Comparison Matrix"
+  },
+  {
+   "path": "components/proof/proof.card.html",
+   "group": "Proof",
+   "viewport": "1100x360",
+   "subtitle": "Logo + result metric proof strip",
+   "name": "Result Tiles"
+  },
+  {
+   "path": "components/sections/cta-band/CtaBand.card.html",
+   "group": "Sections",
+   "viewport": "1100x460",
+   "subtitle": "Closing CTA band over a scrimmed photo",
+   "name": "CTA Band"
+  },
+  {
+   "path": "components/sections/feature-grid/FeatureGrid.card.html",
+   "group": "Sections",
+   "viewport": "1100x600",
+   "subtitle": "Heading over a responsive feature-card grid",
+   "name": "Feature Grid"
+  },
+  {
+   "path": "components/sections/hero/Hero.card.html",
+   "group": "Sections",
+   "viewport": "1100x520",
+   "subtitle": "Centered page hero with eyebrow, headline, subtitle, CTAs",
+   "name": "Hero"
+  },
+  {
+   "path": "components/sections/peeking-video/PeekingVideo.card.html",
+   "group": "Sections",
+   "viewport": "1100x560",
+   "subtitle": "Hero video that peeks up above the fold, straddling two sections",
+   "name": "Peeking Video"
+  },
+  {
+   "path": "components/sections/qualifier-band/QualifierBand.card.html",
+   "group": "Sections",
+   "viewport": "1100x520",
+   "subtitle": "Dark ",
+   "name": "Qualifier Band"
+  },
+  {
+   "path": "components/sections/quote-band/QuoteBand.card.html",
+   "group": "Sections",
+   "viewport": "1100x360",
+   "subtitle": "Large serif pull-quote band with attribution",
+   "name": "Quote Band"
+  },
+  {
+   "path": "components/sections/split-feature/SplitFeature.card.html",
+   "group": "Sections",
+   "viewport": "1100x560",
+   "subtitle": "Two-column step: text beside an arch-masked photo",
+   "name": "Split Feature"
+  },
+  {
+   "path": "components/sections/step-band/StepBand.card.html",
+   "group": "Sections",
+   "viewport": "1100x420",
+   "subtitle": "Numbered ",
+   "name": "Step Band"
+  },
+  {
+   "path": "components/sections/team-grid/TeamGrid.card.html",
+   "group": "Sections",
+   "viewport": "1100x520",
+   "name": "Team Grid"
+  },
+  {
+   "path": "components/sections/testimonial-wall/TestimonialWall.card.html",
+   "group": "Sections",
+   "viewport": "1100x640",
+   "subtitle": "Grid of five-star review cards",
+   "name": "Testimonial Wall"
+  },
+  {
+   "path": "components/sections/video-feature/VideoFeature.card.html",
+   "group": "Sections",
+   "viewport": "760x460",
+   "subtitle": "Video poster with play button and name overlay",
+   "name": "Video Feature"
+  },
+  {
+   "path": "guidelines/spacing-radii.html",
+   "group": "Spacing",
+   "viewport": "700x160",
+   "subtitle": "--radius-xs \u2026 --radius-pill",
+   "name": "Corner Radii"
+  },
+  {
+   "path": "guidelines/spacing-scale.html",
+   "group": "Spacing",
+   "viewport": "700x150",
+   "subtitle": "4px base \u2014 tokens --space-1 \u2026 --space-24",
+   "name": "Spacing Scale"
+  },
+  {
+   "path": "guidelines/spacing-shadows.html",
+   "group": "Spacing",
+   "viewport": "700x150",
+   "subtitle": "Soft cool-tinted shadows \u2014 cards use --shadow-card",
+   "name": "Elevation / Shadows"
+  },
+  {
+   "path": "guidelines/type-body.html",
+   "group": "Type",
+   "viewport": "700x210",
+   "subtitle": "P-LG 20 \u00b7 Default 18 \u00b7 SM 16 \u00b7 XS 14 \u00b7 self-hosted brand face",
+   "name": "Body Scale \u2014 Proxima Nova"
+  },
+  {
+   "path": "guidelines/type-script.html",
+   "group": "Type",
+   "viewport": "700x170",
+   "subtitle": "Script accent for callouts, statistics & decorative labels",
+   "name": "Handwritten \u2014 Kalam"
+  },
+  {
+   "path": "guidelines/type-serif.html",
+   "group": "Type",
+   "viewport": "700x210",
+   "subtitle": "Display H1 60 \u00b7 H1 48 \u00b7 H2 36 \u00b7 H4 24 \u2014 headings & FAQ questions",
+   "name": "Serif Scale \u2014 Merriweather"
+  },
+  {
+   "path": "ui_kits/website/index.html",
+   "group": "Website",
+   "viewport": "1280x900",
+   "subtitle": "Interactive homepage + pricing recreation, built from the components",
+   "name": "Marketing Website"
+  }
+ ],
+ "templates": [
+  {
+   "name": "Program Page",
+   "description": "Full Endless Customers coaching program page \u2014 hero, explainer, competitor benchmark, qualifier, what-you-get/gain, proof, team, journey diagram, quote, testimonials, pricing, FAQ, and CTA \u2014 assembled",
+   "folder": "templates/program-page",
+   "entryPath": "templates/program-page/ProgramPage.dc.html"
+  }
+ ],
+ "hasThumbnailHtml": true,
+ "globalCssPaths": [
+  "tokens/fonts.css",
+  "tokens/colors.css",
+  "tokens/typography.css",
+  "tokens/spacing.css",
+  "tokens/effects.css",
+  "tokens/base.css",
+  "styles.css"
+ ],
+ "tokens": [
+  {
+   "name": "--ec-blue-100",
+   "value": "#F3F7FF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-blue-200",
+   "value": "#E2ECFF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-blue-300",
+   "value": "#D1E0FF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-blue-400",
+   "value": "#ADDCFF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-blue-500",
+   "value": "#AFCAFF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-blue-600",
+   "value": "#0A6CFF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-green-100",
+   "value": "#C3FFE8",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-green-200",
+   "value": "#3EFEDD",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-green-300",
+   "value": "#0BFED4",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-green-400",
+   "value": "#01E6BE",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-green-500",
+   "value": "#01C4A2",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-green-600",
+   "value": "#00B59C",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-livid-100",
+   "value": "#F6F9FC",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-livid-200",
+   "value": "#E1EFF4",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-livid-300",
+   "value": "#E1E7F4",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-livid-400",
+   "value": "#D0DFEF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-livid-500",
+   "value": "#C3D7EB",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-livid-600",
+   "value": "#AAC6E3",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-white",
+   "value": "#FFFFFF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-100",
+   "value": "#F6F6F6",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-200",
+   "value": "#EEEEEE",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-300",
+   "value": "#DDDDDD",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-400",
+   "value": "#C4C4C4",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-500",
+   "value": "#999999",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-600",
+   "value": "#2B2B2B",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-neutral-700",
+   "value": "#1D1D1F",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-black",
+   "value": "#000000",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-slate-500",
+   "value": "#4F5465",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-red-500",
+   "value": "#DD2D2D",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-sales-primary",
+   "value": "#33B748",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-sales-accent",
+   "value": "#C2E9C8",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-hubspot-primary",
+   "value": "#FC9639",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-hubspot-accent",
+   "value": "#FFDCDC",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-website-primary",
+   "value": "#E4319A",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-website-accent",
+   "value": "#F9C1C1",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-ai-primary",
+   "value": "#02B4CA",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-ai-accent",
+   "value": "#B3D9F2",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-marketing-primary",
+   "value": "#0A6CFF",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-marketing-accent",
+   "value": "#B9D5FD",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--ec-grad-sales-dark",
+   "value": "linear-gradient(90deg, #B6DF50 0%, #33B748 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-sales-light",
+   "value": "linear-gradient(90deg, #E9F5CB 0%, #C2E9C8 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-hubspot-dark",
+   "value": "linear-gradient(90deg, #FBB12F 0%, #FF5250 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-hubspot-light",
+   "value": "linear-gradient(90deg, #FEEFD5 0%, #FFDCDC 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-website-dark",
+   "value": "linear-gradient(90deg, #DE30E5 0%, #FF5250 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-website-light",
+   "value": "linear-gradient(90deg, #F5C1F7 0%, #F9C1C1 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-ai-dark",
+   "value": "linear-gradient(90deg, #01E6BE 0%, #0281D4 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-ai-light",
+   "value": "linear-gradient(90deg, #B3F7EC 0%, #B3D9F2 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-marketing-dark",
+   "value": "linear-gradient(90deg, #00C0FF 0%, #5558FF 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-marketing-light",
+   "value": "linear-gradient(90deg, #EAF6FF 0%, #ADDCFF 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--ec-grad-ai-chat",
+   "value": "linear-gradient(135deg, #5558FF 0%, #E4319A 100%)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css",
+   "annotation": "color"
+  },
+  {
+   "name": "--color-brand",
+   "value": "var(--ec-blue-600)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--color-brand-hover",
+   "value": "#085AD6",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--color-secondary",
+   "value": "var(--ec-green-400)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-heading",
+   "value": "var(--ec-neutral-700)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-body",
+   "value": "var(--ec-neutral-600)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-muted",
+   "value": "var(--ec-neutral-500)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-inverse",
+   "value": "var(--ec-white)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-link",
+   "value": "var(--ec-blue-600)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-link-hover",
+   "value": "var(--color-brand-hover)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--text-error",
+   "value": "var(--ec-red-500)",
+   "kind": "font",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--surface-page",
+   "value": "var(--ec-white)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--surface-muted",
+   "value": "var(--ec-livid-100)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--surface-card",
+   "value": "var(--ec-white)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--surface-field",
+   "value": "var(--ec-blue-100)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--surface-dark",
+   "value": "var(--ec-neutral-700)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--surface-black",
+   "value": "var(--ec-black)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--border-subtle",
+   "value": "var(--ec-livid-300)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--border-strong",
+   "value": "var(--ec-neutral-600)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--divider",
+   "value": "var(--ec-neutral-200)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--accent-pill",
+   "value": "var(--ec-green-400)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--accent-check",
+   "value": "var(--ec-green-500)",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--star-rating",
+   "value": "#F5B72F",
+   "kind": "color",
+   "definedIn": "tokens/colors.css"
+  },
+  {
+   "name": "--font-serif",
+   "value": "'Merriweather', Georgia, 'Times New Roman', serif",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--font-sans",
+   "value": "'Proxima Nova', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--font-cond",
+   "value": "'Proxima Nova Condensed', 'Proxima Nova', system-ui, sans-serif",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--font-script",
+   "value": "'Kalam', 'Comic Sans MS', cursive",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--font-heading",
+   "value": "var(--font-serif)",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--font-body",
+   "value": "var(--font-sans)",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--font-accent",
+   "value": "var(--font-script)",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-display",
+   "value": "60px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-h1",
+   "value": "48px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-h2",
+   "value": "36px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-h3",
+   "value": "30px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-h4",
+   "value": "24px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-h5",
+   "value": "20px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-lg",
+   "value": "20px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-base",
+   "value": "18px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-sm",
+   "value": "16px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--text-xs",
+   "value": "14px",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--script-xl",
+   "value": "64px",
+   "kind": "spacing",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--script-lg",
+   "value": "44px",
+   "kind": "spacing",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--script-md",
+   "value": "32px",
+   "kind": "spacing",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--script-sm",
+   "value": "28px",
+   "kind": "spacing",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--script-xs",
+   "value": "20px",
+   "kind": "spacing",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--weight-regular",
+   "value": "400",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--weight-medium",
+   "value": "500",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--weight-semibold",
+   "value": "600",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--weight-bold",
+   "value": "700",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--weight-black",
+   "value": "900",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--leading-tight",
+   "value": "1.12",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--leading-snug",
+   "value": "1.25",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--leading-normal",
+   "value": "1.5",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--leading-relaxed",
+   "value": "1.65",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--tracking-eyebrow",
+   "value": "0.14em",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--tracking-tight",
+   "value": "-0.01em",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--tracking-normal",
+   "value": "0",
+   "kind": "font",
+   "definedIn": "tokens/typography.css"
+  },
+  {
+   "name": "--space-0",
+   "value": "0",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-1",
+   "value": "4px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-2",
+   "value": "8px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-3",
+   "value": "12px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-4",
+   "value": "16px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-5",
+   "value": "20px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-6",
+   "value": "24px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-8",
+   "value": "32px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-10",
+   "value": "40px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-12",
+   "value": "48px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-16",
+   "value": "64px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-20",
+   "value": "80px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-24",
+   "value": "96px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--space-32",
+   "value": "128px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--section-py",
+   "value": "96px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--section-py-lg",
+   "value": "128px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--section-gap",
+   "value": "64px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--container-max",
+   "value": "1200px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--container-wide",
+   "value": "1320px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--container-narrow",
+   "value": "820px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--gutter",
+   "value": "24px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--grid-gap",
+   "value": "32px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--grid-gap-sm",
+   "value": "20px",
+   "kind": "spacing",
+   "definedIn": "tokens/spacing.css"
+  },
+  {
+   "name": "--radius-xs",
+   "value": "4px",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--radius-sm",
+   "value": "8px",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--radius-md",
+   "value": "12px",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--radius-lg",
+   "value": "16px",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--radius-xl",
+   "value": "24px",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--radius-pill",
+   "value": "999px",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--radius-full",
+   "value": "50%",
+   "kind": "radius",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--shadow-xs",
+   "value": "0 1px 2px rgba(29, 29, 31, 0.06)",
+   "kind": "shadow",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--shadow-sm",
+   "value": "0 2px 8px rgba(29, 29, 31, 0.06)",
+   "kind": "shadow",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--shadow-card",
+   "value": "0 10px 30px rgba(31, 45, 61, 0.08)",
+   "kind": "shadow",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--shadow-md",
+   "value": "0 12px 34px rgba(31, 45, 61, 0.10)",
+   "kind": "shadow",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--shadow-lg",
+   "value": "0 24px 60px rgba(31, 45, 61, 0.14)",
+   "kind": "shadow",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--shadow-focus",
+   "value": "0 0 0 4px rgba(10, 108, 255, 0.22)",
+   "kind": "shadow",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--border-width",
+   "value": "1px",
+   "kind": "spacing",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--border-hair",
+   "value": "1px solid var(--border-subtle)",
+   "kind": "color",
+   "definedIn": "tokens/effects.css"
+  },
+  {
+   "name": "--ease-standard",
+   "value": "cubic-bezier(0.2, 0.6, 0.2, 1)",
+   "kind": "other",
+   "definedIn": "tokens/effects.css",
+   "annotation": "other"
+  },
+  {
+   "name": "--ease-out",
+   "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+   "kind": "other",
+   "definedIn": "tokens/effects.css",
+   "annotation": "other"
+  },
+  {
+   "name": "--dur-fast",
+   "value": "140ms",
+   "kind": "other",
+   "definedIn": "tokens/effects.css",
+   "annotation": "other"
+  },
+  {
+   "name": "--dur-base",
+   "value": "220ms",
+   "kind": "other",
+   "definedIn": "tokens/effects.css",
+   "annotation": "other"
+  },
+  {
+   "name": "--dur-slow",
+   "value": "360ms",
+   "kind": "other",
+   "definedIn": "tokens/effects.css",
+   "annotation": "other"
+  }
+ ],
+ "themes": [],
+ "fonts": [
+  {
+   "family": "Proxima Nova",
+   "weight": "300",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNova-Light.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "300",
+   "style": "italic",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNova-LightItalic.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "400",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNova-Regular.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "400",
+   "style": "italic",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNova-RegularItalic.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "600",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/Proxima_Nova_SemiBold.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "700",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNova-Bold.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "700",
+   "style": "italic",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/proximanova-boldit-webfont.ttf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "800",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/Proxima_Nova_Extrabold.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova",
+   "weight": "900",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/Proxima_Nova_Black.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova Condensed",
+   "weight": "400",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNovaCond-Regular.otf"
+   ]
+  },
+  {
+   "family": "Proxima Nova Condensed",
+   "weight": "600",
+   "style": "normal",
+   "cssPath": "tokens/fonts.css",
+   "files": [
+    "fonts/ProximaNovaCond-Semibold.otf"
+   ]
+  }
+ ],
+ "brandFonts": [
+  {
+   "family": "Proxima Nova",
+   "status": "ok",
+   "tokens": [
+    "--font-sans"
+   ],
+   "path": "tokens/fonts.css"
+  },
+  {
+   "family": "Proxima Nova Condensed",
+   "status": "ok",
+   "tokens": [
+    "--font-cond"
+   ],
+   "path": "tokens/fonts.css"
+  },
+  {
+   "family": "Merriweather",
+   "status": "ok",
+   "tokens": [
+    "--font-serif"
+   ],
+   "path": "tokens/typography.css"
+  },
+  {
+   "family": "Kalam",
+   "status": "ok",
+   "tokens": [
+    "--font-script"
+   ],
+   "path": "tokens/typography.css"
+  }
+ ],
+ "source": "spa"
+}

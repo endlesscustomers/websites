@@ -1,0 +1,66 @@
+<main id="main-content">
+    <div class="lc-wrap">
+      <section class="section section--sm">
+        <div id="kb-root" class="container"><p class="ec-empty">Loading…</p></div>
+      </section>
+      <section class="section section--alt"><div class="container"><div class="lc-cta">
+        <h2 class="lc-cta__title">Want to see how your business scores?</h2>
+        <p class="lc-cta__sub">The free AI diagnostic rates your marketing against these principles in minutes — and tells you which gaps are costing you deals.</p>
+        <div class="lc-cta__actions"><a href="/diagnostic" class="btn btn--primary btn--lg">Get your free AI diagnosis</a><a href="/lets-talk" class="btn btn--ghost btn--lg">Talk to our team</a></div>
+      </div></div></section>
+    </div>
+  </main>
+  <script>
+    (function(){
+      var id=EC.param('id');
+      EC.kbLoad().then(function(d){
+        var s=d.sections.filter(function(x){return x.id===id;})[0];
+        if(!s){ document.getElementById('kb-root').innerHTML='<div style="text-align:center"><h1 class="ar-title">Topic not found</h1><a href="/learn/knowledge-base" class="btn btn--primary btn--lg">Back to Knowledge Base</a></div>'; return; }
+        var byId=EC.indexBy(d.evergreen), people=EC.indexBy(d.people);
+        var items=EC.kbSectionArticles(d.evergreen,s.id);
+        var all=d.evergreen.filter(function(e){return e.topic_id===s.id&&e.status==='published';});
+        var totalMin=all.reduce(function(n,e){return n+(EC.kbIsStub(e)?0:(e.estimated_read_time||0));},0);
+        var lastRev=all.map(function(e){return e.last_updated||'';}).sort().reverse()[0];
+        var curator=people[s.curator_id], reviewer=people[s.reviewer_id];
+
+        var crumbs='<nav class="lc-crumbs" aria-label="Breadcrumb"><a href="/learn">Learn</a><span>/</span><a href="/learn/knowledge-base">Knowledge Base</a><span>/</span>'+EC.escapeHtml(s.label)+'</nav>';
+
+        var head='<div class="kbt-head">'+
+          '<span class="kba-eyebrow" style="cursor:default">Knowledge Base topic</span>'+
+          '<h1 class="kbt-title">'+EC.escapeHtml(s.label)+'</h1>'+
+          '<p class="kbt-desc">'+EC.escapeHtml(s.description)+'</p>'+
+          '<div class="kbt-facts"><span><i class="ti ti-files"></i> '+all.length+' guides</span><span><i class="ti ti-clock"></i> ~'+totalMin+' min of reading</span>'+(lastRev?'<span><i class="ti ti-refresh"></i> Last reviewed '+EC.formatDate(lastRev)+'</span>':'')+'</div>'+
+          '<div class="kbt-people">'+
+            (curator?'<a class="kbt-person" href="'+EC.profileUrl(curator.id)+'">'+EC.personImg(curator)+'<span><span class="kbt-person__role">Curated by</span><br><span class="kbt-person__name">'+EC.escapeHtml(curator.name)+'</span></span></a>':'')+
+            (reviewer?'<a class="kbt-person" href="'+EC.profileUrl(reviewer.id)+'">'+EC.personImg(reviewer)+'<span><span class="kbt-person__role">Reviewed by</span><br><span class="kbt-person__name">'+EC.escapeHtml(reviewer.name)+'</span></span></a>':'')+
+          '</div></div>';
+
+        var list='<div class="kbt-list">'+items.map(function(e){
+          var kids=EC.kbChildren(byId,e), stub=EC.kbIsStub(e);
+          return '<div class="kbt-row'+(stub?' kbt-soon':'')+'">'+
+            '<div class="kbt-row__top"><a class="kbt-row__title" href="'+EC.kbArticleUrl(e.id)+'">'+EC.escapeHtml(e.title)+'</a>'+
+            '<span class="kbt-row__time">'+(stub?'Coming soon':(e.estimated_read_time||'')+' min')+'</span></div>'+
+            (e.excerpt&&!stub?'<p class="kbt-row__excerpt">'+EC.escapeHtml(e.excerpt)+'</p>':'')+
+            (kids.length?'<div class="kbt-row__kids">'+kids.map(function(c){return '<a class="kbt-kid" href="'+EC.kbArticleUrl(c.id)+'">'+EC.escapeHtml(c.nav_title||c.title)+(EC.kbIsStub(c)?' · soon':'')+' <i class="ti ti-arrow-right"></i></a>';}).join('')+'</div>':'')+
+            '</div>';
+        }).join('')+'</div>';
+
+        // up next: the following section in reading order
+        var ordered=EC.kbSections(d.sections);
+        var pos=-1; ordered.forEach(function(x,i){if(x.id===s.id)pos=i;});
+        var nextSec=pos>-1&&pos<ordered.length-1?ordered[pos+1]:null;
+        var nextBlock=nextSec?'<div class="kba-prevnext" style="grid-template-columns:1fr"><a class="kba-pn kba-pn--next" href="'+EC.kbTopicUrl(nextSec.id)+'"><span class="kba-pn__label">Up next <i class="ti ti-arrow-right"></i></span><span class="kba-pn__title">'+EC.escapeHtml(nextSec.label)+'</span></a></div>':'';
+
+        document.getElementById('kb-root').outerHTML=EC.kbShell(EC.kbSidebar(d,null).replace('<details class="kbs-group"','<details class="kbs-group" data-active'),'<div>'+crumbs+head+list+nextBlock+'</div>');
+        // open the active section group in the sidebar
+        document.querySelectorAll('.kbs-group').forEach(function(g){
+          var ov=g.querySelector('.kbs-link--overview');
+          if(ov&&ov.getAttribute('href')===EC.kbTopicUrl(s.id)){ g.setAttribute('open',''); g.querySelector('summary span').style.color='var(--color-blue)'; }
+        });
+        EC.kbSidebarInit(document);
+
+        EC.setSEO(null,{title:s.label+' | Knowledge Base',description:s.description,ogType:'website'});
+        EC.jsonLD(EC.breadcrumbSchema([{name:'Learn',url:'https://www.endlesscustomers.com/learn'},{name:'Knowledge Base',url:'https://www.endlesscustomers.com/learn/knowledge-base'},{name:s.label,url:location.href}]));
+      }).catch(function(e){console.error(e);});
+    })();
+  </script>

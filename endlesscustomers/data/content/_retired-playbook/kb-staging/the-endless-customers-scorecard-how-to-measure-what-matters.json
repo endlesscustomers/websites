@@ -1,0 +1,50 @@
+{
+  "id": "the-endless-customers-scorecard-how-to-measure-what-matters",
+  "slug": "the-endless-customers-scorecard-how-to-measure-what-matters",
+  "title": "The Endless Customers Scorecard: How to Measure What Matters",
+  "nav_title": "The Endless Customers Scorecard",
+  "status": "published",
+  "topic_id": "putting-it-together",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Progress without measurement is a guess. The Endless Customers Scorecard exists to replace that guess with a structured, honest view of where your organization stands across all five components of the system. It is not a comprehensive audit. It is a quarterly calibration tool that tells you what is working, what is not, and where to point your energy next.\n\nThe Scorecard has 10 prompts, two for each component. Each prompt describes what excellent execution looks like for that component, and your team scores your organization from 0 to 10 against that description. Zero means you do not do this at all. Ten means you do it exceptionally well, 100% of the time. The sum of all 10 scores gives your total out of 100.\n\n## The 10 Prompts\n\nFor The Right Content, the two prompts assess whether content production is fully in-house, consistent, and genuinely covering The Big 5, and whether video is being used at the level the strategy requires, with in-house production and regular publishing to YouTube and social channels. For The Right Website, the prompts evaluate whether your website is measurably the most trusted in your market, with a robust Learning Center and self-service tools, and whether your team can manage, update, and optimize the site in-house without significant outside help.\n\nFor The Right Sales Activities, the prompts assess whether the sales team is fully integrated with marketing and consistently using content in the sales process, and whether the team is prepared and empowered to close deals faster through Assignment Selling, defined process, and regular coaching. For The Right Technology, the two prompts evaluate CRM adoption and whether leadership has the data it needs to make smart decisions, and whether the organization is proactively adopting and experimenting with AI and other emerging technology.\n\nFor The Right Culture of Performance, the prompts assess whether the entire organization is aligned and trained on Endless Customers principles, with leadership holding people accountable and reinforcing the strategy regularly, and whether the team is maximizing learning opportunities and continuously improving through coaching, training, and engagement with the broader EC community.\n\n## How to Use the Scorecard Well\n\nThe Scorecard produces the most value when it is completed collaboratively. Different team members see different aspects of execution, and divergent scores on the same prompt often reveal inconsistencies in how the strategy is being applied across the organization. Discussing the divergence is frequently more valuable than reaching consensus on a single number.\n\nApproach each prompt with genuine rigor. The tendency is to score what you intend to do or what you mostly do rather than what you consistently do at the level described. Inflating scores feels reassuring in the moment and produces a useless roadmap. Honest, critical assessment feels uncomfortable and produces a tool that actually tells you where to go.\n\nComplete the Scorecard at the beginning of each Quarterly Planning Session. Let the results drive your Focus Area choices for the next 90 days. Over multiple quarters, the score trends tell a story: which components are steadily improving, which are plateauing, and which are being neglected. The Scorecard over time is more informative than any single snapshot.",
+  "excerpt": "The Scorecard is how you translate the Endless Customers System into a concrete, quarterly measurement of where your organization stands. Here is how to use it well, what the 10 prompts evaluate, and how to act on what you learn.",
+  "what_youll_learn": [
+    "The Scorecard has 10 prompts, two for each of the five components, each scored from 0 to 10 for a total of 100 possible points.",
+    "Complete the Scorecard as a team, not individually. Collaborative assessment reveals blind spots and produces a more accurate picture of where you actually stand.",
+    "Use your Scorecard results to set Focus Areas for the next 90 days. The lowest scores in the most impactful areas indicate where to concentrate effort.",
+    "Scores often dip as your team develops a more accurate understanding of what genuine mastery looks like. That is the tool working correctly.",
+    "Most organizations begin below 20. Reaching 80 or above typically takes 18 to 24 months of consistent, committed implementation.",
+    "The Scorecard is not a performance review of individuals. It is a measure of organizational execution and a roadmap for improvement."
+  ],
+  "key_questions": [
+    {
+      "question": "Where can I access the Scorecard?",
+      "answer": "The Scorecard is available in the EC Companion Guide and through the EC Academy. If you are working with a coach, they will introduce the Scorecard as part of your first Quarterly Planning Session."
+    },
+    {
+      "question": "How long does it take to complete the Scorecard?",
+      "answer": "Completing all 10 prompts individually takes 15 to 20 minutes. The team discussion that follows, where you compare scores, surface disagreements, and understand what the results mean, typically takes 30 to 60 minutes and is where most of the value is generated."
+    },
+    {
+      "question": "Should every team member score every prompt?",
+      "answer": "Leadership and the people who own each component should score the relevant prompts. For a small organization, that might be the same small group for every prompt. For larger organizations, it makes sense to have the content team score the content prompts, the sales team score the sales prompts, and so on. Cross-functional scoring on at least some prompts, particularly the culture prompts, tends to surface the most useful divergences."
+    },
+    {
+      "question": "What if leadership and the team score the same prompt very differently?",
+      "answer": "That divergence is a data point. Leadership scoring the culture prompts high while frontline team members score them low is a signal that the principles are not translating from leadership commitment into daily team behavior. The gap between leadership perception and team experience is often where the most important implementation work is waiting."
+    },
+    {
+      "question": "Can we use the Scorecard without a coach?",
+      "answer": "Yes. The Scorecard is a self-administered tool. Having a coach facilitate the scoring session does tend to produce more rigorous assessment, because a coach will challenge inflated scores and probe for the specific evidence behind high ratings. But many self-implementing teams use the Scorecard effectively without coaching support."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-22",
+  "last_updated": "2026-04-22",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

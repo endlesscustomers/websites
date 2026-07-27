@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+
+  <title>Let's Talk — Endless Customers</title>
+  <meta name="description" content="Tell us where you are and book a 30-minute call. We'll give you an honest read on whether the Endless Customers system is a good fit, and which path makes sense for you." />
+  <link rel="canonical" href="https://www.endlesscustomers.com/lets-talk" />
+  <meta property="og:title"       content="Let's Talk — Endless Customers" />
+  <meta property="og:description" content="Tell us about your situation. We'll be honest about whether we can help — and how." />
+  <meta property="og:type"        content="website" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../css/main.css?v=2026060929r" />
+
+  <style>
+    /* ===== Let's Talk page — lt- prefix ===== */
+
+    /* Minimal header — booking page only (logo + phone, no global nav).
+       Static, in normal flow, so content starts right below it. */
+    .lt-header { width: 100%; }
+    .lt-header__inner {
+      max-width: 1120px; margin: 0 auto;
+      padding: var(--space-5) var(--space-6);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .lt-header__logo-img { height: 34px; width: auto; display: block; }
+    .lt-header__logo-img--dark { display: none; }
+    [data-theme="dark"] .lt-header__logo-img--light { display: none; }
+    [data-theme="dark"] .lt-header__logo-img--dark  { display: block; }
+    .lt-header__phone {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-base); font-weight: 600;
+      color: var(--color-heading); text-decoration: none;
+      transition: color 0.15s;
+    }
+    .lt-header__phone i { color: var(--color-accent); font-size: 18px; }
+    .lt-header__phone:hover { color: var(--color-accent); }
+
+    /* Lead — left-aligned page headline that leads the form column.
+       Sized down from the old centered hero so it stops dominating. */
+    .lt-lead { margin-bottom: var(--space-7); }
+    .lt-lead__headline {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(30px, 3.2vw, 42px);
+      letter-spacing: var(--tracking-display); line-height: 1.08;
+      color: var(--color-heading); margin: 0 0 var(--space-4);
+      text-wrap: balance; max-width: 17ch;
+    }
+    .lt-lead__sub {
+      font-size: var(--text-lg); color: var(--color-text-muted);
+      line-height: 1.5; margin: 0; max-width: 48ch;
+    }
+
+    /* Main two-column layout — lead + form (action) left, video + trust right.
+       Right rail is wide enough that the video is genuinely watchable. */
+    .lt-body {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-6) var(--space-16);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 440px;
+      gap: var(--space-12);
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      /* Stack in source order: headline + form first, then the video and
+         supporting panels below. */
+      .lt-body { grid-template-columns: 1fr; gap: var(--space-9); }
+    }
+
+    /* Form column */
+    .lt-form-col {}
+
+    /* Small rail eyebrow + section/step headings */
+    .lt-rail-eyebrow {
+      font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--color-text-muted);
+      margin: 0 0 var(--space-3);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .lt-rail-eyebrow i { color: var(--color-accent); font-size: 16px; }
+    .lt-step-heading {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: var(--text-2xl); color: var(--color-heading);
+      letter-spacing: var(--tracking-display); margin: 0 0 var(--space-2);
+    }
+    .lt-step-subheading {
+      font-size: var(--text-base); color: var(--color-text-muted);
+      line-height: 1.6; margin: 0 0 var(--space-6); max-width: 46ch;
+    }
+    .lt-back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: var(--text-sm); color: var(--color-text-muted);
+      text-decoration: none; margin-bottom: var(--space-5);
+      transition: color 0.15s;
+    }
+    .lt-back-link:hover { color: var(--color-heading); }
+
+    /* Routing cards */
+    .lt-route-label {
+      font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--color-text-muted);
+      margin-bottom: var(--space-4);
+    }
+    .lt-route-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+    @media (max-width: 640px) { .lt-route-cards { grid-template-columns: 1fr; } }
+    .lt-route-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+    .lt-route-card {
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: var(--space-2); padding: var(--space-5);
+      background: var(--color-bg-subtle);
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    }
+    .lt-route-card:hover {
+      background: var(--color-bg-elevated);
+      box-shadow: var(--shadow-sm);
+    }
+    /* Selected state uses an accent ring (drawn with box-shadow so it adds no
+       layout shift) plus a soft accent tint — not a resting border. */
+    .lt-route-card.is-selected {
+      background: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg));
+      box-shadow: inset 0 0 0 2px var(--color-accent);
+    }
+    .lt-route-card__icon {
+      width: 36px; height: 36px; border-radius: var(--radius-md);
+      background: var(--color-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--color-text-muted);
+      transition: color 0.18s, background 0.18s;
+    }
+    .lt-route-card.is-selected .lt-route-card__icon {
+      background: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg));
+      color: var(--color-accent);
+    }
+    .lt-route-card__title {
+      font-size: var(--text-sm); font-weight: 700;
+      color: var(--color-heading); line-height: 1.3;
+    }
+    .lt-route-card__sub {
+      font-size: 12px; color: var(--color-text-muted); line-height: 1.5;
+    }
+
+    /* Form fields */
+    .lt-fields { display: flex; flex-direction: column; gap: var(--space-4); }
+    .lt-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    @media (max-width: 540px) { .lt-row { grid-template-columns: 1fr; } }
+    .lt-field { display: flex; flex-direction: column; gap: var(--space-2); }
+    .lt-field label {
+      font-size: var(--text-sm); font-weight: 600;
+      color: var(--color-text);
+    }
+    .lt-field label .lt-optional {
+      font-weight: 400; color: var(--color-text-muted); font-size: 12px;
+    }
+    .lt-field input, .lt-field select, .lt-field textarea {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: var(--font-display, 'General Sans', sans-serif);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background: var(--color-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+      box-sizing: border-box;
+    }
+    .lt-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 36px;
+    }
+    .lt-field input:focus, .lt-field select:focus, .lt-field textarea:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 12%, transparent);
+    }
+    .lt-field textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
+
+    .lt-submit-row {
+      display: flex; align-items: center; gap: var(--space-5);
+      flex-wrap: wrap; margin-top: var(--space-6);
+    }
+
+    /* Right sidebar */
+    .lt-sidebar {}
+    .lt-sidebar__panel {
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-7) var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .lt-sidebar__heading {
+      font-size: var(--text-sm); font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--color-text-muted);
+      margin-bottom: var(--space-6);
+    }
+    .lt-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+    .lt-step {
+      display: flex; gap: var(--space-4); align-items: flex-start;
+      padding: var(--space-4) 0;
+      position: relative;
+    }
+    .lt-step + .lt-step::before {
+      content: ''; position: absolute; left: 15px; top: 0;
+      width: 2px; height: var(--space-4);
+      background: var(--color-border);
+    }
+    .lt-step__num {
+      flex-shrink: 0;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800;
+      color: var(--color-accent);
+    }
+    .lt-step__body {}
+    .lt-step__title { font-size: var(--text-sm); font-weight: 700; color: var(--color-heading); margin-bottom: 3px; }
+    .lt-step__desc { font-size: 13px; color: var(--color-text-muted); line-height: 1.55; }
+
+    /* Video module — the decision-moment video, beside the form.
+       Borderless, Apple-style: rounded corners + soft shadow carry it. */
+    .lt-video {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      margin-bottom: var(--space-3);
+    }
+    .lt-video__inner {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #0A0F1F;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .lt-video__poster {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(70% 90% at 50% 0%, rgba(28,120,255,0.32), transparent 62%),
+        radial-gradient(45% 55% at 100% 100%, rgba(28,120,255,0.14), transparent 60%),
+        linear-gradient(160deg, #0e1730, #0A0F1F);
+    }
+    .lt-video__play {
+      position: relative; z-index: 2;
+      width: 66px; height: 66px; border-radius: 50%;
+      background: rgba(255,255,255,0.96);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.38);
+      transition: transform 0.18s ease;
+    }
+    .lt-video__inner:hover .lt-video__play { transform: scale(1.07); }
+    .lt-video__play i { font-size: 27px; color: var(--color-accent-fill); margin-left: 3px; }
+    .lt-video__badge {
+      position: absolute; z-index: 2; left: 12px; bottom: 12px;
+      font-size: 12px; font-weight: 600; color: #fff;
+      background: rgba(0,0,0,0.55); padding: 4px 11px; border-radius: 9999px;
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .lt-video__caption {
+      font-size: 13px; color: var(--color-text-muted);
+      line-height: 1.5; text-align: center; margin: 0 0 var(--space-6);
+    }
+
+    /* CTA helper note under the submit button */
+    .lt-cta-note {
+      font-size: 13px; color: var(--color-text-muted);
+      margin-top: var(--space-4); display: flex; align-items: center; gap: 7px;
+    }
+    .lt-cta-note i { color: var(--color-accent); font-size: 16px; flex-shrink: 0; }
+
+    /* Calendar step (revealed after the form) */
+    .lt-step-calendar { display: none; }
+    .lt-calendar-embed {
+      border-radius: var(--radius-xl);
+      background: var(--color-bg-subtle);
+      padding: var(--space-12) var(--space-8);
+      text-align: center;
+      min-height: 380px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: var(--space-3);
+    }
+    .lt-calendar-embed__icon {
+      width: 56px; height: 56px; border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; color: var(--color-accent); margin-bottom: var(--space-2);
+    }
+    .lt-calendar-embed__title { font-size: var(--text-lg); font-weight: 700; color: var(--color-heading); }
+    .lt-calendar-embed__sub { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; max-width: 40ch; }
+    .lt-calendar-embed__phone { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--color-text); }
+    .lt-calendar-embed__phone a { color: var(--color-accent); text-decoration: none; font-weight: 600; }
+
+    /* Trust signals */
+    .lt-trust {
+      display: flex; flex-direction: column; gap: var(--space-2);
+      padding: var(--space-5);
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-lg);
+    }
+    .lt-trust-item {
+      display: flex; align-items: center; gap: var(--space-3);
+      font-size: 13px; color: var(--color-text);
+    }
+    .lt-trust-item i { color: var(--color-accent); font-size: 16px; flex-shrink: 0; }
+
+    /* Statement panel */
+    .lt-statement {
+      background: #0A0F1F;
+      border-radius: var(--radius-xl);
+      padding: var(--space-16) var(--space-8);
+      text-align: center;
+      max-width: 860px;
+      margin: 0 auto var(--space-20);
+      position: relative;
+      overflow: hidden;
+    }
+    .lt-statement::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(50% 60% at 50% 100%, rgba(28,120,255,0.14), transparent 65%),
+                  radial-gradient(40% 40% at 85% 50%, rgba(28,120,255,0.06), transparent 50%);
+      pointer-events: none;
+    }
+    .lt-statement__inner { position: relative; z-index: 1; }
+    .lt-statement__quote {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(22px, 3.5vw, 32px);
+      color: #fff; line-height: 1.35; margin-bottom: var(--space-5);
+      text-wrap: balance;
+      letter-spacing: -0.01em;
+    }
+    .lt-statement__sub { font-size: var(--text-base); color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+    /* Alternatives */
+    .lt-alts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+      max-width: 860px; margin: 0 auto;
+    }
+    @media (max-width: 640px) { .lt-alts { grid-template-columns: 1fr; } }
+    .lt-alt {
+      display: block; text-decoration: none;
+      background: var(--color-bg-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .lt-alt:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .lt-alt__icon { font-size: 24px; color: var(--color-text-muted); margin-bottom: var(--space-3); }
+    .lt-alt__title { font-size: var(--text-base); font-weight: 700; color: var(--color-heading); margin-bottom: var(--space-1); }
+    .lt-alt__desc { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.55; }
+  </style>
+</head>
+
+<body class="page-accent--blue">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- MINIMAL HEADER — booking page only: logo + phone, no global nav -->
+  <header class="lt-header">
+    <div class="lt-header__inner">
+      <a href="/" class="lt-header__logo" aria-label="Endless Customers — home">
+        <img src="../assets/images/logo-dark.svg"  class="lt-header__logo-img lt-header__logo-img--light" alt="Endless Customers" width="111" height="34">
+        <img src="../assets/images/logo-white.svg" class="lt-header__logo-img lt-header__logo-img--dark"  alt="" aria-hidden="true" width="111" height="34">
+      </a>
+      <a href="tel:+12032654377" class="lt-header__phone" aria-label="Call us at (203) 265-4377">
+        <i class="ti ti-phone" aria-hidden="true"></i>
+        <span>(203) 265-4377</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- MAIN: FORM + VIDEO/TRUST -->
+    <div class="lt-body">
+
+      <!-- FORM COLUMN -->
+      <div class="lt-form-col">
+
+        <!-- Lead: page headline + subhead, left-aligned, leading the form -->
+        <div class="lt-lead">
+          <h1 class="lt-lead__headline" id="lt-headline">Let's see if we're a good fit.</h1>
+          <p class="lt-lead__sub">Tell us where you are and book a 30-minute call. We'll be honest about whether the Endless Customers system can help.</p>
+        </div>
+
+        <!-- STEP 1 — short qualifying form -->
+        <div id="lt-step-form">
+
+          <!-- Routing cards: low-friction, routes the lead and personalizes follow-up -->
+          <p class="lt-route-label">What brings you here?</p>
+          <div class="lt-route-cards" role="radiogroup" aria-label="Select your primary reason for reaching out">
+            <label class="lt-route-card" id="route-coaching-label">
+              <input type="radio" name="route" value="coaching" id="route-coaching" aria-labelledby="route-coaching-label">
+              <div class="lt-route-card__icon"><i class="ti ti-compass" aria-hidden="true"></i></div>
+              <div class="lt-route-card__title">Coaching Program</div>
+              <div class="lt-route-card__sub">Transform how my company markets and sells</div>
+            </label>
+            <label class="lt-route-card" id="route-service-label">
+              <input type="radio" name="route" value="service" id="route-service" aria-labelledby="route-service-label">
+              <div class="lt-route-card__icon"><i class="ti ti-tool" aria-hidden="true"></i></div>
+              <div class="lt-route-card__title">A Specific Service</div>
+              <div class="lt-route-card__sub">HubSpot, website, paid ads, or something else</div>
+            </label>
+            <label class="lt-route-card" id="route-explore-label">
+              <input type="radio" name="route" value="explore" id="route-explore" aria-labelledby="route-explore-label">
+              <div class="lt-route-card__icon"><i class="ti ti-map-search" aria-hidden="true"></i></div>
+              <div class="lt-route-card__title">Not Sure Yet</div>
+              <div class="lt-route-card__sub">Help me figure out where to start</div>
+            </label>
+          </div>
+
+          <!-- The form — minimal by design.
+               Apollo enriches company, revenue, size, and industry from the
+               work email on the back end, so we don't ask for them here.
+               HubSpot migration: replace with hs-form embed, form_id: TODO -->
+          <form id="lt-form" novalidate>
+            <div class="lt-fields">
+              <div class="lt-row">
+                <div class="lt-field">
+                  <label for="lt-first-name">First Name</label>
+                  <input type="text" id="lt-first-name" name="first_name" placeholder="Jane" autocomplete="given-name" required>
+                </div>
+                <div class="lt-field">
+                  <label for="lt-last-name">Last Name</label>
+                  <input type="text" id="lt-last-name" name="last_name" placeholder="Smith" autocomplete="family-name" required>
+                </div>
+              </div>
+              <div class="lt-field">
+                <label for="lt-email">Work Email</label>
+                <input type="email" id="lt-email" name="email" placeholder="jane@yourcompany.com" autocomplete="email" required>
+              </div>
+              <div class="lt-field">
+                <label for="lt-phone">Phone <span class="lt-optional">(optional)</span></label>
+                <input type="tel" id="lt-phone" name="phone" placeholder="(203) 555-0199" autocomplete="tel">
+              </div>
+              <div class="lt-field">
+                <label for="lt-message">Anything we should know before the call? <span class="lt-optional">(optional)</span></label>
+                <textarea id="lt-message" name="message" placeholder="A sentence about your situation, timeline, or a specific question. The more context, the better we'll come prepared."></textarea>
+              </div>
+
+              <div class="lt-submit-row">
+                <button type="submit" class="btn btn--primary btn--lg">See Available Times →</button>
+              </div>
+              <p class="lt-cta-note"><i class="ti ti-calendar-event" aria-hidden="true"></i> Next: pick a time on our calendar. The whole thing takes about two minutes.</p>
+              <p class="lt-cta-note"><i class="ti ti-lock" aria-hidden="true"></i> We'll never share your details, and we won't add you to a spam sequence.</p>
+            </div>
+          </form>
+        </div><!-- /lt-step-form -->
+
+        <!-- STEP 2 — calendar, revealed after the form is submitted -->
+        <div id="lt-step-calendar" class="lt-step-calendar" aria-live="polite">
+          <a href="#" class="lt-back-link" id="lt-back"><i class="ti ti-arrow-left" aria-hidden="true"></i> Back to your details</a>
+          <h2 class="lt-step-heading" id="lt-cal-heading">Pick a time that works for you.</h2>
+          <p class="lt-step-subheading" id="lt-cal-sub">Choose any open slot below. You'll get an instant calendar invite with everything you need to join.</p>
+
+          <!-- HubSpot Meetings embed goes here.
+               TODO: route the meeting link by selected reason via data-route, e.g.
+               coaching → a senior coach's calendar, service → the services team.
+               <div class="meetings-iframe-container" data-src="https://meetings.hubspot.com/endless-customers?embed=true"></div>
+               <script src="https://static.hsappstatic.net/MeetingsEmbedCode/static-1/meetings-embed.js"></script> -->
+          <div class="lt-calendar-embed" id="lt-cal-embed" data-route="">
+            <div class="lt-calendar-embed__icon"><i class="ti ti-calendar-event" aria-hidden="true"></i></div>
+            <p class="lt-calendar-embed__title">Your scheduler loads here</p>
+            <p class="lt-calendar-embed__sub">The HubSpot calendar will appear in this spot, pre-filled with your details so you don't retype anything.</p>
+            <p class="lt-calendar-embed__phone">Prefer to talk now? Call <a href="tel:+12032654377">(203) 265-4377</a>.</p>
+          </div>
+        </div><!-- /lt-step-calendar -->
+
+      </div><!-- /lt-form-col -->
+
+      <!-- VIDEO + TRUST RAIL -->
+      <aside class="lt-sidebar" aria-label="What to expect on your call">
+
+        <!-- The video, at the decision moment, right beside the form -->
+        <p class="lt-rail-eyebrow"><i class="ti ti-player-play" aria-hidden="true"></i> Watch This First</p>
+        <!-- TODO: set data-embed to the real video URL (YouTube/Wistia/HubSpot).
+             When present, clicking swaps the poster for the iframe. -->
+        <div class="lt-video">
+          <div class="lt-video__inner" id="lt-video" role="button" tabindex="0"
+               aria-label="Play video: what to expect on your call" data-embed="">
+            <div class="lt-video__poster" aria-hidden="true"></div>
+            <div class="lt-video__play" aria-hidden="true"><i class="ti ti-player-play-filled"></i></div>
+            <div class="lt-video__badge" aria-hidden="true"><i class="ti ti-clock"></i> 90 sec</div>
+          </div>
+        </div>
+        <p class="lt-video__caption">A quick hello and exactly what to expect on your call. No pressure, no hard sell.</p>
+
+        <!-- What happens on the call -->
+        <div class="lt-sidebar__panel">
+          <p class="lt-sidebar__heading">What happens on the call</p>
+          <ol class="lt-steps" aria-label="What happens on the call">
+            <li class="lt-step">
+              <div class="lt-step__num" aria-hidden="true">1</div>
+              <div class="lt-step__body">
+                <div class="lt-step__title">We listen first</div>
+                <div class="lt-step__desc">We ask about your situation before we suggest anything. No canned pitch.</div>
+              </div>
+            </li>
+            <li class="lt-step">
+              <div class="lt-step__num" aria-hidden="true">2</div>
+              <div class="lt-step__body">
+                <div class="lt-step__title">You talk to a coach, not a sales rep</div>
+                <div class="lt-step__desc">A real Endless Customers coach who knows your industry, not a closer working a quota.</div>
+              </div>
+            </li>
+            <li class="lt-step">
+              <div class="lt-step__num" aria-hidden="true">3</div>
+              <div class="lt-step__body">
+                <div class="lt-step__title">An honest answer on fit</div>
+                <div class="lt-step__desc">If we're the right fit, we'll show you the path. If we're not, we'll tell you and point you somewhere that is.</div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="lt-trust">
+          <div class="lt-trust-item">
+            <i class="ti ti-users" aria-hidden="true"></i>
+            <span>300+ companies coached since 2009</span>
+          </div>
+          <div class="lt-trust-item">
+            <i class="ti ti-shield-check" aria-hidden="true"></i>
+            <span>Our guarantee applies from day one</span>
+          </div>
+          <div class="lt-trust-item">
+            <i class="ti ti-clock" aria-hidden="true"></i>
+            <span>30 minutes, on your schedule</span>
+          </div>
+        </div>
+
+      </aside>
+    </div><!-- /lt-body -->
+
+    <!-- STATEMENT PANEL -->
+    <div class="container" style="padding-bottom: var(--space-6);">
+      <div class="lt-statement" aria-label="Our commitment">
+        <div class="lt-statement__inner">
+          <p class="lt-statement__quote">"We work with companies that are serious about the long game. If that's you, we want to talk."</p>
+          <p class="lt-statement__sub">If we're not the right fit, we'll tell you that too, and point you toward something that is. That's the Endless Customers way.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOT READY? ALTERNATIVES -->
+    <section class="section" aria-labelledby="lt-alts-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Not Ready to Talk?</span>
+          <h2 class="section__title" id="lt-alts-title">Start somewhere that fits where you are.</h2>
+        </header>
+        <div class="lt-alts">
+          <a href="/diagnostic" class="lt-alt">
+            <div class="lt-alt__icon"><i class="ti ti-chart-dots" aria-hidden="true"></i></div>
+            <div class="lt-alt__title">Free AI Diagnostic</div>
+            <div class="lt-alt__desc">Enter your website URL and get an instant, honest assessment of your marketing — no form required.</div>
+          </a>
+          <a href="/learn/book" class="lt-alt">
+            <div class="lt-alt__icon"><i class="ti ti-book-2" aria-hidden="true"></i></div>
+            <div class="lt-alt__title">Read the Book</div>
+            <div class="lt-alt__desc">Start with <em>Endless Customers</em> — the complete framework, in your own time, at your own pace.</div>
+          </a>
+          <a href="/learn/academy" class="lt-alt">
+            <div class="lt-alt__icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+            <div class="lt-alt__title">Endless Customers Academy</div>
+            <div class="lt-alt__desc">Self-paced courses, a community of practitioners, and the tools to implement the system on your timeline.</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+    <div id="footer-placeholder">
+<!--
+  COMPONENT: Footer — Mega Footer
+  HubSpot equivalent: Global Footer Module
+  ============================================================
+  Loaded dynamically by js/main.js into any element with
+  id="footer-placeholder". All links are root-relative so the
+  same markup works at every directory depth.
+
+  Structure (mirrors the main nav, then adds trust/legal):
+    Row 1 — Masthead: brand + mission + social
+    Row 2 — Five link columns: Learn · How We Help · Company ·
+            The Conference · Trust & Resources
+    Row 3 — Meta bar: NAP (address + phone) + credential badges
+            (HubSpot Elite Partner, We Run on EOS)
+    Row 4 — Legal bar: copyright + policy links
+    + JSON-LD Organization schema (SEO / AI visibility)
+
+  NAP note: address and phone must stay identical to
+  impactplus.com — 125 Commerce Court, Suite 9, Cheshire, CT
+  06410 · (203) 265-4377 — for local-SEO consistency.
+
+  HubSpot migration:
+  - Convert to a Global Footer module (global_footer)
+  - Each column becomes an editable menu: {% menu "footer-learn" %} etc.
+  - Copyright year → {{ local_dt|datetimeformat('%Y') }}
+  ============================================================
+-->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+
+    <!-- ================= MASTHEAD: BRAND + SOCIAL ================= -->
+    <div class="footer__masthead">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Endless Customers — home">
+          <img src="../assets/images/logo-dark.svg"  class="footer__logo-img footer__logo-img--light" alt="Endless Customers" width="150" height="46">
+          <img src="../assets/images/logo-white.svg" class="footer__logo-img footer__logo-img--dark"  alt="" aria-hidden="true" width="150" height="46">
+        </a>
+        <p class="footer__mission">
+          Become the most trusted voice in your industry — and own your marketing
+          for good. The Endless Customers System, built on They Ask, You Answer.
+        </p>
+      </div>
+      <!-- Endless Customers brand profiles (entity strategy, June 2026):
+           footer socials point at EC-branded handles; the IMPACT connection
+           lives in the NAP line below + parentOrganization in the JSON-LD. -->
+      <div class="footer__social" aria-label="Endless Customers on social media">
+        <a href="https://www.facebook.com/people/Endless-Customers/61555895372069/" class="footer__social-btn" aria-label="Facebook (opens in new tab)" target="_blank" rel="noopener"><img src="../assets/images/logos-and-branding/facebook-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.linkedin.com/company/endless-customers" class="footer__social-btn" aria-label="LinkedIn (opens in new tab)" target="_blank" rel="noopener"><img src="../assets/images/logos-and-branding/linkedin-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.instagram.com/endlesscustomers" class="footer__social-btn" aria-label="Instagram (opens in new tab)" target="_blank" rel="noopener"><img src="../assets/images/logos-and-branding/instagram-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.youtube.com/@EndlessCustomers" class="footer__social-btn" aria-label="YouTube (opens in new tab)" target="_blank" rel="noopener"><img src="../assets/images/logos-and-branding/youtube-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://podcasts.apple.com/us/podcast/endless-customers/id1728142460" class="footer__social-btn" aria-label="Podcast on Apple Podcasts (opens in new tab)" target="_blank" rel="noopener"><img src="../assets/images/logos-and-branding/apple-podcasts-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu" class="footer__social-btn" aria-label="Podcast on Spotify (opens in new tab)" target="_blank" rel="noopener"><img src="../assets/images/logos-and-branding/spotify-brand-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+      </div>
+    </div>
+
+    <!-- ================= LINK COLUMNS (mirror the main nav) ================= -->
+    <nav class="footer__cols" aria-label="Footer">
+
+      <!-- LEARN -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/learn/" class="footer__col-link">Learning Center</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/learn/what-is-endless-customers" class="footer__link">What is Endless Customers?</a></li>
+          <li><a href="/learn/core-concepts-frameworks" class="footer__link">Core Concepts &amp; Frameworks</a></li>
+          <li><a href="/learn/academy" class="footer__link">Endless Customers Academy</a></li>
+          <li><a href="/learn/topics/" class="footer__link">Browse Topics</a></li>
+              <li><a href="/learn/latest" class="footer__link">Latest Insights</a></li>
+          <li><a href="/learn/podcast" class="footer__link">The Endless Customers Podcast</a></li>
+          <li><a href="/learn/webinars" class="footer__link">Webinars</a></li>
+          <li><a href="/learn/tools" class="footer__link">Tools &amp; Downloads</a></li>
+          <li><a href="/learn/subscribe" class="footer__link">Subscribe</a></li>
+          <li><a href="https://app.impactplus.com/users/sign_in" class="footer__link" target="_blank" rel="noopener">Academy Login <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- HOW WE HELP -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/how-we-help/" class="footer__col-link">How We Help</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/how-we-help/coaching-program" class="footer__link">Coaching Program &amp; Pricing</a></li>
+          <li><a href="/how-we-help/who-we-work-with" class="footer__link">Who We Work With</a></li>
+          <li><a href="/how-we-help/audit-and-recommendations" class="footer__link">Marketing Audit &amp; Recommendations <span class="footer__tag">New</span></a></li>
+          <li><a href="/how-we-help/request-a-speaker" class="footer__link">Request a Speaker</a></li>
+          <li><a href="/how-we-help/success-stories" class="footer__link">Success Stories</a></li>
+          <li><a href="/how-we-help/reviews" class="footer__link">Reviews</a></li>
+          <li><a href="/how-we-help/guarantee" class="footer__link">Our Guarantee</a></li>
+          <li><a href="/how-we-help/hubspot" class="footer__link">HubSpot Training &amp; Services</a></li>
+          <li><a href="/how-we-help/websites/redesign" class="footer__link">Website Redesign</a></li>
+          <li><a href="/how-we-help/websites/optimization" class="footer__link">Website Optimization</a></li>
+          <li><a href="/how-we-help/websites/learning-center" class="footer__link">Learning Center Development</a></li>
+          <li><a href="/how-we-help/websites/self-service-tools" class="footer__link">Self-Service Tools</a></li>
+          <li><a href="/how-we-help/paid-advertising" class="footer__link">Paid Advertising</a></li>
+          <li><a href="/how-we-help/ai" class="footer__link">AI Services <span class="footer__tag">New</span></a></li>
+          <li><a href="https://trusttheme.com" class="footer__link" target="_blank" rel="noopener sponsored">TRUST Theme for HubSpot <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- OUR TEAM -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/team/" class="footer__col-link">Our Team</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/team/about" class="footer__link">Our Story, Vision &amp; Values</a></li>
+          <li><a href="/team/meet-the-team" class="footer__link">Meet the Team</a></li>
+          <li><a href="/team/awards" class="footer__link">Awards &amp; Recognition</a></li>
+          <li><a href="/press" class="footer__link">Press &amp; Media</a></li>
+          <li><a href="/team/join-the-team" class="footer__link">Join the Team</a></li>
+          <li><a href="/contact" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONFERENCE -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/live/" class="footer__col-link">Conference</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/live/hartford-2026" class="footer__link">Hartford, CT · Oct 5–7, 2026</a></li>
+          <li><a href="/live/chicago-2027" class="footer__link">Chicago, IL · Apr 5–7, 2027</a></li>
+          <li><a href="/live/experience/" class="footer__link">What It's Like</a></li>
+          <li><a href="/live/past/" class="footer__link">Past Events</a></li>
+          <li><a href="/live/sponsor" class="footer__link">Become a Sponsor</a></li>
+          <li><a href="/live/convince-your-boss" class="footer__link">Convince Your Boss</a></li>
+        </ul>
+
+        <!-- BOOK (stacked beneath Conference; promoted out of Learn, June 2026) -->
+        <h2 class="footer__col-title footer__col-title--stacked"><a href="/book/" class="footer__col-link">Book</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/book/about" class="footer__link">About <em>Endless Customers</em></a></li>
+          <li><a href="/book/companion-guide" class="footer__link">Companion Guide</a></li>
+          <li><a href="/book/preview" class="footer__link">Preview (Free Chapter)</a></li>
+        </ul>
+      </div>
+
+      <!-- TRUST & RESOURCES -->
+      <div class="footer__col">
+        <h2 class="footer__col-title">Trust &amp; Resources</h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/diagnostic" class="footer__link">Free AI Diagnostic</a></li>
+          <li><a href="/lets-talk" class="footer__link">Talk to a Coach</a></li>
+          <li><a href="/how-we-help/when-its-not-working" class="footer__link">When It&rsquo;s Not Working</a></li>
+          <li><a href="/editorial-process" class="footer__link">Editorial Standards &amp; Ethics</a></li>
+          <li><a href="/security" class="footer__link">Security &amp; Data Protection</a></li>
+          <li><a href="/for-ai-agents" class="footer__link">For AI Agents</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ================= META: NAP + CREDENTIAL BADGES ================= -->
+    <div class="footer__meta">
+      <address class="footer__nap">
+        <span class="footer__nap-org">
+          Endless Customers is an
+          <a href="https://www.impactplus.com" class="footer__inline-link" target="_blank" rel="noopener">IMPACT<span class="visually-hidden"> (opens in new tab)</span></a>
+          company.
+        </span>
+        <span class="footer__nap-row">
+          <a href="https://maps.google.com/?q=125+Commerce+Court,+Suite+9,+Cheshire,+CT+06410" class="footer__nap-item" target="_blank" rel="noopener">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>125 Commerce Court, Suite 9, Cheshire, CT 06410<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+          <a href="tel:+12032654377" class="footer__nap-item">
+            <i class="ti ti-phone" aria-hidden="true"></i>(203) 265-4377
+          </a>
+        </span>
+      </address>
+      <div class="footer__badges">
+        <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" class="footer__badge footer__badge--hubspot" target="_blank" rel="noopener" aria-label="IMPACT is a HubSpot Elite Solutions Partner (opens in new tab)">
+          <img src="../assets/images/logos-and-branding/hubspot-elite-badge-bw.svg" alt="HubSpot Elite Solutions Partner" loading="lazy" decoding="async">
+        </a>
+        <span class="footer__badge">
+          <img src="../assets/images/logos-and-branding/EOS-We-Run-On-Logo--bw-2.svg" alt="We Run on EOS" loading="lazy" decoding="async">
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= LEGAL BAR ================= -->
+  <div class="footer__legal">
+    <div class="container footer__legal-inner">
+      <p class="footer__copy">
+        &copy; <span id="footer-year"></span> Endless Customers. All rights reserved.
+      </p>
+      <nav class="footer__legal-nav" aria-label="Legal">
+        <ul class="footer__legal-links" role="list">
+          <li><a href="/privacy" class="footer__legal-link">Privacy Policy</a></li>
+          <li><a href="/terms" class="footer__legal-link">Terms of Service</a></li>
+          <li><a href="/cookies" class="footer__legal-link">Cookie Preferences</a></li>
+          <li><a href="/accessibility" class="footer__legal-link">Accessibility</a></li>
+          <li><a href="/trademarks" class="footer__legal-link">Trademarks</a></li>
+          <li><a href="/brand-guidelines" class="footer__legal-link">Brand Guidelines</a></li>
+          <li><a href="/ai-policy" class="footer__legal-link">AI Policy</a></li>
+          <li><a href="/sitemap" class="footer__legal-link">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Organization schema — NAP + entity data for SEO and AI visibility -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "Brand"],
+    "@id": "https://www.endlesscustomers.com/#organization",
+    "name": "Endless Customers",
+    "url": "https://www.endlesscustomers.com/",
+    "logo": "https://www.endlesscustomers.com/assets/images/logo-dark.svg",
+    "description": "Endless Customers is the proven system, built on They Ask, You Answer, that helps service businesses become the most trusted voice in their industry and own their marketing for good.",
+    "telephone": "+1-203-265-4377",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "125 Commerce Court, Suite 9",
+      "addressLocality": "Cheshire",
+      "addressRegion": "CT",
+      "postalCode": "06410",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/Endless-Customers/61555895372069/",
+      "https://www.linkedin.com/company/endless-customers",
+      "https://www.instagram.com/endlesscustomers",
+      "https://www.youtube.com/@EndlessCustomers",
+      "https://podcasts.apple.com/us/podcast/endless-customers/id1728142460",
+      "https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://www.impactplus.com/#organization",
+      "name": "IMPACT",
+      "legalName": "Impact Branding & Design LLC",
+      "url": "https://www.impactplus.com",
+      "brand": { "@id": "https://www.endlesscustomers.com/#organization" },
+      "sameAs": [
+        "https://www.linkedin.com/company/impactbnd",
+        "https://www.facebook.com/impactbnd",
+        "https://www.instagram.com/impactbnd",
+        "https://www.youtube.com/@impactbnd",
+        "https://www.tiktok.com/@impactbnd",
+        "https://www.crunchbase.com/organization/impact-branding-design"
+      ],
+      "telephone": "+1-203-265-4377",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 Commerce Court, Suite 9",
+        "addressLocality": "Cheshire",
+        "addressRegion": "CT",
+        "postalCode": "06410",
+        "addressCountry": "US"
+      }
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-203-265-4377",
+      "contactType": "sales",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+</footer>
+
+  </div>
+
+  <script src="../js/main.js?v=2026060925r"></script>
+  <script>
+    // ===== Let's Talk page interactions =====
+
+    var stepForm = document.getElementById('lt-step-form');
+    var stepCal  = document.getElementById('lt-step-calendar');
+    var form     = document.getElementById('lt-form');
+    var calEmbed = document.getElementById('lt-cal-embed');
+
+    // Routing card selection — visual state + mirror the choice to the calendar
+    document.querySelectorAll('.lt-route-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('.lt-route-card').forEach(function (c) { c.classList.remove('is-selected'); });
+        card.classList.add('is-selected');
+        var input = card.querySelector('input[type="radio"]');
+        if (input) {
+          input.checked = true;
+          if (calEmbed) calEmbed.setAttribute('data-route', input.value);
+        }
+      });
+    });
+
+    // Per-reason calendar copy. In production, also swap the HubSpot meeting
+    // link per reason (coaching → senior coach, service → specialist, etc.).
+    var calCopy = {
+      coaching: { heading: 'Pick a time with a coach.',        sub: 'Choose any open slot below. You’ll meet a senior Endless Customers coach who knows your industry.' },
+      service:  { heading: 'Pick a time to scope it out.',     sub: 'Choose any open slot below. We’ll match you with the right specialist for what you need.' },
+      explore:  { heading: 'Pick a time to talk it through.',  sub: 'Choose any open slot below. No pressure. We’ll help you figure out where to start.' },
+      default:  { heading: 'Pick a time that works for you.',  sub: 'Choose any open slot below. You’ll get an instant calendar invite with everything you need to join.' }
+    };
+
+    function showCalendar() {
+      var routeInput = document.querySelector('input[name="route"]:checked');
+      var route = routeInput ? routeInput.value : 'default';
+      var copy  = calCopy[route] || calCopy.default;
+      var first = (document.getElementById('lt-first-name').value || '').trim();
+
+      document.getElementById('lt-cal-heading').textContent =
+        first ? copy.heading.replace('Pick a time', 'Pick a time, ' + first + ',') : copy.heading;
+      document.getElementById('lt-cal-sub').textContent = copy.sub;
+      if (calEmbed) calEmbed.setAttribute('data-route', route);
+
+      stepForm.style.display = 'none';
+      stepCal.style.display  = 'block';
+      window.scrollTo({ top: stepCal.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' });
+    }
+
+    // Form submission → reveal the calendar (book now, no "we'll reach out" gap)
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      // TODO(HubSpot): on real embed, pass name/email to pre-fill the scheduler.
+      showCalendar();
+    });
+
+    // Back to the form from the calendar step
+    document.getElementById('lt-back').addEventListener('click', function (e) {
+      e.preventDefault();
+      stepCal.style.display  = 'none';
+      stepForm.style.display = 'block';
+      window.scrollTo({ top: stepForm.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' });
+    });
+
+    // Video: click/keyboard swaps the poster for the real embed when wired
+    var video = document.getElementById('lt-video');
+    function playVideo() {
+      var src = video.getAttribute('data-embed');
+      if (!src) return; // no embed wired yet — placeholder stays
+      var iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      video.innerHTML = '';
+      video.appendChild(iframe);
+    }
+    if (video) {
+      video.addEventListener('click', playVideo);
+      video.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playVideo(); }
+      });
+    }
+  </script>
+
+</body>
+</html>

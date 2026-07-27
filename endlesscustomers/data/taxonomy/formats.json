@@ -1,0 +1,11 @@
+[
+  { "id": "article", "label": "Article", "slug": "article" },
+  { "id": "podcast-episode", "label": "Podcast Episode", "slug": "podcast-episode" },
+  { "id": "webinar", "label": "Webinar", "slug": "webinar" },
+  { "id": "guide", "label": "Guide", "slug": "guide" },
+  { "id": "tool", "label": "Tool", "slug": "tool" },
+  { "id": "checklist", "label": "Checklist", "slug": "checklist" },
+  { "id": "template", "label": "Template", "slug": "template" },
+  { "id": "book", "label": "Book", "slug": "book" },
+  { "id": "course", "label": "Course", "slug": "course" }
+]

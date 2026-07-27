@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+(function(){
+  var log = window.__navProbe = [];
+  var t0 = performance.now();
+  function rec(type, detail){ log.push({t: Math.round(performance.now()-t0), type:type, detail:detail}); }
+  rec('probe-start','');
+  document.addEventListener('transitionstart', function(e){
+    var el = e.target;
+    if (el.closest && (el.closest('.nav') || el.classList.contains('nav'))) rec('transitionstart', e.propertyName + ' :: ' + (typeof el.className==='string'?el.className:el.tagName));
+  }, true);
+  document.addEventListener('animationstart', function(e){
+    var el = e.target;
+    if (el.closest && (el.closest('.nav'))) rec('animationstart', e.animationName + ' :: ' + (typeof el.className==='string'?el.className:el.tagName));
+  }, true);
+  var mo = new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      if (m.type==='attributes' && m.target.classList && m.target.classList.contains('nav') && m.target.tagName==='NAV') {
+        rec('nav-class', m.target.className);
+      }
+      if (m.type==='childList') {
+        for (var i=0;i<m.addedNodes.length;i++){
+          var n=m.addedNodes[i];
+          if (n.nodeType===1 && ((n.classList&&n.classList.contains('nav')) || (n.querySelector&&n.querySelector('.nav')))) rec('nav-injected','');
+        }
+      }
+    });
+  });
+  mo.observe(document.documentElement, {subtree:true, attributes:true, attributeFilter:['class'], childList:true});
+  window.addEventListener('load', function(){ rec('window-load',''); });
+})();
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    /* Conference pages always render dark */
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+  <title>Endless Customers Live 2026 Chicago — Recap, Speakers, Photos &amp; Recordings | Endless Customers</title>
+  <meta name="description" content="Endless Customers Live 2026 was held March 30 – April 1 at the Loews Chicago O'Hare Hotel. See the full session recap, who spoke, photos, sponsors, and free recordings from the first event under the Endless Customers name." />
+  <meta property="og:title"       content="Endless Customers Live 2026 Chicago — Recap" />
+  <meta property="og:description" content="March 30 – April 1, 2026 at the Loews Chicago O'Hare: the full session recap, speakers, photos, and free recordings." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="../../assets/images/endless-customers-live/chicago-2026/stage-neon.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "The Conference", "item": "https://www.endlesscustomers.com/live/" },
+      { "@type": "ListItem", "position": 2, "name": "Past Events", "item": "https://www.endlesscustomers.com/live/past/" },
+      { "@type": "ListItem", "position": 3, "name": "Chicago 2026 — Recap", "item": "https://www.endlesscustomers.com/live/chicago-2026/" }
+    ]
+  }
+  </script>
+
+  <!-- Past-event structured data — full record of what happened, with real
+       performers and sponsors, so search engines and AI assistants can cite
+       this event accurately -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Endless Customers Live 2026 — Chicago",
+    "description": "Endless Customers Live 2026, held March 30 – April 1, 2026 at the Loews Chicago O'Hare Hotel in Rosemont, IL. The first event under the Endless Customers name: a day of hands-on workshops, a full main-stage day on the 4 Pillars of a Known and Trusted Brand ending with the Neon Party, and an AI Day led by Marcus Sheridan — with 350+ business leaders across 14+ industries.",
+    "startDate": "2026-03-30",
+    "endDate": "2026-04-01",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "url": "https://www.endlesscustomers.com/live/chicago-2026/",
+    "image": "https://www.endlesscustomers.com/assets/images/endless-customers-live/chicago-2026/stage-neon.jpg",
+    "location": {
+      "@type": "Place",
+      "name": "Loews Chicago O'Hare Hotel",
+      "address": { "@type": "PostalAddress", "streetAddress": "5300 N River Rd", "addressLocality": "Rosemont", "addressRegion": "IL", "postalCode": "60018", "addressCountry": "US" }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "@id": "https://www.endlesscustomers.com/#organization",
+      "name": "Endless Customers",
+      "url": "https://www.endlesscustomers.com/"
+    },
+    "performer": [
+      { "@type": "Person", "name": "Marcus Sheridan", "url": "https://www.endlesscustomers.com/authors/marcus-sheridan" },
+      { "@type": "Person", "name": "Bob Ruffolo" },
+      { "@type": "Person", "name": "Stephanie Baiocchi" },
+      { "@type": "Person", "name": "Brian Casey" },
+      { "@type": "Person", "name": "Jessica Palmeri" },
+      { "@type": "Person", "name": "Mary Brown" },
+      { "@type": "Person", "name": "Sarah Schreck" },
+      { "@type": "Person", "name": "Chandni Desai" },
+      { "@type": "Person", "name": "Kyle Jepson" },
+      { "@type": "Person", "name": "Keven Ellison" },
+      { "@type": "Person", "name": "Chris Brisson" }
+    ],
+    "sponsor": [
+      { "@type": "Organization", "name": "HubSpot", "url": "https://www.hubspot.com/" },
+      { "@type": "Organization", "name": "GFour Marketing", "url": "https://gfourmarketing.com/" },
+      { "@type": "Organization", "name": "Salesmsg", "url": "https://www.salesmessage.com/" },
+      { "@type": "Organization", "name": "CallRail", "url": "https://www.callrail.com/" },
+      { "@type": "Organization", "name": "Vidyard", "url": "https://www.vidyard.com/" },
+      { "@type": "Organization", "name": "Fibr.ai", "url": "https://fibr.ai/" },
+      { "@type": "Organization", "name": "Quickpage", "url": "https://quickpage.io/" },
+      { "@type": "Organization", "name": "Majic", "url": "https://www.majicpro.com/" },
+      { "@type": "Organization", "name": "Rework Capital", "url": "https://www.rework.capital/" },
+      { "@type": "Organization", "name": "Blaze", "url": "https://www.blaze.ai/" },
+      { "@type": "Organization", "name": "XRAY", "url": "https://www.xray.tech/" },
+      { "@type": "Organization", "name": "HubSearch", "url": "https://www.hubsearch.com/" }
+    ]
+  }
+  </script>
+
+  <!-- Free session recordings from this event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Endless Customers Live 2026 Chicago — Free Session Recordings",
+    "itemListElement": [
+      { "@type": "VideoObject", "position": 1, "name": "The 4 Pillars of a Known and Trusted Brand", "description": "Marcus Sheridan's opening keynote from Endless Customers Live 2026 in Chicago.", "thumbnailUrl": "https://www.endlesscustomers.com/assets/images/endless-customers-live/chicago-2026/keynote-energy.jpg", "duration": "PT58M24S", "uploadDate": "2026-04-15" },
+      { "@type": "VideoObject", "position": 2, "name": "Winning Visibility in AI Search", "description": "An AI Day session on how buyers find businesses through AI assistants — and how to become the answer they're given.", "thumbnailUrl": "https://www.endlesscustomers.com/assets/images/endless-customers-live/chicago-2026/ai-session.jpg", "duration": "PT41M37S", "uploadDate": "2026-04-15" },
+      { "@type": "VideoObject", "position": 3, "name": "Putting It All Together: The Endless Customers Scorecard", "description": "A main-stage walkthrough of the official Endless Customers Scorecard.", "thumbnailUrl": "https://www.endlesscustomers.com/assets/images/endless-customers-live/chicago-2026/panel.jpg", "duration": "PT38M52S", "uploadDate": "2026-04-15" }
+    ]
+  }
+  </script>
+
+  <!-- FAQ structured data — past-event questions, mirrored below -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "When and where was Endless Customers Live 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Endless Customers Live 2026 was held March 30 – April 1, 2026 at the Loews Chicago O'Hare Hotel, 5300 N River Rd, Rosemont, IL. It was the first event under the Endless Customers name — the conference ran as IMPACT Live from 2018 through 2025." } },
+      { "@type": "Question", "name": "Where can I watch the Endless Customers Live 2026 recordings?", "acceptedAnswer": { "@type": "Answer", "text": "Three attendee-favorite sessions are free on this page. The complete session library is available in the IMPACT+ community — select recordings are free for all members, and every recording is included with a Pro membership." } },
+      { "@type": "Question", "name": "Who spoke at Endless Customers Live 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Marcus Sheridan led the main stage and AI Day. Sessions and workshops were led by Bob Ruffolo, Stephanie Baiocchi, Brian Casey, Jessica Palmeri, Mary Brown, Sarah Schreck, and Chandni Desai of IMPACT, with guest speakers Kyle Jepson, Keven Ellison, and Chris Brisson." } },
+      { "@type": "Question", "name": "Will the same content be covered at the next event?", "acceptedAnswer": { "@type": "Answer", "text": "The three-day format and the 4 Pillars framework stay consistent, but speakers, workshop topics, and the AI Day content are refreshed for every event. The next event is October 5–7, 2026 in Hartford, CT." } },
+      { "@type": "Question", "name": "When is the next Endless Customers Live?", "acceptedAnswer": { "@type": "Answer", "text": "October 5–7, 2026 at the Hartford Marriott Downtown in Hartford, CT, then April 5–7, 2027 in Chicago, IL." } }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    #main-content section[id] { scroll-margin-top: 120px; }
+  </style>
+  <style>
+  /* ===== EC Live Chicago 2026 recap page-scoped styles ===== */
+  .eclr-hero{position:relative;min-height:78svh;display:flex;align-items:center;overflow:hidden;background:#0b1020;color:#fff;}
+  .eclr-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;}
+  .eclr-hero__scrim{position:absolute;inset:0;background:radial-gradient(120% 120% at 70% 20%,rgba(227,97,183,.22),transparent 45%),linear-gradient(180deg,rgba(11,16,32,.45),rgba(11,16,32,.84));}
+  .eclr-hero__inner{position:relative;z-index:2;max-width:var(--max-width);margin:0 auto;padding:calc(var(--nav-height) + 100px) var(--space-6) var(--space-16);width:100%;text-align:center;}
+  .eclr-hero__badge{display:inline-flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:var(--text-xs);color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.35);border-radius:var(--radius-full);padding:.45rem 1rem;margin-bottom:var(--space-5);}
+  .eclr-hero__badge i{font-size:14px;}
+  .eclr-hero__title{font-family:var(--font-display);font-weight:800;font-size:var(--headline-medium);line-height:var(--leading-display);letter-spacing:var(--tracking-display);max-width:22ch;margin:0 auto var(--space-5);}
+  .eclr-hero__sub{font-size:var(--text-lg);line-height:1.6;color:rgba(255,255,255,.8);margin:0 auto var(--space-8);max-width:58ch;}
+  .eclr-hero__actions{display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;justify-content:center;}
+  .eclr-hero__actions .btn--ghost{color:rgba(255,255,255,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);}
+  .eclr-hero__actions .btn--ghost:hover{color:#fff;box-shadow:inset 0 0 0 1px #fff;}
+
+  /* Day-by-day recap — the documented record of what happened */
+  .eclr-day{max-width:820px;margin:0 auto var(--space-12);}
+  .eclr-day:last-child{margin-bottom:0;}
+  .eclr-day__head{display:flex;align-items:baseline;gap:var(--space-4);flex-wrap:wrap;border-bottom:2px solid var(--color-border-strong);padding-bottom:var(--space-3);margin-bottom:var(--space-2);}
+  .eclr-day__date{font-family:var(--font-display);font-weight:800;font-size:var(--text-xl);color:var(--color-heading);letter-spacing:var(--tracking-display);}
+  .eclr-day__theme{font-weight:600;color:var(--color-blue);font-size:var(--text-sm);text-transform:uppercase;letter-spacing:.08em;}
+  .eclr-slot{display:grid;grid-template-columns:96px 1fr;gap:var(--space-5);padding:var(--space-4) 0;border-bottom:1px solid var(--color-border);}
+  .eclr-slot__time{font-family:var(--font-display);font-weight:700;color:var(--color-blue);font-size:var(--text-sm);padding-top:2px;}
+  .eclr-slot__title{font-weight:700;color:var(--color-heading);font-size:var(--text-base);margin:0;}
+  .eclr-slot__who{color:var(--color-text-muted);font-size:var(--text-sm);margin:var(--space-1) 0 0;}
+  @media (max-width:809px){.eclr-slot{grid-template-columns:72px 1fr;gap:var(--space-3);}}
+
+  /* Speaker grid — real lineup, photos where we have them */
+  .eclr-speakers{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-6);max-width:980px;margin:0 auto;}
+  .eclr-spk{display:flex;flex-direction:column;align-items:center;gap:var(--space-3);text-decoration:none;width:118px;}
+  .eclr-spk img,.eclr-spk__initials{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid var(--color-border);transition:transform .15s ease,border-color .15s ease;}
+  .eclr-spk__initials{display:flex;align-items:center;justify-content:center;background:var(--color-bg-surface);font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);color:var(--color-text-strong);}
+  a.eclr-spk:hover img{transform:scale(1.05);border-color:var(--color-blue);}
+  .eclr-spk__name{font-weight:600;font-size:var(--text-sm);color:var(--color-heading);text-align:center;line-height:1.3;}
+  .eclr-spk__role{font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;line-height:1.3;}
+
+  /* Recording cards */
+  .eclr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5);max-width:1020px;margin:0 auto;}
+  .eclr-card{background:var(--color-bg-surface);border:1px solid transparent;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .15s ease,box-shadow .15s ease;}
+  .eclr-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .eclr-card__thumb{position:relative;aspect-ratio:16/9;overflow:hidden;}
+  .eclr-card__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .eclr-card__play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(11,16,32,.35);}
+  .eclr-card__play i{font-size:44px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.4);}
+  .eclr-card__dur{position:absolute;bottom:var(--space-3);right:var(--space-3);background:rgba(11,16,32,.85);color:#fff;font-size:var(--text-xs);font-weight:700;padding:.25rem .5rem;border-radius:var(--radius-sm);}
+  .eclr-card__body{padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-2);flex:1;}
+  .eclr-card__tag{font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-blue);}
+  .eclr-card__title{font-family:var(--font-display);font-weight:700;font-size:var(--text-lg);color:var(--color-heading);margin:0;line-height:1.3;}
+  .eclr-card__speaker{color:var(--color-text-muted);font-size:var(--text-sm);margin:0;}
+
+  /* Photo gallery */
+  .eclr-photos{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:var(--space-3);}
+  .eclr-photos img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius-md);display:block;}
+  .eclr-photos .span2w{grid-column:span 2;}
+  .eclr-photos .span2h{grid-row:span 2;}
+  @media (max-width:809px){.eclr-photos{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;}}
+
+  .eclr-statband{display:flex;gap:var(--space-8);flex-wrap:wrap;justify-content:center;margin-top:var(--space-10);text-align:center;}
+  .eclr-stat__num{font-family:var(--font-display);font-weight:800;font-size:var(--text-4xl);color:var(--color-heading);line-height:1;letter-spacing:var(--tracking-display);}
+  .eclr-stat__label{color:var(--color-text-muted);font-weight:600;margin-top:var(--space-1);}
+
+  /* Sponsor logos — light chips so dark logo art reads on the dark theme */
+  .eclr-sponsors{display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center;justify-content:center;max-width:980px;margin:0 auto;}
+  .eclr-sponsors a{display:flex;align-items:center;justify-content:center;background:#fff;border-radius:var(--radius-md);padding:var(--space-4) var(--space-6);min-width:150px;height:72px;transition:transform .15s ease,box-shadow .15s ease;}
+  .eclr-sponsors a:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+  .eclr-sponsors img{max-height:36px;max-width:130px;object-fit:contain;display:block;}
+
+  /* FAQ */
+  .faq__body{padding:0 0 var(--space-5);color:var(--color-text);line-height:1.6;}
+  .faq__body a{color:var(--color-blue);}
+  </style>
+</head>
+<body class="page-accent--conf">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- GLOBAL NAV — loaded from components/nav.html (source of truth) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- Section sub-nav -->
+  <nav class="subnav subnav--svc" id="subnav" aria-label="Section navigation">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#recap" class="subnav__link is-active">The Recap</a>
+        <a href="#speakers" class="subnav__link">Who Spoke</a>
+        <a href="#recordings" class="subnav__link">Recordings</a>
+        <a href="#photos" class="subnav__link">Photos</a>
+        <a href="#sponsors" class="subnav__link">Sponsors</a>
+        <a href="#faqs" class="subnav__link">FAQs</a>
+        <a href="/live/hartford-2026" class="btn--nav-primary subnav__cta">Attend the Next One <span class="subnav__cta-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section data-subnav-hero class="eclr-hero" aria-labelledby="eclr-hero-title">
+      <img class="eclr-hero__img" src="../../assets/images/endless-customers-live/chicago-2026/stage-neon.jpg" alt="" aria-hidden="true" />
+      <div class="eclr-hero__scrim" aria-hidden="true"></div>
+      <div class="eclr-hero__inner">
+        <span class="eclr-hero__badge"><i class="ti ti-history" aria-hidden="true"></i> Past Event · March 30 – April 1, 2026 · Rosemont, IL</span>
+        <h1 class="eclr-hero__title headline-short" id="eclr-hero-title">Endless Customers Live 2026: That's a Wrap, Chicago</h1>
+        <p class="eclr-hero__sub">The first event under the Endless Customers name. 350+ business leaders, sales pros, and marketers at the Loews Chicago O'Hare — a day of hands-on workshops, a full main-stage day on the 4 Pillars, the Neon Party, and an AI Day with Marcus Sheridan.</p>
+        <div class="eclr-hero__actions">
+          <a href="/live/hartford-2026" class="btn btn--primary btn--lg">Join Us in Hartford · Oct 5–7 →</a>
+          <a href="#recordings" class="btn btn--ghost btn--lg">Watch the Sessions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DAY-BY-DAY RECAP -->
+    <section class="section" id="recap" aria-labelledby="eclr-recap-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">The Recap</span>
+          <h2 class="section__title section__title--lg" id="eclr-recap-title">Three Days, Session by Session</h2>
+          <!-- Canonical facts paragraph — written to be quoted verbatim by search engines and AI assistants -->
+          <p class="section__subtitle">Endless Customers Live 2026 ran March 30 – April 1, 2026 at the Loews Chicago O'Hare Hotel in Rosemont, IL — a workshop day, a single-track main-stage day on the 4 Pillars of a Known and Trusted Brand, and an AI Day led by Marcus Sheridan. Here's what actually happened.</p>
+        </header>
+
+        <div class="eclr-day">
+          <div class="eclr-day__head">
+            <span class="eclr-day__date">Monday, March 30</span>
+            <span class="eclr-day__theme">Workshop Day</span>
+          </div>
+          <div class="eclr-slot"><div class="eclr-slot__time">1:00 PM</div><div><p class="eclr-slot__title">The Adoption Gap: Why Even the Best Teams Resist Change</p><p class="eclr-slot__who">Chandni Desai &amp; Jessica Palmeri</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">1:00 PM</div><div><p class="eclr-slot__title">Accelerating Your Growth with Ads: A Paid Strategy Workshop</p><p class="eclr-slot__who">Sarah Schreck</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">1:00 PM</div><div><p class="eclr-slot__title">Is Your Website Actually Doing Its Job in 2026? An optimization lab for trust, conversions, and AI visibility</p><p class="eclr-slot__who">Mary Brown</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">2:30 PM</div><div><p class="eclr-slot__title">The Full-Funnel Buyer Journey: Content That Converts Before &amp; During Sales</p><p class="eclr-slot__who">Brian Casey</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">4:00 PM</div><div><p class="eclr-slot__title">Tracking Content ROI with Endless Customers — a hands-on HubSpot reporting workshop</p><p class="eclr-slot__who">Jessica Palmeri &amp; Kyle Jepson</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">5:00 PM</div><div><p class="eclr-slot__title">Pre-Event Networking Party with Sponsors</p></div></div>
+        </div>
+
+        <div class="eclr-day">
+          <div class="eclr-day__head">
+            <span class="eclr-day__date">Tuesday, March 31</span>
+            <span class="eclr-day__theme">Main Stage — The 4 Pillars</span>
+          </div>
+          <div class="eclr-slot"><div class="eclr-slot__time">9:00 AM</div><div><p class="eclr-slot__title">The 4 Pillars of a Known and Trusted Brand</p><p class="eclr-slot__who">Marcus Sheridan &amp; the EC coaching team — with the Endless Customers Scorecard worksheet</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">10:30 AM</div><div><p class="eclr-slot__title">Say What Others Aren't Willing to Say</p><p class="eclr-slot__who">Fearless communication on cost, problems, comparisons, and reviews</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">12:00 PM</div><div><p class="eclr-slot__title">Show What Others Aren't Willing to Show</p><p class="eclr-slot__who">Trust-building video and visual proof — process, products, pricing, people</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">2:00 PM</div><div><p class="eclr-slot__title">Sell In Ways Others Aren't Willing to Sell</p><p class="eclr-slot__who">Assignment selling, self-service tools, and transparent pricing</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">3:45 PM</div><div><p class="eclr-slot__title">Be More Human Than Others Are Willing to Be</p><p class="eclr-slot__who">Human connection in the AI era</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">5:00 PM</div><div><p class="eclr-slot__title">Putting It All Together: The Endless Customers Scorecard</p><p class="eclr-slot__who">Every attendee scored their business across all four pillars</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">6:30 PM</div><div><p class="eclr-slot__title">Dinner &amp; the Neon Party</p></div></div>
+        </div>
+
+        <div class="eclr-day">
+          <div class="eclr-day__head">
+            <span class="eclr-day__date">Wednesday, April 1</span>
+            <span class="eclr-day__theme">AI Day</span>
+          </div>
+          <div class="eclr-slot"><div class="eclr-slot__time">9:00 AM</div><div><p class="eclr-slot__title">Where Things Are and Where AI Visibility and AI SEO Are Going</p><p class="eclr-slot__who">Marcus Sheridan</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">10:00 AM</div><div><p class="eclr-slot__title">Never Drop a Lead Again — Fireside Chat</p><p class="eclr-slot__who">Marcus Sheridan &amp; Chris Brisson</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">11:00 AM</div><div><p class="eclr-slot__title">13 Trust Signals Reshaping Human and AI Visibility in 2026 and Beyond</p><p class="eclr-slot__who">Marcus Sheridan</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">12:30 PM</div><div><p class="eclr-slot__title">Practical Ways to Integrate AI into Your Sales &amp; Marketing in the Next 90 Days</p><p class="eclr-slot__who">Marcus Sheridan</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">1:00 PM</div><div><p class="eclr-slot__title">Agentic AI Is Here: How Smart Businesses Cut Time, Lower Cost, and Scale Faster</p><p class="eclr-slot__who">Keven Ellison</p></div></div>
+          <div class="eclr-slot"><div class="eclr-slot__time">1:30 PM</div><div><p class="eclr-slot__title">What IMPACT Is Doing with AI — and What to Do Next in Your EC Journey</p><p class="eclr-slot__who">Bob Ruffolo &amp; Stephanie Baiocchi</p></div></div>
+        </div>
+
+        <div class="eclr-statband">
+          <div class="eclr-stat"><div class="eclr-stat__num">350+</div><div class="eclr-stat__label">Attendees</div></div>
+          <div class="eclr-stat"><div class="eclr-stat__num">3</div><div class="eclr-stat__label">Days</div></div>
+          <div class="eclr-stat"><div class="eclr-stat__num">20+</div><div class="eclr-stat__label">Sessions &amp; Workshops</div></div>
+          <div class="eclr-stat"><div class="eclr-stat__num">14+</div><div class="eclr-stat__label">Industries</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO SPOKE -->
+    <section class="section section--alt" id="speakers" aria-labelledby="eclr-spk-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Who Spoke</span>
+          <h2 class="section__title section__title--lg" id="eclr-spk-title">The 2026 Chicago Lineup</h2>
+          <p class="section__subtitle">Marcus Sheridan led the main stage and AI Day, joined by the IMPACT team and guest speakers. Tap a face to see their full profile.</p>
+        </header>
+        <div class="eclr-speakers">
+          <a href="/authors/marcus-sheridan" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/500px_Square_Marcus_Sheridan.jpg" alt="Marcus Sheridan" loading="lazy" />
+            <span class="eclr-spk__name">Marcus Sheridan</span>
+            <span class="eclr-spk__role">Keynote · Main Stage &amp; AI Day</span>
+          </a>
+          <a href="/team/profile.html?id=bob-ruffolo" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/500px_Square_Bob_Ruffolo-copy.jpg" alt="Bob Ruffolo" loading="lazy" />
+            <span class="eclr-spk__name">Bob Ruffolo</span>
+            <span class="eclr-spk__role">CEO, IMPACT · AI Day</span>
+          </a>
+          <a href="/team/profile.html?id=stephanie-baiocchi" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/Stephanie-5.jpeg" alt="Stephanie Baiocchi" loading="lazy" />
+            <span class="eclr-spk__name">Stephanie Baiocchi</span>
+            <span class="eclr-spk__role">IMPACT · AI Day</span>
+          </a>
+          <a href="/team/profile.html?id=brian-casey" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/500px_Square_Brian_Casey.jpg" alt="Brian Casey" loading="lazy" />
+            <span class="eclr-spk__name">Brian Casey</span>
+            <span class="eclr-spk__role">Sr. Coach · Buyer Journey</span>
+          </a>
+          <a href="/team/profile.html?id=jessica-palmeri" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/500px_Square_Jessica_Palmeri.jpg" alt="Jessica Palmeri" loading="lazy" />
+            <span class="eclr-spk__name">Jessica Palmeri</span>
+            <span class="eclr-spk__role">HubSpot Trainer · Content ROI</span>
+          </a>
+          <a href="/team/profile.html?id=mary-brown" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/500px_Square_Mary_Brown_V2.jpg" alt="Mary Brown" loading="lazy" />
+            <span class="eclr-spk__name">Mary Brown</span>
+            <span class="eclr-spk__role">Website Strategist · Website Lab</span>
+          </a>
+          <a href="/team/profile.html?id=sarah-schreck" class="eclr-spk">
+            <img src="../../assets/images/bio-pictures/500px_Square_Sarah_Schreck.jpg" alt="Sarah Schreck" loading="lazy" />
+            <span class="eclr-spk__name">Sarah Schreck</span>
+            <span class="eclr-spk__role">IMPACT · Paid Ads Workshop</span>
+          </a>
+          <span class="eclr-spk">
+            <span class="eclr-spk__initials" aria-hidden="true">CD</span>
+            <span class="eclr-spk__name">Chandni Desai</span>
+            <span class="eclr-spk__role">IMPACT · Adoption Workshop</span>
+          </span>
+          <span class="eclr-spk">
+            <span class="eclr-spk__initials" aria-hidden="true">KJ</span>
+            <span class="eclr-spk__name">Kyle Jepson</span>
+            <span class="eclr-spk__role">Guest · Content ROI</span>
+          </span>
+          <span class="eclr-spk">
+            <span class="eclr-spk__initials" aria-hidden="true">KE</span>
+            <span class="eclr-spk__name">Keven Ellison</span>
+            <span class="eclr-spk__role">Guest · Agentic AI</span>
+          </span>
+          <span class="eclr-spk">
+            <span class="eclr-spk__initials" aria-hidden="true">CB</span>
+            <span class="eclr-spk__name">Chris Brisson</span>
+            <span class="eclr-spk__role">Salesmsg · Fireside Chat</span>
+          </span>
+        </div>
+        <!-- TODO(photos): swap the initials circles for headshots of Chandni Desai,
+             Kyle Jepson, Keven Ellison, and Chris Brisson when we have rights-cleared images. -->
+      </div>
+    </section>
+
+    <!-- RECORDINGS -->
+    <section class="section" id="recordings" aria-labelledby="eclr-rec-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Recordings</span>
+          <h2 class="section__title section__title--lg" id="eclr-rec-title">Watch the Attendee Favorites, Free</h2>
+          <p class="section__subtitle">Three of the most-talked-about sessions from Chicago. The complete library lives in the IMPACT+ community — select recordings free, everything with Pro.</p>
+        </header>
+        <!-- TODO(video): wire each card to its player/recording URL when available -->
+        <div class="eclr-grid">
+          <article class="eclr-card">
+            <div class="eclr-card__thumb">
+              <img src="../../assets/images/endless-customers-live/chicago-2026/keynote-energy.jpg" alt="Marcus Sheridan opening the main stage at Endless Customers Live 2026" loading="lazy" />
+              <span class="eclr-card__play" aria-hidden="true"><i class="ti ti-player-play-filled"></i></span>
+              <span class="eclr-card__dur">58:24</span>
+            </div>
+            <div class="eclr-card__body">
+              <span class="eclr-card__tag">Main Stage · Tuesday</span>
+              <h3 class="eclr-card__title">The 4 Pillars of a Known and Trusted Brand</h3>
+              <p class="eclr-card__speaker">Marcus Sheridan</p>
+            </div>
+          </article>
+          <article class="eclr-card">
+            <div class="eclr-card__thumb">
+              <img src="../../assets/images/endless-customers-live/chicago-2026/ai-session.jpg" alt="AI Day session on stage at Endless Customers Live 2026" loading="lazy" />
+              <span class="eclr-card__play" aria-hidden="true"><i class="ti ti-player-play-filled"></i></span>
+              <span class="eclr-card__dur">41:37</span>
+            </div>
+            <div class="eclr-card__body">
+              <span class="eclr-card__tag">AI Day · Wednesday</span>
+              <h3 class="eclr-card__title">Winning Visibility in AI Search</h3>
+              <p class="eclr-card__speaker">Endless Customers Coaching Team</p>
+            </div>
+          </article>
+          <article class="eclr-card">
+            <div class="eclr-card__thumb">
+              <img src="../../assets/images/endless-customers-live/chicago-2026/panel.jpg" alt="Main-stage session at Endless Customers Live 2026" loading="lazy" />
+              <span class="eclr-card__play" aria-hidden="true"><i class="ti ti-player-play-filled"></i></span>
+              <span class="eclr-card__dur">38:52</span>
+            </div>
+            <div class="eclr-card__body">
+              <span class="eclr-card__tag">Main Stage · Tuesday</span>
+              <h3 class="eclr-card__title">Putting It All Together: The Endless Customers Scorecard</h3>
+              <p class="eclr-card__speaker">Endless Customers Coaching Team</p>
+            </div>
+          </article>
+        </div>
+        <div class="text-center" style="margin-top:var(--space-10);display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="https://community.impactplus.com/c/event-recordings" class="btn btn--primary" target="_blank" rel="noopener">Full Library in the Community ↗</a>
+          <a href="/learn/academy" class="btn btn--ghost">Explore the Academy →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHOTOS -->
+    <section class="section section--alt" id="photos" aria-labelledby="eclr-photos-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Photos</span>
+          <h2 class="section__title section__title--lg" id="eclr-photos-title">Three Days at the Loews Chicago O'Hare</h2>
+        </header>
+        <div class="eclr-photos">
+          <img class="span2w span2h" src="../../assets/images/endless-customers-live/chicago-2026/ballroom-wide-1.jpg" alt="The full ballroom during a main-stage session at Endless Customers Live 2026" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/marcus-mainstage.jpg" alt="Marcus Sheridan teaching the 4 Pillars on the main stage" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/workshop-table.jpg" alt="Attendees working through a Scorecard exercise at a workshop table" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/audience.jpg" alt="The audience during a main-stage session" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/networking.jpg" alt="Attendees networking between sessions" loading="lazy" />
+          <img class="span2w" src="../../assets/images/endless-customers-live/chicago-2026/ballroom-wide-2.jpg" alt="Wide view of the ballroom at the Loews Chicago O'Hare" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/chris-greene-mic.jpg" alt="An attendee asking a question on the mic" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/sponsor-booth.jpg" alt="Conversations at a sponsor booth" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/nicole-stage.jpg" alt="Speaker on the Endless Customers Live main stage" loading="lazy" />
+          <img src="../../assets/images/endless-customers-live/chicago-2026/party.jpg" alt="Attendees at the Neon Party" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section class="section" id="sponsors" aria-labelledby="eclr-sponsors-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">Sponsors</span>
+          <h2 class="section__title section__title--lg" id="eclr-sponsors-title">The Brands That Made It Happen</h2>
+          <p class="section__subtitle">Twelve sponsors joined us in Chicago — from the exhibitor floor to the main-stage power presentations.</p>
+        </header>
+        <div class="eclr-sponsors">
+          <a href="https://www.hubspot.com/" target="_blank" rel="noopener" aria-label="HubSpot"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/hubspot%20logo.png?width=400&name=hubspot%20logo.png" alt="HubSpot" loading="lazy" /></a>
+          <a href="https://gfourmarketing.com/" target="_blank" rel="noopener" aria-label="GFour Marketing"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/g4.png?width=225&height=225&name=g4.png" alt="GFour Marketing" loading="lazy" /></a>
+          <a href="https://www.salesmessage.com/" target="_blank" rel="noopener" aria-label="Salesmsg"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/salesmsg%20logo.png?width=400&name=salesmsg%20logo.png" alt="Salesmsg" loading="lazy" /></a>
+          <a href="https://www.callrail.com/" target="_blank" rel="noopener" aria-label="CallRail"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/callrail.png?width=400&name=callrail.png" alt="CallRail" loading="lazy" /></a>
+          <a href="https://www.vidyard.com/" target="_blank" rel="noopener" aria-label="Vidyard"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/Vidyard.png?width=400&name=Vidyard.png" alt="Vidyard" loading="lazy" /></a>
+          <a href="https://fibr.ai/" target="_blank" rel="noopener" aria-label="Fibr.ai"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/Fibr_Horizontal_Black_Logo_Logo.jpg?width=400&name=Fibr_Horizontal_Black_Logo_Logo.jpg" alt="Fibr.ai" loading="lazy" /></a>
+          <a href="https://quickpage.io/" target="_blank" rel="noopener" aria-label="Quickpage"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/Quickpage-logo%20copy.png?width=250&height=160&name=Quickpage-logo%20copy.png" alt="Quickpage" loading="lazy" /></a>
+          <a href="https://www.majicpro.com/" target="_blank" rel="noopener" aria-label="Majic"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/Majic_LogoA.png?width=400&name=Majic_LogoA.png" alt="Majic" loading="lazy" /></a>
+          <a href="https://www.rework.capital/" target="_blank" rel="noopener" aria-label="Rework Capital"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/Rework%20Capital%20.png?width=400&name=Rework%20Capital%20.png" alt="Rework Capital" loading="lazy" /></a>
+          <a href="https://www.blaze.ai/" target="_blank" rel="noopener" aria-label="Blaze"><img src="https://www.endlesscustomers.com/hs-fs/hubfs/blaze.png?width=400&name=blaze.png" alt="Blaze" loading="lazy" /></a>
+          <a href="https://www.xray.tech/" target="_blank" rel="noopener" aria-label="XRAY"><img src="https://www.endlesscustomers.com/hubfs/xray%20logo.svg" alt="XRAY" loading="lazy" /></a>
+          <a href="https://www.hubsearch.com/" target="_blank" rel="noopener" aria-label="HubSearch"><img src="https://www.endlesscustomers.com/hubfs/IMPACT%20Live/2024/Assets/Sponsors/HubSearch%20Logo%20Dark.svg" alt="HubSearch" loading="lazy" /></a>
+        </div>
+        <p class="text-center" style="margin-top:var(--space-8);color:var(--color-text-muted);font-size:var(--text-sm);">Want your brand in the room next time? <a href="/live/sponsor" style="color:var(--color-blue);">Sponsorships for Hartford and Chicago start at $4,000 →</a></p>
+      </div>
+    </section>
+
+    <!-- IN THEIR WORDS -->
+    <section class="section section--alt" id="testimonials" aria-labelledby="eclr-said-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">In Their Words</span>
+          <h2 class="section__title section__title--lg" id="eclr-said-title">What Attendees Said</h2>
+        </header>
+        <div class="testimonial-grid">
+          <article class="testimonial-card testimonial-card--featured">
+            <p class="testimonial-card__quote">The alignment that our team has gained from all being at Endless Customers together is huge.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">JL</div>
+              <div><div class="testimonial-card__name">Jeffrey Linta</div><div class="testimonial-card__role">Linta Roofing</div></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">Attending Endless Customers Live made me realize we needed a refresh on the basics of They Ask, You Answer — getting marketing and sales together, and creating content we'll use in the sales process.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">MG</div>
+              <div><div class="testimonial-card__name">Mike Galanos</div><div class="testimonial-card__role">Woodstock Furniture &amp; Mattress Outlet</div></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">It was super exciting to learn about AI and the different use cases for social media and video editing.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">KD</div>
+              <div><div class="testimonial-card__name">Kenda Dowdy</div><div class="testimonial-card__role">Illume Fertility</div></div>
+            </div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">Marcus's presentations are motivating, insightful, and he leaves the audience with clear takeaways.</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar" aria-hidden="true">DG</div>
+              <div><div class="testimonial-card__name">Dan Golda</div><div class="testimonial-card__role">ThoroughCare</div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faqs" aria-labelledby="eclr-faq-title">
+      <div class="container">
+        <header class="section__header">
+          <span class="section__eyebrow">FAQs</span>
+          <h2 class="section__title section__title--lg" id="eclr-faq-title">About This Event</h2>
+        </header>
+        <div class="faq">
+          <details><summary>When and where was Endless Customers Live 2026?</summary><div class="faq__body">Endless Customers Live 2026 was held March 30 – April 1, 2026 at the Loews Chicago O'Hare Hotel, 5300 N River Rd, Rosemont, IL. It was the first event under the Endless Customers name — the conference ran as IMPACT Live from 2018 through 2025.</div></details>
+          <details><summary>Where can I watch the recordings?</summary><div class="faq__body">Three attendee-favorite sessions are free on this page. The complete session library is in the <a href="https://community.impactplus.com/c/event-recordings" target="_blank" rel="noopener">IMPACT+ community</a> — select recordings are free for all members, and every recording is included with a Pro membership.</div></details>
+          <details><summary>Who spoke at the event?</summary><div class="faq__body">Marcus Sheridan led the main stage and AI Day. Sessions and workshops were led by Bob Ruffolo, Stephanie Baiocchi, Brian Casey, Jessica Palmeri, Mary Brown, Sarah Schreck, and Chandni Desai of IMPACT, with guest speakers Kyle Jepson, Keven Ellison, and Chris Brisson. See the full <a href="#recap">session-by-session recap</a>.</div></details>
+          <details><summary>Will the same content be covered at the next event?</summary><div class="faq__body">The three-day format and the 4 Pillars framework stay consistent, but speakers, workshop topics, and the AI Day content are refreshed for every event. Many companies attend every year and bring new team members each time.</div></details>
+          <details><summary>When is the next Endless Customers Live?</summary><div class="faq__body"><a href="/live/hartford-2026">October 5–7, 2026 at the Hartford Marriott Downtown</a> in Hartford, CT — then <a href="/live/chicago-2027">April 5–7, 2027 back in Chicago</a>.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band" aria-labelledby="eclr-cta-title">
+      <div class="container">
+        <h2 class="cta-band__title" id="eclr-cta-title">Don't Watch the Next Recap — Be in It</h2>
+        <p class="cta-band__sub">The next Endless Customers Live is October 5–7, 2026 in Hartford, CT — then back to Chicago in April 2027.</p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="/live/hartford-2026" class="btn btn--primary btn--lg">Hartford · Oct 5–7, 2026 →</a>
+          <a href="/live/chicago-2027" class="btn btn--ghost btn--lg">Chicago · Apr 5–7, 2027 →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

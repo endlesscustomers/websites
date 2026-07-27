@@ -1,0 +1,50 @@
+{
+  "id": "website-messaging",
+  "slug": "website-messaging",
+  "title": "Website Messaging",
+  "nav_title": "Messaging",
+  "status": "published",
+  "topic_id": "right-website",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Pull up your company's homepage right now. Put yourself in the shoes of someone who has never heard of your business and try to answer three questions in under 10 seconds: What does this business do? What problem do they solve? How do I take the next step? If the answers aren't obvious — not clear after reading, but obvious at a glance — your website has a messaging problem. And that problem is costing you leads every day.\n\nSeventy-six percent of visitors leave a website if they can't quickly understand what the company does or how it can help them. That's three in four visitors. No amount of SEO, paid advertising, or content marketing can compensate for a homepage that fails that basic test.\n\n## The Hero Is Your Customer\n\nThe most common cause of poor website messaging is simple: companies make themselves the hero of the story. The website is full of 'we have been serving since,' 'our mission is,' 'we are proud to offer.' Count how many times your homepage uses 'we' and 'our' versus 'you' and 'your.' If 'we' wins by a wide margin, your messaging is company-centric. And buyers, who are looking for a solution to their problem, not a company biography, tune it out.\n\nDonald Miller's StoryBrand framework offers a clear correction. In every compelling story, there is a hero who faces a challenge, a guide who helps them navigate it, and a successful outcome. Your customer is the hero. Your company is the guide. The moment your messaging shifts to reflect that — leading with the buyer's problem, positioning your expertise as the solution, and showing what success looks like — everything gets clearer.\n\n## The StoryBrand BrandScript\n\nThe BrandScript is a seven-part framework that builds your messaging from the ground up. It identifies who your customer is and what they want. It names their problem at three levels: the external challenge they're trying to solve, the internal frustration it creates, and the deeper reason it matters. It positions your brand as an empathetic and authoritative guide. It outlines a clear, simple plan for the buyer to follow. It calls them to action directly. It names what's at stake if they don't act. And it paints a clear picture of the success they'll achieve by working with you.\n\nWorking through the BrandScript produces a one-liner that distills your value proposition into a single clear statement: here's the problem we solve, here's how we solve it, here's what success looks like. That one-liner becomes the backbone of your homepage, your sales pitch, your email signatures, and every other surface where your company explains what it does.\n\n## The Homepage Hero Section\n\nThe homepage hero section — the very top of your homepage, visible without scrolling — is where most visitors decide whether to stay or leave. It should include a clear headline that states what you do and the problem you solve, a sub-headline that expands the promise, and a compelling call to action that is immediately visible. Add a strong image or short video that shows the outcome the buyer wants. This combination, done well, gives a visitor everything they need to decide they're in the right place.\n\n## Keep Refining\n\nWebsite messaging is not a one-time project. It is a hypothesis you test and refine. Your sales team is the best source of real-time feedback: when prospects arrive at conversations already understanding your value, the messaging is working. When they need the value explained, it isn't. Use that feedback to adjust, A/B test alternatives, and keep improving. The companies with the clearest website messaging didn't get it right on the first try. They got it right by treating it as something that's always worth making sharper.",
+  "excerpt": "Seventy-six percent of visitors leave a website within seconds if they can't quickly understand what the company does. Here's how to fix messaging that's costing you leads every day.",
+  "what_youll_learn": [
+    "Seventy-six percent of visitors leave a website if they can't quickly understand what the company does or how it can help them — unclear messaging is one of the most costly and fixable problems on any site.",
+    "Most companies make themselves the hero of their website story. The buyer is the hero. Your brand is the guide with a plan that helps the hero succeed.",
+    "The StoryBrand framework by Donald Miller provides a seven-step BrandScript that creates clear, customer-centric messaging across every page of your website.",
+    "The grunt test is a quick diagnostic: can someone who knows nothing about your company understand what you do, what problem you solve, and what to do next within 10 seconds?",
+    "Your homepage hero section is prime real estate — it should communicate your value proposition in a single clear headline and sub-headline, with a compelling CTA.",
+    "Website messaging is a living part of your strategy. Collect feedback from the sales team, A/B test variations, and keep refining based on what you observe in sales conversations."
+  ],
+  "key_questions": [
+    {
+      "question": "What is the most common website messaging mistake?",
+      "answer": "Making the company the hero instead of the customer. Websites full of 'we are the leaders in,' 'our mission is,' and 'we have been serving since' language put the company at the center of the story. Buyers don't care about your story — they care about their problem and whether you can solve it. Shifting the messaging to put the buyer's challenge first, and your company as the guide that helps them navigate it, changes how visitors engage with the site entirely."
+    },
+    {
+      "question": "What is the StoryBrand framework and how does it apply to a website?",
+      "answer": "StoryBrand is a messaging framework built around the structure of a story: a hero (your customer) faces a problem, meets a guide (your company), receives a plan, and achieves success. Applied to a website, it means every page leads with the customer's problem, presents your company as the empathetic and authoritative guide, outlines a clear path to success, and includes a strong call to action. It turns scattered, company-centric copy into a clear, buyer-focused narrative."
+    },
+    {
+      "question": "What should a homepage hero section include?",
+      "answer": "A clear headline that states what you do and the problem you solve. A sub-headline that expands the promise. A compelling call to action. And a strong visual that reinforces the message — ideally showing the outcome the buyer wants rather than your building or product. The goal is for a visitor who has never heard of you to immediately understand whether they're in the right place."
+    },
+    {
+      "question": "How do I know if our messaging is working?",
+      "answer": "Watch what happens in your sales conversations. When prospects arrive already understanding your value proposition and asking better questions, your messaging is working. When they consistently need to be re-explained what you do, your website isn't doing its job. Your sales team is the best source of real-time feedback on whether the website is setting up the conversation correctly."
+    },
+    {
+      "question": "How often should we revisit our website messaging?",
+      "answer": "Anytime your positioning evolves, your ideal client changes, or your sales team reports consistent confusion from prospects. In stable periods, a review every six to twelve months is reasonable. Treat messaging as a hypothesis that you test and refine based on evidence, not a statement you finalize once and never revisit."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-21",
+  "last_updated": "2026-04-21",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

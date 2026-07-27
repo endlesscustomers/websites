@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex" />
+  <title>Redirecting…</title>
+  <script>
+    // The concept-v2 redesign was promoted to the live template (June 2026).
+    // Preserve the ?id= and send visitors to the canonical concept page.
+    location.replace('./concept.html' + location.search + location.hash);
+  </script>
+  <link rel="canonical" href="./concept.html" />
+</head>
+<body>
+  <p>This page has moved. <a id="go" href="./concept.html">Continue to the concept</a>.</p>
+  <script>document.getElementById('go').href = './concept.html' + location.search;</script>
+</body>
+</html>

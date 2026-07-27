@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Help — dropdown restructure proposals</title>
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+
+:root{
+  --heading:#0F172A; --text:#475569; --muted:#5B6B7F; --strong:#1E293B;
+  --blue:#0a6cff; --border:#E2E8F0; --border-strong:#CBD5E1;
+  --surface:#F8FAFC; --subtle:#F1F5F9; --ink:#0A0F1F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#E9EDF2;color:var(--text);
+  -webkit-font-smoothing:antialiased;padding:40px 28px 80px;line-height:1.5;}
+.wrap{max-width:1200px;margin:0 auto;}
+h1{font-family:'General Sans';font-weight:700;font-size:27px;letter-spacing:-.02em;color:var(--heading);margin-bottom:10px;}
+.lede{max-width:820px;font-size:15px;color:var(--muted);margin-bottom:8px;}
+.lede b{color:var(--strong);font-weight:600;}
+
+.section-tag{display:flex;align-items:baseline;gap:12px;margin:44px 0 14px;}
+.section-tag h2{font-family:'General Sans';font-weight:600;font-size:19px;color:var(--heading);letter-spacing:-.01em;}
+.section-tag .pill{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:4px 9px;border-radius:999px;}
+.pill--now{background:#FDE8E8;color:#B42318;}
+.pill--rec{background:#E7F0FF;color:#0058e0;}
+.pill--alt{background:#EAF7EE;color:#067647;}
+.note{font-size:13.5px;color:var(--muted);max-width:880px;margin-bottom:14px;line-height:1.55;}
+.note b{color:var(--strong);font-weight:600;}
+
+/* ---- the floating dropdown panel ---- */
+.tab{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--heading);
+  background:var(--surface);border:1px solid var(--border);border-bottom:none;
+  padding:9px 16px;border-radius:12px 12px 0 0;position:relative;top:1px;}
+.tab i{font-size:14px;color:var(--muted);}
+.panel{background:#fff;border:1px solid var(--border);border-radius:0 18px 18px 18px;
+  box-shadow:0 30px 70px -34px rgba(15,23,42,.4);padding:22px 24px 26px;}
+
+.dd-parent{display:inline-flex;align-items:center;gap:6px;font-family:'General Sans';font-weight:600;
+  font-size:13px;color:var(--strong);text-decoration:none;margin-bottom:14px;}
+.dd-parent .arr{color:var(--muted);}
+
+.grid{display:grid;gap:0;}
+.col{padding:0 22px;border-left:1px solid var(--border);}
+.col:first-child{padding-left:4px;border-left:none;}
+.col:last-child{padding-right:4px;}
+
+.label{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:12px;display:block;}
+
+/* big primary link */
+.primary{display:flex;gap:13px;align-items:flex-start;padding:12px;border-radius:12px;text-decoration:none;
+  transition:background .15s;}
+.primary:hover{background:var(--subtle);}
+.primary .pi{font-size:23px;color:var(--muted);margin-top:2px;width:24px;text-align:center;flex-shrink:0;}
+.primary .pt{font-family:'General Sans';font-weight:700;font-size:18px;color:var(--heading);letter-spacing:-.02em;
+  line-height:1.2;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.primary .ps{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.badge{font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:3px 7px;border-radius:6px;}
+.badge--start{background:#E7F0FF;color:#0058e0;}
+.badge--goal{background:#0A0F1F;color:#fff;}
+
+/* medium item (icon + title + sub) */
+.item{display:flex;gap:11px;align-items:flex-start;padding:9px 11px;border-radius:10px;text-decoration:none;transition:background .15s;}
+.item:hover{background:var(--subtle);}
+.item .ii{font-size:17px;color:var(--muted);width:20px;text-align:center;margin-top:2px;flex-shrink:0;}
+.item .it{font-size:14.5px;font-weight:600;color:var(--heading);line-height:1.25;}
+.item .is{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:2px;}
+
+/* small service / utility link */
+.svc{display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:9px;text-decoration:none;transition:background .15s;}
+.svc:hover{background:var(--subtle);}
+.svc i{font-size:16px;color:var(--muted);width:19px;text-align:center;flex-shrink:0;}
+.svc span{font-size:14px;font-weight:500;color:var(--strong);}
+.svc .ext{font-size:12px;color:var(--muted);margin-left:auto;}
+
+.cap{font-size:12px;color:var(--muted);line-height:1.5;margin:14px 12px 0;padding-top:13px;border-top:1px dashed var(--border);}
+
+/* featured full-width row (current) */
+.featured{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;
+  background:#E7F0FF;margin-bottom:16px;text-decoration:none;}
+.featured i{font-size:22px;color:var(--blue);flex-shrink:0;}
+.featured .ft{font-family:'General Sans';font-weight:700;font-size:15px;color:var(--heading);}
+.featured .fs{font-size:12.5px;color:var(--muted);margin-top:2px;}
+.featured .fc{margin-left:auto;font-size:12px;font-weight:600;color:var(--blue);white-space:nowrap;}
+
+/* numbered path rail (option 2) */
+.path{position:relative;}
+.path .step{display:flex;gap:15px;align-items:flex-start;padding:12px;border-radius:12px;text-decoration:none;position:relative;transition:background .15s;}
+.path .step:hover{background:var(--subtle);}
+.path .num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;font-family:'General Sans';}
+.path .step:not(:last-child)::before{content:"";position:absolute;left:25px;top:42px;bottom:-6px;width:2px;background:var(--border-strong);}
+.path .pt{font-family:'General Sans';font-weight:700;font-size:17px;color:var(--heading);letter-spacing:-.02em;
+  line-height:1.2;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.path .ps{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+.legend{display:flex;gap:24px;flex-wrap:wrap;font-size:12.5px;color:var(--strong);margin-top:10px;}
+.legend b{font-weight:600;}
+.swatch{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:middle;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>How We Help — dropdown restructure</h1>
+  <p class="lede">Same content, restructured around the <b>Endless Customers journey</b> and Apple's primary/secondary hierarchy. The fix for the "this feels like an agency capabilities deck" problem is mostly about <b>weight</b>: the eight services stop being co-equal cards and become quiet secondary links, while a large primary column tells the order of operations. Below: where it sits today, then two options.</p>
+  <div class="legend">
+    <span><span class="swatch" style="background:#0A0F1F"></span><b>Primary</b> (large) — the journey / where to start</span>
+    <span><span class="swatch" style="background:#94A3B8"></span><b>Secondary</b> (small) — jump straight to a service, or check the proof</span>
+  </div>
+
+  <!-- ============ CURRENT ============ -->
+  <div class="section-tag"><h2>Where it sits today</h2><span class="pill pill--now">Current</span></div>
+  <p class="note">A featured audit row, then four columns where the <b>eight services read as equal-weight cards</b>. That visual parity is what made it feel like an IMPACT service menu bolted onto the brand, and it buries the one thing you want everyone to reach (coaching) next to "TRUST Theme."</p>
+  <span class="tab"><i class="ti ti-help-circle"></i> How We Help <i class="ti ti-chevron-down" style="font-size:12px"></i></span>
+  <div class="panel">
+    <a class="dd-parent">How We Help <span class="arr">→</span></a>
+    <a class="featured">
+      <i class="ti ti-report-search"></i>
+      <div><div class="ft">Marketing Audit &amp; Recommendations</div><div class="fs">The best first step — a senior coach audits your entire digital presence</div></div>
+      <span class="fc">Learn more →</span>
+    </a>
+    <div class="grid" style="grid-template-columns:1.2fr .9fr 1fr 1fr;">
+      <div class="col">
+        <a class="primary"><i class="ti ti-target pi"></i><div><div class="pt">Coaching Program &amp; Pricing</div><div class="ps">Our flagship program — how it works and what it costs</div></div></a>
+        <a class="item"><i class="ti ti-users-group ii"></i><div><div class="it">Who We Work With</div><div class="is">Are we the right fit for you?</div></div></a>
+        <a class="item"><i class="ti ti-microphone ii"></i><div><div class="it">Request a Speaker</div><div class="is">Book an EC expert for your event</div></div></a>
+      </div>
+      <div class="col">
+        <span class="label">Proof &amp; Trust</span>
+        <a class="svc"><i class="ti ti-trophy"></i><span>Success Stories</span></a>
+        <a class="svc"><i class="ti ti-star"></i><span>Reviews</span></a>
+        <a class="svc"><i class="ti ti-shield-check"></i><span>Our Guarantee</span></a>
+      </div>
+      <div class="col">
+        <span class="label">Additional Services</span>
+        <a class="svc"><i class="ti ti-plug-connected"></i><span>HubSpot Training &amp; Services</span></a>
+        <a class="svc"><i class="ti ti-layout-2"></i><span>Website Redesign</span></a>
+        <a class="svc"><i class="ti ti-chart-bar"></i><span>Website Optimization</span></a>
+        <a class="svc"><i class="ti ti-library"></i><span>Learning Center Development</span></a>
+      </div>
+      <div class="col">
+        <span class="label" style="visibility:hidden">Continued</span>
+        <a class="svc"><i class="ti ti-tool"></i><span>Self-Service Tools</span></a>
+        <a class="svc"><i class="ti ti-speakerphone"></i><span>Paid Advertising</span></a>
+        <a class="svc"><i class="ti ti-brain"></i><span>AI Services</span></a>
+        <a class="svc"><i class="ti ti-palette"></i><span>TRUST Theme for HubSpot</span><span class="ext">↗</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OPTION 1 ============ -->
+  <div class="section-tag"><h2>Option 1 — Two Anchors</h2><span class="pill pill--rec">Recommended</span></div>
+  <p class="note">The cleanest, most "Apple-calm" take. Two big decisions anchor the left (<b>start with an audit</b>, <b>end in coaching</b>), with a one-line caption carrying the journey. Services drop to a quiet secondary column for people who already know what they want. Proof gets its own column. Nothing is removed; the weight is just re-ranked.</p>
+  <span class="tab"><i class="ti ti-help-circle"></i> How We Help <i class="ti ti-chevron-down" style="font-size:12px"></i></span>
+  <div class="panel">
+    <a class="dd-parent">How We Help <span class="arr">→</span></a>
+    <div class="grid" style="grid-template-columns:1.45fr 1fr 1fr;">
+      <div class="col">
+        <span class="label">Start Here</span>
+        <a class="primary"><i class="ti ti-report-search pi"></i><div><div class="pt">Marketing Audit &amp; Recommendations <span class="badge badge--start">Start Here</span></div><div class="ps">Find what's broken. Get a prioritized plan from a senior coach — the best first step.</div></div></a>
+        <a class="primary"><i class="ti ti-target pi"></i><div><div class="pt">Coaching Program &amp; Pricing <span class="badge badge--goal">The Goal</span></div><div class="ps">Our flagship. The full Endless Customers implementation, with a coach.</div></div></a>
+        <div class="cap">Most clients start with an audit and grow into the coaching program, adding services along the way.</div>
+      </div>
+      <div class="col">
+        <span class="label">Services &amp; Quick Wins</span>
+        <a class="svc"><i class="ti ti-layout-2"></i><span>Website Redesign</span></a>
+        <a class="svc"><i class="ti ti-chart-bar"></i><span>Website Optimization</span></a>
+        <a class="svc"><i class="ti ti-plug-connected"></i><span>HubSpot Training &amp; Services</span></a>
+        <a class="svc"><i class="ti ti-speakerphone"></i><span>Paid Advertising</span></a>
+        <a class="svc"><i class="ti ti-brain"></i><span>AI Services</span></a>
+        <a class="svc"><i class="ti ti-library"></i><span>Learning Center Development</span></a>
+        <a class="svc"><i class="ti ti-tool"></i><span>Self-Service Tools</span></a>
+        <a class="svc"><i class="ti ti-palette"></i><span>TRUST Theme for HubSpot</span><span class="ext">↗</span></a>
+      </div>
+      <div class="col">
+        <span class="label">Proof &amp; Trust</span>
+        <a class="svc"><i class="ti ti-trophy"></i><span>Success Stories</span></a>
+        <a class="svc"><i class="ti ti-star"></i><span>Reviews</span></a>
+        <a class="svc"><i class="ti ti-shield-check"></i><span>Our Guarantee</span></a>
+        <a class="svc"><i class="ti ti-users-group"></i><span>Who We Work With</span></a>
+        <a class="svc"><i class="ti ti-microphone"></i><span>Request a Speaker</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ OPTION 2 ============ -->
+  <div class="section-tag"><h2>Option 2 — The Path</h2><span class="pill pill--alt">Order of operations</span></div>
+  <p class="note">Makes the order of operations <b>explicit</b> with a numbered, connected path: audit → fix what's broken → coaching. Best for the unaware visitor who needs to be shown the way in. Keeps a "jump to a service" column so existing clients aren't forced through the story. The tradeoff vs Option 1: a touch more structure and visual furniture, slightly less Apple-minimal.</p>
+  <span class="tab"><i class="ti ti-help-circle"></i> How We Help <i class="ti ti-chevron-down" style="font-size:12px"></i></span>
+  <div class="panel">
+    <a class="dd-parent">How We Help <span class="arr">→</span></a>
+    <div class="grid" style="grid-template-columns:1.5fr 1fr 1fr;">
+      <div class="col">
+        <span class="label">The Path · Where to Start</span>
+        <div class="path">
+          <a class="step"><span class="num">1</span><div><div class="pt">Get a Marketing Audit <span class="badge badge--start">Start Here</span></div><div class="ps">The on-ramp. A senior coach shows you exactly what's broken and what to fix first.</div></div></a>
+          <a class="step"><span class="num">2</span><div><div class="pt">Fix What's Broken</div><div class="ps">Done-with-you and done-for-you services that earn quick wins and build momentum.</div></div></a>
+          <a class="step"><span class="num">3</span><div><div class="pt">Join the Coaching Program <span class="badge badge--goal">The Goal</span></div><div class="ps">Go all-in on Endless Customers with a coach and the full system.</div></div></a>
+        </div>
+      </div>
+      <div class="col">
+        <span class="label">Jump to a Service</span>
+        <a class="svc"><i class="ti ti-layout-2"></i><span>Website Redesign</span></a>
+        <a class="svc"><i class="ti ti-chart-bar"></i><span>Website Optimization</span></a>
+        <a class="svc"><i class="ti ti-plug-connected"></i><span>HubSpot Training &amp; Services</span></a>
+        <a class="svc"><i class="ti ti-speakerphone"></i><span>Paid Advertising</span></a>
+        <a class="svc"><i class="ti ti-brain"></i><span>AI Services</span></a>
+        <a class="svc"><i class="ti ti-library"></i><span>Learning Center Development</span></a>
+        <a class="svc"><i class="ti ti-tool"></i><span>Self-Service Tools</span></a>
+        <a class="svc"><i class="ti ti-palette"></i><span>TRUST Theme for HubSpot</span><span class="ext">↗</span></a>
+      </div>
+      <div class="col">
+        <span class="label">Proof &amp; Trust</span>
+        <a class="svc"><i class="ti ti-trophy"></i><span>Success Stories</span></a>
+        <a class="svc"><i class="ti ti-star"></i><span>Reviews</span></a>
+        <a class="svc"><i class="ti ti-shield-check"></i><span>Our Guarantee</span></a>
+        <a class="svc"><i class="ti ti-users-group"></i><span>Who We Work With</span></a>
+        <a class="svc"><i class="ti ti-microphone"></i><span>Request a Speaker</span></a>
+      </div>
+    </div>
+  </div>
+
+  <p class="note" style="margin-top:40px;padding-top:18px;border-top:1px solid var(--border-strong);max-width:880px;">
+    <b>Both options</b> keep every existing page and link, satisfy all three visitors (unaware see the path, the ready jump to coaching, clients jump to a service), and demote the agency-service feeling without hiding the services. Once you pick one (or a blend), I wire it into the real <b>components/nav.html</b>, run the sync script so it propagates to every page, add the small amount of dropdown CSS, and verify it renders. The mobile menu rebuilds itself from this structure automatically.
+  </p>
+
+</div>
+</body>
+</html>

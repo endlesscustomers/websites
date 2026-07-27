@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <title>What You'll Learn — Endless Customers Coaching</title>
+  <meta name="description" content="A clear picture of everything your team will learn and put into practice across content, website, sales, technology, and culture in the Endless Customers Coaching & Training Program." />
+  <meta property="og:title"       content="What You'll Learn — Endless Customers Coaching" />
+  <meta property="og:description" content="The skills, strategies, and habits your team masters across content, website, sales, technology, and a culture of performance." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="../../../assets/images/coaching/og-coaching.jpg" />
+
+  <!-- Breadcrumb structured data (matches the visible hero breadcrumb) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "How We Help", "item": "https://www.endlesscustomers.com/how-we-help" },
+      { "@type": "ListItem", "position": 2, "name": "Coaching Program & Pricing", "item": "https://www.endlesscustomers.com/how-we-help/coaching-program" },
+      { "@type": "ListItem", "position": 3, "name": "What You'll Learn", "item": "https://www.endlesscustomers.com/how-we-help/coaching-program/whats-covered" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../../css/main.css?v=2026060929r" />
+  <style>
+    html {scroll-behavior: smooth;}
+    @media (prefers-reduced-motion: reduce) { html {scroll-behavior: auto;} }
+    #main-content section[id] {scroll-margin-top: 130px;}
+  </style>
+  <style>
+  /* ===== Coaching pages — page-scoped styles ===== */
+  .cf-hero{position:relative;overflow:hidden;background:var(--color-bg);padding:calc(var(--space-24) + 120px) var(--space-6);text-align:center;min-height:100vh;min-height:100svh;display:flex;align-items:center;}
+  .cf-hero__bg{position:absolute;inset:0;background:radial-gradient(90% 45% at 50% 100%,color-mix(in srgb,var(--color-accent-tint) 12%,transparent),transparent 55%),radial-gradient(55% 35% at 85% 100%,color-mix(in srgb,var(--color-accent-tint) 7%,transparent),transparent 50%);pointer-events:none;}
+  .cf-hero__inner{position:relative;z-index:1;width:100%;max-width:880px;margin:0 auto;}
+  .cf-hero__logo{display:block;height:30px;width:auto;margin:0 auto var(--space-6);}
+  .cf-hero__headline{font-family:var(--font-display);font-weight:800;letter-spacing: var(--tracking-display);line-height: var(--leading-display);font-size:var(--headline-medium);margin:0 0 var(--space-5);color:var(--color-heading);}
+  .cf-hero__sub a{color:var(--color-accent);font-weight:600;}
+  .cf-hero__sub{font-size:var(--text-lg);color:var(--color-text-muted);max-width:64ch;margin:0 auto var(--space-8);}
+
+  .cl-jump{display:flex;flex-wrap:wrap;gap:var(--space-2);justify-content:center;max-width:880px;margin:0 auto;}
+  .cl-jump a{font-size:var(--text-sm);font-weight:600;color:var(--color-text-strong);background:var(--color-bg-surface);border:1px solid var(--color-border);padding:.5rem 1rem;border-radius:var(--radius-full);text-decoration:none;transition:all var(--transition-fast);}
+  .cl-jump a:hover{border-color:var(--color-heading);color:var(--color-heading);}
+
+  .cl-illus{width:84px;height:84px;object-fit:contain;margin:0 auto var(--space-4);display:block;}
+  .cl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5);margin-top:var(--space-10);}
+  .cl-skill{background:var(--color-panel,var(--color-bg-subtle));border-radius:var(--radius-lg);padding:var(--space-6);}
+  .cl-skill h3{font-family:var(--font-display);font-weight:700;font-size:var(--text-base);color:var(--color-heading);margin:0 0 var(--space-2);line-height: var(--leading-title); letter-spacing: var(--tracking-title);}
+  .cl-skill p{color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.55;margin:0;}
+  .cl-skill__link{display:inline-block;margin-top:var(--space-3);color:var(--color-accent);font-size:var(--text-sm);font-weight:600;text-decoration:none;}
+  .cl-skill__link:hover{text-decoration:underline;}
+
+  /* ===== Dark-mode image fixes ===== */
+  /* Hero logo: swap dark wordmark for light variant in dark mode */
+  .cf-hero__logo--light{display:block;}
+  .cf-hero__logo--dark{display:none;}
+  [data-theme="dark"] .cf-hero__logo--light{display:none;}
+  [data-theme="dark"] .cf-hero__logo--dark{display:block;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .cf-hero__logo--light{display:none;}
+    :root:not([data-theme="light"]) .cf-hero__logo--dark{display:block;}
+  }
+  /* EC Live logo in the Conference nav dropdown: black on light panel, white on dark panel */
+  .conf-logo--dark{display:none;}
+  [data-theme="dark"] .conf-logo--light{display:none;}
+  [data-theme="dark"] .conf-logo--dark{display:block;}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .conf-logo--light{display:none;}
+    :root:not([data-theme="light"]) .conf-logo--dark{display:block;}
+  }
+  </style>
+</head>
+<body class="page-accent--blue">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="nav-placeholder">
+    <nav class="nav nav--docked" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav__logo" aria-label="Endless Customers — home">
+      <img src="../../../assets/images/logo-dark.svg"  class="nav__logo-img nav__logo-img--light" alt="Endless Customers" width="111" height="34">
+      <img src="../../../assets/images/logo-white.svg" class="nav__logo-img nav__logo-img--dark"  alt="" aria-hidden="true" width="111" height="34">
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="nav__menu" role="list">
+
+      <!-- LEARN -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-learn" data-dropdown="learn">
+          Learning Center
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- Learn: featured diagnostic at top, 2-col grid below -->
+        <div class="nav__dropdown nav__dropdown--learn" id="dd-learn" aria-label="Learn">
+          <a href="/learn/" class="dd-parent">Learning Center <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/diagnostic" class="dd-featured">
+            <div class="dd-featured__eyebrow">✦ Free Tool</div>
+            <div class="dd-featured__title">Get Your Free AI Diagnostic</div>
+            <div class="dd-featured__sub">Enter your website URL — get a full marketing audit instantly</div>
+          </a>
+          <div class="dd-cols dd-cols--3">
+            <div class="dd-col">
+              <span class="dd-label">Learn the System</span>
+              <a href="/learn/what-is-endless-customers" class="dd-item">
+                <svg class="dd-icon dd-icon--ec" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.85,12.16c-.01.44-.05.87-.13,1.29-.17,1.02-.52,2.02-1.04,2.92v.04c-.78,1.34-1.91,2.47-3.26,3.24-1.06.63-2.24,1.01-3.45,1.14v-3.67c.57-.11,1.13-.31,1.64-.61.68-.39,1.23-.9,1.67-1.53h0s-.33-.64-.38-.73c.86-.08.18-.02.2-.02l.66-.06c.11-.24.19-.47.26-.72.15-.5.23-1.03.21-1.55,0-.5-.08-.97-.23-1.44-.01-.08-.05-.15-.07-.24l3.18-1.84c.3.66.5,1.36.62,2.08.09.56.14,1.13.13,1.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M12.02,1.19c5.44,0,9.96,4.05,10.68,9.29h1.09C23.06,4.64,18.06.11,12.02.11S.99,4.64.25,10.48h1.09C2.07,5.24,6.59,1.19,12.02,1.19Z"></path><path d="M12.02,22.77c-5.44,0-9.96-4.05-10.68-9.29H.25c.74,5.84,5.74,10.37,11.77,10.37s11.04-4.53,11.77-10.37h-1.09c-.72,5.25-5.25,9.29-10.68,9.29Z"></path><path d="M7.49,19.54c-.37-.23-.73-.47-1.05-.76-.8-.65-1.49-1.46-2.01-2.36l-.03-.02c-.77-1.35-1.18-2.89-1.17-4.45-.02-1.23.25-2.45.74-3.56l3.18,1.83c-.19.55-.3,1.13-.29,1.72,0,.78.16,1.52.49,2.21h.01s.71.03.81.03c-.36.78-.08.17-.09.19l-.28.6c.15.21.32.4.5.59.35.38.78.71,1.24.96.43.25.88.41,1.36.52.08.03.16.04.24.06v3.67c-.72-.08-1.43-.25-2.1-.5-.53-.2-1.05-.44-1.53-.74Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M7.74,4.02c.39-.21.77-.39,1.19-.53.97-.37,1.97-.57,3.01-.57h.07c1.55,0,3.09.42,4.44,1.21,1.07.6,1.99,1.44,2.71,2.42l-3.18,1.83c-.38-.44-.83-.82-1.34-1.12-.68-.39-1.4-.62-2.16-.68h0s-.38.61-.43.7c-.5-.71-.11-.15-.12-.17l-.38-.54c-.26.03-.51.07-.76.14-.51.12-1.01.32-1.45.59-.43.25-.8.56-1.13.91-.07.05-.11.12-.17.18l-3.18-1.83c.43-.59.93-1.11,1.49-1.57.44-.36.91-.69,1.4-.96Z" fill="none" stroke="currentColor" stroke-miterlimit="2" stroke-width=".75"></path></svg>
+                <div><div class="dd-item__title">What is Endless Customers?<span class="dd-badge-new">Start Here</span></div><div class="dd-item__sub">The system, why it works, and the proof</div></div>
+              </a>
+              <a href="/learn/core-concepts-frameworks" class="dd-item">
+                <i class="ti ti-stack-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Core Concepts &amp; Frameworks</div><div class="dd-item__sub">Every concept, one clear answer</div></div>
+              </a>
+              <a href="/learn/academy" class="dd-item">
+                <i class="ti ti-school dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Endless Customers Academy</div><div class="dd-item__sub">Courses, community, and self-paced learning</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Get an Answer</span>
+              <a href="/learn/topics/" class="dd-item">
+                <i class="ti ti-category dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Browse Topics</div><div class="dd-item__sub">Every subject, every format, one place</div></div>
+              </a>
+              <a href="/learn/" class="dd-item" data-search-trigger>
+                <i class="ti ti-search dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Search the Learning Center</div><div class="dd-item__sub">Articles, webinars, lessons &amp; tools</div></div>
+              </a>
+              <a href="/learn/tools" class="dd-item">
+                <i class="ti ti-download dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Tools &amp; Downloads</div><div class="dd-item__sub">Guides, AI tools, and templates</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Stay Current</span>
+              <a href="/learn/latest" class="dd-item">
+                <i class="ti ti-news dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Latest Insights</div><div class="dd-item__sub">New articles, episodes &amp; events</div></div>
+              </a>
+              <a href="/learn/webinars" class="dd-item">
+                <i class="ti ti-video dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Webinars</div><div class="dd-item__sub">Upcoming live &amp; the on-demand library</div></div>
+              </a>
+              <a href="/learn/podcast" class="dd-item">
+                <i class="ti ti-microphone-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">The Endless Customers Podcast</div><div class="dd-item__sub">Watch or listen to every episode</div></div>
+              </a>
+            </div>
+          </div>
+          <!-- Bottom CTA (full-width) — Subscribe. Moved out of the Stay Current
+               column June 2026 so the three columns balance 3/3/3 after the book
+               left the left column; frames the panel opposite the featured tile. -->
+          <a href="/learn/subscribe" class="dd-cta">
+            <i class="ti ti-bell dd-icon" aria-hidden="true"></i>
+            Subscribe for New Content, Twice a Week, Free
+            <span class="dd-parent__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- HOW WE HELP -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-help" data-dropdown="help">
+          How We Help
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- How We Help: "The Path" (June 2026, per Bob — replaces the 4-col
+             services grid). Everything lives under the Endless Customers brand.
+             Left = the order of operations (audit → fix what's broken → coaching);
+             middle = Additional Services for those who know what they want;
+             right = Pricing & Fit then Proof & Trust; foot = a utility strip
+             (free-diagnostic on-ramp + the one-off Request a Speaker ask).
+             Rides on --4col for the full-width docked panel; --path swaps in the
+             three-column grid, the numbered path, and the strip. -->
+        <div class="nav__dropdown nav__dropdown--4col nav__dropdown--path" id="dd-help" aria-label="How We Help">
+
+          <a href="/how-we-help/" class="dd-parent">How We Help <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+
+          <!-- Col 1: The Path — the order of operations -->
+          <div class="dd-col dd-col--path">
+            <span class="dd-label">The Path to Endless Customers</span>
+            <div class="dd-path">
+              <a href="/how-we-help/audit-and-recommendations" class="dd-step">
+                <span class="dd-step__num">1</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Marketing Audit &amp; Recommendations <span class="dd-badge-new">Start Here</span></div>
+                  <div class="dd-step__sub">Find out what's broken and what to fix first.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/initial-projects" class="dd-step">
+                <span class="dd-step__num">2</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Initial Projects &amp; Fixes</div>
+                  <div class="dd-step__sub">Then fix it together, with quick early wins.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/coaching-program" class="dd-step">
+                <span class="dd-step__num">3</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">The Endless Customers Coaching Program</div>
+                  <div class="dd-step__sub">Finally, go all-in on the full system.</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Additional Services (website family, then marketing/AI, then HubSpot) -->
+          <div class="dd-col">
+            <span class="dd-label">Additional Services</span>
+            <a href="/how-we-help/websites/redesign" class="dd-svc">
+              <i class="ti ti-layout-2 dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Redesign</span>
+            </a>
+            <a href="/how-we-help/websites/optimization" class="dd-svc">
+              <i class="ti ti-chart-bar dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Optimization</span>
+            </a>
+            <a href="/how-we-help/websites/learning-center" class="dd-svc">
+              <i class="ti ti-library dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Learning Center Development</span>
+            </a>
+            <a href="/how-we-help/websites/self-service-tools" class="dd-svc">
+              <i class="ti ti-tool dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Self-Service Tools</span>
+            </a>
+            <a href="/how-we-help/paid-advertising" class="dd-svc">
+              <i class="ti ti-speakerphone dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Paid Advertising</span>
+            </a>
+            <a href="/how-we-help/ai" class="dd-svc">
+              <i class="ti ti-brain dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">AI Services<span class="dd-badge-new">New</span></span>
+            </a>
+            <a href="/how-we-help/hubspot" class="dd-svc">
+              <svg class="dd-icon dd-icon--hubspot" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.164 7.93V5.084a2.198 2.198 0 0 0 1.267-1.978v-.067A2.2 2.2 0 0 0 17.238.845h-.067a2.2 2.2 0 0 0-2.193 2.193v.067a2.196 2.196 0 0 0 1.252 1.973l.013.006v2.852a6.22 6.22 0 0 0-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 1 0 4.3 5.166l-.008.006 7.697 5.991a6.176 6.176 0 0 0-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 0 0-.58-.095h-.002a2.033 2.033 0 1 0 2.033 2.033 1.978 1.978 0 0 0-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 1 0 4.782-11.134l-.036-.005zm-1.02 9.378a3.208 3.208 0 1 1 3.208-3.208 3.207 3.207 0 0 1-3.208 3.207z"></path></svg>
+              <span class="dd-svc__name">HubSpot Training &amp; Services</span>
+            </a>
+            <a href="https://trusttheme.com" class="dd-svc" target="_blank" rel="noopener">
+              <i class="ti ti-palette dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">TRUST Theme for HubSpot</span>
+              <svg class="dd-ext" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="visually-hidden">(opens in new tab)</span>
+            </a>
+          </div>
+
+          <!-- Col 3: Pricing & Fit, then Proof & Trust -->
+          <div class="dd-col">
+            <span class="dd-label">Pricing &amp; Fit</span>
+            <a href="/how-we-help/coaching-program/pricing" class="dd-svc">
+              <i class="ti ti-tag dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Pricing</span>
+            </a>
+            <a href="/how-we-help/compare-your-options" class="dd-svc">
+              <i class="ti ti-scale dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Compare Your Options</span>
+            </a>
+            <a href="/how-we-help/who-we-work-with" class="dd-svc">
+              <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Who We Work With</span>
+            </a>
+            <span class="dd-label dd-label--stacked">Proof &amp; Trust</span>
+            <a href="/how-we-help/success-stories" class="dd-svc">
+              <i class="ti ti-trophy dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Success Stories</span>
+            </a>
+            <a href="/how-we-help/reviews" class="dd-svc">
+              <i class="ti ti-star dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Reviews</span>
+            </a>
+            <a href="/how-we-help/guarantee" class="dd-svc">
+              <i class="ti ti-shield-check dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Our Guarantee</span>
+            </a>
+          </div>
+
+        </div>
+      </li>
+
+      <!-- OUR TEAM -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-team" data-dropdown="team">
+          Our Team
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown" id="dd-team" aria-label="Our Team">
+          <a href="/team/" class="dd-parent">Our Team <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/team/about" class="dd-item">
+            <i class="ti ti-compass dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Our Story, Vision &amp; Values</div><div class="dd-item__sub">Where we came from and what we stand for</div></div>
+          </a>
+          <a href="/team/meet-the-team" class="dd-item">
+            <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Meet the Team</div><div class="dd-item__sub">Endless Customers coaches, specialists, and staff</div></div>
+          </a>
+          <a href="/team/awards" class="dd-item">
+            <i class="ti ti-award dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Awards &amp; Recognition</div><div class="dd-item__sub">Industry honors, dated and sourced</div></div>
+          </a>
+          <a href="/how-we-help/request-a-speaker" class="dd-item">
+            <i class="ti ti-microphone dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Request a Speaker</div><div class="dd-item__sub">Book an EC speaker for your event or conference</div></div>
+          </a>
+          <a href="/team/become-a-coach" class="dd-item">
+            <i class="ti ti-heart-handshake dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Become a Coach</div><div class="dd-item__sub">Want to help businesses implement Endless Customers?</div></div>
+          </a>
+          <a href="/team/join-the-team" class="dd-item">
+            <i class="ti ti-briefcase dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">All Open Positions</div><div class="dd-item__sub">Browse open roles across the company</div></div>
+          </a>
+        </div>
+      </li>
+
+      <!-- THE CONFERENCE -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-conference" data-dropdown="conference">
+          Conference
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--conference nav__dropdown--right" id="dd-conference" data-theme="dark" aria-label="Conference">
+          <div class="conf-image" aria-hidden="true">
+            <div class="conf-scene is-active" id="conf-scene-0" style="background-image:url('../../../assets/images/endless-customers-live/ec-live-1.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-1" style="background-image:url('../../../assets/images/endless-customers-live/ec-live-2.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-2" style="background-image:url('../../../assets/images/endless-customers-live/ec-live-3.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-3" style="background-image:url('../../../assets/images/endless-customers-live/ec-live-4.jpg')"></div>
+            <div class="conf-progress" id="conf-progress">
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+            </div>
+          </div>
+          <div class="conf-links">
+            <a href="/live/" class="conf-logo-link" aria-label="Endless Customers Live"><img src="../../../assets/images/endless-customers-live/ec-live-logo-white.png" alt="Endless Customers Live" class="conf-logo"></a>
+            <a href="/live/" class="conf-explore">Explore the Conference <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+            <div class="conf-dates-label">Upcoming Dates</div>
+            <a href="/live/hartford-2026" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Hartford, CT</div><div class="conf-date-when">Oct 5–7, 2026</div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <a href="/live/chicago-2027" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Chicago, IL</div><div class="conf-date-when">Apr 5–7, 2027 · <span class="conf-eb">Early Bird</span></div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <div class="dd-sep"></div>
+            <a href="/live/experience/" class="conf-link">
+              <i class="ti ti-sparkles" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">What It's Like</span>
+            </a>
+            <a href="/live/past/" class="conf-link">
+              <i class="ti ti-history" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Past Events</span>
+            </a>
+            <a href="/live/sponsor" class="conf-link">
+              <i class="ti ti-award" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Become a Sponsor</span>
+            </a>
+            <a href="/live/convince-your-boss" class="conf-link">
+              <i class="ti ti-user-check" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Convince Your Boss</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- BOOK -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-book" data-dropdown="book">
+          Book
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--right" id="dd-book" aria-label="Book">
+          <a href="/book/" class="dd-parent">Book <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/book/about" class="dd-item">
+            <i class="ti ti-book-2 dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">About <em>Endless Customers</em></div><div class="dd-item__sub">What it's about, plus where to buy</div></div>
+          </a>
+          <a href="/book/companion-guide" class="dd-item">
+            <i class="ti ti-notebook dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Companion Guide</div><div class="dd-item__sub">The workbook that puts the book to work</div></div>
+          </a>
+          <a href="/book/preview" class="dd-item">
+            <i class="ti ti-file-text dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Preview (Free Chapter)</div><div class="dd-item__sub">Read the opening chapter free</div></div>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- Right actions -->
+    <div class="nav__actions">
+      <!-- Returning-member affordance: quiet account icon, grouped with the
+           theme toggle as an icon-utility pair so it never competes with the
+           two text CTAs. Visible at every width (incl. the ≤1199 collapsed
+           bar) so members can log in top-right without opening the menu.
+           Destination is the EC Academy app login (impactplus.com app). -->
+      <a href="https://app.impactplus.com/users/sign_in" class="nav__account" target="_blank" rel="noopener" aria-label="Endless Customers Academy Login (opens in new tab)" title="Endless Customers Academy Login">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="/diagnostic" class="btn--nav-ghost">Free AI Diagnostic</a>
+      <a href="/lets-talk" class="btn--nav-primary">Let's Talk →</a>
+      <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile menu — drill-down (main panel + one sub-panel per group) -->
+  <div class="nav__mobile" id="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation"></div>
+
+</nav>
+  </div>
+
+  <!-- Program masthead band: program logo (left) + coaching pages + CTA (right).
+       The page-hierarchy breadcrumb lives in the hero (.svc-crumb), like every
+       other section of the site. -->
+  <nav class="subnav subnav--band" id="subnav" aria-label="Coaching section navigation">
+    <div class="subnav__inner">
+      <a href="/how-we-help/coaching-program" class="subnav__brand subnav__brand--text">Coaching Program &amp; Pricing</a>
+      <div class="subnav__links">
+        <a href="/how-we-help/coaching-program" class="subnav__link">Overview</a>
+        <a href="/how-we-help/coaching-program/how-it-works" class="subnav__link">How It Works</a>
+        <a href="/how-we-help/coaching-program/whats-covered" class="subnav__link is-active">What You'll Learn</a>
+        <a href="/how-we-help/coaching-program/pricing" class="subnav__link">Pricing</a>
+        <a href="/lets-talk" class="btn--nav-primary subnav__cta">Schedule a Call <span class="subnav__cta-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="cf-hero" aria-labelledby="cf-hero-headline">
+      <div class="cf-hero__bg" aria-hidden="true"></div>
+      <div class="cf-hero__inner">
+        <div class="subnav__crumb svc-crumb" aria-label="Breadcrumb">
+          <span class="subnav__crumb-trail">
+            <a href="/how-we-help" class="subnav__crumb-root">How We Help</a>
+            <span class="subnav__crumb-sep" aria-hidden="true">&rsaquo;</span>
+            <a href="/how-we-help/coaching-program" class="subnav__crumb-root">Coaching Program</a>
+            <span class="subnav__crumb-sep" aria-hidden="true">&rsaquo;</span>
+          </span>
+          <span class="subnav__crumb-current" aria-current="page"><span class="svc-crumb__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.85,12.16c-.01.44-.05.87-.13,1.29-.17,1.02-.52,2.02-1.04,2.92v.04c-.78,1.34-1.91,2.47-3.26,3.24-1.06.63-2.24,1.01-3.45,1.14v-3.67c.57-.11,1.13-.31,1.64-.61.68-.39,1.23-.9,1.67-1.53h0s-.33-.64-.38-.73c.86-.08.18-.02.2-.02l.66-.06c.11-.24.19-.47.26-.72.15-.5.23-1.03.21-1.55,0-.5-.08-.97-.23-1.44-.01-.08-.05-.15-.07-.24l3.18-1.84c.3.66.5,1.36.62,2.08.09.56.14,1.13.13,1.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M12.02,1.19c5.44,0,9.96,4.05,10.68,9.29h1.09C23.06,4.64,18.06.11,12.02.11S.99,4.64.25,10.48h1.09C2.07,5.24,6.59,1.19,12.02,1.19Z"></path><path d="M12.02,22.77c-5.44,0-9.96-4.05-10.68-9.29H.25c.74,5.84,5.74,10.37,11.77,10.37s11.04-4.53,11.77-10.37h-1.09c-.72,5.25-5.25,9.29-10.68,9.29Z"></path><path d="M7.49,19.54c-.37-.23-.73-.47-1.05-.76-.8-.65-1.49-1.46-2.01-2.36l-.03-.02c-.77-1.35-1.18-2.89-1.17-4.45-.02-1.23.25-2.45.74-3.56l3.18,1.83c-.19.55-.3,1.13-.29,1.72,0,.78.16,1.52.49,2.21h.01s.71.03.81.03c-.36.78-.08.17-.09.19l-.28.6c.15.21.32.4.5.59.35.38.78.71,1.24.96.43.25.88.41,1.36.52.08.03.16.04.24.06v3.67c-.72-.08-1.43-.25-2.1-.5-.53-.2-1.05-.44-1.53-.74Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M7.74,4.02c.39-.21.77-.39,1.19-.53.97-.37,1.97-.57,3.01-.57h.07c1.55,0,3.09.42,4.44,1.21,1.07.6,1.99,1.44,2.71,2.42l-3.18,1.83c-.38-.44-.83-.82-1.34-1.12-.68-.39-1.4-.62-2.16-.68h0s-.38.61-.43.7c-.5-.71-.11-.15-.12-.17l-.38-.54c-.26.03-.51.07-.76.14-.51.12-1.01.32-1.45.59-.43.25-.8.56-1.13.91-.07.05-.11.12-.17.18l-3.18-1.83c.43-.59.93-1.11,1.49-1.57.44-.36.91-.69,1.4-.96Z" fill="none" stroke="currentColor" stroke-miterlimit="2" stroke-width=".75"></path></svg></span> What You&#39;ll Learn</span>
+        </div>
+        <h1 class="cf-hero__headline headline-short" id="cf-hero-headline">The complete curriculum, from content to culture.</h1>
+        <p class="cf-hero__sub">The <a href="/how-we-help/coaching-program">coaching program</a> is intense, for good reason. It covers a wide range of skills, strategies, and habits across marketing, sales, and leadership. While much of what we teach is laid out in the <em>Endless Customers</em> book, here is a clear picture of everything your team will learn and put into practice.</p>
+        <div class="cl-jump">
+          <a href="#the-right-content">The Right Content</a>
+          <a href="#the-right-website">The Right Website</a>
+          <a href="#the-right-sales">The Right Sales Activities</a>
+          <a href="#the-right-technology">The Right Technology</a>
+          <a href="#the-right-culture">The Right Culture of Performance</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RIGHT CONTENT -->
+    <section class="section" id="the-right-content" aria-labelledby="cl-content-title">
+      <div class="container">
+        <header class="section__header">
+          <img class="cl-illus" src="../../../assets/images/coaching/whats-covered/the-right-content.svg" alt="" aria-hidden="true">
+          <span class="section__eyebrow">Pillar 01</span>
+          <h2 class="section__title section__title--lg" id="cl-content-title">The Right Content</h2>
+          <p class="section__subtitle">Content is the single most important driver of trust and revenue growth. We coach your team to create content that moves buyers through their decision-making process, leading them to choose you over the competition. From staffing the right people to creating high-impact articles, videos, and podcasts, we train your team to own this capability in-house.</p>
+        </header>
+        <div class="cl-grid">
+          <div class="cl-skill"><h3>Creating The Big 5 Content</h3><p>Write trust-building content that answers buyers' most searched questions: pricing, problems, comparisons, reviews, and best-in-class.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/the-big-5-content-topics-for-business" target="_blank" rel="noopener">What is The Big 5? →</a></div>
+          <div class="cl-skill"><h3>The Big 5 Video Strategy</h3><p>Apply the Big 5 framework to video, ensuring buyers get the answers they need in the format they prefer.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/youtube-videos-build-trust-drive-sales" target="_blank" rel="noopener">The Big 5 for Video →</a></div>
+          <div class="cl-skill"><h3>Mastering The Selling 7</h3><p>Create the seven most powerful sales videos, designed to eliminate objections, build trust, and shorten sales cycles.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/7-types-of-sales-and-marketing-videos-you-need-to-create-today" target="_blank" rel="noopener">What is The Selling 7? →</a></div>
+          <div class="cl-skill"><h3>Short-form Video for Social Media</h3><p>Script, film, and edit engaging short-form videos for LinkedIn, Instagram, TikTok, and YouTube Shorts.</p></div>
+          <div class="cl-skill"><h3>Growing Your YouTube Channel</h3><p>Optimize your channel, increase subscribers, and turn YouTube into a high-performing lead generation tool.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/youtube-marketing" target="_blank" rel="noopener">YouTube Marketing Strategy →</a></div>
+          <div class="cl-skill"><h3>Improving Video Reach &amp; Engagement</h3><p>Optimize titles, thumbnails, hooks, and CTAs so your videos get seen, shared, and drive real engagement.</p></div>
+          <div class="cl-skill"><h3>On-Camera Performance Training</h3><p>Master confidence, delivery, and body language to come across as engaging, natural, and trustworthy on video.</p></div>
+          <div class="cl-skill"><h3>The Video 6 Framework</h3><p>Structure long-form YouTube videos for maximum retention, discoverability, and engagement.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/how-to-format-marketing-videos" target="_blank" rel="noopener">What is The Video 6? →</a></div>
+          <div class="cl-skill"><h3>Creating a Content Style Guide</h3><p>Develop a clear, repeatable format to maintain consistency in voice, visuals, and messaging.</p></div>
+          <div class="cl-skill"><h3>Building a Publishing Cadence</h3><p>Create a sustainable content schedule that ensures consistent output without overwhelming your team.</p></div>
+          <div class="cl-skill"><h3>Using AI for Editorial Planning</h3><p>Leverage AI to analyze search trends, predict high-impact topics, and build a data-driven content calendar.</p></div>
+          <div class="cl-skill"><h3>AI for Content Creation Efficiency</h3><p>Use AI tools to streamline research, generate first drafts, and optimize content faster without losing authenticity.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RIGHT WEBSITE -->
+    <section class="section section--alt" id="the-right-website" aria-labelledby="cl-website-title">
+      <div class="container">
+        <header class="section__header">
+          <img class="cl-illus" src="../../../assets/images/coaching/whats-covered/the-right-website.svg" alt="" aria-hidden="true">
+          <span class="section__eyebrow">Pillar 02</span>
+          <h2 class="section__title section__title--lg" id="cl-website-title">The Right Website</h2>
+          <p class="section__subtitle">Your website should move buyers to act. Our website strategists coach your team to build a site that answers key questions, drives conversions, and earns trust. We help you launch self-service tools like assessments, configurators, and pricing calculators, while optimizing the entire site for a seamless buying experience.</p>
+        </header>
+        <div class="cl-grid">
+          <div class="cl-skill"><h3>Building a Learning Center</h3><p>Create a content hub that educates buyers, builds trust, and drives consistent inbound traffic.</p></div>
+          <div class="cl-skill"><h3>Creating Self-Service Tools</h3><p>Develop interactive tools like assessments, pricing calculators, and configurators that move buyers through the process faster.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/self-service-tools" target="_blank" rel="noopener">What are Self-Service Tools? →</a></div>
+          <div class="cl-skill"><h3>Website Messaging with StoryBrand</h3><p>Use the StoryBrand framework to clarify messaging and position your company as the trusted solution.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/what-is-the-storybrand-framework" target="_blank" rel="noopener">What is StoryBrand? →</a></div>
+          <div class="cl-skill"><h3>Tracking User Behavior for Conversions</h3><p>Analyze visitor behavior, heatmaps, and engagement data to find friction points and optimize for conversions.</p></div>
+          <div class="cl-skill"><h3>Designing High-Impact Pages</h3><p>Best practices for homepage, product, and service pages to increase engagement and drive qualified leads.</p></div>
+          <div class="cl-skill"><h3>Optimizing Forms, CTAs &amp; Landing Pages</h3><p>Improve form design, CTA placement, and landing page structure to capture and convert more leads.</p></div>
+          <div class="cl-skill"><h3>Managing &amp; Updating Your Website</h3><p>Gain the skills to edit and optimize your site in-house, reducing reliance on outside agencies.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/website-strategy" target="_blank" rel="noopener">Website Strategy Guide →</a></div>
+          <div class="cl-skill"><h3>Using Google Analytics</h3><p>Track website traffic, user journeys, and conversion rates to make data-driven marketing decisions.</p></div>
+          <div class="cl-skill"><h3>Mastering SEO Tools Like SEMRush</h3><p>Analyze keyword opportunities, track rankings, and improve your visibility in search engines.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RIGHT SALES ACTIVITIES -->
+    <section class="section" id="the-right-sales" aria-labelledby="cl-sales-title">
+      <div class="container">
+        <header class="section__header">
+          <img class="cl-illus" src="../../../assets/images/coaching/whats-covered/the-right-sales-activities.svg" alt="" aria-hidden="true">
+          <span class="section__eyebrow">Pillar 03</span>
+          <h2 class="section__title section__title--lg" id="cl-sales-title">The Right Sales Activities</h2>
+          <p class="section__subtitle">Buyers today expect sales to add value, not pressure. We train your sales team to use content at every stage, leading with trust and reducing friction. With a defined process that meets buyers where they are, your team will answer questions before they're asked, close deals faster, and consistently outperform the competition.</p>
+        </header>
+        <div class="cl-grid">
+          <div class="cl-skill"><h3>Creating Content for Assignment Selling</h3><p>Develop targeted content that educates buyers before sales calls, reducing objections and shortening the cycle.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/what-is-assignment-selling" target="_blank" rel="noopener">What is Assignment Selling? →</a></div>
+          <div class="cl-skill"><h3>Delivering the Assignment Selling Script</h3><p>Present Assignment Selling to prospects in a way that gets buy-in and ensures content is consumed.</p></div>
+          <div class="cl-skill"><h3>Training Sales to Use Content</h3><p>Teach your team to leverage articles, videos, and tools in conversations to answer questions and increase close rates.</p></div>
+          <div class="cl-skill"><h3>Building a Structured Sales Process</h3><p>Create a step-by-step framework that eliminates friction, streamlines follow-ups, and closes deals faster.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/sales-process-optimization" target="_blank" rel="noopener">Sales Process Optimization →</a></div>
+          <div class="cl-skill"><h3>Using AI-Powered Sales Insights</h3><p>Use AI-driven data to analyze prospect behavior, predict deal success, and refine strategies in real time.</p></div>
+          <div class="cl-skill"><h3>1-to-1 Video Outreach for Sales</h3><p>Use personalized video in outreach, follow-ups, and deal acceleration to build stronger relationships.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/creating-personalized-sales-videos" target="_blank" rel="noopener">What is 1-to-1 Video? →</a></div>
+          <div class="cl-skill"><h3>On-Camera Performance for Sales</h3><p>Help your team become more confident and engaging on video, presenting as experts buyers can trust.</p></div>
+          <div class="cl-skill"><h3>Building a Personal Brand</h3><p>Empower your team to create content that positions them as industry authorities and builds trust at scale.</p></div>
+          <div class="cl-skill"><h3>Maximizing CRM for Sales Performance</h3><p>Leverage CRM tools effectively for pipeline tracking, lead management, and sales automation that drives results.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RIGHT TECHNOLOGY -->
+    <section class="section section--alt" id="the-right-technology" aria-labelledby="cl-tech-title">
+      <div class="container">
+        <header class="section__header">
+          <img class="cl-illus" src="../../../assets/images/coaching/whats-covered/the-right-technology.svg" alt="" aria-hidden="true">
+          <span class="section__eyebrow">Pillar 04</span>
+          <h2 class="section__title section__title--lg" id="cl-tech-title">The Right Technology</h2>
+          <p class="section__subtitle">We help you build a simple, connected tech stack that supports the entire buyer journey. Using <a href="https://www.impactplus.com/learn/hubspot-training">HubSpot as the core</a> and powered by AI, we coach your team to automate tasks, improve data accuracy, and get real-time insights. This gives your business speed, clarity, and efficiency while freeing your team to focus on growth.</p>
+        </header>
+        <div class="cl-grid">
+          <div class="cl-skill"><h3>Automating Lead Nurturing &amp; Follow-Up</h3><p>Use automation and AI-driven workflows to engage leads at the right time with consistent, personalized touchpoints.</p></div>
+          <div class="cl-skill"><h3>Pipeline Management &amp; Sales Reporting</h3><p>Track deals, measure progress, and optimize your pipeline to improve forecasting and close more opportunities.</p></div>
+          <div class="cl-skill"><h3>AI-Powered Lead Qualification</h3><p>Implement AI-driven lead scoring that helps your team prioritize high-value prospects.</p></div>
+          <div class="cl-skill"><h3>Tracking ROI &amp; Revenue Attribution</h3><p>Connect marketing and sales efforts to actual revenue so you always know what's working.</p></div>
+          <div class="cl-skill"><h3>AI for Sales Forecasting</h3><p>Use AI-driven insights to identify patterns, predict outcomes, and make more informed decisions.</p></div>
+          <div class="cl-skill"><h3>Improving Customer Data Health</h3><p>Use AI-driven enrichment, duplicate removal, and clear processes for clean, accurate, usable records.</p></div>
+          <div class="cl-skill"><h3>AI Avatars</h3><p>Explore how AI avatars and chatbots help with lead engagement, content delivery, and customer support.</p></div>
+          <div class="cl-skill"><h3>Leadership Dashboards</h3><p>Use real-time dashboards so leadership has full visibility into marketing, sales, and revenue performance.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE RIGHT CULTURE -->
+    <section class="section" id="the-right-culture" aria-labelledby="cl-culture-title">
+      <div class="container">
+        <header class="section__header">
+          <img class="cl-illus" src="../../../assets/images/coaching/whats-covered/the-right-culture-of-performance.svg" alt="" aria-hidden="true">
+          <span class="section__eyebrow">Pillar 05</span>
+          <h2 class="section__title section__title--lg" id="cl-culture-title">The Right Culture of Performance</h2>
+          <p class="section__subtitle">A winning strategy starts with the right culture. We work with your leadership to create alignment, proper planning, and accountability. Your team will adopt a shared strategy, track progress, and embrace continuous learning. With the right structure in place, your company becomes more agile, more effective, and ready to lead your market.</p>
+        </header>
+        <div class="cl-grid">
+          <div class="cl-skill"><h3>Hiring a Content Manager &amp; Videographer</h3><p>Find, hire, and train the right people to build an in-house team capable of producing high-quality content and video.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/content-manager-job-description" target="_blank" rel="noopener">Hiring a Content Manager →</a> <a class="cl-skill__link" href="https://www.impactplus.com/learn/how-to-hire-in-house-videographer" target="_blank" rel="noopener">Hiring a Videographer →</a></div>
+          <div class="cl-skill"><h3>Creating a Collaborative Revenue Culture</h3><p>Develop a system where marketing and sales work together seamlessly to attract and convert leads.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/what-is-a-revenue-team" target="_blank" rel="noopener">What is a Revenue Team? →</a></div>
+          <div class="cl-skill"><h3>Training Subject Matter Experts</h3><p>Empower internal experts to share knowledge through content, producing authentic, high-value insights.</p></div>
+          <div class="cl-skill"><h3>Establishing AI Adoption Guidelines</h3><p>Ensure AI is used ethically and effectively with clear policies for content, automation, and customer interactions.</p><a class="cl-skill__link" href="https://www.impactplus.com/learn/protect-company-using-ai" target="_blank" rel="noopener">AI Safety for Businesses →</a></div>
+          <div class="cl-skill"><h3>Sustaining High Performance</h3><p>Develop the habits, systems, and tracking that keep your team executing at a high level quarter after quarter.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section section--alt" aria-labelledby="cl-quote-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title section__title--lg" id="cl-quote-title" style="font-size:var(--text-2xl);line-height:1.4;max-width:50ch;margin:0 auto;">"Our coach brought our teams together — aligned them on a single methodology. The results speak for themselves."</h2>
+        </header>
+        <div class="testimonial-grid">
+          <article class="testimonial-card testimonial-card--featured">
+            <p class="testimonial-card__quote">Every single call with my coach, I'm challenged with a new approach — a new method — a new way to handle the problems we're facing as an organization.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">IB</div><div><div class="testimonial-card__name">Isabelle Braeutigam</div><div class="testimonial-card__role">Custom Built Design &amp; Remodeling</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">Every time I asked a question, my trainer would answer with another question. It was hard at the time, but I know that's how you grow.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">DO</div><div><div class="testimonial-card__name">Dave Owens</div><div class="testimonial-card__role">Roofsmart</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">Having IMPACT coaching keeps us up to date on the latest best practices for all things digital marketing and sales. We take the training and apply them to how it works for our own business.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">JC</div><div><div class="testimonial-card__name">Julianne Calapa</div><div class="testimonial-card__role">Mazzella</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">Now we have a very clear vision, a very clear strategy, and we know what we need to do to keep growing.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">CB</div><div><div class="testimonial-card__name">Chris Brandt</div><div class="testimonial-card__role">Motion Therapy</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">We've gained deeper insights into our operations, making us a more intelligent business now than we were before these coaching sessions.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">JT</div><div><div class="testimonial-card__name">Jessica Turner</div><div class="testimonial-card__role">Combined</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">IMPACT has completely changed our company. We would not be here without me picking up that book.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">TR</div><div><div class="testimonial-card__name">Taffy Ragan</div><div class="testimonial-card__role">Bill Ragan Roofing</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">We have seen so much growth — and not just in revenue — but in the way our team interacts with each other, in how we cross-train, and how we collaborate so much better now.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">KP</div><div><div class="testimonial-card__name">Kaitlyn Pintarich</div><div class="testimonial-card__role">Berry Insurance</div></div></div>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__quote">IMPACT has changed how we even look at business. Our competition doesn't like it. By what we're doing, we're raising the standard 10 fold in the industry.</p>
+            <div class="testimonial-card__author"><div class="testimonial-card__avatar" aria-hidden="true">SM</div><div><div class="testimonial-card__name">Scott Merritt</div><div class="testimonial-card__role">Fire &amp; Ice</div></div></div>
+          </article>
+        </div>
+        <p style="text-align:center;margin:var(--space-8) 0 0;"><a href="/how-we-help/success-stories" style="color:var(--color-accent);font-weight:600;font-size:var(--text-base);">Read their full stories →</a></p>
+      </div>
+    </section>
+
+    <!-- NEXT STEP IN THE JOURNEY -->
+    <section class="section" aria-label="Next step">
+      <div class="container">
+        <div style="max-width:860px;margin:0 auto;background:var(--color-panel,var(--color-bg-subtle));border-radius:var(--radius-lg);padding:var(--space-6) var(--space-7);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-5);">
+          <div style="flex:1 1 320px;">
+            <span class="section__eyebrow" style="color:var(--color-accent);">Keep Exploring</span>
+            <h2 style="font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);color:var(--color-heading);margin:var(--space-1) 0 var(--space-2);line-height:var(--leading-title);">What does the program cost?</h2>
+            <p style="color:var(--color-text-muted);margin:0;line-height:1.5;">Real numbers, clear deliverables, and a full plan comparison. No hidden fees.</p>
+          </div>
+          <a href="/how-we-help/coaching-program/pricing" class="btn btn--primary btn--lg">See Program Pricing →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-band" aria-labelledby="cl-cta-title">
+      <div class="container">
+        <h2 class="cta-band__title" id="cl-cta-title">Ready to take control?</h2>
+        <p class="cta-band__sub">If you're ready to control your growth, stop relying on agencies, and become the most known and trusted brand in your market, it's time to start your Endless Customers Mastery journey.</p>
+        <div class="flex flex-center gap-4 flex-wrap">
+          <a href="/lets-talk" class="btn btn--primary btn--lg">Schedule an Initial Call →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder">
+    <footer class="footer" role="contentinfo">
+  <div class="container">
+
+    <!-- ================= MASTHEAD: BRAND + SOCIAL ================= -->
+    <div class="footer__masthead">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Endless Customers — home">
+          <img src="../../../assets/images/logo-dark.svg"  class="footer__logo-img footer__logo-img--light" alt="Endless Customers" width="150" height="46">
+          <img src="../../../assets/images/logo-white.svg" class="footer__logo-img footer__logo-img--dark"  alt="" aria-hidden="true" width="150" height="46">
+        </a>
+        <p class="footer__mission">
+          Become the most trusted voice in your industry — and own your marketing
+          for good. The Endless Customers System, built on They Ask, You Answer.
+        </p>
+      </div>
+      <!-- Endless Customers brand profiles (entity strategy, June 2026):
+           footer socials point at EC-branded handles; the IMPACT connection
+           lives in the NAP line below + parentOrganization in the JSON-LD. -->
+      <div class="footer__social" aria-label="Endless Customers on social media">
+        <a href="https://www.facebook.com/people/Endless-Customers/61555895372069/" class="footer__social-btn" aria-label="Facebook (opens in new tab)" target="_blank" rel="noopener"><img src="../../../assets/images/logos-and-branding/facebook-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.linkedin.com/company/endless-customers" class="footer__social-btn" aria-label="LinkedIn (opens in new tab)" target="_blank" rel="noopener"><img src="../../../assets/images/logos-and-branding/linkedin-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.instagram.com/endlesscustomers" class="footer__social-btn" aria-label="Instagram (opens in new tab)" target="_blank" rel="noopener"><img src="../../../assets/images/logos-and-branding/instagram-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.youtube.com/@EndlessCustomers" class="footer__social-btn" aria-label="YouTube (opens in new tab)" target="_blank" rel="noopener"><img src="../../../assets/images/logos-and-branding/youtube-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://podcasts.apple.com/us/podcast/endless-customers/id1728142460" class="footer__social-btn" aria-label="Podcast on Apple Podcasts (opens in new tab)" target="_blank" rel="noopener"><img src="../../../assets/images/logos-and-branding/apple-podcasts-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu" class="footer__social-btn" aria-label="Podcast on Spotify (opens in new tab)" target="_blank" rel="noopener"><img src="../../../assets/images/logos-and-branding/spotify-brand-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+      </div>
+    </div>
+
+    <!-- ================= LINK COLUMNS (mirror the main nav) ================= -->
+    <nav class="footer__cols" aria-label="Footer">
+
+      <!-- LEARN -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/learn/" class="footer__col-link">Learning Center</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/learn/what-is-endless-customers" class="footer__link">What is Endless Customers?</a></li>
+          <li><a href="/learn/core-concepts-frameworks" class="footer__link">Core Concepts &amp; Frameworks</a></li>
+          <li><a href="/learn/academy" class="footer__link">Endless Customers Academy</a></li>
+          <li><a href="/learn/topics/" class="footer__link">Browse Topics</a></li>
+              <li><a href="/learn/latest" class="footer__link">Latest Insights</a></li>
+          <li><a href="/learn/podcast" class="footer__link">The Endless Customers Podcast</a></li>
+          <li><a href="/learn/webinars" class="footer__link">Webinars</a></li>
+          <li><a href="/learn/tools" class="footer__link">Tools &amp; Downloads</a></li>
+          <li><a href="/learn/subscribe" class="footer__link">Subscribe</a></li>
+          <li><a href="https://app.impactplus.com/users/sign_in" class="footer__link" target="_blank" rel="noopener">Academy Login <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- HOW WE HELP -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/how-we-help/" class="footer__col-link">How We Help</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/how-we-help/coaching-program" class="footer__link">Coaching Program &amp; Pricing</a></li>
+          <li><a href="/how-we-help/who-we-work-with" class="footer__link">Who We Work With</a></li>
+          <li><a href="/how-we-help/audit-and-recommendations" class="footer__link">Marketing Audit &amp; Recommendations <span class="footer__tag">New</span></a></li>
+          <li><a href="/how-we-help/request-a-speaker" class="footer__link">Request a Speaker</a></li>
+          <li><a href="/how-we-help/success-stories" class="footer__link">Success Stories</a></li>
+          <li><a href="/how-we-help/reviews" class="footer__link">Reviews</a></li>
+          <li><a href="/how-we-help/guarantee" class="footer__link">Our Guarantee</a></li>
+          <li><a href="/how-we-help/hubspot" class="footer__link">HubSpot Training &amp; Services</a></li>
+          <li><a href="/how-we-help/websites/redesign" class="footer__link">Website Redesign</a></li>
+          <li><a href="/how-we-help/websites/optimization" class="footer__link">Website Optimization</a></li>
+          <li><a href="/how-we-help/websites/learning-center" class="footer__link">Learning Center Development</a></li>
+          <li><a href="/how-we-help/websites/self-service-tools" class="footer__link">Self-Service Tools</a></li>
+          <li><a href="/how-we-help/paid-advertising" class="footer__link">Paid Advertising</a></li>
+          <li><a href="/how-we-help/ai" class="footer__link">AI Services <span class="footer__tag">New</span></a></li>
+          <li><a href="https://trusttheme.com" class="footer__link" target="_blank" rel="noopener sponsored">TRUST Theme for HubSpot <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- OUR TEAM -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/team/" class="footer__col-link">Our Team</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/team/about" class="footer__link">Our Story, Vision &amp; Values</a></li>
+          <li><a href="/team/meet-the-team" class="footer__link">Meet the Team</a></li>
+          <li><a href="/team/awards" class="footer__link">Awards &amp; Recognition</a></li>
+          <li><a href="/press" class="footer__link">Press &amp; Media</a></li>
+          <li><a href="/team/join-the-team" class="footer__link">Join the Team</a></li>
+          <li><a href="/contact" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONFERENCE -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/live/" class="footer__col-link">Conference</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/live/hartford-2026" class="footer__link">Hartford, CT · Oct 5–7, 2026</a></li>
+          <li><a href="/live/chicago-2027" class="footer__link">Chicago, IL · Apr 5–7, 2027</a></li>
+          <li><a href="/live/experience/" class="footer__link">What It's Like</a></li>
+          <li><a href="/live/past/" class="footer__link">Past Events</a></li>
+          <li><a href="/live/sponsor" class="footer__link">Become a Sponsor</a></li>
+          <li><a href="/live/convince-your-boss" class="footer__link">Convince Your Boss</a></li>
+        </ul>
+
+        <!-- BOOK (stacked beneath Conference; promoted out of Learn, June 2026) -->
+        <h2 class="footer__col-title footer__col-title--stacked"><a href="/book/" class="footer__col-link">Book</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/book/about" class="footer__link">About <em>Endless Customers</em></a></li>
+          <li><a href="/book/companion-guide" class="footer__link">Companion Guide</a></li>
+          <li><a href="/book/preview" class="footer__link">Preview (Free Chapter)</a></li>
+        </ul>
+      </div>
+
+      <!-- TRUST & RESOURCES -->
+      <div class="footer__col">
+        <h2 class="footer__col-title">Trust &amp; Resources</h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/diagnostic" class="footer__link">Free AI Diagnostic</a></li>
+          <li><a href="/lets-talk" class="footer__link">Talk to a Coach</a></li>
+          <li><a href="/how-we-help/when-its-not-working" class="footer__link">When It&rsquo;s Not Working</a></li>
+          <li><a href="/editorial-process" class="footer__link">Editorial Standards &amp; Ethics</a></li>
+          <li><a href="/security" class="footer__link">Security &amp; Data Protection</a></li>
+          <li><a href="/for-ai-agents" class="footer__link">For AI Agents</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ================= META: NAP + CREDENTIAL BADGES ================= -->
+    <div class="footer__meta">
+      <address class="footer__nap">
+        <span class="footer__nap-org">
+          Endless Customers is an
+          <a href="https://www.impactplus.com" class="footer__inline-link" target="_blank" rel="noopener">IMPACT<span class="visually-hidden"> (opens in new tab)</span></a>
+          company.
+        </span>
+        <span class="footer__nap-row">
+          <a href="https://maps.google.com/?q=125+Commerce+Court,+Suite+9,+Cheshire,+CT+06410" class="footer__nap-item" target="_blank" rel="noopener">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>125 Commerce Court, Suite 9, Cheshire, CT 06410<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+          <a href="tel:+12032654377" class="footer__nap-item">
+            <i class="ti ti-phone" aria-hidden="true"></i>(203) 265-4377
+          </a>
+        </span>
+      </address>
+      <div class="footer__badges">
+        <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" class="footer__badge footer__badge--hubspot" target="_blank" rel="noopener" aria-label="IMPACT is a HubSpot Elite Solutions Partner (opens in new tab)">
+          <img src="../../../assets/images/logos-and-branding/hubspot-elite-badge-bw.svg" alt="HubSpot Elite Solutions Partner" loading="lazy" decoding="async">
+        </a>
+        <span class="footer__badge">
+          <img src="../../../assets/images/logos-and-branding/EOS-We-Run-On-Logo--bw-2.svg" alt="We Run on EOS" loading="lazy" decoding="async">
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= LEGAL BAR ================= -->
+  <div class="footer__legal">
+    <div class="container footer__legal-inner">
+      <p class="footer__copy">
+        &copy; <span id="footer-year"></span> Endless Customers. All rights reserved.
+      </p>
+      <nav class="footer__legal-nav" aria-label="Legal">
+        <ul class="footer__legal-links" role="list">
+          <li><a href="/privacy" class="footer__legal-link">Privacy Policy</a></li>
+          <li><a href="/terms" class="footer__legal-link">Terms of Service</a></li>
+          <li><a href="/cookies" class="footer__legal-link">Cookie Preferences</a></li>
+          <li><a href="/accessibility" class="footer__legal-link">Accessibility</a></li>
+          <li><a href="/trademarks" class="footer__legal-link">Trademarks</a></li>
+          <li><a href="/brand-guidelines" class="footer__legal-link">Brand Guidelines</a></li>
+          <li><a href="/ai-policy" class="footer__legal-link">AI Policy</a></li>
+          <li><a href="/sitemap" class="footer__legal-link">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Organization schema — NAP + entity data for SEO and AI visibility -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "Brand"],
+    "@id": "https://www.endlesscustomers.com/#organization",
+    "name": "Endless Customers",
+    "url": "https://www.endlesscustomers.com/",
+    "logo": "https://www.endlesscustomers.com/assets/images/logo-dark.svg",
+    "description": "Endless Customers is the proven system, built on They Ask, You Answer, that helps service businesses become the most trusted voice in their industry and own their marketing for good.",
+    "telephone": "+1-203-265-4377",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "125 Commerce Court, Suite 9",
+      "addressLocality": "Cheshire",
+      "addressRegion": "CT",
+      "postalCode": "06410",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/Endless-Customers/61555895372069/",
+      "https://www.linkedin.com/company/endless-customers",
+      "https://www.instagram.com/endlesscustomers",
+      "https://www.youtube.com/@EndlessCustomers",
+      "https://podcasts.apple.com/us/podcast/endless-customers/id1728142460",
+      "https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://www.impactplus.com/#organization",
+      "name": "IMPACT",
+      "legalName": "Impact Branding & Design LLC",
+      "url": "https://www.impactplus.com",
+      "brand": { "@id": "https://www.endlesscustomers.com/#organization" },
+      "sameAs": [
+        "https://www.linkedin.com/company/impactbnd",
+        "https://www.facebook.com/impactbnd",
+        "https://www.instagram.com/impactbnd",
+        "https://www.youtube.com/@impactbnd",
+        "https://www.tiktok.com/@impactbnd",
+        "https://www.crunchbase.com/organization/impact-branding-design"
+      ],
+      "telephone": "+1-203-265-4377",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 Commerce Court, Suite 9",
+        "addressLocality": "Cheshire",
+        "addressRegion": "CT",
+        "postalCode": "06410",
+        "addressCountry": "US"
+      }
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-203-265-4377",
+      "contactType": "sales",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+</footer>
+  </div>
+
+
+  <script src="../../../js/main.js?v=2026060925r"></script>
+</body>
+</html>

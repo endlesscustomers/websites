@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- PATH PREFIX — change for pages in subdirectories -->
+  <!-- Root pages use "./" | One level deep "../" | Two levels "../../" -->
+
+  <!-- Flash-free theme init — keeps in <head>, runs before render -->
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme',
+        s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+
+  <!-- =====================
+    PAGE META
+    Update for every page.
+    HubSpot: {{ content.html_title }} / {{ content.meta_description }}
+    ===================== -->
+  <title>IMPACT Reviews — 400+ Verified Client Reviews &amp; Ratings | Endless Customers</title>
+  <meta name="description" content="IMPACT, the company behind Endless Customers, holds a 5.0 rating from 327 reviews on HubSpot's Solutions Directory, 4.9 on Clutch, and an A+ BBB rating. Read real client reviews — with names, dates, and links to every source platform." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="IMPACT Reviews — 400+ Verified Client Reviews &amp; Ratings" />
+  <meta property="og:description" content="5.0 from 327 reviews on HubSpot's Solutions Directory. 4.9 on Clutch. A+ BBB rating since 2011. Read what real clients say about IMPACT coaching, training, and the Endless Customers System." />
+  <meta property="og:type"        content="website" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.impactplus.com/#organization",
+    "name": "IMPACT, Coaching & Training for Endless Customers",
+    "alternateName": ["IMPACT", "Endless Customers"],
+    "url": "https://www.endlesscustomers.com",
+    "telephone": "+1-203-265-4377",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "125 Commerce Court, Suite 9",
+      "addressLocality": "Cheshire",
+      "addressRegion": "CT",
+      "postalCode": "06410",
+      "addressCountry": "US"
+    },
+    "foundingDate": "2009",
+    "sameAs": [
+      "https://ecosystem.hubspot.com/marketplace/solutions/impact",
+      "https://clutch.co/profile/impact",
+      "https://www.bbb.org/us/ct/cheshire/profile/web-design/impact-coaching-training-for-endless-customers-0111-87091383",
+      "https://www.designrush.com/agency/profile/impact",
+      "https://www.facebook.com/impactbnd",
+      "https://www.linkedin.com/company/impactbnd",
+      "https://www.impactplus.com"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "407",
+      "bestRating": "5",
+      "worstRating": "1",
+      "description": "Aggregated from HubSpot Solutions Directory (5.0, 327 reviews), Clutch (4.9, 6 reviews), Google (35 reviews), and Facebook (39+ recommendations) as of June 2026."
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "name": "A team of experts!",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "A. Martinez" },
+        "datePublished": "2026-01-14",
+        "publisher": { "@type": "Organization", "name": "HubSpot Solutions Directory" },
+        "url": "https://ecosystem.hubspot.com/marketplace/solutions/impact",
+        "reviewBody": "We partnered with IMPACT to redesign our website and migrate to a more user-friendly platform. Everyone on the IMPACT team was highly knowledgeable and able to clearly explain both the work being done and the reasoning behind it. They took the time to understand our goals, communicated clearly throughout the process, and provided strategic recommendations that aligned with our objectives."
+      },
+      {
+        "@type": "Review",
+        "name": "Coaching Matters",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "J. Price" },
+        "datePublished": "2025-11-26",
+        "publisher": { "@type": "Organization", "name": "HubSpot Solutions Directory" },
+        "url": "https://ecosystem.hubspot.com/marketplace/solutions/impact",
+        "reviewBody": "All of our coaches truly care about our success and are always the first to offer help or insights when needed. The systems and processes they have helped us implement have been vital to our success with content and getting more out of HubSpot. I highly recommend them to anyone looking for HubSpot help or content coaching."
+      },
+      {
+        "@type": "Review",
+        "name": "Digital Marketing Strategy for Nonprofit Organization",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Tony Paille" },
+        "datePublished": "2025-09-28",
+        "publisher": { "@type": "Organization", "name": "Clutch" },
+        "url": "https://clutch.co/profile/impact",
+        "reviewBody": "Within a year of working with IMPACT, we were generating 1,500 new leads a month with higher close rates and average customer lifetime values than we had ever seen before. The most notable thing in working with IMPACT, aside from the results, was how organized and efficient the team was."
+      },
+      {
+        "@type": "Review",
+        "name": "Web Design & Content Marketing for Payroll Company",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Mike Ritzema" },
+        "datePublished": "2025-08-28",
+        "publisher": { "@type": "Organization", "name": "Clutch" },
+        "url": "https://clutch.co/profile/impact",
+        "reviewBody": "Our web traffic improved over 18% in a time where web traffic in general is going down. Our leads nearly tripled and were better quality leads than we had been getting before. They kept searching for the best ways to achieve our goals. They are also the kindest group of people I may ever have met."
+      },
+      {
+        "@type": "Review",
+        "name": "Website Redesign & Training for Strategic Consultancy",
+        "reviewRating": { "@type": "Rating", "ratingValue": "4.5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Patrick Moorhead" },
+        "datePublished": "2025-09-16",
+        "publisher": { "@type": "Organization", "name": "Clutch" },
+        "url": "https://clutch.co/profile/impact",
+        "reviewBody": "Over three years, the company experienced a 55% increase in organic traffic, a 4x improvement in qualified pipeline, and a 7x growth in revenue. They have an exceptional approach to coaching that makes it clear they are invested in your success. I would recommend IMPACT to any business leader."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Alexander Ronzino" },
+        "datePublished": "2025-07-22",
+        "publisher": { "@type": "Organization", "name": "Google" },
+        "reviewBody": "Impact is amazing! Transformational and a system that actually works!"
+      },
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Robin Martin" },
+        "datePublished": "2026-03",
+        "publisher": { "@type": "Organization", "name": "Google" },
+        "reviewBody": "Have been working with Alison Belles, and without a doubt, it has been the most impactful and tactical coaching I have had in my time owning a business. She is brilliant, approachable and ruthless in the pursuit of our success. Could not recommend more."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Daniel Malone" },
+        "datePublished": "2026-03",
+        "publisher": { "@type": "Organization", "name": "Google" },
+        "reviewBody": "Our business has greatly benefited with the ideas and systems that Endless Customers provides. With AI and all the changes that are happening with search, we are gaining more confidence that our marketing investments are going to have better returns. We have a systemized focus versus throwing out random information with our content."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Adam Martin" },
+        "datePublished": "2026-01",
+        "publisher": { "@type": "Organization", "name": "Google" },
+        "reviewBody": "I had read They Ask, You Answer (predecessor to Endless Customers) but was never able to really connect the dots and bring everything together for our team. Once we started working directly with IMPACT, that all changed. We were encouraged, walked through the process to truly grow and strengthen the foundation of our roofing business, and have continued to see month over month improvement on lead generation, sales, and brand awareness across our entire service area, not just in our hometowns."
+      },
+      {
+        "@type": "Review",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Corin Cook" },
+        "datePublished": "2025-12",
+        "publisher": { "@type": "Organization", "name": "Google" },
+        "reviewBody": "Partnering with IMPACT has transformed the way our team communicates, plans, and produces content. We now have clarity, alignment, and a system that drives trust and more qualified conversations with buyers. The improvements have been clear. Our sales team is better prepared, our content has purpose, and we finally feel confident in our process. I would strongly recommend IMPACT to any business that wants a proven process that brings sales and marketing together and creates measurable results."
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is IMPACT a legitimate company?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. IMPACT has been in business since 2009, has been BBB Accredited since 2011, and holds an A+ BBB rating. It is a HubSpot Elite Solutions Partner — the highest tier — with a 5.0 rating from 327 reviews on HubSpot's Solutions Directory (99% five-star), plus a 4.9 rating on Clutch and 35 Google reviews. IMPACT has worked with 500+ companies worldwide and is headquartered at 125 Commerce Court, Suite 9, Cheshire, CT 06410."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I tell IMPACT's reviews are real?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every review on this page links back to the third-party platform where it was published — HubSpot's Solutions Directory, Clutch, Google, or Facebook. Reviewers are named, most include their company and dates, and many name their specific IMPACT coach (Mandy, Allison, Mary, Janet, Will, Vin, and others). The same reviewers and results appear consistently across multiple platforms — Andy Roe, Bethany Sousa, Dana Svilar, Ariana Martinez, and Mike Ritzema all left matching reviews on two or more platforms — which is very hard to fabricate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What results do IMPACT clients report in reviews?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verified reviews report outcomes including 1,500 new leads per month (nonprofit association, Clutch), web traffic up 18% with leads nearly tripled (Superior Trucking Payroll Service, Clutch and Google), a 55% increase in organic traffic with 4x qualified pipeline and 7x revenue growth over three years (SVRN Enterprises, Clutch), and a 10x increase in site traffic (Applango, Clutch). Results vary by team and effort."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do critical reviews of IMPACT say?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The few non-perfect marks are specific and constructive: one Clutch reviewer wished for a fuller project scope at the outset (the project still finished on time and on budget), and another wished a coach transition had been flagged earlier. IMPACT publishes critical feedback rather than filtering it out."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does IMPACT's coaching cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Endless Customers coaching programs are published openly, with tiers listed on both this site's pricing page and IMPACT's Clutch profile. See the Coaching Program & Pricing page at endlesscustomers.com/how-we-help/coaching-program for current pricing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I leave a review of IMPACT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Clients can leave reviews on HubSpot's Solutions Directory (ecosystem.hubspot.com/marketplace/solutions/impact), Clutch (clutch.co/profile/impact), Google, or Facebook (facebook.com/impactbnd)."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.endlesscustomers.com/" },
+      { "@type": "ListItem", "position": 2, "name": "How We Help", "item": "https://www.endlesscustomers.com/how-we-help/" },
+      { "@type": "ListItem", "position": 3, "name": "Reviews", "item": "https://www.endlesscustomers.com/how-we-help/reviews" }
+    ]
+  }
+  </script>
+
+
+  <!-- General Sans font -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+
+  <!-- Stylesheet — adjust path prefix for subdirectories -->
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+
+  <!-- Page-specific styles — reviews platform scoreboard & source chips -->
+  <style>
+    /* Platform scoreboard cards — fixed 3-up grid so 6 cards land 3+3 */
+    .rv-plat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+    @media (max-width: 900px) { .rv-plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .rv-plat-grid { grid-template-columns: 1fr; } }
+    .rv-plat {
+      display: flex; flex-direction: column; align-items: flex-start;
+      border-radius: var(--radius-lg); padding: var(--space-6);
+      background: var(--color-panel, var(--color-bg-subtle)); border: 1px solid var(--color-border);
+      text-decoration: none; transition: border-color var(--transition-fast), transform var(--transition-fast);
+    }
+    .rv-plat:hover { border-color: var(--color-border-strong); transform: translateY(-2px); }
+    .rv-plat__score { font-family: var(--font-display); font-weight: 800; font-size: var(--text-3xl); color: var(--color-heading); line-height: 1; }
+    .rv-plat__stars { color: #f5a623; font-size: 15px; letter-spacing: 1px; margin: var(--space-2) 0; }
+    .rv-plat__name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); color: var(--color-heading); margin: 0 0 var(--space-1); }
+    .rv-plat__sub { font-size: var(--text-sm); color: var(--color-text-muted); margin: 0 0 var(--space-3); }
+    .rv-plat__link { font-size: var(--text-sm); font-weight: 600; color: var(--color-blue); margin-top: auto; padding-top: var(--space-2); }
+    /* Review sections: 2-up grid (not masonry) so cards pair into tidy,
+       equal-height rows — long verbatim reviews read better and nothing
+       ends up orphaned beside empty space */
+    #hubspot-reviews .pg-reviews,
+    #clutch-reviews .pg-reviews,
+    #google-reviews .pg-reviews { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-5); }
+    @media (max-width: 760px) {
+      #hubspot-reviews .pg-reviews,
+      #clutch-reviews .pg-reviews,
+      #google-reviews .pg-reviews { grid-template-columns: 1fr; }
+    }
+    #hubspot-reviews .pg-review,
+    #clutch-reviews .pg-review,
+    #google-reviews .pg-review { margin-bottom: 0; display: flex; flex-direction: column; }
+    #hubspot-reviews .pg-review__who,
+    #clutch-reviews .pg-review__who,
+    #google-reviews .pg-review__who { margin-top: auto; padding-top: var(--space-2); }
+    /* Themes: lock to 3 columns so 6 cards land 3+3, not 4+2 */
+    #review-themes .pg-features { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 900px) { #review-themes .pg-features { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { #review-themes .pg-features { grid-template-columns: 1fr; } }
+    /* Velocity stats: cap width so attribution lines wrap evenly */
+    #review-velocity .pg-stat { max-width: 240px; }
+    /* Review source line inside cards */
+    .rv-src { display: flex; align-items: center; gap: 6px; margin-top: var(--space-3); font-size: var(--text-xs); color: var(--color-text-muted); }
+    .rv-src b { color: var(--color-text); font-weight: 600; }
+    /* "Read anywhere" link band */
+    .rv-band { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+    .rv-band a {
+      display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: var(--radius-full);
+      border: 1px solid var(--color-border); background: var(--color-bg-surface); text-decoration: none;
+      font-size: var(--text-sm); font-weight: 600; color: var(--color-text-strong);
+      transition: border-color var(--transition-fast), color var(--transition-fast);
+    }
+    .rv-band a:hover { border-color: var(--color-blue); color: var(--color-blue); }
+    /* Hero badge chips */
+    .rv-badges { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-8); }
+    .rv-badges span {
+      display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px; border-radius: var(--radius-full);
+      background: var(--color-bg-surface); border: 1px solid var(--color-border);
+      font-size: var(--text-sm); font-weight: 600; color: var(--color-text-strong);
+    }
+    .rv-badges i { color: var(--color-blue); }
+    /* Attribution under results stats */
+    .rv-attr { display: block; margin-top: 6px; font-size: var(--text-xs); color: var(--color-text-muted); font-weight: 400; }
+  </style>
+
+</head>
+
+<body class="page-accent--blue">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- =====================================================================
+    GLOBAL NAV — inlined so it works with file:// and any server.
+    Source of truth: components/nav.html — copy from there when updating.
+    HubSpot: {% global_partial path="global/header.html" %}
+    ===================================================================== -->
+  <div id="nav-placeholder">
+<nav class="nav nav--docked" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav__logo" aria-label="Endless Customers — home">
+      <img src="../../assets/images/logo-dark.svg"  class="nav__logo-img nav__logo-img--light" alt="Endless Customers" width="111" height="34">
+      <img src="../../assets/images/logo-white.svg" class="nav__logo-img nav__logo-img--dark"  alt="" aria-hidden="true" width="111" height="34">
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="nav__menu" role="list">
+
+      <!-- LEARN -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-learn" data-dropdown="learn">
+          Learning Center
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- Learn: featured diagnostic at top, 2-col grid below -->
+        <div class="nav__dropdown nav__dropdown--learn" id="dd-learn" aria-label="Learn">
+          <a href="/learn/" class="dd-parent">Learning Center <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/diagnostic" class="dd-featured">
+            <div class="dd-featured__eyebrow">✦ Free Tool</div>
+            <div class="dd-featured__title">Get Your Free AI Diagnostic</div>
+            <div class="dd-featured__sub">Enter your website URL — get a full marketing audit instantly</div>
+          </a>
+          <div class="dd-cols dd-cols--3">
+            <div class="dd-col">
+              <span class="dd-label">Learn the System</span>
+              <a href="/learn/what-is-endless-customers" class="dd-item">
+                <svg class="dd-icon dd-icon--ec" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.85,12.16c-.01.44-.05.87-.13,1.29-.17,1.02-.52,2.02-1.04,2.92v.04c-.78,1.34-1.91,2.47-3.26,3.24-1.06.63-2.24,1.01-3.45,1.14v-3.67c.57-.11,1.13-.31,1.64-.61.68-.39,1.23-.9,1.67-1.53h0s-.33-.64-.38-.73c.86-.08.18-.02.2-.02l.66-.06c.11-.24.19-.47.26-.72.15-.5.23-1.03.21-1.55,0-.5-.08-.97-.23-1.44-.01-.08-.05-.15-.07-.24l3.18-1.84c.3.66.5,1.36.62,2.08.09.56.14,1.13.13,1.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M12.02,1.19c5.44,0,9.96,4.05,10.68,9.29h1.09C23.06,4.64,18.06.11,12.02.11S.99,4.64.25,10.48h1.09C2.07,5.24,6.59,1.19,12.02,1.19Z"></path><path d="M12.02,22.77c-5.44,0-9.96-4.05-10.68-9.29H.25c.74,5.84,5.74,10.37,11.77,10.37s11.04-4.53,11.77-10.37h-1.09c-.72,5.25-5.25,9.29-10.68,9.29Z"></path><path d="M7.49,19.54c-.37-.23-.73-.47-1.05-.76-.8-.65-1.49-1.46-2.01-2.36l-.03-.02c-.77-1.35-1.18-2.89-1.17-4.45-.02-1.23.25-2.45.74-3.56l3.18,1.83c-.19.55-.3,1.13-.29,1.72,0,.78.16,1.52.49,2.21h.01s.71.03.81.03c-.36.78-.08.17-.09.19l-.28.6c.15.21.32.4.5.59.35.38.78.71,1.24.96.43.25.88.41,1.36.52.08.03.16.04.24.06v3.67c-.72-.08-1.43-.25-2.1-.5-.53-.2-1.05-.44-1.53-.74Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M7.74,4.02c.39-.21.77-.39,1.19-.53.97-.37,1.97-.57,3.01-.57h.07c1.55,0,3.09.42,4.44,1.21,1.07.6,1.99,1.44,2.71,2.42l-3.18,1.83c-.38-.44-.83-.82-1.34-1.12-.68-.39-1.4-.62-2.16-.68h0s-.38.61-.43.7c-.5-.71-.11-.15-.12-.17l-.38-.54c-.26.03-.51.07-.76.14-.51.12-1.01.32-1.45.59-.43.25-.8.56-1.13.91-.07.05-.11.12-.17.18l-3.18-1.83c.43-.59.93-1.11,1.49-1.57.44-.36.91-.69,1.4-.96Z" fill="none" stroke="currentColor" stroke-miterlimit="2" stroke-width=".75"></path></svg>
+                <div><div class="dd-item__title">What is Endless Customers?<span class="dd-badge-new">Start Here</span></div><div class="dd-item__sub">The system, why it works, and the proof</div></div>
+              </a>
+              <a href="/learn/core-concepts-frameworks" class="dd-item">
+                <i class="ti ti-stack-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Core Concepts &amp; Frameworks</div><div class="dd-item__sub">Every concept, one clear answer</div></div>
+              </a>
+              <a href="/learn/academy" class="dd-item">
+                <i class="ti ti-school dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Endless Customers Academy</div><div class="dd-item__sub">Courses, community, and self-paced learning</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Get an Answer</span>
+              <a href="/learn/topics/" class="dd-item">
+                <i class="ti ti-category dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Browse Topics</div><div class="dd-item__sub">Every subject, every format, one place</div></div>
+              </a>
+              <a href="/learn/" class="dd-item" data-search-trigger>
+                <i class="ti ti-search dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Search the Learning Center</div><div class="dd-item__sub">Articles, webinars, lessons &amp; tools</div></div>
+              </a>
+              <a href="/learn/tools" class="dd-item">
+                <i class="ti ti-download dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Tools &amp; Downloads</div><div class="dd-item__sub">Guides, AI tools, and templates</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Stay Current</span>
+              <a href="/learn/latest" class="dd-item">
+                <i class="ti ti-news dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Latest Insights</div><div class="dd-item__sub">New articles, episodes &amp; events</div></div>
+              </a>
+              <a href="/learn/webinars" class="dd-item">
+                <i class="ti ti-video dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Webinars</div><div class="dd-item__sub">Upcoming live &amp; the on-demand library</div></div>
+              </a>
+              <a href="/learn/podcast" class="dd-item">
+                <i class="ti ti-microphone-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">The Endless Customers Podcast</div><div class="dd-item__sub">Watch or listen to every episode</div></div>
+              </a>
+            </div>
+          </div>
+          <!-- Bottom CTA (full-width) — Subscribe. Moved out of the Stay Current
+               column June 2026 so the three columns balance 3/3/3 after the book
+               left the left column; frames the panel opposite the featured tile. -->
+          <a href="/learn/subscribe" class="dd-cta">
+            <i class="ti ti-bell dd-icon" aria-hidden="true"></i>
+            Subscribe for New Content, Twice a Week, Free
+            <span class="dd-parent__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- HOW WE HELP -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-help" data-dropdown="help">
+          How We Help
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- How We Help: "The Path" (June 2026, per Bob — replaces the 4-col
+             services grid). Everything lives under the Endless Customers brand.
+             Left = the order of operations (audit → fix what's broken → coaching);
+             middle = Additional Services for those who know what they want;
+             right = Pricing & Fit then Proof & Trust; foot = a utility strip
+             (free-diagnostic on-ramp + the one-off Request a Speaker ask).
+             Rides on --4col for the full-width docked panel; --path swaps in the
+             three-column grid, the numbered path, and the strip. -->
+        <div class="nav__dropdown nav__dropdown--4col nav__dropdown--path" id="dd-help" aria-label="How We Help">
+
+          <a href="/how-we-help/" class="dd-parent">How We Help <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+
+          <!-- Col 1: The Path — the order of operations -->
+          <div class="dd-col dd-col--path">
+            <span class="dd-label">The Path to Endless Customers</span>
+            <div class="dd-path">
+              <a href="/how-we-help/audit-and-recommendations" class="dd-step">
+                <span class="dd-step__num">1</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Marketing Audit &amp; Recommendations <span class="dd-badge-new">Start Here</span></div>
+                  <div class="dd-step__sub">Find out what's broken and what to fix first.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/initial-projects" class="dd-step">
+                <span class="dd-step__num">2</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Initial Projects &amp; Fixes</div>
+                  <div class="dd-step__sub">Then fix it together, with quick early wins.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/coaching-program" class="dd-step">
+                <span class="dd-step__num">3</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">The Endless Customers Coaching Program</div>
+                  <div class="dd-step__sub">Finally, go all-in on the full system.</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Additional Services (website family, then marketing/AI, then HubSpot) -->
+          <div class="dd-col">
+            <span class="dd-label">Additional Services</span>
+            <a href="/how-we-help/websites/redesign" class="dd-svc">
+              <i class="ti ti-layout-2 dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Redesign</span>
+            </a>
+            <a href="/how-we-help/websites/optimization" class="dd-svc">
+              <i class="ti ti-chart-bar dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Optimization</span>
+            </a>
+            <a href="/how-we-help/websites/learning-center" class="dd-svc">
+              <i class="ti ti-library dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Learning Center Development</span>
+            </a>
+            <a href="/how-we-help/websites/self-service-tools" class="dd-svc">
+              <i class="ti ti-tool dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Self-Service Tools</span>
+            </a>
+            <a href="/how-we-help/paid-advertising" class="dd-svc">
+              <i class="ti ti-speakerphone dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Paid Advertising</span>
+            </a>
+            <a href="/how-we-help/ai" class="dd-svc">
+              <i class="ti ti-brain dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">AI Services<span class="dd-badge-new">New</span></span>
+            </a>
+            <a href="/how-we-help/hubspot" class="dd-svc">
+              <svg class="dd-icon dd-icon--hubspot" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.164 7.93V5.084a2.198 2.198 0 0 0 1.267-1.978v-.067A2.2 2.2 0 0 0 17.238.845h-.067a2.2 2.2 0 0 0-2.193 2.193v.067a2.196 2.196 0 0 0 1.252 1.973l.013.006v2.852a6.22 6.22 0 0 0-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 1 0 4.3 5.166l-.008.006 7.697 5.991a6.176 6.176 0 0 0-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 0 0-.58-.095h-.002a2.033 2.033 0 1 0 2.033 2.033 1.978 1.978 0 0 0-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 1 0 4.782-11.134l-.036-.005zm-1.02 9.378a3.208 3.208 0 1 1 3.208-3.208 3.207 3.207 0 0 1-3.208 3.207z"></path></svg>
+              <span class="dd-svc__name">HubSpot Training &amp; Services</span>
+            </a>
+            <a href="https://trusttheme.com" class="dd-svc" target="_blank" rel="noopener">
+              <i class="ti ti-palette dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">TRUST Theme for HubSpot</span>
+              <svg class="dd-ext" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="visually-hidden">(opens in new tab)</span>
+            </a>
+          </div>
+
+          <!-- Col 3: Pricing & Fit, then Proof & Trust -->
+          <div class="dd-col">
+            <span class="dd-label">Pricing &amp; Fit</span>
+            <a href="/how-we-help/coaching-program/pricing" class="dd-svc">
+              <i class="ti ti-tag dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Pricing</span>
+            </a>
+            <a href="/how-we-help/compare-your-options" class="dd-svc">
+              <i class="ti ti-scale dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Compare Your Options</span>
+            </a>
+            <a href="/how-we-help/who-we-work-with" class="dd-svc">
+              <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Who We Work With</span>
+            </a>
+            <span class="dd-label dd-label--stacked">Proof &amp; Trust</span>
+            <a href="/how-we-help/success-stories" class="dd-svc">
+              <i class="ti ti-trophy dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Success Stories</span>
+            </a>
+            <a href="/how-we-help/reviews" class="dd-svc">
+              <i class="ti ti-star dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Reviews</span>
+            </a>
+            <a href="/how-we-help/guarantee" class="dd-svc">
+              <i class="ti ti-shield-check dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Our Guarantee</span>
+            </a>
+          </div>
+
+        </div>
+      </li>
+
+      <!-- OUR TEAM -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-team" data-dropdown="team">
+          Our Team
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown" id="dd-team" aria-label="Our Team">
+          <a href="/team/" class="dd-parent">Our Team <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/team/about" class="dd-item">
+            <i class="ti ti-compass dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Our Story, Vision &amp; Values</div><div class="dd-item__sub">Where we came from and what we stand for</div></div>
+          </a>
+          <a href="/team/meet-the-team" class="dd-item">
+            <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Meet the Team</div><div class="dd-item__sub">Endless Customers coaches, specialists, and staff</div></div>
+          </a>
+          <a href="/team/awards" class="dd-item">
+            <i class="ti ti-award dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Awards &amp; Recognition</div><div class="dd-item__sub">Industry honors, dated and sourced</div></div>
+          </a>
+          <a href="/how-we-help/request-a-speaker" class="dd-item">
+            <i class="ti ti-microphone dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Request a Speaker</div><div class="dd-item__sub">Book an EC speaker for your event or conference</div></div>
+          </a>
+          <a href="/team/become-a-coach" class="dd-item">
+            <i class="ti ti-heart-handshake dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Become a Coach</div><div class="dd-item__sub">Want to help businesses implement Endless Customers?</div></div>
+          </a>
+          <a href="/team/join-the-team" class="dd-item">
+            <i class="ti ti-briefcase dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">All Open Positions</div><div class="dd-item__sub">Browse open roles across the company</div></div>
+          </a>
+        </div>
+      </li>
+
+      <!-- THE CONFERENCE -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-conference" data-dropdown="conference">
+          Conference
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--conference nav__dropdown--right" id="dd-conference" data-theme="dark" aria-label="Conference">
+          <div class="conf-image" aria-hidden="true">
+            <div class="conf-scene is-active" id="conf-scene-0" style="background-image:url('../../assets/images/endless-customers-live/ec-live-1.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-1" style="background-image:url('../../assets/images/endless-customers-live/ec-live-2.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-2" style="background-image:url('../../assets/images/endless-customers-live/ec-live-3.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-3" style="background-image:url('../../assets/images/endless-customers-live/ec-live-4.jpg')"></div>
+            <div class="conf-progress" id="conf-progress">
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+            </div>
+          </div>
+          <div class="conf-links">
+            <a href="/live/" class="conf-logo-link" aria-label="Endless Customers Live"><img src="../../assets/images/endless-customers-live/ec-live-logo-white.png" alt="Endless Customers Live" class="conf-logo"></a>
+            <a href="/live/" class="conf-explore">Explore the Conference <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+            <div class="conf-dates-label">Upcoming Dates</div>
+            <a href="/live/hartford-2026" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Hartford, CT</div><div class="conf-date-when">Oct 5–7, 2026</div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <a href="/live/chicago-2027" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Chicago, IL</div><div class="conf-date-when">Apr 5–7, 2027 · <span class="conf-eb">Early Bird</span></div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <div class="dd-sep"></div>
+            <a href="/live/experience/" class="conf-link">
+              <i class="ti ti-sparkles" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">What It's Like</span>
+            </a>
+            <a href="/live/past/" class="conf-link">
+              <i class="ti ti-history" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Past Events</span>
+            </a>
+            <a href="/live/sponsor" class="conf-link">
+              <i class="ti ti-award" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Become a Sponsor</span>
+            </a>
+            <a href="/live/convince-your-boss" class="conf-link">
+              <i class="ti ti-user-check" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Convince Your Boss</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- BOOK -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-book" data-dropdown="book">
+          Book
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--right" id="dd-book" aria-label="Book">
+          <a href="/book/" class="dd-parent">Book <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/book/about" class="dd-item">
+            <i class="ti ti-book-2 dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">About <em>Endless Customers</em></div><div class="dd-item__sub">What it's about, plus where to buy</div></div>
+          </a>
+          <a href="/book/companion-guide" class="dd-item">
+            <i class="ti ti-notebook dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Companion Guide</div><div class="dd-item__sub">The workbook that puts the book to work</div></div>
+          </a>
+          <a href="/book/preview" class="dd-item">
+            <i class="ti ti-file-text dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Preview (Free Chapter)</div><div class="dd-item__sub">Read the opening chapter free</div></div>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- Right actions -->
+    <div class="nav__actions">
+      <!-- Returning-member affordance: quiet account icon, grouped with the
+           theme toggle as an icon-utility pair so it never competes with the
+           two text CTAs. Visible at every width (incl. the ≤1199 collapsed
+           bar) so members can log in top-right without opening the menu.
+           Destination is the EC Academy app login (impactplus.com app). -->
+      <a href="https://app.impactplus.com/users/sign_in" class="nav__account" target="_blank" rel="noopener" aria-label="Endless Customers Academy Login (opens in new tab)" title="Endless Customers Academy Login">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="/diagnostic" class="btn--nav-ghost">Free AI Diagnostic</a>
+      <a href="/lets-talk" class="btn--nav-primary">Let's Talk →</a>
+      <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile menu — drill-down (main panel + one sub-panel per group) -->
+  <div class="nav__mobile" id="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation"></div>
+
+</nav>
+  </div>
+
+
+  <!-- =====================================================================
+    PAGE CONTENT — replace everything between these comments
+    ===================================================================== -->
+
+
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="svc-hero" aria-labelledby="rev-title">
+      <div class="svc-hero__bg" aria-hidden="true"></div>
+      <div class="svc-hero__inner">
+        <div class="subnav__crumb svc-crumb" aria-label="Breadcrumb">
+          <span class="subnav__crumb-trail">
+            <a href="/how-we-help/" class="subnav__crumb-root">How We Help</a>
+            <span class="subnav__crumb-sep" aria-hidden="true">&rsaquo;</span>
+          </span>
+          <span class="subnav__crumb-current" aria-current="page"><span class="svc-crumb__icon" aria-hidden="true"><i class="ti ti-star"></i></span> Reviews</span>
+        </div>
+        <h1 class="svc-hero__headline headline-short" id="rev-title">IMPACT reviews &amp; client ratings</h1>
+        <p class="svc-hero__sub">400+ verified reviews across 6 platforms. Real companies, real names, real numbers — and a link back to every source so you can check our math.</p>
+        <div style="margin-top:var(--space-8)">
+          <div class="pg-stars pg-stars--lg" aria-hidden="true">★★★★★</div>
+          <p style="margin-top:var(--space-3);font-size:var(--text-lg);color:var(--color-text-strong)"><strong>5.0 out of 5</strong> · 327 HubSpot reviews · 99% five-star</p>
+        </div>
+        <div class="rv-badges">
+          <span><i class="ti ti-hexagon-letter-h" aria-hidden="true"></i> HubSpot Elite Solutions Partner</span>
+          <span><i class="ti ti-shield-check" aria-hidden="true"></i> BBB A+ · Accredited since 2011</span>
+          <span><i class="ti ti-building" aria-hidden="true"></i> In business since 2009</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-body">
+
+      <!-- RATING SUMMARY -->
+      <section class="section section--sm section--alt">
+        <div class="container">
+          <div class="pg-stats">
+            <div class="pg-stat"><b>400+</b><span>Verified reviews</span></div>
+            <div class="pg-stat"><b>5.0</b><span>HubSpot Directory (327 reviews)</span></div>
+            <div class="pg-stat"><b>4.9</b><span>Clutch rating</span></div>
+            <div class="pg-stat"><b>A+</b><span>BBB rating since 2011</span></div>
+            <div class="pg-stat"><b>500+</b><span>Companies worldwide</span></div>
+          </div>
+          <p class="text-center text-muted" style="margin-top:var(--space-8);font-size:var(--text-sm)">
+            Counts current as of June 2026, aggregated from HubSpot's Solutions Directory, Clutch, Google, Facebook, BBB, and DesignRush. Every number on this page links to its source.
+          </p>
+        </div>
+      </section>
+
+      <!-- PLATFORM SCOREBOARD -->
+      <section class="section">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Where we stand, platform by platform</span>
+            <h2 class="section__title section__title--lg">Every platform. Every rating. One page.</h2>
+          </header>
+          <div class="rv-plat-grid">
+
+            <a class="rv-plat" href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">
+              <div class="rv-plat__score">5.0</div>
+              <div class="rv-plat__stars" aria-hidden="true">★★★★★</div>
+              <h3 class="rv-plat__name">HubSpot Solutions Directory</h3>
+              <p class="rv-plat__sub">327 reviews · 99% five-star · Elite Solutions Partner (highest tier)</p>
+              <span class="rv-plat__link">Read all 327 reviews →</span>
+            </a>
+
+            <a class="rv-plat" href="https://clutch.co/profile/impact" target="_blank" rel="noopener">
+              <div class="rv-plat__score">4.9</div>
+              <div class="rv-plat__stars" aria-hidden="true">★★★★★</div>
+              <h3 class="rv-plat__name">Clutch</h3>
+              <p class="rv-plat__sub">6 verified reviews · Quality 4.9 · Schedule 5.0 · Cost 5.0</p>
+              <span class="rv-plat__link">Read all 6 reviews →</span>
+            </a>
+
+            <a class="rv-plat" href="https://www.google.com/maps/search/?api=1&amp;query=IMPACT&amp;query_place_id=ChIJw92si5LO54kRsNJs31EMqVg" target="_blank" rel="noopener">
+              <div class="rv-plat__score">35</div>
+              <div class="rv-plat__stars" aria-hidden="true">★★★★★</div>
+              <h3 class="rv-plat__name">Google</h3>
+              <p class="rv-plat__sub">35 reviews · Cheshire, CT · every review gets a response</p>
+              <span class="rv-plat__link">Read all 35 Google reviews →</span>
+            </a>
+
+            <a class="rv-plat" href="https://www.bbb.org/us/ct/cheshire/profile/web-design/impact-coaching-training-for-endless-customers-0111-87091383" target="_blank" rel="noopener">
+              <div class="rv-plat__score">A+</div>
+              <div class="rv-plat__stars" aria-hidden="true">★★★★★</div>
+              <h3 class="rv-plat__name">Better Business Bureau</h3>
+              <p class="rv-plat__sub">BBB Accredited Business since June 23, 2011 · 16 years in business</p>
+              <span class="rv-plat__link">View our BBB profile →</span>
+            </a>
+
+            <a class="rv-plat" href="https://www.facebook.com/impactbnd/reviews" target="_blank" rel="noopener">
+              <div class="rv-plat__score">90%+</div>
+              <div class="rv-plat__stars" aria-hidden="true">★★★★★</div>
+              <h3 class="rv-plat__name">Facebook</h3>
+              <p class="rv-plat__sub">39+ reviews · 90%+ recommend</p>
+              <span class="rv-plat__link">Read our Facebook reviews →</span>
+            </a>
+
+            <a class="rv-plat" href="https://www.designrush.com/agency/profile/impact" target="_blank" rel="noopener">
+              <div class="rv-plat__score">4.8</div>
+              <div class="rv-plat__stars" aria-hidden="true">★★★★★</div>
+              <h3 class="rv-plat__name">DesignRush</h3>
+              <p class="rv-plat__sub">Verified agency profile with Google-sourced reviews</p>
+              <span class="rv-plat__link">View our DesignRush profile →</span>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- HUBSPOT REVIEWS -->
+      <section class="section section--alt" id="hubspot-reviews">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">HubSpot Solutions Directory · 5.0 · 327 reviews</span>
+            <h2 class="section__title section__title--lg">What clients say on HubSpot</h2>
+            <p class="section__subtitle">IMPACT is an Elite Solutions Partner — HubSpot's highest tier — with 327 client reviews, a 5.0 average, and 99% five-star ratings. Here are recent highlights, verbatim.</p>
+          </header>
+          <div class="pg-reviews">
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"A team of experts!"</strong> — "We partnered with IMPACT to redesign our website and migrate to a more user-friendly platform. Everyone on the IMPACT team was highly knowledgeable and able to clearly explain both the work being done and the reasoning behind it&hellip; They took the time to understand our goals, communicated clearly throughout the process, and provided strategic recommendations that aligned with our objectives."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">A. Martinez</div><div class="pg-review__role">Website redesign &amp; migration client</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · January 2026</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Strategic, Creative, and Easy to Work With"</strong> — "From the beginning, their team took the time to truly understand our goals and vision, not just the look and feel we wanted, but the deeper story we were trying to tell&hellip; made the partnership feel less like working with a vendor and more like working with an extension of our team. Our new site reflects who we are and where we're headed."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">A. Rothmann</div><div class="pg-review__role">Website redesign client</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · October 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Highly Recommend IMPACT"</strong> — "We came into the project with a complex website and a lot of moving parts, and their team did an excellent job keeping us focused, organized, and moving forward&hellip; A special shout-out to Mary, Nancy, Vin, and Daniel — each of them played an important role and were genuinely great to work with&hellip; They felt like a real partner throughout the process, not just a vendor."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">D. at BIRD</div><div class="pg-review__role">Website &amp; HubSpot onboarding client</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · January 2026</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Game-Changing Guidance"</strong> — "Working with IMPACT over the past year has been one of the most transformative professional experiences of my career&hellip; With IMPACT's coaching, I have written multiple articles, built and optimized new webpages, created dashboards and reporting, learned to use SEO and analytics tools&hellip; We are better communicators, better educators, and ultimately better partners to our customers because of them."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">B. Sousa</div><div class="pg-review__role">Harold Brothers — coaching client</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · November 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Coaching Matters"</strong> — "All of our coaches truly care about our success and are always the first to offer help or insights when needed. The systems and processes they have helped us implement have been vital to our success with content and getting more out of HubSpot. I highly recommend them to anyone looking for HubSpot help or content coaching."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">J. Price</div><div class="pg-review__role">Coaching &amp; HubSpot client</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · November 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Transformed my HubSpot expertise — which transformed my company."</strong> — "Will was a valuable and essential coach and instructor for HubSpot&hellip; I was able to level up in our CRM data hygiene, workflows, list building, and understanding some of the real power with HubSpot. We actually created a case study pipeline that has accelerated our delivery from marketing to sales."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">M. Sodnicar</div><div class="pg-review__role">Consulting firm, 51–200 employees</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · August 2024</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Incredible Organization"</strong> — "Allison and Mandy have been incredible partners — thoughtful, organized, and genuinely invested in helping our team grow&hellip; They didn't just give advice — they helped our team learn how to think, plan, and execute at a higher level&hellip; After nearly 18 months of partnership, I can confidently say Impact has been one of the best investments we've made in our company's growth."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">A. Roe</div><div class="pg-review__role">Coaching client, 18+ months</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · November 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote"><strong>"Incredible Impact!"</strong> — "Working with Mary Brown has been AMAZING!!! I would give 10 stars if possible!! She is incredibly knowledgeable and explains things beautifully. She's always there when I need help or I'm stuck on something&hellip; Best training I've ever had and the most wonderful trainer!"</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">H. Newball-Ruiz</div><div class="pg-review__role">Financial services firm, 26–50 employees</div></div>
+              </div>
+              <div class="rv-src"><b>HubSpot Directory</b> · July 2024</div>
+            </article>
+
+          </div>
+          <p class="text-center" style="margin-top:var(--space-8)">
+            <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" class="btn btn--ghost" target="_blank" rel="noopener">Read all 327 reviews on HubSpot →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- CLUTCH REVIEWS -->
+      <section class="section" id="clutch-reviews">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Clutch · 4.9 · 6 verified reviews</span>
+            <h2 class="section__title section__title--lg">What clients say on Clutch</h2>
+            <p class="section__subtitle">Clutch independently verifies every review, most through analyst interviews. IMPACT scores 4.9 overall — Quality 4.9, Schedule 5.0, Cost 5.0, Willingness to Refer 4.9.</p>
+          </header>
+          <div class="pg-reviews">
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Within a year of working with IMPACT, we were generating 1,500 new leads a month with higher close rates and average customer lifetime values than we had ever seen before&hellip; The most notable thing in working with IMPACT, aside from the results, was how organized and efficient the team was."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Tony Paille</div><div class="pg-review__role">Former CMO, industry association (nonprofit)</div></div>
+              </div>
+              <div class="rv-src"><b>Clutch — Verified</b> · September 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Our web traffic improved over 18% in a time where web traffic in general is going down. Our leads nearly tripled and were better quality leads&hellip; They kept searching for the best ways to achieve our goals&hellip; They are also the kindest group of people I may ever have met."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Mike Ritzema</div><div class="pg-review__role">President, Superior Trucking Payroll Service</div></div>
+              </div>
+              <div class="rv-src"><b>Clutch — Verified</b> · August 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="4.5 out of 5 stars">★★★★½</div>
+              <p class="pg-review__quote">"Over three years, the company experienced a 55% increase in organic traffic, a 4x improvement in qualified pipeline, and a 7x growth in revenue&hellip; They have an exceptional approach to coaching that makes it clear they are invested in your success. I would recommend IMPACT to any business leader."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Patrick Moorhead</div><div class="pg-review__role">Owner, SVRN Enterprises, LLC</div></div>
+              </div>
+              <div class="rv-src"><b>Clutch</b> · September 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"They cared a lot about our experience and were always willing to listen to us if we were unhappy in any way. Other companies wouldn't walk the talk, but IMPACT did exactly what they said they were going to do."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Digital Marketing &amp; PR Specialist</div><div class="pg-review__role">Senior care firm — 5-year, ~$1M engagement</div></div>
+              </div>
+              <div class="rv-src"><b>Clutch — Verified (analyst interview)</b> · December 2022</div>
+            </article>
+
+          </div>
+          <p class="text-center" style="margin-top:var(--space-8)">
+            <a href="https://clutch.co/profile/impact" class="btn btn--ghost" target="_blank" rel="noopener">Read all 6 verified reviews on Clutch →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- GOOGLE REVIEWS -->
+      <section class="section section--alt" id="google-reviews">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Google · 35 reviews</span>
+            <h2 class="section__title section__title--lg">What clients say on Google</h2>
+            <p class="section__subtitle">We publish our Google reviews here in plain, readable text — so you don't have to dig through Maps, and AI assistants can read them too. We respond to every one.</p>
+          </header>
+          <div class="pg-reviews">
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Have been working with Alison Belles, and without a doubt, it has been the most impactful and tactical coaching I have had in my time owning a business. She is brilliant, approachable and ruthless in the pursuit of our success. Could not recommend more."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Robin Martin</div><div class="pg-review__role">Business owner — coaching client</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · March 2026</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Our business has greatly benefited with the ideas and systems that Endless Customers provides. With AI and all the changes that are happening with search, we are gaining more confidence that our marketing investments are going to have better returns. We have a systemized focus versus throwing out random information with our content."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Daniel Malone</div><div class="pg-review__role">Coaching client</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · March 2026</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"I had read They Ask, You Answer (predecessor to Endless Customers) but was never able to really connect the dots and bring everything together for our team. Once we started working directly with IMPACT, that all changed&hellip; we have continued to see month over month improvement on lead generation, sales, and brand awareness across our entire service area, not just in our hometowns. IMPACT is the real deal&hellip; just meet with them or attend IMPACT Live, and you'll understand for yourself!"</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Adam Martin</div><div class="pg-review__role">Hoel Roofing</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · January 2026</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Partnering with IMPACT has transformed the way our team communicates, plans, and produces content. We now have clarity, alignment, and a system that drives trust and more qualified conversations with buyers&hellip; Our sales team is better prepared, our content has purpose, and we finally feel confident in our process&hellip; I would strongly recommend IMPACT to any business that wants a proven process that brings sales and marketing together and creates measurable results."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Corin Cook</div><div class="pg-review__role">Berry Insurance</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · December 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"The Endless Customers system totally flipped that for us. It completely changed how we think about marketing and sales&hellip; Our website now feels like a genuine sales tool, not just something sitting there doing nothing&hellip; The coaching team at IMPACT have been an absolute pleasure to work with. They're practical, they're straight-shooters, and they're focused on the nitty-gritty stuff that actually makes a difference&hellip; If you're genuinely looking for growth and you can stick to a system that actually makes sense, Endless Customers is what you've been looking for."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Alex</div><div class="pg-review__role">Coaching client</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · December 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Before working with IMPACT, we were stuck trying to make marketing work on our own&hellip; In just one year, our website traffic grew by 18% at a time when many companies are seeing declines. More importantly, our sales opportunities nearly tripled&hellip; That growth allowed us to hire a salesperson for the first time in four years&hellip; I would recommend IMPACT to any business that wants to stop guessing at marketing and start building trust that translates into real sales opportunities."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Mike Ritzema</div><div class="pg-review__role">President, Superior Trucking Payroll Service</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · August 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Working with Impact was a truly transformative experience for us at Lift HCM. When we first started, we were brand new to marketing and content creation — and honestly, a little overwhelmed. Impact's team of coaches met us exactly where we were, with patience, empathy, and real expertise&hellip; Their guidance didn't just teach us how to create; it taught us how to think strategically about content. Every coach we worked with was genuinely talented and deeply invested in our success."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Cait</div><div class="pg-review__role">Lift HCM</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · October 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Working with the IMPACT team provided our company with coaching, planning, strategy and implementation of the 'They Ask You Answer' system. Allison and Mandy were instrumental in holding our team accountable and pushing us to accomplish our goals. If you're looking to grow your business and commit to a process, stop looking and hire IMPACT to see real results."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Kael Johnson</div><div class="pg-review__role">Coaching client</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · December 2025</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"We started working with Impact about 4 years ago and the 'Impact' that it has had on our business has been excellent. I would highly recommend them to any business."</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Brian Paulson</div><div class="pg-review__role">4-year coaching client</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · February 2026</div>
+            </article>
+
+            <article class="pg-review">
+              <div class="pg-review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p class="pg-review__quote">"Impact is amazing! Transformational and a system that actually works!"</p>
+              <div class="pg-review__who">
+                <div><div class="pg-review__name">Alexander Ronzino</div><div class="pg-review__role">Google review</div></div>
+              </div>
+              <div class="rv-src"><b>Google</b> · July 2025</div>
+            </article>
+
+          </div>
+          <p class="text-center text-muted" style="margin-top:var(--space-6);font-size:var(--text-sm)">
+            Cross-check us: Andy Roe, Bethany Sousa, Dana Svilar (BIRD), and Ariana Martinez left matching reviews on both Google and <a href="#hubspot-reviews" style="color:var(--color-blue)">HubSpot's directory</a> — same companies, same coaches, same results.
+          </p>
+          <p class="text-center" style="margin-top:var(--space-6)">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=IMPACT&amp;query_place_id=ChIJw92si5LO54kRsNJs31EMqVg" class="btn btn--ghost" target="_blank" rel="noopener">Read all 35 reviews on Google →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- READ ANYWHERE BAND -->
+      <section class="section section--sm">
+        <div class="container">
+          <header class="section__header">
+            <h2 class="section__title section__title--lg">400+ reviews. 6 platforms. Read them anywhere.</h2>
+            <p class="section__subtitle">Don't trust a company's own website? Good instinct. Read our reviews on whichever platform you trust.</p>
+          </header>
+          <div class="rv-band">
+            <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">HubSpot Directory (327)</a>
+            <a href="https://clutch.co/profile/impact" target="_blank" rel="noopener">Clutch (6)</a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=IMPACT&amp;query_place_id=ChIJw92si5LO54kRsNJs31EMqVg" target="_blank" rel="noopener">Google (35)</a>
+            <a href="https://www.facebook.com/impactbnd/reviews" target="_blank" rel="noopener">Facebook (39+)</a>
+            <a href="https://www.bbb.org/us/ct/cheshire/profile/web-design/impact-coaching-training-for-endless-customers-0111-87091383" target="_blank" rel="noopener">BBB (A+)</a>
+            <a href="https://www.designrush.com/agency/profile/impact" target="_blank" rel="noopener">DesignRush</a>
+          </div>
+          <p class="text-center text-muted" style="margin-top:var(--space-8);font-size:var(--text-sm)">
+            The system itself is public, too: <a href="/learn/book" style="color:var(--color-blue)">Endless Customers</a> (Wiley, 2025) and <em>They Ask, You Answer</em> by Marcus Sheridan are reviewed by thousands of readers on Amazon and Goodreads.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE PEOPLE BEHIND THE REVIEWS -->
+      <section class="section section--alt">
+        <div class="container pg-prose">
+          <h2>Clients don't just review IMPACT. They name their coaches.</h2>
+          <p>Read through our reviews and you'll notice something unusual: clients call out the specific people they work with — Mandy and Allison on content and strategy, Mary and Nancy on websites and training, Janet on web optimization, Will on HubSpot, Vin and Daniel on development. That only happens when real people do real work, week after week.</p>
+          <p>IMPACT was founded in 2009 by Bob Ruffolo and has been BBB Accredited since 2011 with an A+ rating. We're headquartered in Cheshire, Connecticut, and we've worked with 500+ companies worldwide. When something isn't working, you don't get a ticket queue — you get your coach, and a <a href="/how-we-help/guarantee">written guarantee</a> on every call and deliverable.</p>
+          <p><a href="/team/meet-the-team">Meet the coaches and trainers clients are talking about →</a></p>
+        </div>
+      </section>
+
+      <!-- WHAT CLIENTS MENTION MOST -->
+      <section class="section" id="review-themes">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Patterns across 400+ reviews</span>
+            <h2 class="section__title section__title--lg">What clients mention most</h2>
+          </header>
+          <div class="pg-features">
+            <div class="pg-feature">
+              <div class="pg-feature__icon"><i class="ti ti-users-group" aria-hidden="true"></i></div>
+              <h3 class="pg-feature__title">Coaches, by name</h3>
+              <p class="pg-feature__text">"A special shout-out to Mary, Nancy, Vin, and Daniel." Clients consistently name the individual coaches who helped them.</p>
+            </div>
+            <div class="pg-feature">
+              <div class="pg-feature__icon"><i class="ti ti-clock-check" aria-hidden="true"></i></div>
+              <h3 class="pg-feature__title">On time, every time</h3>
+              <p class="pg-feature__text">"They were on time all the time." Schedule rating on Clutch: a perfect 5.0 across verified reviews.</p>
+            </div>
+            <div class="pg-feature">
+              <div class="pg-feature__icon"><i class="ti ti-school" aria-hidden="true"></i></div>
+              <h3 class="pg-feature__title">Teaching over doing</h3>
+              <p class="pg-feature__text">"They didn't just give advice — they helped our team learn how to think, plan, and execute at a higher level."</p>
+            </div>
+            <div class="pg-feature">
+              <div class="pg-feature__icon"><i class="ti ti-chart-arrows-vertical" aria-hidden="true"></i></div>
+              <h3 class="pg-feature__title">Measurable results</h3>
+              <p class="pg-feature__text">1,500 leads a month. Traffic up 18%. Leads tripled. Revenue up 7x. Reviewers cite numbers, not vibes.</p>
+            </div>
+            <div class="pg-feature">
+              <div class="pg-feature__icon"><i class="ti ti-heart-handshake" aria-hidden="true"></i></div>
+              <h3 class="pg-feature__title">Genuinely invested</h3>
+              <p class="pg-feature__text">"The kindest group of people I may ever have met." "A real partner, not just a vendor" appears again and again.</p>
+            </div>
+            <div class="pg-feature">
+              <div class="pg-feature__icon"><i class="ti ti-settings-check" aria-hidden="true"></i></div>
+              <h3 class="pg-feature__title">HubSpot mastery</h3>
+              <p class="pg-feature__text">"I would not know the platform at all without his help." Elite Solutions Partner — HubSpot's highest tier.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VELOCITY + RESULTS -->
+      <section class="section section--alt" id="review-velocity">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Review velocity</span>
+            <h2 class="section__title section__title--lg">Still earning them, every month</h2>
+            <p class="section__subtitle">Between October 2025 and March 2026, clients left twelve new five-star reviews on Google and seven more on HubSpot's directory. The results behind the reviews, as reported by the reviewers themselves:</p>
+          </header>
+          <div class="pg-stats">
+            <div class="pg-stat"><b>1,500</b><span>new leads per month<span class="rv-attr">Industry association · Clutch, 2025</span></span></div>
+            <div class="pg-stat"><b>3x</b><span>qualified leads, traffic +18%<span class="rv-attr">Superior Trucking Payroll · Clutch &amp; Google, 2025</span></span></div>
+            <div class="pg-stat"><b>7x</b><span>revenue growth in 3 years<span class="rv-attr">SVRN Enterprises · Clutch, 2025</span></span></div>
+            <div class="pg-stat"><b>10x</b><span>increase in site traffic<span class="rv-attr">Applango · Clutch</span></span></div>
+          </div>
+          <p class="text-center" style="margin-top:var(--space-8)">
+            <a href="/how-we-help/success-stories" class="btn btn--ghost">See full success stories with named companies →</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- HOW WE VET -->
+      <section class="section">
+        <div class="container pg-prose">
+          <h2>How we collect and verify reviews</h2>
+          <p>Trust is earned with transparency, so here is exactly how these reviews work:</p>
+          <ul>
+            <li><strong>Third-party sources only.</strong> Every review on this page was published on an independent platform — HubSpot's Solutions Directory, Clutch, Google, or Facebook — and links back to its source. We don't publish reviews you can't verify.</li>
+            <li><strong>We don't filter out criticism.</strong> The few non-perfect marks are right there on Clutch: one client wished for fuller scoping up front, another wished a coach transition had been flagged earlier. We leave them up because they make the rest believable — and they made us better.</li>
+            <li><strong>No incentives for ratings.</strong> We never pay for reviews or offer rewards in exchange for a specific score.</li>
+            <li><strong>Results vary.</strong> Outcomes depend on the work a team puts in. We share what reviewers reported, not guarantees.</li>
+          </ul>
+          <p>Want the full picture? Read in-depth, quantified <a href="/how-we-help/success-stories">success stories</a> with real numbers and named companies.</p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section section--alt">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Straight answers</span>
+            <h2 class="section__title section__title--lg">Common questions about IMPACT reviews</h2>
+          </header>
+          <div class="pg-faqcat">
+
+            <div class="faq">
+<details>
+              <summary>Is IMPACT a legitimate company?</summary>
+              <div class="faq__body">
+                <p><strong>Yes. IMPACT has been in business since 2009 and BBB Accredited with an A+ rating since 2011.</strong> It is a HubSpot Elite Solutions Partner — the highest tier — with a 5.0 rating from 327 reviews (99% five-star) on <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">HubSpot's Solutions Directory</a>, a 4.9 on <a href="https://clutch.co/profile/impact" target="_blank" rel="noopener">Clutch</a>, and 35 Google reviews. IMPACT has worked with 500+ companies worldwide and is headquartered at 125 Commerce Court, Suite 9, Cheshire, CT 06410.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>How can I tell these reviews are real?</summary>
+              <div class="faq__body">
+                <p><strong>Every review links back to the third-party platform where it was published.</strong> Reviewers are named with companies and dates, many name their specific IMPACT coach, and the same reviewers appear consistently across multiple platforms — Andy Roe, Bethany Sousa, Dana Svilar, Ariana Martinez, and Mike Ritzema all left matching reviews on two or more platforms. Clutch additionally verifies most reviews through analyst phone interviews.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What results do clients report?</summary>
+              <div class="faq__body">
+                <p><strong>Verified reviewers report:</strong> 1,500 new leads per month (industry association), web traffic up 18% with leads nearly tripled (Superior Trucking Payroll Service), 55% organic traffic growth with 4x qualified pipeline and 7x revenue over three years (SVRN Enterprises), and a 10x traffic increase (Applango). Results vary by team and effort — see our <a href="/how-we-help/success-stories">success stories</a> for full context.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>What do the critical reviews say?</summary>
+              <div class="faq__body">
+                <p><strong>The few non-perfect marks are specific and constructive.</strong> One Clutch reviewer wished for a fuller project scope at the outset (the project still finished on time and on budget). Another wished a coach transition had been communicated earlier. We publish criticism rather than filtering it — and we've changed our onboarding because of it.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>How much does IMPACT's coaching cost?</summary>
+              <div class="faq__body">
+                <p><strong>Our pricing is published openly</strong> — on our <a href="/how-we-help/coaching-program">Coaching Program &amp; Pricing page</a> and on our <a href="https://clutch.co/profile/impact" target="_blank" rel="noopener">Clutch profile</a>. As one reviewer put it: "Not cheap, but the best usually are not the cheapest" — and Clutch clients rate our value-for-cost a perfect 5.0.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary>Where can I leave a review?</summary>
+              <div class="faq__body">
+                <p>If you've worked with us, we'd be grateful for an honest review on <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener">HubSpot's Solutions Directory</a>, <a href="https://clutch.co/profile/impact" target="_blank" rel="noopener">Clutch</a>, <a href="https://www.google.com/maps/search/?api=1&amp;query=IMPACT&amp;query_place_id=ChIJw92si5LO54kRsNJs31EMqVg" target="_blank" rel="noopener">Google</a>, or <a href="https://www.facebook.com/impactbnd/reviews" target="_blank" rel="noopener">Facebook</a>. Critical feedback included.</p>
+              </div>
+            </details>
+</div>
+</div>
+        </div>
+      </section>
+
+      <!-- LEAVE A REVIEW / CTA -->
+      <section class="section section--sm">
+        <div class="container">
+          <div class="cta-band">
+            <h2 class="cta-band__title">Seen enough reviews? Talk to a real coach.</h2>
+            <p class="cta-band__sub">No pitch decks, no pressure. Tell us where your marketing stands, and we'll tell you honestly whether the Endless Customers System fits.</p>
+            <div class="hero__actions" style="justify-content:center">
+              <a href="/lets-talk" class="btn btn--primary btn--lg">Talk to a Coach →</a>
+              <a href="/diagnostic" class="btn btn--ghost btn--lg">Get a Free AI Diagnostic</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+  <!-- ===================================================================== -->
+
+
+  <!-- =====================================================================
+    GLOBAL FOOTER — do not edit here, edit components/footer.html
+    HubSpot: {% global_partial path="global/footer.html" %}
+    ===================================================================== -->
+  <div id="footer-placeholder">
+    <footer class="footer" role="contentinfo">
+  <div class="container">
+
+    <!-- ================= MASTHEAD: BRAND + SOCIAL ================= -->
+    <div class="footer__masthead">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Endless Customers — home">
+          <img src="../../assets/images/logo-dark.svg"  class="footer__logo-img footer__logo-img--light" alt="Endless Customers" width="150" height="46">
+          <img src="../../assets/images/logo-white.svg" class="footer__logo-img footer__logo-img--dark"  alt="" aria-hidden="true" width="150" height="46">
+        </a>
+        <p class="footer__mission">
+          Become the most trusted voice in your industry — and own your marketing
+          for good. The Endless Customers System, built on They Ask, You Answer.
+        </p>
+      </div>
+      <!-- Endless Customers brand profiles (entity strategy, June 2026):
+           footer socials point at EC-branded handles; the IMPACT connection
+           lives in the NAP line below + parentOrganization in the JSON-LD. -->
+      <div class="footer__social" aria-label="Endless Customers on social media">
+        <a href="https://www.facebook.com/people/Endless-Customers/61555895372069/" class="footer__social-btn" aria-label="Facebook (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/facebook-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.linkedin.com/company/endless-customers" class="footer__social-btn" aria-label="LinkedIn (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/linkedin-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.instagram.com/endlesscustomers" class="footer__social-btn" aria-label="Instagram (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/instagram-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.youtube.com/@EndlessCustomers" class="footer__social-btn" aria-label="YouTube (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/youtube-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://podcasts.apple.com/us/podcast/endless-customers/id1728142460" class="footer__social-btn" aria-label="Podcast on Apple Podcasts (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/apple-podcasts-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu" class="footer__social-btn" aria-label="Podcast on Spotify (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/spotify-brand-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+      </div>
+    </div>
+
+    <!-- ================= LINK COLUMNS (mirror the main nav) ================= -->
+    <nav class="footer__cols" aria-label="Footer">
+
+      <!-- LEARN -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/learn/" class="footer__col-link">Learning Center</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/learn/what-is-endless-customers" class="footer__link">What is Endless Customers?</a></li>
+          <li><a href="/learn/core-concepts-frameworks" class="footer__link">Core Concepts &amp; Frameworks</a></li>
+          <li><a href="/learn/academy" class="footer__link">Endless Customers Academy</a></li>
+          <li><a href="/learn/topics/" class="footer__link">Browse Topics</a></li>
+              <li><a href="/learn/latest" class="footer__link">Latest Insights</a></li>
+          <li><a href="/learn/podcast" class="footer__link">The Endless Customers Podcast</a></li>
+          <li><a href="/learn/webinars" class="footer__link">Webinars</a></li>
+          <li><a href="/learn/tools" class="footer__link">Tools &amp; Downloads</a></li>
+          <li><a href="/learn/subscribe" class="footer__link">Subscribe</a></li>
+          <li><a href="https://app.impactplus.com/users/sign_in" class="footer__link" target="_blank" rel="noopener">Academy Login <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- HOW WE HELP -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/how-we-help/" class="footer__col-link">How We Help</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/how-we-help/coaching-program" class="footer__link">Coaching Program &amp; Pricing</a></li>
+          <li><a href="/how-we-help/who-we-work-with" class="footer__link">Who We Work With</a></li>
+          <li><a href="/how-we-help/audit-and-recommendations" class="footer__link">Marketing Audit &amp; Recommendations <span class="footer__tag">New</span></a></li>
+          <li><a href="/how-we-help/request-a-speaker" class="footer__link">Request a Speaker</a></li>
+          <li><a href="/how-we-help/success-stories" class="footer__link">Success Stories</a></li>
+          <li><a href="/how-we-help/reviews" class="footer__link">Reviews</a></li>
+          <li><a href="/how-we-help/guarantee" class="footer__link">Our Guarantee</a></li>
+          <li><a href="/how-we-help/hubspot" class="footer__link">HubSpot Training &amp; Services</a></li>
+          <li><a href="/how-we-help/websites/redesign" class="footer__link">Website Redesign</a></li>
+          <li><a href="/how-we-help/websites/optimization" class="footer__link">Website Optimization</a></li>
+          <li><a href="/how-we-help/websites/learning-center" class="footer__link">Learning Center Development</a></li>
+          <li><a href="/how-we-help/websites/self-service-tools" class="footer__link">Self-Service Tools</a></li>
+          <li><a href="/how-we-help/paid-advertising" class="footer__link">Paid Advertising</a></li>
+          <li><a href="/how-we-help/ai" class="footer__link">AI Services <span class="footer__tag">New</span></a></li>
+          <li><a href="https://trusttheme.com" class="footer__link" target="_blank" rel="noopener sponsored">TRUST Theme for HubSpot <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- OUR TEAM -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/team/" class="footer__col-link">Our Team</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/team/about" class="footer__link">Our Story, Vision &amp; Values</a></li>
+          <li><a href="/team/meet-the-team" class="footer__link">Meet the Team</a></li>
+          <li><a href="/team/awards" class="footer__link">Awards &amp; Recognition</a></li>
+          <li><a href="/press" class="footer__link">Press &amp; Media</a></li>
+          <li><a href="/team/join-the-team" class="footer__link">Join the Team</a></li>
+          <li><a href="/contact" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONFERENCE -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/live/" class="footer__col-link">Conference</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/live/hartford-2026" class="footer__link">Hartford, CT · Oct 5–7, 2026</a></li>
+          <li><a href="/live/chicago-2027" class="footer__link">Chicago, IL · Apr 5–7, 2027</a></li>
+          <li><a href="/live/experience/" class="footer__link">What It's Like</a></li>
+          <li><a href="/live/past/" class="footer__link">Past Events</a></li>
+          <li><a href="/live/sponsor" class="footer__link">Become a Sponsor</a></li>
+          <li><a href="/live/convince-your-boss" class="footer__link">Convince Your Boss</a></li>
+        </ul>
+
+        <!-- BOOK (stacked beneath Conference; promoted out of Learn, June 2026) -->
+        <h2 class="footer__col-title footer__col-title--stacked"><a href="/book/" class="footer__col-link">Book</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/book/about" class="footer__link">About <em>Endless Customers</em></a></li>
+          <li><a href="/book/companion-guide" class="footer__link">Companion Guide</a></li>
+          <li><a href="/book/preview" class="footer__link">Preview (Free Chapter)</a></li>
+        </ul>
+      </div>
+
+      <!-- TRUST & RESOURCES -->
+      <div class="footer__col">
+        <h2 class="footer__col-title">Trust &amp; Resources</h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/diagnostic" class="footer__link">Free AI Diagnostic</a></li>
+          <li><a href="/lets-talk" class="footer__link">Talk to a Coach</a></li>
+          <li><a href="/how-we-help/when-its-not-working" class="footer__link">When It&rsquo;s Not Working</a></li>
+          <li><a href="/editorial-process" class="footer__link">Editorial Standards &amp; Ethics</a></li>
+          <li><a href="/security" class="footer__link">Security &amp; Data Protection</a></li>
+          <li><a href="/for-ai-agents" class="footer__link">For AI Agents</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ================= META: NAP + CREDENTIAL BADGES ================= -->
+    <div class="footer__meta">
+      <address class="footer__nap">
+        <span class="footer__nap-org">
+          Endless Customers is an
+          <a href="https://www.impactplus.com" class="footer__inline-link" target="_blank" rel="noopener">IMPACT<span class="visually-hidden"> (opens in new tab)</span></a>
+          company.
+        </span>
+        <span class="footer__nap-row">
+          <a href="https://maps.google.com/?q=125+Commerce+Court,+Suite+9,+Cheshire,+CT+06410" class="footer__nap-item" target="_blank" rel="noopener">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>125 Commerce Court, Suite 9, Cheshire, CT 06410<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+          <a href="tel:+12032654377" class="footer__nap-item">
+            <i class="ti ti-phone" aria-hidden="true"></i>(203) 265-4377
+          </a>
+        </span>
+      </address>
+      <div class="footer__badges">
+        <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" class="footer__badge footer__badge--hubspot" target="_blank" rel="noopener" aria-label="IMPACT is a HubSpot Elite Solutions Partner (opens in new tab)">
+          <img src="../../assets/images/logos-and-branding/hubspot-elite-badge-bw.svg" alt="HubSpot Elite Solutions Partner" loading="lazy" decoding="async">
+        </a>
+        <span class="footer__badge">
+          <img src="../../assets/images/logos-and-branding/EOS-We-Run-On-Logo--bw-2.svg" alt="We Run on EOS" loading="lazy" decoding="async">
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= LEGAL BAR ================= -->
+  <div class="footer__legal">
+    <div class="container footer__legal-inner">
+      <p class="footer__copy">
+        &copy; <span id="footer-year"></span> Endless Customers. All rights reserved.
+      </p>
+      <nav class="footer__legal-nav" aria-label="Legal">
+        <ul class="footer__legal-links" role="list">
+          <li><a href="/privacy" class="footer__legal-link">Privacy Policy</a></li>
+          <li><a href="/terms" class="footer__legal-link">Terms of Service</a></li>
+          <li><a href="/cookies" class="footer__legal-link">Cookie Preferences</a></li>
+          <li><a href="/accessibility" class="footer__legal-link">Accessibility</a></li>
+          <li><a href="/trademarks" class="footer__legal-link">Trademarks</a></li>
+          <li><a href="/brand-guidelines" class="footer__legal-link">Brand Guidelines</a></li>
+          <li><a href="/ai-policy" class="footer__legal-link">AI Policy</a></li>
+          <li><a href="/sitemap" class="footer__legal-link">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Organization schema — NAP + entity data for SEO and AI visibility -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "Brand"],
+    "@id": "https://www.endlesscustomers.com/#organization",
+    "name": "Endless Customers",
+    "url": "https://www.endlesscustomers.com/",
+    "logo": "https://www.endlesscustomers.com/assets/images/logo-dark.svg",
+    "description": "Endless Customers is the proven system, built on They Ask, You Answer, that helps service businesses become the most trusted voice in their industry and own their marketing for good.",
+    "telephone": "+1-203-265-4377",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "125 Commerce Court, Suite 9",
+      "addressLocality": "Cheshire",
+      "addressRegion": "CT",
+      "postalCode": "06410",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/Endless-Customers/61555895372069/",
+      "https://www.linkedin.com/company/endless-customers",
+      "https://www.instagram.com/endlesscustomers",
+      "https://www.youtube.com/@EndlessCustomers",
+      "https://podcasts.apple.com/us/podcast/endless-customers/id1728142460",
+      "https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://www.impactplus.com/#organization",
+      "name": "IMPACT",
+      "legalName": "Impact Branding & Design LLC",
+      "url": "https://www.impactplus.com",
+      "brand": { "@id": "https://www.endlesscustomers.com/#organization" },
+      "sameAs": [
+        "https://www.linkedin.com/company/impactbnd",
+        "https://www.facebook.com/impactbnd",
+        "https://www.instagram.com/impactbnd",
+        "https://www.youtube.com/@impactbnd",
+        "https://www.tiktok.com/@impactbnd",
+        "https://www.crunchbase.com/organization/impact-branding-design"
+      ],
+      "telephone": "+1-203-265-4377",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 Commerce Court, Suite 9",
+        "addressLocality": "Cheshire",
+        "addressRegion": "CT",
+        "postalCode": "06410",
+        "addressCountry": "US"
+      }
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-203-265-4377",
+      "contactType": "sales",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+</footer>
+  </div>
+
+
+
+  <!-- =====================================================================
+    MAIN SCRIPT — nav interactions, dropdowns, component loader
+    Adjust path prefix for subdirectories.
+    ===================================================================== -->
+  <script src="../../js/main.js?v=2026060925r"></script>
+
+</body>
+</html>

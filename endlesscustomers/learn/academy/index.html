@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <script>
+    (function () {
+      var s = localStorage.getItem('ec-theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', s === 'dark' || s === 'light' ? s : (d ? 'dark' : 'light'));
+    })();
+  </script>
+  <title>Endless Customers Academy — Courses, Community &amp; Membership</title>
+  <meta name="description" content="The Endless Customers Academy (formerly IMPACT+): all 35 courses and guides our coaches use with clients, a community of 8,000+ practitioners, every live event recording since 2018, and planning tools. Plans from $119/month." />
+  <meta property="og:title"       content="Endless Customers Academy — Courses, Community &amp; Membership" />
+  <meta property="og:description" content="The Endless Customers Academy (formerly IMPACT+): all 35 courses and guides our coaches use with clients, a community of 8,000+ practitioners, every live event recording since 2018, and planning tools. Plans from $119/month." />
+  <meta property="og:type"        content="website" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700,800&display=swap" />
+  <!-- Flash-free motion arming. html.ec-anim before first paint (main.css). -->
+  <script>
+    (function () {
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('ec-anim');
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="../../css/main.css?v=2026060929r" />
+  <link rel="stylesheet" href="../../css/learn.css?v=2026060925r" />
+  <script src="../../js/cms.js?v=2026060925r"></script>
+  <script src="../../js/learn-nav.js?v=2026060925r"></script>
+
+  <!-- Breadcrumb + membership product schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Learning Center", "item": "https://www.endlesscustomers.com/learn" },
+      { "@type": "ListItem", "position": 2, "name": "Endless Customers Academy", "item": "https://www.endlesscustomers.com/learn/academy" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Endless Customers Academy Membership",
+    "description": "Membership platform for the Endless Customers System: on-demand courses and guides, a practitioner community, live event recordings, planning tools, and weekly missions. Formerly IMPACT+.",
+    "brand": { "@type": "Organization", "name": "Endless Customers" },
+    "offers": [
+      { "@type": "Offer", "name": "Pro", "price": "119", "priceCurrency": "USD", "description": "Individual membership — $119/month or $899/year. Community, missions and leaderboard, starter set of 6 courses and guides, coaching AI bot, limited conference recordings." },
+      { "@type": "Offer", "name": "Pro+", "price": "350", "priceCurrency": "USD", "description": "Individual membership — $350/month or $4,200/year. 15 courses and guides, full conference recording library, plus 1 all-inclusive pass to each Endless Customers Live conference per year." },
+      { "@type": "Offer", "name": "Business", "price": "750", "priceCurrency": "USD", "description": "Whole-company membership — $750/month or $9,000/year. All 35 courses, guides and templates, full recordings, coaching AI bot, and the Endless Customers Game Plan tool." },
+      { "@type": "Offer", "name": "Business+", "price": "1000", "priceCurrency": "USD", "description": "Whole-company membership — $1,000/month or $12,000/year. Everything in Business plus 3 all-inclusive passes to each Endless Customers Live conference per year." }
+    ]
+  }
+  </script>
+
+  <style>
+  /* ===== Academy page-scoped styles ===== */
+
+  /* Oversized overview video — widens the standard .svc-media band (960px →
+     1140px) and goes cinematic 16/9. Sits between the compact Learn hero and
+     the proof strip. */
+  .acx-media .svc-media__inner{max-width:1140px;}
+  .acx-media .svc-video{aspect-ratio:16/9;}
+
+  /* Proof stats strip — count-up + staggered rise + draw-in accent underline
+     (June 2026 visual pass, per Bob: "what would Apple do" — fast, purposeful,
+     plays once on scroll-in, final values present in markup for no-JS/SEO) */
+  .acx-proof{padding-block:var(--space-32);}   /* extra air — the quiet beat between the video and What's Inside */
+  @media (max-width:809px){.acx-proof{padding-block:var(--space-16);}}
+  .acx-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-8);max-width:1040px;margin:0 auto;text-align:center;}
+  .acx-stat{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,1,.36,1);}
+  .acx-stats.is-in .acx-stat{opacity:1;transform:none;}
+  .acx-stats.is-in .acx-stat:nth-child(2){transition-delay:.08s;}
+  .acx-stats.is-in .acx-stat:nth-child(3){transition-delay:.16s;}
+  .acx-stats.is-in .acx-stat:nth-child(4){transition-delay:.24s;}
+  .acx-stat__num{font-family:var(--font-display);font-weight:800;font-size:clamp(2.25rem,1.2vw + 1.85rem,2.75rem);color:var(--color-heading);line-height:1.1;letter-spacing:var(--tracking-display);font-variant-numeric:tabular-nums;}
+  .acx-stat__num::after{content:"";display:block;width:34px;height:2px;border-radius:1px;background:var(--color-accent);margin:var(--space-4) auto 0;transform:scaleX(0);transition:transform .7s cubic-bezier(.22,1,.36,1) .4s;}
+  .acx-stats.is-in .acx-stat__num::after{transform:scaleX(1);}
+  .acx-stat__label{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-3);}
+
+  /* Hero avatar cluster — real practitioner faces + ring-draw "8k+" chip
+     (June 2026 visual pass). Plays once on load; hero is above the fold. */
+  .acx-avatars{display:flex;align-items:center;justify-content:center;gap:var(--space-3);margin-top:var(--space-7);flex-wrap:wrap;}
+  .acx-avatars__stack{display:flex;align-items:center;}
+  .acx-avatars__face{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--color-bg);margin-left:-12px;opacity:0;transform:scale(.4);animation:acxPop .5s cubic-bezier(.34,1.56,.64,1) forwards;}
+  .acx-avatars__face:first-child{margin-left:0;}
+  .acx-avatars__face:nth-child(1){animation-delay:.1s;}
+  .acx-avatars__face:nth-child(2){animation-delay:.2s;}
+  .acx-avatars__face:nth-child(3){animation-delay:.3s;}
+  .acx-avatars__face:nth-child(4){animation-delay:.4s;}
+  .acx-avatars__face:nth-child(5){animation-delay:.5s;}
+  .acx-avatars__face:nth-child(6){animation-delay:.6s;}
+  .acx-avatars__more{position:relative;width:46px;height:46px;margin-left:-12px;border-radius:50%;display:grid;place-items:center;background:var(--color-bg);color:var(--color-accent);opacity:0;transform:scale(.4);animation:acxPop .5s cubic-bezier(.34,1.56,.64,1) .72s forwards;}
+  .acx-avatars__more em{font-style:normal;font-family:var(--font-display);font-weight:700;font-size:var(--text-xs);color:var(--color-heading);}
+  .acx-avatars__more svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);}
+  .acx-avatars__more circle{stroke-dasharray:136;stroke-dashoffset:136;animation:acxRing 1s cubic-bezier(.22,1,.36,1) .9s forwards;}
+  .acx-avatars__note{font-size:var(--text-sm);color:var(--color-text-muted);opacity:0;animation:acxFade .6s ease 1.05s forwards;}
+  @keyframes acxPop{to{opacity:1;transform:scale(1);}}
+  @keyframes acxFade{to{opacity:1;}}
+  @keyframes acxRing{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion: reduce){
+    .acx-avatars__face,.acx-avatars__more,.acx-avatars__note{animation:none;opacity:1;transform:none;}
+    .acx-avatars__more circle{animation:none;stroke-dashoffset:0;}
+    .acx-stat,.acx-stats .acx-stat{opacity:1;transform:none;transition:none;}
+    .acx-stat__num::after{transform:scaleX(1);transition:none;}
+  }
+
+  /* What's-Included media rows — the three product moments get real platform
+     screenshots (placeholder frames carry their Gemini prompts until the
+     Academy-UI style skill exists; see TODO.md → Visual density) */
+  .acx-mrows{display:grid;gap:var(--space-16);max-width:1080px;margin:0 auto var(--space-16);}
+  .acx-mrow{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:center;}
+  .acx-mrow--flip .acx-mrow__media{order:-1;}
+  .acx-mrow__icon{width:42px;height:42px;border-radius:var(--radius-md);display:grid;place-items:center;color:var(--color-blue);background:var(--color-blue-subtle);font-size:20px;margin-bottom:var(--space-4);}
+  .acx-mrow__title{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);letter-spacing:var(--tracking-title);line-height:var(--leading-title);color:var(--color-heading);margin:0 0 var(--space-3);}
+  .acx-mrow__body{color:var(--color-text);line-height:1.65;margin:0;}
+  .acx-shot{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-border);background:var(--color-bg);box-shadow:var(--shadow-md);}
+  .acx-shot__bar{display:flex;gap:6px;padding:11px 14px;border-bottom:1px solid var(--color-border);}
+  .acx-shot__bar span{width:9px;height:9px;border-radius:50%;background:var(--color-border);}
+  @media (max-width:820px){
+    .acx-mrow{grid-template-columns:1fr;gap:var(--space-6);}
+    .acx-mrow--flip .acx-mrow__media{order:0;}
+    .acx-mrows{gap:var(--space-12);}
+  }
+
+  /* Placeholder frames — visible prompt text, swapped for real art later */
+  .acx-ph{aspect-ratio:16/10;display:grid;place-items:center;background:var(--color-bg-subtle);padding:var(--space-6);}
+  .acx-ph__inner{max-width:40ch;text-align:center;}
+  .acx-ph__tag{display:inline-block;font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent);border:1px dashed var(--color-accent);border-radius:var(--radius-full);padding:3px 12px;margin-bottom:var(--space-3);}
+  .acx-ph__prompt{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55;margin:0;}
+
+  /* Inline SVG-placeholder strip (checklist card, bridge arrow) */
+  .acx-svg-ph{border:1px dashed var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);margin-top:var(--space-5);font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;}
+  .acx-svg-ph strong{display:block;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent);margin-bottom:4px;}
+
+  /* Playbooks split section */
+  .acx-split{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);align-items:center;max-width:1060px;margin:0 auto;}
+  .acx-split__body p{color:var(--color-text);line-height:1.65;margin:0 0 var(--space-4);}
+  .acx-split__card{background:var(--color-panel,var(--color-bg-subtle));border-radius:var(--radius-xl);padding:var(--space-8);}
+  .acx-split__card-eyebrow{font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent);margin:0 0 var(--space-2);}
+  .acx-split__card-title{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);color:var(--color-heading);margin:0 0 var(--space-2);}
+  .acx-split__card-sub{font-size:var(--text-sm);color:var(--color-text-muted);margin:0 0 var(--space-4);}
+  .acx-split__card ul{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-3);}
+  .acx-split__card li{position:relative;padding-left:1.6rem;font-size:var(--text-sm);color:var(--color-text);line-height:1.45;}
+  .acx-split__card li::before{content:"\2713";position:absolute;left:0;color:#1aa179;font-weight:700;}
+  @media (max-width:820px){.acx-split{grid-template-columns:1fr;gap:var(--space-6);}}
+
+  /* Orphan fix for the 3 What's-Included icon cards (shared component, scoped here) */
+  #inside .sys-components{grid-template-columns:repeat(3,1fr);}
+  @media (max-width:1020px){#inside .sys-components{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:680px){#inside .sys-components{grid-template-columns:1fr;}}
+
+  /* Courses & guides — big materials collage + track accordion (June 2026,
+     replaces the card-stack grid; collage placeholder carries the art prompt) */
+  .acx-cg{display:grid;grid-template-columns:5fr 6fr;gap:var(--space-12);align-items:start;max-width:1080px;margin:0 auto;}
+  .acx-cg__visual{position:sticky;top:140px;}
+  .acx-collage{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-border);background:var(--color-bg);box-shadow:var(--shadow-md);}
+  .acx-collage .acx-ph{aspect-ratio:4/5;}
+  .acx-acc{display:grid;gap:var(--space-3);align-content:start;}
+  .acx-acc details{background:var(--color-panel,var(--color-bg-subtle));border-radius:var(--radius-lg);padding:0 var(--space-5);}
+  .acx-acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:var(--space-3);padding:var(--space-4) 0;font-family:var(--font-display);font-weight:700;font-size:var(--text-base);letter-spacing:var(--tracking-title);color:var(--color-heading);}
+  .acx-acc summary::-webkit-details-marker{display:none;}
+  .acx-acc summary i{font-size:20px;color:var(--color-accent);flex-shrink:0;}
+  .acx-acc summary::after{content:"+";margin-left:auto;font-family:var(--font-sans);font-size:var(--text-xl);font-weight:300;line-height:1;color:var(--color-accent);transition:transform .25s cubic-bezier(.32,.72,0,1);}
+  .acx-acc details[open] summary::after{transform:rotate(45deg);}
+  .acx-acc ul{list-style:none;margin:0;padding:0 0 var(--space-4) calc(20px + var(--space-3));display:grid;gap:var(--space-2);}
+  .acx-acc li{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.45;position:relative;padding-left:1.1rem;}
+  .acx-acc li::before{content:"\2022";position:absolute;left:0;color:var(--color-accent);}
+  @media (max-width:860px){
+    .acx-cg{grid-template-columns:1fr;gap:var(--space-6);}
+    .acx-cg__visual{position:static;max-width:440px;margin:0 auto;}
+  }
+
+  /* Plan chooser — persona router above the pricing table (June 2026).
+     One primary button per view: the featured company card. */
+  .acx-choose{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5);max-width:1080px;margin:0 auto;}
+  .acx-choice{background:var(--color-panel,var(--color-bg-subtle));border-radius:var(--radius-xl);padding:var(--space-7);display:flex;flex-direction:column;}
+  .acx-choice--featured{outline:2px solid var(--color-accent);outline-offset:-2px;}
+  .acx-choice__icon{width:42px;height:42px;border-radius:var(--radius-md);display:grid;place-items:center;color:var(--color-blue);background:var(--color-blue-subtle);font-size:20px;margin-bottom:var(--space-4);}
+  .acx-choice__title{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);letter-spacing:var(--tracking-title);line-height:var(--leading-title);color:var(--color-heading);margin:0 0 var(--space-2);}
+  .acx-choice__body{font-size:var(--text-sm);color:var(--color-text);line-height:1.55;margin:0 0 var(--space-5);}
+  .acx-choice__price{font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);color:var(--color-heading);line-height:1.1;}
+  .acx-choice__per{font-size:var(--text-xs);color:var(--color-text-muted);margin:2px 0 var(--space-5);}
+  .acx-choice .btn{margin-top:auto;align-self:flex-start;}
+  @media (max-width:1020px){.acx-choose{grid-template-columns:1fr;max-width:520px;}}
+  /* In-section transition from chooser to the comparison table */
+  .acx-compare{text-align:center;max-width:640px;margin:var(--space-20) auto var(--space-12);}
+  .acx-compare__title{font-family:var(--font-display);font-weight:800;font-size:var(--h2-section);letter-spacing:var(--tracking-heading);line-height:var(--leading-heading);color:var(--color-heading);margin:0 0 var(--space-3);}
+  .acx-compare__sub{font-size:var(--text-base);color:var(--color-text);line-height:var(--leading-body);margin:0;}
+
+  /* Book-reader bridge band — split: real 3D book art left, copy right
+     (June 2026 visual pass) */
+  .acx-band{display:grid;grid-template-columns:280px 1fr;gap:var(--space-10);align-items:center;max-width:980px;margin:0 auto;text-align:left;background:var(--color-panel,var(--color-bg-subtle));border-radius:var(--radius-xl);padding:var(--space-10);}
+  .acx-band__media img{display:block;width:100%;height:auto;}
+  .acx-band__title{font-family:var(--font-display);font-weight:800;font-size:var(--h2-marquee);letter-spacing:var(--tracking-heading);line-height:var(--leading-heading);color:var(--color-heading);margin:0 0 var(--space-4);}
+  .acx-band__sub{color:var(--color-text-muted);max-width:56ch;margin:0 0 var(--space-5);line-height:1.6;}
+  .acx-band .svc-hero__actions{justify-content:flex-start;margin-top:0;}
+  @media (max-width:820px){
+    .acx-band{grid-template-columns:1fr;text-align:center;padding:var(--space-8) var(--space-6);}
+    .acx-band__media{max-width:220px;margin:0 auto;}
+    .acx-band__sub{margin-inline:auto;}
+    .acx-band .svc-hero__actions{justify-content:center;}
+  }
+
+  /* ===== Full plan-comparison table (mirrors the coaching pricing .cpt pattern) ===== */
+  .cpt-wrap{max-width:1180px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .cpt{width:100%;min-width:980px;border-collapse:separate;border-spacing:0;}
+  .cpt th,.cpt td{padding:var(--space-5) var(--space-4);vertical-align:top;text-align:center;border-bottom:1px solid var(--color-border);}
+  .cpt th:first-child,.cpt td:first-child{text-align:left;width:30%;}
+  .cpt thead th{vertical-align:bottom;border-bottom:2px solid var(--color-border);padding-top:var(--space-6);}
+  .cpt col.cpt-col--featured{background:var(--color-accent-subtle);}
+  .cpt__plan-name{font-family:var(--font-display);font-weight:700;font-size:var(--text-xl);color:var(--color-heading);margin:0 0 var(--space-2);}
+  .cpt__plan-badge{display:inline-block;background:var(--color-accent-fill);color:#fff;font-size:var(--text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .8rem;border-radius:var(--radius-full);margin-bottom:var(--space-2);}
+  .cpt__plan-desc{font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin:0 0 var(--space-4);}
+  .cpt__feature{font-weight:700;color:var(--color-heading);font-size:var(--text-base);line-height:1.35;}
+  .cpt__desc{display:block;font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.5;margin-top:var(--space-2);max-width:38ch;}
+  .cpt__value{font-weight:700;color:var(--color-heading);font-size:var(--text-sm);line-height:1.35;}
+  .cpt__note{display:block;font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px;}
+  .cpt__check{color:#1aa179;font-size:22px;line-height:1;}
+  .cpt__na{color:var(--color-text-muted);opacity:.65;font-weight:500;font-size:var(--text-sm);}
+  .cpt__price{font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);color:var(--color-heading);line-height:1;}
+  .cpt__per{display:block;font-weight:400;font-size:var(--text-xs);color:var(--color-text-muted);margin-top:2px;}
+
+  /* FAQ (same pattern as coaching) */
+  .faq__body{padding:0 0 var(--space-5);color:var(--color-text);line-height:1.65;}
+  .faq__body a{color:var(--color-accent);}
+  </style>
+</head>
+<body class="page-accent--blue">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="nav-placeholder">
+<nav class="nav nav--docked" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+
+    <!-- Logo -->
+    <a href="/" class="nav__logo" aria-label="Endless Customers — home">
+      <img src="../../assets/images/logo-dark.svg"  class="nav__logo-img nav__logo-img--light" alt="Endless Customers" width="111" height="34">
+      <img src="../../assets/images/logo-white.svg" class="nav__logo-img nav__logo-img--dark"  alt="" aria-hidden="true" width="111" height="34">
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul class="nav__menu" role="list">
+
+      <!-- LEARN -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-learn" data-dropdown="learn">
+          Learning Center
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- Learn: featured diagnostic at top, 2-col grid below -->
+        <div class="nav__dropdown nav__dropdown--learn" id="dd-learn" aria-label="Learn">
+          <a href="/learn/" class="dd-parent">Learning Center <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/diagnostic" class="dd-featured">
+            <div class="dd-featured__eyebrow">✦ Free Tool</div>
+            <div class="dd-featured__title">Get Your Free AI Diagnostic</div>
+            <div class="dd-featured__sub">Enter your website URL — get a full marketing audit instantly</div>
+          </a>
+          <div class="dd-cols dd-cols--3">
+            <div class="dd-col">
+              <span class="dd-label">Learn the System</span>
+              <a href="/learn/what-is-endless-customers" class="dd-item">
+                <svg class="dd-icon dd-icon--ec" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M20.85,12.16c-.01.44-.05.87-.13,1.29-.17,1.02-.52,2.02-1.04,2.92v.04c-.78,1.34-1.91,2.47-3.26,3.24-1.06.63-2.24,1.01-3.45,1.14v-3.67c.57-.11,1.13-.31,1.64-.61.68-.39,1.23-.9,1.67-1.53h0s-.33-.64-.38-.73c.86-.08.18-.02.2-.02l.66-.06c.11-.24.19-.47.26-.72.15-.5.23-1.03.21-1.55,0-.5-.08-.97-.23-1.44-.01-.08-.05-.15-.07-.24l3.18-1.84c.3.66.5,1.36.62,2.08.09.56.14,1.13.13,1.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M12.02,1.19c5.44,0,9.96,4.05,10.68,9.29h1.09C23.06,4.64,18.06.11,12.02.11S.99,4.64.25,10.48h1.09C2.07,5.24,6.59,1.19,12.02,1.19Z"></path><path d="M12.02,22.77c-5.44,0-9.96-4.05-10.68-9.29H.25c.74,5.84,5.74,10.37,11.77,10.37s11.04-4.53,11.77-10.37h-1.09c-.72,5.25-5.25,9.29-10.68,9.29Z"></path><path d="M7.49,19.54c-.37-.23-.73-.47-1.05-.76-.8-.65-1.49-1.46-2.01-2.36l-.03-.02c-.77-1.35-1.18-2.89-1.17-4.45-.02-1.23.25-2.45.74-3.56l3.18,1.83c-.19.55-.3,1.13-.29,1.72,0,.78.16,1.52.49,2.21h.01s.71.03.81.03c-.36.78-.08.17-.09.19l-.28.6c.15.21.32.4.5.59.35.38.78.71,1.24.96.43.25.88.41,1.36.52.08.03.16.04.24.06v3.67c-.72-.08-1.43-.25-2.1-.5-.53-.2-1.05-.44-1.53-.74Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width=".75"></path><path d="M7.74,4.02c.39-.21.77-.39,1.19-.53.97-.37,1.97-.57,3.01-.57h.07c1.55,0,3.09.42,4.44,1.21,1.07.6,1.99,1.44,2.71,2.42l-3.18,1.83c-.38-.44-.83-.82-1.34-1.12-.68-.39-1.4-.62-2.16-.68h0s-.38.61-.43.7c-.5-.71-.11-.15-.12-.17l-.38-.54c-.26.03-.51.07-.76.14-.51.12-1.01.32-1.45.59-.43.25-.8.56-1.13.91-.07.05-.11.12-.17.18l-3.18-1.83c.43-.59.93-1.11,1.49-1.57.44-.36.91-.69,1.4-.96Z" fill="none" stroke="currentColor" stroke-miterlimit="2" stroke-width=".75"></path></svg>
+                <div><div class="dd-item__title">What is Endless Customers?<span class="dd-badge-new">Start Here</span></div><div class="dd-item__sub">The system, why it works, and the proof</div></div>
+              </a>
+              <a href="/learn/core-concepts-frameworks" class="dd-item">
+                <i class="ti ti-stack-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Core Concepts &amp; Frameworks</div><div class="dd-item__sub">Every concept, one clear answer</div></div>
+              </a>
+              <a href="/learn/academy" class="dd-item">
+                <i class="ti ti-school dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Endless Customers Academy</div><div class="dd-item__sub">Courses, community, and self-paced learning</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Get an Answer</span>
+              <a href="/learn/topics/" class="dd-item">
+                <i class="ti ti-category dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Browse Topics</div><div class="dd-item__sub">Every subject, every format, one place</div></div>
+              </a>
+              <a href="/learn/" class="dd-item" data-search-trigger>
+                <i class="ti ti-search dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Search the Learning Center</div><div class="dd-item__sub">Articles, webinars, lessons &amp; tools</div></div>
+              </a>
+              <a href="/learn/tools" class="dd-item">
+                <i class="ti ti-download dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Tools &amp; Downloads</div><div class="dd-item__sub">Guides, AI tools, and templates</div></div>
+              </a>
+            </div>
+            <div class="dd-col">
+              <span class="dd-label">Stay Current</span>
+              <a href="/learn/latest" class="dd-item">
+                <i class="ti ti-news dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Latest Insights</div><div class="dd-item__sub">New articles, episodes &amp; events</div></div>
+              </a>
+              <a href="/learn/webinars" class="dd-item">
+                <i class="ti ti-video dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">Webinars</div><div class="dd-item__sub">Upcoming live &amp; the on-demand library</div></div>
+              </a>
+              <a href="/learn/podcast" class="dd-item">
+                <i class="ti ti-microphone-2 dd-icon" aria-hidden="true"></i>
+                <div><div class="dd-item__title">The Endless Customers Podcast</div><div class="dd-item__sub">Watch or listen to every episode</div></div>
+              </a>
+            </div>
+          </div>
+          <!-- Bottom CTA (full-width) — Subscribe. Moved out of the Stay Current
+               column June 2026 so the three columns balance 3/3/3 after the book
+               left the left column; frames the panel opposite the featured tile. -->
+          <a href="/learn/subscribe" class="dd-cta">
+            <i class="ti ti-bell dd-icon" aria-hidden="true"></i>
+            Subscribe for New Content, Twice a Week, Free
+            <span class="dd-parent__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </li>
+
+      <!-- HOW WE HELP -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-help" data-dropdown="help">
+          How We Help
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+
+        <!-- How We Help: "The Path" (June 2026, per Bob — replaces the 4-col
+             services grid). Everything lives under the Endless Customers brand.
+             Left = the order of operations (audit → fix what's broken → coaching);
+             middle = Additional Services for those who know what they want;
+             right = Pricing & Fit then Proof & Trust; foot = a utility strip
+             (free-diagnostic on-ramp + the one-off Request a Speaker ask).
+             Rides on --4col for the full-width docked panel; --path swaps in the
+             three-column grid, the numbered path, and the strip. -->
+        <div class="nav__dropdown nav__dropdown--4col nav__dropdown--path" id="dd-help" aria-label="How We Help">
+
+          <a href="/how-we-help/" class="dd-parent">How We Help <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+
+          <!-- Col 1: The Path — the order of operations -->
+          <div class="dd-col dd-col--path">
+            <span class="dd-label">The Path to Endless Customers</span>
+            <div class="dd-path">
+              <a href="/how-we-help/audit-and-recommendations" class="dd-step">
+                <span class="dd-step__num">1</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Marketing Audit &amp; Recommendations <span class="dd-badge-new">Start Here</span></div>
+                  <div class="dd-step__sub">Find out what's broken and what to fix first.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/initial-projects" class="dd-step">
+                <span class="dd-step__num">2</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">Initial Projects &amp; Fixes</div>
+                  <div class="dd-step__sub">Then fix it together, with quick early wins.</div>
+                </div>
+              </a>
+              <a href="/how-we-help/coaching-program" class="dd-step">
+                <span class="dd-step__num">3</span>
+                <div class="dd-step__body">
+                  <div class="dd-step__title">The Endless Customers Coaching Program</div>
+                  <div class="dd-step__sub">Finally, go all-in on the full system.</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Col 2: Additional Services (website family, then marketing/AI, then HubSpot) -->
+          <div class="dd-col">
+            <span class="dd-label">Additional Services</span>
+            <a href="/how-we-help/websites/redesign" class="dd-svc">
+              <i class="ti ti-layout-2 dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Redesign</span>
+            </a>
+            <a href="/how-we-help/websites/optimization" class="dd-svc">
+              <i class="ti ti-chart-bar dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Website Optimization</span>
+            </a>
+            <a href="/how-we-help/websites/learning-center" class="dd-svc">
+              <i class="ti ti-library dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Learning Center Development</span>
+            </a>
+            <a href="/how-we-help/websites/self-service-tools" class="dd-svc">
+              <i class="ti ti-tool dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Self-Service Tools</span>
+            </a>
+            <a href="/how-we-help/paid-advertising" class="dd-svc">
+              <i class="ti ti-speakerphone dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Paid Advertising</span>
+            </a>
+            <a href="/how-we-help/ai" class="dd-svc">
+              <i class="ti ti-brain dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">AI Services<span class="dd-badge-new">New</span></span>
+            </a>
+            <a href="/how-we-help/hubspot" class="dd-svc">
+              <svg class="dd-icon dd-icon--hubspot" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.164 7.93V5.084a2.198 2.198 0 0 0 1.267-1.978v-.067A2.2 2.2 0 0 0 17.238.845h-.067a2.2 2.2 0 0 0-2.193 2.193v.067a2.196 2.196 0 0 0 1.252 1.973l.013.006v2.852a6.22 6.22 0 0 0-2.969 1.31l.012-.01-7.828-6.095A2.497 2.497 0 1 0 4.3 5.166l-.008.006 7.697 5.991a6.176 6.176 0 0 0-1.038 3.446c0 1.343.425 2.588 1.147 3.607l-.013-.02-2.342 2.343a1.968 1.968 0 0 0-.58-.095h-.002a2.033 2.033 0 1 0 2.033 2.033 1.978 1.978 0 0 0-.1-.595l.005.014 2.317-2.317a6.247 6.247 0 1 0 4.782-11.134l-.036-.005zm-1.02 9.378a3.208 3.208 0 1 1 3.208-3.208 3.207 3.207 0 0 1-3.208 3.207z"></path></svg>
+              <span class="dd-svc__name">HubSpot Training &amp; Services</span>
+            </a>
+            <a href="https://trusttheme.com" class="dd-svc" target="_blank" rel="noopener">
+              <i class="ti ti-palette dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">TRUST Theme for HubSpot</span>
+              <svg class="dd-ext" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="visually-hidden">(opens in new tab)</span>
+            </a>
+          </div>
+
+          <!-- Col 3: Pricing & Fit, then Proof & Trust -->
+          <div class="dd-col">
+            <span class="dd-label">Pricing &amp; Fit</span>
+            <a href="/how-we-help/coaching-program/pricing" class="dd-svc">
+              <i class="ti ti-tag dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Pricing</span>
+            </a>
+            <a href="/how-we-help/compare-your-options" class="dd-svc">
+              <i class="ti ti-scale dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Compare Your Options</span>
+            </a>
+            <a href="/how-we-help/who-we-work-with" class="dd-svc">
+              <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Who We Work With</span>
+            </a>
+            <span class="dd-label dd-label--stacked">Proof &amp; Trust</span>
+            <a href="/how-we-help/success-stories" class="dd-svc">
+              <i class="ti ti-trophy dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Success Stories</span>
+            </a>
+            <a href="/how-we-help/reviews" class="dd-svc">
+              <i class="ti ti-star dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Reviews</span>
+            </a>
+            <a href="/how-we-help/guarantee" class="dd-svc">
+              <i class="ti ti-shield-check dd-icon" aria-hidden="true"></i>
+              <span class="dd-svc__name">Our Guarantee</span>
+            </a>
+          </div>
+
+        </div>
+      </li>
+
+      <!-- OUR TEAM -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-team" data-dropdown="team">
+          Our Team
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown" id="dd-team" aria-label="Our Team">
+          <a href="/team/" class="dd-parent">Our Team <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/team/about" class="dd-item">
+            <i class="ti ti-compass dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Our Story, Vision &amp; Values</div><div class="dd-item__sub">Where we came from and what we stand for</div></div>
+          </a>
+          <a href="/team/meet-the-team" class="dd-item">
+            <i class="ti ti-users-group dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Meet the Team</div><div class="dd-item__sub">Endless Customers coaches, specialists, and staff</div></div>
+          </a>
+          <a href="/team/awards" class="dd-item">
+            <i class="ti ti-award dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Awards &amp; Recognition</div><div class="dd-item__sub">Industry honors, dated and sourced</div></div>
+          </a>
+          <a href="/how-we-help/request-a-speaker" class="dd-item">
+            <i class="ti ti-microphone dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Request a Speaker</div><div class="dd-item__sub">Book an EC speaker for your event or conference</div></div>
+          </a>
+          <a href="/team/become-a-coach" class="dd-item">
+            <i class="ti ti-heart-handshake dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Become a Coach</div><div class="dd-item__sub">Want to help businesses implement Endless Customers?</div></div>
+          </a>
+          <a href="/team/join-the-team" class="dd-item">
+            <i class="ti ti-briefcase dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">All Open Positions</div><div class="dd-item__sub">Browse open roles across the company</div></div>
+          </a>
+        </div>
+      </li>
+
+      <!-- THE CONFERENCE -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-conference" data-dropdown="conference">
+          Conference
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--conference nav__dropdown--right" id="dd-conference" data-theme="dark" aria-label="Conference">
+          <div class="conf-image" aria-hidden="true">
+            <div class="conf-scene is-active" id="conf-scene-0" style="background-image:url('../../assets/images/endless-customers-live/ec-live-1.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-1" style="background-image:url('../../assets/images/endless-customers-live/ec-live-2.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-2" style="background-image:url('../../assets/images/endless-customers-live/ec-live-3.jpg')"></div>
+            <div class="conf-scene" id="conf-scene-3" style="background-image:url('../../assets/images/endless-customers-live/ec-live-4.jpg')"></div>
+            <div class="conf-progress" id="conf-progress">
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+              <span class="conf-progress__bar"><i></i></span>
+            </div>
+          </div>
+          <div class="conf-links">
+            <a href="/live/" class="conf-logo-link" aria-label="Endless Customers Live"><img src="../../assets/images/endless-customers-live/ec-live-logo-white.png" alt="Endless Customers Live" class="conf-logo"></a>
+            <a href="/live/" class="conf-explore">Explore the Conference <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+            <div class="conf-dates-label">Upcoming Dates</div>
+            <a href="/live/hartford-2026" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Hartford, CT</div><div class="conf-date-when">Oct 5–7, 2026</div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <a href="/live/chicago-2027" class="conf-date-row">
+              <i class="ti ti-map-pin dd-icon" aria-hidden="true"></i>
+              <div class="conf-date-info"><div class="conf-date-city">Chicago, IL</div><div class="conf-date-when">Apr 5–7, 2027 · <span class="conf-eb">Early Bird</span></div></div>
+              <span class="conf-date-reg">Learn More &amp; Register →</span>
+            </a>
+            <div class="dd-sep"></div>
+            <a href="/live/experience/" class="conf-link">
+              <i class="ti ti-sparkles" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">What It's Like</span>
+            </a>
+            <a href="/live/past/" class="conf-link">
+              <i class="ti ti-history" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Past Events</span>
+            </a>
+            <a href="/live/sponsor" class="conf-link">
+              <i class="ti ti-award" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Become a Sponsor</span>
+            </a>
+            <a href="/live/convince-your-boss" class="conf-link">
+              <i class="ti ti-user-check" style="font-size:15px;color:var(--color-text-muted)" aria-hidden="true"></i>
+              <span class="conf-link__text">Convince Your Boss</span>
+            </a>
+          </div>
+        </div>
+      </li>
+
+      <!-- BOOK -->
+      <li class="nav__item">
+        <button class="nav__trigger" aria-expanded="false" aria-controls="dd-book" data-dropdown="book">
+          Book
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav__dropdown nav__dropdown--right" id="dd-book" aria-label="Book">
+          <a href="/book/" class="dd-parent">Book <span class="dd-parent__arrow" aria-hidden="true">→</span></a>
+          <a href="/book/about" class="dd-item">
+            <i class="ti ti-book-2 dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">About <em>Endless Customers</em></div><div class="dd-item__sub">What it's about, plus where to buy</div></div>
+          </a>
+          <a href="/book/companion-guide" class="dd-item">
+            <i class="ti ti-notebook dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Companion Guide</div><div class="dd-item__sub">The workbook that puts the book to work</div></div>
+          </a>
+          <a href="/book/preview" class="dd-item">
+            <i class="ti ti-file-text dd-icon" aria-hidden="true"></i>
+            <div><div class="dd-item__title">Preview (Free Chapter)</div><div class="dd-item__sub">Read the opening chapter free</div></div>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- Right actions -->
+    <div class="nav__actions">
+      <!-- Returning-member affordance: quiet account icon, grouped with the
+           theme toggle as an icon-utility pair so it never competes with the
+           two text CTAs. Visible at every width (incl. the ≤1199 collapsed
+           bar) so members can log in top-right without opening the menu.
+           Destination is the EC Academy app login (impactplus.com app). -->
+      <a href="https://app.impactplus.com/users/sign_in" class="nav__account" target="_blank" rel="noopener" aria-label="Endless Customers Academy Login (opens in new tab)" title="Endless Customers Academy Login">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a href="/diagnostic" class="btn--nav-ghost">Free AI Diagnostic</a>
+      <a href="/lets-talk" class="btn--nav-primary">Let's Talk →</a>
+      <button class="nav__hamburger" id="nav-hamburger" aria-expanded="false" aria-controls="nav-mobile" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile menu — drill-down (main panel + one sub-panel per group) -->
+  <div class="nav__mobile" id="nav-mobile" role="dialog" aria-modal="true" aria-label="Mobile navigation"></div>
+
+</nav>
+  </div>
+
+
+
+  <!-- SUBNAV — scroll-triggered anchor pill (svc pattern). Hidden until the
+       visitor scrolls past the hero, then fades in with in-page anchors whose
+       labels match the section eyebrows verbatim (orientation: the pill tells
+       you which eyebrow you're under). CTA funnels both buyer paths to the
+       plans table, where Pro self-serves and Business talks to sales. -->
+  <nav class="subnav subnav--svc" id="subnav" aria-label="Academy section navigation">
+    <div class="subnav__inner">
+      <div class="subnav__links">
+        <a href="#inside" class="subnav__link">What's Included</a>
+        <a href="#why-it-works" class="subnav__link">Why It Works</a>
+        <a href="#courses" class="subnav__link">Courses &amp; Guides</a>
+        <a href="#faq" class="subnav__link">FAQ</a>
+        <a href="#pricing-plans" class="btn--nav-primary subnav__cta">See Pricing &amp; Plans</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- HERO — svc-hero system, compact Learn cut -->
+    <section class="svc-hero svc-hero--learn">
+      <div class="svc-hero__bg" aria-hidden="true"></div>
+      <div class="svc-hero__inner">
+        <div class="subnav__crumb svc-crumb" aria-label="Breadcrumb">
+          <span class="subnav__crumb-trail">
+            <a href="/learn" class="subnav__crumb-root">Learning Center</a>
+            <span class="subnav__crumb-sep" aria-hidden="true">&rsaquo;</span>
+          </span>
+          <span class="subnav__crumb-current" aria-current="page"><span class="svc-crumb__icon" aria-hidden="true"><i class="ti ti-school"></i></span> Endless Customers Academy</span>
+        </div>
+        <h1 class="svc-hero__headline headline-short">Learn the system at your own pace.</h1>
+        <p class="svc-hero__sub">Every course and playbook our coaches use with clients, a community of 8,000+ practitioners, and recordings from every live event — in one membership.</p>
+        <div class="svc-hero__actions">
+          <a href="#pricing-plans" class="btn btn--primary btn--lg">See pricing &amp; plans</a>
+          <a href="#inside" class="btn btn--ghost btn--lg">Explore what's inside</a>
+        </div>
+        <!-- Community proof — real practitioner faces (June 2026 visual pass) -->
+        <div class="acx-avatars">
+          <div class="acx-avatars__stack" aria-hidden="true">
+            <img class="acx-avatars__face" src="../../assets/images/client-photos/Kaitlyn-Pintarich.jpeg" alt="" loading="lazy" width="42" height="42">
+            <img class="acx-avatars__face" src="../../assets/images/client-photos/Alex-Krawtschenko_Square.jpeg" alt="" loading="lazy" width="42" height="42">
+            <img class="acx-avatars__face" src="../../assets/images/client-photos/Hannah_Eisenberg_square.jpeg" alt="" loading="lazy" width="42" height="42">
+            <img class="acx-avatars__face" src="../../assets/images/client-photos/John-Gulino_square.jpeg" alt="" loading="lazy" width="42" height="42">
+            <img class="acx-avatars__face" src="../../assets/images/client-photos/Claudia_Holy_Square.jpeg" alt="" loading="lazy" width="42" height="42">
+            <img class="acx-avatars__face" src="../../assets/images/client-photos/Moby_Siddique_Square.jpeg" alt="" loading="lazy" width="42" height="42">
+            <span class="acx-avatars__more"><svg viewBox="0 0 46 46" aria-hidden="true"><circle cx="23" cy="23" r="21.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><em>8k+</em></span>
+          </div>
+          <span class="acx-avatars__note">Join 8,000+ practitioners inside</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="lc-wrap">
+
+      <!-- OVERSIZED OVERVIEW VIDEO — standard .svc-media band, widened for the
+           Academy (June 2026 visual pass, per Bob: oversized video like the
+           homepage/coaching heroes). Lives INSIDE .lc-wrap so the
+           `.svc-hero--learn + .lc-wrap` zero-padding adjacency stays intact. -->
+      <!-- TODO(video): real Academy tour or Marcus welcome, 60–90s. Poster is a
+           stand-in coaching photo; swap for an Academy platform UI frame once
+           screenshots exist (see TODO.md → Academy visual pass item 2). -->
+      <section class="svc-media acx-media" aria-label="Academy overview video">
+        <div class="svc-media__inner">
+          <div class="svc-video" role="img" aria-label="Video tour of the Endless Customers Academy">
+            <img src="../../assets/images/coaching-action-shots/Implementing-Endless-Customers.webp" alt="A team implementing the Endless Customers System together" />
+            <button class="svc-video__play" aria-label="Play the Academy tour video">
+              <span><i class="ti ti-player-play-filled" aria-hidden="true"></i></span>
+            </button>
+            <span class="svc-video__label">Watch: Inside the Academy</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROOF STRIP -->
+      <section class="section acx-proof">
+        <div class="container">
+          <div class="acx-stats">
+            <div class="acx-stat"><div class="acx-stat__num" data-count="8000" data-suffix="+">8,000+</div><div class="acx-stat__label">Members in the community</div></div>
+            <div class="acx-stat"><div class="acx-stat__num" data-count="35">35</div><div class="acx-stat__label">Courses, guides &amp; templates</div></div>
+            <div class="acx-stat"><div class="acx-stat__num" data-count="8" data-suffix=" years">8 years</div><div class="acx-stat__label">Of live event recordings</div></div>
+            <div class="acx-stat"><div class="acx-stat__num">Weekly</div><div class="acx-stat__label">New missions &amp; challenges</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT'S INSIDE -->
+      <section class="section section--alt subnav-section" id="inside">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">What's included</span>
+            <h2 class="section__title section__title--lg">Everything you need to put the system to work</h2>
+            <p class="section__subtitle">The Academy is the official home of the Endless Customers System — the place where the book becomes a working plan for your business.</p>
+          </header>
+          <!-- Three product moments as media rows — real platform screenshots.
+               TODO(gemini): generate all three with one Academy-UI style skill
+               (not yet built) so they share a design language. Prompts are
+               visible inside each frame. -->
+          <div class="acx-mrows">
+            <div class="acx-mrow">
+              <div class="acx-mrow__copy">
+                <div class="acx-mrow__icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+                <h3 class="acx-mrow__title">A practitioner community</h3>
+                <p class="acx-mrow__body">8,000+ owners, marketers, and salespeople running the system. Ask questions, share wins, and get answers from peers, certified coaches, and the IMPACT team.</p>
+              </div>
+              <div class="acx-mrow__media">
+                <div class="acx-shot">
+                  <div class="acx-shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="acx-ph"><div class="acx-ph__inner"><span class="acx-ph__tag">Gemini image</span><p class="acx-ph__prompt">Academy community feed UI: discussion threads with member avatars, one reply carrying a "Certified Coach" badge, a trending-topics rail on the right — clean light interface, EC blue accents.</p></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="acx-mrow acx-mrow--flip">
+              <div class="acx-mrow__copy">
+                <div class="acx-mrow__icon"><i class="ti ti-player-play" aria-hidden="true"></i></div>
+                <h3 class="acx-mrow__title">Courses &amp; guides</h3>
+                <p class="acx-mrow__body">35 courses, guides, and templates covering every role and stage — the same playbooks our coaches run with clients, from kickoff through mastery.</p>
+              </div>
+              <div class="acx-mrow__media">
+                <div class="acx-shot">
+                  <div class="acx-shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <!-- TODO(gemini): this frame doubles as the hero video poster once generated -->
+                  <div class="acx-ph"><div class="acx-ph__inner"><span class="acx-ph__tag">Gemini image</span><p class="acx-ph__prompt">Course player UI: video lesson with Marcus Sheridan mid-frame, left sidebar listing "Fundamentals of Endless Customers Masterclass" lessons with progress checkmarks — clean light interface, EC blue accents.</p></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="acx-mrow">
+              <div class="acx-mrow__copy">
+                <div class="acx-mrow__icon"><i class="ti ti-flag" aria-hidden="true"></i></div>
+                <h3 class="acx-mrow__title">Endless Missions</h3>
+                <p class="acx-mrow__body">Bite-sized weekly challenges that turn the system into action. Earn points, climb the leaderboard, and keep your team accountable.</p>
+              </div>
+              <div class="acx-mrow__media">
+                <div class="acx-shot">
+                  <div class="acx-shot__bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="acx-ph"><div class="acx-ph__inner"><span class="acx-ph__tag">Gemini image</span><p class="acx-ph__prompt">Missions screen: weekly challenge cards with point values, a progress streak, leaderboard rail with ranked member avatars — clean light interface, EC blue accents.</p></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Remaining three stay as compact icon cards (balanced 3-up) -->
+          <div class="sys-components">
+            <div class="sys-comp"><div class="sys-comp__icon"><i class="ti ti-video"></i></div><div><h3 class="sys-comp__title">Every event recording</h3><div class="sys-comp__body">The full session library from every Endless Customers Live and IMPACT Live conference back to 2018 — keynotes, workshops, and breakouts.</div></div></div>
+            <!-- TODO(svg): animated icon candidate — a 12/18/24-month roadmap line that
+                 draws itself on scroll, replacing the static target icon -->
+            <div class="sys-comp"><div class="sys-comp__icon"><i class="ti ti-target-arrow"></i></div><div><h3 class="sys-comp__title">Planning tools</h3><div class="sys-comp__body">The Endless Customers Game Plan, Scorecard, and Typical Journey™ — set quarterly priorities, track progress, and see the 24-month road ahead.</div></div></div>
+            <!-- TODO(svg): animated icon candidate — subtle typing-dots loop on the chat bubble -->
+            <div class="sys-comp"><div class="sys-comp__icon"><i class="ti ti-message-chatbot"></i></div><div><h3 class="sys-comp__title">Coaching AI bot</h3><div class="sys-comp__body">An AI assistant trained on the Endless Customers System — get implementation answers any time, between community replies.</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLAYBOOKS, NOT LECTURES -->
+      <section class="section subnav-section" id="why-it-works">
+        <div class="container">
+          <div class="acx-split">
+            <div class="acx-split__body">
+              <span class="section__eyebrow">Why it works</span>
+              <h2 class="section__title section__header--left">The same playbooks our coaches use with clients</h2>
+              <p>These aren't watch-and-forget video courses. Each guide walks you through a complete process with clear assignments along the way, so you're doing the work, not just reading about it.</p>
+              <p>Start with the Fundamentals of Endless Customers Masterclass, led by author and keynote speaker Marcus Sheridan, then follow the role-by-role guides your team needs — content manager, videographer, sales leader, or owner.</p>
+            </div>
+            <div class="acx-split__card">
+              <p class="acx-split__card-eyebrow">Example guide outcome</p>
+              <h3 class="acx-split__card-title">Building Your Content Foundation</h3>
+              <p class="acx-split__card-sub">By the end of this one guide, you'll have:</p>
+              <ul>
+                <li>A content strategy mapped to your buyer's journey</li>
+                <li>A 90-day editorial calendar</li>
+                <li>A backlog of ready-to-publish articles</li>
+                <li>Your first three articles live on your website</li>
+                <li>A repeatable weekly publishing process</li>
+              </ul>
+              <!-- TODO(svg): animated checklist — the five outcomes above check off
+                   one by one while a thin progress bar fills beneath; plays once on
+                   scroll-in, respects prefers-reduced-motion -->
+              <div class="acx-svg-ph"><strong>Animated SVG planned</strong>The five outcomes check themselves off one by one while a progress bar fills beneath — plays once when the card scrolls into view.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COURSES & GUIDES — materials collage + track accordion -->
+      <section class="section section--alt subnav-section" id="courses">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Courses &amp; guides</span>
+            <h2 class="section__title section__title--lg">Training for every role on your team</h2>
+            <p class="section__subtitle">A sample of what's inside — organized by the work your team actually does.</p>
+          </header>
+          <div class="acx-cg">
+            <div class="acx-cg__visual">
+              <!-- TODO(gemini): course-materials collage — blocked on the Gemini
+                   page-graphics style skill so this matches the eventual course
+                   cover art. Prompt inside the frame. -->
+              <div class="acx-collage">
+                <div class="acx-ph"><div class="acx-ph__inner"><span class="acx-ph__tag">Gemini image</span><p class="acx-ph__prompt">Collage of Academy learning materials: a physical Endless Customers guidebook, a course card with a video lesson thumbnail, and printed template worksheets fanned beneath them — soft studio shadows, clean light background, EC blue accents.</p></div></div>
+              </div>
+            </div>
+            <div class="acx-acc">
+              <details open>
+                <summary><i class="ti ti-rocket" aria-hidden="true"></i>Getting started</summary>
+                <ul>
+                  <li>Masterclass: The Fundamentals of Endless Customers</li>
+                  <li>What to Expect When Kicking Off Endless Customers</li>
+                  <li>Preparing Your Team for Alignment Day</li>
+                  <li>How to Achieve and Maintain Company Buy-In</li>
+                </ul>
+              </details>
+              <details>
+                <summary><i class="ti ti-pencil" aria-hidden="true"></i>Content &amp; the Content Manager</summary>
+                <ul>
+                  <li>Building Your Content Foundation</li>
+                  <li>Your Role as a Content Manager</li>
+                  <li>How to Hire &amp; Onboard a Content Manager</li>
+                  <li>Supporting Your Content Manager's First 90 Days</li>
+                </ul>
+              </details>
+              <details>
+                <summary><i class="ti ti-video" aria-hidden="true"></i>Video &amp; YouTube</summary>
+                <ul>
+                  <li>Your Role as a Videographer</li>
+                  <li>How to Hire and Onboard a Videographer</li>
+                  <li>Getting Started with YouTube and Social Media</li>
+                </ul>
+              </details>
+              <details>
+                <summary><i class="ti ti-currency-dollar" aria-hidden="true"></i>Sales &amp; Assignment Selling</summary>
+                <ul>
+                  <li>Implement Assignment Selling</li>
+                  <li>Powering the Assignment Selling Engine</li>
+                  <li>Building and Optimizing Your Sales Process</li>
+                  <li>Leading a Sales Team</li>
+                </ul>
+              </details>
+              <details>
+                <summary><i class="ti ti-layout-2" aria-hidden="true"></i>Website &amp; analytics</summary>
+                <ul>
+                  <li>Preparing &amp; Optimizing Your Website for Endless Customers</li>
+                  <li>Fundamentals of CRO and Website Optimization</li>
+                  <li>Setting Up Your Baseline Analytics &amp; Tracking</li>
+                </ul>
+              </details>
+              <details>
+                <summary><i class="ti ti-brain" aria-hidden="true"></i>AI, tech &amp; staying on track</summary>
+                <ul>
+                  <li>Getting Started with Artificial Intelligence</li>
+                  <li>Using and Managing Your HubSpot Portal</li>
+                  <li>Sustaining Endless Customers Success</li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOOK READER BRIDGE -->
+      <section class="section">
+        <div class="container">
+          <div class="acx-band">
+            <div class="acx-band__media">
+              <!-- Clean cut of the stacked-book shot (ring/dot decorations stripped June 2026,
+                   per Bob — a Gemini visual treatment for product shots like this is TBD) -->
+              <img src="../../assets/images/the-book/Endless-Customers-Stacked-Book-Image-clean.png" alt="The Endless Customers book by Marcus Sheridan" loading="lazy" onerror="this.style.display='none'">
+              <!-- TODO(svg): hand-drawn arrow that draws itself from the book toward
+                   the heading on scroll — same sketch style as the homepage annotations -->
+              <div class="acx-svg-ph"><strong>Animated SVG planned</strong>A hand-drawn arrow draws itself from the book toward the heading — the book gives you the why, the Academy gives you the how.</div>
+            </div>
+            <div class="acx-band__copy">
+              <h2 class="acx-band__title">Finished the book? This is the next step.</h2>
+              <p class="acx-band__sub"><em>Endless Customers</em> gives you the why. The Academy gives you the how — the guides, tools, and community to put the system to work in your business. Haven't read it yet? You don't need to; the Masterclass covers the fundamentals.</p>
+              <div class="svc-hero__actions">
+                <a href="#pricing-plans" class="btn btn--primary">See pricing &amp; plans</a>
+                <a href="/learn/book" class="btn btn--ghost">Get the book</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CHOOSE YOUR PLAN — persona router. The page CTA lands here: three
+           profiles route each visitor to the right plan with a direct action,
+           and the full comparison table sits just below for verification. -->
+      <section class="section section--alt subnav-section" id="pricing-plans">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">Pricing &amp; plans</span>
+            <h2 class="section__title section__title--lg">Which plan fits you?</h2>
+            <p class="section__subtitle">Three quick profiles cover most teams. Pick yours and act right here — or compare every feature in the full table below.</p>
+          </header>
+          <div class="acx-choose">
+            <div class="acx-choice">
+              <div class="acx-choice__icon"><i class="ti ti-user" aria-hidden="true"></i></div>
+              <h3 class="acx-choice__title">For one person</h3>
+              <p class="acx-choice__body">You're learning and implementing the system yourself — the community, a starter set of courses and guides, and the coaching AI bot. Step up to Pro+ for the full recording library and conference passes.</p>
+              <div class="acx-choice__price">$119</div>
+              <div class="acx-choice__per">per month, Pro — or Pro+ at $350/month</div>
+              <!-- TODO(build): self-service signup URL when the platform ships -->
+              <a href="/lets-talk" class="btn btn--ghost">Join Pro</a>
+            </div>
+            <div class="acx-choice acx-choice--featured">
+              <div class="acx-choice__icon"><i class="ti ti-users-group" aria-hidden="true"></i></div>
+              <h3 class="acx-choice__title">For your whole company</h3>
+              <p class="acx-choice__body">Your team is implementing together. Every employee gets a seat, with all 35 courses, guides, and templates — plus the Game Plan tool to run the system quarter by quarter.</p>
+              <div class="acx-choice__price">$750</div>
+              <div class="acx-choice__per">per month, Business — Business+ adds 6 conference passes a year</div>
+              <a href="/lets-talk" class="btn btn--primary">Talk to sales</a>
+            </div>
+            <div class="acx-choice">
+              <div class="acx-choice__icon"><i class="ti ti-ticket" aria-hidden="true"></i></div>
+              <h3 class="acx-choice__title">For conference regulars</h3>
+              <p class="acx-choice__body">You're at Endless Customers Live every year. The + plans bundle all-inclusive passes — one of each conference on Pro+, three of each on Business+ — plus 25% off extra tickets.</p>
+              <div class="acx-choice__price">$2,298+</div>
+              <div class="acx-choice__per">in annual pass value, included with the + plans</div>
+              <a href="#pricing" class="btn btn--ghost">See pass-inclusive plans</a>
+            </div>
+          </div>
+          <!-- Full comparison table lives in the SAME section: the chooser
+               routes, the table verifies (merged June 2026, per Bob) -->
+          <div class="acx-compare subnav-section" id="pricing">
+            <h3 class="acx-compare__title">Compare plans &amp; pricing</h3>
+            <p class="acx-compare__sub">Pro plans are for individuals. Business plans cover your whole company — every person on your team gets access. Already a coaching client? Full Academy access is included in every coaching agreement — there's nothing extra to buy.</p>
+          </div>
+          <div class="cpt-wrap">
+            <table class="cpt">
+              <colgroup>
+                <col><col><col><col><col class="cpt-col--featured">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th scope="col"><span class="visually-hidden">Plan feature</span></th>
+                  <th scope="col">
+                    <div class="cpt__plan-name">Pro</div>
+                    <p class="cpt__plan-desc">For one person learning and implementing the system — the community plus a starter set of courses and guides.</p>
+                    <!-- TODO(build): Pro plans are self-service — point at the real
+                         checkout/signup URL when the platform ships; /lets-talk is a stand-in -->
+                    <a href="/lets-talk" class="btn btn--ghost">Join Pro</a>
+                  </th>
+                  <th scope="col">
+                    <div class="cpt__plan-name">Pro+</div>
+                    <p class="cpt__plan-desc">For the individual who wants the live experience too — more of the library, plus an all-inclusive pass to both conferences every year.</p>
+                    <a href="/lets-talk" class="btn btn--ghost">Join Pro+</a>
+                  </th>
+                  <th scope="col">
+                    <div class="cpt__plan-name">Business</div>
+                    <p class="cpt__plan-desc">For companies implementing as a team — everyone gets access to the full library, plus the Game Plan tool to run the system.</p>
+                    <a href="/lets-talk" class="btn btn--ghost">Talk to sales</a>
+                  </th>
+                  <th scope="col">
+                    <span class="cpt__plan-badge">Best value</span>
+                    <div class="cpt__plan-name">Business+</div>
+                    <p class="cpt__plan-desc">Everything in Business, plus 3 all-inclusive passes to both conferences every year — a $7,794 value on its own.</p>
+                    <a href="/lets-talk" class="btn btn--primary">Talk to sales</a>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Price</span></th>
+                  <td><span class="cpt__price">$119</span><span class="cpt__per">per month</span><span class="cpt__note">or $899/year — save when paid annually</span></td>
+                  <td><span class="cpt__price">$350</span><span class="cpt__per">per month</span><span class="cpt__note">or $4,200/year, paid biannually</span></td>
+                  <td><span class="cpt__price">$750</span><span class="cpt__per">per month</span><span class="cpt__note">or $9,000/year, paid biannually</span></td>
+                  <td><span class="cpt__price">$1,000</span><span class="cpt__per">per month</span><span class="cpt__note">or $12,000/year, paid biannually</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Who's covered</span><span class="cpt__desc">Business plans include every employee at your company — marketing, sales, leadership, and subject matter experts.</span></th>
+                  <td><span class="cpt__value">1 person</span></td>
+                  <td><span class="cpt__value">1 person</span></td>
+                  <td><span class="cpt__value">Whole company</span></td>
+                  <td><span class="cpt__value">Whole company</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Online community</span><span class="cpt__desc">8,000+ practitioners, certified coaches, and the IMPACT team — questions answered, wins shared, accountability built in.</span></th>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Missions &amp; leaderboard</span><span class="cpt__desc">New bite-sized challenges every week that turn learning into action, with points and levels to keep momentum.</span></th>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Courses, guides &amp; EC templates</span><span class="cpt__desc">The full library is 35 courses, guides, and templates — the same playbooks our coaches use with clients.</span></th>
+                  <td><span class="cpt__value">6</span><span class="cpt__note">Starter set</span></td>
+                  <td><span class="cpt__value">15</span><span class="cpt__note">Expanded set</span></td>
+                  <td><span class="cpt__value">All 35</span></td>
+                  <td><span class="cpt__value">All 35</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Coaching AI bot</span><span class="cpt__desc">An AI assistant trained on the Endless Customers System for implementation answers any time.</span></th>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Conference recordings</span><span class="cpt__desc">Every session from every Endless Customers Live and IMPACT Live event back to 2018.</span></th>
+                  <td><span class="cpt__value">Limited</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Game Plan tool</span><span class="cpt__desc">The Endless Customers Game Plan, Scorecard, and Typical Journey™ — quarterly planning, progress tracking, and the 24-month roadmap.</span></th>
+                  <td><span class="cpt__na">—</span></td>
+                  <td><span class="cpt__na">—</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                  <td><span class="cpt__check" aria-label="Included">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">All-inclusive conference passes</span><span class="cpt__desc">Full passes to both Endless Customers Live conferences each year — ticket, training, and the complete experience.</span></th>
+                  <td><span class="cpt__na">—</span></td>
+                  <td><span class="cpt__value">1 per conference</span><span class="cpt__note">A $2,298 value</span></td>
+                  <td><span class="cpt__na">—</span></td>
+                  <td><span class="cpt__value">3 per conference</span><span class="cpt__note">A $7,794 value</span></td>
+                </tr>
+                <tr>
+                  <th scope="row"><span class="cpt__feature">Additional conference tickets</span><span class="cpt__desc">Bring more of your team to Endless Customers Live at a discount.</span></th>
+                  <td><span class="cpt__na">—</span></td>
+                  <td><span class="cpt__value">25% off</span></td>
+                  <td><span class="cpt__na">—</span></td>
+                  <td><span class="cpt__value">25% off</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="wb-formnote" style="text-align:center;margin-top:var(--space-6)">Planned launch packaging — final pricing confirmed at launch.</p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section subnav-section" id="faq">
+        <div class="container">
+          <header class="section__header">
+            <span class="section__eyebrow">FAQ</span>
+            <h2 class="section__title section__title--lg">Common questions</h2>
+          </header>
+          <div class="faq">
+            <details>
+              <summary>What is the Endless Customers Academy?</summary>
+              <div class="faq__body">The Academy (formerly IMPACT+) is the official membership platform for the Endless Customers System. It combines an active community of 8,000+ practitioners, the full library of courses and guides our coaches use with clients, recordings from every live event since 2018, planning tools, and weekly missions that keep your team moving.</div>
+            </details>
+            <details>
+              <summary>How is the Academy different from coaching?</summary>
+              <div class="faq__body">Same system, different level of support. The Academy is the self-paced path: you work through the playbooks on your own schedule with the community behind you. <a href="/how-we-help/coaching-program">Coaching</a> puts a dedicated coach in your corner with private training, reviews, and accountability. Many companies start in the Academy and move to coaching when they're ready to go faster. And if you're already a coaching client, you don't need to buy anything here — full Academy access is included in every coaching agreement.</div>
+            </details>
+            <details>
+              <summary>Do I need to read the book first?</summary>
+              <div class="faq__body">No. The Fundamentals of Endless Customers Masterclass, led by Marcus Sheridan, covers the core concepts of the system. The <a href="/learn/book">book</a> is a helpful companion, but it's not a prerequisite.</div>
+            </details>
+            <details>
+              <summary>What's the difference between Pro and Business plans?</summary>
+              <div class="faq__body">Pro plans cover one person and include a portion of the course library. Business plans cover your entire company — everyone on your team gets a seat — and unlock all 35 courses, guides, and templates plus the Game Plan tool for quarterly planning and progress tracking. If you're implementing as a team, Business is built for you.</div>
+            </details>
+            <details>
+              <summary>How do the all-inclusive conference passes work?</summary>
+              <div class="faq__body">We host two <a href="/live/">Endless Customers Live</a> conferences each year. Pro+ includes one all-inclusive pass to each (a $2,298 annual value); Business+ includes three passes to each (a $7,794 annual value). Both plans also get 25% off any additional tickets for your team.</div>
+            </details>
+            <details>
+              <summary>We mainly come for the conferences — does membership make sense?</summary>
+              <div class="faq__body">Often, yes. If you attend <a href="/live/">Endless Customers Live</a> regularly, Pro+ covers a pass to both conferences every year (a $2,298 value) and Business+ covers three to each (a $7,794 value) — so membership absorbs most of what you'd spend on tickets anyway, and the course library, community, and recordings ride along. It's not cheaper than tickets alone, but for regular attendees it's usually the better buy.</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- COACHING CTA -->
+      <section class="section section--alt">
+        <div class="container">
+          <div class="lc-cta">
+            <h2 class="lc-cta__title">Want a faster path?</h2>
+            <p class="lc-cta__sub">If you'd rather have expert guidance and accountability, our coaching program puts a coach in your corner — and includes everything on this page, full Academy access and all.</p>
+            <div class="lc-cta__actions">
+              <a href="/how-we-help/coaching-program" class="btn btn--primary btn--lg">Explore coaching</a>
+              <a href="/diagnostic" class="btn btn--ghost btn--lg">Get your free AI diagnosis</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-placeholder">
+    <footer class="footer" role="contentinfo">
+  <div class="container">
+
+    <!-- ================= MASTHEAD: BRAND + SOCIAL ================= -->
+    <div class="footer__masthead">
+      <div class="footer__brand">
+        <a href="/" class="footer__logo" aria-label="Endless Customers — home">
+          <img src="../../assets/images/logo-dark.svg"  class="footer__logo-img footer__logo-img--light" alt="Endless Customers" width="150" height="46">
+          <img src="../../assets/images/logo-white.svg" class="footer__logo-img footer__logo-img--dark"  alt="" aria-hidden="true" width="150" height="46">
+        </a>
+        <p class="footer__mission">
+          Become the most trusted voice in your industry — and own your marketing
+          for good. The Endless Customers System, built on They Ask, You Answer.
+        </p>
+      </div>
+      <!-- Endless Customers brand profiles (entity strategy, June 2026):
+           footer socials point at EC-branded handles; the IMPACT connection
+           lives in the NAP line below + parentOrganization in the JSON-LD. -->
+      <div class="footer__social" aria-label="Endless Customers on social media">
+        <a href="https://www.facebook.com/people/Endless-Customers/61555895372069/" class="footer__social-btn" aria-label="Facebook (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/facebook-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.linkedin.com/company/endless-customers" class="footer__social-btn" aria-label="LinkedIn (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/linkedin-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.instagram.com/endlesscustomers" class="footer__social-btn" aria-label="Instagram (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/instagram-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://www.youtube.com/@EndlessCustomers" class="footer__social-btn" aria-label="YouTube (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/youtube-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://podcasts.apple.com/us/podcast/endless-customers/id1728142460" class="footer__social-btn" aria-label="Podcast on Apple Podcasts (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/apple-podcasts-brands-solid.svg" alt="" aria-hidden="true" loading="lazy"></a>
+        <a href="https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu" class="footer__social-btn" aria-label="Podcast on Spotify (opens in new tab)" target="_blank" rel="noopener"><img src="../../assets/images/logos-and-branding/spotify-brand-logo.svg" alt="" aria-hidden="true" loading="lazy"></a>
+      </div>
+    </div>
+
+    <!-- ================= LINK COLUMNS (mirror the main nav) ================= -->
+    <nav class="footer__cols" aria-label="Footer">
+
+      <!-- LEARN -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/learn/" class="footer__col-link">Learning Center</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/learn/what-is-endless-customers" class="footer__link">What is Endless Customers?</a></li>
+          <li><a href="/learn/core-concepts-frameworks" class="footer__link">Core Concepts &amp; Frameworks</a></li>
+          <li><a href="/learn/academy" class="footer__link">Endless Customers Academy</a></li>
+          <li><a href="/learn/topics/" class="footer__link">Browse Topics</a></li>
+              <li><a href="/learn/latest" class="footer__link">Latest Insights</a></li>
+          <li><a href="/learn/podcast" class="footer__link">The Endless Customers Podcast</a></li>
+          <li><a href="/learn/webinars" class="footer__link">Webinars</a></li>
+          <li><a href="/learn/tools" class="footer__link">Tools &amp; Downloads</a></li>
+          <li><a href="/learn/subscribe" class="footer__link">Subscribe</a></li>
+          <li><a href="https://app.impactplus.com/users/sign_in" class="footer__link" target="_blank" rel="noopener">Academy Login <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- HOW WE HELP -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/how-we-help/" class="footer__col-link">How We Help</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/how-we-help/coaching-program" class="footer__link">Coaching Program &amp; Pricing</a></li>
+          <li><a href="/how-we-help/who-we-work-with" class="footer__link">Who We Work With</a></li>
+          <li><a href="/how-we-help/audit-and-recommendations" class="footer__link">Marketing Audit &amp; Recommendations <span class="footer__tag">New</span></a></li>
+          <li><a href="/how-we-help/request-a-speaker" class="footer__link">Request a Speaker</a></li>
+          <li><a href="/how-we-help/success-stories" class="footer__link">Success Stories</a></li>
+          <li><a href="/how-we-help/reviews" class="footer__link">Reviews</a></li>
+          <li><a href="/how-we-help/guarantee" class="footer__link">Our Guarantee</a></li>
+          <li><a href="/how-we-help/hubspot" class="footer__link">HubSpot Training &amp; Services</a></li>
+          <li><a href="/how-we-help/websites/redesign" class="footer__link">Website Redesign</a></li>
+          <li><a href="/how-we-help/websites/optimization" class="footer__link">Website Optimization</a></li>
+          <li><a href="/how-we-help/websites/learning-center" class="footer__link">Learning Center Development</a></li>
+          <li><a href="/how-we-help/websites/self-service-tools" class="footer__link">Self-Service Tools</a></li>
+          <li><a href="/how-we-help/paid-advertising" class="footer__link">Paid Advertising</a></li>
+          <li><a href="/how-we-help/ai" class="footer__link">AI Services <span class="footer__tag">New</span></a></li>
+          <li><a href="https://trusttheme.com" class="footer__link" target="_blank" rel="noopener sponsored">TRUST Theme for HubSpot <span class="footer__ext" aria-hidden="true">↗</span><span class="visually-hidden"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <!-- OUR TEAM -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/team/" class="footer__col-link">Our Team</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/team/about" class="footer__link">Our Story, Vision &amp; Values</a></li>
+          <li><a href="/team/meet-the-team" class="footer__link">Meet the Team</a></li>
+          <li><a href="/team/awards" class="footer__link">Awards &amp; Recognition</a></li>
+          <li><a href="/press" class="footer__link">Press &amp; Media</a></li>
+          <li><a href="/team/join-the-team" class="footer__link">Join the Team</a></li>
+          <li><a href="/contact" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- CONFERENCE -->
+      <div class="footer__col">
+        <h2 class="footer__col-title"><a href="/live/" class="footer__col-link">Conference</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/live/hartford-2026" class="footer__link">Hartford, CT · Oct 5–7, 2026</a></li>
+          <li><a href="/live/chicago-2027" class="footer__link">Chicago, IL · Apr 5–7, 2027</a></li>
+          <li><a href="/live/experience/" class="footer__link">What It's Like</a></li>
+          <li><a href="/live/past/" class="footer__link">Past Events</a></li>
+          <li><a href="/live/sponsor" class="footer__link">Become a Sponsor</a></li>
+          <li><a href="/live/convince-your-boss" class="footer__link">Convince Your Boss</a></li>
+        </ul>
+
+        <!-- BOOK (stacked beneath Conference; promoted out of Learn, June 2026) -->
+        <h2 class="footer__col-title footer__col-title--stacked"><a href="/book/" class="footer__col-link">Book</a></h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/book/about" class="footer__link">About <em>Endless Customers</em></a></li>
+          <li><a href="/book/companion-guide" class="footer__link">Companion Guide</a></li>
+          <li><a href="/book/preview" class="footer__link">Preview (Free Chapter)</a></li>
+        </ul>
+      </div>
+
+      <!-- TRUST & RESOURCES -->
+      <div class="footer__col">
+        <h2 class="footer__col-title">Trust &amp; Resources</h2>
+        <ul class="footer__list" role="list">
+          <li><a href="/diagnostic" class="footer__link">Free AI Diagnostic</a></li>
+          <li><a href="/lets-talk" class="footer__link">Talk to a Coach</a></li>
+          <li><a href="/how-we-help/when-its-not-working" class="footer__link">When It&rsquo;s Not Working</a></li>
+          <li><a href="/editorial-process" class="footer__link">Editorial Standards &amp; Ethics</a></li>
+          <li><a href="/security" class="footer__link">Security &amp; Data Protection</a></li>
+          <li><a href="/for-ai-agents" class="footer__link">For AI Agents</a></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <!-- ================= META: NAP + CREDENTIAL BADGES ================= -->
+    <div class="footer__meta">
+      <address class="footer__nap">
+        <span class="footer__nap-org">
+          Endless Customers is an
+          <a href="https://www.impactplus.com" class="footer__inline-link" target="_blank" rel="noopener">IMPACT<span class="visually-hidden"> (opens in new tab)</span></a>
+          company.
+        </span>
+        <span class="footer__nap-row">
+          <a href="https://maps.google.com/?q=125+Commerce+Court,+Suite+9,+Cheshire,+CT+06410" class="footer__nap-item" target="_blank" rel="noopener">
+            <i class="ti ti-map-pin" aria-hidden="true"></i>125 Commerce Court, Suite 9, Cheshire, CT 06410<span class="visually-hidden"> (opens in new tab)</span>
+          </a>
+          <a href="tel:+12032654377" class="footer__nap-item">
+            <i class="ti ti-phone" aria-hidden="true"></i>(203) 265-4377
+          </a>
+        </span>
+      </address>
+      <div class="footer__badges">
+        <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" class="footer__badge footer__badge--hubspot" target="_blank" rel="noopener" aria-label="IMPACT is a HubSpot Elite Solutions Partner (opens in new tab)">
+          <img src="../../assets/images/logos-and-branding/hubspot-elite-badge-bw.svg" alt="HubSpot Elite Solutions Partner" loading="lazy" decoding="async">
+        </a>
+        <span class="footer__badge">
+          <img src="../../assets/images/logos-and-branding/EOS-We-Run-On-Logo--bw-2.svg" alt="We Run on EOS" loading="lazy" decoding="async">
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= LEGAL BAR ================= -->
+  <div class="footer__legal">
+    <div class="container footer__legal-inner">
+      <p class="footer__copy">
+        &copy; <span id="footer-year"></span> Endless Customers. All rights reserved.
+      </p>
+      <nav class="footer__legal-nav" aria-label="Legal">
+        <ul class="footer__legal-links" role="list">
+          <li><a href="/privacy" class="footer__legal-link">Privacy Policy</a></li>
+          <li><a href="/terms" class="footer__legal-link">Terms of Service</a></li>
+          <li><a href="/cookies" class="footer__legal-link">Cookie Preferences</a></li>
+          <li><a href="/accessibility" class="footer__legal-link">Accessibility</a></li>
+          <li><a href="/trademarks" class="footer__legal-link">Trademarks</a></li>
+          <li><a href="/brand-guidelines" class="footer__legal-link">Brand Guidelines</a></li>
+          <li><a href="/ai-policy" class="footer__legal-link">AI Policy</a></li>
+          <li><a href="/sitemap" class="footer__legal-link">Sitemap</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Organization schema — NAP + entity data for SEO and AI visibility -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "Brand"],
+    "@id": "https://www.endlesscustomers.com/#organization",
+    "name": "Endless Customers",
+    "url": "https://www.endlesscustomers.com/",
+    "logo": "https://www.endlesscustomers.com/assets/images/logo-dark.svg",
+    "description": "Endless Customers is the proven system, built on They Ask, You Answer, that helps service businesses become the most trusted voice in their industry and own their marketing for good.",
+    "telephone": "+1-203-265-4377",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "125 Commerce Court, Suite 9",
+      "addressLocality": "Cheshire",
+      "addressRegion": "CT",
+      "postalCode": "06410",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.facebook.com/people/Endless-Customers/61555895372069/",
+      "https://www.linkedin.com/company/endless-customers",
+      "https://www.instagram.com/endlesscustomers",
+      "https://www.youtube.com/@EndlessCustomers",
+      "https://podcasts.apple.com/us/podcast/endless-customers/id1728142460",
+      "https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu"
+    ],
+    "parentOrganization": {
+      "@type": "Organization",
+      "@id": "https://www.impactplus.com/#organization",
+      "name": "IMPACT",
+      "legalName": "Impact Branding & Design LLC",
+      "url": "https://www.impactplus.com",
+      "brand": { "@id": "https://www.endlesscustomers.com/#organization" },
+      "sameAs": [
+        "https://www.linkedin.com/company/impactbnd",
+        "https://www.facebook.com/impactbnd",
+        "https://www.instagram.com/impactbnd",
+        "https://www.youtube.com/@impactbnd",
+        "https://www.tiktok.com/@impactbnd",
+        "https://www.crunchbase.com/organization/impact-branding-design"
+      ],
+      "telephone": "+1-203-265-4377",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 Commerce Court, Suite 9",
+        "addressLocality": "Cheshire",
+        "addressRegion": "CT",
+        "postalCode": "06410",
+        "addressCountry": "US"
+      }
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-203-265-4377",
+      "contactType": "sales",
+      "areaServed": "US",
+      "availableLanguage": "English"
+    }
+  }
+  </script>
+</footer>
+  </div>
+  <script src="../../js/main.js?v=2026060925r"></script>
+  <script>
+  /* Proof-strip count-up (June 2026 visual pass). Final values live in the
+     markup, so no-JS and reduced-motion users see them untouched. */
+  (function () {
+    var strip = document.querySelector('.acx-stats');
+    if (!strip) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      strip.classList.add('is-in');
+      return;
+    }
+    var nums = strip.querySelectorAll('[data-count]');
+    function run(el) {
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var dur = 1200, t0 = null;
+      function step(ts) {
+        if (t0 === null) t0 = ts;
+        var p = Math.min((ts - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3); /* ease-out cubic */
+        el.textContent = Math.round(target * eased).toLocaleString('en-US') + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        strip.classList.add('is-in');
+        nums.forEach(run);
+        io.disconnect();
+      });
+    }, { threshold: 0.4 });
+    io.observe(strip);
+  })();
+  </script>
+</body>
+</html>

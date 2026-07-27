@@ -1,0 +1,42 @@
+{
+  "id": "revenue-teams",
+  "slug": "revenue-teams",
+  "title": "Revenue Teams",
+  "nav_title": "Revenue Teams",
+  "status": "published",
+  "topic_id": "right-culture",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "The traditional organizational chart separates marketing, sales, and customer service into distinct departments with distinct leaders, distinct budgets, and distinct definitions of success. Marketing is responsible for generating leads. Sales is responsible for closing them. Customer service is responsible for keeping customers happy after the sale. Each team hands off to the next and considers its job done.\n\nThe buyer doesn't experience that structure. From a buyer's perspective, every interaction — reading an article, attending a webinar, talking to a salesperson, onboarding with a customer success manager — is an interaction with the company. When those interactions are inconsistent, when the information a buyer got from marketing contradicts what they hear from sales, when customer service doesn't know what was promised during the sale, the company looks disorganized and the buyer loses trust.\n\n## What a Revenue Team Does Differently\n\nA revenue team treats the full buyer journey — from the first content interaction to year three of the customer relationship — as a shared responsibility. Marketing, sales, and customer success share the same data, the same language, and the same goal: generating and retaining revenue. There are no handoffs that create blind spots. There is no moment where one team's accountability ends and another's begins.\n\nIn practice, this means the marketing team knows what happens to the leads they generate after they're handed to sales. It means salespeople know what onboarding experiences customers have so they can set accurate expectations during the sale. It means customer success teams have visibility into what content a new customer engaged with before they bought, so they can continue the education rather than starting over.\n\n## The Role of Content in a Revenue Team\n\nContent is the connective tissue of a revenue team. The articles and videos your marketing team produces don't stop being useful at the point of lead generation. Salespeople use them in Assignment Selling. Customer success teams use them in onboarding. Leaders use them to train new hires. When content is created with the full revenue team in mind — not just with a marketing audience in mind — it serves every stage of the buyer and customer journey.\n\nThis is why the Learning Center belongs in your main navigation and why your sales team needs direct access to every piece of content your marketing team produces. The content is not a marketing deliverable. It's a revenue team asset.\n\n## Building a Revenue Team Culture\n\nRevenue team culture starts with leadership. If the leaders of marketing, sales, and customer success operate as rivals for budget and credit, their teams will do the same. If leaders model collaboration — sharing wins across functions, holding joint reviews, setting shared metrics — the culture follows. The structural change (shared goals, shared data, shared meetings) enables the cultural change, but it doesn't replace it. Both have to happen.\n\nStart with one shared metric that everyone is accountable for: revenue from content-influenced deals is the most natural starting point for an Endless Customers business. When every team's performance includes that number, the incentive to collaborate becomes built into the measurement system rather than depending on goodwill.",
+  "excerpt": "The modern revenue team doesn't separate marketing, sales, and service into silos. It treats the entire buyer journey as a shared responsibility.",
+  "what_youll_learn": [
+    "The traditional marketing-sales-service structure creates handoffs that lose context and create inconsistent buyer experiences. A revenue team eliminates those handoffs.",
+    "A revenue team shares goals, data, and responsibility for the full buyer journey — from first content interaction through closed deal and into the customer relationship.",
+    "Content is the connective tissue of a revenue team. Articles and videos serve marketing, sales, and customer success — not just whichever team produced them.",
+    "Revenue team culture starts with leadership. Leaders who model collaboration and set shared metrics make collaboration the rational choice for their teams.",
+    "Shared accountability for content-influenced revenue is the most effective starting point for aligning marketing, sales, and customer success toward the same outcome.",
+    "A buyer's experience is a single continuous relationship with your company, even when your internal structure says otherwise. Revenue teams make that experience coherent."
+  ],
+  "key_questions": [
+    {
+      "question": "Do we need to reorganize our company to build a revenue team?",
+      "answer": "Not necessarily. Revenue team is a mindset and a set of operating practices as much as it is an org chart structure. You can build revenue team behaviors — shared meetings, shared data, shared metrics — without restructuring departments. The organizational structure can evolve over time as the culture develops."
+    },
+    {
+      "question": "Who leads a revenue team?",
+      "answer": "In larger organizations, a Chief Revenue Officer (CRO) often leads the revenue team, with marketing, sales, and customer success all reporting to that role. In smaller businesses, the owner or CEO typically plays that integrating role. What matters more than the title is whether someone is accountable for the full revenue picture and has the authority to align teams around shared goals."
+    },
+    {
+      "question": "How do we measure the revenue team's performance?",
+      "answer": "The most useful revenue team metrics connect content to outcomes: content-influenced pipeline, close rate on content-engaged leads, average deal size for buyers who used Assignment Selling content, and customer retention rates by cohort. These metrics reveal whether the integrated approach is working better than the siloed one did."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-28",
+  "last_updated": "2026-04-28",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

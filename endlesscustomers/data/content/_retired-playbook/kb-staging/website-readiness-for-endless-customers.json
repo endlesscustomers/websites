@@ -1,0 +1,50 @@
+{
+  "id": "website-readiness-for-endless-customers",
+  "slug": "website-readiness-for-endless-customers",
+  "title": "Website Readiness for Endless Customers",
+  "nav_title": "Website Readiness",
+  "status": "draft",
+  "topic_id": "right-website",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Before you can execute the Endless Customers website strategy, someone on your team needs to be able to actually run the website. This sounds obvious, but many companies discover that their website is effectively locked — every change requires a developer ticket, every content update goes through an agency, and making the fast, responsive improvements the strategy demands is simply impossible in the current setup.\n\nGetting ready means achieving operational control: your content team can publish new content regularly without external help, update navigation with ease, add and modify pages as the strategy evolves, and capture and manage lead information effectively. These capabilities are prerequisites for everything else.\n\n## Skip the Full Redesign\n\nMarketing agencies often recommend starting with a full website redesign. Endless Customers does not. A redesign is expensive, time-consuming, and delays the content and messaging work that drives actual results. Start with small, targeted improvements — fix the most critical messaging issues, launch a Learning Center using existing content, add a pricing page, and improve the navigation. Save the full redesign for later, or skip it entirely once the site is performing well.\n\n## Technical Health\n\nSomeone on your team should be able to review the site for major technical issues. Slow load times frustrate visitors and hurt search rankings. Poor mobile performance is particularly costly since most buyers research purchases on their phones. Security vulnerabilities undermine trust and can result in search engine penalties. These issues don't require a developer to diagnose — free tools like Google PageSpeed Insights and Google Search Console surface most of them clearly.\n\n## Analytics from Day One\n\nYou cannot make good website decisions without data on how visitors actually behave. Google Analytics is the baseline — it shows which pages visitors go to, how long they stay, where they drop off, and where leads come from. Google Search Console shows what searches are bringing people to your site. Together, these two free tools provide the foundation for every content and optimization decision your team makes.\n\nWithout this data, you're making decisions based on intuition rather than evidence. And intuition about what your buyers need — without actually watching what they do on your site — is wrong more often than it is right. Set up analytics before you make any other website changes, and make reviewing that data a monthly practice.\n\n## Adapt as Technology Evolves\n\nThe website that performs well today needs to keep pace with how buyers and technology change over time. Chatbots, AI-powered content recommendations, and predictive analytics are becoming standard buyer expectations. Building on a flexible, modern CMS ensures that as these tools become essential, you can integrate them without rebuilding from scratch. The goal is a website that can adapt with your strategy, not one that requires a full rebuild every three years.",
+  "excerpt": "Most companies discover their website can't support the Endless Customers strategy because they can't update it without a developer. Here's what readiness actually looks like.",
+  "what_youll_learn": [
+    "Your team must be able to publish content regularly, update navigation, add and modify pages, and manage leads without relying on an outside developer for basic changes.",
+    "A full website redesign is rarely necessary to get started — prioritize publishing content and making targeted improvements before committing to a major overhaul.",
+    "Technical health matters: slow load times, poor mobile performance, and security vulnerabilities hurt both visitor experience and search performance simultaneously.",
+    "Basic analytics tools like Google Analytics are non-negotiable. Without data on how visitors behave, you're making decisions based on assumptions rather than evidence.",
+    "Your CMS should be something your content team can use fluently — if publishing a blog post requires a developer ticket, the system is wrong for an Endless Customers business.",
+    "As AI and personalization tools evolve, your website needs to be built on a foundation that can adapt — not one that requires a complete rebuild every time buyer expectations shift."
+  ],
+  "key_questions": [
+    {
+      "question": "What does it mean for a website to be 'ready' for Endless Customers?",
+      "answer": "It means your team can actually run it. They can publish new content regularly, update navigation and page copy, add new pages when the strategy calls for it, and capture and access lead information — all without waiting on a developer. If any of those capabilities require a ticket to an outside agency or a developer queue, your website isn't ready."
+    },
+    {
+      "question": "Do we need a full redesign before we can implement Endless Customers?",
+      "answer": "No. A redesign is rarely the right first step. It is expensive, slow, and delays the content and messaging work that actually drives results. Start by publishing content, fixing the most critical messaging issues, and adding a Learning Center. Save the full redesign for later — or skip it entirely if targeted improvements get the site doing its job."
+    },
+    {
+      "question": "What are the most common technical issues that hurt website performance?",
+      "answer": "Slow load times, poor mobile performance, and security vulnerabilities are the most common and highest-impact problems. Slow pages frustrate visitors and hurt search rankings. Poor mobile performance is particularly costly since most buyers research on their phones. Security issues undermine trust and can result in search engine penalties. A basic technical audit should be one of the first steps in getting the site ready."
+    },
+    {
+      "question": "What analytics tools do we need at minimum?",
+      "answer": "Google Analytics is the baseline. It gives you real-time data on visitor behavior — which pages they visit, how long they stay, where they drop off, and where leads come from. Without it, you're guessing. Tools like Google Search Console, which shows what searches bring people to your site, are a valuable addition. More advanced tools like heat mapping can come later once you have the basics in place."
+    },
+    {
+      "question": "How much should the marketing team be able to do in the CMS without developer help?",
+      "answer": "Everything they do regularly. Publishing articles, updating page copy, adding new sections, modifying calls to action, adjusting navigation, uploading images — all of this should be fully manageable by the content team with no development support. If your CMS doesn't allow this, consider whether it's the right tool for your strategy."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-05-01",
+  "last_updated": "2026-05-01",
+  "estimated_read_time": 2,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

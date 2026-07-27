@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette comparison — blue-forward vs book-forward</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root{
+  /* real tokens pulled from main.css */
+  --heading:#0F172A;
+  --text:#475569;
+  --muted:#5B6B7F;
+  --strong:#1E293B;
+  --blue:#0a6cff;
+  --blue-hover:#0058e0;
+  --border:#E2E8F0;
+  --surface:#F8FAFC;
+  --subtle:#F1F5F9;
+  --ink:#0A0F1F;      /* the near-black already in the system (menu-bg-dark) */
+  --black:#000;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:#EEF1F5;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  padding:40px 28px 64px;
+  line-height:1.5;
+}
+.page-head{max-width:1180px;margin:0 auto 28px;}
+.page-head h1{
+  font-family:'General Sans',sans-serif;
+  font-weight:700;font-size:26px;letter-spacing:-.02em;
+  color:var(--heading);margin-bottom:8px;
+}
+.page-head p{max-width:760px;font-size:15px;color:var(--muted);}
+.page-head .legend{
+  margin-top:16px;display:flex;gap:22px;flex-wrap:wrap;font-size:13px;color:var(--strong);
+}
+.page-head .legend b{font-weight:600;}
+
+.grid{
+  max-width:1180px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+@media(max-width:880px){.grid{grid-template-columns:1fr}}
+
+.panel{
+  border-radius:18px;overflow:hidden;
+  box-shadow:0 24px 60px -28px rgba(15,23,42,.35);
+  background:#fff;border:1px solid var(--border);
+}
+.panel__tag{
+  display:flex;align-items:center;gap:8px;
+  padding:11px 16px;font-size:12.5px;font-weight:600;letter-spacing:.01em;
+  border-bottom:1px solid var(--border);background:var(--surface);color:var(--strong);
+}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dot--now{background:var(--blue);}
+.dot--rec{background:var(--black);}
+.panel__tag .note{margin-left:auto;font-weight:500;color:var(--muted);}
+
+/* ---------- shared hero structure ---------- */
+.hero{padding:46px 38px 40px;position:relative;overflow:hidden;}
+.eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;
+}
+.eyebrow::before{content:"✦";font-size:11px;}
+.hero h2{
+  font-family:'General Sans',sans-serif;font-weight:700;
+  font-size:38px;line-height:1.05;letter-spacing:-.025em;margin-bottom:16px;
+}
+.hero p.sub{font-size:16px;line-height:1.55;max-width:33ch;margin-bottom:26px;}
+.cta-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.btn{
+  font-family:'Inter';font-size:14.5px;font-weight:600;
+  padding:12px 22px;border-radius:999px;border:1px solid transparent;
+  cursor:default;display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+}
+.btn--ghost{background:transparent;}
+
+/* gradient hairline (brand gradient = borders/lines only, per the decisions log) */
+.grad-line{height:3px;border-radius:3px;width:88px;margin:30px 0 0;
+  background:linear-gradient(90deg,#D6269B,#0a6cff,#078A07);}
+
+/* proof strip */
+.proof{display:flex;gap:30px;margin-top:30px;}
+.proof .num{font-family:'General Sans';font-weight:700;font-size:24px;line-height:1;}
+.proof .lbl{font-size:12px;color:var(--muted);margin-top:5px;}
+
+/* ============ CURRENT: blue-forward ============ */
+.now .hero{
+  background:
+    radial-gradient(120% 90% at 15% 0%, rgba(10,108,255,.16), transparent 60%),
+    radial-gradient(90% 80% at 100% 20%, rgba(10,108,255,.10), transparent 55%),
+    #fff;
+}
+.now .eyebrow{color:var(--blue);}
+.now .hero h2{color:var(--blue);}            /* large type carries the blue */
+.now .hero h2 em{font-style:normal;color:var(--blue-hover);}
+.now .hero p.sub{color:var(--text);}
+.now .btn--primary{background:var(--blue);color:#fff;}
+.now .btn--ghost{color:var(--blue);border-color:rgba(10,108,255,.35);}
+.now .proof .num{color:var(--blue);}
+
+/* ============ RECOMMENDED: book-forward ============ */
+.rec .hero{
+  background:
+    radial-gradient(120% 90% at 12% -10%, rgba(15,23,42,.06), transparent 60%),
+    #fff;
+}
+.rec .eyebrow{color:var(--strong);}
+.rec .eyebrow::before{color:var(--blue);}     /* blue survives as a small spark */
+.rec .hero h2{color:var(--heading);}           /* book-black anchors the headline */
+.rec .hero h2 em{font-style:normal;color:var(--black);
+  background:linear-gradient(transparent 78%, rgba(10,108,255,.22) 0) ;}  /* blue underline accent */
+.rec .hero p.sub{color:var(--text);}
+.rec .btn--primary{background:var(--black);color:#fff;}   /* primary in book-black */
+.rec .btn--ghost{color:var(--heading);border-color:var(--border);}
+.rec .btn--ghost .arrow{color:var(--blue);}    /* blue as the accent detail */
+.rec .proof .num{color:var(--heading);}
+
+/* ---- second row: a dark "book" moment ---- */
+.darkband{padding:34px 38px;color:#fff;}
+.now .darkband{
+  background:
+    radial-gradient(100% 120% at 100% 0%, rgba(10,108,255,.5), transparent 60%),
+    #123a86;                                   /* current dark sections read navy-blue */
+}
+.rec .darkband{
+  background:
+    radial-gradient(90% 130% at 90% -20%, rgba(10,108,255,.16), transparent 55%),
+    var(--ink);                                /* near-black, like the book in hand */
+}
+.darkband .k{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin-bottom:10px;}
+.darkband h3{font-family:'General Sans';font-weight:600;font-size:20px;letter-spacing:-.01em;line-height:1.2;}
+.darkband .pill{display:inline-block;margin-top:14px;font-size:13px;font-weight:600;
+  padding:8px 16px;border-radius:999px;background:var(--blue);color:#fff;}
+.rec .darkband .pill{background:#fff;color:var(--ink);}
+
+.takeaway{
+  max-width:1180px;margin:30px auto 0;font-size:14px;color:var(--strong);
+  background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 22px;
+  line-height:1.6;
+}
+.takeaway b{font-weight:600;color:var(--heading);}
+</style>
+</head>
+<body>
+
+<div class="page-head">
+  <h1>Book-forward palette — side by side</h1>
+  <p>Same hero, same content, same blue. The only thing that changes is the <b>ranking</b> of the palette. Left is roughly where the site sits today: blue carries the large type, the glows, and the dark sections. Right anchors the big structural moments in the book's near-black and demotes blue to a true accent on the spark, the underline, the link arrow, and one button. Nothing about the blue itself changed.</p>
+  <div class="legend">
+    <span><b>What stays blue (right):</b> the eyebrow spark, the headline underline, the ghost-button arrow, links, the gradient hairline.</span>
+    <span><b>What goes book-black (right):</b> headlines, the primary button, the dark "in your hands" band.</span>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- CURRENT -->
+  <div class="panel now">
+    <div class="panel__tag"><span class="dot dot--now"></span> Current — blue-forward <span class="note">blue is doing the structural work</span></div>
+    <div class="hero">
+      <div class="eyebrow">The Endless Customers System</div>
+      <h2>Become the most trusted <em>voice</em> in your industry.</h2>
+      <p class="sub">A proven system for turning your website into your best salesperson, and your business into the one buyers trust first.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary">Let's Talk →</a>
+        <a class="btn btn--ghost">Free AI Diagnostic</a>
+      </div>
+      <div class="proof">
+        <div><div class="num">8,000+</div><div class="lbl">Businesses guided</div></div>
+        <div><div class="num">400+</div><div class="lbl">Verified reviews</div></div>
+        <div><div class="num">#1</div><div class="lbl">Bestselling framework</div></div>
+      </div>
+      <div class="grad-line"></div>
+    </div>
+    <div class="darkband">
+      <div class="k">The book</div>
+      <h3>Endless Customers, by Marcus Sheridan.</h3>
+      <span class="pill">Get the book →</span>
+    </div>
+  </div>
+
+  <!-- RECOMMENDED -->
+  <div class="panel rec">
+    <div class="panel__tag"><span class="dot dot--rec"></span> Recommended — book-forward <span class="note">black anchors, blue accents</span></div>
+    <div class="hero">
+      <div class="eyebrow">The Endless Customers System</div>
+      <h2>Become the most trusted <em>voice</em> in your industry.</h2>
+      <p class="sub">A proven system for turning your website into your best salesperson, and your business into the one buyers trust first.</p>
+      <div class="cta-row">
+        <a class="btn btn--primary">Let's Talk →</a>
+        <a class="btn btn--ghost">Free AI Diagnostic <span class="arrow">→</span></a>
+      </div>
+      <div class="proof">
+        <div><div class="num">8,000+</div><div class="lbl">Businesses guided</div></div>
+        <div><div class="num">400+</div><div class="lbl">Verified reviews</div></div>
+        <div><div class="num">#1</div><div class="lbl">Bestselling framework</div></div>
+      </div>
+      <div class="grad-line"></div>
+    </div>
+    <div class="darkband">
+      <div class="k">The book</div>
+      <h3>Endless Customers, by Marcus Sheridan.</h3>
+      <span class="pill">Get the book →</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="takeaway">
+  <b>The principle:</b> blue stops being the brand and goes back to being the accent. The book's black does the heavy lifting on headlines, primary buttons, and dark sections, so the site feels like the book a reader is holding instead of a generic blue SaaS site. This is a mockup of the principle, not a live change. If it lands, I'd pull the exact black off the real book cover and re-rank the tokens in <b>main.css</b> once, so it propagates everywhere in one pass.
+</div>
+
+</body>
+</html>

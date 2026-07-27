@@ -1,0 +1,50 @@
+{
+  "id": "documenting-and-following-your-sales-process",
+  "slug": "documenting-and-following-your-sales-process",
+  "title": "Documenting and Following Your Sales Process",
+  "nav_title": "Sales Process Optimization",
+  "status": "published",
+  "topic_id": "right-sales",
+  "parent_id": null,
+  "child_ids": [],
+  "article_body": "Roughly 50% of organizations do not have a defined sales process. That might sound like a statistic about operational efficiency. But in the context of Endless Customers, it is a statement about why Assignment Selling fails before it starts. You cannot assign the right content at the right stage if the stages are not defined. You cannot train a team to consistency if there is no standard to train them to. A documented sales process is not bureaucracy — it is the foundation everything else gets built on.\n\n## What a Defined Sales Process Actually Is\n\nA defined sales process is a clearly documented, systematic, and repeatable approach that guides your team through each stage of converting a prospect into a customer. It maps out the specific actions, milestones, and requirements that must be met at each stage — ensuring that every salesperson on your team engages with prospects the same way, and that deals progress according to a consistent logic rather than individual improvisation.\n\nThink of it like a pilot's checklist. Pilots are not checking boxes because they do not know how to fly. They are checking boxes because the stakes are too high to rely on memory alone. The same principle applies to sales. A consistent process does not stifle your best salespeople. It ensures your whole team performs at that level, not just the top one or two.\n\n## Four Steps to Building Your Sales Process\n\nThe first step is mapping your buyer's journey. Every sale follows a predictable path. At the awareness stage, buyers are asking broad questions about their problem. At the consideration stage, they are comparing options and evaluating criteria. At the decision stage, they are addressing specific objections and making a final choice. Your sales process should mirror those phases so that what your team does at each stage matches what the buyer needs at that moment.\n\nThe second step is defining your sales stages with clear entry and exit criteria. A typical process might include: secure appointment, identify need, present solution, post-presentation, and closed won or lost. Entry criteria define when a deal is ready to move into a stage. Exit criteria define what has to happen before it advances. These criteria make progress objective — your team knows exactly where a deal stands rather than guessing.\n\nThe third step is documenting the process. List the key activities at each stage. Define what success looks like at each milestone. Keep it simple enough that salespeople will actually use it. A sales process document that lives in a shared drive and gets opened once a year is not a sales process — it is a formality. The real document is the one your team references before every call.\n\nThe fourth step is training your team and implementing consistently. A process is only as effective as the team's ability to execute it. Provide thorough initial training. Use role-play to help salespeople build confidence in each stage. Offer regular feedback. And update the process as you learn what is working in the field. Your best salespeople will surface improvements your initial documentation missed. Build those insights back in.\n\n## Adapting to the Buyer, Not the Process\n\nOne important nuance: avoid rigidly tying stages to specific required calls or meetings. Some buyers are ready to move quickly. Others need more time and more reassurance. Your sales process should provide structure and consistency while remaining flexible enough to meet buyers where they are. A great process creates a framework, not a straitjacket. When a buyer is ready to move forward, move with them. Time kills deals.",
+  "excerpt": "About 50% of organizations lack a defined sales process. That makes Assignment Selling nearly impossible. Here is how to build one that works.",
+  "what_youll_learn": [
+    "Roughly 50% of organizations do not have a defined sales process. Without one, Assignment Selling cannot work effectively — because you do not know which content to assign at which stage.",
+    "A defined sales process is systematic and repeatable. It maps out the specific actions, milestones, and requirements that must be met at each stage of converting a prospect into a customer.",
+    "Think of your sales process like a pilot's checklist: focused on the key steps that cannot be missed, without getting bogged down in every detail.",
+    "The buyer's journey — awareness, consideration, decision — should map directly to the stages of your sales process. Each stage needs clear entry and exit criteria.",
+    "A sales process is not a one-and-done document. It must be revisited, revised, and optimized as your business evolves and as your team learns what is working.",
+    "Consistency in execution is what drives results. Training, role-play, and regular feedback are how you ensure every salesperson follows the process rather than improvising around it."
+  ],
+  "key_questions": [
+    {
+      "question": "How detailed should our documented sales process be?",
+      "answer": "Less is usually more. The goal is a document your sales team will actually use — not a comprehensive manual that covers every possible scenario. Focus on the key stages, the specific actions required at each one, and the criteria that signal when a deal is ready to move forward. A pilot's checklist is the right mental model: essential steps only."
+    },
+    {
+      "question": "How many stages should a sales process have?",
+      "answer": "Anywhere from three to twelve, depending on your business. For most companies, around eight stages is a practical target. A typical structure might include: secure appointment, identify need, present solution, post-presentation follow-up, and closed won or lost. Each stage should have clear entry and exit criteria so the whole team is aligned on what progress looks like."
+    },
+    {
+      "question": "What are entry and exit criteria for a sales stage?",
+      "answer": "Entry criteria are the conditions that must be true for a deal to enter a particular stage — for example, a prospect has requested an initial consultation. Exit criteria are the conditions that must be met before a deal advances to the next stage — for example, the sales rep has gathered enough information to tailor a solution. These criteria make the pipeline objective and consistent across the entire team."
+    },
+    {
+      "question": "How do we get our sales team to actually follow the process?",
+      "answer": "Training is the starting point. Your team needs to understand not just what the process is, but why each step matters. Role-play activities help salespeople build the muscle memory to follow the process confidently. Regular feedback from sales leadership reinforces consistency. And updating the process based on real-world experience signals that it is a living, improving system rather than a static document."
+    },
+    {
+      "question": "What happens to the sales process as our business grows and changes?",
+      "answer": "It needs to evolve with it. The most successful sales teams continuously refine their process — incorporating new content as it is published, adjusting stages based on what buyers are asking, and updating criteria based on what is actually driving wins. Schedule regular reviews of the documented process and treat every insight from the field as an opportunity to improve it."
+    }
+  ],
+  "author_ids": ["marcus-sheridan"],
+  "editor_ids": ["ashley-jensen"],
+  "published_date": "2026-04-22",
+  "last_updated": "2026-04-22",
+  "estimated_read_time": 3,
+  "related_service_ids": [],
+  "related_offer_ids": [],
+  "related_insight_ids": []
+}

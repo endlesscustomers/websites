@@ -12,11 +12,12 @@ Bob's rule, 2026-07-25. Every website workstream splits in two, and the split is
 | **Examples** | HTML, CSS, JS, images, fonts, design systems, component libraries | Strategy docs, decision logs, meeting and call notes, page briefs, governance/process docs, team communications |
 | **Test** | Would a browser need this to display the page? | Is this how we decided what to build? |
 
-Same three names on both sides, so each site's build folder and project folder are obvious siblings:
+Same names on both sides, so each site's build folder and project folder are obvious siblings:
 
 - `impactplus` — the current, live impactplus.com
 - `impactplus-2026-redesign` — the future full redesign
 - `endlesscustomers` — endlesscustomers.com
+- `swellsquad` — swellsquad.com, paid media (added 2026-07-25; blocked on access, see its README)
 
 **Why the split matters practically:** this folder gets pushed to a public GitHub repo. Strategy docs, client names, pricing rationale, meeting notes, and internal team process must not end up there. Keeping the boundary mechanical rather than case-by-case is what makes that safe.
 
@@ -27,11 +28,13 @@ Same three names on both sides, so each site's build folder and project folder a
 ```
 40-areas/websites/
   index.html         ← the page index. Start here, links to every page.
+  .nojekyll          ← load-bearing, see above
   impactplus/
     design-system/   ← full impact-website-2025-style export (canonical copy, moved here from 50-resources)
     services/        ← service pages, one self-contained subfolder each
   impactplus-2026-redesign/   ← placeholder, see its README
   endlesscustomers/           ← placeholder, see its README
+  swellsquad/                 ← placeholder, blocked on access, see its README
 ```
 
 **`index.html` is the front door.** One URL, every page one click away, grouped by site with status. Add a row to it whenever you add a page — it's the thing you send someone when they ask to see the work.
@@ -51,10 +54,11 @@ Bob builds pages himself (Claude Design / Cowork), then hands the finished build
 
 Project tracking: [[../../30-projects/websites/impactplus/index|30-projects/websites/impactplus]] · offer-level projects: [[../../30-projects/deep-diagnostic-roadmap/index|deep-diagnostic-roadmap]], [[../../30-projects/money-back-guarantee/index|money-back-guarantee]].
 
-## The other two sites have no local files, on purpose
+## The other three sites have no local files, on purpose
 
 - **endlesscustomers** — built directly in HubSpot; Bob also keeps EC files in a separate folder on his computer with its own GitHub setup. See its README.
 - **impactplus-2026-redesign** — hasn't started. See its README.
+- **swellsquad** — 🔴 blocked. It's a live WordPress site, but **nobody has confirmed IMPACT controls the domain or the admin**, and the brand's future (absorb / fund / exit) is undecided. It also sells to DTC ecommerce, not IMPACT's B2B ICP, so it does not share the IMPACT design system. See its README before treating it like the others.
 
 ## Adding a page
 1. Create `<site>/services/<page-name>/` (or `<site>/<page-name>/` for a non-service page).

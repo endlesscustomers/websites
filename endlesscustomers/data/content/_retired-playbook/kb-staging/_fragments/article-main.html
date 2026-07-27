@@ -1,0 +1,98 @@
+<main id="main-content">
+    <div class="lc-wrap">
+      <section class="section section--sm">
+        <div id="kb-root" class="container"><p class="ec-empty">Loading…</p></div>
+      </section>
+      <div id="kb-after"></div>
+    </div>
+  </main>
+  <script>
+    (function(){
+      function render(d, e){
+        var byId=EC.indexBy(d.evergreen), people=EC.indexBy(d.people), topics=EC.indexBy(d.topics);
+        var section=d.sections.filter(function(s){return s.id===e.topic_id;})[0]||{label:'Knowledge Base',id:''};
+        var parent=e.parent_id?byId[e.parent_id]:null;
+        var children=EC.kbChildren(byId,e);
+        var author=(e.author_ids||[]).map(function(i){return people[i];}).filter(Boolean)[0];
+        var editors=(e.editor_ids||[]).map(function(i){return people[i];}).filter(Boolean);
+        var stub=EC.kbIsStub(e);
+
+        var crumbs='<nav class="lc-crumbs" aria-label="Breadcrumb"><a href="/learn">Learn</a><span>/</span><a href="/learn/knowledge-base">Knowledge Base</a><span>/</span><a href="'+EC.kbTopicUrl(section.id)+'">'+EC.escapeHtml(section.label)+'</a>'+
+          (parent?'<span>/</span><a href="'+EC.kbArticleUrl(parent.id)+'">'+EC.escapeHtml(parent.nav_title||parent.title)+'</a>':'')+
+          '<span>/</span>'+EC.escapeHtml(e.nav_title||e.title)+'</nav>';
+
+        var fresh='Published '+EC.formatDate(e.published_date)+(e.last_updated&&e.last_updated!==e.published_date?' · Updated '+EC.formatDate(e.last_updated):'');
+        var head='<a class="kba-eyebrow" href="'+EC.kbTopicUrl(section.id)+'">'+EC.escapeHtml(section.label)+'</a>'+
+          '<h1 class="kba-title">'+EC.escapeHtml(e.title)+'</h1>'+
+          (e.excerpt&&!stub?'<p class="kba-dek">'+EC.escapeHtml(e.excerpt)+'</p>':'')+
+          '<div class="kba-meta">'+
+            (author?'<span><i class="ti ti-user"></i> By <a href="'+EC.profileUrl(author.id)+'">'+EC.escapeHtml(author.name)+'</a></span>':'')+
+            '<span><i class="ti ti-refresh"></i> '+fresh+'</span>'+
+            (e.estimated_read_time&&!stub?'<span><i class="ti ti-clock"></i> '+e.estimated_read_time+' min read</span>':'')+
+          '</div>';
+
+        var childBlock=children.length?'<div style="margin-bottom:var(--space-10)"><h2 class="ar-heading" style="font-size:var(--text-lg)">In this guide</h2><div class="kb-children">'+
+          children.map(function(c){return '<a class="kb-child" href="'+EC.kbArticleUrl(c.id)+'">'+EC.escapeHtml(c.nav_title||c.title)+' <i class="ti ti-arrow-right"></i></a>';}).join('')+'</div></div>':'';
+
+        var body=stub?EC.kbComingSoon():'<div class="kba-body" id="kba-body">'+EC.markdown(e.article_body)+'</div>';
+
+        var eeat='<div style="margin-top:var(--space-12)"><div class="ar-eeat"><span><i class="ti ti-user"></i> Written by <strong>'+(author?EC.escapeHtml(author.name):'The IMPACT team')+'</strong></span>'+
+          (editors.length?'<span><i class="ti ti-eye-check"></i> Reviewed by <strong>'+editors.map(function(x){return EC.escapeHtml(x.name);}).join(', ')+'</strong></span>':'')+
+          '<span><i class="ti ti-refresh"></i> '+fresh+'</span></div></div>';
+
+        // prev / next across the whole KB reading order
+        var flat=EC.kbFlatten(d), idx=-1;
+        flat.forEach(function(x,i){if(x.id===e.id)idx=i;});
+        var prev=idx>0?flat[idx-1]:null, next=(idx>-1&&idx<flat.length-1)?flat[idx+1]:null;
+        var pn=(prev||next)?'<div class="kba-prevnext">'+
+          (prev?'<a class="kba-pn" href="'+EC.kbArticleUrl(prev.id)+'"><span class="kba-pn__label"><i class="ti ti-arrow-left"></i> Previous</span><span class="kba-pn__title">'+EC.escapeHtml(prev.nav_title||prev.title)+'</span></a>':'<span></span>')+
+          (next?'<a class="kba-pn kba-pn--next" href="'+EC.kbArticleUrl(next.id)+'"><span class="kba-pn__label">Next <i class="ti ti-arrow-right"></i></span><span class="kba-pn__title">'+EC.escapeHtml(next.nav_title||next.title)+'</span></a>':'<span></span>')+
+          '</div>':'';
+
+        var main=crumbs+head+EC.kbTakeaways(e)+'<details class="kba-toc" id="kba-toc" open><summary><i class="ti ti-list"></i> On this page</summary><ol id="kba-toc-list"></ol></details>'+childBlock+body+eeat+pn;
+        document.getElementById('kb-root').outerHTML=EC.kbShell(EC.kbSidebar(d,e.id),'<article>'+main+'</article>');
+        EC.kbSidebarInit(document);
+
+        // TOC from rendered h2s
+        var toc=document.getElementById('kba-toc'), list=document.getElementById('kba-toc-list');
+        var hs=document.querySelectorAll('#kba-body h2');
+        if(!hs.length||stub){ if(toc)toc.remove(); }
+        else hs.forEach(function(h,i){ h.id='s-'+(i+1); var li=document.createElement('li'); li.innerHTML='<a href="#'+h.id+'">'+EC.escapeHtml(h.textContent)+'</a>'; list.appendChild(li); });
+
+        // FAQ
+        if(e.key_questions&&e.key_questions.length){
+          var faq='<section class="section section--sm section--alt"><div class="container"><div class="ar-section ar-section--wide"><h2 class="ar-heading">Frequently asked questions</h2><div class="ar-faq">'+
+            e.key_questions.map(function(q,i){return '<div class="ar-faq__item'+(i===0?' is-open':'')+'"><button class="ar-faq__q" type="button" aria-expanded="'+(i===0)+'">'+EC.escapeHtml(q.question)+' <i class="ti ti-plus"></i></button><div class="ar-faq__a"><p>'+EC.escapeHtml(q.answer)+'</p></div></div>';}).join('')+
+            '</div></div></div></section>';
+          document.getElementById('kb-after').innerHTML+=faq;
+        }
+
+        // related insights by shared topic
+        var rel=d.insights.filter(function(i){return i.status==='published'&&(i.topic_ids||[]).indexOf(e.topic_id)>-1;})
+          .sort(function(a,b){return b.publish_date.localeCompare(a.publish_date);}).slice(0,3);
+        if(rel.length){
+          document.getElementById('kb-after').innerHTML+='<section class="section"><div class="container"><div class="lc-rowhead"><h2 class="lc-rowhead__title">Related insights</h2><a class="lc-rowhead__link" href="/learn/recent-insights">All insights →</a></div><div class="ec-grid">'+rel.map(function(it){return EC.insightCard(it,topics);}).join('')+'</div></div></section>';
+        }
+
+        document.getElementById('kb-after').innerHTML+='<section class="section section--alt"><div class="container"><div class="lc-cta"><h2 class="lc-cta__title">See where you stand</h2><p class="lc-cta__sub">Get a free AI-powered diagnosis of your marketing and a plan to apply these principles.</p><div class="lc-cta__actions"><a href="/diagnostic" class="btn btn--primary btn--lg">Get your free AI diagnosis</a><a href="/lets-talk" class="btn btn--ghost btn--lg">Talk to our team</a></div></div></div></section>';
+
+        document.querySelectorAll('.ar-faq__item').forEach(function(item){ var ans=item.querySelector('.ar-faq__a'); if(item.classList.contains('is-open'))ans.style.maxHeight=ans.scrollHeight+'px'; item.querySelector('.ar-faq__q').addEventListener('click',function(){ var open=item.classList.toggle('is-open'); this.setAttribute('aria-expanded',String(open)); ans.style.maxHeight=open?ans.scrollHeight+'px':'0px'; }); });
+
+        EC.setSEO(e.seo,{title:e.title,description:e.excerpt,image:''});
+        EC.jsonLD({'@context':'https://schema.org','@type':'Article','headline':e.title,'description':e.excerpt,'datePublished':e.published_date,'dateModified':e.last_updated,'author':author?{'@type':'Person','name':author.name}:undefined});
+        var fq=EC.faqSchema(e.key_questions); if(fq)EC.jsonLD(fq);
+        var bc=[{name:'Learn',url:'https://www.endlesscustomers.com/learn'},{name:'Knowledge Base',url:'https://www.endlesscustomers.com/learn/knowledge-base'},{name:section.label,url:'https://www.endlesscustomers.com'+EC.kbTopicUrl(section.id)}];
+        if(parent)bc.push({name:parent.title,url:'https://www.endlesscustomers.com'+EC.kbArticleUrl(parent.id)});
+        bc.push({name:e.title,url:location.href});
+        EC.jsonLD(EC.breadcrumbSchema(bc));
+      }
+
+      var id=EC.param('id');
+      EC.kbLoad().then(function(d){
+        var byId=EC.indexBy(d.evergreen);
+        var e=byId[id]||d.evergreen.filter(function(x){return x.slug===id;})[0];
+        if(!e){ document.getElementById('kb-root').innerHTML='<div style="text-align:center"><h1 class="ar-title">Article not found</h1><p style="margin-bottom:var(--space-6)"></p><a href="/learn/knowledge-base" class="btn btn--primary btn--lg">Back to Knowledge Base</a></div>'; document.title='Not found — Endless Customers'; return; }
+        render(d,e);
+      }).catch(function(e){console.error(e);});
+    })();
+  </script>

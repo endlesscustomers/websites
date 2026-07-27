@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — Learn nav dropdown</title>
+<link rel="stylesheet" href="wf.css">
+</head>
+<body>
+<div class="ws-bar">
+  <b>LEARN IA WIREFRAMES</b>
+  <a href="index.html">Overview</a>
+  <a href="learn-home.html">Learn Front Door</a>
+  <a class="on" href="dropdown.html">Nav Dropdown</a>
+  <a href="topics.html">Topic Panel</a>
+  <a href="topic-page.html">Topic Hub Page</a>
+  <a href="webinars.html">Webinars + Subnav</a>
+  <a href="playbook.html">The Playbook</a>
+</div>
+
+<div class="page">
+  <div class="page-title">Screen 02 · Main nav — the Learn dropdown, reorganized</div>
+  <p class="page-sub">Today's dropdown groups by "The System / Content Library" — our taxonomy. The new version groups by the user's three jobs. Same number of links, different logic.</p>
+
+  <div class="wf">
+    <div class="wf-label">Current (for contrast)</div>
+    <div class="row">
+      <div class="box stack">
+        <div class="t-xs">THE SYSTEM</div>
+        <div class="t-sm">What Is Endless Customers?</div>
+        <div class="t-sm">Knowledge Base</div>
+        <div class="t-sm">The Book</div>
+        <div class="t-sm">Academy</div>
+      </div>
+      <div class="box stack">
+        <div class="t-xs">CONTENT LIBRARY</div>
+        <div class="t-sm">Recent Insights</div>
+        <div class="t-sm">Podcast</div>
+        <div class="t-sm">Webinars</div>
+        <div class="t-sm">Downloads &amp; Tools</div>
+      </div>
+    </div>
+    <div class="note"><span class="tag">!</span> Failure mode: a first-timer can't tell "Knowledge Base" from "Recent Insights" — both read as articles. And the grouping answers "what is it?" instead of "what do I need?"</div>
+  </div>
+
+  <div class="wf">
+    <div class="wf-label">Proposed</div>
+    <div class="box box--dark" style="padding:16px;">
+      <div class="box" style="background:#fff; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div class="t-xs">✦ FREE TOOL</div>
+          <div class="t-mid">Get Your Free AI Diagnostic</div>
+          <div class="t-xs">Enter your URL — full marketing audit, instantly</div>
+        </div>
+        <span class="btn btn--ghost">Try it →</span>
+      </div>
+      <div class="grid g3">
+        <div class="box stack" style="background:#fff;">
+          <div class="t-xs">LEARN THE SYSTEM</div>
+          <div class="t-sm"><b>Start Here</b><br><span class="t-xs">What EC is &amp; why it works</span></div>
+          <div class="t-sm"><b>The Playbook</b><br><span class="t-xs">The full system, in order, free</span></div>
+          <div class="t-sm"><b>The Book</b><br><span class="t-xs">Preview, buy, bulk order</span></div>
+          <div class="t-sm"><b>Academy</b><br><span class="t-xs">Courses &amp; community</span></div>
+        </div>
+        <div class="box stack" style="background:#fff;">
+          <div class="t-xs">GET AN ANSWER</div>
+          <div class="t-sm"><b>Search the Library</b><br><span class="t-xs">Everything, every format</span></div>
+          <div class="t-sm"><b>Browse Topics</b><br><span class="t-xs">12 subjects, 100 sub-topics</span></div>
+          <div class="t-sm"><b>Tools &amp; Templates</b><br><span class="t-xs">Guides, AI tools, downloads</span></div>
+        </div>
+        <div class="box stack" style="background:#fff;">
+          <div class="t-xs">STAY CURRENT</div>
+          <div class="t-sm"><b>Latest</b><br><span class="t-xs">New articles, episodes &amp; events</span></div>
+          <div class="t-sm"><b>Webinars</b><br><span class="t-xs">Next live: Jun 18 →</span></div>
+          <div class="t-sm"><b>Podcast</b><br><span class="t-xs">Watch or listen</span></div>
+          <div class="t-sm"><b>Subscribe</b><br><span class="t-xs">Twice a week, free</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><span class="tag">1</span> The three column headers do real work — they tell the user which mode they're in before they read a single link.</div>
+    <div class="note"><span class="tag">2</span> The diagnostic stays featured up top: it's the best Solver hook on the site.</div>
+    <div class="note"><span class="tag">3</span> "Webinars" carries the next live date inline — the dropdown itself creates urgency, pulled from the same data as the page.</div>
+  </div>
+</div>
+</body>
+</html>

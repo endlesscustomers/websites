@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How We Help — the three-step journey (blueprint)</title>
+<style>
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css');
+:root{
+  --heading:#0F172A;--text:#475569;--muted:#5B6B7F;--strong:#1E293B;
+  --blue:#0a6cff;--border:#E2E8F0;--border-strong:#CBD5E1;--surface:#F8FAFC;--subtle:#F1F5F9;--ink:#0A0F1F;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#E9EDF2;color:var(--text);-webkit-font-smoothing:antialiased;padding:40px 28px 80px;line-height:1.5;}
+.wrap{max-width:1180px;margin:0 auto;}
+h1{font-family:'General Sans';font-weight:700;font-size:27px;letter-spacing:-.02em;color:var(--heading);margin-bottom:10px;}
+.lede{max-width:860px;font-size:15px;color:var(--muted);margin-bottom:26px;}
+.lede b{color:var(--strong);font-weight:600;}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:34px 0 12px;}
+
+/* ---- the shared Path device (as it would render on every page) ---- */
+.pathbar{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 22px;box-shadow:0 18px 44px -30px rgba(15,23,42,.4);}
+.pathbar__cap{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.pathbar__cap b{color:var(--strong);font-weight:600;}
+.stepper{display:flex;align-items:flex-start;gap:0;}
+.snode{display:flex;flex-direction:column;align-items:center;text-align:center;flex:1;position:relative;}
+.snode .dot{width:30px;height:30px;border-radius:50%;background:var(--border-strong);color:#fff;font-family:'General Sans';font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;z-index:1;}
+.snode.active .dot{background:var(--ink);}
+.snode .lbl{font-size:12.5px;font-weight:600;color:var(--strong);margin-top:9px;max-width:150px;line-height:1.3;}
+.snode.active .lbl{color:var(--heading);}
+.snode .ph{font-size:11px;color:var(--muted);margin-top:3px;}
+/* connector */
+.sline{flex:0 0 auto;width:14%;height:2px;background:var(--border-strong);margin-top:14px;}
+
+/* ---- the three journey columns ---- */
+.jrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:6px;}
+@media(max-width:880px){.jrow{grid-template-columns:1fr}}
+.jcard{background:#fff;border:1px solid var(--border);border-radius:16px;padding:0 0 18px;overflow:hidden;box-shadow:0 18px 44px -32px rgba(15,23,42,.4);display:flex;flex-direction:column;}
+.jcard__top{padding:16px 18px;border-bottom:1px solid var(--border);background:var(--surface);}
+.jcard__num{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+.jcard__num .n{width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;font-family:'General Sans';}
+.jcard__name{font-family:'General Sans';font-weight:700;font-size:18px;letter-spacing:-.02em;color:var(--heading);line-height:1.2;}
+.jcard__url{font-size:11.5px;color:var(--muted);margin-top:5px;font-family:ui-monospace,monospace;}
+.jcard__body{padding:14px 18px 0;display:flex;flex-direction:column;gap:13px;}
+.fld .k{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.fld .v{font-size:13px;color:var(--text);line-height:1.5;}
+.fld .v.mind{font-style:italic;color:var(--strong);}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;padding:3px 8px;border-radius:6px;margin-top:2px;}
+.tag--keep{background:#EAF7EE;color:#067647;}
+.tag--build{background:#FFF3E6;color:#B45309;}
+.tag--redo{background:#E7F0FF;color:#0058e0;}
+.handoff{margin:4px 18px 0;padding:11px 13px;border-radius:10px;background:var(--subtle);font-size:12.5px;color:var(--strong);display:flex;align-items:center;gap:8px;}
+.handoff i{color:var(--blue);}
+.handoff.exit{background:#0A0F1F;color:#fff;}
+.handoff.exit i{color:#fff;}
+.ctafoot{margin:6px 18px 0;padding-top:13px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:7px;}
+.cta-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--ink);color:#fff;font-weight:600;font-size:13.5px;padding:11px 16px;border-radius:999px;text-decoration:none;}
+.cta-primary i{font-size:16px;}
+.cta-sec{font-size:11.5px;color:var(--muted);text-align:center;line-height:1.4;}
+
+/* connective tissue band */
+.tissue{margin-top:14px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 24px;}
+.tissue h3{font-family:'General Sans';font-weight:600;font-size:16px;color:var(--heading);margin-bottom:12px;}
+.tissue ul{list-style:none;display:grid;gap:10px;}
+.tissue li{font-size:13.5px;color:var(--text);line-height:1.55;padding-left:24px;position:relative;}
+.tissue li i{position:absolute;left:0;top:2px;color:var(--blue);font-size:15px;}
+.tissue li b{color:var(--heading);font-weight:600;}
+
+/* mapping table */
+.map{margin-top:14px;background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.map table{width:100%;border-collapse:collapse;font-size:13px;}
+.map th{text-align:left;background:var(--surface);color:var(--strong);font-weight:600;padding:11px 16px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+.map td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text);}
+.map tr:last-child td{border-bottom:none;}
+.map td.cur{font-family:ui-monospace,monospace;font-size:12px;color:var(--strong);white-space:nowrap;}
+.map .act{font-weight:600;}
+.act--keep{color:#067647;}.act--build{color:#B45309;}.act--redo{color:#0058e0;}.act--retire{color:#B42318;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>How We Help — the three-step journey</h1>
+  <p class="lede">The good news: this journey is already half-written in the copy. The audit page ends with "the choice of what's next" (run it yourself, focused projects, or go all-in), and the coaching hero already says "Your Path to Endless Customers starts here." The pages just aren't <b>connected</b>, and the middle step has no page. This blueprint threads them into one path before we build.</p>
+
+  <!-- the shared device -->
+  <div class="eyebrow">The connective device — one bar, on all three pages</div>
+  <div class="pathbar">
+    <div class="pathbar__cap">A single <b>Path</b> bar replaces the three different in-page sub-navs. It shows where you are, lets you jump, and (paired with a "next step" handoff at the foot of each page) makes the 1&nbsp;→&nbsp;2&nbsp;→&nbsp;3 movement real. Shown here on Step 2.</div>
+    <div class="stepper">
+      <div class="snode"><div class="dot">1</div><div class="lbl">Marketing Audit &amp; Recommendations</div><div class="ph">Diagnose</div></div>
+      <div class="sline"></div>
+      <div class="snode active"><div class="dot">2</div><div class="lbl">Initial Projects &amp; Fixes</div><div class="ph">Get going, together</div></div>
+      <div class="sline"></div>
+      <div class="snode"><div class="dot">3</div><div class="lbl">The Coaching Program</div><div class="ph">Own the system</div></div>
+    </div>
+  </div>
+
+  <!-- shared primary CTA principle -->
+  <div class="tissue" style="margin-top:14px;display:flex;align-items:center;gap:14px;">
+    <div style="flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;"><i class="ti ti-phone" style="font-size:20px;"></i></div>
+    <div><div style="font-family:'General Sans';font-weight:600;font-size:15px;color:var(--heading);">One primary CTA on all three pages: Schedule a Call</div><div style="font-size:13px;color:var(--muted);line-height:1.5;margin-top:3px;">Wherever they are, the real next step is the same conversation with an advisor. Audit, project, or full program, it all starts by talking. The Path bar moves them between steps; this button is the one action every page drives toward.</div></div>
+  </div>
+
+  <!-- the three pages as a journey -->
+  <div class="eyebrow">The three pages, as one journey</div>
+  <div class="jrow">
+
+    <div class="jcard">
+      <div class="jcard__top">
+        <div class="jcard__num"><span class="n">1</span> Diagnose</div>
+        <div class="jcard__name">Marketing Audit &amp; Recommendations</div>
+        <div class="jcard__url">/how-we-help/audit-and-recommendations</div>
+      </div>
+      <div class="jcard__body">
+        <div class="fld"><div class="k">Who's here</div><div class="v mind">"Something's not working and I don't know where to start."</div></div>
+        <div class="fld"><div class="k">The page's one job</div><div class="v">Show them exactly what's broken and what to fix first. Hand over a prioritized plan they own.</div></div>
+        <div class="fld"><div class="k">Pricing</div><div class="v">One-line "what it costs," then link to the Pricing page. (Trim today's full pricing section to a pointer.)</div></div>
+        <div class="fld"><div class="k">Status</div><div class="v"><span class="tag tag--keep">Keep · strong bones</span> Add the Path bar; evolve the existing "what's next" section into the Step 2 handoff.</div></div>
+      </div>
+      <div class="ctafoot">
+        <a class="cta-primary"><i class="ti ti-phone"></i> Schedule a Call</a>
+        <span class="cta-sec">Path bar carries them onward · next: Initial Projects &amp; Fixes →</span>
+      </div>
+    </div>
+
+    <div class="jcard">
+      <div class="jcard__top">
+        <div class="jcard__num"><span class="n">2</span> Get started, together</div>
+        <div class="jcard__name">Initial Projects &amp; Fixes <span style="font-family:'Inter';font-weight:500;font-size:12px;color:var(--muted)">· working name</span></div>
+        <div class="jcard__url">/how-we-help/initial-projects &nbsp;(new)</div>
+      </div>
+      <div class="jcard__body">
+        <div class="fld"><div class="k">Who's here</div><div class="v mind">"I need help, but I'm not ready to hire a full marketing team or go all-in yet."</div></div>
+        <div class="fld"><div class="k">The page's one job</div><div class="v">Frame the initial, do-with-you work that gets them moving. Pick what they need: content creation, assignment selling, a HubSpot implementation, a website redesign or optimization (the popular one), a paid-media audit, an AI workflow. Quick wins now, momentum toward running it themselves.</div></div>
+        <div class="fld"><div class="k">The real differentiator</div><div class="v">It's <b>educational, not agency outsourcing</b>. They learn alongside us and build toward self-sufficiency, which is what leads into coaching. ("Fix what's broken" and "quick wins" live here as themes, not the title.)</div></div>
+        <div class="fld"><div class="k">Pricing</div><div class="v">Scoped per project; shown on the Pricing page beside the other two stages.</div></div>
+        <div class="fld"><div class="k">Status</div><div class="v"><span class="tag tag--build">Build · new page</span> The missing middle, and the narrative home for the Additional Services menu.</div></div>
+      </div>
+      <div class="ctafoot">
+        <a class="cta-primary"><i class="ti ti-phone"></i> Schedule a Call</a>
+        <span class="cta-sec">Path bar carries them onward · next: The Coaching Program →</span>
+      </div>
+    </div>
+
+    <div class="jcard">
+      <div class="jcard__top">
+        <div class="jcard__num"><span class="n">3</span> Own the system</div>
+        <div class="jcard__name">The Endless Customers Coaching Program</div>
+        <div class="jcard__url">/how-we-help/coaching-program</div>
+      </div>
+      <div class="jcard__body">
+        <div class="fld"><div class="k">Who's here</div><div class="v mind">"I'm ready to own the whole system in-house."</div></div>
+        <div class="fld"><div class="k">The page's one job</div><div class="v">The flagship. The full system plus a coach, all the way to self-sufficiency.</div></div>
+        <div class="fld"><div class="k">Pricing</div><div class="v">High-level "how pricing works / from $X," then link to the Pricing page. No nested pricing child.</div></div>
+        <div class="fld"><div class="k">Status</div><div class="v"><span class="tag tag--redo">Reimagine · collapse</span> Fold How It Works + What You'll Learn in as sections; retire those two sub-pages.</div></div>
+      </div>
+      <div class="ctafoot">
+        <a class="cta-primary"><i class="ti ti-phone"></i> Schedule a Call</a>
+        <span class="cta-sec">See full pricing →</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- internal readiness signal -->
+  <div class="tissue" style="background:#FBFCFE;border-style:dashed;">
+    <p style="font-size:13px;color:var(--muted);line-height:1.55;"><b style="color:var(--strong);">Internal context (not page copy):</b> the tell that a Step 2 client is ready for Step 3 is often the moment they hire a full-time content manager. Until then they're not staffing a full marketing team, which is exactly why the do-with-you, teach-as-we-go model fits this stage.</p>
+  </div>
+
+  <!-- pricing, re-analyzed -->
+  <div class="eyebrow">Pricing — re-analyzed to mirror the three steps</div>
+  <div class="tissue">
+    <p style="font-size:13.5px;color:var(--text);line-height:1.55;margin-bottom:13px;">You're right that pricing should go hand in hand with the steps. So the Pricing page stops being "coaching pricing" and becomes the money story for the whole journey, in the same 1·2·3 order, carrying the same Path bar:</p>
+    <ul>
+      <li><i class="ti ti-circle-number-1"></i><b>The Audit</b> — a defined, published price. The clearest, lowest-commitment number.</li>
+      <li><i class="ti ti-circle-number-2"></i><b>Get Started work</b> — scoped per project, with honest ranges. Do-with-you, so the price reflects what you take on versus what we do.</li>
+      <li><i class="ti ti-circle-number-3"></i><b>The Coaching Program</b> — the model you already have ($3,500 base + 90-Day Cycles), as the destination.</li>
+    </ul>
+    <p style="font-size:13px;color:var(--muted);line-height:1.5;margin-top:13px;">One standalone page at <code>/how-we-help/pricing</code> (old URL 301'd), both old sub-navs stripped. Each step page mentions its own cost at a high level and links here.</p>
+  </div>
+
+  <!-- connective tissue -->
+  <div class="eyebrow">What makes it feel like one journey</div>
+  <div class="tissue">
+    <ul>
+      <li><i class="ti ti-phone"></i><b>One shared primary CTA, "Schedule a Call,"</b> on every page (and pricing) — the single conversion action all three drive toward, while the Path bar handles movement between steps.</li>
+      <li><i class="ti ti-stairs-up"></i><b>The Path bar</b> on all three pages (and pricing) — consistent orientation, replaces three mismatched sub-navs.</li>
+      <li><i class="ti ti-arrow-bar-down"></i><b>A forward handoff</b> at the foot of every page, so each one ends by pointing at the next. Step 1 already has the raw material for this.</li>
+      <li><i class="ti ti-sparkles"></i><b>An entry ramp before Step 1</b> — the Free AI Diagnostic is the zero-commitment way in, then the audit is the real Step 1.</li>
+      <li><i class="ti ti-arrow-back-up"></i><b>Honest back-doors</b> — someone landing on Step 3 who isn't ready can step back to the audit; a Step 2 client who's flying can jump to coaching. The path guides without trapping.</li>
+    </ul>
+  </div>
+
+  <!-- mapping -->
+  <div class="eyebrow">Current pages → future</div>
+  <div class="map">
+    <table>
+      <tr><th>Today</th><th>Becomes</th><th>Action</th></tr>
+      <tr><td class="cur">/how-we-help/ (empty hero)</td><td>The Path overview hub — 1·2·3, routes into each step</td><td class="act act--redo">Reimagine</td></tr>
+      <tr><td class="cur">/audit-and-recommendations</td><td>Step 1 — keep the bones, add Path bar + handoff, trim pricing to a pointer</td><td class="act act--keep">Keep / thread</td></tr>
+      <tr><td class="cur">(none)</td><td>Step 2 — "Get Started" do-with-you page (working name, the missing middle)</td><td class="act act--build">Build new</td></tr>
+      <tr><td class="cur">/coaching-program</td><td>Step 3 — the flagship, with How It Works + What You'll Learn folded in</td><td class="act act--redo">Reimagine</td></tr>
+      <tr><td class="cur">/coaching-program/how-it-works</td><td>A section inside Step 3</td><td class="act act--retire">Retire · 301</td></tr>
+      <tr><td class="cur">/coaching-program/whats-covered</td><td>A section inside Step 3</td><td class="act act--retire">Retire · 301</td></tr>
+      <tr><td class="cur">/coaching-program/pricing</td><td>/how-we-help/pricing — standalone, both sub-navs stripped</td><td class="act act--redo">Promote · 301</td></tr>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — Topic panel (interactive)</title>
+<link rel="stylesheet" href="wf.css">
+</head>
+<body>
+<div class="ws-bar">
+  <b>LEARN IA WIREFRAMES</b>
+  <a href="index.html">Overview</a>
+  <a href="learn-home.html">Learn Front Door</a>
+  <a href="dropdown.html">Nav Dropdown</a>
+  <a class="on" href="topics.html">Topic Panel</a>
+  <a href="topic-page.html">Topic Hub Page</a>
+  <a href="webinars.html">Webinars + Subnav</a>
+  <a href="playbook.html">The Playbook</a>
+</div>
+
+<div class="page">
+  <div class="page-title">Screen 03 · The topic panel — 100 topics, two paths in</div>
+  <p class="page-sub">This one is a working demo. Type in the box (try "video" or "pricing"), or click a parent topic on the left to drill down. Two clicks max to any of ~100 topics.</p>
+
+  <div class="wf">
+    <div class="wf-label">Interactive demo — opens from the subnav "Topics" trigger, the "All topics" chip, or the front door</div>
+    <div class="tp">
+      <input id="tp-q" type="text" placeholder="🔍  Start typing a topic… (or browse below)" autocomplete="off">
+      <div class="tp-cols">
+        <div class="tp-list" id="tp-parents"></div>
+        <div class="tp-results" id="tp-right"></div>
+      </div>
+    </div>
+    <div class="note"><span class="tag">1</span> <b>Two paths, one component:</b> type-ahead matches show parent context ("Selling Seven · in Video") so users always know where they are in the tree. Browsing shows 12 parents → subtopics.</div>
+    <div class="note"><span class="tag">2</span> Every row shows a <b>content count</b>. Topics with fewer than 2 items hide from this UI automatically (page still exists for SEO).</div>
+    <div class="note"><span class="tag">3</span> Clicking any topic goes to its <b>hub page</b> (Screen 04) — never an ambiguous in-place filter. In-page chips keep doing the quick filtering on library pages.</div>
+    <div class="note"><span class="tag">4</span> <b>HubSpot mechanics:</b> topics live in a HubDB table (label, slug, parent, featured, order). HubDB multilevel dynamic pages generate <code>/learn/topics/parent/child</code> URLs natively. Blog tags mirror subtopic slugs; capped at two levels by rule.</div>
+  </div>
+</div>
+
+<script>
+// Demo taxonomy: 12 parents, subtopics with fake counts.
+var TAX = [
+  {label:"Content Strategy", n:84, subs:[["They Ask, You Answer",22],["The Big 5",18],["Editorial Planning",11],["Content Teams & Hiring",9],["Pricing Transparency",14],["Case Studies & Proof",10]]},
+  {label:"Video", n:61, subs:[["The Selling Seven",16],["Video Sales Letters",9],["YouTube Strategy",12],["In-House Videographer",8],["Video for Service Pages",16]]},
+  {label:"Sales & Marketing Alignment", n:57, subs:[["Assignment Selling",19],["Revenue Team Meetings",7],["Sales Enablement Content",13],["CRM Hygiene",6],["1:1 Video for Sales",12]]},
+  {label:"Website & Conversion", n:49, subs:[["Pricing Pages",11],["Self-Selection Tools",9],["Learning Centers",10],["Conversion Optimization",12],["Messaging & Copy",7]]},
+  {label:"AI for Marketing", n:44, subs:[["AI Content Workflows",14],["LLM Optimization (LLMO)",9],["AI Agents & Automation",8],["AI Policy & Ethics",5],["AI Search Visibility",8]]},
+  {label:"SEO & AEO", n:38, subs:[["Answer Engine Optimization",10],["Technical SEO",7],["Keyword & Topic Research",9],["Local SEO",5],["Schema & Structured Data",7]]},
+  {label:"HubSpot", n:35, subs:[["Portal Setup & Audit",8],["Marketing Hub",9],["Sales Hub",7],["HubDB & CMS",5],["Reporting & Attribution",6]]},
+  {label:"Paid Media", n:22, subs:[["Paid Search",7],["Paid Social",6],["Retargeting",4],["Budgeting & ROAS",5]]},
+  {label:"Email Marketing", n:18, subs:[["Newsletters",6],["Nurture Sequences",7],["Deliverability",5]]},
+  {label:"Social Media", n:16, subs:[["LinkedIn for B2B",7],["Personal Brands",5],["Short-Form Video",4]]},
+  {label:"Measurement & ROI", n:21, subs:[["Attribution",6],["Dashboards & Scorecards",7],["Content ROI",8]]},
+  {label:"Culture & Buy-In", n:19, subs:[["Executive Buy-In",6],["Insourcing",7],["Training & Onboarding",6]]}
+];
+var parentsEl = document.getElementById('tp-parents');
+var rightEl = document.getElementById('tp-right');
+var q = document.getElementById('tp-q');
+var activeParent = 0;
+
+function renderParents(){
+  parentsEl.innerHTML = TAX.map(function(p,i){
+    return '<div class="tp-item'+(i===activeParent?' on':'')+'" data-i="'+i+'"><span>'+p.label+'</span><span class="n">'+p.n+' ›</span></div>';
+  }).join('');
+}
+function renderSubs(){
+  var p = TAX[activeParent];
+  rightEl.innerHTML = '<div class="tp-crumbline">'+p.label.toUpperCase()+' — '+p.n+' resources · <u>View all '+p.label+' →</u></div>' +
+    p.subs.map(function(s){
+      return '<div class="tp-item"><span>'+s[0]+'</span><span class="n">'+s[1]+'</span></div>';
+    }).join('');
+}
+function renderSearch(term){
+  var t = term.toLowerCase(), out = [];
+  TAX.forEach(function(p){
+    if (p.label.toLowerCase().indexOf(t) > -1) out.push({label:p.label, ctx:'Parent topic', n:p.n});
+    p.subs.forEach(function(s){
+      if (s[0].toLowerCase().indexOf(t) > -1) out.push({label:s[0], ctx:'in '+p.label, n:s[1]});
+    });
+  });
+  parentsEl.innerHTML = '<div class="tp-crumbline">MATCHES FOR “'+term+'”</div>' + (out.length ?
+    out.slice(0,9).map(function(r){
+      return '<div class="tp-item"><span>'+r.label+' <span class="n">· '+r.ctx+'</span></span><span class="n">'+r.n+'</span></div>';
+    }).join('') : '<div class="tp-empty">No topics match — full-library search would take over here.</div>');
+  rightEl.innerHTML = '<div class="tp-empty">Clear the search to browse by parent topic again.</div>';
+}
+parentsEl.addEventListener('click', function(e){
+  var it = e.target.closest('.tp-item'); if(!it || !it.dataset.i) return;
+  activeParent = +it.dataset.i; renderParents(); renderSubs();
+});
+q.addEventListener('input', function(){
+  if (q.value.trim().length > 1) renderSearch(q.value.trim());
+  else { renderParents(); renderSubs(); }
+});
+renderParents(); renderSubs();
+</script>
+</body>
+</html>
