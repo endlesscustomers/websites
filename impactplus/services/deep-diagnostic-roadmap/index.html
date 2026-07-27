@@ -315,15 +315,27 @@
     transform: rotate(-4deg);
   }
   .how-start-note::after {
-    display: block;
-    width: 38px;
+    position: absolute;
+    top: 49px;
+    left: 22px;
+    width: 34px;
     height: 25px;
-    margin: 4px auto 0;
+    border-left: 3px solid var(--accent-ui);
+    border-bottom: 3px solid var(--accent-ui);
+    border-radius: 0 0 0 20px;
+    content: "";
+    transform: rotate(8deg);
+  }
+  .how-start-note::before {
+    position: absolute;
+    top: 67px;
+    left: 50px;
+    width: 10px;
+    height: 10px;
     border-right: 3px solid var(--accent-ui);
     border-bottom: 3px solid var(--accent-ui);
-    border-radius: 0 0 18px 0;
     content: "";
-    transform: rotate(24deg);
+    transform: rotate(-38deg);
   }
   .how-effort {
     display: grid;
@@ -387,7 +399,18 @@
     .how-node { position: absolute; top: 0; left: -76px; margin: 0; }
     .how-step-label { padding-top: 3px; }
     .how-start-note { top: -55px; left: -10px; width: 112px; font-size: 21px; }
-    .how-start-note::after { width: 28px; height: 17px; }
+    .how-start-note::after {
+      top: 43px;
+      left: -41px;
+      width: 58px;
+      height: 22px;
+      transform: scaleX(-1) rotate(8deg);
+    }
+    .how-start-note::before {
+      top: 59px;
+      left: -44px;
+      transform: rotate(128deg);
+    }
     .how-effort { grid-template-columns: 1fr; gap: 0; margin-top: 76px; }
     .how-effort-item { padding: 23px 0; border-bottom: 1px solid var(--border-hairline); }
     .how-effort-item:first-child { padding-top: 0; }
