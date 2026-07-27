@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 790" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative Deep Diagnostic and Roadmap</title>
+  <desc id="desc">A realistic document spread with an executive finding, three priorities, a phased roadmap, and revenue levers.</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#1d2129" flood-opacity=".13"/></filter>
+    <linearGradient id="brandline" x1="0" x2="1"><stop stop-color="#c026d3"/><stop offset=".5" stop-color="#1c78ff"/><stop offset="1" stop-color="#22c55e"/></linearGradient>
+  </defs>
+  <rect width="1200" height="790" fill="none"/>
+  <g opacity=".72" transform="translate(55 82) rotate(-5 430 290)" filter="url(#shadow)">
+    <rect width="760" height="570" rx="8" fill="#fff"/>
+    <rect width="760" height="8" fill="url(#brandline)"/>
+    <text x="54" y="68" fill="#0f63e0" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">DEEP DIAGNOSTIC &amp; ROADMAP</text>
+    <text x="54" y="115" fill="#0a0f1f" font-family="Arial, sans-serif" font-size="29" font-weight="700">Competitive Benchmark</text>
+    <g transform="translate(54 158)" font-family="Arial, sans-serif">
+      <rect width="650" height="42" fill="#f4f5f7"/>
+      <text x="16" y="26" fill="#626974" font-size="12" font-weight="700">GRADED AREA</text>
+      <text x="312" y="26" fill="#0f63e0" font-size="12" font-weight="700">YOUR COMPANY</text>
+      <text x="450" y="26" fill="#626974" font-size="12" font-weight="700">COMP A</text>
+      <text x="548" y="26" fill="#626974" font-size="12" font-weight="700">COMP B</text>
+      <g font-size="14" fill="#343a44">
+        <text x="16" y="78">Pricing clarity</text><text x="350" y="78" fill="#d42020" font-weight="700">D</text><text x="477" y="78" font-weight="700">B</text><text x="575" y="78" font-weight="700">B+</text>
+        <path d="M0 94H650" stroke="#e8eaed"/>
+        <text x="16" y="127">Customer proof</text><text x="350" y="127" fill="#d42020" font-weight="700">C−</text><text x="477" y="127" font-weight="700">A−</text><text x="575" y="127" font-weight="700">B</text>
+        <path d="M0 143H650" stroke="#e8eaed"/>
+        <text x="16" y="176">AI visibility</text><text x="350" y="176" fill="#15803d" font-weight="700">B+</text><text x="477" y="176" font-weight="700">B</text><text x="575" y="176" font-weight="700">C+</text>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(300 42)" filter="url(#shadow)">
+    <rect width="820" height="650" rx="8" fill="#fff"/>
+    <rect width="820" height="8" fill="url(#brandline)"/>
+    <text x="58" y="70" fill="#0f63e0" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">EXECUTIVE ROADMAP</text>
+    <text x="58" y="119" fill="#0a0f1f" font-family="Arial, sans-serif" font-size="31" font-weight="700">What Deserves Attention First</text>
+    <text x="58" y="153" fill="#626974" font-family="Arial, sans-serif" font-size="15">Priorities are sequenced by likely business impact, urgency, and effort.</text>
+    <g transform="translate(58 192)" font-family="Arial, sans-serif">
+      <g>
+        <circle cx="22" cy="28" r="22" fill="#0f63e0"/><text x="16" y="35" fill="#fff" font-size="20" font-weight="700">1</text>
+        <text x="64" y="22" fill="#0a0f1f" font-size="18" font-weight="700">Make expertise easier to verify</text>
+        <text x="64" y="49" fill="#626974" font-size="14">Clarify pricing, proof, and expert ownership before adding traffic.</text>
+        <rect x="586" y="9" width="112" height="35" rx="4" fill="#e7f0ff"/><text x="608" y="31" fill="#0f63e0" font-size="12" font-weight="700">0–90 DAYS</text>
+      </g>
+      <path d="M0 75H704" stroke="#e8eaed"/>
+      <g transform="translate(0 93)">
+        <circle cx="22" cy="28" r="22" fill="#0f63e0"/><text x="16" y="35" fill="#fff" font-size="20" font-weight="700">2</text>
+        <text x="64" y="22" fill="#0a0f1f" font-size="18" font-weight="700">Repair the high-intent buying path</text>
+        <text x="64" y="49" fill="#626974" font-size="14">Remove friction between research, inquiry, and the first sales conversation.</text>
+        <rect x="586" y="9" width="112" height="35" rx="4" fill="#e7f0ff"/><text x="608" y="31" fill="#0f63e0" font-size="12" font-weight="700">3–6 MONTHS</text>
+      </g>
+      <path d="M0 168H704" stroke="#e8eaed"/>
+      <g transform="translate(0 186)">
+        <circle cx="22" cy="28" r="22" fill="#22c55e"/><text x="16" y="35" fill="#0a0f1f" font-size="20" font-weight="700">3</text>
+        <text x="64" y="22" fill="#0a0f1f" font-size="18" font-weight="700">Build the content buyers cannot find</text>
+        <text x="64" y="49" fill="#626974" font-size="14">Close the questions and comparisons competitors currently own.</text>
+        <rect x="586" y="9" width="112" height="35" rx="4" fill="#dcfce7"/><text x="606" y="31" fill="#15803d" font-size="12" font-weight="700">6–12 MONTHS</text>
+      </g>
+    </g>
+    <g transform="translate(58 502)" font-family="Arial, sans-serif">
+      <text fill="#0a0f1f" font-size="13" font-weight="700" letter-spacing="1.5">REVENUE LEVERS</text>
+      <g transform="translate(0 24)">
+        <rect width="165" height="66" rx="7" fill="#f4f5f7"/><text x="16" y="26" fill="#626974" font-size="12">QUALIFIED INQUIRIES</text><text x="16" y="50" fill="#0a0f1f" font-size="18" font-weight="700">Increase</text>
+        <rect x="178" width="165" height="66" rx="7" fill="#f4f5f7"/><text x="194" y="26" fill="#626974" font-size="12">CLOSE RATE</text><text x="194" y="50" fill="#0a0f1f" font-size="18" font-weight="700">Improve</text>
+        <rect x="356" width="165" height="66" rx="7" fill="#f4f5f7"/><text x="372" y="26" fill="#626974" font-size="12">SALES CYCLE</text><text x="372" y="50" fill="#0a0f1f" font-size="18" font-weight="700">Shorten</text>
+        <rect x="534" width="170" height="66" rx="7" fill="#f4f5f7"/><text x="550" y="26" fill="#626974" font-size="12">CUSTOMER VALUE</text><text x="550" y="50" fill="#0a0f1f" font-size="18" font-weight="700">Protect</text>
+      </g>
+    </g>
+  </g>
+</svg>
