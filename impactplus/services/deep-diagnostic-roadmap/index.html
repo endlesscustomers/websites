@@ -2,8 +2,9 @@
      Section 1 (Overview) remains approved and unchanged. Section 2 (What You
      Get) follows the approved four-beat visual blueprint: roadmap, 13-area and
      124-point investigation, benchmark-to-priority evidence, and the live
-     coach-led recommendation. Sections 3-5 still need to be rebuilt;
-     #how-it-works/#pricing/#reviews/#start remain dead. -->
+     coach-led recommendation. Section 3 (How It Works) follows its approved
+     four-step blueprint. Pricing and Reviews still need to be rebuilt;
+     #pricing/#reviews remain dead. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -222,11 +223,188 @@
     .wyg-script { right: 3%; bottom: -10px; }
   }
 
-  /* §3 — your time / our work / timeline */
-  .effort { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; border-top: 2px solid var(--accent-ui); padding-top: 26px; }
-  @media (max-width: 820px) { .effort { grid-template-columns: 1fr; gap: 24px; } }
-  .effort-h { font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 10px; }
-  .effort-col p { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--text-body); margin: 0; }
+  /* ============ SECTION 3 · HOW IT WORKS (approved four-step blueprint) ============
+     Sequence and time only. The connector is decorative; the ordered list
+     carries the process semantics. All important copy remains live HTML. */
+  .how-section {
+    overflow: hidden;
+    padding-bottom: clamp(88px, 10vw, 112px);
+    background: var(--surface-muted);
+  }
+  .how-section .sec-open { padding-bottom: 0; }
+  .how-wrap { width: min(1150px, calc(100% - 48px)); margin: 0 auto; }
+  .how-path {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(25px, 3.3vw, 46px);
+    margin: 102px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .how-path::before {
+    position: absolute;
+    z-index: 0;
+    top: 28px;
+    right: calc(12.5% - 4px);
+    left: calc(12.5% - 4px);
+    height: 5px;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(90deg, var(--ec-magenta), var(--ec-blue), var(--ec-green));
+    content: "";
+  }
+  .how-step { position: relative; z-index: 1; min-width: 0; }
+  .how-node {
+    display: grid;
+    width: 60px;
+    height: 60px;
+    place-items: center;
+    margin: 0 auto 30px;
+    border: 5px solid var(--surface-muted);
+    border-radius: 50%;
+    background: var(--accent-ui);
+    color: var(--surface-page);
+    font-family: 'General Sans', sans-serif;
+    font-size: 21px;
+    font-weight: 700;
+    box-shadow: 0 0 0 1px var(--border-hairline);
+  }
+  .how-step:last-child .how-node {
+    background: var(--ec-green);
+    color: var(--text-heading);
+  }
+  .how-step-label {
+    margin: 0 0 10px;
+    color: var(--accent-text);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+  .how-step:last-child .how-step-label { color: var(--ec-green-text); }
+  .how-step h3 {
+    margin: 0 0 14px;
+    color: var(--text-heading);
+    font-family: 'General Sans', sans-serif;
+    font-size: clamp(21px, 2vw, 27px);
+    font-weight: 700;
+    letter-spacing: -.018em;
+    line-height: 1.16;
+    text-wrap: balance;
+  }
+  .how-step-copy {
+    margin: 0;
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .how-start-note {
+    position: absolute;
+    top: -63px;
+    left: 8%;
+    width: 124px;
+    margin: 0;
+    color: var(--accent-text);
+    font-family: var(--font-script, 'Kalam', cursive);
+    font-size: 24px;
+    line-height: 1.05;
+    text-align: center;
+    transform: rotate(-4deg);
+  }
+  .how-start-note::after {
+    display: block;
+    width: 38px;
+    height: 25px;
+    margin: 4px auto 0;
+    border-right: 3px solid var(--accent-ui);
+    border-bottom: 3px solid var(--accent-ui);
+    border-radius: 0 0 18px 0;
+    content: "";
+    transform: rotate(24deg);
+  }
+  .how-effort {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 42px;
+    margin: 92px 0 0;
+    padding: 28px 0 0;
+    border-top: 2px solid var(--accent-ui);
+  }
+  .how-effort-item { margin: 0; }
+  .how-effort dt {
+    margin: 0 0 9px;
+    color: var(--accent-text);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  .how-effort dd {
+    margin: 0;
+    color: var(--text-heading);
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .how-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+    text-align: center;
+  }
+  .how-microcopy {
+    margin: 12px 0 0;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 15px;
+  }
+  @media (max-width: 900px) {
+    .how-path {
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 70px;
+      padding-left: 76px;
+    }
+    .how-path::before {
+      top: 28px;
+      right: auto;
+      bottom: 48px;
+      left: 28px;
+      width: 5px;
+      height: auto;
+      background: linear-gradient(180deg, var(--ec-magenta), var(--ec-blue), var(--ec-green));
+    }
+    .how-step { min-height: 205px; padding-bottom: 46px; }
+    .how-step:last-child { min-height: auto; padding-bottom: 0; }
+    .how-node { position: absolute; top: 0; left: -76px; margin: 0; }
+    .how-step-label { padding-top: 3px; }
+    .how-start-note { top: -55px; left: -10px; width: 112px; font-size: 21px; }
+    .how-start-note::after { width: 28px; height: 17px; }
+    .how-effort { grid-template-columns: 1fr; gap: 0; margin-top: 76px; }
+    .how-effort-item { padding: 23px 0; border-bottom: 1px solid var(--border-hairline); }
+    .how-effort-item:first-child { padding-top: 0; }
+    .how-effort-item:last-child { padding-bottom: 0; border-bottom: 0; }
+  }
+  @media (max-width: 560px) {
+    .how-wrap { width: min(660px, calc(100% - 36px)); }
+    .how-section { padding-bottom: 88px; }
+    .how-path { padding-left: 67px; }
+    .how-path::before { left: 26px; }
+    .how-node { left: -67px; width: 56px; height: 56px; font-size: 19px; }
+    .how-step { min-height: 225px; }
+    .how-start-note { left: -8px; }
+    .how-step h3 { font-size: 24px; }
+    .how-cta { align-items: stretch; }
+    .how-cta .btn { width: 100%; }
+  }
 
   /* §4.3 — conversion block */
   .convert-card { margin-top: 30px; background: var(--surface-page, #fff); border: 1px solid var(--border-hairline); border-radius: 14px; padding: clamp(24px, 3vw, 38px); }
@@ -736,9 +914,81 @@ function Page() {
         </div>
       </div>
 
-      {/* ⚠️ Sections 3-5 (#how-it-works, #pricing, #reviews) still to be rebuilt.
-           Sub-nav anchors for them remain dead until they return. Deleted
-           originals recoverable from git history. */}
+      {/* ================= SECTION 3 · HOW IT WORKS ================= */}
+      <section className="how-section" id="how-it-works" aria-labelledby="how-title">
+        <div className="sec-open">
+          <div className="how-wrap">
+            <div className="sec-line" aria-hidden="true"></div>
+            <div className="chapter-eyebrow">How It Works</div>
+            <h2 className="wynter-h2" id="how-title">From First Conversation to Your <span className="hl-box">Final Roadmap</span></h2>
+            <p className="sec-desc">You give us the context only your team knows. We handle the investigation, build the roadmap, and return with clear priorities in under two weeks.</p>
+          </div>
+        </div>
+
+        <div className="how-wrap">
+          <ol className="how-path">
+            <li className="how-step">
+              <article>
+                <p className="how-start-note" aria-hidden="true">you start here</p>
+                <div className="how-node" aria-hidden="true">1</div>
+                <p className="how-step-label">Explore</p>
+                <h3>Start With a Focused Explore Call</h3>
+                <p className="how-step-copy">We learn why you’re looking now and answer your questions. If there’s a fit, we review the scope and agreement together before you decide.</p>
+              </article>
+            </li>
+
+            <li className="how-step">
+              <article>
+                <div className="how-node" aria-hidden="true">2</div>
+                <p className="how-step-label">Investigate</p>
+                <h3>We Begin With the Outside Evidence</h3>
+                <p className="how-step-copy">After kickoff, we study your website, search and AI visibility, real competitors, and earlier conversations. Your team does not have to start from scratch.</p>
+              </article>
+            </li>
+
+            <li className="how-step">
+              <article>
+                <div className="how-node" aria-hidden="true">3</div>
+                <p className="how-step-label">Go Inside</p>
+                <h3>Bring Us Inside the Business</h3>
+                <p className="how-step-copy">In a 90-minute working session, your leadership team gives us the inside view: goals, sales process, CRM reality, past efforts, available resources, and what is getting in the way.</p>
+              </article>
+            </li>
+
+            <li className="how-step">
+              <article>
+                <div className="how-node" aria-hidden="true">4</div>
+                <p className="how-step-label">Walk Through</p>
+                <h3>Walk Through Your Roadmap Live</h3>
+                <p className="how-step-copy">Your coach brings the evidence together, explains what matters first, and answers your team’s questions live. You receive the written roadmap in under two weeks.</p>
+              </article>
+            </li>
+          </ol>
+
+          <dl className="how-effort" aria-label="Your time, our work, and turnaround">
+            <div className="how-effort-item">
+              <dt>Your Time</dt>
+              <dd>An Explore Call, agreement review, 90-minute working session, and final walkthrough</dd>
+            </div>
+            <div className="how-effort-item">
+              <dt>Our Work</dt>
+              <dd>Research, competitor benchmarking, internal synthesis, and roadmap development between sessions</dd>
+            </div>
+            <div className="how-effort-item">
+              <dt>Turnaround</dt>
+              <dd>Under two weeks from kickoff to your final walkthrough</dd>
+            </div>
+          </dl>
+
+          <div className="how-cta" id="start">
+            <Button variant="dark" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
+            <p className="how-microcopy">A real first conversation. No pitch, no obligation.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ⚠️ Pricing and Reviews (#pricing, #reviews) still need to be rebuilt.
+           Their sub-nav anchors remain dead until those sections return. */}
 
       <Footer />
     </div>
