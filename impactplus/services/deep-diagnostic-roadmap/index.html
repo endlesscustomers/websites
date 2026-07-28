@@ -819,9 +819,10 @@
   .post-authority-label { margin: 0 0 17px; color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
   .post-authority-panel h3 { max-width: 520px; margin: 0 0 22px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: clamp(27px, 2.7vw, 36px); font-weight: 700; letter-spacing: -.025em; line-height: 1.14; }
   .post-authority-panel > p:not(.post-authority-label) { margin: 0 0 18px; color: var(--text-body); font-family: var(--font-body); font-size: 17px; line-height: 1.62; }
-  .post-system-figure { margin: 29px 0 22px; }
-  .post-system-figure img { display: block; width: 100%; height: auto; }
-  .post-system-figure figcaption { margin-top: 9px; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.4; }
+  .post-authority-figure { margin: 29px 0 22px; }
+  .post-authority-media { overflow: hidden; aspect-ratio: 11 / 5; }
+  .post-authority-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .post-authority-figure figcaption { margin-top: 9px; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.4; }
   .post-expertise { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--border-strong); }
   .post-expertise strong { display: block; margin-bottom: 9px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 18px; }
   .post-expertise p { margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
@@ -1910,8 +1911,8 @@ function Page() {
             <article className="post-authority-panel" aria-labelledby="system-authority-title">
               <p className="post-authority-label">The System</p>
               <h3 id="system-authority-title">Created by IMPACT. Proven in the real world.</h3>
-              <figure className="post-system-figure">
-                <img src="assets/endless-customers-workshop.jpg" alt="Copies of the Endless Customers book and workshop materials prepared for an IMPACT training session" width="1200" height="800" loading="lazy" />
+              <figure className="post-authority-figure">
+                <div className="post-authority-media"><img src="assets/endless-customers-workshop.jpg" alt="Copies of the Endless Customers book and workshop materials prepared for an IMPACT training session" width="1200" height="800" loading="lazy" /></div>
                 <figcaption>Endless Customers books and workshop materials prepared for an IMPACT training session.</figcaption>
               </figure>
               <p>Endless Customers is both a USA Today bestselling book and a growth system used by companies across the country. Its principles are also referenced and applied by marketers and agencies beyond IMPACT.</p>
@@ -1920,6 +1921,10 @@ function Page() {
             <article className="post-authority-panel" aria-labelledby="people-authority-title">
               <p className="post-authority-label">The People</p>
               <h3 id="people-authority-title">Experience earned through hundreds of businesses.</h3>
+              <figure className="post-authority-figure">
+                <div className="post-authority-media"><img src="assets/endless-customers-team-chicago.jpg" alt="The IMPACT team at Endless Customers Live in Chicago in March 2026" width="1400" height="608" loading="lazy" /></div>
+                <figcaption>The IMPACT team at Endless Customers Live in Chicago, March 2026.</figcaption>
+              </figure>
               <p>Since 2009, our team has helped hundreds of businesses apply Endless Customers in the real world. That experience gives us the pattern recognition to see beyond surface-level symptoms, ask better questions, and make recommendations grounded in what actually works.</p>
               <p>When we study your business, we bring what we have learned across different companies, industries, and markets without assuming that the answer will be the same for everyone.</p>
               <div className="post-expertise">
