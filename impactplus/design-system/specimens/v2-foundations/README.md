@@ -8,11 +8,19 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 
 - General Sans display hierarchy and Proxima Nova lead/standard body roles.
 - Accessible brand-color roles for blue, magenta, green, and orange.
-- Restrained borders, radii, shadows, buttons, cards, and forms.
-- Wynter-inspired assertion-first section rhythm.
+- Pill-shaped actions, restrained card radii, firm rules, almost no shadow, cards, and forms.
+- Wynter-inspired full-color fields, dark label blocks, inline headline highlights, oversized assertions, numbered editorial rows, and assertion-first section rhythm.
 - Orbit-inspired paragraph, list, and bold-emphasis patterns.
-- Shared content patterns for proof, qualification, risk reduction, and testimonials.
+- Shared service-page patterns for pricing facts, process, fit/not-fit qualification, risk reversal, FAQs, proof, and testimonials.
 - Responsive behavior at desktop, tablet, and mobile widths.
+
+## Bob-directed revision — 2026-07-28
+
+- Added more space after H1 and H2 headings.
+- Locked pill-shaped buttons as an intentional IMPACT difference from Wynter.
+- Made the secondary-button hover state fill completely with accessible blue and switch its label to white.
+- Reworked the specimen to express more of Wynter's visual grammar while retaining General Sans, Proxima Nova, and IMPACT's accessible palette.
+- Added the reusable commercial patterns identified on the Deep Diagnostic & Roadmap page.
 
 ## Review gate
 

@@ -19,6 +19,7 @@
         <a href="#color">Color</a>
         <a href="#components">Components</a>
         <a href="#content">Content</a>
+        <a href="#patterns">Patterns</a>
       </nav>
       <a class="v2-button v2-button--small" href="#decision">Review decisions</a>
     </div>
@@ -28,9 +29,9 @@
     <section class="v2-hero accent-blue" id="top">
       <div class="v2-wrap v2-hero__grid">
         <div>
-          <p class="v2-eyebrow">IMPACT Design System V2</p>
-          <h1>Clear, bold, and built to earn trust.</h1>
-          <p class="v2-lead">A responsive foundation for coded pages and marketer-managed HubSpot pages—using General Sans, Proxima Nova, accessible brand color, and a tighter visual vocabulary.</p>
+          <p class="v2-eyebrow v2-eyebrow--label">IMPACT Design System V2</p>
+          <h1>Clear, bold, and<br><span class="v2-highlight v2-highlight--orange">built to earn trust.</span></h1>
+          <p class="v2-lead">The shared visual and content system for every IMPACT page—whether Bob codes it, AI specifies it, or the marketing team assembles it in HubSpot.</p>
           <div class="v2-actions">
             <a class="v2-button" href="#type">Explore the system</a>
             <a class="v2-text-link" href="#decision">See the decisions →</a>
@@ -48,11 +49,23 @@
       </div>
     </section>
 
+    <section class="v2-purpose" aria-labelledby="purpose-title">
+      <div class="v2-wrap">
+        <p class="v2-eyebrow v2-eyebrow--label">What this system is for</p>
+        <h2 id="purpose-title">One source of truth.<br><span class="v2-highlight v2-highlight--magenta">Many ways to build.</span></h2>
+        <div class="v2-purpose-grid">
+          <article><span>01</span><h3>Make decisions once</h3><p>Typography, color, spacing, components, and content rules stay consistent across the site.</p></article>
+          <article><span>02</span><h3>Build faster with AI</h3><p>Page briefs can name approved patterns instead of inventing new layouts and styles every time.</p></article>
+          <article><span>03</span><h3>Hand work off safely</h3><p>Marketers get flexible page systems while templates and global contracts remain governed.</p></article>
+        </div>
+      </div>
+    </section>
+
     <section class="v2-section" id="type">
       <div class="v2-wrap">
         <div class="v2-section-heading">
-          <p class="v2-eyebrow">01 — Typography</p>
-          <h2>Strong headlines. Comfortable reading.</h2>
+          <p class="v2-eyebrow v2-eyebrow--label">01 — Typography</p>
+          <h2>Strong headlines.<br><span class="v2-highlight v2-highlight--green">Comfortable reading.</span></h2>
           <p class="v2-lead">General Sans carries the assertion. Proxima Nova carries the explanation. Two paragraph sizes create hierarchy without making pages feel assembled from unrelated parts.</p>
         </div>
 
@@ -96,8 +109,8 @@
     <section class="v2-section v2-section--muted" id="color">
       <div class="v2-wrap">
         <div class="v2-section-heading">
-          <p class="v2-eyebrow">02 — Accessible color</p>
-          <h2>Brand color, assigned by job.</h2>
+          <p class="v2-eyebrow v2-eyebrow--label">02 — Accessible color</p>
+          <h2>Brand color,<br><span class="v2-highlight v2-highlight--blue">assigned by job.</span></h2>
           <p class="v2-lead">Raw hues create the visual identity. Accessible variants handle text, rules, controls, focus, and white-label fills.</p>
         </div>
 
@@ -131,9 +144,9 @@
     <section class="v2-section" id="components">
       <div class="v2-wrap">
         <div class="v2-section-heading">
-          <p class="v2-eyebrow">03 — Core components</p>
+          <p class="v2-eyebrow v2-eyebrow--label">03 — Core components</p>
           <h2>Fewer patterns, used consistently.</h2>
-          <p class="v2-lead">The recommended V2 direction uses firm borders, restrained radii, almost no shadow, and controls that feel direct rather than decorative.</p>
+          <p class="v2-lead">The V2 direction uses pill-shaped actions, firm borders, restrained card radii, almost no shadow, and controls that feel direct rather than decorative.</p>
         </div>
 
         <div class="v2-component-grid">
@@ -175,8 +188,8 @@
     <section class="v2-section v2-section--dark" id="content">
       <div class="v2-wrap">
         <div class="v2-section-heading v2-section-heading--inverse">
-          <p class="v2-eyebrow">04 — Content patterns</p>
-          <h2>One assertion per section.</h2>
+          <p class="v2-eyebrow v2-eyebrow--label">04 — Content patterns</p>
+          <h2><span class="v2-highlight v2-highlight--orange">One assertion</span><br>per section.</h2>
           <p class="v2-lead">Short headlines, focused paragraphs, visible proof, and a clear next action create the Wynter-like confidence without copying Wynter’s brand.</p>
         </div>
 
@@ -211,17 +224,76 @@
       </div>
     </section>
 
+    <section class="v2-section v2-section--orange" id="patterns">
+      <div class="v2-wrap">
+        <div class="v2-section-heading">
+          <p class="v2-eyebrow v2-eyebrow--label">05 — Service-page patterns</p>
+          <h2>Answer the questions<br><span class="v2-highlight v2-highlight--dark">buyers ask before they call.</span></h2>
+          <p class="v2-lead">The design system governs the reusable presentation and authoring rules. Individual pages supply the price, process, proof, qualification, and guarantee content.</p>
+        </div>
+
+        <dl class="v2-fact-rail" aria-label="Commercial facts pattern">
+          <div><dt>Investment</dt><dd>Show the price</dd></div>
+          <div><dt>Turnaround</dt><dd>Set timing</dd></div>
+          <div><dt>Ownership</dt><dd>Name what is theirs</dd></div>
+          <div><dt>Risk</dt><dd>State the guarantee</dd></div>
+        </dl>
+
+        <div class="v2-pattern-grid">
+          <article class="v2-pattern-panel">
+            <p class="v2-sample-label">Numbered process</p>
+            <ol class="v2-ruled-steps">
+              <li><span>01</span><div><h3>Start with context</h3><p>Explain what the buyer does and what your team handles.</p></div></li>
+              <li><span>02</span><div><h3>Show the work</h3><p>Make the investigation, production, or delivery visible.</p></div></li>
+              <li><span>03</span><div><h3>Define the outcome</h3><p>Name what they receive and what happens next.</p></div></li>
+            </ol>
+          </article>
+
+          <article class="v2-pattern-panel v2-pattern-panel--split">
+            <div>
+              <p class="v2-sample-label">This is a fit when…</p>
+              <ul class="v2-list"><li>The problem is a priority now.</li><li>Leaders are ready to act.</li><li>The team values candor.</li></ul>
+            </div>
+            <div>
+              <p class="v2-sample-label">Probably not when…</p>
+              <ul class="v2-list v2-list--not"><li>There is no urgency.</li><li>No one owns the work.</li><li>The goal is only validation.</li></ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="v2-risk-grid">
+          <article class="v2-guarantee">
+            <p class="v2-eyebrow v2-eyebrow--label">Risk reversal</p>
+            <h3>If we miss the mark, we make it right.</h3>
+            <p>State the promise, the remedy, and the refund plainly. Put the assurance beside the decision—not in fine print.</p>
+            <a class="v2-button v2-button--dark" href="#decision">Review the guarantee</a>
+          </article>
+          <div class="v2-faq-demo">
+            <p class="v2-sample-label">FAQ with quick answer</p>
+            <details open>
+              <summary>What does the engagement include?</summary>
+              <p><strong>Quick answer:</strong> Name the scope in one useful sentence, then provide the evidence and detail a serious buyer needs.</p>
+            </details>
+            <details>
+              <summary>What happens after the work?</summary>
+              <p>Clarify ownership, optional next steps, and any future commitment.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="v2-section" id="decision">
       <div class="v2-wrap">
         <div class="v2-section-heading">
-          <p class="v2-eyebrow">05 — Approval decisions</p>
+          <p class="v2-eyebrow v2-eyebrow--label">06 — Approval decisions</p>
           <h2>What this specimen is asking you to approve.</h2>
         </div>
         <div class="v2-decision-list">
           <article><span>01</span><div><h3>Typography</h3><p>General Sans 800/700/600 for display; Proxima Nova lead and standard body roles.</p></div></article>
-          <article><span>02</span><div><h3>Component shape</h3><p>Restrained 6–10px radii instead of pill buttons and 16px shadow cards.</p></div></article>
+          <article><span>02</span><div><h3>Component shape</h3><p>Pill-shaped buttons, restrained card radii, firm rules, and almost no decorative shadow.</p></div></article>
           <article><span>03</span><div><h3>Color behavior</h3><p>Full brand fields use the correct light or dark ink; accessible variants handle controls and text.</p></div></article>
-          <article><span>04</span><div><h3>Section rhythm</h3><p>Generous 96–128px spacing, narrow copy measures, and one strong idea per section.</p></div></article>
+          <article><span>04</span><div><h3>Wynter-inspired rhythm</h3><p>Generous spacing, oversized assertions, full-color fields, dark labels, inline highlights, strong rules, and one idea per section.</p></div></article>
           <article><span>05</span><div><h3>Shared expression</h3><p>Coded pages and managed HubSpot modules use the same foundation and component contracts.</p></div></article>
         </div>
         <div class="v2-final-cta">
