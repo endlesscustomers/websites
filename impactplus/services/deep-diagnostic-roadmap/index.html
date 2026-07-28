@@ -3,8 +3,8 @@
      Get) follows the approved four-beat visual blueprint: roadmap, 13-area and
      124-point investigation, benchmark-to-priority evidence, and the live
      coach-led recommendation. Section 3 (How It Works) follows its approved
-     four-step blueprint. Pricing and Reviews still need to be rebuilt;
-     #pricing/#reviews remain dead. -->
+     four-step blueprint. Pricing and the Money-Back Guarantee follow their
+     approved blueprint. Reviews still needs to be rebuilt; #reviews is dead. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -429,6 +429,245 @@
     .how-cta .btn { width: 100%; }
   }
 
+  /* ============ SECTION 4 · PRICING + MONEY-BACK GUARANTEE ============
+     Page-specific translation of the approved editorial blueprint. Pricing
+     stays frameless and white; the guarantee is one navy band. */
+  .pg-wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+  .pg-pricing { padding: clamp(78px, 9vw, 96px) 0; background: var(--surface-page); }
+  .pg-lead {
+    max-width: 800px;
+    margin: 22px 0 0;
+    color: var(--text-heading);
+    font-family: var(--font-body);
+    font-size: clamp(19px, 1.75vw, 22px);
+    font-weight: 500;
+    line-height: 1.52;
+    text-wrap: pretty;
+  }
+  .pg-lead strong { font-weight: 700; }
+  .pg-rail {
+    display: grid;
+    grid-template-columns: 1.35fr repeat(3, minmax(0, 1fr));
+    margin: 44px 0 0;
+    padding: 0;
+    border-top: 2px solid var(--text-heading);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .pg-rail-item { min-width: 0; margin: 0; padding: 21px 25px 22px 0; }
+  .pg-rail-item + .pg-rail-item { padding-left: 25px; border-left: 1px solid var(--border-hairline); }
+  .pg-rail dt,
+  .pg-after-label,
+  .pg-guarantee-eyebrow,
+  .pg-promise-label,
+  .pg-ongoing-label {
+    margin: 0 0 5px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .pg-rail dt { color: var(--text-muted); }
+  .pg-rail dd {
+    margin: 0;
+    color: var(--text-heading);
+    font-family: 'General Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.28;
+  }
+  .pg-rail .pg-price { font-size: 28px; letter-spacing: -.025em; }
+  .pg-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+    gap: clamp(60px, 8.5vw, 112px);
+    margin-top: 57px;
+  }
+  .pg-subhead {
+    margin: 0 0 15px;
+    color: var(--text-heading);
+    font-family: 'General Sans', sans-serif;
+    font-size: clamp(25px, 2.7vw, 32px);
+    font-weight: 700;
+    letter-spacing: -.022em;
+    line-height: 1.13;
+    text-wrap: balance;
+  }
+  .pg-copy {
+    margin: 0 0 17px;
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.58;
+    text-wrap: pretty;
+  }
+  .pg-copy:last-child { margin-bottom: 0; }
+  .pg-scope { margin: 0; padding: 0; border-top: 1px solid var(--text-heading); list-style: none; }
+  .pg-scope li {
+    position: relative;
+    padding: 13px 0 13px 28px;
+    border-bottom: 1px solid var(--border-hairline);
+    color: var(--text-heading);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .pg-scope li::before {
+    position: absolute;
+    top: 18px;
+    left: 2px;
+    width: 12px;
+    height: 7px;
+    border-bottom: 2px solid var(--accent-ui);
+    border-left: 2px solid var(--accent-ui);
+    content: "";
+    transform: rotate(-45deg);
+  }
+  .pg-after {
+    display: grid;
+    grid-template-columns: minmax(220px, .6fr) minmax(0, 1.4fr);
+    gap: clamp(48px, 8vw, 100px);
+    margin-top: 49px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-hairline);
+  }
+  .pg-after-label { color: var(--accent-text); }
+  .pg-after .pg-subhead { margin-bottom: 0; }
+
+  .pg-guarantee {
+    --pg-dark-line: color-mix(in srgb, var(--ec-white) 16%, transparent);
+    padding: clamp(78px, 9vw, 92px) 0 0;
+    background: var(--surface-dark);
+    color: var(--text-inverse);
+  }
+  .pg-guarantee-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 190px;
+    align-items: center;
+    gap: clamp(58px, 9vw, 116px);
+  }
+  .pg-guarantee-eyebrow,
+  .pg-promise-label,
+  .pg-ongoing-label { color: var(--ec-blue-500); }
+  .pg-guarantee-title {
+    max-width: 750px;
+    margin: 0 0 20px;
+    color: var(--text-inverse);
+    font-family: 'General Sans', sans-serif;
+    font-size: clamp(38px, 4.6vw, 53px);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  .pg-guarantee-lead,
+  .pg-guarantee-reason,
+  .pg-promise-copy,
+  .pg-ongoing-copy p {
+    font-family: var(--font-body);
+    text-wrap: pretty;
+  }
+  .pg-guarantee-lead { max-width: 690px; margin: 0 0 15px; font-size: 19px; line-height: 1.55; }
+  .pg-guarantee-reason { max-width: 690px; margin: 0; font-size: 16px; line-height: 1.56; opacity: .78; }
+  .pg-badge {
+    position: relative;
+    display: grid;
+    width: 178px;
+    aspect-ratio: 1;
+    place-items: center;
+    justify-self: end;
+    border: 2px solid var(--ec-blue-500);
+    border-radius: 50%;
+    color: var(--text-inverse);
+    text-align: center;
+    transform: rotate(4deg);
+  }
+  .pg-badge::before {
+    position: absolute;
+    inset: 8px;
+    border: 1px solid color-mix(in srgb, var(--ec-blue-500) 55%, transparent);
+    border-radius: 50%;
+    content: "";
+  }
+  .pg-badge-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; line-height: 1; }
+  .pg-badge-small { color: var(--ec-blue-500); font-family: var(--font-body); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .pg-badge-main { margin: 7px 0 5px; font-family: 'General Sans', sans-serif; font-size: 29px; font-weight: 700; letter-spacing: -.04em; }
+  .pg-promises {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 52px;
+    border-top: 1px solid var(--pg-dark-line);
+    border-bottom: 1px solid var(--pg-dark-line);
+  }
+  .pg-promise { padding: 32px 47px 35px 0; }
+  .pg-promise + .pg-promise { padding-right: 0; padding-left: 47px; border-left: 1px solid var(--pg-dark-line); }
+  .pg-promise-title,
+  .pg-ongoing-title {
+    margin: 0 0 10px;
+    color: var(--text-inverse);
+    font-family: 'General Sans', sans-serif;
+    font-size: clamp(23px, 2.4vw, 29px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.16;
+    text-wrap: balance;
+  }
+  .pg-promise-copy { max-width: 485px; margin: 0; font-size: 17px; line-height: 1.57; opacity: .82; }
+  .pg-ongoing {
+    display: grid;
+    grid-template-columns: minmax(250px, .73fr) minmax(0, 1.27fr);
+    gap: clamp(58px, 8vw, 108px);
+    margin-top: 52px;
+    padding: 40px 0;
+    border-top: 2px solid var(--ec-blue-ui);
+    border-bottom: 1px solid var(--pg-dark-line);
+  }
+  .pg-ongoing-title { margin-bottom: 0; font-size: clamp(26px, 3vw, 35px); letter-spacing: -.024em; line-height: 1.13; }
+  .pg-ongoing-copy p { margin: 0 0 13px; font-size: 17px; line-height: 1.57; opacity: .82; }
+  .pg-ongoing-copy p:last-child { margin-bottom: 0; }
+  .pg-ongoing-copy .pg-earn { margin-top: 20px; color: var(--text-inverse); font-family: 'General Sans', sans-serif; font-size: clamp(23px, 2.7vw, 31px); font-weight: 700; letter-spacing: -.017em; line-height: 1.28; opacity: 1; }
+  .pg-guarantee-close { display: flex; align-items: center; justify-content: space-between; gap: 34px; padding: 38px 0 56px; }
+  .pg-guarantee-link { color: var(--ec-blue-500); font-family: var(--font-body); font-size: 16px; font-weight: 700; text-underline-offset: 5px; }
+  .pg-guarantee-link:focus-visible,
+  .pg-guarantee-button:focus-visible { outline: 3px solid var(--ec-blue-500); outline-offset: 4px; }
+  .pg-button-wrap { text-align: right; }
+  .pg-microcopy { margin: 8px 0 0; color: var(--text-inverse); font-family: var(--font-body); font-size: 14px; opacity: .66; }
+  @media (max-width: 880px) {
+    .pg-rail { grid-template-columns: repeat(2, 1fr); }
+    .pg-rail-item:nth-child(3) { border-left: 0; }
+    .pg-rail-item:nth-child(n+3) { border-top: 1px solid var(--border-hairline); }
+    .pg-grid, .pg-after, .pg-ongoing { grid-template-columns: 1fr; }
+    .pg-grid { gap: 48px; }
+    .pg-after { gap: 19px; }
+    .pg-guarantee-header { grid-template-columns: minmax(0, 1fr) 160px; gap: 42px; }
+    .pg-badge { width: 155px; }
+    .pg-ongoing { gap: 22px; }
+  }
+  @media (max-width: 600px) {
+    .pg-wrap { width: min(600px, calc(100% - 36px)); }
+    .pg-pricing { padding: 68px 0 74px; }
+    .pg-rail { grid-template-columns: 1fr; margin-top: 36px; }
+    .pg-rail-item,
+    .pg-rail-item + .pg-rail-item { padding: 15px 0; border-top: 1px solid var(--border-hairline); border-left: 0; }
+    .pg-rail-item:first-child { border-top: 0; }
+    .pg-grid { margin-top: 44px; }
+    .pg-after { margin-top: 42px; padding-top: 28px; }
+    .pg-guarantee { padding-top: 69px; }
+    .pg-guarantee-header { grid-template-columns: 1fr; }
+    .pg-badge { width: 145px; justify-self: start; transform: rotate(3deg); }
+    .pg-promises { grid-template-columns: 1fr; margin-top: 40px; }
+    .pg-promise,
+    .pg-promise + .pg-promise { padding: 27px 0 30px; }
+    .pg-promise + .pg-promise { border-top: 1px solid var(--pg-dark-line); border-left: 0; }
+    .pg-ongoing { margin-top: 47px; }
+    .pg-guarantee-close { flex-direction: column; align-items: stretch; }
+    .pg-guarantee-link,
+    .pg-button-wrap { text-align: center; }
+    .pg-guarantee-button { width: 100%; max-width: 100%; box-sizing: border-box; }
+  }
+
   /* §4.3 — conversion block */
   .convert-card { margin-top: 30px; background: var(--surface-page, #fff); border: 1px solid var(--border-hairline); border-radius: 14px; padding: clamp(24px, 3vw, 38px); }
   .cf-row { margin-bottom: 18px; }
@@ -671,13 +910,21 @@ function Page() {
     { label: "Reviews", href: "#reviews" },
   ];
 
+  const handleSubNavClick = (event) => {
+    const pricingLink = event.target.closest('a[href="#pricing"]');
+    if (!pricingLink) return;
+    event.preventDefault();
+    window.history.pushState(null, "", "#pricing");
+    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   const badgeSrc = "assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg";
   const hubspotUrl = "https://ecosystem.hubspot.com/marketplace/solutions/impact";
 
   return (
     <div>
       {showSubNav && (
-        <div className="subnav-fixed">
+        <div className="subnav-fixed" onClick={handleSubNavClick}>
           <SubNav
             label="Deep Diagnostic & Roadmap"
             links={subNavLinks}
@@ -1010,8 +1257,126 @@ function Page() {
         </div>
       </section>
 
-      {/* ⚠️ Pricing and Reviews (#pricing, #reviews) still need to be rebuilt.
-           Their sub-nav anchors remain dead until those sections return. */}
+      {/* ================= SECTION 4 · PRICING ================= */}
+      <section className="pg-pricing" id="pricing" aria-labelledby="pricing-title">
+        <div className="pg-wrap">
+          <div className="sec-line" aria-hidden="true"></div>
+          <div className="chapter-eyebrow">Pricing</div>
+          <h2 className="wynter-h2" id="pricing-title">Before You Spend More, Know What to <span className="hl-box">Fix First</span></h2>
+          <p className="pg-lead">The Deep Diagnostic &amp; Roadmap is a one-time $5,000 engagement designed to answer one expensive question: <strong>What should your company fix first to win more customers?</strong></p>
+
+          <dl className="pg-rail" aria-label="Price and key engagement details">
+            <div className="pg-rail-item">
+              <dt>Your Investment</dt>
+              <dd className="pg-price">$5,000 one time</dd>
+            </div>
+            <div className="pg-rail-item">
+              <dt>Turnaround</dt>
+              <dd>Under two weeks</dd>
+            </div>
+            <div className="pg-rail-item">
+              <dt>Ownership</dt>
+              <dd>The roadmap is yours</dd>
+            </div>
+            <div className="pg-rail-item">
+              <dt>Your Risk</dt>
+              <dd>Money-back guaranteed</dd>
+            </div>
+          </dl>
+
+          <div className="pg-grid">
+            <article>
+              <h3 className="pg-subhead">Why Start With a Diagnostic?</h3>
+              <p className="pg-copy">Because jumping directly into execution would mean prescribing before diagnosing.</p>
+              <p className="pg-copy">We investigate how buyers find and evaluate you, where competitors are outperforming you, what is happening inside your sales and marketing process, and what your team can realistically execute.</p>
+              <p className="pg-copy">Then we turn that evidence into a prioritized plan.</p>
+            </article>
+
+            <article>
+              <h3 className="pg-subhead">What Does Your $5,000 Cover?</h3>
+              <ul className="pg-scope">
+                <li>External research, AI visibility, and competitor benchmarking</li>
+                <li>A 90-minute leadership working session</li>
+                <li>Expert analysis and priority decisions</li>
+                <li>A written three-, six-, and twelve-month roadmap</li>
+                <li>A live walkthrough with your Endless Customers coach</li>
+              </ul>
+            </article>
+          </div>
+
+          <div className="pg-after">
+            <div>
+              <p className="pg-after-label">After the Roadmap</p>
+              <h3 className="pg-subhead">What Happens After the Roadmap?</h3>
+            </div>
+            <div>
+              <p className="pg-copy">You leave with a decision-ready plan and our honest recommendation for what should happen next.</p>
+              <p className="pg-copy">That recommendation may involve IMPACT, your own team, another qualified partner, or no immediate investment. The roadmap belongs to you, and any future work with IMPACT is priced and scoped separately.</p>
+              <p className="pg-copy">Starting here does not commit you to an ongoing engagement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= MONEY-BACK GUARANTEE ================= */}
+      <section className="pg-guarantee" id="guarantee" aria-labelledby="guarantee-title">
+        <div className="pg-wrap">
+          <div className="pg-guarantee-header">
+            <div>
+              <p className="pg-guarantee-eyebrow">Money-Back Guarantee</p>
+              <h2 className="pg-guarantee-title" id="guarantee-title">If We Miss the Mark, We Make It Right</h2>
+              <p className="pg-guarantee-lead">You should not have to take our confidence on faith.</p>
+              <p className="pg-guarantee-reason">We can make that promise because we only accept companies we believe we can genuinely help.</p>
+            </div>
+
+            {/* Placeholder badge: replace with the final brand asset when it is ready. */}
+            <div className="pg-badge" role="img" aria-label="100 percent money-back guaranteed">
+              <div className="pg-badge-copy" aria-hidden="true">
+                <span className="pg-badge-small">Money-Back</span>
+                <span className="pg-badge-main">100%</span>
+                <span className="pg-badge-small">Guaranteed</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="pg-promises" aria-label="Our two guarantee promises">
+            <article className="pg-promise">
+              <p className="pg-promise-label">If You’re Not Happy</p>
+              <h3 className="pg-promise-title">We Redo the Work</h3>
+              <p className="pg-promise-copy">If the diagnostic and roadmap do not deliver the clarity and quality we promised, tell us why in writing. We will redo the work and walk you through the improved version.</p>
+            </article>
+            <article className="pg-promise">
+              <p className="pg-promise-label">If We Still Miss</p>
+              <h3 className="pg-promise-title">We Refund You in Full</h3>
+              <p className="pg-promise-copy">If you are still not happy, tell us again in writing. We will refund the full $5,000 fee, no questions asked.</p>
+            </article>
+          </div>
+
+          <div className="pg-ongoing">
+            <div>
+              <p className="pg-ongoing-label">If We Continue Together</p>
+              <h3 className="pg-ongoing-title">Does the Guarantee Continue If We Work Together?</h3>
+            </div>
+            <div className="pg-ongoing-copy">
+              <p><strong>Yes.</strong></p>
+              <p>If we both decide to continue after the roadmap, our ongoing work is month to month. Either side can end the engagement with 30 days’ notice, and our money-back guarantee continues to apply to the work we deliver for the entire relationship.</p>
+              <p>You are never locked into a long-term contract.</p>
+              <p className="pg-earn">We have to earn your business every 30 days.</p>
+            </div>
+          </div>
+
+          <div className="pg-guarantee-close">
+            <a className="pg-guarantee-link" href="../money-back-guarantee/">How Our Money-Back Guarantee Works →</a>
+            <div className="pg-button-wrap">
+              <Button className="pg-guarantee-button" variant="outline" size="lg" withArrow href="#start" style={{ background: "var(--surface-page)", color: "var(--text-heading)", borderColor: "var(--surface-page)" }}>Schedule an Explore Call</Button>
+              <p className="pg-microcopy">A real first conversation. No pitch, no obligation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ⚠️ Reviews (#reviews) still needs to be rebuilt. Its sub-nav anchor
+           remains dead until that section returns. */}
 
       <Footer />
     </div>
