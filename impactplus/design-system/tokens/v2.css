@@ -22,6 +22,8 @@
   --v2-border: 2px solid var(--ec-gray-900);
   --v2-section-space: clamp(84px, 10vw, 128px);
   --v2-heading-space: clamp(24px, 2.5vw, 34px);
+  --v2-hero-next-section-peek: clamp(24px, 3vh, 36px);
+  --v2-hero-desktop-min-height: calc(100svh - var(--v2-hero-next-section-peek));
 
   /* Repoint existing semantic aliases so legacy components inherit V2. */
   --color-brand: var(--v2-theme-strong);
@@ -92,6 +94,14 @@
   p, li, blockquote,
   [data-text-wrap="pretty"], .v2-pretty
 ) { text-wrap: pretty; }
+
+/* Desktop-only viewport hero. The small subtraction intentionally reveals the
+   next section; content-driven height remains the fallback for shorter screens. */
+@media (min-width: 981px) {
+  .impact-v2 .v2-viewport-hero {
+    min-height: var(--v2-hero-desktop-min-height);
+  }
+}
 
 .impact-v2 .hl-box {
   padding-inline: .045em;

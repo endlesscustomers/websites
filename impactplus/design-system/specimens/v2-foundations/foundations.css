@@ -1,8 +1,7 @@
 /*
-  IMPACT V2 Foundations specimen — experimental review artifact.
+  IMPACT V2 Foundations specimen — approved local authority.
   Uses canonical tokens from ../../styles.css.
-  Local shape aliases are deliberate approval candidates and MUST NOT be
-  promoted into production tokens until Bob approves the specimen.
+  Local presentation rules demonstrate the canonical V2 tokens.
 */
 .v2-specimen {
   --v2-radius-control: 999px;
@@ -132,6 +131,15 @@
 .v2-hero .v2-button:not(.v2-button--ghost):hover { border-color: var(--ec-black); background: var(--ec-black); color: white !important; }
 .v2-hero .v2-button--ghost { border: 1px solid white; background: transparent; color: white !important; }
 .v2-hero .v2-button--ghost:hover { border-color: white; background: rgba(255,255,255,.16); color: white !important; }
+
+@media (min-width: 1021px) {
+  .v2-hero {
+    display: grid;
+    min-height: var(--v2-hero-desktop-min-height);
+    align-items: center;
+    padding: 108px 0 52px;
+  }
+}
 
 .v2-theme-picker { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin: 38px 0 0; padding: 0; border: 0; }
 .v2-theme-picker legend { width: 100%; margin-bottom: 2px; color: white; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }

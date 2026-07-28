@@ -110,6 +110,12 @@ photography** (real conference/team photos) with a dark overlay for legibility.
 No busy patterns. Service pages introduce soft two-stop **gradients**. Photos are
 warm, natural, real people — never stocky or cold.
 
+**Desktop hero height.** V2 primary page heroes use `.v2-viewport-hero` to fill
+nearly the full desktop viewport while intentionally revealing a small strip of
+the next section above the fold. The rule is disabled at 980px and below, where
+heroes return to content-driven height. Short desktop viewports may grow beyond
+the minimum rather than clipping copy or actions.
+
 **Imagery treatment.** Client logos render **grayscale + faded** (~55% opacity).
 Photos sit inside **pill / arch-topped rounded masks** on the "How it Works" page
 (tall rounded-top rectangles). Avatars are circular.

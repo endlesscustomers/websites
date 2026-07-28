@@ -12,6 +12,7 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - Wynter-inspired full-color fields, dark label blocks, inline headline highlights, oversized assertions, numbered editorial rows, and assertion-first section rhythm.
 - Orbit-inspired paragraph, list, and bold-emphasis patterns.
 - Shared service-page patterns for pricing facts, process, fit/not-fit qualification, risk reversal, FAQs, proof, and testimonials.
+- A desktop viewport hero that reveals a small strip of the next section, with content-driven height on tablet and mobile.
 - Responsive behavior at desktop, tablet, and mobile widths.
 
 ## Bob-directed revision — 2026-07-28
@@ -40,6 +41,7 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - The magenta full-field role uses the accessibility-adjusted `#CD43DC`; raw brand magenta remains `#C026D3` in the palette.
 - The main navigation is a transparent overlay on the hero field, so it always shares the active theme color instead of creating a separate navigation band.
 - Highlights below the hero use white text on the active accessible strong color, with only a few pixels of vertical extension and slightly more below the letterforms. The hero does not use a headline highlight.
+- Primary heroes nearly fill the desktop viewport and deliberately reveal the next section; the behavior is disabled at 980px and below.
 
 ## Approval
 

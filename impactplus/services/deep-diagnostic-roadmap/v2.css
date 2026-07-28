@@ -1,4 +1,4 @@
-@import "../../design-system/tokens/v2.css?v=20260728-5";
+@import "../../design-system/tokens/v2.css?v=20260728-6";
 
 /* Deep Diagnostic & Roadmap — first coded-body proof of approved IMPACT V2. */
 
@@ -75,6 +75,15 @@
   box-shadow: none;
 }
 .ddr-v2 .hero-video-caption { border-top: 2px solid var(--ec-navy); }
+
+@media (min-width: 981px) {
+  .ddr-v2 .hero-wrap { min-height: var(--v2-hero-desktop-min-height); }
+  .ddr-v2 .hero-grid {
+    grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr);
+    padding: clamp(38px, 5vh, 50px) 0 clamp(42px, 5.5vh, 54px);
+  }
+  .ddr-v2 .hero-h1 { font-size: clamp(54px, 5vw, 72px); }
+}
 
 /* Editorial rhythm and hierarchy. */
 .ddr-v2 .sec-open { padding-top: var(--ddr-section-open-space); }
@@ -198,6 +207,7 @@
 }
 
 @media (max-width: 980px) {
+  .ddr-v2 .hero-wrap { min-height: auto; }
   .ddr-v2 .hero-grid { padding: 64px 0 82px; }
   .ddr-v2 .how-path { margin-top: 64px; }
   .ddr-v2 .how-effort { margin-top: 58px; }
