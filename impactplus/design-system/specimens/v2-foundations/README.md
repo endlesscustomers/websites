@@ -33,6 +33,8 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - Made blue the default root theme. The interactive specimen control can switch the complete active system to magenta, green, or orange.
 - Active-theme tokens govern the hero, highlights, links, buttons, form accents, list marks, tinted surfaces, proof blocks, service patterns, and final CTA. The four palette cards and four selector swatches intentionally retain their literal colors because they document and control the available themes.
 - The magenta full-field role uses the accessibility-adjusted `#CD43DC`; raw brand magenta remains `#C026D3` in the palette.
+- The main navigation is a transparent overlay on the hero field, so it always shares the active theme color instead of creating a separate navigation band.
+- Hero highlights use black text on a tightly trimmed white field. Highlights below the hero use white text on the active accessible strong color, with only a few pixels of vertical extension and slightly more below the letterforms.
 
 ## Review gate
 
