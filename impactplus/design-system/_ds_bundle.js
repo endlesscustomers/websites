@@ -1712,7 +1712,7 @@ function NavLink({
   }, [active]);
   const base = {
     fontFamily: "var(--font-body)",
-    fontWeight: active ? 700 : 600,
+    fontWeight: 600,
     fontSize: 15,
     textDecoration: "none",
     whiteSpace: "nowrap",
@@ -1722,10 +1722,11 @@ function NavLink({
     transition: "background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard)"
   };
   let bg = "transparent",
-    color = "var(--ec-slate-500)";
+    color = "var(--ec-slate-500)",
+    boxShadow = "none";
   if (active) {
-    bg = "var(--ec-neutral-700)";
-    color = "var(--ec-white)";
+    color = "var(--color-brand)";
+    boxShadow = "inset 0 0 0 1px var(--color-brand-strong)";
   } else if (hover) {
     bg = "var(--ec-neutral-100)";
     color = "var(--text-heading)";
@@ -1740,7 +1741,8 @@ function NavLink({
     style: {
       ...base,
       background: bg,
-      color
+      color,
+      boxShadow
     }
   }, label);
 }
@@ -1748,7 +1750,8 @@ function NavLink({
 /** Sticky secondary/section nav (as on the coaching + service pages): a product
  * label (or logo) on the left, horizontally scrollable in-page anchors, and a
  * black CTA on the right. V2 presents the inner rail as a floating white pill
- * and uses a brand-tinted active state rather than competing black pills. */
+ * and uses a transparent blue-outline active state rather than competing
+ * filled pills. */
 function SubNav({
   logoSrc,
   label = "",

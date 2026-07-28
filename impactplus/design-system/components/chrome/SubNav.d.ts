@@ -10,7 +10,7 @@ export interface SubNavProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
   /** In-page links. */
   links?: { label: string; href: string }[];
-  /** href of the active link (gets the theme-tinted pill state). */
+  /** href of the active link (gets the transparent blue-outline pill state). */
   activeHref?: string;
   /** @default "Schedule Call" */
   ctaLabel?: string;

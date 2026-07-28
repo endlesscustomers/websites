@@ -929,7 +929,7 @@
   /* .band/.band-sm/.wrap/.wrap-narrow promoted to the design system 2026-07-25. */
   .center { text-align: center; }
 </style>
-<link rel="stylesheet" href="v2.css?v=20260728-21">
+<link rel="stylesheet" href="v2.css?v=20260728-22">
 </head>
 <body>
 <div id="root"></div>
@@ -937,8 +937,8 @@
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
-<script src="../../design-system/_ds_bundle.js?v=20260728-20"></script>
-<script src="../../design-system/motion/v2-motion.js?v=20260728-20"></script>
+<script src="../../design-system/_ds_bundle.js?v=20260728-22"></script>
+<script src="../../design-system/motion/v2-motion.js?v=20260728-22"></script>
 
 <script type="text/babel">
 const PLACEHOLDER_ROADMAP = "data:image/svg+xml;utf8," + encodeURIComponent(
@@ -1179,7 +1179,7 @@ function Page() {
       <div className="hero-wrap v2-viewport-hero">
         <NavBar ctaVariant="dark" style={{ background: "transparent", position: "relative", zIndex: 3 }} />
         <div className="hero-grid">
-          <div className="hero-left">
+          <div className="hero-left v2-hero-enter">
             <div className="hero-eyebrow">The Endless Customers Deep Diagnostic &amp; Roadmap</div>
             <h1 className="hero-h1">
               Find Out Why You're Not Winning More Customers
@@ -1201,7 +1201,7 @@ function Page() {
               </span>
             </div>
           </div>
-          <div className="hero-right" id="video">
+          <div className="hero-right v2-hero-enter v2-hero-enter-delay" id="video">
             <div className="hero-video-card v2-hero-media">
               <a className="hero-video-poster" href="#" aria-label="Play the 2-minute overview">
                 <img src="assets/bob-video-poster-clean-1.png" alt="Bob Ruffolo, your Endless Customers coach" />

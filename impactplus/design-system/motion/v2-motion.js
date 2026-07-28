@@ -17,11 +17,12 @@
       return;
     }
 
-    /* Prime the first content beat just below the fold, then reveal it after
-       the ready state has painted. Content that is already above the viewport
-       is shown immediately so restored/deep-link scroll positions never replay
-       stale motion. Opacity and transform are paint-only and do not shift layout. */
-    const initialRevealLimit = window.innerHeight * 1.1;
+    /* Animate content already inside the initial viewport after the ready state
+       paints. Content just below the fold waits until it actually enters the
+       lower viewport, so visitors see the transition instead of having it
+       complete offscreen. Restored/deep-link content above the viewport is
+       shown immediately. Opacity and transform remain paint-only. */
+    const initialRevealLimit = window.innerHeight * 0.92;
     const initialItems = [];
     items.forEach((item) => {
       const bounds = item.getBoundingClientRect();
@@ -36,7 +37,7 @@
         entry.target.classList.add(VISIBLE_CLASS);
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.04, rootMargin: "0px 0px 12% 0px" });
+    }, { threshold: 0.04, rootMargin: "0px 0px -6% 0px" });
 
     items.filter((item) => !item.classList.contains(VISIBLE_CLASS)).forEach((item) => observer.observe(item));
 

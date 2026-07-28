@@ -122,12 +122,13 @@ part of the same typography system.
 **Motion.** V2 motion is quiet, directional, and explanatory. The shared helper
 in `motion/v2-motion.js` activates only explicit `data-v2-reveal` elements,
 uses the governed 180/420/700ms timing scale and an ease-out curve, supports
-70ms stagger steps, and never hides content when JavaScript fails. It primes the
-first content beat just below the fold and uses an early intersection margin so
-motion starts as the next section enters view instead of halfway through it.
-Hero LCP content is not opacity-hidden. The process timeline may draw and reveal
-its nodes in sequence because that motion explains order. `prefers-reduced-motion`
-removes all reveal and timeline motion.
+70ms stagger steps, and never hides content when JavaScript fails. Hero copy and
+proof use a visible, transform-only entrance on first load; hero LCP content is
+never opacity-hidden. Post-hero reveals wait until their content enters the lower
+viewport, so the transition remains visible instead of completing offscreen.
+The process timeline may draw and reveal its nodes in sequence because that
+motion explains order. `prefers-reduced-motion` removes all reveal and timeline
+motion.
 
 **Desktop canvas.** V2 pages use a shared 1240px maximum content grid with 24px
 minimum side gutters. Major section grids—including the Money-Back Guarantee—
@@ -273,7 +274,7 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 **Chrome** (`components/chrome/`)
 - **NavBar** — dark global header (logo + tagline + nav + Login + Schedule Call).
 - **SubNav** — floating white pill rail: product label, horizontally scrollable
-  in-page pills with a theme-tinted active state, and a black arrow CTA. The
+  in-page pills with a transparent blue-outline active state, and a black arrow CTA. The
   label collapses at tablet widths; mobile keeps a compact circular CTA and
   automatically centers the active link without wrapping the rail.
 - **HelloBar** — dismissible promo bar.
