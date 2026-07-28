@@ -118,7 +118,7 @@
 .v2-highlight {
   --v2-highlight-fill: var(--v2-theme-strong);
   display: inline; padding: 0 .045em;
-  background: linear-gradient(to bottom, transparent 6px, var(--v2-highlight-fill) 6px calc(100% - 2px), transparent calc(100% - 2px));
+  background: linear-gradient(to bottom, transparent 7px, var(--v2-highlight-fill) 7px calc(100% - 1px), transparent calc(100% - 1px));
   color: white;
   box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
