@@ -810,24 +810,30 @@
   .post-faq-answer .post-link { display: inline-block; margin-top: 4px; }
 
   .post-about { padding-bottom: 0; overflow: hidden; background: var(--surface-muted); }
-  .post-about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(430px, .94fr); gap: clamp(55px, 8vw, 96px); align-items: center; }
-  .post-about-lead { margin: 27px 0 17px; color: var(--text-heading); font-family: var(--font-body); font-size: 20px; font-weight: 600; line-height: 1.5; }
-  .post-about-copy > p:not(.post-about-lead) { margin: 0 0 15px; color: var(--text-body); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
-  .post-coach-proof { padding: 34px 0; border-top: 2px solid var(--text-heading); border-bottom: 1px solid var(--border-strong); }
-  .post-coach-proof-label { margin: 0 0 18px; color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-  .post-coach-proof h3 { max-width: 520px; margin: 0 0 42px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: clamp(28px, 3vw, 39px); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; }
-  .post-coach-backing { display: grid; grid-template-columns: minmax(150px, .65fr) minmax(0, 1.35fr); gap: 28px; padding-top: 24px; border-top: 1px solid var(--border-strong); }
-  .post-coach-backing strong { color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 18px; }
-  .post-coach-backing p { margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
-  .post-credentials { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 67px 0 0; padding: 0; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); }
-  .post-credentials div { display: grid; min-width: 0; min-height: 112px; align-content: center; padding: 20px 25px; }
+  .post-about-intro { max-width: 960px; }
+  .post-about-intro .post-h2 { max-width: 920px; }
+  .post-about-lead { max-width: 850px; margin: 27px 0 0; color: var(--text-heading); font-family: var(--font-body); font-size: clamp(19px, 1.8vw, 22px); font-weight: 600; line-height: 1.5; }
+  .post-about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 54px; border-top: 2px solid var(--text-heading); border-bottom: 1px solid var(--border-strong); }
+  .post-authority-panel { min-width: 0; padding: 40px clamp(30px, 4vw, 55px) 44px 0; }
+  .post-authority-panel + .post-authority-panel { padding-right: 0; padding-left: clamp(30px, 4vw, 55px); border-left: 1px solid var(--border-strong); }
+  .post-authority-label { margin: 0 0 17px; color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .post-authority-panel h3 { max-width: 520px; margin: 0 0 22px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: clamp(27px, 2.7vw, 36px); font-weight: 700; letter-spacing: -.025em; line-height: 1.14; }
+  .post-authority-panel > p:not(.post-authority-label) { margin: 0 0 18px; color: var(--text-body); font-family: var(--font-body); font-size: 17px; line-height: 1.62; }
+  .post-system-figure { margin: 29px 0 22px; }
+  .post-system-figure img { display: block; width: 100%; height: auto; }
+  .post-system-figure figcaption { margin-top: 9px; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.4; }
+  .post-expertise { margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--border-strong); }
+  .post-expertise strong { display: block; margin-bottom: 9px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 18px; }
+  .post-expertise p { margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+  .post-credentials { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 56px 0 0; padding: 0; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); }
+  .post-credentials div { display: grid; min-width: 0; min-height: 166px; align-content: center; padding: 20px 25px; }
   .post-credentials div + div { border-left: 1px solid var(--border-strong); }
   .post-credentials dt { color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 19px; font-weight: 700; line-height: 1.2; }
   .post-credentials dd { margin: 4px 0 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.35; }
-  .post-credential-badge img { display: block; width: 74px; height: 74px; object-fit: contain; }
-  .post-credential-badge dd { margin-top: 7px; }
-  .post-transparency { display: flex; align-items: center; justify-content: space-between; gap: 45px; padding: 28px 0 34px; }
-  .post-transparency p { max-width: 800px; margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+  .post-credential-badge img { display: block; width: 190px; max-width: 100%; height: 145px; object-fit: contain; object-position: left center; }
+  .post-credential-badge dd { margin-top: 5px; }
+  .post-about-close { display: flex; align-items: center; justify-content: space-between; gap: 45px; padding: 31px 0 38px; }
+  .post-about-close p { max-width: 850px; margin: 0; color: var(--text-heading); font-family: var(--font-body); font-size: 17px; font-weight: 600; line-height: 1.55; }
 
   .post-final { padding: clamp(72px, 8vw, 84px) 0; background: var(--accent-strong); color: var(--text-inverse); }
   .post-final-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(350px, .85fr); gap: clamp(58px, 8vw, 90px); align-items: center; }
@@ -841,13 +847,11 @@
   .post-final-note { margin: 25px 0 0; padding-top: 19px; border-top: 1px solid color-mix(in srgb, var(--text-inverse) 32%, transparent); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
 
   @media (max-width: 980px) {
-    .post-booking-grid, .post-faq-grid, .post-about-grid, .post-final-grid { grid-template-columns: 1fr; }
+    .post-booking-grid, .post-faq-grid, .post-final-grid { grid-template-columns: 1fr; }
     .post-booking-grid { gap: 48px; }
     .post-booking-copy, .post-faq-intro { position: static; }
     .post-faq-grid { gap: 48px; }
     .post-faq-intro .post-lead { max-width: 650px; }
-    .post-about-grid { gap: 45px; }
-    .post-coach-proof { max-width: 680px; }
     .post-final-grid { gap: 42px; }
   }
   @media (max-width: 720px) {
@@ -859,11 +863,13 @@
     .post-calendar-days { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
     .post-testimonial { min-height: 0; padding: 31px 0; }
     .post-testimonial + .post-testimonial { border-top: 1px solid var(--border-strong); border-left: 0; }
-    .post-transparency { align-items: flex-start; flex-direction: column; gap: 20px; }
+    .post-about-grid { grid-template-columns: 1fr; }
+    .post-authority-panel { padding-right: 0; }
+    .post-authority-panel + .post-authority-panel { padding-left: 0; border-top: 1px solid var(--border-strong); border-left: 0; }
+    .post-about-close { align-items: flex-start; flex-direction: column; gap: 20px; }
     .post-faq summary { padding: 20px 0; }
     .post-faq summary h3 { font-size: 17px; }
     .post-faq-answer { padding-right: 0; }
-    .post-coach-backing { grid-template-columns: 1fr; gap: 10px; }
     .post-credentials { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .post-credentials div { min-height: 100px; padding: 18px 14px; }
     .post-credentials div + div { border-left: 0; }
@@ -1890,41 +1896,48 @@ function Page() {
         </div>
       </section>
 
-      {/* ================= WHO YOU'LL BE WORKING WITH ================= */}
+      {/* ================= WHY IMPACT ================= */}
       <section className="post-section post-about" id="about" aria-labelledby="about-title">
         <div className="post-wrap">
-          <div className="sec-line" aria-hidden="true"></div>
-          <p className="post-eyebrow">About IMPACT</p>
-          <div className="post-about-grid">
-            <div className="post-about-copy">
-              <h2 className="post-h2" id="about-title">Your Coach Leads the Work. <span className="hl-box">IMPACT Backs Them.</span></h2>
-              <p className="post-about-lead">You will work directly with an Endless Customers Coach who owns the diagnostic from the first investigation through the final roadmap.</p>
-              <p>Your coach studies the outside evidence, leads the 90-minute session with your leadership team, tests what they find against the realities inside your business, and builds your priorities and 3-, 6-, and 12-month roadmap.</p>
-              <p>Behind your coach is IMPACT, the business coaching and training company behind Endless Customers. Our team works across sales, marketing, websites, HubSpot, paid media, and AI visibility. That broader experience matters because stalled growth rarely fits neatly inside one specialty.</p>
-              <p>The result is a roadmap grounded in your business and informed by patterns we have seen across hundreds of companies.</p>
-            </div>
+          <div className="post-about-intro">
+            <div className="sec-line" aria-hidden="true"></div>
+            <p className="post-eyebrow">Why IMPACT</p>
+            <h2 className="post-h2" id="about-title">A Proven System. Experienced People. <span className="hl-box">Recommendations You Can Trust.</span></h2>
+            <p className="post-about-lead">We created Endless Customers and have helped hundreds of businesses put it into practice. Your diagnostic benefits from both: a proven framework for winning more customers and experienced people who know how to apply it to the realities of your business.</p>
+          </div>
 
-            {/* Temporary image-free composition. A future approved asset can
-                replace this one container without changing the section grid. */}
-            <div className="post-coach-proof" aria-label="How your IMPACT team works">
-              <p className="post-coach-proof-label">One Accountable Coach</p>
-              <h3>Your coach owns the work from the first investigation through the final roadmap.</h3>
-              <div className="post-coach-backing">
-                <strong>Backed by IMPACT</strong>
-                <p>Specialists across sales, marketing, websites, HubSpot, paid media, and AI visibility support the work when their expertise is needed.</p>
+          <div className="post-about-grid">
+            <article className="post-authority-panel" aria-labelledby="system-authority-title">
+              <p className="post-authority-label">The System</p>
+              <h3 id="system-authority-title">Created by IMPACT. Proven in the real world.</h3>
+              <figure className="post-system-figure">
+                <img src="assets/endless-customers-workshop.jpg" alt="Copies of the Endless Customers book and workshop materials prepared for an IMPACT training session" width="1200" height="800" loading="lazy" />
+                <figcaption>Endless Customers books and workshop materials prepared for an IMPACT training session.</figcaption>
+              </figure>
+              <p>Endless Customers is both a USA Today bestselling book and a growth system used by companies across the country. Its principles are also referenced and applied by marketers and agencies beyond IMPACT.</p>
+            </article>
+
+            <article className="post-authority-panel" aria-labelledby="people-authority-title">
+              <p className="post-authority-label">The People</p>
+              <h3 id="people-authority-title">Experience earned through hundreds of businesses.</h3>
+              <p>Since 2009, our team has helped hundreds of businesses apply Endless Customers in the real world. That experience gives us the pattern recognition to see beyond surface-level symptoms, ask better questions, and make recommendations grounded in what actually works.</p>
+              <p>When we study your business, we bring what we have learned across different companies, industries, and markets without assuming that the answer will be the same for everyone.</p>
+              <div className="post-expertise">
+                <strong>Experience across the full revenue system</strong>
+                <p>Sales, marketing, websites, HubSpot, paid media, and AI visibility.</p>
               </div>
-            </div>
+            </article>
           </div>
 
           <dl className="post-credentials" aria-label="IMPACT credibility points">
+            <div><dt>USA Today</dt><dd>Bestselling business book</dd></div>
             <div><dt>300+</dt><dd>Companies coached</dd></div>
-            <div><dt>2009</dt><dd>Year founded</dd></div>
-            <div className="post-credential-badge"><dt><img src="assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg" alt="HubSpot Diamond Solutions Partner badge" width="74" height="74" loading="lazy" /></dt><dd>HubSpot Solutions Partner</dd></div>
-            <div><dt>Endless Customers</dt><dd>The coaching company behind it</dd></div>
+            <div className="post-credential-badge"><dt><img src="assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg" alt="HubSpot Diamond Solutions Partner badge" width="190" height="145" loading="lazy" /></dt><dd>HubSpot Solutions Partner</dd></div>
+            <div><dt>5.0 on HubSpot</dt><dd>327 client reviews</dd></div>
           </dl>
 
-          <div className="post-transparency">
-            <p>We hold ourselves to the same standard we teach: answer difficult questions openly. That is why you can see the price, process, limits, and guarantee before you ever talk with us.</p>
+          <div className="post-about-close">
+            <p>That combination gives you recommendations grounded in a proven system, sharpened by real-world experience, and focused on helping your business win more customers.</p>
             <a className="post-link" href="https://www.impactplus.com/impact-company-profile-university">Learn more about IMPACT →</a>
           </div>
         </div>
