@@ -4,7 +4,8 @@
      124-point investigation, benchmark-to-priority evidence, and the live
      coach-led recommendation. Section 3 (How It Works) follows its approved
      four-step blueprint. Pricing and the Money-Back Guarantee follow their
-     approved blueprint. Reviews still needs to be rebuilt; #reviews is dead. -->
+     approved blueprint. The approved post-guarantee sequence now carries the
+     Explore Call flow, client results, FAQ, IMPACT context, and final CTA. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
      rather than duplicated. Only page-specific styles remain below. */
   :root { --peek: 150px; }
   html { scroll-behavior: smooth; }
-  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #video, #start { scroll-margin-top: 76px; }
+  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #faq, #about, #final-cta, #video, #start { scroll-margin-top: 76px; }
   body { margin: 0; background: var(--surface-page, #fff); }
   #root { min-height: 100vh; }
 
@@ -668,26 +669,236 @@
     .pg-guarantee-button { width: 100%; max-width: 100%; box-sizing: border-box; }
   }
 
-  /* §4.3 — conversion block */
-  .convert-card { margin-top: 30px; background: var(--surface-page, #fff); border: 1px solid var(--border-hairline); border-radius: 14px; padding: clamp(24px, 3vw, 38px); }
-  .cf-row { margin-bottom: 18px; }
-  .cf-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  @media (max-width: 700px) { .cf-2 { grid-template-columns: 1fr; } }
-  .convert-form label { display: block; font-family: var(--font-body); font-size: 15px; font-weight: 600; color: var(--text-heading); }
-  .convert-form input, .convert-form select, .convert-form textarea {
-    display: block; width: 100%; box-sizing: border-box; margin-top: 7px;
-    font-family: var(--font-body); font-size: 16px; color: var(--text-heading);
-    background: var(--surface-field, #fff); border: 1px solid var(--border-strong); border-radius: 8px; padding: 11px 13px;
+  /* ============ POST-GUARANTEE SEQUENCE (approved blueprint) ============
+     Page-specific first implementation of the future ConversionBlock and
+     WhoIsImpact patterns, per D30. Keep scoped here until they are proven and
+     extracted into the shared design system. */
+  .post-wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+  .post-section { padding: clamp(84px, 9vw, 104px) 0; }
+  .post-eyebrow {
+    margin: 0 0 18px;
+    color: var(--text-heading);
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: .15em;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
-  .convert-form input:focus-visible, .convert-form select:focus-visible, .convert-form textarea:focus-visible { outline: 3px solid var(--accent-ui); outline-offset: 1px; }
-  .cf-opt { font-weight: 500; color: var(--text-muted); }
-  .cf-micro { font-family: var(--font-body); font-size: 14px; color: var(--text-muted); margin: 14px 0 0; }
-  .convert-done-h { font-family: 'General Sans', sans-serif; font-weight: 700; font-size: 26px; color: var(--text-heading); margin: 0 0 14px; }
+  .post-h2 {
+    margin: 0;
+    color: var(--text-heading);
+    font-family: 'General Sans', sans-serif;
+    font-size: clamp(38px, 4.6vw, 54px);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: 1.07;
+    text-wrap: balance;
+  }
+  .post-lead {
+    margin: 23px 0 0;
+    color: var(--text-heading);
+    font-family: var(--font-body);
+    font-size: clamp(19px, 1.7vw, 22px);
+    font-weight: 500;
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+  .post-link {
+    color: var(--accent-text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 700;
+    text-underline-offset: 4px;
+  }
+  .post-link:focus-visible,
+  .post-text-button:focus-visible,
+  .post-time:focus-visible,
+  .post-faq summary:focus-visible,
+  .post-form input:focus-visible,
+  .post-form select:focus-visible,
+  .post-form textarea:focus-visible,
+  .post-form-button:focus-visible,
+  .post-final-button:focus-visible {
+    outline: 3px solid var(--accent-ui);
+    outline-offset: 4px;
+  }
 
-  /* Who Is IMPACT */
-  .whois { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(28px, 4vw, 64px); align-items: center; }
-  @media (max-width: 820px) { .whois { grid-template-columns: 1fr; } }
-  .whois-badge img { height: clamp(110px, 11vw, 150px); width: auto; display: block; }
+  .post-booking { background: var(--surface-page); }
+  .post-booking-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .88fr) minmax(500px, 1.12fr);
+    gap: clamp(48px, 6vw, 78px);
+    align-items: start;
+  }
+  .post-booking-copy { position: sticky; top: 96px; }
+  .post-risk {
+    max-width: 540px;
+    margin: 18px 0 0;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.58;
+  }
+  .post-call-note {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 19px;
+    align-items: center;
+    max-width: 520px;
+    margin-top: 36px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border-hairline);
+  }
+  .post-call-note strong { color: var(--accent-text); font-family: 'General Sans', sans-serif; font-size: 18px; line-height: 1; }
+  .post-call-note p { margin: 0; color: var(--text-heading); font-family: var(--font-body); font-size: 15px; font-weight: 600; line-height: 1.45; }
+  .post-booking-panel { overflow: hidden; border: 1px solid var(--border-strong); border-top: 4px solid var(--accent-ui); background: var(--surface-page); }
+  .post-stepper { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 0; border-bottom: 1px solid var(--border-hairline); list-style: none; }
+  .post-stepper li { display: flex; min-width: 0; align-items: center; gap: 9px; padding: 15px 12px; color: var(--text-muted); font-family: var(--font-body); }
+  .post-stepper-number { display: grid; width: 25px; height: 25px; flex: 0 0 auto; place-items: center; border: 1px solid var(--border-strong); border-radius: 50%; font-size: 14px; font-weight: 800; }
+  .post-stepper-label { min-width: 0; font-size: 14px; font-weight: 700; line-height: 1.2; }
+  .post-stepper li[data-complete="true"], .post-stepper li[aria-current="step"] { color: var(--text-heading); }
+  .post-stepper li[data-complete="true"] .post-stepper-number,
+  .post-stepper li[aria-current="step"] .post-stepper-number { border-color: var(--accent-strong); background: var(--accent-strong); color: var(--text-inverse); }
+  .post-integration-note { margin: 0; padding: 11px 18px; border-bottom: 1px solid var(--border-hairline); background: var(--accent-tint); color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 600; line-height: 1.45; }
+  .post-panel { padding: clamp(28px, 3.4vw, 38px); }
+  .post-panel-kicker { margin: 0 0 6px; color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+  .post-panel h3 { margin: 0 0 9px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: clamp(25px, 2.5vw, 32px); font-weight: 700; letter-spacing: -.025em; line-height: 1.12; }
+  .post-panel-intro { margin: 0 0 25px; color: var(--text-muted); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+  .post-form-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .post-form-group { margin-bottom: 15px; }
+  .post-form label { display: block; margin-bottom: 6px; color: var(--text-heading); font-family: var(--font-body); font-size: 14px; font-weight: 700; }
+  .post-form input,
+  .post-form select,
+  .post-form textarea { width: 100%; box-sizing: border-box; border: 1px solid var(--border-strong); border-radius: var(--radius-xs); background: var(--surface-page); color: var(--text-heading); font-family: var(--font-body); font-size: 16px; }
+  .post-form input, .post-form select { min-height: 48px; padding: 0 13px; }
+  .post-form textarea { min-height: 100px; padding: 11px 13px; resize: vertical; }
+  .post-form-help { margin: 7px 0 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.45; }
+  .post-form-button { width: 100%; max-width: 100%; box-sizing: border-box; margin-top: 3px; }
+  .post-privacy { margin: 12px 0 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.45; text-align: center; }
+  .post-privacy a { color: inherit; text-underline-offset: 3px; }
+  .post-calendar-topline { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin: 20px 0; padding: 11px 0; border-top: 1px solid var(--border-hairline); border-bottom: 1px solid var(--border-hairline); color: var(--text-heading); font-family: var(--font-body); font-size: 14px; }
+  .post-calendar-topline span { color: var(--text-muted); text-align: right; }
+  .post-text-button { padding: 4px 0; border: 0; background: transparent; color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 700; text-align: left; cursor: pointer; }
+  .post-calendar-days { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .post-day { min-width: 0; text-align: center; }
+  .post-day > span { display: block; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; font-weight: 700; text-transform: uppercase; }
+  .post-day > strong { display: block; margin: 2px 0 10px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 19px; }
+  .post-time { width: 100%; margin-bottom: 7px; padding: 9px 3px; border: 1px solid var(--accent-ui); border-radius: var(--radius-pill); background: var(--accent-tint); color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 700; cursor: pointer; }
+  .post-time:hover { background: var(--accent-strong); color: var(--text-inverse); }
+  .post-calendar-help { margin: 20px 0 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.5; text-align: center; }
+  .post-confirmation { text-align: center; }
+  .post-confirmation-mark { display: grid; width: 58px; height: 58px; place-items: center; margin: 0 auto 15px; border-radius: 50%; background: var(--ec-green-tint); color: var(--ec-green-text); font-family: var(--font-body); font-size: 25px; font-weight: 800; }
+  .post-confirmation-lead { max-width: 490px; margin: 0 auto; color: var(--text-muted); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+  .post-confirmation-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 27px; margin-top: 28px; padding-top: 25px; border-top: 1px solid var(--border-hairline); text-align: left; }
+  .post-confirmation-columns h4 { margin: 0 0 10px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 20px; }
+  .post-confirmation-columns p, .post-confirmation-columns li { color: var(--text-body); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+  .post-confirmation-columns p { margin: 0 0 11px; }
+  .post-confirmation-columns ul { margin: 0 0 14px; padding-left: 20px; }
+
+  .post-results { background: var(--surface-muted); }
+  .post-results-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(330px, .72fr); gap: 70px; align-items: end; }
+  .post-results-heading-copy p { margin: 0 0 10px; color: var(--text-heading); font-family: var(--font-body); font-size: 17px; line-height: 1.58; }
+  .post-results-heading-copy p:last-child { margin-bottom: 0; color: var(--text-muted); }
+  .post-proof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 54px; border-top: 2px solid var(--text-heading); border-bottom: 1px solid var(--border-strong); }
+  .post-testimonial { display: flex; min-width: 0; min-height: 430px; flex-direction: column; justify-content: space-between; padding: 36px 31px; }
+  .post-testimonial + .post-testimonial { border-left: 1px solid var(--border-strong); }
+  .post-outcome { margin: 0 0 24px; color: var(--accent-text); font-family: 'General Sans', sans-serif; font-size: 14px; font-weight: 800; letter-spacing: .08em; line-height: 1.3; text-transform: uppercase; }
+  .post-testimonial blockquote { margin: 0 0 30px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: clamp(17px, 1.55vw, 20px); font-weight: 500; letter-spacing: -.015em; line-height: 1.48; }
+  .post-person { display: flex; align-items: center; gap: 14px; }
+  .post-person img { width: 58px; height: 58px; flex: 0 0 auto; border-radius: 50%; object-fit: cover; }
+  .post-person-copy { display: grid; line-height: 1.28; }
+  .post-person-copy strong { color: var(--text-heading); font-family: var(--font-body); font-size: 15px; }
+  .post-person-copy span, .post-person-copy small { color: var(--text-muted); font-family: var(--font-body); font-size: 14px; }
+  .post-results-footer { display: flex; align-items: center; justify-content: space-between; gap: 40px; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--border-strong); }
+  .post-results-footer p { max-width: 760px; margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.5; }
+
+  .post-faq-section { background: var(--surface-page); }
+  .post-faq-grid { display: grid; grid-template-columns: minmax(300px, .76fr) minmax(0, 1.24fr); gap: clamp(60px, 9vw, 120px); align-items: start; }
+  .post-faq-intro { position: sticky; top: 96px; }
+  .post-faq-intro .post-h2 { font-size: clamp(34px, 3.6vw, 46px); }
+  .post-faq-intro .post-lead { max-width: 430px; font-size: 18px; }
+  .post-faq { border-top: 2px solid var(--text-heading); }
+  .post-faq details { border-bottom: 1px solid var(--border-hairline); }
+  .post-faq summary { display: grid; grid-template-columns: 1fr 28px; gap: 20px; align-items: center; padding: 23px 0; color: var(--text-heading); list-style: none; cursor: pointer; }
+  .post-faq summary::-webkit-details-marker { display: none; }
+  .post-faq summary h3 { margin: 0; color: inherit; font-family: 'General Sans', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.3; }
+  .post-faq-icon { display: grid; width: 28px; height: 28px; place-items: center; border: 1px solid var(--border-strong); border-radius: 50%; color: var(--accent-text); font-family: var(--font-body); font-size: 20px; font-weight: 500; transition: transform var(--dur-fast) var(--ease-standard); }
+  .post-faq details[open] .post-faq-icon { transform: rotate(45deg); }
+  .post-faq-answer { max-width: 660px; padding: 0 42px 26px 0; }
+  .post-faq-answer p { margin: 0 0 13px; color: var(--text-body); font-family: var(--font-body); font-size: 16px; line-height: 1.62; }
+  .post-faq-answer p:last-child { margin-bottom: 0; }
+  .post-quick-answer { color: var(--text-heading) !important; font-size: 18px !important; }
+  .post-faq-answer .post-link { display: inline-block; margin-top: 4px; }
+
+  .post-about { padding-bottom: 0; overflow: hidden; background: var(--surface-muted); }
+  .post-about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(430px, .94fr); gap: clamp(55px, 8vw, 96px); align-items: center; }
+  .post-about-lead { margin: 27px 0 17px; color: var(--text-heading); font-family: var(--font-body); font-size: 20px; font-weight: 600; line-height: 1.5; }
+  .post-about-copy > p:not(.post-about-lead) { margin: 0 0 15px; color: var(--text-body); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+  .post-coach-proof { padding: 34px 0; border-top: 2px solid var(--text-heading); border-bottom: 1px solid var(--border-strong); }
+  .post-coach-proof-label { margin: 0 0 18px; color: var(--accent-text); font-family: var(--font-body); font-size: 14px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .post-coach-proof h3 { max-width: 520px; margin: 0 0 42px; color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: clamp(28px, 3vw, 39px); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; }
+  .post-coach-backing { display: grid; grid-template-columns: minmax(150px, .65fr) minmax(0, 1.35fr); gap: 28px; padding-top: 24px; border-top: 1px solid var(--border-strong); }
+  .post-coach-backing strong { color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 18px; }
+  .post-coach-backing p { margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+  .post-credentials { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 67px 0 0; padding: 0; border-top: 1px solid var(--border-strong); border-bottom: 1px solid var(--border-strong); }
+  .post-credentials div { display: grid; min-width: 0; min-height: 112px; align-content: center; padding: 20px 25px; }
+  .post-credentials div + div { border-left: 1px solid var(--border-strong); }
+  .post-credentials dt { color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 19px; font-weight: 700; line-height: 1.2; }
+  .post-credentials dd { margin: 4px 0 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.35; }
+  .post-transparency { display: flex; align-items: center; justify-content: space-between; gap: 45px; padding: 28px 0 34px; }
+  .post-transparency p { max-width: 800px; margin: 0; color: var(--text-muted); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+
+  .post-final { padding: clamp(72px, 8vw, 84px) 0; background: var(--accent-strong); color: var(--text-inverse); }
+  .post-final-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(350px, .85fr); gap: clamp(58px, 8vw, 90px); align-items: center; }
+  .post-final .post-eyebrow, .post-final .post-h2 { color: var(--text-inverse); }
+  .post-final .post-eyebrow { opacity: .82; }
+  .post-final .post-h2 .post-final-highlight { padding: 0 8px; background: var(--surface-page); color: var(--accent-strong); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .post-final-copy { max-width: 680px; margin: 23px 0 0; font-family: var(--font-body); font-size: 19px; font-weight: 500; line-height: 1.5; }
+  .post-final-action { display: grid; justify-items: start; }
+  .post-final-button { min-width: 275px; box-sizing: border-box; }
+  .post-final-micro { margin: 11px 0 0; font-family: var(--font-body); font-size: 14px; opacity: .86; }
+  .post-final-note { margin: 25px 0 0; padding-top: 19px; border-top: 1px solid color-mix(in srgb, var(--text-inverse) 32%, transparent); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+
+  @media (max-width: 980px) {
+    .post-booking-grid, .post-results-heading, .post-faq-grid, .post-about-grid, .post-final-grid { grid-template-columns: 1fr; }
+    .post-booking-grid { gap: 48px; }
+    .post-booking-copy, .post-faq-intro { position: static; }
+    .post-results-heading { gap: 25px; }
+    .post-results-heading-copy { max-width: 680px; }
+    .post-faq-grid { gap: 48px; }
+    .post-faq-intro .post-lead { max-width: 650px; }
+    .post-about-grid { gap: 45px; }
+    .post-coach-proof { max-width: 680px; }
+    .post-final-grid { gap: 42px; }
+  }
+  @media (max-width: 720px) {
+    .post-wrap { width: min(100% - 36px, 600px); }
+    .post-section { padding: 68px 0 75px; }
+    .post-form-row, .post-confirmation-columns, .post-proof-grid { grid-template-columns: 1fr; }
+    .post-stepper li { display: grid; justify-items: center; gap: 5px; padding: 11px 5px; text-align: center; }
+    .post-panel { padding: 25px 20px 28px; }
+    .post-calendar-days { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+    .post-testimonial { min-height: 0; padding: 31px 0; }
+    .post-testimonial + .post-testimonial { border-top: 1px solid var(--border-strong); border-left: 0; }
+    .post-results-footer, .post-transparency { align-items: flex-start; flex-direction: column; gap: 20px; }
+    .post-faq summary { padding: 20px 0; }
+    .post-faq summary h3 { font-size: 17px; }
+    .post-faq-answer { padding-right: 0; }
+    .post-coach-backing { grid-template-columns: 1fr; gap: 10px; }
+    .post-credentials { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .post-credentials div { min-height: 100px; padding: 18px 14px; }
+    .post-credentials div + div { border-left: 0; }
+    .post-credentials div:nth-child(even) { border-left: 1px solid var(--border-strong); }
+    .post-credentials div:nth-child(n + 3) { border-top: 1px solid var(--border-strong); }
+    .post-about { padding-bottom: 0; }
+    .post-final { padding: 68px 0; }
+    .post-final-button { width: 100%; min-width: 0; max-width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post-faq-icon, .post-time { transition: none; }
+  }
+
   @media (max-width: 820px) { .fit-grid { grid-template-columns: 1fr; } }
   .fit-item { display: flex; align-items: flex-start; gap: 12px; font-family: var(--font-body); font-size: 17px; font-weight: 600; color: var(--text-heading); }
   .fit-item svg { flex: 0 0 auto; margin-top: 2px; }
@@ -819,6 +1030,25 @@ const INSPECTION = [
   ]},
 ];
 
+/* Production HubSpot identifiers are intentionally centralized here. Replace
+   these empty values when the dedicated form and one-hour meeting link exist.
+   Until then, the conversion flow renders a clearly labeled, local-only
+   presentation preview and does not transmit visitor data. */
+const HUBSPOT_EXPLORE_CALL = Object.freeze({
+  portalId: "",
+  formId: "",
+  meetingUrl: "",
+  ownerRouting: "",
+  underTwoMillionRouting: "",
+});
+
+const EXPLORE_CALL_TIMES = [
+  { day: "Mon", date: "3", times: ["9:00 AM", "1:30 PM"] },
+  { day: "Tue", date: "4", times: ["10:30 AM", "2:00 PM"] },
+  { day: "Wed", date: "5", times: ["9:30 AM", "3:30 PM"] },
+  { day: "Thu", date: "6", times: ["11:00 AM", "2:30 PM"] },
+];
+
 class Boundary extends React.Component {
   constructor(p){ super(p); this.state = { err: null }; }
   static getDerivedStateFromError(err){ return { err }; }
@@ -886,6 +1116,13 @@ function Page() {
 
   const [showSubNav, setShowSubNav] = React.useState(false);
   const [activeAnchor, setActiveAnchor] = React.useState("#overview");
+  const [bookingStep, setBookingStep] = React.useState("form");
+  const bookingStateHeading = React.useRef(null);
+  const hubspotReady = Boolean(
+    HUBSPOT_EXPLORE_CALL.portalId &&
+    HUBSPOT_EXPLORE_CALL.formId &&
+    HUBSPOT_EXPLORE_CALL.meetingUrl
+  );
   React.useEffect(() => {
     const ids = ["overview", "what-you-get", "how-it-works", "pricing", "reviews"];
     const onScroll = () => {
@@ -902,6 +1139,10 @@ function Page() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  React.useEffect(() => {
+    if (bookingStep !== "form") bookingStateHeading.current?.focus();
+  }, [bookingStep]);
+
   const subNavLinks = [
     { label: "Overview", href: "#overview" },
     { label: "What You Get", href: "#what-you-get" },
@@ -911,15 +1152,18 @@ function Page() {
   ];
 
   const handleSubNavClick = (event) => {
-    const pricingLink = event.target.closest('a[href="#pricing"]');
-    if (!pricingLink) return;
+    const anchor = event.target.closest('a[href^="#"]');
+    const target = anchor && document.querySelector(anchor.getAttribute("href"));
+    if (!target) return;
     event.preventDefault();
-    window.history.pushState(null, "", "#pricing");
-    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
+    window.history.pushState(null, "", anchor.getAttribute("href"));
+    target.scrollIntoView({ behavior: "smooth" });
   };
 
-  const badgeSrc = "assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg";
-  const hubspotUrl = "https://ecosystem.hubspot.com/marketplace/solutions/impact";
+  const handleExploreSubmit = (event) => {
+    event.preventDefault();
+    setBookingStep("calendar");
+  };
 
   return (
     <div>
@@ -1250,7 +1494,7 @@ function Page() {
             </div>
           </dl>
 
-          <div className="how-cta" id="start">
+          <div className="how-cta">
             <Button variant="dark" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
             <p className="how-microcopy">A real first conversation. No pitch, no obligation.</p>
           </div>
@@ -1375,8 +1619,364 @@ function Page() {
         </div>
       </section>
 
-      {/* ⚠️ Reviews (#reviews) still needs to be rebuilt. Its sub-nav anchor
-           remains dead until that section returns. */}
+      {/* ================= EXPLORE CALL CONVERSION ================= */}
+      <section className="post-section post-booking" id="start" aria-labelledby="explore-call-title">
+        <div className="post-wrap">
+          <div className="sec-line" aria-hidden="true"></div>
+          <p className="post-eyebrow">Schedule an Explore Call</p>
+          <div className="post-booking-grid">
+            <div className="post-booking-copy">
+              <h2 className="post-h2" id="explore-call-title">See Whether This Is the Right First Step <span className="hl-box">for You</span></h2>
+              <p className="post-lead">Tell us what is happening, what has changed, and why solving it matters now. You will choose a time for a one-hour Explore Call immediately after this.</p>
+              <p className="post-risk">This is a real first conversation. You are not checking out or committing to move forward.</p>
+              <div className="post-call-note">
+                <strong>1 hour</strong>
+                <p>An honest working conversation about your goals, gaps, and whether this is the right next step.</p>
+              </div>
+            </div>
+
+            <div className="post-booking-panel" aria-live="polite">
+              <ol className="post-stepper" aria-label="Explore Call booking progress">
+                {[
+                  ["form", "1", "Tell Us What’s Going On"],
+                  ["calendar", "2", "Choose a Time"],
+                  ["confirmed", "3", "You’re Booked"],
+                ].map(([step, number, label]) => {
+                  const order = { form: 0, calendar: 1, confirmed: 2 };
+                  const current = bookingStep === step;
+                  const complete = order[bookingStep] > order[step];
+                  return (
+                    <li key={step} aria-current={current ? "step" : undefined} data-complete={complete ? "true" : undefined}>
+                      <span className="post-stepper-number" aria-hidden="true">{complete ? "✓" : number}</span>
+                      <span className="post-stepper-label">{label}</span>
+                    </li>
+                  );
+                })}
+              </ol>
+
+              {!hubspotReady && (
+                <p className="post-integration-note">Preview mode: the dedicated HubSpot form and meeting calendar IDs are not connected yet. Details entered here stay in this browser and are not submitted.</p>
+              )}
+
+              {bookingStep === "form" && (
+                <form className="post-panel post-form" onSubmit={handleExploreSubmit}>
+                  <p className="post-panel-kicker">Step 1 of 3</p>
+                  <h3>Tell Us What’s Going On</h3>
+                  <p className="post-panel-intro">A few details will help us make the first conversation useful. This should take less than two minutes.</p>
+
+                  <div className="post-form-row">
+                    <div className="post-form-group">
+                      <label htmlFor="explore-first-name">First name</label>
+                      <input id="explore-first-name" name="firstname" autoComplete="given-name" required />
+                    </div>
+                    <div className="post-form-group">
+                      <label htmlFor="explore-last-name">Last name</label>
+                      <input id="explore-last-name" name="lastname" autoComplete="family-name" required />
+                    </div>
+                  </div>
+
+                  <div className="post-form-group">
+                    <label htmlFor="explore-email">Work email</label>
+                    <input id="explore-email" name="email" type="email" autoComplete="email" inputMode="email" required />
+                  </div>
+
+                  <div className="post-form-group">
+                    <label htmlFor="explore-website">Company website</label>
+                    <input id="explore-website" name="website" autoComplete="url" inputMode="url" placeholder="company.com" required />
+                  </div>
+
+                  <div className="post-form-group">
+                    <label htmlFor="explore-revenue">Annual revenue</label>
+                    <select id="explore-revenue" name="annual_revenue" defaultValue="" required>
+                      <option value="" disabled>Select a range</option>
+                      <option value="under-2m">Under $2 million</option>
+                      <option value="2m-5m">$2–5 million</option>
+                      <option value="5m-15m">$5–15 million</option>
+                      <option value="15m-50m">$15–50 million</option>
+                      <option value="50m-plus">$50 million+</option>
+                    </select>
+                  </div>
+
+                  <div className="post-form-group">
+                    <label htmlFor="explore-why-now">What’s driving you to look at this right now?</label>
+                    <textarea id="explore-why-now" name="why_now" rows="3" aria-describedby="explore-why-help" required></textarea>
+                    <p className="post-form-help" id="explore-why-help">A sentence or two is enough. This helps us make the first conversation useful.</p>
+                  </div>
+
+                  <Button className="post-form-button" variant="primary" size="lg" withArrow type="submit">Show Me Available Times</Button>
+                  <p className="post-privacy">We’ll use these details to prepare for and coordinate your Explore Call. See our <a href="https://www.impactplus.com/privacy-policy">Privacy Policy</a>.</p>
+                </form>
+              )}
+
+              {bookingStep === "calendar" && (
+                <div className="post-panel post-calendar">
+                  <p className="post-panel-kicker">Choose a Time</p>
+                  <h3 ref={bookingStateHeading} tabIndex="-1">Choose a Time That Works for You</h3>
+                  <p className="post-panel-intro">Your details are saved. Choose any available one-hour time below. You will not have to enter your information again.</p>
+                  <div className="post-calendar-topline">
+                    <button className="post-text-button" type="button" onClick={() => setBookingStep("form")}>← Back</button>
+                    <strong>August 2026</strong>
+                    <span>Eastern Time</span>
+                  </div>
+                  <div className="post-calendar-days" aria-label="Preview appointment times">
+                    {EXPLORE_CALL_TIMES.map((item) => (
+                      <div className="post-day" key={item.date}>
+                        <span>{item.day}</span>
+                        <strong>{item.date}</strong>
+                        {item.times.map((time) => (
+                          <button className="post-time" type="button" key={time} onClick={() => setBookingStep("confirmed")} aria-label={`${item.day}, August ${item.date} at ${time} Eastern Time`}>{time}</button>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="post-calendar-help">Can’t find a time that works? Tell us what would work better, and we’ll follow up.</p>
+                </div>
+              )}
+
+              {bookingStep === "confirmed" && (
+                <div className="post-panel post-confirmation">
+                  <div className="post-confirmation-mark" aria-hidden="true">✓</div>
+                  <p className="post-panel-kicker">You’re Booked</p>
+                  <h3 ref={bookingStateHeading} tabIndex="-1">Your Explore Call Is Confirmed</h3>
+                  {!hubspotReady && <p className="post-integration-note">Confirmation preview only. No meeting has been booked.</p>}
+                  <p className="post-confirmation-lead">You will receive a calendar invitation and confirmation email with the details. You can also expect a short personal video from the person leading your call so you can put a face and voice to the conversation.</p>
+                  <div className="post-confirmation-columns">
+                    <div>
+                      <h4>What to Expect</h4>
+                      <p>Plan on an honest, working conversation about your business. We will ask about the growth you are trying to create, the gaps getting in the way, what you have already tried, and why solving it matters now.</p>
+                      <p>We may share a few surface-level observations and show you how buyers or AI currently see your company. We will also answer any questions you have about IMPACT, the diagnostic, and what working together could look like.</p>
+                      <p>By the end, we’ll tell you directly whether we believe the Deep Diagnostic &amp; Roadmap is the right next step for you. If it isn’t, we’ll be candid about that too and do our best to recommend a next step that may be a better fit for you.</p>
+                      <p>The detailed investigation, prioritized recommendations, and roadmap begin only if we both decide to move forward.</p>
+                    </div>
+                    <div>
+                      <h4>A Little Preparation Helps</h4>
+                      <p>You do not need to build a presentation or gather perfect data. If you can, come with a rough sense of:</p>
+                      <ul>
+                        <li>Revenue today and where you want it to be</li>
+                        <li>Monthly qualified inquiries or sales opportunities</li>
+                        <li>Your approximate close rate and average customer value</li>
+                        <li>Two or three competitors you frequently encounter</li>
+                      </ul>
+                      <p>Ballpark numbers are fine. They simply help us make the hour more specific to your business.</p>
+                      <p>If someone else will help decide whether to move forward, invite them too. It is better for everyone to hear the same questions and answers.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CLIENT RESULTS ================= */}
+      <section className="post-section post-results" id="reviews" aria-labelledby="results-title">
+        <div className="post-wrap">
+          <div className="sec-line" aria-hidden="true"></div>
+          <p className="post-eyebrow">Client Results</p>
+          <div className="post-results-heading">
+            <h2 className="post-h2" id="results-title">When Teams Know <span className="hl-box">What to Do Next</span></h2>
+            <div className="post-results-heading-copy">
+              <p>The Deep Diagnostic &amp; Roadmap is new, so we won’t pretend these are results from this exact engagement.</p>
+              <p>These results come from companies in IMPACT’s broader coaching programs. They show what can happen when a team gets clear on its priorities, aligns around a plan, and follows through.</p>
+            </div>
+          </div>
+
+          <div className="post-proof-grid">
+            <article className="post-testimonial">
+              <div>
+                <h3 className="post-outcome">Sales Opportunities Tripled</h3>
+                <blockquote>“We were stuck trying to DIY our marketing. IMPACT gave us the structure and clarity we needed. Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years. That’s the power of trust-building content.”</blockquote>
+              </div>
+              <div className="post-person">
+                <img src="assets/mike-ritzema.jpg" alt="Mike Ritzema, Founder and President of Superior Trucking Payroll" width="180" height="180" loading="lazy" />
+                <div className="post-person-copy"><strong>Mike Ritzema</strong><span>Founder and President</span><small>Superior Trucking Payroll</small></div>
+              </div>
+            </article>
+
+            <article className="post-testimonial">
+              <div>
+                <h3 className="post-outcome">Grew to an $8 Million Business</h3>
+                <blockquote>“We had a great product, but IMPACT helped us clarify our message and show our value through transparency. By educating instead of selling, we built trust, increased awareness, and accelerated growth in a way that felt authentic and sustainable.”</blockquote>
+              </div>
+              <div className="post-person">
+                <img src="assets/jeffery-linta.jpg" alt="Jeffery Linta, CEO of Linta Roofing" width="180" height="180" loading="lazy" />
+                <div className="post-person-copy"><strong>Jeffery Linta</strong><span>CEO</span><small>Linta Roofing</small></div>
+              </div>
+            </article>
+
+            <article className="post-testimonial">
+              <div>
+                <h3 className="post-outcome">Sales and Marketing Aligned</h3>
+                <blockquote>“Our coach brought our teams together and aligned them on a single methodology. The results speak for themselves.”</blockquote>
+              </div>
+              <div className="post-person">
+                <img src="assets/isabelle-braeutigam.jpg" alt="Isabelle Braeutigam, Marketing Manager at Custom Built Design and Remodeling" width="173" height="180" loading="lazy" />
+                <div className="post-person-copy"><strong>Isabelle Braeutigam</strong><span>Marketing Manager</span><small>Custom Built Design &amp; Remodeling</small></div>
+              </div>
+            </article>
+          </div>
+
+          <div className="post-results-footer">
+            <p>Each result reflects the company’s broader coaching engagement, implementation, market, and team execution. These are not results of the diagnostic alone.</p>
+            <a className="post-link" href="https://www.impactplus.com/endless-customers-coaching/success-stories">See more IMPACT client success stories →</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FREQUENTLY ASKED QUESTIONS ================= */}
+      <section className="post-section post-faq-section" id="faq" aria-labelledby="faq-title">
+        <div className="post-wrap post-faq-grid">
+          <div className="post-faq-intro">
+            <div className="sec-line" aria-hidden="true"></div>
+            <p className="post-eyebrow">Common Questions</p>
+            <h2 className="post-h2" id="faq-title">Answers Before You Schedule a Call</h2>
+            <p className="post-lead">If you are comparing this with an audit, a free assessment, or another consulting engagement, start here.</p>
+          </div>
+
+          <div className="post-faq">
+            <details open>
+              <summary><h3>What Is the Deep Diagnostic &amp; Roadmap?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p className="post-quick-answer"><strong>Quick answer:</strong> It is a one-time, $5,000 investigation into why growth has stalled and what your team should do next.</p>
+                <p>IMPACT examines 13 areas of your sales, marketing, and customer-acquisition system through a 124-point inspection. That work includes outside research, a competitive benchmark, an AI visibility review, and a 90-minute working session with your leadership team.</p>
+                <p>Within two weeks, you receive the findings, the evidence behind them, and a written 3-, 6-, and 12-month roadmap. Your coach walks you through the plan live so your team understands what matters first and why.</p>
+                <p>It is a complete, standalone engagement. You can implement the roadmap internally, take it elsewhere, or talk with IMPACT about continuing.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>Why Does It Cost $5,000?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>Free tools can be useful for getting an initial score or identifying visible issues. The Deep Diagnostic &amp; Roadmap is a different kind of engagement.</p>
+                <p>The fee covers the full investigation: external research, a 124-point inspection, competitor analysis, an AI visibility review, a 90-minute leadership session, experienced human judgment, a written 3-, 6-, and 12-month plan, and a live walkthrough of the recommendations.</p>
+                <p>It is one flat fee. There are no surprise add-ons and no requirement to purchase ongoing coaching.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>How Is This Different From Your Free Assessments?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>IMPACT’s free assessments are fast, self-guided starting points.</p>
+                <p>The AI Marketing Assessment asks 23 questions and provides an instant score in about five minutes. The Website Performance Assessment asks six questions to help you identify common website performance gaps.</p>
+                <p>The Deep Diagnostic &amp; Roadmap goes further. IMPACT investigates your business from the outside and the inside, compares you with competitors, speaks with your leadership team, and uses expert judgment to decide what deserves attention first.</p>
+                <p>The free assessments help you spot possible gaps. The diagnostic gives you an evidence-backed plan for addressing the ones that matter.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>What if We Already Have a Marketing Team?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>That is often an advantage.</p>
+                <p>The diagnostic is not designed to replace your marketing team or discount what they already know. It gives them outside evidence, a clearer order of operations, and a roadmap they can use to make stronger decisions.</p>
+                <p>It can also help sales, marketing, and leadership work from the same set of facts instead of approaching the problem from separate points of view.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>Do We Have to Keep Working With IMPACT?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>No.</p>
+                <p>The Deep Diagnostic &amp; Roadmap is a standalone engagement, and the roadmap is yours. Your team can implement it internally, work with another partner, or discuss continued coaching with IMPACT.</p>
+                <p>Any future engagement is a separate decision. If you do continue with IMPACT, the work is month to month, there is no long-term contract, and you can leave with 30 days’ notice.</p>
+                <p>The money-back guarantee continues to apply to the work we deliver for the entire relationship. You are never locked into a long-term contract. We have to earn your business every 30 days.</p>
+                <a className="post-link" href="../money-back-guarantee/">Read the full money-back guarantee →</a>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>How Is This Different From an Audit?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>An audit usually focuses on identifying and documenting problems in a particular area. The Deep Diagnostic &amp; Roadmap is designed to help your leadership team make decisions across the full system.</p>
+                <p>It looks at 13 connected areas of sales, marketing, and customer acquisition, weighs the evidence against your goals and capacity, and puts the work in order.</p>
+                <p>You do not leave with a longer list of things that might be wrong. You leave knowing what should happen first, what can wait, and what the next year should look like.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>What Happens on the Explore Call?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>The Explore Call is usually about one hour.</p>
+                <p>We will ask what has changed, what growth looks like now, what you have already tried, and why you are considering the diagnostic. You can ask questions about the process, price, guarantee, and what happens afterward.</p>
+                <p>The call is not the full diagnostic. We may share an initial observation or show you how buyers or AI currently see your company, but we will not prescribe the specific fixes or build your roadmap on this call. Its purpose is to understand the problem and determine whether the engagement fits what you are trying to solve.</p>
+                <p>If it does, we will explain the agreement and next steps. If it does not, we will tell you.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>How Long Does the Diagnostic Take?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>The full engagement is completed in less than two weeks from kickoff to the final roadmap walkthrough.</p>
+                <p>Your team’s main time commitments are the Explore Call, agreement review, a 90-minute working session, and the final walkthrough. IMPACT completes most of the research, analysis, competitive review, and roadmap development between those meetings.</p>
+              </div>
+            </details>
+
+            <details>
+              <summary><h3>What if We Already Know What Is Wrong?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p>You may be right. The diagnostic can help you confirm it.</p>
+                <p>More often, leadership teams know several things that need attention but disagree about which one is holding growth back, what should happen first, or how the work connects.</p>
+                <p>The diagnostic tests your assumptions against evidence, your competitors, your AI visibility, and the realities of your team. If the result does not give you the clarity and plan promised, it is covered by the money-back guarantee.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= WHO YOU'LL BE WORKING WITH ================= */}
+      <section className="post-section post-about" id="about" aria-labelledby="about-title">
+        <div className="post-wrap">
+          <div className="sec-line" aria-hidden="true"></div>
+          <p className="post-eyebrow">About IMPACT</p>
+          <div className="post-about-grid">
+            <div className="post-about-copy">
+              <h2 className="post-h2" id="about-title">Your Coach Leads the Work. <span className="hl-box">IMPACT Backs Them.</span></h2>
+              <p className="post-about-lead">You will work directly with an Endless Customers Coach who owns the diagnostic from the first investigation through the final roadmap.</p>
+              <p>Your coach studies the outside evidence, leads the 90-minute session with your leadership team, tests what they find against the realities inside your business, and builds your priorities and 3-, 6-, and 12-month roadmap.</p>
+              <p>Behind your coach is IMPACT, the business coaching and training company behind Endless Customers. Our team works across sales, marketing, websites, HubSpot, paid media, and AI visibility. That broader experience matters because stalled growth rarely fits neatly inside one specialty.</p>
+              <p>The result is a roadmap grounded in your business and informed by patterns we have seen across hundreds of companies.</p>
+            </div>
+
+            {/* Temporary image-free composition. A future approved asset can
+                replace this one container without changing the section grid. */}
+            <div className="post-coach-proof" aria-label="How your IMPACT team works">
+              <p className="post-coach-proof-label">One Accountable Coach</p>
+              <h3>Your coach owns the work from the first investigation through the final roadmap.</h3>
+              <div className="post-coach-backing">
+                <strong>Backed by IMPACT</strong>
+                <p>Specialists across sales, marketing, websites, HubSpot, paid media, and AI visibility support the work when their expertise is needed.</p>
+              </div>
+            </div>
+          </div>
+
+          <dl className="post-credentials" aria-label="IMPACT credibility points">
+            <div><dt>300+</dt><dd>Companies coached</dd></div>
+            <div><dt>2009</dt><dd>Year founded</dd></div>
+            <div><dt>Diamond</dt><dd>HubSpot Solutions Partner</dd></div>
+            <div><dt>Endless Customers</dt><dd>The coaching company behind it</dd></div>
+          </dl>
+
+          <div className="post-transparency">
+            <p>We hold ourselves to the same standard we teach: answer difficult questions openly. That is why you can see the price, process, limits, and guarantee before you ever talk with us.</p>
+            <a className="post-link" href="https://www.impactplus.com/impact-company-profile-university">Learn more about IMPACT →</a>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FINAL CTA ================= */}
+      <section className="post-final" id="final-cta" aria-labelledby="final-cta-title">
+        <div className="post-wrap post-final-grid">
+          <div>
+            <p className="post-eyebrow">Ready to Start?</p>
+            <h2 className="post-h2" id="final-cta-title">Stop Guessing About <span className="post-final-highlight">Why Growth Stalled</span></h2>
+            <p className="post-final-copy">Start with a conversation. If it is a fit, the diagnostic will tell you where you stand, what is getting in the way, and what your team should do next.</p>
+          </div>
+          <div className="post-final-action">
+            <Button className="post-final-button" variant="dark" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
+            <p className="post-final-micro">A real first conversation. No pitch, no obligation.</p>
+            <p className="post-final-note">Evaluating this for your leadership team? Bring them to the first conversation so everyone hears the same questions.</p>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
