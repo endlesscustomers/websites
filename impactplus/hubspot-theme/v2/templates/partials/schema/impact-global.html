@@ -1,0 +1,97 @@
+{#
+  Canonical entity graph for the IMPACT V2 theme.
+  Authority: 30-projects/entity-optimization/00-foundation.md
+  Keep stable @ids unchanged when display-page URLs move.
+#}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.impactplus.com/#organization",
+      "name": "IMPACT",
+      "legalName": "IMPACT Branding & Design, LLC",
+      "alternateName": [
+        "IMPACT Branding & Design",
+        "IMPACT Branding and Design",
+        "IMPACT+",
+        "impactbnd"
+      ],
+      "url": "https://www.impactplus.com/",
+      "description": "IMPACT is a business coaching and training company, HubSpot Diamond Solutions Partner, and parent organization of the Endless Customers and Swell brands.",
+      "foundingDate": "2009-08",
+      "founder": {
+        "@id": "https://www.impactplus.com/team/bob-ruffolo#person"
+      },
+      "telephone": "+1-203-265-4377",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "125 Commerce Ct STE 9",
+        "addressLocality": "Cheshire",
+        "addressRegion": "CT",
+        "postalCode": "06410",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/1210178",
+        "https://www.facebook.com/impactbnd/",
+        "https://www.instagram.com/impactbnd/",
+        "https://www.tiktok.com/@impactbnd",
+        "https://twitter.com/impactbnd",
+        "https://www.youtube.com/@IMPACTbnd",
+        "https://ecosystem.hubspot.com/marketplace/solutions/impact"
+      ],
+      "brand": {
+        "@id": "https://www.endlesscustomers.com/#brand"
+      },
+      "subOrganization": {
+        "@id": "https://www.endlesscustomers.com/#organization"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.impactplus.com/team/bob-ruffolo#person",
+      "name": "Bob Ruffolo",
+      "alternateName": "Robert Ruffolo",
+      "url": "https://www.impactplus.com/team/bob-ruffolo",
+      "jobTitle": "CEO",
+      "worksFor": {
+        "@id": "https://www.impactplus.com/#organization"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/bobruffolo",
+        "https://twitter.com/BobRuffolo"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.endlesscustomers.com/#organization",
+      "name": "Endless Customers",
+      "url": "https://www.endlesscustomers.com/",
+      "parentOrganization": {
+        "@id": "https://www.impactplus.com/#organization"
+      },
+      "brand": {
+        "@id": "https://www.endlesscustomers.com/#brand"
+      }
+    },
+    {
+      "@type": "Brand",
+      "@id": "https://www.endlesscustomers.com/#brand",
+      "name": "Endless Customers",
+      "url": "https://www.endlesscustomers.com/"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.impactplus.com/#website",
+      "name": "IMPACT",
+      "url": "https://www.impactplus.com/",
+      "publisher": {
+        "@id": "https://www.impactplus.com/#organization"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+}
+</script>

@@ -1,0 +1,39 @@
+{# Article-specific graph. The global entity graph must be included separately. #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": {{ (content.absolute_url ~ '#article')|tojson }},
+      "headline": {{ page_meta.html_title|tojson }},
+      "description": {{ page_meta.meta_description|striptags|tojson }},
+      "image": {{ content.featured_image|tojson }},
+      "datePublished": {{ content.published_date|format_date("yyyy-MM-dd'T'HH:mm:ssZ")|tojson }},
+      "dateModified": {{ content.updated|format_datetime("yyyy-MM-dd'T'HH:mm:ssZ")|tojson }},
+      "author": {
+        "@type": "Person",
+        "name": {{ content.blog_post_author.display_name|tojson }}
+      },
+      "publisher": {
+        "@id": "https://www.impactplus.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": {{ (content.absolute_url ~ '#webpage')|tojson }}
+      },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": {{ (content.absolute_url ~ '#webpage')|tojson }},
+      "url": {{ content.absolute_url|tojson }},
+      "name": {{ page_meta.html_title|tojson }},
+      "description": {{ page_meta.meta_description|striptags|tojson }},
+      "isPartOf": {
+        "@id": "https://www.impactplus.com/#website"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+}
+</script>
