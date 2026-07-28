@@ -1,4 +1,4 @@
-One-sentence: A long-form text block that pairs IMPACT's two existing paragraph styles — a larger lead paragraph (`--text-lg`, 20px) over default body paragraphs (`--text-base`, 18px) — using only type sizes already in the site CSS.
+One-sentence: A long-form text block that pairs IMPACT's two governed paragraph roles — a larger lead paragraph (`--prose-lead`, 23px/34px desktop and 20px/30px mobile) over standard body paragraphs (`--prose-body`, 16px/24px in V2).
 
 ```jsx
 <Prose maxWidth={720}
@@ -9,4 +9,4 @@ One-sentence: A long-form text block that pairs IMPACT's two existing paragraph 
   ]} />
 ```
 
-The `lead` is the site's large paragraph style; body paragraphs are the default. No new CSS — devs just apply the existing `--text-lg` / `--text-base` sizes.
+The `lead` states the section thesis; standard body paragraphs explain it. Use the existing `--prose-lead` / `--prose-body` roles rather than hand-setting paragraph sizes.

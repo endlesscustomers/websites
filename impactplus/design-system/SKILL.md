@@ -15,12 +15,18 @@ pages), copy assets out and create static HTML files for the user to view, linki
 read the rules here to become an expert in designing with the IMPACT brand.
 
 Key brand facts to honor:
-- **IMPACT Blue `#0A6CFF`** primary, **Green `#01E6BE/#01C4A2`** accent/checks,
-  white + **Livid `#F6F9FC`** section backgrounds, **Neutral 700 `#1D1D1F`** dark bands.
-- **Merriweather** serif headings, **Proxima Nova** (self-hosted) body,
-  **Kalam** handwritten callouts.
-- **Pill buttons**, 16px rounded shadow-cards, grayscale client logos,
-  hand-drawn arrow annotations, the fixed **Ecee** AI chat bubble.
+- **V2 Blue `#0F63E0`** is the default active strong color, with governed
+  magenta, green, and orange theme alternatives; white, navy, and restrained
+  cool-gray surfaces carry most of the page.
+- **General Sans** 800/700/600 handles display roles; **Proxima Nova** carries
+  23px/34px lead copy and 16px/24px standard copy; **Kalam** is reserved for
+  rare human annotations.
+- **Pill buttons**, restrained 8px card radii, firm borders, 1240px outer
+  canvases, governed narrower content measures, real proof, and almost no
+  decorative shadow. Hero proof media is the intentional hard-shadow exception.
+- V2 motion is progressive and explanatory: explicit scroll reveals, modest
+  70ms staggers, and sequence animation use shared tokens and always honor
+  `prefers-reduced-motion`.
 - Voice: confident coach — "we" to "you", Title Case headlines, no decorative emoji.
 
 If the user invokes this skill without other guidance, ask what they want to build

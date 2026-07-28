@@ -101,7 +101,7 @@
      typography, spacing, colour, highlight, and wrap tokens without changing
      the shared design system. The four supplied visuals remain frameless. */
   #what-you-get .wrap,
-  .wyg-beat > .wrap { width: min(1150px, calc(100% - 48px)); }
+  .wyg-beat > .wrap { width: min(var(--v2-container-max, 1240px), calc(100% - 48px)); }
   .wyg-beat { padding: clamp(76px, 9vw, 104px) 0; }
   .wyg-beat-ending { padding-bottom: clamp(96px, 11vw, 128px); }
   .wyg-split {
@@ -234,7 +234,7 @@
     background: var(--surface-muted);
   }
   .how-section .sec-open { padding-bottom: 0; }
-  .how-wrap { width: min(1150px, calc(100% - 48px)); margin: 0 auto; }
+  .how-wrap { width: min(var(--v2-container-max, 1240px), calc(100% - 48px)); margin: 0 auto; }
   .how-path {
     position: relative;
     display: grid;
@@ -434,7 +434,7 @@
   /* ============ SECTION 4 · PRICING + MONEY-BACK GUARANTEE ============
      Page-specific translation of the approved editorial blueprint. Pricing
      stays frameless and white; the guarantee is one navy band. */
-  .pg-wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+  .pg-wrap { width: min(var(--v2-container-max, 1240px), calc(100% - 48px)); margin: 0 auto; }
   .pg-pricing { padding: clamp(78px, 9vw, 96px) 0; background: var(--surface-page); }
   .pg-lead {
     max-width: 800px;
@@ -674,7 +674,7 @@
      Page-specific first implementation of the future ConversionBlock and
      WhoIsImpact patterns, per D30. Keep scoped here until they are proven and
      extracted into the shared design system. */
-  .post-wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+  .post-wrap { width: min(var(--v2-container-max, 1240px), calc(100% - 48px)); margin: 0 auto; }
   .post-section { padding: clamp(84px, 9vw, 104px) 0; }
   .post-eyebrow {
     margin: 0 0 18px;
@@ -929,7 +929,7 @@
   /* .band/.band-sm/.wrap/.wrap-narrow promoted to the design system 2026-07-25. */
   .center { text-align: center; }
 </style>
-<link rel="stylesheet" href="v2.css?v=20260728-6">
+<link rel="stylesheet" href="v2.css?v=20260728-17">
 </head>
 <body>
 <div id="root"></div>
@@ -938,6 +938,7 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 <script src="../../design-system/_ds_bundle.js"></script>
+<script src="../../design-system/motion/v2-motion.js?v=20260728-17"></script>
 
 <script type="text/babel">
 const PLACEHOLDER_ROADMAP = "data:image/svg+xml;utf8," + encodeURIComponent(
@@ -1202,7 +1203,7 @@ function Page() {
             </div>
           </div>
           <div className="hero-right" id="video">
-            <div className="hero-video-card">
+            <div className="hero-video-card v2-hero-media">
               <a className="hero-video-poster" href="#" aria-label="Play the 2-minute overview">
                 <img src="assets/bob-video-poster-clean-1.png" alt="Bob Ruffolo, your Endless Customers coach" />
               </a>
@@ -1978,9 +1979,41 @@ function Page() {
   );
 }
 
+function setupV2Motion(attempt = 0) {
+  const page = document.querySelector(".ddr-v2");
+  if (!page || !window.IMPACTV2Motion) {
+    if (attempt < 20) setTimeout(() => setupV2Motion(attempt + 1), 40);
+    return;
+  }
+
+  const singleReveals = [
+    ".wyg-split", ".fit2", ".how-path", ".how-effort", ".pg-grid",
+    ".pg-guarantee-header", ".pg-ongoing", ".post-booking-grid",
+    ".post-faq-grid", ".post-about-grid", ".post-final-grid"
+  ];
+  page.querySelectorAll(singleReveals.join(",")).forEach((item) => {
+    item.dataset.v2Reveal = item.matches(".wyg-split, .pg-guarantee-header, .post-about-grid") ? "scale" : "up";
+  });
+
+  const staggerGroups = [
+    [".pg-promises", ".pg-promise"],
+    [".post-proof-grid", ".post-testimonial"],
+    [".post-credentials", ":scope > div"]
+  ];
+  staggerGroups.forEach(([groupSelector, itemSelector]) => {
+    page.querySelectorAll(groupSelector).forEach((group) => {
+      group.dataset.v2Stagger = "";
+      group.querySelectorAll(itemSelector).forEach((item) => { item.dataset.v2Reveal = "up"; });
+    });
+  });
+
+  window.IMPACTV2Motion.init(page);
+}
+
 function mount() {
   if (!window.IMPACTDesignSystem_9efa99) { setTimeout(mount, 40); return; }
   ReactDOM.createRoot(document.getElementById("root")).render(<Boundary><Page /></Boundary>);
+  setTimeout(setupV2Motion, 40);
 }
 mount();
 </script>

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IMPACT Design System V2 — Foundations Specimen</title>
   <meta name="robots" content="noindex,nofollow">
-  <link rel="stylesheet" href="../../styles.css?v=20260728-7">
-  <link rel="stylesheet" href="./foundations.css?v=20260728-7">
+  <link rel="stylesheet" href="../../styles.css?v=20260728-17">
+  <link rel="stylesheet" href="./foundations.css?v=20260728-17">
 </head>
 <body class="v2-specimen impact-v2" data-v2-theme="blue">
   <a class="v2-skip" href="#main">Skip to specimen</a>
@@ -93,16 +93,28 @@
             <span>H3 / 600</span>
             <h3>Clarity before implementation</h3>
           </article>
+          <article class="v2-sample">
+            <span>H4 / 600</span>
+            <h4>Evidence your team can defend</h4>
+          </article>
+          <article class="v2-sample">
+            <span>H5 / 600</span>
+            <h5>A focused supporting heading</h5>
+          </article>
+          <article class="v2-sample">
+            <span>H6 / 600</span>
+            <h6>Compact heading for supporting content</h6>
+          </article>
         </div>
 
         <div class="v2-prose-demo">
           <div>
-            <p class="v2-sample-label">Lead paragraph / 20–22px</p>
+            <p class="v2-sample-label">Lead paragraph / 23px desktop · 20px mobile</p>
             <p class="v2-lead"><strong>You should not need a six-month engagement to understand what is holding your growth back.</strong> The lead paragraph introduces the central idea and establishes why the section matters.</p>
           </div>
           <div>
-            <p class="v2-sample-label">Standard paragraph / 18px</p>
-            <p>Standard body copy explains the idea with enough detail to be useful. Paragraphs stay focused, use clear transitions, and avoid burying the answer beneath unnecessary setup.</p>
+            <p class="v2-sample-label">Standard paragraph / 16px</p>
+            <p class="v2-body">Standard body copy explains the idea with enough detail to be useful. Paragraphs stay focused, use clear transitions, and avoid burying the answer beneath unnecessary setup.</p>
             <ul class="v2-list">
               <li><strong>Lead with the answer.</strong> Make the first sentence useful on its own.</li>
               <li><strong>Use bold selectively.</strong> Emphasize the takeaway, not half the paragraph.</li>
@@ -302,6 +314,7 @@
           <article><span>03</span><div><h3>Color behavior</h3><p>Full brand fields use the correct light or dark ink; accessible variants handle controls and text.</p></div></article>
           <article><span>04</span><div><h3>Wynter-inspired rhythm</h3><p>Generous spacing, oversized assertions, full-color fields, dark labels, inline highlights, strong rules, and one idea per section.</p></div></article>
           <article><span>05</span><div><h3>Shared expression</h3><p>Coded pages and managed HubSpot modules use the same foundation and component contracts.</p></div></article>
+          <article><span>06</span><div><h3>Purposeful motion</h3><p>Quiet reveals, modest staggers, and sequence animation add depth without delaying the answer or ignoring reduced-motion preferences.</p></div></article>
         </div>
         <div class="v2-final-cta">
           <p class="v2-eyebrow">Next after approval</p>
@@ -311,6 +324,7 @@
       </div>
     </section>
   </main>
+  <script src="../../motion/v2-motion.js?v=20260728-17"></script>
   <script>
     (() => {
       const specimen = document.querySelector('.v2-specimen');
@@ -323,6 +337,15 @@
           choices.forEach((item) => item.setAttribute('aria-pressed', String(item === choice)));
         });
       });
+
+      document.querySelectorAll('.v2-section-heading, .v2-final-cta').forEach((item) => {
+        item.dataset.v2Reveal = 'up';
+      });
+      document.querySelectorAll('.v2-purpose-grid, .v2-type-grid, .v2-decision-list').forEach((group) => {
+        group.dataset.v2Stagger = '';
+        group.querySelectorAll(':scope > article').forEach((item) => { item.dataset.v2Reveal = 'up'; });
+      });
+      window.IMPACTV2Motion?.init(specimen);
     })();
   </script>
 </body>

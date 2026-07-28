@@ -20,10 +20,40 @@
   --v2-radius-control: 999px;
   --v2-radius-card: 8px;
   --v2-border: 2px solid var(--ec-gray-900);
+  --v2-container-max: 1240px;
+  --v2-h1-size: 58px;
+  --v2-h1-leading: 62px;
+  --v2-h2-size: 50px;
+  --v2-h2-leading: 54px;
+  --v2-h3-size: 36px;
+  --v2-h3-leading: 42px;
+  --v2-h4-size: 24px;
+  --v2-h4-leading: 28px;
+  --v2-h5-size: 24px;
+  --v2-h5-leading: 28px;
+  --v2-h6-size: 18px;
+  --v2-h6-leading: 23px;
+  --v2-feature-heading-size: 28px;
+  --v2-feature-heading-leading: 33px;
+  --v2-h2-tracking: -.03em;
+  --v2-prose-lead: 23px;
+  --v2-prose-body: 16px;
+  --v2-prose-lead-leading: 34px;
+  --v2-prose-body-leading: 24px;
+  --v2-copy-leading: 1.5;
+  --v2-ui-leading: 1.35;
+  --v2-motion-fast: 180ms;
+  --v2-motion-base: 420ms;
+  --v2-motion-slow: 700ms;
+  --v2-motion-ease-out: cubic-bezier(.22, 1, .36, 1);
+  --v2-reveal-distance: 22px;
   --v2-section-space: clamp(84px, 10vw, 128px);
   --v2-heading-space: clamp(24px, 2.5vw, 34px);
-  --v2-hero-next-section-peek: clamp(24px, 3vh, 36px);
+  --v2-hero-next-section-peek: clamp(44px, 6vh, 56px);
   --v2-hero-desktop-min-height: calc(100svh - var(--v2-hero-next-section-peek));
+  --v2-hero-media-radius: 14px;
+  --v2-hero-media-shadow-offset: 16px;
+  --v2-hero-media-shadow: var(--v2-hero-media-shadow-offset) var(--v2-hero-media-shadow-offset) 0 var(--ec-navy);
 
   /* Repoint existing semantic aliases so legacy components inherit V2. */
   --color-brand: var(--v2-theme-strong);
@@ -38,12 +68,22 @@
   --accent-ink: var(--v2-theme-ink);
   --accent-tint: var(--v2-theme-tint);
   --surface-muted: var(--v2-theme-tint);
+  --container-max: var(--v2-container-max);
+  --container-wide: var(--v2-container-max);
+  --prose-lead: var(--v2-prose-lead);
+  --prose-body: var(--v2-prose-body);
   --radius-lg: var(--v2-radius-card);
   --radius-xl: 12px;
   --section-py: var(--v2-section-space);
 
   /* Default every V2 text node to higher-quality responsive line wrapping.
      Display roles below opt into stronger balancing. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern";
+  font-kerning: normal;
+  font-synthesis: none;
+  text-size-adjust: 100%;
   text-wrap: pretty;
 }
 
@@ -95,11 +135,101 @@
   [data-text-wrap="pretty"], .v2-pretty
 ) { text-wrap: pretty; }
 
+/* Motion starts from readable static HTML and only becomes active after the
+   small V2 helper initializes. This avoids hidden content when JS fails. */
+.impact-v2.v2-motion-ready [data-v2-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--v2-reveal-distance), 0);
+  transition:
+    opacity var(--v2-motion-base) ease-out,
+    transform var(--v2-motion-slow) var(--v2-motion-ease-out);
+  transition-delay: var(--v2-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.impact-v2.v2-motion-ready [data-v2-reveal="scale"] {
+  transform: scale(.975);
+}
+
+.impact-v2.v2-motion-ready [data-v2-reveal].is-v2-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+.impact-v2 [data-v2-stagger] > [data-v2-reveal]:nth-child(2) { --v2-reveal-delay: 70ms; }
+.impact-v2 [data-v2-stagger] > [data-v2-reveal]:nth-child(3) { --v2-reveal-delay: 140ms; }
+.impact-v2 [data-v2-stagger] > [data-v2-reveal]:nth-child(4) { --v2-reveal-delay: 210ms; }
+.impact-v2 [data-v2-stagger] > [data-v2-reveal]:nth-child(5) { --v2-reveal-delay: 280ms; }
+.impact-v2 [data-v2-stagger] > [data-v2-reveal]:nth-child(6) { --v2-reveal-delay: 350ms; }
+
+/* Two deliberate running-copy roles: the lead states the section thesis;
+   standard body copy explains it. Compact copy remains a UI/supporting role. */
+.impact-v2 .prose-lead {
+  font-size: var(--v2-prose-lead);
+  font-weight: var(--weight-regular);
+  line-height: var(--v2-prose-lead-leading);
+}
+
+.impact-v2 .prose-body {
+  font-size: var(--v2-prose-body);
+  line-height: var(--v2-prose-body-leading);
+}
+
+/* Orbit-inspired stepped heading response, tuned slightly smaller for
+   General Sans and Bob's approved IMPACT page proportions. */
+@media (max-width: 1249px) {
+  .impact-v2 {
+    --v2-h1-size: 54px;
+    --v2-h1-leading: 58px;
+    --v2-h2-size: 44px;
+    --v2-h2-leading: 48px;
+    --v2-feature-heading-size: 26px;
+    --v2-feature-heading-leading: 31px;
+  }
+}
+
+@media (max-width: 767px) {
+  .impact-v2 {
+    --v2-h1-size: 38px;
+    --v2-h1-leading: 42px;
+    --v2-h2-size: 32px;
+    --v2-h2-leading: 37px;
+    --v2-h3-size: 26px;
+    --v2-h3-leading: 32px;
+    --v2-h4-size: 20px;
+    --v2-h4-leading: 25px;
+    --v2-h5-size: 20px;
+    --v2-h5-leading: 25px;
+    --v2-feature-heading-size: 22px;
+    --v2-feature-heading-leading: 27px;
+  }
+}
+
 /* Desktop-only viewport hero. The small subtraction intentionally reveals the
    next section; content-driven height remains the fallback for shorter screens. */
 @media (min-width: 981px) {
   .impact-v2 .v2-viewport-hero {
     min-height: var(--v2-hero-desktop-min-height);
+  }
+}
+
+/* Signature hero media uses a firm frame and hard offset shadow. This is a
+   deliberate proof-oriented exception to the no-floating-surface card rule. */
+.impact-v2 .v2-hero-media {
+  border: 0;
+  border-radius: var(--v2-hero-media-radius);
+  box-shadow: var(--v2-hero-media-shadow);
+}
+
+@media (max-width: 767px) {
+  .impact-v2 {
+    --v2-prose-lead: 20px;
+    --v2-prose-lead-leading: 30px;
+  }
+
+  .impact-v2 .v2-hero-media {
+    --v2-hero-media-shadow-offset: 8px;
   }
 }
 
@@ -125,5 +255,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .impact-v2 [data-v2-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .impact-v2 [data-impact-button="true"] { transition: none !important; }
 }

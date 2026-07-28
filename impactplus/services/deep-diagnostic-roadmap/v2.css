@@ -1,4 +1,4 @@
-@import "../../design-system/tokens/v2.css?v=20260728-6";
+@import "../../design-system/tokens/v2.css?v=20260728-17";
 
 /* Deep Diagnostic & Roadmap — first coded-body proof of approved IMPACT V2. */
 
@@ -16,7 +16,7 @@
 /* Global shell remains a local proof until the shared V2 navigation is built. */
 .ddr-v2 .hero-wrap > header { background: transparent !important; }
 .ddr-v2 .hero-wrap > header > div {
-  width: min(calc(100% - 48px), 1240px);
+  width: min(calc(100% - 48px), var(--v2-container-max));
   max-width: none !important;
   padding-block: 18px !important;
 }
@@ -30,59 +30,60 @@
   background: var(--v2-theme-strong);
 }
 .ddr-v2 .hero-grid {
-  width: min(calc(100% - 48px), 1240px);
+  width: min(calc(100% - 48px), var(--v2-container-max));
   max-width: none;
-  gap: clamp(40px, 5vw, 72px);
+  gap: clamp(36px, 4.5vw, 72px);
   padding: clamp(72px, 7vw, 96px) 0 clamp(76px, 7.5vw, 104px);
 }
 .ddr-v2 .hero-eyebrow {
   max-width: 100%;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
   color: white;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: .14em;
-  opacity: 1;
+  opacity: .92;
 }
 .ddr-v2 .hero-h1 {
-  max-width: 760px;
+  max-width: 640px;
   margin-bottom: 0;
   color: white;
   font-family: var(--font-display);
-  font-size: clamp(48px, 6.4vw, 82px);
+  font-size: var(--v2-h1-size);
   font-weight: 800;
-  letter-spacing: -.045em;
-  line-height: .96;
+  letter-spacing: -.02em;
+  line-height: var(--v2-h1-leading);
 }
 .ddr-v2 .hero-sub {
-  max-width: 680px;
-  margin-top: clamp(30px, 3vw, 42px);
+  max-width: 520px;
+  margin-top: 22px;
   color: white;
-  font-size: clamp(19px, 1.6vw, 22px);
-  font-weight: 400;
-  line-height: 1.55;
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-weight: 500;
+  line-height: 1.5;
 }
-.ddr-v2 .hero-cta-row { margin-top: 34px; }
-.ddr-v2 .hero-micro { margin-top: 16px; color: white; }
-.ddr-v2 .hero-trust { margin-top: 30px; color: white; }
+.ddr-v2 .hero-cta-row { margin-top: 30px; }
+.ddr-v2 .hero-micro { margin-top: 14px; color: white; }
+.ddr-v2 .hero-trust { margin-top: 26px; color: white; }
 .ddr-v2 .guarantee-chip {
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--ec-green);
+  text-decoration-thickness: 2.5px;
+  text-underline-offset: 6px;
 }
 .ddr-v2 .hero-video-card {
-  border: 2px solid var(--ec-navy);
-  border-radius: var(--v2-radius-card);
-  box-shadow: none;
+  border-radius: var(--v2-hero-media-radius);
 }
-.ddr-v2 .hero-video-caption { border-top: 2px solid var(--ec-navy); }
+.ddr-v2 .hero-video-caption { border-top: 1px solid var(--border-hairline); }
 
 @media (min-width: 981px) {
   .ddr-v2 .hero-wrap { min-height: var(--v2-hero-desktop-min-height); }
   .ddr-v2 .hero-grid {
-    grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr);
-    padding: clamp(38px, 5vh, 50px) 0 clamp(42px, 5.5vh, 54px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 28px 0 56px;
   }
-  .ddr-v2 .hero-h1 { font-size: clamp(54px, 5vw, 72px); }
+  .ddr-v2 .hero-trust > :first-child { flex-basis: 100%; }
 }
 
 /* Editorial rhythm and hierarchy. */
@@ -116,23 +117,72 @@
   max-width: 980px;
   color: var(--text-heading);
   font-family: var(--font-display);
-  font-size: clamp(40px, 5vw, 64px);
+  font-size: var(--v2-h2-size);
   font-weight: 700;
-  letter-spacing: -.035em;
-  line-height: .98;
+  letter-spacing: var(--v2-h2-tracking);
+  line-height: var(--v2-h2-leading);
 }
 .ddr-v2 .post-h2 { margin-bottom: var(--v2-heading-space); }
 .ddr-v2 .wyg-h3,
-.ddr-v2 .pg-subhead,
-.ddr-v2 .post-authority-panel h3,
-.ddr-v2 .how-step h3 {
+.ddr-v2 .post-authority-panel h3 {
   font-family: var(--font-display);
   letter-spacing: -.025em;
 }
-.ddr-v2 .wyg-h3 { font-size: clamp(32px, 4vw, 48px); line-height: 1.04; }
+.ddr-v2 .wyg-h3,
+.ddr-v2 .post-authority-panel h3 {
+  font-size: var(--v2-h3-size);
+  line-height: var(--v2-h3-leading);
+}
+.ddr-v2 .fit2-title,
+.ddr-v2 .how-step h3,
+.ddr-v2 .pg-subhead,
+.ddr-v2 .pg-promise-title,
+.ddr-v2 .pg-ongoing-title,
+.ddr-v2 .post-panel h3,
+.ddr-v2 .post-outcome {
+  font-family: var(--font-display);
+  font-size: var(--v2-h4-size);
+  letter-spacing: -.02em;
+  line-height: var(--v2-h4-leading);
+}
+.ddr-v2 .pg-guarantee-title {
+  font-size: var(--v2-h2-size);
+  line-height: var(--v2-h2-leading);
+}
+.ddr-v2 .pg-promise-title {
+  font-size: var(--v2-feature-heading-size);
+  line-height: var(--v2-feature-heading-leading);
+}
+.ddr-v2 .pg-ongoing-title {
+  font-size: var(--v2-h3-size);
+  line-height: var(--v2-h3-leading);
+}
 .ddr-v2 .sec-desc { margin-top: 28px; }
-.ddr-v2 .prose-lead { line-height: 1.55; }
-.ddr-v2 .prose-body { line-height: 1.62; }
+.ddr-v2 .prose-lead { line-height: var(--v2-prose-lead-leading); }
+.ddr-v2 .prose-body { line-height: var(--v2-prose-body-leading); }
+.ddr-v2 .sec-desc,
+.ddr-v2 .wyg-inventory-intro,
+.ddr-v2 .how-step-copy,
+.ddr-v2 .how-effort dd,
+.ddr-v2 .pg-lead,
+.ddr-v2 .pg-copy,
+.ddr-v2 .pg-guarantee-lead,
+.ddr-v2 .pg-guarantee-reason,
+.ddr-v2 .pg-promise-copy,
+.ddr-v2 .pg-ongoing-copy p,
+.ddr-v2 .post-lead,
+.ddr-v2 .post-panel-intro,
+.ddr-v2 .post-confirmation-lead,
+.ddr-v2 .post-confirmation-columns :where(p, li),
+.ddr-v2 .post-faq-answer p,
+.ddr-v2 .post-about-lead,
+.ddr-v2 .post-authority-panel > p:not(.post-authority-label),
+.ddr-v2 .post-expertise p,
+.ddr-v2 .post-about-close p,
+.ddr-v2 .post-final-copy,
+.ddr-v2 .post-final-note {
+  line-height: var(--v2-copy-leading);
+}
 .ddr-v2 .wyg-split { gap: var(--ddr-section-gap); }
 .ddr-v2 .post-proof-grid,
 .ddr-v2 .post-about-grid { margin-top: var(--ddr-section-gap); }
@@ -167,6 +217,9 @@
 .ddr-v2 .pg-rail { border-top: 3px solid var(--ec-navy); }
 .ddr-v2 .pg-rail-item + .pg-rail-item { border-left-color: var(--ec-gray-700); }
 .ddr-v2 .pg-guarantee { background: var(--ec-navy); }
+.ddr-v2 .pg-guarantee .pg-wrap {
+  width: min(1120px, calc(100% - clamp(36px, 5vw, 48px)));
+}
 .ddr-v2 .pg-guarantee-eyebrow,
 .ddr-v2 .pg-promise-label,
 .ddr-v2 .pg-ongoing-label,
@@ -189,6 +242,26 @@
 .ddr-v2 .post-faq summary h3 { font-family: var(--font-display); }
 .ddr-v2 .post-faq-icon { border-color: var(--ec-navy); color: var(--v2-theme-text); }
 
+/* The process line and numbered nodes explain sequence, so their motion follows
+   that same sequence. It is disabled by the shared reduced-motion rule. */
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal]::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--v2-motion-slow) var(--v2-motion-ease-out) 120ms;
+}
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal] .how-node {
+  opacity: 0;
+  transform: scale(.78);
+  transition:
+    opacity var(--v2-motion-base) ease-out,
+    transform var(--v2-motion-base) var(--v2-motion-ease-out);
+}
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal].is-v2-visible::before { transform: scaleX(1); }
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal].is-v2-visible .how-node { opacity: 1; transform: none; }
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal].is-v2-visible .how-step:nth-child(2) .how-node { transition-delay: 90ms; }
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal].is-v2-visible .how-step:nth-child(3) .how-node { transition-delay: 180ms; }
+.ddr-v2.v2-motion-ready .how-path[data-v2-reveal].is-v2-visible .how-step:nth-child(4) .how-node { transition-delay: 270ms; }
+
 /* Colored closing field follows the hero rule: white type, no highlight box. */
 .ddr-v2 .post-final {
   border-block: 4px solid var(--ec-navy);
@@ -208,10 +281,16 @@
 
 @media (max-width: 980px) {
   .ddr-v2 .hero-wrap { min-height: auto; }
-  .ddr-v2 .hero-grid { padding: 64px 0 82px; }
-  .ddr-v2 .how-path { margin-top: 64px; }
+  .ddr-v2 .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 64px 0 82px;
+  }
+  .ddr-v2 .hero-right { width: 100%; max-width: 680px; }
+  .ddr-v2 .how-path { margin-top: 88px; }
   .ddr-v2 .how-effort { margin-top: 58px; }
   .ddr-v2 .how-cta { margin-top: 48px; }
+  .ddr-v2 .pg-ongoing { grid-template-columns: 1fr; gap: 22px; }
   .ddr-v2 .post-booking-grid,
   .ddr-v2 .post-faq-grid { gap: 40px; }
 }
@@ -220,15 +299,12 @@
   .ddr-v2 .hero-wrap > header > div,
   .ddr-v2 .hero-grid { width: min(calc(100% - 36px), 680px); }
   .ddr-v2 .hero-grid { gap: 36px; padding: 56px 0 72px; }
-  .ddr-v2 .hero-h1 { font-size: clamp(46px, 13vw, 58px); }
-  .ddr-v2 .wynter-h2,
-  .ddr-v2 .post-h2 { font-size: clamp(36px, 10vw, 44px); }
   .ddr-v2 .hero-sub { margin-top: 24px; }
   .ddr-v2 .hero-cta-row { margin-top: 28px; }
   .ddr-v2 .hero-trust { margin-top: 24px; }
   .ddr-v2 .wyg-split,
   .ddr-v2 .wyg-split-flip { gap: 32px; }
-  .ddr-v2 .how-path { margin-top: 52px; }
+  .ddr-v2 .how-path { margin-top: 86px; }
   .ddr-v2 .how-step { min-height: 190px; padding-bottom: 34px; }
   .ddr-v2 .how-effort { margin-top: 48px; }
   .ddr-v2 .pg-grid { gap: 36px; margin-top: 38px; }
@@ -240,6 +316,33 @@
   .ddr-v2 .post-final-grid { gap: 32px; }
 }
 
+@media (max-width: 900px) {
+  .ddr-v2.v2-motion-ready .how-path[data-v2-reveal]::before {
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+  .ddr-v2.v2-motion-ready .how-path[data-v2-reveal].is-v2-visible::before { transform: scaleY(1); }
+  .ddr-v2 .how-start-note {
+    top: -74px;
+    left: -91px;
+    width: 90px;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .ddr-v2 .how-start-note::after {
+    top: 44px;
+    left: 43px;
+    width: 14px;
+    height: 27px;
+    transform: rotate(-8deg);
+  }
+  .ddr-v2 .how-start-note::before {
+    top: 63px;
+    left: 51px;
+    transform: rotate(-36deg);
+  }
+}
+
 @media (max-width: 520px) {
   .ddr-v2 {
     --ddr-section-space: 64px;
@@ -248,7 +351,6 @@
   }
   .ddr-v2 .hero-wrap > header > div { padding-block: 14px !important; }
   .ddr-v2 .hero-grid { padding: 44px 0 64px; }
-  .ddr-v2 .hero-h1 { font-size: clamp(43px, 12.5vw, 50px); line-height: .98; }
   .ddr-v2 .hero-eyebrow { max-width: 34ch; }
   .ddr-v2 .hero-sub { font-size: 18px; line-height: 1.5; }
   .ddr-v2 .hero-trust { gap: 12px 18px; }
@@ -256,4 +358,10 @@
   .ddr-v2 .how-step { min-height: 176px; }
   .ddr-v2 .post-faq-grid { gap: 34px; }
   .ddr-v2 .post-faq summary { padding-block: 18px; }
+  .ddr-v2 .how-start-note {
+    top: -70px;
+    left: -80px;
+    width: 84px;
+    font-size: 18px;
+  }
 }

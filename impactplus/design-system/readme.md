@@ -102,8 +102,36 @@ colors per page** (white + livid, or a dark band).
 
 **Type.** Headings, FAQ questions, key statistics, and short proof statements:
 **General Sans**. Body + UI: **Proxima Nova**, with distinct Lead, Standard, and
-Compact roles. Decorative callouts: **Kalam**, used sparingly. The approved
-responsive values live in `tokens/v2.css` and the V2 Foundations specimen.
+Compact roles. Following Orbit Media's live proportion, lead paragraphs are
+23px/34px on desktop and 20px/30px on mobile; standard running copy is 16px/24px.
+Both use a regular reading weight, with selective bold phrases for emphasis. The
+lead states a section's thesis, while standard paragraphs explain it. Heading
+response uses Orbit's stepped breakpoint model at a deliberately smaller IMPACT
+scale: H1 is 58/54/38px and H2 is 50/44/32px across desktop/tablet/mobile; H3 is
+36/36/26px; H4 and H5 are 24/24/20px; H6 is 18px throughout. Decorative
+callouts: **Kalam**, used sparingly. The approved responsive values live in
+`tokens/v2.css` and the V2 Foundations specimen.
+
+V2 applies Apple-inspired optical discipline without imitating Apple's typeface:
+large headings use tighter proportional leading than reading copy, body copy
+uses a consistent 1.5 rhythm, and the browser is asked to preserve kerning,
+disable synthetic font styles, antialias text, and retain 100% text scaling.
+Balanced headings, pretty-wrapped paragraphs, and narrow prose measures remain
+part of the same typography system.
+
+**Motion.** V2 motion is quiet, directional, and explanatory. The shared helper
+in `motion/v2-motion.js` activates only explicit `data-v2-reveal` elements,
+uses the governed 180/420/700ms timing scale and an ease-out curve, supports
+70ms stagger steps, and never hides content when JavaScript fails. The process
+timeline may draw and reveal its nodes in sequence because that motion explains
+order. `prefers-reduced-motion` removes all reveal and timeline motion.
+
+**Desktop canvas.** V2 pages use a shared 1240px maximum content grid with 24px
+minimum side gutters. Major section grids align to that canvas; text columns
+retain their own narrower reading measures instead of stretching to fill it.
+Dense commercial compositions may use a governed 1120px inner subgrid inside
+the 1240px canvas. The Money-Back Guarantee uses this inner rail so its badge,
+two promises, month-to-month commitment, and closing action read as one unit.
 
 **Backgrounds.** Mostly flat white and flat livid sections. Heroes are **full-bleed
 photography** (real conference/team photos) with a dark overlay for legibility.
@@ -111,10 +139,16 @@ No busy patterns. Service pages introduce soft two-stop **gradients**. Photos ar
 warm, natural, real people — never stocky or cold.
 
 **Desktop hero height.** V2 primary page heroes use `.v2-viewport-hero` to fill
-nearly the full desktop viewport while intentionally revealing a small strip of
-the next section above the fold. The rule is disabled at 980px and below, where
-heroes return to content-driven height. Short desktop viewports may grow beyond
-the minimum rather than clipping copy or actions.
+nearly the full desktop viewport while intentionally revealing roughly 44–56px
+of the next section above the fold. The rule is disabled at 980px and below,
+where heroes return to content-driven height. Short desktop viewports may grow
+beyond the minimum rather than clipping copy or actions.
+
+**Hero media.** Primary proof media in a hero may use `.v2-hero-media`: a
+14px radius and a firm 16px navy offset shadow (8px on small screens), without
+an extra outline competing with that hard edge. This is a signature proof
+treatment, not permission to add shadows to ordinary cards. It keeps video and
+other high-value proof visually anchored to the flat hero field.
 
 **Imagery treatment.** Client logos render **grayscale + faded** (~55% opacity).
 Photos sit inside **pill / arch-topped rounded masks** on the "How it Works" page
@@ -123,7 +157,9 @@ Photos sit inside **pill / arch-topped rounded masks** on the "How it Works" pag
 **Cards.** V2 cards use a restrained **8px radius**, firm borders, and little or
 no shadow. Separation comes from contrast, spacing, and rules—not floating
 surfaces. Interactive cards may use a restrained lift when it communicates
-clickability. FAQ controls retain a clear outlined toggle and accessible state.
+clickability. The governed `.v2-hero-media` proof frame is the intentional hard-
+shadow exception. FAQ controls retain a clear outlined toggle and accessible
+state.
 
 **Buttons.** Fully **pill-shaped** (`border-radius:999px`), Proxima Nova bold.
 Primary and dark actions carry a trailing **→** by default; secondary, outline,
@@ -226,7 +262,7 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 **Content** (`components/content/`)
 
 **Content** (`components/content/`)
-- **Prose** — long-form text block pairing the two existing paragraph styles: a larger lead (`--text-lg`, 20px) over default body (`--text-base`, 18px).
+- **Prose** — long-form text block pairing the two governed paragraph roles: a larger lead (`--prose-lead`, 23px/34px desktop and 20px/30px mobile) over standard body (`--prose-body`, 16px/24px in V2).
 - **FaqAccordion** — General Sans FAQ rows with rotating "+" toggle.
 - **LogoWall** — grayscale client-logo band.
 - **NewsletterForm** — inline email capture (pill field + blue submit).
@@ -246,6 +282,7 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 ## Index / manifest
 - `styles.css` — global entry point (import this one file). `@import`s everything below.
 - `tokens/` — `fonts.css`, `colors.css`, `typography.css`, `spacing.css`, `effects.css`, `base.css`, and the approved scoped `v2.css` layer.
+- `motion/` — the progressive V2 reveal helper; static content remains readable without it and reduced-motion users receive no reveal animation.
 - `components/{core,cards,content,chrome,sections}/` — the 24 components above (`.jsx` + `.d.ts` + `.prompt.md` + a `*.card.html` per folder).
 - `guidelines/` — foundation specimen cards (Colors, Type, Spacing, Brand).
 - `assets/README.md` — logo/imagery/icon URL inventory + localization notes.

@@ -1193,10 +1193,9 @@ Object.assign(__ds_scope, { PricingTable });
 // components/content/Prose.jsx
 try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-/** Long-form text block using IMPACT's two existing paragraph styles: an
- * optional larger "lead" paragraph (--text-lg / 20px) followed by default body
- * paragraphs (--text-base / 18px). Uses only tokens already in the site CSS —
- * no new type sizes. Mirrors the lead-then-body pattern across the site. */
+/** Long-form text block using IMPACT's two governed paragraph roles: an
+ * optional larger lead paragraph (--prose-lead / 23px/34px desktop, 20px/30px mobile)
+ * followed by standard body paragraphs (--prose-body / 16px/24px in V2). */
 function Prose({
   lead,
   paragraphs = [],
@@ -1215,17 +1214,18 @@ function Prose({
   }, rest), lead && /*#__PURE__*/React.createElement("p", {
     style: {
       fontFamily: "var(--font-body)",
-      fontSize: "var(--text-lg)",
-      lineHeight: "var(--leading-normal)",
+      fontSize: "var(--prose-lead)",
+      lineHeight: "var(--v2-prose-lead-leading, var(--leading-normal))",
       color: "var(--text-heading)",
+      fontWeight: "var(--weight-regular)",
       margin: "0 0 22px"
     }
   }, lead), paragraphs.map((p, i) => /*#__PURE__*/React.createElement("p", {
     key: i,
     style: {
       fontFamily: "var(--font-body)",
-      fontSize: "var(--text-base)",
-      lineHeight: "var(--leading-relaxed)",
+      fontSize: "var(--prose-body)",
+      lineHeight: "var(--v2-prose-body-leading, var(--leading-relaxed))",
       color: "var(--text-body)",
       margin: "0 0 1em"
     }

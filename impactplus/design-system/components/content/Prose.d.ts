@@ -1,14 +1,14 @@
 import * as React from "react";
 /**
  * Long-form text block using IMPACT's two existing paragraph styles: a larger
- * "lead" paragraph (--text-lg, 20px) + default body paragraphs (--text-base,
- * 18px). Uses only tokens already in the site CSS.
+ * "lead" paragraph (--prose-lead, 23px/34px desktop and 20px/30px mobile) +
+ * standard body paragraphs (--prose-body, 16px/24px in V2).
  * @startingPoint section="Content" subtitle="Lead + body paragraph block" viewport="820x360"
  */
 export interface ProseProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Larger intro paragraph (--text-lg / 20px). */
+  /** Larger intro paragraph (--prose-lead / 23px/34px desktop, 20px/30px mobile). */
   lead?: React.ReactNode;
-  /** Default body paragraphs (--text-base / 18px). */
+  /** Standard body paragraphs (--prose-body / 16px/24px in V2). */
   paragraphs?: React.ReactNode[];
   /** @default "left" */
   align?: "left" | "center";
