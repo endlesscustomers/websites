@@ -7,7 +7,7 @@
 
 {% module
     "webinar_ind_template"
-    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Webinar Landing Page Controls',
+    path='/IM-IMPACT-Design-System-V2/globals/Navigation/Webinar Landing Page Controls',
     label="[TEMPLATE TYPE] Webinar Landing Page Ind Controls",
     no_wrapper=True,
     export_to_template_context= True,
@@ -15,7 +15,7 @@
 
 {% module
     "webinar_global_controls"
-    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Webinar Landing Page Global Controls',
+    path='/IM-IMPACT-Design-System-V2/globals/Navigation/Webinar Landing Page Global Controls',
     label="Webinar Landing Page Global Controls",
     no_wrapper=True,
     export_to_template_context= True
@@ -24,7 +24,7 @@
 
 {% module
     "controls"
-    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Navigation and Footer Page Settings',
+    path='/IM-IMPACT-Design-System-V2/globals/Navigation/Navigation and Footer Page Settings',
     label="Page and Navigation Controls",
     no_wrapper=True,
     export_to_template_context= True,
@@ -38,7 +38,7 @@
 
 {# module
     "breadcrumb_controls"
-    path='/IM-IMPACT-Prod-Theme-2025/globals/_unused/Breadcrumbs',
+    path='/IM-IMPACT-Design-System-V2/globals/_unused/Breadcrumbs',
     label="Breadcrumb Controls",
     no_wrapper=True,
     export_to_template_context=True
@@ -71,35 +71,35 @@
 
   {% if widget_data.webinar_ind_template.template_type == "upcoming_lp" %}
   {% module "hero_scrolling_form"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Webinar Hero - Scrolling Form/Upcoming Webinar Hero - Scrolling Form",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Webinar Hero - Scrolling Form/Upcoming Webinar Hero - Scrolling Form",
         label="Upcoming Content, Form, and Speakers"
     %}
   {% elif widget_data.webinar_ind_template.template_type == "ondemand_lp" %}
   {% module "hero_scrolling_form"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Webinar Hero - Scrolling Form/On-Demand Webinar Hero - Scrolling Form",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Webinar Hero - Scrolling Form/On-Demand Webinar Hero - Scrolling Form",
         label="On-Demand Content, Form, and Speakers"
     %}
   {% endif %}
 
   {% module "global_video_cta_lp"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Global CTA/Landing Page Global CTA",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Landing Page Global CTA/Landing Page Global CTA",
         label="Global Video CTA"
     %}
 
   {% module "testimonial_columns_lp"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Testimonial Columns/Landing Page Testimonial Columns",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Landing Page Testimonial Columns/Landing Page Testimonial Columns",
         label="Global Testimonial Column"
     %}
 
   {% elif (widget_data.webinar_ind_template.template_type == "upcoming_typ") or (widget_data.webinar_ind_template.template_type == "ondemand_typ") %}
 
   {% module "hero_typ_fullwidth"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Webinar TYP Hero Full-Width/Webinar TYP Hero Full-Width",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Webinar TYP Hero Full-Width/Webinar TYP Hero Full-Width",
         label="Webinar TYP Hero Full-Width"
     %}
 
   {% module "additional_typ_resources"
-    path="/IM-IMPACT-Prod-Theme-2025/modules/Columns/Columns",
+    path="/IM-IMPACT-Design-System-V2/modules/Columns/Columns",
     label="Additional Resource Columns",
 
     header="While You’re Here, Keep Your Momentum Going:",
@@ -211,12 +211,12 @@
   %}
 
   {% module "global_video_cta_typ"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Global CTA/Landing Page Global CTA",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Landing Page Global CTA/Landing Page Global CTA",
         label="Global Video CTA"
     %}
 
   {% module "testimonial_columns_typ"
-        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Testimonial Columns/Landing Page Testimonial Columns",
+        path="/IM-IMPACT-Design-System-V2/modules/_custom/Landing Page Testimonial Columns/Landing Page Testimonial Columns",
         label="Global Testimonial Column"
     %}
 

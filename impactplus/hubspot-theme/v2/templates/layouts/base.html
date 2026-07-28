@@ -85,7 +85,7 @@
 
     {# Tertiary Navigation Stylesheet #}
     {% if (widget_data.controls.secondary_navigation.secondary_navigation_type == 'pillar') || content.absolute_url is string_containing '/blog/' || content.absolute_url is string_containing '/dev-blog/' %}
-    {{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/globals/Navigation/_css/tertiary_navigation_styles.css'), { async: true } ) }}
+    {{ require_css(get_asset_url('/IM-IMPACT-Design-System-V2/globals/Navigation/_css/tertiary_navigation_styles.css'), { async: true } ) }}
     {% endif %}
 
     {# ------ END CURRENT NAVIGATION STYLESHEETS ------ #}
@@ -345,7 +345,7 @@
       {% block header %}
       {% if hide_header != "yes" %}
 
-      {% global_partial path="/IM-IMPACT-Prod-Theme-2025/templates/partials/header.html" %}
+      {% global_partial path="/IM-IMPACT-Design-System-V2/templates/partials/header.html" %}
 
       {% endif %}
       {% endblock header %}
@@ -366,7 +366,7 @@
       {% block footer %}
       {% module "footerControls" path='/_IMPACT_Production/_globals/_footer/Site Footer Settings - IMPACT UI', label="Footer Controls", export_to_template_context=True %}
       {% if hide_footer != "yes" %}
-      {% global_partial path="/IM-IMPACT-Prod-Theme-2025/templates/partials/footer.html" %}
+      {% global_partial path="/IM-IMPACT-Design-System-V2/templates/partials/footer.html" %}
       {% endif %}
       {% endblock footer %}
     </div>

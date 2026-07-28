@@ -8,10 +8,10 @@
 {# **************************************************************************** #}
 
 {# IMPORT CONFIG #}
-{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+{% import '/IM-IMPACT-Design-System-V2/css/_config.css' as config %}
 
 {# IMPORT FUNCTIONS #}
-{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+{% import '/IM-IMPACT-Design-System-V2/css/mixins/_functions.css' %}
 
 {# ***************************************************************************** #} 
 {# ***************************************************************************** #}

@@ -51,7 +51,7 @@
 
 {# --- End Settings the Preheader/Topic Name and Icon --- #}
 
-{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_lcsnippets.css' as lcsnippets %} 
+{% import '/IM-IMPACT-Design-System-V2/css/mixins/_lcsnippets.css' as lcsnippets %}
 
 {% extends "./layouts/base.html" %}
 
@@ -180,7 +180,7 @@
 {% block body %}
 
 {% set globalCtaData = [] %}
-{% module "inlineArticleCTAs" path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Global CTA/Learning Center Global CTA Library.module", label="Inner Blog Global CTA Library", no_wrapper=True, export_to_template_context=True %}
+{% module "inlineArticleCTAs" path="/IM-IMPACT-Design-System-V2/modules/_custom/Landing Page Global CTA/Learning Center Global CTA Library.module", label="Inner Blog Global CTA Library", no_wrapper=True, export_to_template_context=True %}
 {% set globalCtaData = globalCtaData %} 
 
 {% set videoArticle = [] %}
@@ -232,10 +232,10 @@
 {% endif %}
 
 {# Subscribe Popup #}
-{% module "subpop" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Popup/Learning Center Popup", label="Subscription Popup", no_wrapper=True %}
+{% module "subpop" path="/IM-IMPACT-Design-System-V2/modules/_learning_center/Learning Center Popup/Learning Center Popup", label="Subscription Popup", no_wrapper=True %}
 
 {# Mobile Bottom Bar #}
-{# module "indpost" path='/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Mobile Bottom Navigation/Learning Center Mobile Bottom Navigation', label="Bottom Bar Navigation", no_wrapper=True #}
+{# module "indpost" path='/IM-IMPACT-Design-System-V2/modules/_learning_center/Learning Center Mobile Bottom Navigation/Learning Center Mobile Bottom Navigation', label="Bottom Bar Navigation", no_wrapper=True #}
 
 {# Hero or Sidebar CTA #}
 {% set articleCTA = [] %}
@@ -492,7 +492,7 @@
 
           {# Featured Image or Video #}    
           {% set videoType = [] %}
-          {% module "article_featured_media" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Featured Image or Video/Learning Center Featured Image or Video", label="Featured Image/Media" %}
+          {% module "article_featured_media" path="/IM-IMPACT-Design-System-V2/modules/_learning_center/Learning Center Featured Image or Video/Learning Center Featured Image or Video", label="Featured Image/Media" %}
           {% set videoType = videoType[0] %}
 
           <div class="post--single--audio-caption text--center margin--standard--top hard--bottom">
@@ -511,7 +511,7 @@
 
           {# ***** FEATURED SNIPPET MODULE ***** #}
           <div class="container--featuredsnippet">
-            {% module "featured_snippet" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Featured Snippet/Learning Center Featured Snippet", label="Featured Snippet" %}
+            {% module "featured_snippet" path="/IM-IMPACT-Design-System-V2/modules/_learning_center/Learning Center Featured Snippet/Learning Center Featured Snippet", label="Featured Snippet" %}
           </div>
           <div class="container--postbody last--hard--bottom">
             {% if content.post_body %}
