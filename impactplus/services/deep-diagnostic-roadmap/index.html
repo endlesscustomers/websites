@@ -834,6 +834,8 @@
   .post-credentials div + div { border-left: 1px solid var(--border-strong); }
   .post-credentials dt { color: var(--text-heading); font-family: 'General Sans', sans-serif; font-size: 19px; font-weight: 700; line-height: 1.2; }
   .post-credentials dd { margin: 4px 0 0; color: var(--text-muted); font-family: var(--font-body); font-size: 14px; line-height: 1.35; }
+  .post-credential-stat dt { font-size: clamp(24px, 2.1vw, 30px); letter-spacing: -.02em; }
+  .post-credential-stat dd { margin-top: 7px; font-size: 16px; }
   .post-credential-mark { justify-items: center; text-align: center; }
   .post-credential-mark img { display: block; max-width: 100%; object-fit: contain; object-position: center; }
   .post-credential-usa img { width: 132px; height: 132px; }
@@ -1944,9 +1946,9 @@ function Page() {
 
           <dl className="post-credentials" aria-label="IMPACT credibility points">
             <div className="post-credential-mark post-credential-usa"><dt><img src="assets/usa-today-bestseller-badge.png" alt="USA Today Best-Selling Booklist badge" width="132" height="132" loading="lazy" /></dt></div>
-            <div><dt>300+</dt><dd>Companies coached</dd></div>
+            <div className="post-credential-stat"><dt>300+</dt><dd>Companies coached</dd></div>
             <div className="post-credential-mark post-credential-hubspot"><dt><img src="assets/hubspot-diamond-partner-badge.svg" alt="HubSpot Diamond Solutions Partner badge" width="235" height="172" loading="lazy" /></dt></div>
-            <div><dt>5.0 on HubSpot</dt><dd><a className="post-review-link" href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener noreferrer">327 client reviews →</a></dd></div>
+            <div className="post-credential-stat"><dt>5.0 on HubSpot</dt><dd><a className="post-review-link" href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener noreferrer">327 client reviews →</a></dd></div>
           </dl>
 
           <div className="post-about-close">
