@@ -31,6 +31,9 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - Converted the hero's “See the decisions” action into a thin white-outline ghost pill with no arrow; its hover uses a subtle translucent-white fill.
 - Made the main-navigation CTA black with a right arrow.
 - Standardized right arrows on every primary button. Secondary ghost and outline buttons do not use arrows.
+- All action buttons rise two pixels on hover and never gain an underline.
+- Black primary buttons remain black and darken subtly on hover; they do not invert to white.
+- Main-navigation links remain unadorned on hover and never gain an underline.
 - Removed the multicolor rail below the navigation and added a four-pixel black rule below the hero.
 - Made blue the default root theme. The interactive specimen control can switch the complete active system to magenta, green, or orange.
 - Active-theme tokens govern the hero, highlights, links, buttons, form accents, list marks, tinted surfaces, proof blocks, service patterns, and final CTA. The four palette cards and four selector swatches intentionally retain their literal colors because they document and control the available themes.
