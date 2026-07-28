@@ -25,16 +25,18 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 ## Bob-directed theme revision — 2026-07-28
 
 - Removed boxes from all eyebrow labels.
-- Made the hero H1 and lead copy black, with white hero highlights.
+- Made the hero, navigation, hero controls, and proof panel share one accessible strong-color field.
+- Removed the hero headline highlight and made all hero and navigation typography white, including the proof panel.
 - Reduced the vertical padding around every inline highlight.
-- Converted the hero's “See the decisions” action into a thin black-outline ghost pill with a darker theme-color hover.
-- Made the main-navigation CTA black.
+- Converted the hero's “See the decisions” action into a thin white-outline ghost pill with no arrow; its hover uses a subtle translucent-white fill.
+- Made the main-navigation CTA black with a right arrow.
+- Standardized right arrows on every primary button. Secondary ghost and outline buttons do not use arrows.
 - Removed the multicolor rail below the navigation and added a four-pixel black rule below the hero.
 - Made blue the default root theme. The interactive specimen control can switch the complete active system to magenta, green, or orange.
 - Active-theme tokens govern the hero, highlights, links, buttons, form accents, list marks, tinted surfaces, proof blocks, service patterns, and final CTA. The four palette cards and four selector swatches intentionally retain their literal colors because they document and control the available themes.
 - The magenta full-field role uses the accessibility-adjusted `#CD43DC`; raw brand magenta remains `#C026D3` in the palette.
 - The main navigation is a transparent overlay on the hero field, so it always shares the active theme color instead of creating a separate navigation band.
-- Hero highlights use black text on a tightly trimmed white field. Highlights below the hero use white text on the active accessible strong color, with only a few pixels of vertical extension and slightly more below the letterforms.
+- Highlights below the hero use white text on the active accessible strong color, with only a few pixels of vertical extension and slightly more below the letterforms. The hero does not use a headline highlight.
 
 ## Review gate
 
