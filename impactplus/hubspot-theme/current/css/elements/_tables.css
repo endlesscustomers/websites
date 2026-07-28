@@ -1,0 +1,107 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{% set table_BorderColor           = color('grey') %}
+{% set table_HeaderBackgroundColor = color('grey') %}
+{% set table_HeaderTextColor       = config.p_Color %}
+{% set table_OddRowColor           = color('lightgrey') %}
+{% set table_EvenRowColor          = color('white') %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/* Table */
+
+table {
+  border-collapse: collapse;
+  overflow-wrap: break-word;
+}
+
+/* Table cells */
+
+td,
+th {
+  vertical-align: top;
+}
+
+/* Table header */
+
+thead th {
+  vertical-align: bottom;
+}
+
+
+table {
+  width:100%;
+  max-width:100%;
+  border-spacing:0;
+  border:1px solid {{ table_BorderColor }};
+}
+
+table tr:nth-child(odd) {
+  background: {{ table_OddRowColor }};
+}
+
+table tr:nth-child(even) {
+  background: {{ table_EvenRowColor }};
+}
+
+table tr th,
+table tr td {
+  padding:10px;
+}
+
+table caption,
+table tr th,
+table tr th p,
+table tr td,
+table tr td p {
+  font-family:{{ config.p_FontFamily }};
+  font-size:{{ config.p_FontSize }};
+  line-height:{{ config.p_LineHeight }};
+  letter-spacing:{{ config.p_LetterSpacing }};
+  color:{{ config.p_Color }};
+}
+
+table thead th {
+  background:{{ table_HeaderBackgroundColor }};
+  color:{{ table_HeaderTextColor }};
+}
+
+table th {
+  border-bottom: 1px solid {{ table_BorderColor }};
+}
+
+table tr th,
+table tr th p {
+  font-weight:{{ config.bold }};
+}
+
+table tr th,
+table tr td {
+  border-right: 1px solid {{ table_BorderColor }};
+}
+
+table tr th:last-child,
+table tr td:last-child {
+  border-right-width: 0px;
+}
+
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

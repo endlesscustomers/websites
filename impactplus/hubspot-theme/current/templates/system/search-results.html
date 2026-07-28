@@ -1,0 +1,54 @@
+<!--
+  templateType: search_results_page
+  isAvailableForNewContent: true
+  label: Search Results - IMPACT Production Theme
+-->
+
+{% set template_css = "../../css/templates/search.css" %}
+{% extends "../layouts/base.html" %}
+
+{% set pageTitle    = "Search Results" %}
+{% set body_classes = "pagetype--site pagetype--search" %}
+
+{% block body %}
+<div class="header--anchor"></div>
+<section class="content-wrapper">
+	<div class="systems-page systems-page--search-results">
+
+		<div class="section--hero relative overflow--hidden">
+			<div class="background">
+			<span class="background--layer z-index--1 opacity--100 background--secondary"></span>
+			</div>
+			{% if widget_data.controls.header_design == "transparent" %}
+			<div class="header--anchor"></div>
+			{% endif %}
+			<div class="block relative z-index--3">
+			<div class="block gridspacer--top desk-venti--top lap-venti--top tablet-tall--top palm-tall--top "></div>
+			<div class="grid flexgrid hard--ends relative z-index--2 align--center">
+				<div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--ends text--center all--color--white">
+          <h1>{{ pageTitle }}</h1>
+          <p>
+            Results for "{{ request.query_dict.term|escape }}"
+          </p>
+				</div>
+			</div>
+			<div class="block gridspacer--bottom desk-venti--bottom lap-tall--bottom tablet-tall--bottom palm-tall--bottom "></div>
+			</div>
+		</div>
+
+		<div class="block gridspacer--top desk-venti--top lap-venti--top tablet-tall--top palm-tall--top "></div>
+		<div class="grid flexgrid hard--ends relative z-index--2 align--center">
+			{% module "search-input" path="../../modules/_system/Search Input", label="Search Input", no_wrapper=True  %}
+		</div>
+		<div class="block gridspacer--bottom desk-tall--bottom lap-tall--bottom tablet-tall--bottom palm-tall--bottom "></div>
+		<div class="clear"></div>
+
+		<div class="grid flexgrid hard--ends relative z-index--2 align--center">
+			{% module "search-results" path="../../modules/_system/Search Results", label="Search Results", no_wrapper=True %}
+		</div>
+		<div class="block gridspacer--bottom desk-venti--bottom lap-tall--bottom tablet-tall--bottom palm-tall--bottom "></div>
+		<div class="clear"></div>
+
+	</div>
+</section>
+{% endblock body %}

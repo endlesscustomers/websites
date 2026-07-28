@@ -1,0 +1,104 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--logorows--slide--logo {
+  display:inline-block;
+  vertical-align:middle;
+  width:16.66667%;
+  padding:20px;
+  text-align:center;
+}
+{% call mediaQuery("tablet") %}
+	.section--logorows--slide--logo {
+		width:33.333%;
+	}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+	.section--logorows--slide--logo {
+		width:50%;
+	}
+{% endcall %}
+
+.section--logorows .f-carousel__slide {
+  padding:0 30px;
+  display:flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
+{### ARROWS ###}
+.section--logorows .f-carousel__button.is-prev {
+	left: -14px !important;
+	background: transparent;
+}
+.section--logorows .f-carousel__button.is-next {
+	right: -14px !important;
+	background: transparent;
+}
+.section--logorows .f-button svg {
+  stroke: {{ config.flexslider_Arrow }}; 
+  {{ transition("all .25s ease-in-out") }};
+}
+.section--logorows .f-button:hover svg {
+  stroke: {{ config.flexslider_ArrowHover }}; 
+}
+
+{### DOTS ###}
+.section--logorows .f-carousel__dots li,
+.section--logorows .f-carousel__dots li:hover {
+  opacity:1;
+}
+.section--logorows .f-carousel__dots button {
+  width:55px;
+}
+.section--logorows .f-carousel__dots .f-carousel__dot {
+  height:3px;
+  width:45px;
+  border-radius:1.5px;
+}
+
+.section--logorows .f-carousel__dots .f-carousel__dot {
+  background-color: {{ config.flexslider_Navigation }}; 
+  {{ transition("all .25s ease-in-out") }};
+  opacity:1;
+}
+.section--logorows .f-carousel__dots li.is-current .f-carousel__dot,
+.section--logorows .f-carousel__dots li:hover .f-carousel__dot {
+  background-color: {{ config.flexslider_NavigationActive }}; 
+}
+
+{% call mediaLoop() %}
+.section--logorows .{{ media }}all--color--white .f-button svg {
+  stroke:{{ color('white') }};
+}
+.section--logorows .{{ media }}all--color--white .f-button:hover svg {
+  stroke:{{ color('primary') }};
+}
+.section--logorows .{{ media }}all--color--white .f-carousel__dots .f-carousel__dot {
+  background-color:{{ color('white') }};
+}
+.section--logorows .{{ media }}all--color--white .f-carousel__dots li.is-current .f-carousel__dot,
+.section--logorows .{{ media }}all--color--white .f-carousel__dots li:hover .f-carousel__dot {
+  background-color:{{ color('primary') }};
+}
+{% endcall %}

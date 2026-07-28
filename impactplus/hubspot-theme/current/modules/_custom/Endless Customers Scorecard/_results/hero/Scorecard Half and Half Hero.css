@@ -1,0 +1,59 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+
+.resultsScore--container{
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  flex-flow: column;
+}
+
+.resultsScore--container #custom-legend-container ul{
+  justify-content: center;
+}
+
+#resultsScore--number{
+  max-width: 700px;
+  max-height: 700px;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+{% call mediaQuery("lap-and-up") %}
+.section--hero--contentpadding--short{
+  padding-right: 20px;
+}
+
+.section--hero--contentpadding--tall{
+  padding-right: 40px;
+}
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+.section--hero--contentpadding--short{
+  padding-right: 20px;
+}
+
+.section--hero--contentpadding--tall{
+  padding-right: 40px;
+}
+{% endcall %}

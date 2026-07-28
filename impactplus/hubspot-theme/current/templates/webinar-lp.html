@@ -1,0 +1,226 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Webinar LP/TYP - IMPACT Production Theme
+-->
+
+
+{% module
+    "webinar_ind_template"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Webinar Landing Page Controls',
+    label="[TEMPLATE TYPE] Webinar Landing Page Ind Controls",
+    no_wrapper=True,
+    export_to_template_context= True,
+  %}
+
+{% module
+    "webinar_global_controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Webinar Landing Page Global Controls',
+    label="Webinar Landing Page Global Controls",
+    no_wrapper=True,
+    export_to_template_context= True
+ %}
+
+
+{% module
+    "controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Navigation and Footer Page Settings',
+    label="Page and Navigation Controls",
+    no_wrapper=True,
+    export_to_template_context= True,
+    header_design= "solid",
+    hide_navigation= false,
+    disable_sticky_header= false,
+    disable_hello_bar_on_this_page= false,
+    page_type= "site"
+    navigation_position= "static"
+  %}
+
+{# module
+    "breadcrumb_controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/_unused/Breadcrumbs',
+    label="Breadcrumb Controls",
+    no_wrapper=True,
+    export_to_template_context=True
+  #}
+
+{# ### CUSTOM ADDED CONTROLS - NEED TO BE MIGRATED TO SETTINGS & CONTROLS ### #}
+
+{% set body_id = widget_data.controls.page_settings_options.body_id %}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('hs-landing-page pagetype--site') %}
+{% do body_classes_array.append('header--{{ widget_data.controls.header_design }}') %}
+{% if widget_data.controls.header_design == "transparent" %}
+{% do body_classes_array.append('header--notfixed header--isanchored') %}
+{% endif %}
+
+{% if widget_data.controls.hide_navigation %}
+{% do body_classes_array.append('no--navigation header--static') %}
+{% elif widget_data.controls.disable_sticky_header %}
+{% do body_classes_array.append('header--static') %}
+{% endif %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+{% block body %}
+<div class="body-container body-container--flex">
+  
+  {% if (widget_data.webinar_ind_template.template_type == "upcoming_lp") or (widget_data.webinar_ind_template.template_type == "ondemand_lp") %}
+
+  {% if widget_data.webinar_ind_template.template_type == "upcoming_lp" %}
+  {% module "hero_scrolling_form"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Webinar Hero - Scrolling Form/Upcoming Webinar Hero - Scrolling Form",
+        label="Upcoming Content, Form, and Speakers"
+    %}
+  {% elif widget_data.webinar_ind_template.template_type == "ondemand_lp" %}
+  {% module "hero_scrolling_form"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Webinar Hero - Scrolling Form/On-Demand Webinar Hero - Scrolling Form",
+        label="On-Demand Content, Form, and Speakers"
+    %}
+  {% endif %}
+
+  {% module "global_video_cta_lp"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Global CTA/Landing Page Global CTA",
+        label="Global Video CTA"
+    %}
+
+  {% module "testimonial_columns_lp"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Testimonial Columns/Landing Page Testimonial Columns",
+        label="Global Testimonial Column"
+    %}
+
+  {% elif (widget_data.webinar_ind_template.template_type == "upcoming_typ") or (widget_data.webinar_ind_template.template_type == "ondemand_typ") %}
+
+  {% module "hero_typ_fullwidth"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Webinar TYP Hero Full-Width/Webinar TYP Hero Full-Width",
+        label="Webinar TYP Hero Full-Width"
+    %}
+
+  {% module "additional_typ_resources"
+    path="/IM-IMPACT-Prod-Theme-2025/modules/Columns/Columns",
+    label="Additional Resource Columns",
+
+    header="While You’re Here, Keep Your Momentum Going:",
+    content="",
+
+    layout_controls={
+      "columns_width": "grid-width",
+      "columns_width_tablet": "grid-width",
+      "columns_inner_column_padding_desktop": "none",
+      "number_of_columns_desktop": "one-third",
+      "number_of_columns_laptop": "lap-one-third",
+      "number_of_columns_tablet": "tablet-one-half",
+      "number_of_columns_mobile": "palm-one-whole",
+
+      "header_and_content_container_alignment": "center",
+      "header_content_alignment": "center",
+      "header_content_alignment_mobile": "center",
+
+      "columns_content_alignment": "center",
+      "columns_content_alignment_mobile": "center",
+      "columns_background_color": "white",
+
+      "header_margin_bottom_spacing": "tall",
+      "header_container_width": "seven-twelfths",
+      "header_container_width_tablet": "one-whole",
+      "header_container_width_mobile": "one-whole",
+
+      "columns_horizontally_align_buttons": true,
+      "columns_image_type": "native",
+      "columns_icon_placement": "top",
+      "icon_gap_between_icon_and_content": 15,
+
+      "columns_image_size_controls": {
+        "columns_native_image_icon_max_height": 66
+      },
+
+      "column_header_size": "h4",
+      "column_header_margin_bottom": "default"
+    },
+
+    column_content=[
+      {
+        "image_native": {
+          "image": {
+            "src": "https://www.impactplus.com/hubfs/Hand-drawn%20Icons/Training.svg",
+            "alt": "Explore the Learning Center"
+          }
+        },
+        "header_label": "Explore the Learning Center",
+        "description": "<p>Dig into the principles of Endless Customers with our free articles, videos, guides and webinars.</p>",
+        "cta": {
+          "cta_type": "link",
+          "cta_button_color": "primary",
+          "cta_arrow": true,
+          "cta_ghost_transparent_button": false,
+          "cta_button_text": "Go there now",
+          "cta_hyperlink": {
+            "type": "CONTENT",
+            "content_id": 194887237745
+          },
+          "cta_open_in_new_tab": false
+        }
+      },
+      {
+        "image_native": {
+          "image": {
+            "src": "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/hand_drawn/AI_Graph.svg",
+            "alt": "Assess Your Sales & Marketing"
+          }
+        },
+        "header_label": "Assess Your Sales & Marketing",
+        "description": "<p>Is your marketing ready for the next 5 years? Find out instantly with this free assessment.</p>",
+        "cta": {
+          "cta_type": "link",
+          "cta_button_color": "primary",
+          "cta_arrow": true,
+          "cta_ghost_transparent_button": false,
+          "cta_button_text": "Take the assessment",
+          "cta_hyperlink": {
+            "href": "/assessment",
+            "type": "EXTERNAL"
+          },
+          "cta_open_in_new_tab": false
+        }
+      },
+      {
+        "image_native": {
+          "image": {
+            "src": "https://www.impactplus.com/hubfs/Hand-drawn%20Icons/Endless-Customers.svg",
+            "alt": "Schedule a Call"
+          }
+        },
+        "header_label": "Schedule a Call",
+        "description": "<p>Ready to see how IMPACT and the Endless Customer’s System can help you grow your business? Let’s talk.</p>",
+        "cta": {
+          "cta_type": "link",
+          "cta_button_color": "primary",
+          "cta_arrow": true,
+          "cta_ghost_transparent_button": false,
+          "cta_button_text": "Book your call",
+          "cta_hyperlink": {
+            "href": "/schedule-call",
+            "type": "EXTERNAL"
+          },
+          "cta_open_in_new_tab": false
+        }
+      }
+    ]
+  %}
+
+  {% module "global_video_cta_typ"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Global CTA/Landing Page Global CTA",
+        label="Global Video CTA"
+    %}
+
+  {% module "testimonial_columns_typ"
+        path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Testimonial Columns/Landing Page Testimonial Columns",
+        label="Global Testimonial Column"
+    %}
+
+  {% endif %}
+
+</div>
+{% endblock body %}

@@ -1,0 +1,119 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{% call mediaQuery("lap-and-up") %}
+.section--hero--contentpadding--short{
+  padding-right: 20px;
+}
+
+.section--hero--contentpadding--tall{
+  padding-right: 40px;
+}
+{% endcall %}
+
+{% call mediaQuery(">tablet") %}
+.font--script h2{
+  font-size: 28px !important;
+}
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+.section--hero--contentpadding--short{
+  padding-right: 20px;
+}
+
+.section--hero--contentpadding--tall{
+  padding-right: 40px;
+}
+{% endcall %}
+
+@media screen and (max-width: 679px) {
+  .hs-landing-page .palm--btn-max-width .btn{
+    width: 90%;
+  }
+}
+
+
+.font--script, .font--script *{
+  font-family: "Felt Tip Roman" !important;
+}
+
+.section--video-quote .font--script h2{
+  display:inline;
+  position: relative;
+  line-height: 1em !important;
+}
+
+.section--video-quote .font--script{
+  transform: scale(1);
+  transition: transform 0.3s cubic-bezier(0, 0, 0.5, 1), background 0.3s cubic-bezier(0, 0, 0.5, 1) !important;
+}
+
+.section--video-quote .font--script:hover{
+  transform: scale(1.02);
+}
+
+{% call mediaQuery("lap-and-up") %}
+.section--video-quote .font--script h2:before{ 
+  content: "";
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 68'%3E%3Cpath fill='%23000000' d='M34,0C15.2,0,0,15.2,0,34s15.2,34,34,34s34-15.2,34-34S52.8,0,34,0z M45.8,35.8l-17,10.6c-0.3,0.2-0.7,0.3-1.1,0.3c-0.4,0-0.7-0.1-1-0.3c-0.7-0.4-1.1-1.1-1.1-1.9V23.4c0-0.8,0.4-1.5,1.1-1.9c0.7-0.4,1.5-0.4,2.2,0.1l17,10.6c0.6,0.4,1,1.1,1,1.8S46.4,35.4,45.8,35.8z'/%3E%3C/svg%3E") no-repeat 53% 50%;
+  background-size: 24px 24px;
+  content: "";
+  display: block;
+  height: 24px;
+  left: calc(0px - 30px);
+  position: absolute;
+  width: 25px;
+  z-index: 4;
+  top: 7px;
+}
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+.section--video-quote .font--script h2:before{ 
+  content: "";
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 68'%3E%3Cpath fill='%23000000' d='M34,0C15.2,0,0,15.2,0,34s15.2,34,34,34s34-15.2,34-34S52.8,0,34,0z M45.8,35.8l-17,10.6c-0.3,0.2-0.7,0.3-1.1,0.3c-0.4,0-0.7-0.1-1-0.3c-0.7-0.4-1.1-1.1-1.1-1.9V23.4c0-0.8,0.4-1.5,1.1-1.9c0.7-0.4,1.5-0.4,2.2,0.1l17,10.6c0.6,0.4,1,1.1,1,1.8S46.4,35.4,45.8,35.8z'/%3E%3C/svg%3E") no-repeat 53% 50%;
+  background-size: 24px 24px;
+  content: "";
+  display: block;
+  height: 24px;
+  left: calc(0px - 30px);
+  position: absolute;
+  width: 25px;
+  z-index: 4;
+  top: 7px;
+}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+.section--video-quote .font--script h2:before{ 
+  content: "";
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 68'%3E%3Cpath fill='%23000000' d='M34,0C15.2,0,0,15.2,0,34s15.2,34,34,34s34-15.2,34-34S52.8,0,34,0z M45.8,35.8l-17,10.6c-0.3,0.2-0.7,0.3-1.1,0.3c-0.4,0-0.7-0.1-1-0.3c-0.7-0.4-1.1-1.1-1.1-1.9V23.4c0-0.8,0.4-1.5,1.1-1.9c0.7-0.4,1.5-0.4,2.2,0.1l17,10.6c0.6,0.4,1,1.1,1,1.8S46.4,35.4,45.8,35.8z'/%3E%3C/svg%3E") no-repeat 53% 50%;
+  background-size: 32px 32px;
+  content: "";
+  display: block;
+  height: 32px;
+  position: relative;
+  width: 33px;
+  z-index: 4;
+  margin: 0 auto 12px auto;
+}
+{% endcall %}

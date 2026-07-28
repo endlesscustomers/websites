@@ -1,0 +1,13 @@
+[ {
+  "id" : "32a63fc0-5f3a-587e-4835-7852543faf0a",
+  "name" : "hubdb_case_study_details",
+  "label" : "HubDB: Case Study Details",
+  "required" : false,
+  "locked" : false,
+  "table_name_or_id" : "6689454",
+  "type" : "hubdbrow",
+  "display_width" : null,
+  "default" : {
+    "id" : null
+  }
+} ]

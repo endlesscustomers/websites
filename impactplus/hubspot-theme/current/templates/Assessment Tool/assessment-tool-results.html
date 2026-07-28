@@ -1,0 +1,33 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Assessment Tool Results - IMPACT Production Theme
+-->
+
+  {% module
+    "tool_header"
+    path="/IMPACT-Prod-Modules/foundational/Assessment Tool/Header - Assessment Tool.module",
+    label="Header - Assessment Tool",
+    no_wrapper=True,
+    export_to_template_context=True
+  %}
+
+  {% extends "../layouts/base.html" %}
+  
+  {% set body_classes_array = [] %}
+  {% do body_classes_array.append('pagetype--site') %}
+
+  {% set template_css = "" %}
+  {% set hide_header  = "yes" %}
+  {% set hide_footer  = "" %}
+  {% set body_id = '' %}
+  {% set body_classes = body_classes_array|join(' ') %}
+  {% set main_container_classes = '' %}
+  
+  {% block body %}
+    {% dnd_area "dnd_area"
+      label="Main section",
+      class="body-container body-container--flex"
+    %}
+    {% end_dnd_area %}
+  {% endblock body %}

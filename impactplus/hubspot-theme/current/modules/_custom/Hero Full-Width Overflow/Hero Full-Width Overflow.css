@@ -1,0 +1,96 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--fullwidth-content-overflow h2 + .section--fullwidth-content-overflow-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--fullwidth-content-overflow .section--fullwidth-content-overflow-content h2,
+.section--fullwidth-content-overflow .section--fullwidth-content-overflow-content h3,
+.section--fullwidth-content-overflow .section--fullwidth-content-overflow-content h4,
+.section--fullwidth-content-overflow .section--fullwidth-content-overflow-content h5,
+.section--fullwidth-content-overflow .section--fullwidth-content-overflow-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+/*.section--fullwidth-content-overflow p,
+.section--fullwidth-content-overflow ul,
+.section--fullwidth-content-overflow ol,
+.section--fullwidth-content-overflow blockquote,
+.section--fullwidth-content-overflow picture,
+.section--fullwidth-content-overflow img,
+.section--fullwidth-content-overflow table {
+margin-bottom:0px!important;
+margin-top:28px!important;
+}*/
+
+.section--fullwidth-content-overflow .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+.section--fullwidth-content-overflow h2+p,
+.section--fullwidth-content-overflow h3+p,
+.section--fullwidth-content-overflow h4+p,
+.section--fullwidth-content-overflow h5+p,
+.section--fullwidth-content-overflow h6+p {
+  margin-top:10px!important;
+}
+
+.section--fullwidth-content-overflow--btn{
+  padding: 12px 24px 12px 16px;
+  border-style: unset !important;
+  border-width: unset !important;
+  border-color: unset !important;
+  background: rgba(29, 29, 31, 0.75);
+  backdrop-filter: blur(5px);
+  transition: background 0.4s ease;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.section--fullwidth-content-overflow--btn:hover{
+  background: rgba(29, 29, 31, 0.4);
+}
+
+{% call mediaQuery(">tablet") %}
+.section--fullwidth-content-overflow--btn{
+  min-width: 245px;
+}
+
+.section--fullwidth-content-overflow--btn .p{
+  font-size: 18px;
+}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+.section--fullwidth-content-overflow--btn .p{
+  font-size: 16px !important;
+}
+
+.section--fullwidth-content-overflow--btn img{
+  width: 33px;
+  height: 33px;
+}
+{% endcall %}

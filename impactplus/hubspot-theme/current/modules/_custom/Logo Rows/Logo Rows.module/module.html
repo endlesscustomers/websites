@@ -1,0 +1,82 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Logo Rows.css"), { async: true} ) }}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="{{ name }} section section--logorows relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item one-whole hard--top hard--bottom last--hard--bottom">
+        <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          {% if module.preheader %}
+          <span class="h6 preheader">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="grid__item hard--sides hard--ends margin--short--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-ten-twelfths palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-ten-twelfths palm-one-whole{% endif %} first--hard--top last--hard--bottom">
+            <h2>{{ module.header }}</h2>
+          </div>
+          {% endif %}
+          <div class="grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom">
+            {% if module.content %}
+            {{ module.content }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class="fledgrid justify--center grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole hard--ends">
+        <div class="f-carousel section--logorows--slider relative">
+          {% for slide in module.logo_bar_slider %}
+          <span class="f-carousel__slide" style="width:100%">
+            {% for logo in slide.logo_bar_slide %}
+            {% set href = logo.logo_link.url.href %}
+            {% if logo.logo_link.url.type is equalto "EMAIL_ADDRESS" %}
+            {% set href = "mailto:" + href %}
+            {% endif %}
+            <div class="section--logorows--slide--logo">
+              {% if logo.add_hyperlink %}
+              <a href="{{ href }}" title="{{ logo.logo_link_title_attribute }}" {% if logo.logo_link.open_in_new_tab %}target="_blank"{% endif %} {% if logo.logo_link.rel %}rel="{{ logo.logo_link.rel }}"{% endif %}>
+                {% endif %}
+
+                {% set sizeAttrs = 'width="{{ logo.logo.width }}" height="{{ logo.logo.height }}"' %}
+                {% if logo.logo.size_type == 'auto' %}
+                {% set sizeAttrs = 'width="{{ logo.logo.width }}" height="{{ logo.logo.height }}" style="max-width: 100%; height: auto; aspect-ratio: auto;"' %}
+                {% elif logo.logo.size_type == 'auto_custom_max' %}
+                {% set sizeAttrs = 'width="{{ logo.logo.max_width }}" height="{{ logo.logo.max_height }}" style="max-width: 100%; height: auto; aspect-ratio: auto;"' %}
+                {% else %}
+                {% set sizeAttrs = sizeAttrs ~ 'style="height: auto; aspect-ratio: auto;"' %}
+                {% endif %}
+
+                <img class="inline-block" alt="{{ logo.logo.alt }}" src="{{ logo.logo.src }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} {{ sizeAttrs }} />
+
+                {% if logo.add_hyperlink %}
+              </a>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+

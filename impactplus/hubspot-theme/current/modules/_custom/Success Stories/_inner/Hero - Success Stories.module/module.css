@@ -1,0 +1,91 @@
+@media screen and (min-width: 1024px){
+  .success-story--inner-hero--title{
+    padding-right: 40px;
+  }
+}
+
+@media screen and (min-width: 1217px){
+  .typings--fixed .success-stories--typings{
+    position: fixed;
+    left: calc((100vw - 1185px) / 2);
+    width: calc((1185px / 4) - (1185px * .02702)) !important;
+    top: 70px;
+    margin-left: calc(1185px * .01351);
+    margin-right: calc(1185px * .01351);
+  }
+
+  .typings--fixed .fixed--spacer{
+    display: block !important;
+  }
+}
+
+.post-single--metrics{
+  margin-top: 0px !important;
+  background: white;
+  border-radius: 24px;
+  margin-bottom: 20px !important;
+  padding: 20px !important;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px){
+  .success-story--inner-hero--title{
+    padding-right: 40px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1216px){
+  .typings--fixed .fixed--spacer{
+    display: block !important;
+  }
+
+  .typings--fixed .success-stories--typings{
+    position: fixed;
+    left: 15px;
+    width: calc(((100vw - 32px) / 4) - ((100vw - 32px) * .02702)) !important;
+    top: 70px;
+    margin-left: calc(100vw * .01351);
+    margin-right: calc(100vw * .01351);
+  }
+}
+
+@media screen and (max-width: 1023px){
+  .post--type-video{
+    flex-flow: column-reverse;
+  }
+
+  .post-single--topics p{
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .success-story--inner-hero--flex{
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+
+  .post-single--metrics{
+    padding-right: 24px !important;
+  }
+}
+
+.post--type-video .post--single--share-links i{
+  color: #a8b3cc;
+  font-size: 21px;
+  line-height: 24px;
+  transition: background .4s ease-in-out,color .4s ease-in-out,border-color .4s ease-in-out;
+}
+
+.post--type-video .post--single--share-links i,
+.post--type-video .post--single--share-links img{
+  margin-right: 16px;
+}
+
+.post--type-video .post--single--share-links i:first-child{
+  margin-left: 0px !important;
+}
+
+.video--play--container .video--play-btn{
+  width: 100px;
+}

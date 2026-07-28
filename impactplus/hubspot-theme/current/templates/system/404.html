@@ -1,0 +1,37 @@
+<!--
+  templateType: error_page
+  isAvailableForNewContent: true
+  label: 404 Error - IMPACT Production Theme
+-->
+
+{% set template_css = "../../css/templates/404.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle    = "404 - Page Not Found" %}
+{% set body_classes = 'pagetype--site pagetype--fourohfour header--static' %}
+
+
+{% block body %}
+<div class="header--anchor"></div>
+<section class="content-wrapper">
+	<div class="error-page" data-error="404">
+		<div class="grid relative z-index--2 basic palm-tall">
+			<div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--ends text--center">
+			{% module_block module "module_1564415165464116" module_id=1155639, overrideable=True, path='@hubspot/rich_text', per_widget_wrapper_html='', widget_name='Rich Text', wrapping_html='', label='Rich Text' %}
+				{% module_attribute "html" %}
+				<h1>404: Page Not Found</h1>
+				<p><strong>We’re sorry, the page you are looking for is missing or has moved.</strong></p>
+				<p>Please use the buttons below to return to the site or try searching for what you were looking for.</p>
+				{% end_module_attribute %}
+			{% end_module_block %}
+			</div>
+			<div class="fourohfour--menu short--bottom all--btn all--btn--transparent--primary">
+			{% module_block module "module_1564415169202118" flyouts=False, id=5527918185, max_levels='1', module_id=1346990, overrideable=False, path='@hubspot/menu', per_widget_wrapper_html='', widget_name='Menu', wrapping_html='', label='Menu' %}
+			{% end_module_block %}
+			</div>
+		</div>
+		<span class="clear"></span>
+	</div>
+</section>
+{% endblock body %}

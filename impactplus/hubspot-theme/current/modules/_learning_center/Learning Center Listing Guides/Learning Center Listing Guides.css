@@ -1,0 +1,85 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %} 
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--cards-column-guides .section--card-content-columns-container {
+  display: flex;
+  flex-direction: column;  
+  gap: 20px;
+}
+
+/* image column (left) */
+.section--cards-column-guides .section--resource-slider--featured-image-wrapper {
+  flex: 0 0 44.5%;                                  
+}
+
+@media (min-width: 768px) {
+  .section--cards-column-guides .section--card-content-columns-header{
+    font-size: 30px;
+  }
+
+  .section--cards-column-guides .section--resource-slider--featured-image-wrapper{
+    min-height: 390px
+  }
+}
+
+/* ratio box keeps aspect */
+.section--cards-column-guides .section--resource-slider--featured-image {
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 100%;
+}
+.section--cards-column-guides .section--resource-slider--featured-image > span {
+  display: block;
+  width: 100%;
+  padding-top: 53%;                  
+}
+
+.section--cards-column-guides .section--card-content-columns-wrapper {
+  flex: 1 1 auto;
+  min-width: 0; 
+  padding: 40px;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section--cards-column-group-secondary .section--resource-slider--featured-image-wrapper{
+    margin-right: 20px;
+  }
+  
+  .section--cards-column-group-secondary .section--card-content-columns-container{
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .section--cards-column-group-primary > .flex {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 769px) {
+  .section--cards-column-guides .section--card-content-columns-container {
+    flex-direction: row;  
+    align-items: stretch;
+  }
+}

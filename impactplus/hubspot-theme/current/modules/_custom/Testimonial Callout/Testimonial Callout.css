@@ -1,0 +1,49 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{% set section = 'section--testimonialcallout' %}
+
+.{{ section }} .{{ section }}--image {
+  display:block;
+  width:67px;
+  height:67px;
+  border-radius:50%;
+}
+
+.{{ section }}--byline .{{ section }}--image--container {
+  max-width:82px;
+  flex:0 0 auto;
+  padding-right:15px;
+}
+
+{% call mediaQuery("palm") %}
+  .{{ section }}--byline .{{ section }}--image--container {
+    padding-right:0px;
+    margin-bottom:15px;
+  }
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+  .{{ section }} .testimonial--slider--content h3 {
+    font-size: {{ config.h4_MobileFontSize }}!important;
+    line-height: {{ config.h4_MobileLineHeight }}!important;
+  }
+{% endcall %}

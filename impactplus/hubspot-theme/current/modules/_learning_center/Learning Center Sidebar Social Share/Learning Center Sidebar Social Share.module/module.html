@@ -1,0 +1,140 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Learning Center Sidebar Social Share.css"), { async: true} ) }}
+
+{# FORM COLUMN WIDTH #}
+{% set formClasses = "one-half tablet-ten-twelfths palm-one-whole" %}  
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set formClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set formClasses = "four-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set formClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set formClasses = "five-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+
+{# CONTENT COLUMN WIDTH #}
+{% set contentClasses = "five-half-twelfths portable-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set contentClasses = "three-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set contentClasses = "two-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set contentClasses = "four-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set contentClasses = "six -half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--lcsocialshare relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  {% if widget_data.controls.header_design == "transparent" %}
+  <div class="header--anchor"></div>
+  {% endif %}
+  <div class="block relative z-index--10">
+    {{ snippets.swoopSpacerTop(module.background) }}
+
+    {% if ( not module.disable_breadcrumbs ) and widget_data.breadcrumb_controls.show_breadcrumbs %}
+    <div class="section--breadcrumbs">
+      <div class="grid hard--ends">
+        <div class="grid__item one-whole short--top hard--bottom palm-hard--bottom text--left {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          {% menu id="{{ widget_data.breadcrumb_controls.breadcrumbs.breadcrumbs_menu }}", root_type="breadcrumb" %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+    </div>
+
+    {% if module.header || module.preheader %}
+    {#<div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">
+          {{ module.preheader }}
+        </span>
+        {% else %}
+        <div class="header--rule"></div>
+        {% endif %}
+        {% if module.header %}
+        <h2 class="{{ module.header_font_size }}">{{ module.header }}</h2>
+        {% endif %}
+      </div>
+    </div>#}
+    {% endif %}
+
+    <div class="grid {{ module.layout_controls.content_vertical_alignment }} {% if module.layout_controls.content_position_mobile == 'bottom' %}palm-column--reverse{% endif %} {% if module.layout_controls.content_position == 'right' %}row--reverse{% endif %} portable-justify--center hard--ends">
+      <div class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.social_share_alignment }} palm-all--text--{{ module.layout_controls.social_share_alignment_mobile }}">
+        <div class="grid__item one-whole palm-one-whole hard--ends all--text--{{ module.layout_controls.social_share_alignment }} palm-all--text--{{ module.layout_controls.social_share_alignment_mobile }}">
+
+          <div class="section--lcsocialshare--share flex flex-align--center flex-justify--center flex-wrap--wrap margin--petite--top margin--petite--bottom palm-margin--short--top">
+            <p class="hard--ends color--midgrey bold">
+              {{ module.share_title_text }}
+            </p>
+            {% if module.share_links.share_type == "custom" %}
+            {% set urlToShare = module.share_links.url_of_page_to_share.href|escape_url %}
+            {% else %}
+            {% set urlToShare = content.absolute_url %}   
+            {% endif %}
+            <div class="section--lcsocialshare--share-group margin--petite--top margin--petite--bottom">
+              <a class="section--lcsocialshare--share--link section--lcsocialshare--share--icon--linkedin" rel="noopener" target="_blank" title="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?url={{ urlToShare }}&title={{ content.html_title|urlencode }}&summary={{ content.meta_description|urlencode }}">
+                <img class="section--lcsocialshare--share--icon lazy" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="facebook-logo" loading="lazy" style="max-width: 100%; height:{{ module.layout_controls.social_share_icon_height }}px;">
+              </a>
+              <a class="section--lcsocialshare--share--link section--lcsocialshare--share--icon--twitter" rel="noopener" target="_blank" title="Share on X" href="https://twitter.com/intent/tweet?url={{ urlToShare }}">
+                <img class="section--lcsocialshare--share--icon footer-social--custom-icon lazy" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/x%20corp.svg" loading="lazy" style="max-width: 100%; height:{{ module.layout_controls.social_share_icon_height }}px;">
+              </a>
+              <a class="section--lcsocialshare--share--link section--lcsocialshare--share--icon--facebook" rel="noopener" target="_blank" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ urlToShare }}">
+                <img class="section--lcsocialshare--share--icon footer-social--custom-icon lazy" data-src="https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/facebook-logo.svg" alt="facebook-logo" loading="lazy" style="max-width: 100%; height:{{ module.layout_controls.social_share_icon_height }}px;">
+              </a>
+              <a class="section--lcsocialshare--share--link section--lcsocialshare--share--icon--linkedin" rel="noopener" target="_blank" title="Mail to" href="mailto:?subject={{ content.html_title|urlencode }}&body=I came across this resource and I thought it would be valuable to you: {{ urlToShare }}">
+                <img class="section--lcsocialshare--share--icon footer-social--custom-icon lazy" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/mail-to.svg" alt="mail-to" loading="lazy" height="{{ module.layout_controls.social_share_icon_height }}" style="max-width: 100%; height:{{ module.layout_controls.social_share_icon_height }}px;">
+              </a>
+              <div class="tooltip-container" onclick="copyToClipboard(this, '{{ urlToShare }}')">
+                <a 
+                   class="section--lcsocialshare--share--link section--lcsocialshare--share--icon--linkedin" 
+                   rel="noopener" 
+                   title="Copy Link" 
+                   href="javascript:void(0);"
+                   >
+                  <img 
+                       class="section--lcsocialshare--share--icon footer-social--custom-icon lazy" 
+                       data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg" 
+                       alt="copy-link" 
+                       loading="lazy" 
+                       style="max-width: 100%; height:{{ module.layout_controls.social_share_icon_height }}px;"
+                       >
+                </a>
+                <div class="copy-tooltip p hard--ends">Link copied!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+</div>
+
+{% require_js %}
+<script>
+  function copyToClipboard(container, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const tooltip = container.querySelector('.copy-tooltip');
+      container.classList.add('show-tooltip');
+      setTimeout(() => {
+        container.classList.remove('show-tooltip');
+      }, 1500);
+    }).catch(err => {
+      console.error('Copy failed', err);
+    });
+  }
+</script>
+{% end_require_js %}

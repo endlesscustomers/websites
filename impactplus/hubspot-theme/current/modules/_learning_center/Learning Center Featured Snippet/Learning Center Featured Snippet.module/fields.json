@@ -1,0 +1,11 @@
+[ {
+  "id" : "58da3e9b-3c4d-62ae-de36-1059b221a255",
+  "name" : "content",
+  "label" : "Featured Snippet: Content",
+  "inline_help_text" : "Leave empty if not using",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : ""
+} ]

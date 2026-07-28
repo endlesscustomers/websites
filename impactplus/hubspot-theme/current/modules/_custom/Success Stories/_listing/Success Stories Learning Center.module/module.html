@@ -1,0 +1,988 @@
+{% import '/IMPACT-Learning-Center/im-snippets.css' as snippets %}
+
+{# CSS #}
+{{ require_css( get_asset_url("../Success Stories Learning Center.css"), { async: false } ) }}
+
+{# Variables #}
+{% set dbTableId = module.filtering.table %}
+{% set defaultPage = 1 %}
+{% set paginationRange = 2 %}
+
+{% set defaultSortType = module.layout_controls.default_sort_type %}
+{% set defaultSortOrder = module.layout_controls.default_sort_order %}
+
+{% set descriptionCharacterLimit = 150 %}
+
+{% set isPreview = (request.query_dict.hs_preview?true:false) %}
+{% set ajaxUrl = content.absolute_url|replace("http://",request.scheme+"://")|replace("https://",request.scheme+"://") + (isPreview ? "?hs_preview="+request.query_dict.hs_preview : "") %}
+
+{# Posts Per Page #}
+{% set itemsPerPage = module.layout_controls.resources_per_page|int %}
+
+{# Fetch Details #}
+{% if dbTableId is defined %}
+{% set dbColumns = hubdb_table(dbTableId) %}
+{% set dbColumns = dbColumns["columns"] %}
+{% endif %}
+
+{# Assemble Query #}
+{% set radioParams = [] %}
+{% set checkboxKeys = [] %}
+{% set checkboxParams = [] %}
+
+{% for group in module.filtering.filter_groups %}
+
+{% if request.query_dict[group.table_column_reference] %}
+{% set columnInfo = dbColumns|selectattr("name","equalto",group.table_column_reference)|first %}
+{% set paramOperator = "" %}
+{% if columnInfo["type"]|string|lower == "multiselect" %}
+{% set paramOperator = "__contains" %}
+{% endif %}
+{% if group.input_type == "radio" %}
+{% set radioParams2 = radioParams.append(group.table_column_reference+paramOperator+"="+request.query_dict[group.table_column_reference]) %}
+{% elif group.input_type == "checkbox" %}
+{% set paramValues = request.query_dict[group.table_column_reference]|split(",") %}
+{% set checkboxParams[group.table_column_reference] = paramValues %}
+{% set checkboxParams2 = checkboxParams.append(paramValues) %}
+{% set checkboxKeys2 = checkboxKeys.append(group.table_column_reference) %}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+{% set dbQuery = "&limit=999999" %}
+{% if radioParams|length > 0 %}
+{% set dbQuery = dbQuery + "&" + radioParams|join("&") %}
+{% endif %}
+
+{% if request.query_dict.sortType %}
+{% set sortType = request.query_dict.sortType %}
+{% else %}
+{% set sortType = defaultSortType %}
+{% endif %}
+
+<!-- whatis: {{ sortType }} -->
+
+{% if request.query_dict.sortOrder %}
+{% set sortOrder = request.query_dict.sortOrder %}
+{% else %}
+{% set sortOrder = defaultSortOrder %}
+{% endif %}
+
+{% if ( sortOrder|lower == "desc" ) %}
+{% set sortType = "-" + sortType %}
+{% endif %}
+
+
+{% set dbQuery = dbQuery + "&orderBy=" + sortType + "&orderBy=case_study_title&case_study_title__not_null=" %}
+
+{# Fetch Posts #}
+{% if dbTableId %}
+{% set dbData = hubdb_table_rows(dbTableId, dbQuery) %}
+
+{% set companyActive = [] %}
+{% for comptype in dbData %}
+{% do companyActive.append(comptype.company_industry) %}
+{% endfor %}
+{% set companyActive = companyActive|unique %}
+{% endif %}
+
+{# Filter Results #}
+{% set dbDataFiltered = dbData %}
+
+{% if (checkboxParams|length > 0)&&(checkboxKeys|length > 0) %}
+{% set dbDataTemp = [] %}
+{% for row in dbDataFiltered %}
+{% set paramMatch = [] %}
+{% for i in range(0,checkboxKeys|length) %}
+{% set rowValues = row[checkboxKeys[i]]|map("id")|join(",")|split(",") %}
+{% set overlapValues = checkboxParams[i]|intersect(rowValues) %}
+{% if overlapValues|length > 0 %}
+{% set paramMatch2 = paramMatch.append(1) %}
+{% endif %}
+{% endfor %}
+{% if paramMatch|length == checkboxKeys|length %}
+{% set dbDataTemp2 = dbDataTemp.append(row) %}
+{% endif %}
+{% endfor %}
+{% set dbDataFiltered = dbDataTemp|unique %}
+{% endif %}
+
+{% if request.query_dict.search %}
+{% set dbDataTemp = [] %}
+{% for row in dbDataFiltered %}
+{% if ((request.query_dict.search|escape|lower in row.case_study_title|lower)||(request.query_dict.search|escape|lower in row.description|lower)||(request.query_dict.search|escape|lower in row.keywords|lower)) %}
+{% set dbDataTemp2 = dbDataTemp.append(row) %}
+{% endif %}
+{% endfor %}
+{% set dbDataFiltered = dbDataTemp|unique %}
+{% endif %}
+
+{# Assemble Pagination #}
+{% set dbTotal = dbDataFiltered|length %}
+{% set dbTotalPages = ( dbTotal && itemsPerPage ) ? ( dbTotal / itemsPerPage )|round( 0, 'ceil' ) : '' %}
+{% if request.query_dict.pageNumber %}
+{% set currentPage = request.query_dict.pageNumber|int %}
+{% if currentPage < 1 %}
+{% set currentPage = 1 %}
+{% endif %}
+{% if currentPage > dbTotalPages %}
+{% set currentPage = dbTotalPages %}
+{% endif %}
+{% else %}
+{% set currentPage = defaultPage %}
+{% endif %}
+{% set dbLoopStart = ((currentPage-1) * itemsPerPage) %}
+{% set dbLoopEnd = dbLoopStart + itemsPerPage %}
+
+{% set dbPaginationFirst = 1 %}
+{% set dbPaginationLast = dbTotalPages %}
+
+{% set dbPaginationRangeStart = currentPage - paginationRange %}
+{% set dbPaginationRangeEnd = currentPage + paginationRange + 1 %}
+{% if dbPaginationRangeStart < dbPaginationFirst %}
+{% set dbPaginationRangeStart = dbPaginationFirst %}
+{% endif %}
+{% if dbPaginationRangeEnd > dbPaginationLast + 1 %}
+{% set dbPaginationRangeEnd = dbPaginationLast + 1 %}
+{% endif %}
+
+{% set dbPaginationPrevious = undefined %}
+{% set dbPaginationNext = undefined %}
+{% if (currentPage - 1) >= dbPaginationFirst %}
+{% set dbPaginationPrevious = currentPage - 1 %}
+{% endif %}
+{% if (currentPage + 1) <= dbPaginationLast %}
+{% set dbPaginationNext = currentPage + 1 %}
+{% endif %}
+
+{% set dbDataResults = dbDataFiltered ? dbDataFiltered[dbLoopStart:dbLoopEnd] : '' %}
+
+{# START FILTER MACRO #}
+{% macro filterBy(class) -%}
+<div class="section--casestudy--filters--container closed {{ class }}">
+  <div class="section--casestudy--filters--underlay lap-and-up-visuallyhidden tablet-visuallyhidden">
+
+  </div>
+  <div class="section--casestudy--filters--wrapper">
+    <div class="section--casestudy--filters--close lap-and-up-visuallyhidden tablet-visuallyhidden">
+      <svg width="20" height="20" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 39.1161C0 38.3452 0.300064 37.6215 0.845486 37.0761L16.9205 21.0004L0.845486 4.92391C0.300064 4.3793 0 3.6548 0 2.88472C0 2.11463 0.300064 1.39014 0.845486 0.844692C1.39091 0.300906 2.11455 0 2.88461 0C3.65466 0 4.37913 0.300906 4.92372 0.844692L20.9996 16.9212L37.0763 0.844692C37.6209 0.300906 38.3453 0 39.1154 0C39.8855 0 40.6091 0.300906 41.1545 0.844692C41.6991 1.38931 42 2.11463 42 2.88472C42 3.6548 41.6991 4.3793 41.1545 4.92391L25.0786 21.0004L41.1545 37.0761C41.6991 37.6215 42 38.3452 42 39.1161C42 39.8862 41.6991 40.6107 41.1545 41.1553C40.6091 41.6999 39.8855 42 39.1154 42C38.3453 42 37.6209 41.6999 37.0763 41.1553L20.9996 25.0796L4.92372 41.1553C4.37913 41.6999 3.65466 42 2.88461 42C2.11455 42 1.39091 41.6999 0.845486 41.1553C0.299236 40.6107 0 39.887 0 39.1161Z" fill="#FFFFFF"/></svg>
+    </div>
+    <div class="section--casestudy--filters--inner">
+      <div class="filter-container">
+        <div class="section--casestudy--filters--reset lap-and-up-visuallyhidden tablet-visuallyhidden font--heading">
+          <span class="btn btn--simple p hard--ends no--underline">Clear Filters</span>
+        </div>
+        <div class="section--casestudy--filters--groups-container">
+
+          <div class="block section--casestudy--filters--group-selected section--casestudy--filter--group--header text--left hover--pointer all--valign--middle">
+            <div class="filterToggle-filters">
+              <a class="p hard--ends no--underline color--white inline-block" style="display:none !important; margin: 0px 3px 7px 0px!important; padding: 1px 17px !important;" href="#" data-filter-template=""><span class="icon icon--close inline-block" style="background-image: none;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 56 56.9" style="enable-background:new 0 0 56 56.9;" xml:space="preserve"><path class="st0" style="fill: #ffffff;" d="M27.6,36.4l18.8,18.9c1.1,1.1,2.5,1.6,4,1.6s2.9-0.6,4-1.6c1.1-1.1,1.6-2.5,1.6-4s-0.6-2.9-1.6-4L35.5,28.5  L54.4,9.6c1.1-1.1,1.6-2.5,1.6-4s-0.6-2.9-1.6-4c-1.1-1.1-2.5-1.6-4-1.6s-2.9,0.6-4,1.6L27.6,20.5l-18-18c-1.1-1.1-2.5-1.6-4-1.6  l0,0c-1.5,0-2.9,0.6-4,1.6C0.5,3.6,0,5,0,6.5s0.6,2.9,1.6,4l18,18l-18,18C0.5,47.6,0,49,0,50.5s0.6,2.9,1.6,4c2,2,5.9,2,7.9,0  L27.6,36.4"/></svg></span></a>
+            </div>
+            <a class="p hard--ends no--underline" style="display: none !important; color: #3383FB; margin: 0px !important; padding: 1px 0px !important;" href="#" data-filter-clear=""><span class="icon icon--close icon--small inline-block" style="background-image: none;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 56 56.9" style="enable-background:new 0 0 56 56.9;" xml:space="preserve"><path class="st0" style="fill: #3383FB;" d="M27.6,36.4l18.8,18.9c1.1,1.1,2.5,1.6,4,1.6s2.9-0.6,4-1.6c1.1-1.1,1.6-2.5,1.6-4s-0.6-2.9-1.6-4L35.5,28.5  L54.4,9.6c1.1-1.1,1.6-2.5,1.6-4s-0.6-2.9-1.6-4c-1.1-1.1-2.5-1.6-4-1.6s-2.9,0.6-4,1.6L27.6,20.5l-18-18c-1.1-1.1-2.5-1.6-4-1.6  l0,0c-1.5,0-2.9,0.6-4,1.6C0.5,3.6,0,5,0,6.5s0.6,2.9,1.6,4l18,18l-18,18C0.5,47.6,0,49,0,50.5s0.6,2.9,1.6,4c2,2,5.9,2,7.9,0  L27.6,36.4"/></svg></span>Clear all filters<hr></a>
+          </div>
+
+          {% for group in module.filtering.filter_groups %}
+          <div class="section--casestudy--filter--group active" data-type="{{ group.input_type }}">
+            {% if group.filter_column_header %}
+
+            {% set filterIcon = '' %}
+            {% if group.filter_column_header is string_containing 'Company Type' %}
+            {% set filterIcon = 'https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Success%20Stories/Filter%20by%20Company%20Type%20Icon.svg' %}
+            {% set filterHeight = '16' %}
+            {% elif group.filter_column_header is string_containing 'Industry' %}
+            {% set filterIcon = 'https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Success%20Stories/Filter%20By%20Industry.svg' %}
+            {% set filterHeight = '16' %}
+            {% elif group.filter_column_header is string_containing 'Service' %}
+            {% set filterIcon = 'https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Success%20Stories/Filter%20By%20Service.svg' %}
+            {% set filterHeight = '26' %}
+            {% endif %}
+
+            <div class="flex section--casestudy--filter--group--header text--left hover--pointer all--valign--middle flex-align--center">
+              <div class="section--casestudy--filter--icon-group inline-block" style="width: 24px;">
+                <img class="lazy" data-src="{{ filterIcon }}" alt="{{ group.filter_column_header }}" height="{{ filterHeight }}">
+              </div>
+              <p class="hard--ends relative bold inline-block color--neutral-700" style="margin-left">{{ group.filter_column_header }}</p>
+            </div>
+            {% endif %}
+            <div class="section--casestudy--filter--group--lower hard--ends">
+              {% set reference = group.table_column_reference %}
+              {% set category = reference|escape|urlencode %}
+
+              {#
+              {% if group.input_type == 'radio' %}
+              <span class="section--casestudy--filter--item--choice block text--left">
+                <label class="filter--choice block" rel="{{ category }}" for="all {{ category }}">
+                  <input class="section--casestudy--filter--item--input section--casestudy--filter--item--input--all visuallyhidden" type="{% if group.input_type == 'checkbox' %}checkbox{% else %}radio{% endif %}" name="{{ category }}" rel="" data-value="all {{ category }}" id="all {{ category }}">
+                  <span class="ghost--input ghost--{{ group.input_type }} inline-block valign--top" style="margin-top:6px;"></span>
+                  <span class="p section--casestudy--filter--item--choice--label hard--ends table valign--top">All</span>
+                </label>
+              </span>
+              {% endif %}
+              #}
+
+              {% for column in dbColumns %}
+              {% if column.name == reference %}
+              
+              {% if column.name == 'company_industry' %}
+              {% set activeItems = column.options|intersect(companyActive) %}
+              {% set colOptions = activeItems %}
+              {% else %}
+              {% set colOptions = column.options %}
+              {% endif %}
+              
+              {% for item in colOptions %}
+              {% set value = item.name|lower|replace(' ','-')|replace(',','')|replace('&','and')|escape %}
+              <span class="section--casestudy--filter--item--choice block text--left">
+                <label class="filter--choice block" rel="{{ category }}" for="{{ value }}">
+                  <input class="section--casestudy--filter--item--input visuallyhidden" type="{% if group.input_type == 'checkbox' %}checkbox{% else %}radio{% endif %}" name="{{ category }}" rel="{{ category }}" data-value="{{ item.id }}" value="{{ item.id }}" id="{{ value }}">
+                  <span class="ghost--input ghost--{{ group.input_type }} inline-block valign--top" style="margin-top:4px;"></span>
+                  <span class="p section--casestudy--filter--item--choice--label hard--ends table valign--top">{{ item.name }}</span>
+                </label>
+              </span>
+              {% endfor %}
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="section--casestudy--filters--done lap-and-up-visuallyhidden tablet-visuallyhidden">
+          <div class="btn btn--neutral-600 btn--wide">
+            Done
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- endmacro %}
+{# END FILTER MACRO #}
+
+{# START SORTBY MACRO #}
+{% macro sortBy(class) -%}
+{% if not module.filtering.disable_sorting_dropdown %}
+<div class="section--casestudy--filter--sort-wrapper grid__item one-half palm-one-whole hard text--right valign--middle {{ class }} right">
+  <div class="section--casestudy--filter--sort-wrapper-inner">
+    <span class="section--casestudy--filter--sort--label p hard inline-block valign--middle">
+      Sort by:
+    </span>
+    <form class="production--form valign--middle palm-all--text--left inline-block" style="max-width: 115px; width: 100%;">
+      <span class="filter--choice">
+        <select class="section--casestudy--filter--item--input sort--dropdown {{ class }}" rel="sort">
+          <option value="published_date__desc" data-value="published_date" data-order="desc">Most Recent</option>
+          {#<option value="popularity__desc" data-value="popularity" data-order="desc">Popularity</option>#}
+          <option value="resource_title__asc" data-value="resource_title" data-order="asc">Title (A → Z)</option>
+          <option value="resource_title__desc" data-value="resource_title" data-order="desc">Title (Z → A)</option>
+        </select>
+      </span>
+    </form>
+  </div>
+</div>
+{% endif %}
+{%- endmacro %}
+{# END SORTBY MACRO #}
+
+{#link rel="preload" href="{{ get_asset_url('/production/The_IMPACT_Learning_Center_Blog_Styles.css') }}" type="text/css" rel="stylesheet"#}
+
+
+<div class="background--white relative">
+  {#<div class="section--casestudy--hero-slant background z-index--0">
+    <div class="section--casestudy--hero-slant-img background--layer default"></div>
+  </div>
+  <div class="section section--casestudy section--casestudy--hero relative z-index--5">
+    <div class="grid grande tablet-tall--top palm-short--top palm-short--bottom">
+      <div class="grid__item one-whole palm-eleven-twelfths hard--ends palm-hard--sides text--center">
+        {{ module.hero_content }}
+      </div>
+      <div class="section--casestudy--hero-controls section--casestudy--controls grid__item lap-and-up-max-width--six-twelfths tablet-max-width--seven-twelfths palm-eleven-twelfths palm-hard--sides hard margin--petite--top valign--middle">
+        <form onsubmit="event.preventDefault();return false;" class="production--form">
+          <div class="section--casestudy--filter section--casestudy--filter--search block">
+            <div class="relative">
+              <div class="section--casestudy--filter--item relative margin--petite--top palm-hard--top">
+                <div class="section--casestudy--filter--search production--form relative z-index--10">
+                  <div class="section--casestudy--filter--search--icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
+                  </div>
+                  <input id="section--casestudy--filter--item--search" class="search section--casestudy--filter--item--input font--heading" name="search" placeholder="What would you like to learn about today?" rel="search" type="search">
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>#}
+
+  <div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--casestudy relative overflow--hidden" data-instance="{{ name }}">
+    <div class="block">
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top") }}"></div>
+      <div class="grid hard--ends margin--short--top relative z-index--1">
+        {# DESKTOP CONTROLS #}
+        <div class="clear"></div>
+        <div class="section--casestudy--filters filter--holder grid__item three-twelfths lap-three-twelfths tablet-four-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom hard--sides relative">
+          <div class="block palm-text--center">
+            <form onsubmit="event.preventDefault();return false;" class="production--form">
+              {#<div class="section--casestudy--filter section--casestudy--filter--search block lap-and-up-visuallyhidden tablet-visuallyhidden">
+                <div class="relative">
+                  <div class="section--casestudy--filter--item relative">
+                    <div class="section--casestudy--filter--search production--form relative z-index--10">
+                      <div class="section--casestudy--filter--search--icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
+                      </div>
+                      <input class="search section--casestudy--filter--item--input font--heading" name="search" placeholder="Search" rel="search" type="search">
+                    </div>
+                  </div>
+                </div>
+              </div>#}
+              {{ filterBy() }}
+            </form>
+            <div class="section--casestudy--filtersort flexgrid lap-and-up-visuallyhidden tablet-visuallyhidden all--valign--middle relative grid__item one-whole palm-eleven-twelfths lap-and-up-hard--sides tablet-hard--sides palm-hard--sides hard--ends margin--petite--bottom">
+              <div class="section--casestudy--filtersort-mobile grid__item four-twelfths hard--ends all--text--left hard--sides">
+                <div class="section--casestudy--show-filters-trigger hard--ends inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 416c0-17.7 14.3-32 32-32l54.7 0c12.3-28.3 40.5-48 73.3-48s61 19.7 73.3 48L480 384c17.7 0 32 14.3 32 32s-14.3 32-32 32l-246.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 448c-17.7 0-32-14.3-32-32zm192 0c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zM384 256c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm-32-80c32.8 0 61 19.7 73.3 48l54.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-54.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l246.7 0c12.3-28.3 40.5-48 73.3-48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm73.3 0L480 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l-214.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 128C14.3 128 0 113.7 0 96S14.3 64 32 64l86.7 0C131 35.7 159.2 16 192 16s61 19.7 73.3 48z"/></svg>
+                  <span class="p hard--ends inline-block font--14 bold color--neutral-700" style="line-height:1.25em;">Filter</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="content--holder grid__item nine-twelfths lap-nine-twelfths tablet-eight-twelfths palm-one-whole hard">
+          <div class="grid__item one-whole hard--top hard--sides text--left {% if module.filtering.disable_sorting_dropdown %}hard--top{% else %}short--top{% endif %} hard--bottom">
+            <div class="block relative content--holder--inner">
+              <div id="ajax-posts" class="relative" data-resultsperpage="{{ itemsPerPage }}">
+                <div class="section--casestudy--results">
+
+                  {% if dbDataResults %}
+                  {% for row in dbDataResults %}
+                  
+                  <!-- rowcheck: {{ row.popularity }} -->
+
+                  <div class="section--casestudy--results--item grid__item one-half tablet-one-whole palm-one-whole hard text--center relative" data-id="{{ row.hs_id }}" data-published-date="{{ row.published_date }}" data-popularity="{{ row.popularity }}">
+
+                    <div class="flex height--max">                
+                      <span class="section--casestudy--results--item--inner">
+                        <span class="section--casestudy--results--item--body background--white box-shadow box--hover overflow--hidden default" style="border-radius: 24px;">
+                          {% if row.vidyard_video_utm || row.client_image %}
+                          <span role="img" aria-label="{{ row.case_study_title }}" class="block relative" style="background:url('{% if row.vidyard_video_utm %}https://play.vidyard.com/{{ row.vidyard_video_utm }}.jpg{% else %}{{ row.client_image.url }}{% endif %}') no-repeat; background-size: cover; background-position: center;">
+                            <a title="{{ row.case_study_title|escape }}" href="{{ row.resource_link }}" class="no--underline color--inherit height--max width--max absolute left--0 right--0 top--0 bottom--0"></a>
+                            {{ snippets.aspectSpacer(module.layout_controls.image_aspect_ratio) }}
+                          </span>
+                          {% endif %}
+                          <span class="section--casestudy--results--item--body--wrapper">
+                            <span class="section--casestudy--results--item--upper relative z-index--4 all--text--left">
+                              <span class="section--casestudy--results--item--logo inline-block overflow--visible margin--short--bottom">
+                                <img class="lazy" data-src="{{ row.client_logo.url }}" alt="{{ row.client_name }}" style="height: 34px;">
+                              </span>
+
+                              <span class="block overflow--visible">
+                                <span class="block all--valign--top all--text--left overflow--visible first--hard--top last--hard--bottom">
+                                  {% if row.case_study_title %}
+                                  <a title="{{ row.case_study_title|escape }}" href="{{ row.resource_link }}" class="no--underline">
+                                    <h3 class="bold color--neutral-700 hard--ends">{{ row.case_study_title }}</h3>
+
+                                  </a>
+                                  {% endif %}
+                                  {# if row.description %}
+                                <p class="block">{{ row.description|striptags|truncatehtml(descriptionCharacterLimit, '...', false) }}</p>
+                                {% endif #}
+                                </span>
+                              </span>
+                            </span>
+
+                            <span class="section--casestudy--results--item--lower text--left" style="margin-top:auto;">
+                              <span class="section--casestudy--results--item--tags flex margin--short--top flex-wrap--wrap">
+
+                                {% if row.company_service_type %}
+                                {% for item in row.company_service_type %}
+                                <span class="section--casestudy--results--item--tag overflow--visible">
+                                  <div class="p flex hard--ends normalcase font--15 light">
+                                    <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                                      <span>{{ item.name }}</span>
+                                    </span>
+                                  </div>
+                                </span>
+                                {% endfor %}
+                                {% endif %}
+
+                                {% if row.company_type %}
+                                {% for item in row.company_type %}
+                                <span class="section--casestudy--results--item--tag overflow--visible">
+                                  <div class="p flex hard--ends normalcase font--15 light">
+                                    <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                                      <span>{{ item.name }}</span>
+                                    </span>
+                                  </div>
+                                </span>
+                                {% endfor %}
+                                {% endif %}
+
+                                {% if row.company_industry %}
+                                {% for item in row.company_industry %}
+                                <span class="section--casestudy--results--item--tag overflow--visible">
+                                  <div class="p flex hard--ends normalcase font--15 light">
+                                    <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                                      <span>{{ item.name }}</span>
+                                    </span>
+                                  </div>
+                                </span>
+                                {% endfor %}
+                                {% endif %}
+
+                              </span>
+
+
+
+
+
+
+
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+
+                  </div>
+                  {% endfor %}
+                  {% endif %}
+
+                </div>
+
+                {% if dbTotalPages > 1 %}
+                <div class="section--casestudy--pagination grid__item one-whole hard--ends margin--tall--top margin--tall--bottom all--text--center p no--underline">
+                  {% if dbPaginationPrevious != undefined %}
+                  <a class="section--casestudy--pagination--previous palm-text--left" data-page="{{ dbPaginationPrevious }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/></svg> Previous
+                  </a>
+                  {% endif %}
+                  <span class="inline-block section--casestudy--pagination--pages">
+                    {% if dbPaginationFirst < dbPaginationRangeStart %}
+                    <a class="section--casestudy--pagination--page" data-page="{{ dbPaginationFirst }}">
+                      {{ dbPaginationFirst }}
+                    </a>
+                    <span class="section--casestudy--pagination--ellipsis">…</span>
+                    {% endif %}
+                    {% for i in range(dbPaginationRangeStart,dbPaginationRangeEnd) %}
+                    <a class="section--casestudy--pagination--page {% if i == currentPage %}active{% endif %}" data-page="{{ i }}">
+                      {{ i }}
+                    </a>
+                    {% endfor %}
+                    {% if dbPaginationLast > dbPaginationRangeEnd - 1 %}
+                    <span class="section--casestudy--pagination--ellipsis">…</span>
+                    <a class="section--casestudy--pagination--page" data-page="{{ dbPaginationLast }}">
+                      {{ dbPaginationLast }}
+                    </a>
+                    {% endif %}
+                  </span>
+                  {% if dbPaginationNext != undefined %}
+                  <a class="section--casestudy--pagination--next palm-text--right" data-page="{{ dbPaginationNext }}">
+                    Next <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg>
+                  </a>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+
+              <div class="section--casestudy--loading text--center background--white" style="display:none;"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+
+              <div class="section--casestudy--empty text--center" style="{% if dbDataFiltered|length > 0 %}display:none;{% endif %}">
+                <div class="grid__item seven-twelfths first--hard--top last--hard--bottom">
+                  {{ module.no_results_content }}
+                </div>
+              </div>
+              <div class="section--casestudy--error text--center" style="display:none;">
+                <div class="grid__item seven-twelfths first--hard--top last--hard--bottom">
+                  {{ module.error_content }}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom") }}">
+
+      </div>
+
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+  <div class="clear clearfix"></div>
+</div>
+
+
+{% set userLists = request_contact.list_memberships|join(',') %}
+{% set exclusionList = module.lead_magnet.lead_magnet_exclusion_list|join(",")|split(",") %}
+{% set intersect = userList|intersect(exclusionList) %}
+{% set cookies = request.cookies %}
+
+{% if !cookies.learningcenterleadmagnet == 'closed' and !intersect %}
+{#<div class="section--casestudy--leadmagnet box-shadow" style=" background-color: {{ module.lead_magnet.background_color.color }};" data-expires="{{ module.lead_magnet.lead_magnet_cookie_expiration }}">
+  <div class="overflow--hidden" style="padding:20px 20px 15px 15px;">
+    <div class="section--casestudy--leadmagnet--content grid hard relative">
+      {% if module.lead_magnet.subscribe_icon.src %}
+      <div class="grid__item hard--ends three-twelfths valign--top">
+        <img {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} src="{{ module.lead_magnet.subscribe_icon.src }}" width="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_width }}{% elif (module.lead_magnet.subscribe_icon.size_type == 'exact') %}{{ module.lead_magnet.subscribe_icon.width }}{% else %}{{ module.lead_magnet.subscribe_icon.width }}{% endif %}" height="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_height }}{% else %}{{ module.lead_magnet.subscribe_icon.height }}{% endif %}" style="max-width:100%;height:auto;" />
+      </div>
+      {% endif %}
+      <div class="grid__item hard--ends {% if module.lead_magnet.subscribe_icon.src %}nine-twelfths palm-one-whole{% else %}one-whole{% endif %} text--left valign--top {{ module.lead_magnet.text_color_override }}">
+        <h6 class="font--16 hard--top">
+          {{ module.lead_magnet.subscribe_title }}
+        </h6>
+        <p class="font--13">
+          {{ module.lead_magnet.subscribe_description }}
+        </p>
+        <span class="block btn btn--wide btn--primary btn--small normalcase">
+          {{ module.lead_magnet.subscribe_button_text }}
+        </span>
+      </div>
+    </div>
+    <div class="section--casestudy--leadmagnet--form grid hard relative" style="background: {{ module.lead_magnet.background_color.color }}">
+      {% if module.lead_magnet.subscribe_icon.src %}
+      <div class="grid__item hard--ends three-twelfths valign--top">
+        <img {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} src="{{ module.lead_magnet.subscribe_icon.src }}" width="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_width }}{% elif (module.lead_magnet.subscribe_icon.size_type == 'exact') %}{{ module.lead_magnet.subscribe_icon.width }}{% else %}{{ module.lead_magnet.subscribe_icon.width }}{% endif %}" height="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_height }}{% else %}{{ module.lead_magnet.subscribe_icon.height }}{% endif %}" style="max-width:100%;height:auto;" />
+      </div>
+      {% endif %}
+      <div class="grid__item hard--ends {% if module.lead_magnet.subscribe_icon.src %}nine-twelfths palm-one-whole{% else %}one-whole{% endif %} text--left valign--top">
+        <h6 class="font--16 hard--top {{ module.lead_magnet.text_color_override }}">
+          {{ module.lead_magnet.subscribe_title }}
+        </h6>
+        <div class="block all--btn all--btn--primary">
+
+          {% form
+              form_to_use="{{ module.lead_magnet.form.form.form_id }}"
+             response_response_type="{{ module.lead_magnet.form.form.response_type }}"
+             response_message="{{ module.lead_magnet.form.form.message }}"
+             response_redirect_id="{{ module.lead_magnet.form.form.redirect_id }}"
+             response_redirect_url="{{ module.lead_magnet.form.form.redirect_url }}"
+             gotowebinar_webinar_key="{{ module.lead_magnet.form.form.gotowebinar_webinar_key }}"
+             follow_up_type_simple="{{ module.lead_magnet.form.send_a_follow_up_email }}"
+             simple_email_for_live_id="{{ module.lead_magnet.form.email }}"
+             notifications_are_overridden="{{ module.lead_magnet.form.send_form_notifications_to_specified_email_addresses_instead_of_the_form_defaults }}"
+             notifications_override_email_addresses="{{ module.lead_magnet.form.email_addresses }}"
+             no_title=True
+            %}
+        </div>
+      </div>
+    </div>
+    <span class="section--casestudy--leadmagnet--close hover--pointer {{ module.lead_magnet.text_color_override }}">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+    </span>
+  </div>
+</div>#}
+
+{% endif %}
+
+<!-- checkingishere -->
+{% require_js %}
+<script>
+  {# Managing Visibility of Active Content Type #}
+  
+  $(document).ready(function($){
+
+    var $filters = $(document).find('.section--casestudy--filter--item--input'),
+        lookupString = '',
+        callAjax,
+        ajaxProcessing = false,
+        params;
+
+    function updateParams( userInteraction ) {
+      params = {
+        search : '',
+        sortType : '{{ defaultSortType }}',
+        sortOrder: '{{ defaultSortOrder }}',
+        pageNumber: {{ defaultPage }},
+        filters: {}
+    };
+    if ( userInteraction === false ) {
+      paramArr = ( location.search ? location.search.slice(1).split('&') : '' );
+
+      for ( var i = 0; i < paramArr.length; i++ ) {
+        var paramData = decodeURIComponent(paramArr[i]).split('='),
+            paramKey = paramData[0],
+            paramValue;
+
+        if ( $.inArray( paramKey, ['search','sortType','sortOrder','pageNumber'] ) > -1 ) {
+          if (paramData.length > 1) {
+            paramValue = paramData[1];
+          }
+          else {
+            paramValue = "";
+          }
+          params[paramKey] = paramValue;
+        } else {
+          if (paramData.length > 1) {
+            paramValue = paramData[1].split(',');
+          }
+          else {
+            paramValue = [];
+          }
+          params['filters'][paramKey] = paramValue;
+        }
+      }
+    } else {
+     // params.search    = $(document).find('.search.section--casestudy--filter--item--input').val();
+      params.sortValue = $(document).find('.section--casestudy--filter--item--input[rel="sort"]').val();
+
+      {% if module.filtering.disable_sorting_dropdown %}
+      params.sortOrder = '{{ defaultSortOrder }}';
+      params.sortType  = '{{ defaultSortType }}';
+      {% else %}
+      if ( viewport('portable') ) {
+        params.sortOrder = $('.sort--dropdown.mobile').find(':selected').data('order');
+        params.sortType  = $('.sort--dropdown.mobile').find(':selected').data('value');
+      } else {
+        params.sortOrder = $('.sort--dropdown.desktop').find(':selected').data('order');
+        params.sortType  = $('.sort--dropdown.desktop').find(':selected').data('value');
+      }
+      {% endif %}
+
+      $(document).find('.section--casestudy--filter--item--input:checked').each(function(){
+        if ( $(this).val() !== '' ) {
+          paramKey = $(this).attr('rel');
+          paramValue = $(this).val();
+          if ($.inArray(paramKey, Object.keys(params.filters)) == -1) {
+            params.filters[paramKey] = [];
+          }
+          params.filters[paramKey].push(paramValue);
+          console.log(params);
+        }
+      });
+    }
+    {# console.log('%c Info ', 'color: white; background-color: blue', params); #}
+  }
+
+                         var getAjaxPosts = function(userInteraction) {
+    var postTypes    = $('#ajax-posts').data('posttypes'),
+        postsPerPage = $('#ajax-posts').data('resultsperpage'),
+
+        // Constants.
+        lookupString  = '&postTypes=' + postTypes;
+
+    lookupString += '&pageNumber=' + params.pageNumber;
+    lookupString += '&postsPerPage=' + postsPerPage;
+    //lookupString += ( params.search.length ? '&search=' + encodeURIComponent( params.search ) : '' );
+    lookupString += '&sortType=' + params.sortType;
+    lookupString += '&sortOrder=' + params.sortOrder;
+
+    userString = '{% if isPreview %}?hs_preview={{ request.query_dict.hs_preview }}{% endif %}';
+    userString += '{% if isPreview %}&{% else %}?{% endif %}pageNumber=' + params.pageNumber;
+    //userString += ( params.search.length ? '&search=' + encodeURIComponent( params.search ) : '' );
+    userString += '&sortType=' + params.sortType;
+    userString += '&sortOrder=' + params.sortOrder;
+
+    $.each(params.filters,function(key,value) {
+      lookupString += ( '&' + key + '=' + encodeURIComponent( value.join(',') ) );
+      userString += ( '&' + key + '=' + encodeURIComponent( value.join(',') ) );
+
+    });
+
+    lookupString += '&action=more_post_ajax';
+
+    // console.log('%c Info ', 'color: white; background-color: blue', lookupString);
+
+    callAjax = $.ajax({
+      dataType: 'html',
+      url: window.location.href.split('?')[0] + "{{ (isPreview?"?hs_preview="+request.query_dict.hs_preview:"") + "?ajax=true" }}",
+      data: lookupString,
+      beforeSend: function() {
+      $(document).find('.section--casestudy--loading').stop(true,true).fadeIn('fast');
+      $(document).find('.section--casestudy--empty, .section--casestudy--error').stop(true,true).fadeOut('fast');
+      ajaxProcessing = true;
+    },
+      success: function (data) {
+        var $data = $(data).find("#hs_cos_wrapper_{{ name }} #ajax-posts");
+                                 if ($data.length) {
+          $('#ajax-posts').html($data.html());
+          processPagination();
+          myLazyLoad.update();
+          /*topicPriority();*/
+          /*readTime();*/
+          ajaxProcessing = false;
+          $(document).find('#ajax-posts').stop(true,true).animate(
+            {
+              opacity: 1
+            },
+            {
+              duration: 600,
+              complete: function () {
+                $(document).find('#ajax-posts').css({
+                  "min-height":""
+                });
+              }
+            }
+          );
+          $(document).find('.section--casestudy--loading').stop(true,true).fadeOut('slow');
+          if ($data.find(".section--casestudy--results--item").length == 0) {
+            $(document).find('.section--casestudy--empty').stop(true,true).fadeIn('slow');
+          }
+        }
+      },
+        error: function (jqXHR, textStatus, errorThrown) {
+          if ( 'abort' !== textStatus || 'abort' !== errorThrown ) {
+            // console.log('%c Error ', 'color: white; background-color: Red', jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown);
+            $('#ajax-posts').html("");
+            $(document).find('.section--casestudy--error').stop(true,true).fadeIn('slow');
+            $(document).find('.section--casestudy--loading').stop(true,true).fadeOut('slow');
+          } else {
+            console.log('%c Error ', 'color: white; background-color: Red', jqXHR + ' :: ' + textStatus + ' :: ' + errorThrown);
+          }
+        }
+  });
+
+  if ( userInteraction === false ) {
+    // do nothing.
+  } else {
+    window.history.pushState(null, null, userString );
+  }
+  return false;
+  };
+
+  function createFilter(elem){
+    var fieldId = elem.attr("id");
+    var fieldName = elem.attr("name");
+
+    if (elem.is(":checked")){
+      if(elem.is("[id~='all']")) {
+
+        if (elem.is(":radio")){
+          var form = elem.parents('form');
+          form.find("input[type='radio'][name='"+fieldName+"']").not(elem).each(function(){
+            $(this).prop("checked", false);
+            var fieldId = $(this).attr("id");
+            $("[data-filter-toggle='"+fieldId+"']").remove();
+          });
+        }
+
+      } else {
+        var template = $("[data-filter-template]").first();
+        var button = template.clone();
+        var fieldLabel = $("label[for='"+fieldId+"']").text();
+
+        $(".filterToggle-filters").append(button);
+        button.attr("data-filter-toggle",fieldId).append(fieldLabel).show();
+        if (elem.is(":radio")){
+          var form = elem.parents('form');
+          form.find("input[type='radio'][name='"+fieldName+"']").not(elem).each(function(){
+            $(this).prop("checked", false);
+            var fieldId = $(this).attr("id");
+            $("[data-filter-toggle='"+fieldId+"']").remove();
+          });
+        }
+      }
+    } else {
+      $("[data-filter-toggle='"+fieldId+"']").remove();
+    }
+
+    if ($("[data-filter-toggle]:visible").length > 0){
+      $("[data-filter-clear]").show();
+    }else{
+      $("[data-filter-clear]").hide();
+    }
+  }
+
+  function updateFilters() {
+    //$(document).find('.search').val(params.search);
+    $(document).find('.sort--dropdown').each(function(){
+      $(this).val( params.sortType + "__" + params.sortOrder );
+    });
+    $(document).find('.section--casestudy--filter--item--input:checked').prop('checked', false);
+
+    $.each( params.filters, function( key, value ){
+      for ( var i = 0; i < value.length; i++ ) {
+        $(document).find('.section--casestudy--filter--item--input[rel="' + key + '"][value="' + value[i] + '"]').prop('checked',true);
+      }
+    });
+
+    $(document).find('.section--casestudy--filter--group[data-type="radio"]').each(function(){
+      if (!$(this).find('input[type="radio"]:checked').length) {
+        $(this).find('.section--casestudy--filter--item--input.section--casestudy--filter--item--input--all').prop('checked', true);
+      } 
+    });
+
+    $("[data-filter-clear]").on("click", function(e){
+      console.log('running');
+      e.preventDefault();
+      var form = $(this).parents('form');
+      console.log(form);
+      form.find(".section--casestudy--filter--item--input").prop("checked", false);
+      form.find(".section--casestudy--filter--item--input[id='all']").prop("checked", true);
+      $("[data-filter-toggle]:visible").remove();
+      $(this).hide();
+      form.submit();
+    });
+  }
+
+  $(document).ready(function(){
+
+    $('.section--casestudy--filter--item--input:checked').each(function(){
+      createFilter($(this));
+    }); 
+
+    $(document).find('.section--casestudy--filter--item--input').change(function(){
+      createFilter($(this));
+    });
+  });
+
+  $(document).on("click", "[data-filter-toggle]", function(e){
+    e.preventDefault();
+    var $this = $(this);
+    var field = $this.attr("data-filter-toggle");
+    $("#"+field).prop("checked", false).trigger("change");
+  });
+
+  function processPagination() {
+    $(document).find('#ajax-posts .section--casestudy--pagination .section--casestudy--pagination--page, #ajax-posts .section--casestudy--pagination .section--casestudy--pagination--next, #ajax-posts .section--casestudy--pagination .section--casestudy--pagination--previous').on('click', function(e) {
+      e.preventDefault();
+      if (!$(this).hasClass("active")) {
+        var page;
+        page = parseInt( $(this).attr("data-page") );
+        params.pageNumber = page;
+        getAjaxPosts();
+        $('html, body').animate({
+          scrollTop: $('.section--casestudy').offset().top - ($('body').find('header').css('position') == 'fixed' ? $('body').find('header').outerHeight():0) - ($('body').hasClass('no--navigation')||$('body').hasClass('header--static')?0:$('body').find('.header--fixed').height())
+        }, 400);
+      }
+    });
+  }
+
+  function deployAjax(){
+    if ( ajaxProcessing === true ) {
+      callAjax.abort();
+    }
+    updateParams(true);
+    params.pageNumber = 0;
+    getAjaxPosts();
+  }
+
+  {# Preventing search from running a second time if you clear it with the 'x' #}
+  var changeCheck = false;
+
+  $filters.on('change',function(){
+    if (changeCheck) {
+      changeCheck = false;
+    } else {
+      deployAjax();
+    }
+  });
+
+  /*document.getElementById("section--casestudy--filter--item--search").addEventListener("search", function(event) {
+    deployAjax();
+    changeCheck = true;
+  });*/
+
+  $('.section--casestudy form').submit(function(e) {
+    e.preventDefault();
+    //$(this).find('.search').trigger('change');
+
+    return false;
+    myLazyLoad.update();
+  });
+
+  window.onpopstate = function(){
+    updateParams(false);
+    updateFilters();
+    /*topicPriority();*/
+    processPagination();
+    getAjaxPosts(false);
+    $('html, body').animate({
+      scrollTop: $('.section--casestudy').offset().top - ($('body').find('header').css('position') == 'fixed' ? $('body').find('header').outerHeight():0) - ($('body').hasClass('no--navigation')||$('body').hasClass('header--static')?0:$('body').find('.header--fixed').height())
+    }, 400);
+  };
+
+  updateParams(false);
+  updateFilters();
+  /*topicPriority();*/
+  processPagination();
+
+  if (viewport("palm")) {
+    $(document).find(".section--casestudy--filter--group").each(function () {
+      if ((($(this).attr("data-type") == "checkbox")&&($(this).find("input:checked").length == 0))||(($(this).attr("data-type") == "radio")&&($(this).find("input:checked").length == 1)&&($(this).find("input:checked").attr("value") == ""))) {
+        $(this).removeClass("active");
+        /*$(this).find(".section--casestudy--filter--group--lower").css({
+          "display":"none",
+          "overflow":"hidden"
+        });*/
+      }
+    });
+  }
+
+  /*$(document).find('.section--casestudy--filter--group--header').click(function(){
+    thisGroup = $(this).closest(".section--casestudy--filter--group");
+    if (thisGroup.hasClass("active")) {
+      thisGroup.removeClass("active");
+      thisGroup.find('.section--casestudy--filter--group--lower').slideUp();
+    }
+    else {
+      thisGroup.addClass("active");
+      thisGroup.find('.section--casestudy--filter--group--lower').slideDown();
+    }
+  });*/
+
+  $('.sort--dropdown').on('change',function(e) {
+    e.preventDefault();
+    var selected = $(this).find('option:selected').data('value');
+    if ( $(this).hasClass('desktop') ) {
+      $('.sort--dropdown.mobile option[data-value="' + selected + '"]').prop('selected', true );
+    } else if ( $(this).hasClass('mobile') ) {
+      $('.sort--dropdown.desktop option[data-value="' + selected + '"]').prop('selected', true );
+    }
+    myLazyLoad.update();
+  });
+
+  });
+
+
+  /* ##### HIDE FILTERS ON TOGGLE ##### */
+  var $wrapper            = $(document).find('.section--casestudy .grid');
+  var $filterHolder       = $(document).find('.filter--holder');
+  var $resultsHolder      = $(document).find('.content--holder');
+  var $resultsHolderInner = $(document).find('.content--holder .content--holder--inner');
+  var wrapperWidth        = $wrapper.width();
+  var filterWidth         = ( $filterHolder.width() / wrapperWidth ) * 100;
+  var resultsWidth        = ( $resultsHolder.width() / wrapperWidth ) * 100;
+  var resultsPaddingLeft  = $resultsHolderInner.css('paddingLeft');
+  function toggleFilters() {
+    if ( $filterHolder.hasClass('filters--hidden') ) {
+      $filterHolder.removeClass('filters--hidden');
+      $resultsHolder.removeClass('filters--hidden');
+
+      $(this).find('> span.section--casestudy--hide-filters-trigger--label').text('Hide Filters');
+    } else {
+      $filterHolder.addClass('filters--hidden');
+      $resultsHolder.addClass('filters--hidden');
+      $(this).find('> span.section--casestudy--hide-filters-trigger--label').text('Show Filters');
+    }
+  }
+
+  $(document).on('click','.section--casestudy--hide-filters-trigger',function(){
+    toggleFilters();
+  });
+
+  function toggleMobileFilters() {
+    $(document).find('.section--casestudy--filters--container').toggleClass('closed');
+  }
+
+  function getPathFromUrl(url) {
+    return url.split(/[?#]/)[0];
+  }
+
+  function clearFilters() {
+    $(document).find('.section--casestudy--filter--item--input:checked').prop('checked', false);
+    $(document).find('.section--casestudy--filter--item--input--all').prop('checked', true);
+    //$(document).find('.search').val('').trigger('change');
+    window.history.pushState(null, null, window.location.origin + window.location.pathname );
+  }
+
+  $(document).on('click','.section--casestudy--filters--reset', function(){
+    clearFilters();
+  });
+
+  $(document).on('click','.section--casestudy--filters--close, .section--casestudy--filters--done, .section--casestudy--show-filters-trigger', function(){
+    toggleMobileFilters();
+  });
+
+  
+</script>
+{% end_require_js %}

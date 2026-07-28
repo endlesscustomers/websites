@@ -1,0 +1,275 @@
+{% if module.layout_controls.container_alignment == 'center' %}
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+{% if module.section_controls.hide_section %}
+{% else %}
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--fullwidth relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="filter-cards--wrapper grid hard--ends"> 
+      <div class="grid__item one-whole hard--ends">
+        <div class="all--valign--bottom text--left hard--ends flex flex-justify--space-between flex-align--center flex-wrap--wrap">
+          <div class="section--richtext-columns--filters grid__item one-whole palm-one-whole hard--sides hard--ends palm-margin--short--top relative z-index--10">
+            <div class="flex flex-align--center" style="justify-content: space-between;">
+              <div class="section--richtext-columns--filter-container">
+
+                {% set table = hubdb_table(127897189) %}
+                {% set multiselect_options = [] %}
+                {% for column in table.columns %}
+                {% if column.name == 'secondary_topic' %}
+                {# This is your multi-select column #}
+                {% for option in column.options %}
+                {% do multiselect_options.append(option.name) %}
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+
+                <p class="section--richtext-columns--filter-item inline-block p--sm active line-height--small hover--pointer active" data-topic="all">
+                  All Topics
+                </p>
+                {% for item in multiselect_options %}
+                <p class="section--richtext-columns--filter-item inline-block p--sm light-height--small hover--pointer" data-topic="{{ item|lower|replace(' ', '-') }}">
+                  {{ item }} 
+                </p>
+                {% endfor %}
+              </div>
+              <div class="section--richtext-columns--sort-container flex palm-margin--short--top" style="white-space: nowrap;">
+                <p class="bold p--sm hard--ends" style="margin-right: 6px;">Sort By:</p>
+                <div class="sort-dropdown relative">
+                  <select id="sort-order" class="sort-select p p--sm hard--ends">
+                    <option value="recent" selected>Most Recent</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                  <img class="sort-arrow" src="https://www.impactplus.com/hubfs/Photography/Icons/Black%20Icons/arrow%20down%20icon%20-%20black.svg" alt="" height="8" width="11">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Resource Cards #}
+      <div class="section--card-content-columns-headings--content-columns">
+        <div class="section--card-content-columns--grid">
+          <div class="section--card-content-columns--center">
+            <div class="topic-cards-container flex flex-justify--left flex-wrap--wrap all--text--left">
+              {# All Resources - Add topic classes to each card #}
+              {% for item in hubdb_table_rows(127897189,"resource_type__contains=" ~ module.cards_enter_resource_type|urlencode ~ "&orderBy=-published_date") %}
+              <div class="resource-card section--webinar-cards-column-group section--cards-column-group grid__item one-third tablet-one-third palm-one-half hard--top hard--bottom flex-justify--center margin--standard--top relative z-index--30 border-radius--16{% for topic in item.secondary_topic %} topic-{{ topic.name|lower|replace(' ', '-') }}{% endfor %}" data-date="{{ item.published_date }}">
+                <div class="section--webinar-card-content-columns-container flex overflow--hidden border--1 border--mist" style="width: 100%; flex-direction: column; border-radius: 16px;">
+                  <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative border--1 border--mist border--left--0 border--top--0 border--right--0 border--mist">
+                    <a class="section--webinar-cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer" title="{% if local_dt|unixtimestamp() <= webinarDateTime|unixtimestamp() %}Sign up for {{ item.resource_title }}{% else %}Watch {{ item.resource_title }} On-Demand{% endif %}" href="{{ item.resource_link }}"></a>
+                    <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ item.resource_title }}" data-bg="{{ item.podbean_graphic.url }}" style="background-size: cover; background-position:center center; background-repeat:no-repeat; height: 100%;">
+                      <span style="display: block; width: 100%; margin: 0px; padding: 100% 0px 0px;"></span>
+                    </div>
+                  </div>
+                  <div class="section--card-content-columns-wrapper relative width--max short padding--short flex flex-flow--column flex-justify--space-between" style="flex-grow: 1;">
+                    <div class="section--card-content-columns-top">
+                      <div class="section--card-content-columns-inner text--center p p--sm bold hard--top margin--petite--bottom color--darkgrey uppercase">
+                        Episode {{ item.episode_number }}
+                      </div>
+                      <div class="section--card-content-columns-header p font--reading bold line-height--small hard--top last--hard--bottom relative" style="margin-bottom: 4px;">
+                        <a class="section--webinar-cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer" title="{{ item.resource_title }}" href="{{ item.resource_link }}"></a>
+                        {{ item.resource_title }}
+                      </div>
+                    </div>
+                    <div class="section--richtext-columns--button-container" style="text--center">
+                      <span class="section--webinar-cards--card--body--cta">
+                        <span class="p all--btn all--btn--simple hard--top hard--bottom">
+                          <a class="section--webinar-cards--card--link no--underline border--0 hover--pointer" title=" " href="{{ item.resource_link }}">
+                            <span class="btn btn--simple font--16" style="padding-right: 0px !important;">
+                              {{ module.cards_card_button_link_text }}
+                            </span>
+                          </a>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# End Webinar Cards #}
+
+      {% if module.cta|length > 0 %}
+      {#<div class="grid__item one-whole hard--ends margin--standard--top first--hard--top last--hard--bottom text--{{ module.layout_controls.content_alignment }} palm-text--{{ module.layout_controls.content_alignment_mobile }}">
+    <span class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      {{ snippets.multiButton(module.cta) }}
+    </span>
+  </div>#}
+      {% endif %}
+
+      <div class="grid__item one-whole hard--bottom">
+        <div class="pagination-controls text--center margin--short--top">
+          <button class="prev-page btn btn--simple color--black hover--pointer semibold" style="background: none;">Prev</button>
+          <span class="page-info p--sm"></span>
+          <button class="next-page btn btn--simple color--black hover--pointer semibold" style="background: none;">Next</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+{% endif %}
+
+{% require_js %}
+<script>
+ $(function() {
+  var $filters = $('.section--richtext-columns--filter-item');
+  var $container = $('.section--card-content-columns--center');
+  var itemsPerPage = 12;
+  var currentTopic = 'all';
+  var currentPage = 1;
+  var currentSort = 'recent'; // default
+
+  // --- Parse hash params ---
+  function getHashParams() {
+    var hash = window.location.hash.substr(1);
+    var params = {};
+    if (!hash) return params;
+    hash.split('&').forEach(function(pair) {
+      var [key, value] = pair.split('=');
+      if (key && value) params[key] = decodeURIComponent(value);
+    });
+    return params;
+  }
+
+  // --- Update hash based on current state ---
+  function updateHash() {
+    var newHash = `topic=${currentTopic}&sort=${currentSort}&page=${currentPage}`;
+    window.location.hash = newHash;
+  }
+
+  // --- Sort cards by date ---
+  function getSortedCards() {
+    var $cards = $('.resource-card');
+    return $cards.sort(function(a, b) {
+      var dateA = new Date($(a).data('date'));
+      var dateB = new Date($(b).data('date'));
+      return (currentSort === 'recent') ? dateB - dateA : dateA - dateB;
+    });
+  }
+
+  // --- Filtered cards based on topic ---
+  function getFilteredCards() {
+    var $cards = getSortedCards();
+    if (currentTopic === 'all') return $cards;
+    return $cards.filter('.topic-' + currentTopic);
+  }
+
+  // --- Smooth scroll helper ---
+  function smoothScrollToTop() {
+    $('html, body').animate({
+      scrollTop: $container.offset().top - 150
+    }, 800, 'swing');
+  }
+
+  // --- Render page ---
+  function renderPage(page, skipHashUpdate, skipScroll) {
+    var $filtered = getFilteredCards();
+    var totalPages = Math.max(1, Math.ceil($filtered.length / itemsPerPage));
+    currentPage = Math.min(Math.max(page, 1), totalPages);
+
+    // --- Hide and show relevant items ---
+    $('.resource-card').hide();
+    var start = (currentPage - 1) * itemsPerPage;
+    var end = start + itemsPerPage;
+    var $newItems = $filtered.slice(start, end);
+
+    $newItems.fadeIn(400, function() {
+      var newHeight = $('.topic-cards-container').outerHeight();
+      $container.css('min-height', newHeight + 'px');
+    });
+
+    // --- Pagination updates ---
+    var $pagination = $('.pagination-controls');
+    var $prev = $pagination.find('.prev-page');
+    var $next = $pagination.find('.next-page');
+
+    $pagination.find('.page-info').text('Page ' + currentPage + ' of ' + totalPages);
+
+    // Update button states
+    var disablePrev = currentPage === 1;
+    var disableNext = currentPage === totalPages || totalPages === 0;
+
+    $prev.prop('disabled', disablePrev).toggleClass('is-disabled', disablePrev);
+    $next.prop('disabled', disableNext).toggleClass('is-disabled', disableNext);
+    $pagination.toggle(totalPages > 1);
+
+    if (!skipHashUpdate) updateHash();
+    if (!skipScroll) smoothScrollToTop();
+  }
+
+  // --- Filter click (no scroll) ---
+  $filters.on('click', function() {
+    $filters.removeClass('active');
+    $(this).addClass('active');
+    currentTopic = $(this).data('topic');
+    currentPage = 1;
+    renderPage(currentPage, false, true); // skipScroll = true
+  });
+
+  // --- Pagination click (scroll to top) ---
+  $(document).on('click', '.prev-page', function() {
+    if ($(this).hasClass('is-disabled')) return false; // prevent clicks
+    renderPage(currentPage - 1, false, false);
+  });
+  $(document).on('click', '.next-page', function() {
+    if ($(this).hasClass('is-disabled')) return false; // prevent clicks
+    renderPage(currentPage + 1, false, false);
+  });
+
+  // --- Sort change (no scroll) ---
+  $(document).on('change', '#sort-order', function() {
+    currentSort = $(this).val();
+    var $sorted = getSortedCards();
+    $('.topic-cards-container').html($sorted);
+    currentPage = 1;
+    renderPage(currentPage, false, true); // skipScroll = true
+  });
+
+  // --- Restore from URL hash ---
+  function initFromHash() {
+    var params = getHashParams();
+    if (params.topic) currentTopic = params.topic;
+    if (params.sort) currentSort = params.sort;
+    if (params.page && !isNaN(params.page)) currentPage = parseInt(params.page);
+
+    $filters.removeClass('active');
+    $filters.filter('[data-topic="' + currentTopic + '"]').addClass('active');
+    $('#sort-order').val(currentSort);
+
+    renderPage(currentPage, true, true); // skip scroll on load
+  }
+
+  // --- On page load ---
+  initFromHash();
+
+  // --- Handle browser navigation ---
+  $(window).on('hashchange', function() {
+    initFromHash();
+  });
+});
+
+
+</script>
+{% end_require_js %}

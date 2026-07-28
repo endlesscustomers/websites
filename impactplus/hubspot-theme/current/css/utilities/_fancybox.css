@@ -1,0 +1,79 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{# FANCYBOX OVERRIDES #}
+.fancybox__container {
+  font-family: {{ font('reading') }};
+}
+.fancybox-navigation .fancybox-button {
+  top:50%!important;
+}
+.fancybox-navigation .fancybox-button--arrow_left {
+  padding: 31px 0px 31px 8px!important;
+}
+.fancybox-navigation .fancybox-button--arrow_right {
+  padding: 31px 8px 31px 0px!important;
+}
+.fancybox-navigation button:before {
+  display:none!important;
+}
+.fancybox-navigation .fancybox-button--arrow_left > div:before,
+.fancybox-navigation .fancybox-button--arrow_right > div:before {
+  display: block;
+  margin-top: 2px;
+  font-family:{{ font("fontawesome") }};
+  font-weight:900;
+  font-size: 21px;
+  line-height: 1em;
+  color:{{ color("secondary") }};
+}
+.fancybox-navigation .fancybox-button--arrow_left > div:before {
+  content:"\f053";
+}
+.fancybox-navigation .fancybox-button--arrow_right > div:before {
+  content:"\f054";
+}
+.fancybox-navigation .fancybox-button--arrow_left svg,
+.fancybox-navigation .fancybox-button--arrow_right svg {
+  display:none!important;
+}
+.fancybox-navigation .fancybox-button--arrow_left svg,
+.fancybox-navigation .fancybox-button--arrow_right svg {
+  display:none!important;
+}
+.fancybox__container .video--popover.fancybox__content,
+.fancybox__container .video--popover.fancybox__content .hs-video-wrapper {
+  background: black;
+  width: 1024px;
+  height: auto !important;
+  max-width: 100%;
+  padding: 0;
+}
+.fancybox__container .fancybox__caption,
+.fancybox__container .fancybox__counter {
+  font-family: {{ font('reading') }};
+  font-size: {{ config.p_FontSize }};
+  font-weight: {{ config.semibold }};
+}
+
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

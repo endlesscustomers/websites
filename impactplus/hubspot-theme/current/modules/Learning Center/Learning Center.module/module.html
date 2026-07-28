@@ -1,0 +1,914 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Learning Center.css"), { async: false } ) }}
+
+{# Variables #}
+{% set dbTableId = module.filtering.table %}
+{% set defaultPage = 1 %}
+{% set paginationRange = 2 %}
+
+{% set defaultSortType = module.layout_controls.default_sort_type %}
+
+{% if module.layout_controls.default_sort_type == 'popularity' %}
+  {% set defaultSortOrder = "desc" %}
+{% else %}
+  {% set defaultSortOrder = module.layout_controls.default_sort_order %}
+{% endif %}
+
+{% set descriptionCharacterLimit = 150 %}
+
+{% set isPreview = (request.query_dict.hs_preview?true:false) %}
+{% set ajaxUrl = content.absolute_url|replace("http://",request.scheme+"://")|replace("https://",request.scheme+"://") + (isPreview ? "?hs_preview="+request.query_dict.hs_preview : "") %}
+
+{# Posts Per Page #}
+{% set itemsPerPage = module.layout_controls.resources_per_page|int %}
+
+{# Fetch Details #}
+{% if dbTableId is defined %}
+  {% set dbColumns = hubdb_table(dbTableId) %}
+  {% set dbColumns = dbColumns["columns"] %}
+{% endif %}
+
+{# Assemble Query #}
+{% set radioParams = [] %}
+{% set checkboxKeys = [] %}
+{% set checkboxParams = [] %}
+
+{% for group in module.filtering.filter_groups %}
+  {% if request.query_dict[group.table_column_reference] %}
+    {% set columnInfo = dbColumns|selectattr("name","equalto",group.table_column_reference)|first %}
+    {% set paramOperator = "" %}
+    {% if columnInfo["type"]|string|lower == "multiselect" %}
+      {% set paramOperator = "__contains" %}
+    {% endif %}
+    {% if group.input_type == "radio" %}
+      {% set radioParams2 = radioParams.append(group.table_column_reference+paramOperator+"="+request.query_dict[group.table_column_reference]) %}
+    {% elif group.input_type == "checkbox" %}
+      {% set paramValues = request.query_dict[group.table_column_reference]|split(",") %}
+      {% set checkboxParams[group.table_column_reference] = paramValues %}
+      {% set checkboxParams2 = checkboxParams.append(paramValues) %}
+      {% set checkboxKeys2 = checkboxKeys.append(group.table_column_reference) %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% set dbQuery = "&limit=999999" %}
+{% if radioParams|length > 0 %}
+  {% set dbQuery = dbQuery + "&" + radioParams|join("&") %}
+{% endif %}
+
+{% if request.query_dict.sortType %}
+  {% set sortType = request.query_dict.sortType %}
+{% else %}
+  {% set sortType = defaultSortType %}
+{% endif %}
+
+{% if request.query_dict.sortOrder %}
+  {% set sortOrder = request.query_dict.sortOrder %}
+{% else %}
+  {% set sortOrder = defaultSortOrder %}
+{% endif %}
+
+{% if ( sortOrder|lower == "desc" ) %}
+  {% set sortType = "-" + sortType %}
+{% endif %}
+
+{% set dbQuery = dbQuery + "&orderBy=" + sortType + "&orderBy=resource_title" %}
+{% set localDateTime = local_dt|unixtimestamp('GTM') %}
+{% set dbQuery = dbQuery + "&published_date__lt=" + localDateTime %}
+
+{# Fetch Posts #}
+{% if dbTableId %}
+  {% set dbData = hubdb_table_rows(dbTableId, dbQuery) %}
+{% endif %}
+
+{# Filter Results #}
+{% set dbDataFiltered = dbData %}
+
+{% if (checkboxParams|length > 0)&&(checkboxKeys|length > 0) %}
+  {% set dbDataTemp = [] %}
+  {% for row in dbDataFiltered %}
+    {% set paramMatch = [] %}
+    {% for i in range(0,checkboxKeys|length) %}
+      {% set rowValues = row[checkboxKeys[i]]|map("id")|join(",")|split(",") %}
+      {% set overlapValues = checkboxParams[i]|intersect(rowValues) %}
+      {% if overlapValues|length > 0 %}
+        {% set paramMatch2 = paramMatch.append(1) %}
+      {% endif %}
+    {% endfor %}
+    {% if paramMatch|length == checkboxKeys|length %}
+      {% set dbDataTemp2 = dbDataTemp.append(row) %}
+    {% endif %}
+  {% endfor %}
+  {% set dbDataFiltered = dbDataTemp|unique %}
+{% endif %}
+
+{% if request.query_dict.search %}
+  {% set dbDataTemp = [] %}
+  {% for row in dbDataFiltered %}
+    {% if ((request.query_dict.search|escape|lower in row.resource_title|lower)||(request.query_dict.search|escape|lower in row.description|lower)||(request.query_dict.search|escape|lower in row.keywords|lower)) %}
+      {% set dbDataTemp2 = dbDataTemp.append(row) %}
+    {% endif %}
+  {% endfor %}
+  {% set dbDataFiltered = dbDataTemp|unique %}
+{% endif %}
+
+{# Assemble Pagination #}
+{% set dbTotal = dbDataFiltered|length %}
+{% set dbTotalPages = ( dbTotal && itemsPerPage ) ? ( dbTotal / itemsPerPage )|round( 0, 'ceil' ) : '' %}
+{% if request.query_dict.pageNumber %}
+  {% set currentPage = request.query_dict.pageNumber|int %}
+  {% if currentPage < 1 %}
+    {% set currentPage = 1 %}
+  {% endif %}
+  {% if currentPage > dbTotalPages %}
+    {% set currentPage = dbTotalPages %}
+  {% endif %}
+{% else %}
+  {% set currentPage = defaultPage %}
+{% endif %}
+
+{% set dbLoopStart = ((currentPage-1) * itemsPerPage) %}
+{% set dbLoopEnd = dbLoopStart + itemsPerPage %}
+{% set dbPaginationFirst = 1 %}
+{% set dbPaginationLast = dbTotalPages %}
+{% set dbPaginationRangeStart = currentPage - paginationRange %}
+{% set dbPaginationRangeEnd = currentPage + paginationRange + 1 %}
+
+{% if dbPaginationRangeStart < dbPaginationFirst %}
+  {% set dbPaginationRangeStart = dbPaginationFirst %}
+{% endif %}
+{% if dbPaginationRangeEnd > dbPaginationLast + 1 %}
+  {% set dbPaginationRangeEnd = dbPaginationLast + 1 %}
+{% endif %}
+
+{% set dbPaginationPrevious = undefined %}
+{% set dbPaginationNext = undefined %}
+{% if (currentPage - 1) >= dbPaginationFirst %}
+  {% set dbPaginationPrevious = currentPage - 1 %}
+{% endif %}
+{% if (currentPage + 1) <= dbPaginationLast %}
+  {% set dbPaginationNext = currentPage + 1 %}
+{% endif %}
+
+{% set dbDataResults = dbDataFiltered ? dbDataFiltered[dbLoopStart:dbLoopEnd] : '' %}
+
+{# START FILTER MACRO #}
+{% macro filterBy(class) -%}
+  <div class="section--learningcenter--filters--container closed {{ class }}">
+    <div class="section--learningcenter--filters--underlay lap-and-up-visuallyhidden tablet-visuallyhidden">
+
+    </div>
+    <div class="section--learningcenter--filters--wrapper">
+      <div class="section--learningcenter--filters--close lap-and-up-visuallyhidden tablet-visuallyhidden">
+        <svg role="none" width="20" height="20" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 39.1161C0 38.3452 0.300064 37.6215 0.845486 37.0761L16.9205 21.0004L0.845486 4.92391C0.300064 4.3793 0 3.6548 0 2.88472C0 2.11463 0.300064 1.39014 0.845486 0.844692C1.39091 0.300906 2.11455 0 2.88461 0C3.65466 0 4.37913 0.300906 4.92372 0.844692L20.9996 16.9212L37.0763 0.844692C37.6209 0.300906 38.3453 0 39.1154 0C39.8855 0 40.6091 0.300906 41.1545 0.844692C41.6991 1.38931 42 2.11463 42 2.88472C42 3.6548 41.6991 4.3793 41.1545 4.92391L25.0786 21.0004L41.1545 37.0761C41.6991 37.6215 42 38.3452 42 39.1161C42 39.8862 41.6991 40.6107 41.1545 41.1553C40.6091 41.6999 39.8855 42 39.1154 42C38.3453 42 37.6209 41.6999 37.0763 41.1553L20.9996 25.0796L4.92372 41.1553C4.37913 41.6999 3.65466 42 2.88461 42C2.11455 42 1.39091 41.6999 0.845486 41.1553C0.299236 40.6107 0 39.887 0 39.1161Z" fill="#FFFFFF"/></svg>
+      </div>
+      <div class="section--learningcenter--filters--inner">
+        <div class="filter-container">
+          <div class="section--learningcenter--filters--reset lap-and-up-visuallyhidden tablet-visuallyhidden">
+            <span class="btn btn--simple">Clear Filters</span>
+          </div>
+          <div class="section--learningcenter--filters--groups-container">
+            {% for group in module.filtering.filter_groups %}
+            <div class="section--learningcenter--filter--group active" data-type="{{ group.input_type }}">
+              {% if group.filter_column_header %}
+              <div class="block section--learningcenter--filter--group--header text--left hover--pointer">
+                <p class="hard--ends relative bold">{{ group.filter_column_header }} <span class="right section--learningcenter--filter--group--header--icon"><span class="icon--axis icon--vertical--line"></span><span class="icon--axis icon--horizontal--line"></span></span></p>
+              </div>
+              {% endif %}
+              <div class="section--learningcenter--filter--group--lower hard--ends">
+                {% set reference = group.table_column_reference %}
+                {% set category = reference|escape|urlencode %}
+
+                {% if group.input_type == 'radio' %}
+                <span class="section--learningcenter--filter--item--choice block text--left">
+                  <label class="filter--choice block" rel="{{ category }}">
+                    <input class="section--learningcenter--filter--item--input section--learningcenter--filter--item--input--all visuallyhidden" type="{% if group.input_type == 'checkbox' %}checkbox{% else %}radio{% endif %}" name="{{ category }}" rel="" data-value="{{ value }}" value="{{ value }}">
+                    <span role="none" class="ghost--input ghost--{{ group.input_type }} inline-block valign--top" style="margin-top:6px;"></span>
+                    <span class="p section--learningcenter--filter--item--choice--label hard--ends table valign--top">All</span>
+                  </label>
+                </span>
+                {% endif %}
+
+                {% for column in dbColumns %}
+                {% if column.name == reference %}
+                {% for item in column.options %}
+                {% set value = item.name|escape %}
+                <span class="section--learningcenter--filter--item--choice block text--left">
+                  <label class="filter--choice block" rel="{{ category }}">
+                    <input class="section--learningcenter--filter--item--input visuallyhidden" type="{% if group.input_type == 'checkbox' %}checkbox{% else %}radio{% endif %}" name="{{ category }}" rel="{{ category }}" data-value="{{ item.id }}" value="{{ item.id }}">
+                    <span role="none" class="ghost--input ghost--{{ group.input_type }} inline-block valign--top" style="margin-top:6px;"></span>
+                    <span class="p section--learningcenter--filter--item--choice--label hard--ends table valign--top">{{ item.label }}</span>
+                  </label>
+                </span>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="section--learningcenter--filters--done lap-and-up-visuallyhidden tablet-visuallyhidden">
+            <div class="btn btn--primary btn--wide">
+              Done
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+{# END FILTER MACRO #}
+
+{# START SORTBY MACRO #}
+{% macro sortBy(class) -%}
+  {% if not module.filtering.disable_sorting_dropdown %}
+    <div class="grid__item one-half palm-one-whole hard tablet-text--right lap-and-up-text--right palm-text--left valign--middle {{ class }}">
+      <span class="section--learningcenter--filter--sort--label p hard inline-block valign--middle {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+        <span class="portable-visuallyhidden"><span class="result--count--wrapper">{{ dbTotal }} result{{ dbTotal > 1 ? 's' : '' }}</span> | </span>Sort by:
+      </span>
+      <form onsubmit="event.preventDefault();return false;" class="production--form grid__item hard one-third tablet-one-half palm-one-whole valign--middle">
+        <label class="filter--choice">
+          <select aria-label="sort" title="sort" class="section--learningcenter--filter--item--input sort--dropdown {{ class }}" rel="sort">
+            <optgroup label="Popularity">
+              <option value="popularity__desc" data-value="popularity" data-order="desc">Popularity</option>
+            </optgroup>
+            <optgroup label="Date">
+              <option value="published_date__desc" data-value="published_date" data-order="desc">Date (New → Old)</option>
+              <option value="published_date__asc" data-value="published_date" data-order="asc">Date (Old → New)</option>
+            </optgroup>
+            <optgroup label="Title">
+              <option value="resource_title__asc" data-value="resource_title" data-order="asc">Title (A → Z)</option>
+              <option value="resource_title__desc" data-value="resource_title" data-order="desc">Title (Z → A)</option>
+            </optgroup>
+          </select>
+        </label>
+        <input type="submit" class="visuallyhidden">
+      </form>
+    </div>
+  {% endif %}
+{%- endmacro %}
+{# END SORTBY MACRO #}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--learningcenter relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}" data-instance="{{ name }}">
+  {{ snippets.background(module.background) }}
+  <div class="block">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends">
+      {# DESKTOP CONTROLS #}
+      <div class="section--learningcenter--controls grid__item one-whole hard--sides hard--top short--bottom relative palm-visuallyhidden">
+        <div class="grid__item one-half palm-one-whole hard text--left valign--middle">
+          <div class="section--learningcenter--hide-filters-trigger hover--pointer">
+            <span class="inline-block valign--middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 416c0-17.7 14.3-32 32-32l54.7 0c12.3-28.3 40.5-48 73.3-48s61 19.7 73.3 48L480 384c17.7 0 32 14.3 32 32s-14.3 32-32 32l-246.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 448c-17.7 0-32-14.3-32-32zm192 0c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zM384 256c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm-32-80c32.8 0 61 19.7 73.3 48l54.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-54.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l246.7 0c12.3-28.3 40.5-48 73.3-48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm73.3 0L480 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l-214.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 128C14.3 128 0 113.7 0 96S14.3 64 32 64l86.7 0C131 35.7 159.2 16 192 16s61 19.7 73.3 48z"/></svg></span>
+            <span class="section--learningcenter--hide-filters-trigger--label p inline-block valign--middle hard--ends bold">Hide Filters</span>
+          </div>
+        </div>
+        {{ sortBy( 'desktop' ) }}
+      </div>
+      <div class="clear">
+
+      </div>
+      <div class="section--learningcenter--filters filter--holder grid__item two-twelfths lap-three-twelfths tablet-three-twelfths palm-one-whole hard--top hard--bottom palm-short--bottom hard--sides relative">
+        <form role="search" onsubmit="event.preventDefault();return false;" class="production--form">
+          <div class="section--learningcenter--filter section--learningcenter--filter--search block">
+            <div class="relative">
+              <div class="section--learningcenter--filter--item">
+                <div class="section--learningcenter--filter--search production--form relative">
+                  <label class="visuallyhidden" for="search">Search</label>
+                  <input aria-label="search filter" class="search section--learningcenter--filter--item--input" name="search" placeholder="Search" rel="search" type="text">
+                  <div role="button" tabindex="0" class="section--learningcenter--filter--search--icon">
+                    <svg role="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>
+                  </div>
+                  <div role="button" tabindex="0" class="section--learningcenter--search--clear--icon">
+                    <svg role="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{ filterBy() }}
+        </form>
+        <div class="section--learningcenter--filtersort flexgrid lap-and-up-visuallyhidden tablet-visuallyhidden all--valign--middle">
+          <div class="grid__item four-twelfths hard--ends all--text--left">
+            <div class="section--learningcenter--show-filters-trigger hard--ends">
+              <span class="p hard--ends" style="line-height:1em;">Filter</span>
+              <svg role="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 416c0-17.7 14.3-32 32-32l54.7 0c12.3-28.3 40.5-48 73.3-48s61 19.7 73.3 48L480 384c17.7 0 32 14.3 32 32s-14.3 32-32 32l-246.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 448c-17.7 0-32-14.3-32-32zm192 0c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zM384 256c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32zm-32-80c32.8 0 61 19.7 73.3 48l54.7 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-54.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l246.7 0c12.3-28.3 40.5-48 73.3-48zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32s-14.3-32-32-32zm73.3 0L480 64c17.7 0 32 14.3 32 32s-14.3 32-32 32l-214.7 0c-12.3 28.3-40.5 48-73.3 48s-61-19.7-73.3-48L32 128C14.3 128 0 113.7 0 96S14.3 64 32 64l86.7 0C131 35.7 159.2 16 192 16s61 19.7 73.3 48z"/></svg>
+            </div>
+          </div>
+          <div class="grid__item eight-twelfths hard--ends">
+            {{ sortBy( 'mobile' ) }}
+          </div>
+        </div>
+        <div class="lap-and-up-visuallyhidden p hard--bottom"><span class="result--count--wrapper">{{ dbTotal }} result{{ dbTotal > 1 ? 's' : '' }}</span></div>
+      </div>
+      <div class="content--holder grid__item ten-twelfths lap-nine-twelfths tablet-nine-twelfths palm-one-whole hard">
+        <div class="content--holder--inner relative  text--left {% if module.filtering.disable_sorting_dropdown %}hard--top{% else %}short--top{% endif %} hard--bottom">
+          <div id="ajax-posts" class="relative" data-resultsperpage="{{ itemsPerPage }}">
+            <div class="section--learningcenter--results">
+              {% if dbDataResults %}
+                {% for row in dbDataResults %}
+                  <div class="section--learningcenter--results--item grid__item one-third tablet-one-half palm-one-whole hard text--center relative" data-id="{{ row.hs_id }}" data-published-date="{{ row.published_date }}" data-popularity="{{ row.popularity }}">
+                    <a title="{{ row.resource_link_text }} - {{ row.resource_title|escape }}" href="{{ row.resource_link }}" class="no--underline color--inherit" style="height:100%;display:flex;">
+                      <span class="section--learningcenter--results--item--inner">
+                        <span class="section--learningcenter--results--item--body background--white box-shadow box--hover border-radius overflow--hidden default">
+                          {% if row.resource_image and (not module.layout_controls.disable_result_images) %}
+                            <span role="img" aria-label="{{ row.resource_image_alt_text }}" class="block relative" style="background:url('{{ row.resource_image.url }}') no-repeat; background-size: cover; background-position: center;">
+                              {{ snippets.aspectSpacer(module.layout_controls.image_aspect_ratio) }}
+                            </span>
+                          {% endif %}
+                          <span class="section--learningcenter--results--item--body--wrapper">
+                            <span class="section--learningcenter--results--item--upper relative z-index--4">
+                              <span class="block overflow--visible" style="{% if row.resource_type %}padding: 25px 25px 0;{% else %}padding:25px;{% endif %}">
+                                <span class="block all--valign--top all--text--left overflow--visible first--hard--top last--hard--bottom">
+                                  {% if row.resource_title %}
+                                    <h3 class="h4">
+                                      {# P - {{ row.popularity }} : D - {{ row.published_date|datetimeformat("%m %d %Y") }} : #}
+                                      {{ row.resource_title }}
+                                    </h3>
+                                  {% endif %}
+                                  {% if row.description %}
+                                    <p class="block">{{ row.description|striptags|truncatehtml(descriptionCharacterLimit, '...', false) }}</p>
+                                  {% endif %}
+                                </span>
+                              </span>
+                            </span>
+                            {% if row.resource_type %}
+                              <span class="section--learningcenter--results--item--lower block text--left" style="margin-top:auto;padding:25px;">
+                                <div class="card--tags">
+                                  {% for item in row.resource_type %}
+                                    {% if loop.index < 4 %}
+                                      {% set resourceType = item.label|lower|replace(' ','') %}
+                                      {{ snippets.tagWithIcon(resourceType, item.label) }}
+                                    {% endif %}
+                                  {% endfor %}
+                                </div>
+                              </span>
+                            {% endif %}
+                          </span>
+                        </span>
+                      </span>
+                    </a>
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="section--learningcenter--empty text--center {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}" style="margin: 0 auto;">
+                  <div class="grid__item seven-twelfths first--hard--top last--hard--bottom">
+                    {{ module.no_results_content }}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            {% if dbTotalPages > 1 %}
+              <div class="section--learningcenter--pagination grid__item one-whole hard--ends margin--tall--top all--text--center p no--underline {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+                {% if dbPaginationPrevious != undefined %}
+                  <a role="button" class="section--learningcenter--pagination--previous palm-text--left" data-page="{{ dbPaginationPrevious }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/></svg> Previous
+                  </a>
+                {% endif %}
+                <span class="inline-block section--learningcenter--pagination--pages">
+                  {% if dbPaginationFirst < dbPaginationRangeStart %}
+                  <a role="button" class="section--learningcenter--pagination--page" data-page="{{ dbPaginationFirst }}">
+                    {{ dbPaginationFirst }}
+                  </a>
+                  <span class="section--learningcenter--pagination--ellipsis">…</span>
+                  {% endif %}
+                  {% for i in range(dbPaginationRangeStart,dbPaginationRangeEnd) %}
+                    <a role="button" class="section--learningcenter--pagination--page {% if i == currentPage %}active{% endif %}" data-page="{{ i }}">
+                      {{ i }}
+                    </a>
+                  {% endfor %}
+                  {% if dbPaginationLast > dbPaginationRangeEnd - 1 %}
+                    <span class="section--learningcenter--pagination--ellipsis">…</span>
+                    <a role="button" class="section--learningcenter--pagination--page" data-page="{{ dbPaginationLast }}">
+                      {{ dbPaginationLast }}
+                    </a>
+                  {% endif %}
+                </span>
+                {% if dbPaginationNext != undefined %}
+                  <a role="button" class="section--learningcenter--pagination--next palm-text--right" data-page="{{ dbPaginationNext }}">
+                    Next <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg>
+                  </a>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {# RESULT FOOTER GETS INJECTED BY JS #}
+            <div id="result--breakdown" style="display:none;">
+              {% if dbTotal > 0 %}
+                <p class="first--hard--top last--hard--bottom hard--ends {{ 'margin--tall--top' if dbTotalPages <= 1 }}">
+                  Showing {{ dbLoopStart + 1 }} - {{ dbLoopEnd > dbTotal ? dbTotal : dbLoopEnd }} of {{ dbTotal }} result{{ dbTotal > 1 ? 's' : '' }}
+                </p>
+              {% else %}
+                <span class="block first--hard--top last--hard--bottom {{ 'margin--tall--top' if dbTotalPages <= 1 }}">
+                  {{ module.no_results_footer_content }}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="section--learningcenter--loading text--center" style="display:none;background-color:#ffffff;"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+
+          <div class="section--learningcenter--error text--center {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}" style="display:none;">
+            <div class="grid__item seven-twelfths first--hard--top last--hard--bottom">
+              {{ module.error_content }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# RESULT FOOTER #}
+      <div class="grid__item one-whole hard text--center relative" style="z-index:20">
+        <div class="filter--holder grid__item two-twelfths lap-three-twelfths tablet-three-twelfths palm-one-whole portable-visuallyhidden hard--ends">
+        </div>
+        <div class="content--holder grid__item ten-twelfths lap-nine-twelfths tablet-nine-twelfths palm-one-whole portable-one-whole hard">
+          <div class="result--breakdown content--holder--inner">
+            {% if dbTotal > 0 %}
+              <p class="first--hard--top last--hard--bottom hard--ends {{ 'margin--tall--top' if dbTotalPages <= 1 }}">
+                Showing {{ dbLoopStart + 1 }} - {{ dbLoopEnd > dbTotal ? dbTotal : dbLoopEnd }} of <span id="total">{{ dbTotal }}</span> result{{ dbTotal > 1 ? 's' : '' }}
+              </p>
+            {% else %}
+              <span class="block first--hard--top last--hard--bottom {{ 'margin--tall--top' if dbTotalPages <= 1 }}">
+                {{ module.no_results_footer_content }}
+              </span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+<div class="clear clearfix"></div>
+
+{% if module.lead_magnet.disable_lead_magnet == false %}
+  {% set userLists = request_contact.list_memberships|join(',') %}
+  {% set exclusionList = module.lead_magnet.lead_magnet_exclusion_list|join(",")|split(",") %}
+  {% set intersect = userList|intersect(exclusionList) %}
+  {% set cookies = request.cookies %}
+
+  {% if !cookies.learningcenterleadmagnet == 'closed' and !intersect %}
+    <div class="section--learningcenter--leadmagnet box-shadow" style=" background-color: {{ module.lead_magnet.background_color.color }};" data-expires="{{ module.lead_magnet.lead_magnet_cookie_expiration }}">
+      <div class="overflow--hidden" style="padding:20px 20px 15px 15px;">
+        <div class="section--learningcenter--leadmagnet--content grid hard relative">
+          {% if module.lead_magnet.subscribe_icon.src %}
+          <div class="grid__item hard--ends three-twelfths valign--top">
+            <img {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} src="{{ module.lead_magnet.subscribe_icon.src }}" width="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_width }}{% elif (module.lead_magnet.subscribe_icon.size_type == 'exact') %}{{ module.lead_magnet.subscribe_icon.width }}{% else %}{{ module.lead_magnet.subscribe_icon.width }}{% endif %}" height="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_height }}{% else %}{{ module.lead_magnet.subscribe_icon.height }}{% endif %}" style="max-width:100%;height:auto;" />
+          </div>
+          {% endif %}
+          <div class="grid__item hard--ends {% if module.lead_magnet.subscribe_icon.src %}nine-twelfths palm-one-whole{% else %}one-whole{% endif %} text--left valign--top {{ module.lead_magnet.text_color_override }}">
+            <h6 class="font--16 hard--top">
+              {{ module.lead_magnet.subscribe_title }}
+            </h6>
+            <p class="font--13">
+              {{ module.lead_magnet.subscribe_description }}
+            </p>
+            <span class="block btn btn--wide btn--primary btn--small normalcase">
+              {{ module.lead_magnet.subscribe_button_text }}
+            </span>
+          </div>
+        </div>
+        <div class="section--learningcenter--leadmagnet--form grid hard relative" style="background: {{ module.lead_magnet.background_color.color }}">
+          {% if module.lead_magnet.subscribe_icon.src %}
+            <div class="grid__item hard--ends three-twelfths valign--top">
+              <img {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} src="{{ module.lead_magnet.subscribe_icon.src }}" width="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_width }}{% elif (module.lead_magnet.subscribe_icon.size_type == 'exact') %}{{ module.lead_magnet.subscribe_icon.width }}{% else %}{{ module.lead_magnet.subscribe_icon.width }}{% endif %}" height="{% if (module.lead_magnet.subscribe_icon.size_type == 'auto_custom_max') %}{{ module.lead_magnet.subscribe_icon.max_height }}{% else %}{{ module.lead_magnet.subscribe_icon.height }}{% endif %}" style="max-width:100%;height:auto;" />
+            </div>
+          {% endif %}
+          <div class="grid__item hard--ends {% if module.lead_magnet.subscribe_icon.src %}nine-twelfths palm-one-whole{% else %}one-whole{% endif %} text--left valign--top">
+            <h6 class="font--16 hard--top {{ module.lead_magnet.text_color_override }}">
+              {{ module.lead_magnet.subscribe_title }}
+            </h6>
+            <div class="block all--btn all--btn--primary">
+              {% form
+                  form_to_use                            = "{{ module.lead_magnet.form.form.form_id }}"
+                  response_response_type                 = "{{ module.lead_magnet.form.form.response_type }}"
+                  response_message                       = "{{ module.lead_magnet.form.form.message }}"
+                  response_redirect_id                   = "{{ module.lead_magnet.form.form.redirect_id }}"
+                  response_redirect_url                  = "{{ module.lead_magnet.form.form.redirect_url }}"
+                  gotowebinar_webinar_key                = "{{ module.lead_magnet.form.form.gotowebinar_webinar_key }}"
+                  follow_up_type_simple                  = "{{ module.lead_magnet.form.send_a_follow_up_email }}"
+                  simple_email_for_live_id               = "{{ module.lead_magnet.form.email }}"
+                  notifications_are_overridden           = "{{ module.lead_magnet.form.send_form_notifications_to_specified_email_addresses_instead_of_the_form_defaults }}"
+                  notifications_override_email_addresses = "{{ module.lead_magnet.form.email_addresses }}"
+                  no_title                               = True
+                %}
+            </div>
+          </div>
+        </div>
+        <span class="section--learningcenter--leadmagnet--close hover--pointer {{ module.lead_magnet.text_color_override }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+        </span>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+{% require_js %}
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', function() {
+
+      const filters = document.querySelectorAll('.section--learningcenter--filter--item--input')
+
+      let lookupString = ''
+      let ajaxProcessing = false
+      let callAjax
+      let params
+
+      function updateParams(userInteraction) {
+        params = {
+          search: '',
+          sortType: '{{ defaultSortType }}',
+          sortOrder: '{{ defaultSortOrder }}',
+          pageNumber: {{ defaultPage }},
+          filters: {}
+        };
+
+        if (userInteraction === false) {
+          var paramArr = location.search ? location.search.slice(1).split('&') : [];
+
+          for (var i = 0; i < paramArr.length; i++) {
+            var paramData = decodeURIComponent(paramArr[i]).split('='),
+                paramKey = paramData[0],
+                paramValue;
+
+            if (['search', 'sortType', 'sortOrder', 'pageNumber'].indexOf(paramKey) > -1) {
+              paramValue = paramData.length > 1 ? paramData[1] : '';
+              params[paramKey] = paramValue;
+            } else {
+              paramValue = paramData.length > 1 ? paramData[1].split(',') : [];
+              params.filters[paramKey] = paramValue;
+            }
+          }
+        } else {
+          params.search = document.querySelector('.search.section--learningcenter--filter--item--input').value;
+          params.sortValue = document.querySelector('.section--learningcenter--filter--item--input[rel="sort"]').value;
+
+          {% if module.filtering.disable_sorting_dropdown %}
+            params.sortOrder = '{{ defaultSortOrder }}';
+            params.sortType = '{{ defaultSortType }}';
+          {% else %}
+            if (viewport('portable')) {
+              var selectedMobile = document.querySelector('.sort--dropdown.mobile option:checked');
+              params.sortOrder = selectedMobile.dataset.order;
+              params.sortType = selectedMobile.dataset.value;
+            } else {
+              var selectedDesktop = document.querySelector('.sort--dropdown.desktop option:checked');
+              params.sortOrder = selectedDesktop.dataset.order;
+              params.sortType = selectedDesktop.dataset.value;
+            }
+          {% endif %}
+
+          document.querySelectorAll('.section--learningcenter--filter--item--input:checked').forEach(function(input) {
+            if (input.value !== '') {
+              var paramKey = input.getAttribute('rel');
+              var paramValue = input.value;
+              if (!params.filters.hasOwnProperty(paramKey)) {
+                params.filters[paramKey] = [];
+              }
+              params.filters[paramKey].push(paramValue);
+            }
+          });
+        }
+      }
+
+      function getAjaxPosts(userInteraction) {
+        const ajaxPostsElement = document.getElementById('ajax-posts');
+        const postTypes = ajaxPostsElement.dataset.posttypes;
+        const postsPerPage = ajaxPostsElement.dataset.resultsperpage;
+
+        let lookupString = `&postTypes=${postTypes}&pageNumber=${params.pageNumber}&postsPerPage=${postsPerPage}`;
+        if (params.search.length) lookupString += `&search=${encodeURIComponent(params.search)}`;
+        lookupString += `&sortType=${params.sortType}&sortOrder=${params.sortOrder}`;
+
+        let userString = '{% if isPreview %}?hs_preview={{ request.query_dict.hs_preview }}{% endif %}';
+        userString += `{% if isPreview %}&{% else %}?{% endif %}pageNumber=${params.pageNumber}`;
+        if (params.search.length) userString += `&search=${encodeURIComponent(params.search)}`;
+        userString += `&sortType=${params.sortType}&sortOrder=${params.sortOrder}`;
+
+        Object.keys(params.filters).forEach(key => {
+          const encodedFilters = encodeURIComponent(params.filters[key].join(','));
+          lookupString += `&${key}=${encodedFilters}`;
+          userString += `&${key}=${encodedFilters}`;
+        });
+
+        lookupString += '&action=more_post_ajax';
+
+        showLoadingAnimation();
+        hideError();
+
+        const url = `${window.location.href.split('?')[0]}{{ (isPreview?'?hs_preview='+request.query_dict.hs_preview:'') + '?ajax=true' }}${lookupString}`;
+
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        })
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then(responseText => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(responseText, 'text/html');
+          const data = doc.querySelector("#hs_cos_wrapper_{{ name }} #ajax-posts");
+          const count = doc.querySelector("#hs_cos_wrapper_{{ name }} #result--breakdown");
+          if (data) {
+            ajaxPostsElement.innerHTML = data.innerHTML;
+            processPagination();
+            ajaxProcessing = false;
+            hideLoadingAnimation();
+          }
+          if (count) {
+            const total = doc.querySelector('#total')?.textContent || 0;
+            updateSortByResultsCount(total);
+            updateCountFooter(count.innerHTML);
+          }
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+          showError();
+        });
+
+        if (userInteraction !== false) {
+          window.history.pushState(null, null, userString);
+        }
+
+        return false;
+      }
+
+      function showLoadingAnimation() {
+        const loadingElement = document.querySelector('.section--learningcenter--loading');
+        fadeIn(loadingElement);
+      }
+
+      function hideLoadingAnimation() {
+        const loadingElement = document.querySelector('.section--learningcenter--loading');
+        fadeOut(loadingElement);
+      }
+
+      function hideError() {
+        document.getElementById('ajax-posts').innerHTML = "";
+        document.querySelector('.section--learningcenter--error').style.display = 'none';
+      }
+
+      function showError() {
+        document.getElementById('ajax-posts').innerHTML = "";
+        document.querySelector('.section--learningcenter--error').style.display = 'block';
+        hideLoadingAnimation();
+      }
+
+      function updateFilters() {
+        document.querySelector('.search').value = params.search;
+        document.querySelectorAll('.sort--dropdown').forEach(function(dropdown) {
+          dropdown.value = params.sortType + "__" + params.sortOrder;
+        });
+        document.querySelectorAll('.section--learningcenter--filter--item--input:checked').forEach(function(input) {
+          input.checked = false;
+        });
+
+        Object.keys(params.filters).forEach(function(key) {
+          params.filters[key].forEach(function(value) {
+            var input = document.querySelector('.section--learningcenter--filter--item--input[rel="' + key + '"][value="' + value + '"]');
+            if (input) {
+              input.checked = true;
+            }
+          });
+        });
+
+        document.querySelectorAll('.section--learningcenter--filter--group[data-type="radio"]').forEach(function(group) {
+          if (!group.querySelector('input[type="radio"]:checked')) {
+            group.querySelector('.section--learningcenter--filter--item--input.section--learningcenter--filter--item--input--all').checked = true;
+          }
+        });
+      }
+
+      function processPagination() {
+        document.querySelectorAll('#ajax-posts .section--learningcenter--pagination .section--learningcenter--pagination--page, #ajax-posts .section--learningcenter--pagination .section--learningcenter--pagination--next, #ajax-posts .section--learningcenter--pagination .section--learningcenter--pagination--previous').forEach(function(paginationLink) {
+          paginationLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!this.classList.contains("active")) {
+              var page = parseInt(this.getAttribute("data-page"));
+              params.pageNumber = page;
+              getAjaxPosts();
+
+              const headerFixed  = document.body.classList.contains('header--fixed')
+              const headerHeight = document.querySelector('header').offsetHeight;
+              const calculatedHeight = (headerFixed ? headerHeight : 0)
+              window.scrollTo({
+                top: document.querySelector('.section--learningcenter').offsetTop - calculatedHeight,
+                behavior: 'smooth'
+              });
+            }
+          });
+        });
+      }
+
+      function toggleSearchInputClass() {
+        const searchInput = document.querySelector('.search.section--learningcenter--filter--item--input');
+        if (searchInput.value.length) {
+          searchInput.classList.add('has--value');
+        } else {
+          searchInput.classList.remove('has--value');
+        }
+      }
+
+      function updateCountFooter(html) {
+        const countTarget = document.querySelector('.result--breakdown');
+        if (countTarget) {
+          countTarget.innerHTML = html;
+        }
+      }
+
+      function updateSortByResultsCount(total) {
+        const countTarget = document.querySelectorAll('.result--count--wrapper');
+        if (countTarget) {
+          countTarget.forEach(function(target) {
+            target.textContent = total + ` result${total != 1 ? 's' : ''}`;
+          });
+        }
+      }
+
+      document.querySelector('.search.section--learningcenter--filter--item--input').addEventListener('keyup', toggleSearchInputClass);
+      window.addEventListener('load', toggleSearchInputClass);
+
+      filters.forEach(function(filter) {
+        filter.addEventListener('change', function() {
+          if (ajaxProcessing === true) {
+            callAjax.abort();
+          }
+          updateParams(true);
+          params.pageNumber = 0;
+          getAjaxPosts();
+        });
+      });
+
+      document.querySelector('.section--learningcenter form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        this.querySelector('.search').dispatchEvent(new Event('change'));
+        return false;
+      });
+
+      document.querySelector('.section--learningcenter--filter--search--icon').addEventListener('click', function() {
+        this.closest('.section--learningcenter--filter--search').querySelector('.search').dispatchEvent(new Event('change'));
+      });
+
+      document.querySelector('.section--learningcenter--search--clear--icon').addEventListener('click', function() {
+        var searchInput = document.querySelector('.search.section--learningcenter--filter--item--input');
+        searchInput.classList.remove('has--value');
+        searchInput.value = '';
+        searchInput.dispatchEvent(new Event('change'));
+      });
+
+      window.onpopstate = function() {
+        updateParams(false);
+        updateFilters();
+        processPagination();
+        getAjaxPosts(false);
+        window.scrollTo({
+          top: document.querySelector('.section--learningcenter').offsetTop - (document.querySelector('header').style.position === 'fixed' ? document.querySelector('header').offsetHeight : 0) - (document.body.classList.contains('no--navigation') || document.body.classList.contains('header--static') ? 0 : document.querySelector('.header--fixed').offsetHeight),
+          behavior: 'smooth'
+        });
+      };
+
+      updateParams(false);
+      updateFilters();
+      processPagination();
+
+      document.querySelectorAll('.section--learningcenter--filter--group--header').forEach(function(header) {
+        header.addEventListener('click', function() {
+          var thisGroup = this.closest(".section--learningcenter--filter--group");
+          var thisContent = thisGroup.querySelector('.section--learningcenter--filter--group--lower');
+          if (thisGroup.classList.contains("active")) {
+            thisGroup.classList.remove("active");
+            slideUp(thisContent);
+          } else {
+            thisGroup.classList.add("active");
+            slideDown(thisContent);
+          }
+        });
+      });
+
+      document.querySelectorAll('.sort--dropdown').forEach(function(dropdown) {
+        dropdown.addEventListener('change', function(e) {
+          e.preventDefault();
+          var selected = this.querySelector('option:checked').dataset.value;
+          if (this.classList.contains('desktop')) {
+            document.querySelector('.sort--dropdown.mobile option[data-value="' + selected + '"]').selected = true;
+          } else if (this.classList.contains('mobile')) {
+            document.querySelector('.sort--dropdown.desktop option[data-value="' + selected + '"]').selected = true;
+          }
+        });
+      });
+
+    });
+
+    /* ##### HIDE FILTERS ON TOGGLE ##### */
+    function toggleFilters() {
+      const wrapper = document.querySelector('.section--learningcenter .grid');
+      const filterHolders = document.querySelectorAll('.filter--holder');
+      const resultsHolders = document.querySelectorAll('.content--holder');
+
+      filterHolders.forEach(filterHolder => {
+        if (filterHolder.classList.contains('filters--hidden')) {
+          filterHolder.classList.remove('filters--hidden');
+        } else {
+          filterHolder.classList.add('filters--hidden');
+        }
+      });
+
+      resultsHolders.forEach(resultsHolder => {
+        if (resultsHolder.classList.contains('filters--hidden')) {
+          resultsHolder.classList.remove('filters--hidden');
+        } else {
+          resultsHolder.classList.add('filters--hidden');
+        }
+      });
+
+      const hideFiltersTriggerLabel = document.querySelector('.section--learningcenter--hide-filters-trigger > span.section--learningcenter--hide-filters-trigger--label');
+      if (filterHolders[0].classList.contains('filters--hidden')) {
+        hideFiltersTriggerLabel.textContent = 'Show Filters';
+      } else {
+        hideFiltersTriggerLabel.textContent = 'Hide Filters';
+      }
+    }
+
+    function toggleMobileFilters() {
+      document.querySelector('.section--learningcenter--filters--container').classList.toggle('closed');
+    }
+
+    function clearFilters() {
+      document.querySelectorAll('.section--learningcenter--filter--item--input:checked').forEach(function(input) {
+        input.checked = false;
+      });
+      document.querySelector('.section--learningcenter--filter--item--input--all').checked = true;
+      var searchInput = document.querySelector('.search');
+      searchInput.value = '';
+      var event = new Event('change');
+      searchInput.dispatchEvent(event);
+      window.history.pushState(null, null, window.location.origin + window.location.pathname);
+    }
+
+    document.addEventListener('click', function(event) {
+      if (event.target.closest('.section--learningcenter--hide-filters-trigger')) {
+        toggleFilters();
+      }
+      if (event.target.closest('.section--learningcenter--filters--reset')) {
+        clearFilters();
+      }
+      if (event.target.closest('.section--learningcenter--filters--close, .section--learningcenter--filters--done, .section--learningcenter--show-filters-trigger')) {
+        toggleMobileFilters();
+      }
+    });
+
+    // ##### LEAD MAGNET #####
+    {% if module.lead_magnet.disable_lead_magnet == false %}
+      document.addEventListener('DOMContentLoaded', function () {
+        var leadMagnet = document.querySelector('.section--learningcenter--leadmagnet');
+
+        // Check if the cookie exists and log its value
+        if (getCookie('learningcenterleadmagnet')) {
+          console.log('%c Info ', 'color: white; background-color: blue;', getCookie('learningcenterleadmagnet'));
+        }
+
+        // Lead Magnet Close
+        if (leadMagnet) {
+          leadMagnet.querySelector('.section--learningcenter--leadmagnet--close').addEventListener('click', function () {
+            leadMagnet.classList.add('closed');
+
+            // Set cookie expiration
+            var expiration = parseInt(leadMagnet.dataset.expires);
+            setCookie('learningcenterleadmagnet', 'closed', expiration);
+
+            return false;
+          });
+          // Lead Magnet Slide Up Form
+          leadMagnet.querySelector('.btn').addEventListener('click', function () {
+            var content = leadMagnet.querySelector('.section--learningcenter--leadmagnet--content');
+            var form = leadMagnet.querySelector('.section--learningcenter--leadmagnet--form');
+
+            // Slide up content
+            content.style.transition = 'height 0.6s ease';
+            content.style.height = '0';
+            content.style.overflow = 'hidden';
+
+            setTimeout(function () {
+              // Fade in form
+              form.style.display = 'block';
+              form.style.opacity = '0';
+              form.style.transition = 'opacity 0.6s ease';
+              form.style.opacity = '1';
+            }, 200);
+          });
+        }
+
+      });
+    {% endif %}
+
+  </script>
+{% end_require_js %}

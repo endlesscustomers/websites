@@ -1,0 +1,434 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************* CUSTOM SNIPPETS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+
+{# ENDLESS CUSTOMERS LEARNING CENTER #}
+{% macro pillar_resources(pillar_id, table_id=130854918, heading='Additional Resources', heading_size='h4', is_active='') %}
+{% if pillar_id %}
+
+{% set resource_groups = [] %}
+
+{% set all_rows = hubdb_table_rows(table_id) %}
+
+{% for row in all_rows %}
+{% if row.pillar_name[0]['resource_title'] == pillar_id %}
+{% do resource_groups.append(row) %}
+{% endif %}
+{% endfor %}
+
+{% set resource_groups = resource_groups|sort(attribute='columns.resource_group_name') %}
+
+{% if resource_groups|length > 0 %}
+<div class="section section--faqs relative overflow--hidden">
+<div class="block relative z-index--10 grid__item hard--sides hard--ends margin--standard--top">
+<{{ heading_size }} class="hard--ends line-height--small">{{ heading }}</{{ heading_size }}>
+<div class="section--pillars">
+{% for group_row in resource_groups %}
+<div class="section--pillar--group {{ is_active }}">
+<div class="section--pillar--group--toggle" tabindex="0">
+<p class="hard--ends p--small semibold line-height--small">{{ group_row.resource_group_name }}</p>
+<div class="section--pillar--group--toggle--icon">
+<div class="icon--axis icon--vertical--line"></div>
+<div class="icon--axis icon--horizontal--line"></div>
+</div>
+</div>
+
+<div class="section--pillar--group--content" style="{% if is_active == 'active' %}display:block;{% else %}display:none;{% endif %}">
+<div class="section--pillar--group--content--wrapper">
+{% set inner = group_row.related_inner_resources %}
+{% for res in inner %}                                                                                                                                                     
+
+{# Topics in the Primary Learning Center Table #}
+{% set topics = [
+  { "name": "Article", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Article.svg" },
+  { "name": "Webinar", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Webinar.svg" },
+  { "name": "Podcast", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Podcast.svg" },
+  { "name": "Pillar", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/pillar.svg" },
+  { "name": "Guides & Downloads", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Download.svg" },
+  { "name": "Assessment", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/assessment.svg" }
+] %}
+
+{% set topicMatch = false %}
+
+{% for topic in topics %}
+{% if topic.name == res.resource_type[0].name %}
+
+{% endif %}
+{% endfor %}
+
+<div class="section--pillar--group--content--inner first--hard--top last--hard--bottom">
+<a class="p p--small color--midgrey no--underline line-height--small flex" href="{{ res.resource_link }}" style="align-items: self-start; gap: 16px;">
+{% for topic in topics %}
+{% if topic.name == res.resource_type[0].name %}
+<img src="{{ topic.icon }}" alt="{{ topic.name }}" width="18" style="margin-top: 2px;">
+{% endif %}
+{% endfor %}
+
+{{ res.resource_title }}
+</a>
+</div>
+<div class="section--pillar--group--content--inner--spacer"></div>
+<span class="clear"></span>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+{% endif %}
+{% endif %}
+{% endmacro %}
+
+{# Table of Contents Macro #}
+{% macro chapter_toc(heading, items, active) %}
+<div class="section--chapter-list--container hard--top">
+<div class="chapter--overflow-scroller text--left">
+{% if heading %}
+<h4 class="hard--top margin--short--bottom">{{ heading }}</h4>
+{% endif %}
+<div class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" aria-label="Navigation Menu">
+<ul class="section--chapter-list--page-menu section--chapter-list--depth-1" role="menu">
+{# Default Intro Item #}
+<li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative {{ active }}" role="none">
+<span class="sidebar-menu--num flex bold">00</span>
+<span class="section--chapter-list-marker-containe fler" aria-expanded="false">
+<a class="relative flex" href="#introduction" role="menuitem">
+<span class="section--chapter-list--index">Introduction</span>
+</a>
+</span>
+</li>
+{# End Default Intro Item #}
+{% for child in items %}
+<li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative {% if child.children|length %}hs-menu-depth-1--has-children chapter--closed{% endif %}" role="none">
+<span class="section--chapter-list-marker-container" aria-haspopup="{{ 'true' if child.children|length else 'false' }}" aria-expanded="false">
+<a class="relative flex" href="{{ child.url or child.linkParams or '#' }}" role="menuitem">
+<span class="sidebar-menu--num flex bold">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+<span class="section--chapter-list--index">{{ child.linkLabel }}</span>
+</a>
+</span>
+{% if child.children|length %}
+<ul class="sidebar-menu--depth-2 section--chapter-list--page-menu section--chapter-list--depth-2" role="menu" style="display:none;">
+{% for child2 in child.children %}
+<li class="hs-menu-item hs-menu-depth-2" role="none">
+<a class="relative" href="{{ child2.url or child2.linkParams or '#' }}" role="menuitem">
+<span class="section--chapter-list--index">{{ child2.linkLabel }}</span>
+</a>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+</li>
+{% endfor %}
+{# Default Additional Resources Item #}
+<li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative" role="none">
+<span class="sidebar-menu--num flex bold">{% if (items|length + 1) < 10 %}0{% endif %}{{ items|length + 1 }}</span>
+<span class="section--chapter-list-marker-containe fler" aria-expanded="false">
+<a class="relative flex" href="#addresources" role="menuitem">
+<span class="section--chapter-list--index">Additional Resources</span>
+</a>
+</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+{% endmacro %}
+
+{# Social Share #}
+{% macro lc_social_share(
+  url=content.absolute_url,
+  title=content.html_title,
+  desc=content.meta_description,
+  icon_height=18
+) %}
+<div class="section section--lcsocialshare relative">
+<div class="block relative z-index--10 grid__item hard--sides hard--ends">
+<h4 class="hard--ends">Share</h4>
+<div class="section--lcsocialshare--share flex flex-align--center flex-wrap--wrap hard--top margin--petite--bottom palm-margin--hard--top">
+<div class="section--lcsocialshare--share-group margin--petite--top margin--petite--bottom flex">
+
+<a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item"
+rel="noopener" target="_blank" title="Share on LinkedIn"
+href="https://www.linkedin.com/shareArticle?url={{ url }}&title={{ title|urlencode }}&summary={{ desc|urlencode }}">
+<img class="section--lcsocialshare-share--icon lazy"
+data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg"
+alt="Share on LinkedIn" loading="lazy" style="max-width:100%;height:{{ icon_height }}px;">
+<span class="mini-nav__tooltip semibold">Share on LinkedIn</span>
+</a>
+
+<a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--twitter mini-nav__item"
+rel="noopener" target="_blank" title="Share on X"
+href="https://twitter.com/intent/tweet?url={{ url }}&text={{ title|urlencode }}">
+<img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/x%20corp.svg"
+alt="Share on X" loading="lazy" style="max-width:100%;height:{{ icon_height }}px;">
+<span class="mini-nav__tooltip semibold">Share on X</span>
+</a>
+
+<a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--facebook mini-nav__item"
+rel="noopener" target="_blank" title="Share on Facebook"
+href="https://www.facebook.com/sharer/sharer.php?u={{ url }}">
+<img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+data-src="https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/facebook-logo.svg"
+alt="Share on Facebook" loading="lazy" style="max-width:100%;height:{{ icon_height }}px;">
+<span class="mini-nav__tooltip semibold">Share on Facebook</span>
+</a>
+
+<a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--email mini-nav__item"
+rel="noopener" target="_blank" title="Mail to"
+href="mailto:?subject={{ title|urlencode }}&body={{ ('I came across this resource and thought it would be valuable: ' ~ url)|urlencode }}">
+<img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/mail-to.svg"
+alt="Email link" loading="lazy" style="max-width:100%;height:{{ icon_height }}px;">
+<span class="mini-nav__tooltip semibold">Share via Email</span>
+</a>
+
+<div class="tooltip-container inline-block mini-nav__item" onclick="lcCopyToClipboard(this, '{{ url }}')">
+<a class="section--lcsocialshare--share--link" rel="noopener" title="Copy Link" href="javascript:void(0);">
+<img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg"
+alt="Copy link" loading="lazy" style="max-width:100%;height:{{ icon_height }}px;">
+</a>
+<span class="mini-nav__tooltip semibold font--reading">Copy to Clipboard</span>
+<div class="copy-tooltip p hard--ends">Link copied!</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+{% endmacro %}
+{# End Social Share #}
+
+{# Preheader Macro #}
+{% macro lc_preheader() %}
+{% if icon %}
+{% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+{% set sizeAttrs = 'width="70" height="auto"' %}
+{% else %}
+{% set sizeAttrs = 'width="55" height="auto"' %}
+{% endif %}
+{% endif %}
+
+<div class="lc-content--{{ widget_data.indpost.post_settings.template_type }} flexgrid valign--middle {% if widget_data.indpost.post_settings.template_type == 'pillar' %}palm-direction--column{% endif %} hard--ends {% if widget_data.indpost.post_settings.template_type == 'pillar'%}align--center{% else %}align--left{% endif %} relative z-index--2">
+<div class="{% if widget_data.indpost.post_settings.template_type == 'pillar'%}text--center{% else %}text--left flex flex-align--center{% endif %} relative" style="{% if widget_data.indpost.post_settings.template_type != 'pillar' %}gap: 12px;{% endif %}"> 
+
+{% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}
+<a class="absolute left--0 right--0 top--0 bottom--0" href="{{ preheaderLink }}" title="{{ content.name|striptags }}"></a>
+{% endif %}
+{% if icon %}
+<img class="{% if widget_data.indpost.post_settings.template_type == 'pillar'%}margin--short--bottom{% else %}hard--ends{% endif %}" src="{{ icon }}" alt="{{ preheader }}" {{ sizeAttrs }}>
+{% endif %}
+{% if preheader %}
+<span class="h6 preheader {% if icon %}hard--top {% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}hard--bottom{% endif %}{% endif %}">{{ preheader }}</span>
+{% endif %}
+
+</div>
+</div>
+{% endmacro %}
+{# End Preheader Macro #}
+
+
+{# Breadcrumbs Nav Macro #}
+{% macro breadcrumbs_subnav() %}
+{% if not widget_data.indpost.breadcrumb_controls.hide_breadcrumbs %}
+
+
+{% if content.absolute_url is string_containing '/learn' %}
+{% if widget_data.indpost.breadcrumb_controls.breadcrumb_type == 'hubdb' %}
+{% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+
+{% set node = [
+                  {
+                    'link_name': 'Learning Center',
+                    'link_href': 'https://www.impactplus.com/learn'
+                  },
+                  {
+                    'link_name': preheader
+                  }
+                ] 
+                %}
+
+{% elif widget_data.indpost.post_settings.template_type == 'supporting_article' %}
+{% set node = [
+                  {
+                    'link_name': 'Learning Center',
+                    'link_href': 'https://www.impactplus.com/learn'
+                  },
+                  {
+                    'link_name': preheader,
+                    'link_href': preheaderLink
+                  },
+                  {
+                    'link_name': content.name
+                  }
+                ] 
+                %}
+{% elif widget_data.indpost.post_settings.template_type == 'article' %}
+{% set node = [
+                  {
+                    'link_name': 'Learning Center',
+                    'link_href': 'https://www.impactplus.com/learn'
+                  },
+                  {
+                    'link_name': preheader,
+                    'link_href': preheaderLink
+                  },
+                ] 
+                %}
+{% endif %}
+{% else %}
+
+{% set node = widget_data.indpost.breadcrumb_controls.custom_breadcrumb_menu %} {# add to settings file #}
+{% endif %}
+{% elif content.absolute_url is string_containing '/endless-customers-podcast/' %}
+
+{% set node = [
+                  {
+                    'link_name': 'Endless Customers Podcast',
+                    'link_href': 'https://www.impactplus.com/endless-customers-podcast'
+                  },
+                  {
+                    'link_name': content.name,
+                    'link_href': content.absolute_url
+                  }
+                ] 
+                %}
+{% else %}
+
+{% set node = [
+                  {
+                    'link_name': 'Endless Customers Podcast',
+                    'link_href': 'https://www.impactplus.com/endless-customers-podcast'
+                  },
+                  {
+                    'link_name': 'All Episodes',
+                  }
+                ] 
+                %}
+
+{% endif %}
+
+{# Breadcrumb Schema #}
+{% set schema_node = [] %}
+
+{% for item in node %}
+  {% set href = item.link_href %}
+
+  {# If no link exists, and it's the last item → use current page URL #}
+  {% if not href and loop.last %}
+    {% set href = content.absolute_url %}
+  {% endif %}
+
+  {% do schema_node.append({
+    "link_name": item.link_name,
+    "link_href": href
+  }) %}
+{% endfor %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {% for crumb in schema_node %}
+    {
+      "@type": "ListItem",
+      "position": {{ loop.index }},
+      "name": "{{ crumb.link_name|striptags }}",
+      "item": "{{ crumb.link_href }}"
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+<div class="section section--breadcrumbs-custom relative">
+{{ snippets.background(module.background) }}
+<div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"></div>
+<div class="block relative z-index--10">
+<div class="section--breadcrumbs">
+<div class="grid hard--ends">
+<div class="grid__item one-whole hard--ends palm-hard--bottom text--left {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+<div class="flex flex-align--center" style="justify-content: space-between; margin-top: 4px;"> 
+{# {% if widget_data.indpost.post_settings.template_type == 'pillar' %}background--offwhite{% else %}background--white{% endif %} #}
+<div class="hs-breadcrumb--cover grid__item one-whole absolute top--0 left--0 right--0 bottom--0 z-index--3" style="display: none;"></div>
+<div class="hs-breadcrumb-menu-wrapper" role="navigation">
+<ul class="hs-breadcrumb-menu">
+{# Step 1: Calculate total character length of all link names #}
+{% set lengths = [] %}
+{% for i in node %}
+{% do lengths.append(i.link_name|striptags|length) %}
+{% endfor %}
+{% set total_len = lengths|sum %}
+
+{# Step 2: Output breadcrumb list with truncation on the last item if needed #}
+{% for item in node %}
+{% set is_last = loop.last %}
+{% set is_over_limit = total_len > 140 %}
+
+<li class="hs-breadcrumb-menu-item 
+{% if (loop.length > 2) and (is_last) %}palm-visuallyhidden{% endif %}
+{% if loop.first %}customlink-first{% endif %}
+{% if is_last %}customlink-last{% endif %}">
+<{% if item.link_href %}a{% else %}span{% endif %} class="section--breadcrumbs--customlink hs-breadcrumb-label hard--ends
+{% if (loop.length > 1) and loop.first %}bold color--black
+{% elif (loop.length > 1) and is_last %}medium color--midgrey
+{% else %}medium color--black{% endif %}" 
+{% if item.link_href %}href="{{ item.link_href }}"{% endif %}>
+
+{% if module.add_back_arrow %}
+<span>
+<img class="hs-breadcrumb-back valign--middle" 
+src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/back-icon.svg" 
+alt="Return to {{ item.link_name }}">
+</span>{% endif %}{% if is_last and is_over_limit %}{{ item.link_name|striptags|truncate(50, false, '...') }}{% else %}{{ item.link_name }}{% endif %}</{% if item.link_href %}a{% else %}span{% endif %}>
+
+{% if not is_last %}
+<span class="hs-breadcrumb-menu-divider"></span>
+{% endif %}
+</li>
+
+{% if (loop.length > 2) and is_last %}
+{# Mobile truncated last item #}
+<li class="hs-breadcrumb-menu-item customlink-last">
+<{% if item.link_href %}a{% else %}span{% endif %} class="section--breadcrumbs--customlink hs-breadcrumb-label medium hard--ends color--midgrey lap-and-up-visuallyhidden tablet-visuallyhidden" {% if item.link_href %}href="{{ item.link_href }}"{% endif %}>{{ item.link_name|striptags|truncate(50, false, '...') }}</{% if item.link_href %}a{% else %}span{% endif %}>
+</li>
+{% endif %}
+{% endfor %}
+
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+</div>
+</div>
+{% endmacro %}
+{# End Breadcrumbs Nav Macro #}
+
+
+{# END ENDLESS CUSTOMERS LEARNING CENTER #}
+

@@ -1,0 +1,463 @@
+{{ require_css( get_asset_url("../Scorecard Half and Half Hero.css"), { async: true } ) }}
+
+{# Vars #}
+{% if module.media_type == "centered" %}
+
+{% set contentClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% set mediaClasses = "visuallyhidden" %}
+
+{% else %}
+
+{# MEDIA COLUMN WIDTH #}
+{% set mediaClasses = "one-half palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set mediaClasses = "eight-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set mediaClasses = "four-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set mediaClasses = "seven-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set mediaClasses = "five-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "nine-twelfths" %}
+{% set mediaClasses = "three-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "ten-twelfths" %}
+{% set mediaClasses = "two-twelfths palm-one-whole" %}
+{% endif %}
+
+{% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-eight-twelfths" %}
+{% set mediaTabletWidthNumerical = (8/12) %}
+{% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-four-twelfths" %}
+{% set mediaTabletWidthNumerical = (4/12) %}
+{% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-seven-twelfths" %}
+{% set mediaTabletWidthNumerical = (7/12) %}
+{% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-five-twelfths" %}
+{% set mediaTabletWidthNumerical = (5/12) %}
+{% elif module.layout_controls.column_widths_tablet == "three-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-nine-twelfths" %}
+{% set mediaTabletWidthNumerical = (9/12) %}
+{% elif module.layout_controls.column_widths_tablet == "two-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-ten-twelfths" %}
+{% set mediaTabletWidthNumerical = (10/12) %}
+{% else %}
+{% set mediaClasses = mediaClasses+" tablet-one-half" %}
+{% set mediaTabletWidthNumerical = (1/2) %}
+{% endif %}
+
+{% if module.media_type == "none" || module.media_type == "featured" %}
+{% set mediaClasses = mediaClasses+" palm-visuallyhidden" %}
+{% endif %}
+
+{# CONTENT COLUMN WIDTH #}
+{% if module.media_type == "none" %}
+
+{% set contentClasses = "one-half palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set contentClasses = "four-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set contentClasses = "eight-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set contentClasses = "five-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set contentClasses = "seven-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "nine-twelfths" %}
+{% set contentClasses = "nine-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "ten-twelfths" %}
+{% set contentClasses = "ten-twelfths palm-one-whole" %}
+{% endif %}
+
+{% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-four-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-eight-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-five-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-seven-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "nine-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-nine-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "ten-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-ten-twelfths" %}
+{% else %}
+{% set contentClasses = contentClasses+" tablet-one-half" %}
+{% endif %}
+
+{% else %}
+
+{# 6/12 #}
+{% set contentClasses = "six-twelfths palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set contentClasses = "three-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set contentClasses = "four-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set contentClasses = "seven-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set contentClasses = "seven-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "nine-twelfths" %}
+{% set contentClasses = "eight-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "ten-twelfths" %}
+{% set contentClasses = "nine-twelfths palm-one-whole" %}
+{% endif %}
+
+{% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-four-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-five-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-seven-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-eight-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "nine-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-nine-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "ten-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-ten-twelfths" %}
+{% else %}
+{% set contentClasses = contentClasses+" tablet-six-twelfths" %}
+{% endif %}
+
+{% endif %}
+
+
+{% endif %}
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--hero section--scorecard-hero relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}" data-redirect="{{ module.scorecard_settings.redirect_link_add_main_landing_page_url }}">
+  {{ snippets.background(module.background) }}
+  {% if widget_data.controls.header_design == "transparent" %}
+  <div class="header--anchor"></div>
+  {% endif %}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid flexgrid valign--middle palm-column--reverse hard--ends {% if module.media_type == "centered" %}align--center{% endif %} relative z-index--2">
+      <div class="section--hero-content grid__item {{ contentClasses }} palm-one-whole {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} hard--ends first--hard--top last--hard--bottom {% if module.media_type == "centered" %}text--center{% else %}text--left {% endif %} palm-text--{{ module.layout_controls.content_alignment_mobile }}">
+
+        {% if module.preheader_type == 'text' %}
+        {% if module.preheader %}
+        <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% elif module.preheader_type == 'image' %}
+        {% if module.preheader_image.src %}
+        {% set sizeAttrs = 'width="{{ module.preheader_image.width|escape_attr }}" height="{{ module.preheader_image.height|escape_attr }}"' %}
+        {% if module.preheader_image.size_type == 'auto' %}
+        {% set sizeAttrs = 'width="{{ module.preheader_image.width|escape_attr }}" height="{{ module.preheader_image.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% elif module.preheader_image.size_type == 'auto_custom_max' %}
+        {% set sizeAttrs = 'width="{{ module.preheader_image.max_width|escape_attr }}" height="{{ module.preheader_image.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% endif %}
+        {% set loadingAttr = module.preheader_image.loading != 'disabled' ? 'loading="{{ module.preheader_image.loading|escape_attr }}"' : '' %}
+        <img class="{{ snippets.deviceVisibility(module.preheader_image_visibility) }} margin--short--bottom" src="{{ module.preheader_image.src|escape_url }}" alt="{{ module.preheader_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+        {% endif %}
+        {% endif %}
+        {% if module.header %}
+        <h1 class="hard--top palm-visuallyhidden">{{ module.header }}</h1>
+        {% endif %}
+        {% if module.content %}
+        <span class="p--default inline-block first--hard--top last--hard--bottom negative--short--top section--hero--contentpadding--{{ module.layout_controls.subheader_right_padding }} palm-margin--short--top">
+          {{ module.content }}
+          {# Total Score Descrption #}
+          <span class="scorecard--score-descriptions">
+            {% for item in module.scorecard_results_group %}
+            <span class="scorecard--score-descriptions-inner visuallyhidden last--hard--bottom" data-min="{{ item.score_min }}" data-max="{{ item.score_max }}">
+              {{ item.score_meaning_content }}
+            </span>
+            {% endfor %}
+          </span>
+          {# End Total Score Description #}
+        </span>
+        {% endif %}
+
+        {#
+        {% if module.cta|length > 0 %}
+        <div style="margin-top:30px;">
+          {{ snippets.multiButton(module.cta) }}
+        </div>
+        {% endif %}
+        {% if module.below_cta_content %}
+        <div class="first--hard--top" style="margin-top:16px;">
+          {{ module.below_cta_content }}
+        </div>
+        {% endif %}
+        #}
+
+      </div>
+      <div class="grid__item {{ mediaClasses }} palm-one-whole valign--middle {% if module.layout_controls.content_position_mobile == 'bottom' %}tall--bottom hard--top{% else %}hard--top hard--bottom{% endif %} tablet-hard--ends lap-and-up-hard--ends all--text--center" style="height: -webkit-fill-available;">
+        {% set animationClasses = '' %}
+        {% if module.layout_controls.enable_animation %}
+        {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-{{ module.layout_controls.animation_direction == "side" ? "left" : module.layout_controls.animation_direction }}' %}
+        {% endif %}
+
+        <div class="block {{ animationClasses }}{{ snippets.deviceVisibility(module.media_device_visibility) }}">
+          {% if module.header %}
+          <div class="h1 hard--top lap-and-up-visuallyhidden tablet-visuallyhidden palm-margin--short--bottom">{{ module.header }}</div>
+          {% endif %}
+          <div class="text--center hard--ends">
+            <div class="relative resultsScore--container">
+              <canvas id="resultsScore--number"></canvas>
+              <div id="custom-legend-container" style="margin-top: 20px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if (module.video.video_type == "vidyard")&&(module.media_type == "video") %}
+    {% require_js %}
+    {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+    {% end_require_js %}
+    <div class="visuallyhidden">
+      <img class="vidyard-player-embed" alt="{{ module.video.video_image_alt_tag }}" data-uuid="{{ module.video.vidyard_video_uuid|trim }}" data-type="lightbox" data-v="4">
+    </div>
+    {% require_js %}
+    <script>
+      function launchLightbox_{{ name|replace('-','_') }}(uuid) {
+        var players = VidyardV4.api.getPlayersByUUID(uuid);
+        var player = players[0];
+        player.showLightbox();
+      }
+    </script>
+    {% end_require_js %}
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+{% require_js %}
+
+<script>
+  // Total Score Script for Hero 
+  $(document).ready(function () {
+
+    // Redirect if visiting without taking assessment
+    $(document).ready(function () {
+      if (window.hsInEditor || window.location.href.indexOf('hs_preview') > -1) {
+        console.log('true')
+        // If in HubSpot editor/preview, set a dummy score cookie
+        $.cookie('assessmentTotalScore', '80', { path: '/' });
+        return;
+      }
+
+      var checkTotalScore = $.cookie('assessmentTotalScore');
+
+      // If cookie is not set, redirect to the data-redirect URL
+      if (!checkTotalScore) {
+        var redirectUrl = $('.section--scorecard-hero').attr('data-redirect');
+        if (redirectUrl) {
+          window.location.href = redirectUrl;
+        } else {
+          console.warn('Redirect URL missing from data-redirect attribute.');
+        }
+      }
+    });
+
+
+    // 1. Get the total score from the cookie (as integer)
+    const totalScore = parseInt($.cookie('assessmentTotalScore'), 10);
+
+    if (!isNaN(totalScore)) {
+      $('.scorecard--score-descriptions-inner').each(function () {
+        const min = parseInt($(this).data('min'), 10);
+        const max = parseInt($(this).data('max'), 10);
+
+        // 2. Show only the description that matches the score range
+        if (totalScore >= min && totalScore <= max) {
+          $(this).removeClass('visuallyhidden');
+        } else {
+          $(this).addClass('visuallyhidden');
+        }
+      });
+    }
+  });
+
+  // 1. Label → Cookie name mapping
+  const bucketConfig = {
+    'Content': 'the_right_content_score_endless_customers_scorecard',
+    'Website': 'the_right_website_score_endless_customers_scorecard',
+    'Video': 'the_right_sales_activities_score_endless_customers_scorecard',
+    'AI & Search': 'the_right_technology_score_endless_customers_scorecard',
+    'Technology & Team': 'the_right_culture_of_performance_endless_customers_scorecard'
+  };
+
+  // 2. Label → Color mapping
+  const labelColorMap = {
+    'Content': '#0D70FF',
+    'Website': '#E4319A',
+    'Video': '#FC9639',
+    'AI & Search': '#33B748',
+    'Technology & Team': '#C3D7EB'
+  };
+
+  // 3. Get labels in consistent order
+  const chartLabels = Object.keys(bucketConfig);
+
+  // 4. Get colors in correct order
+  const backgroundColors = chartLabels.map(label => labelColorMap[label]);
+
+  // 5. Utility: Parse cookie as integer with fallback
+  function getCookieInt(name) {
+    const val = $.cookie(name);
+    const num = val !== undefined ? parseInt(val, 10) : NaN;
+    return (isNaN(num) || num <= 0) ? 1 : num;
+  }
+
+  // 6. Pull cookie values for both sets
+  const customValues = [];    // absolute values for center text & legend
+  const segmentSizes = [];    // relative values for chart segments
+
+  chartLabels.forEach(label => {
+    const cookieBase = bucketConfig[label];
+    const absolute = getCookieInt(`${cookieBase}_absolute`);
+    const relative = getCookieInt(`${cookieBase}_relative`);
+
+    customValues.push(absolute);
+    segmentSizes.push(relative);
+  });
+
+  // 7. Plugin: Center text inside donut
+  const centerTextPlugin = {
+    id: 'centerText',
+    beforeDraw(chart) {
+      const { width, height } = chart;
+      const ctx = chart.ctx;
+
+      const fontSize1 = (height / 28);
+      const fontSize2 = (height / 4.7);
+      const line1 = 'YOUR OVERALL SCORE';
+
+      // Pull total score from the cookie
+      const totalScore = parseInt($.cookie('assessmentTotalScore'), 10);
+      const displayScore = (!isNaN(totalScore) && totalScore >= 0 && totalScore <= 100) ? totalScore : 1;
+      const line2 = `${displayScore}%`;
+
+      ctx.save();
+      ctx.font = `${fontSize1}px proxima-nova`;
+      ctx.fillStyle = '#666';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(line1, width / 2, height / 2.4);
+
+      ctx.font = `bold ${fontSize2}px proxima-nova`;
+      ctx.fillStyle = '#333';
+      ctx.fillText(line2, width / 2, height / 1.8);
+      ctx.restore();
+    }
+  };
+
+  // 8. Plugin: Custom HTML legend using absolute values
+  const htmlLegendPlugin = {
+    id: 'htmlLegend',
+    afterUpdate(chart, args, options) {
+      const container = document.getElementById(options.containerID);
+      if (!container) return;
+
+      container.innerHTML = '';
+      const ul = document.createElement('ul');
+      ul.style.listStyle = 'none';
+      ul.style.display = 'flex';
+      ul.style.flexWrap = 'wrap';
+      ul.style.padding = 0;
+      ul.style.margin = 0;
+
+      const items = chart.options.plugins.legend.labels.generateLabels(chart);
+
+      items.forEach((item, i) => {
+        const li = document.createElement('li');
+        li.style.alignItems = 'center';
+        li.style.cursor = 'pointer';
+        li.style.display = 'flex';
+        li.style.marginRight = '12px';
+        li.style.marginLeft = '12px';
+        li.style.marginBottom = '4px';
+
+        li.onclick = () => {
+          chart.toggleDataVisibility(item.index);
+          chart.update();
+        };
+
+        const box = document.createElement('span');
+        box.style.background = labelColorMap[item.text] || '#ccc';
+        box.style.borderRadius = '4px';
+        box.style.display = 'inline-block';
+        box.style.height = '14px';
+        box.style.marginRight = '6px';
+        box.style.width = '14px';
+
+        const text = document.createElement('span');
+        text.style.fontSize = '16px';
+        text.style.color = '#333';
+        text.textContent = `${item.text}: ${customValues[i] || 0}%`;
+
+        li.appendChild(box);
+        li.appendChild(text);
+        ul.appendChild(li);
+      });
+
+      container.appendChild(ul);
+    }
+  };
+
+  // 9. Chart Initialization
+  const ctx = document.getElementById('resultsScore--number').getContext('2d');
+
+  const myDonutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: chartLabels,
+      datasets: [{
+        label: 'Weights',
+        data: segmentSizes,
+        backgroundColor: backgroundColors,
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0)',
+        borderRadius: 10,
+        spacing: 18
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      cutout: '70%',
+      layout: {
+        padding: {
+          top: 10,
+          bottom: 10,
+          left: 10,
+          right: 10
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const score = customValues[context.dataIndex] || 0;
+              return `${score}%`;
+            }
+          }
+        },
+        htmlLegend: {
+          containerID: 'custom-legend-container'
+        }
+      }
+    },
+    plugins: [centerTextPlugin, htmlLegendPlugin]
+  });
+
+</script>
+
+{% end_require_js %}

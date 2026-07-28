@@ -1,0 +1,103 @@
+{# CSS #}
+{# require_css( get_asset_url("../FAQs Left-Right.css"), { async: false } ) #}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--ec-popupoffer overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}" style="display:none;">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+
+    <div id="section--ec-popupoffer-one" class="section--ec-popupoffer-wrapper {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center palm-text--center">
+      {% if module.popup_one.popup_one_content %}
+      <button class="popup-close" aria-label="Close">&times;</button>
+      <div class="section--ec-popupoffer-container line-height--small p--default">
+        <div class="first--hard--top">{{ module.popup_one.popup_one_content }}</div>
+        <span class="block--multibutton--btn all--btn all--btn--primary width--max">
+          <a role="button" title="{{ module.popup_one.primary_button_text }}" class="btn btn--primary width--max" href="">
+            {{ module.popup_one.primary_button_text }}
+          </a>
+        </span>
+        <p class="popup-link popup-close p--small color--midgrey hard--bottom margin--short--top hover--pointer">{{ module.popup_one.secondary_button_text }}</p>
+      </div>
+      {% endif %}
+    </div>
+
+    <div id="section--ec-popupoffer-two" class="section--ec-popupoffer-wrapper {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center palm-text--center" style="display:none;">
+      {% if module.popup_two.popup_two_content %}
+      <button class="popup-close" aria-label="Close">&times;</button>
+      <div class="section--ec-popupoffer-container line-height--small p--default">
+        <div class="first--hard--top">{{ module.popup_two.popup_two_content }}</div>
+        <span class="block--multibutton--btn all--btn all--btn--primary width--max">
+          <a role="button" title="{{ module.popup_two.primary_button_text }}" class="btn btn--primary btn--arrow width--max" href="{{ module.popup_two.primary_button_link.url.href }}" {% if module.popup_two.primary_button_link.open_in_new_tab %}target="_blank"{% endif %} {% if module.popup_two.primary_button_link.rel %} rel="{{ module.popup_two.primary_button_link.rel|escape_attr }}"{% endif %}>
+            {{ module.popup_two.primary_button_text }}
+          </a>
+        </span>
+        <p class="popup-link popup-close p--small color--midgrey hard--bottom margin--short--top hover--pointer">{{ module.popup_two.secondary_button_text }}</p>
+      </div>
+      {% endif %}
+    </div>
+
+
+  </div>
+</div>
+
+{% require_js %}
+<script>
+jQuery(document).ready(function($) {
+  const $popupWrapper = $('.section--ec-popupoffer'); // outer wrapper
+  const $popupOne = $('#section--ec-popupoffer-one');
+  const $popupTwo = $('#section--ec-popupoffer-two');
+  const $switchBtn = $popupOne.find('.block--multibutton--btn a');
+
+  const STORAGE_KEY = 'popupDismissedUntil';
+  const ANIMATION_SPEED = 400; // ms
+  const $triggerElement = $('.section--assessment-results');
+
+  // Check if popup should be hidden (7-day dismissal)
+  const dismissedUntil = localStorage.getItem(STORAGE_KEY);
+  if (dismissedUntil && new Date(dismissedUntil) > new Date()) {
+    $popupWrapper.hide();
+    return;
+  }
+
+  // Hide wrapper initially
+  $popupWrapper.hide();
+
+  // Function to check if top of trigger element matches scrollTop
+  function checkTriggerPosition() {
+    if ($triggerElement.length) {
+      const triggerTop = $triggerElement.offset().top;
+      const scrollTop = $(window).scrollTop();
+
+      if (scrollTop >= triggerTop) {
+        $popupWrapper.fadeIn(ANIMATION_SPEED);
+        $(window).off('scroll', checkTriggerPosition); // stop checking after trigger
+      }
+    }
+  }
+
+  // Watch for scroll
+  $(window).on('scroll', checkTriggerPosition);
+
+  // Also check immediately (in case page loads already scrolled)
+  checkTriggerPosition();
+
+  // Switch to popup two when primary button in popup one is clicked
+  $switchBtn.on('click', function(e) {
+    e.preventDefault();
+    $popupOne.fadeOut(ANIMATION_SPEED, function() {
+      $popupTwo.fadeIn(ANIMATION_SPEED);
+    });
+  });
+
+  // Close popups when any .popup-close is clicked
+  $(document).on('click', '.popup-close', function() {
+    $popupWrapper.fadeOut(ANIMATION_SPEED);
+
+    // Set dismissal for 7 days
+    const expiration = new Date();
+    expiration.setDate(expiration.getDate() + 7);
+    localStorage.setItem(STORAGE_KEY, expiration.toISOString());
+  });
+});
+
+</script>
+{% end_require_js %}

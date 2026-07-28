@@ -1,0 +1,98 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+.section--pillar--group:first-child {
+  margin-top: 20px;
+}
+
+.section--pillar--group {
+  border: 1px solid #E1E7F4;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section--pillar--group--content--wrapper{
+  padding: 0px 60px 0px 20px;
+}
+
+.section--pillar--group--toggle {
+  display: block;
+  position: relative;
+  padding-right: 48px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+.section--pillar--group--toggle--icon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid {{ color('secondary') }};
+  border-radius: 50%;
+  background: transparent;
+  position: absolute;
+  right: 20px;
+  top: 16px;
+  overflow: visible;
+}
+.section--pillar--group--toggle--icon .icon--axis {
+  position: absolute;
+  left: 48%;
+  top: 49%;
+  width: 8px;
+  height: 1px;
+  background: #1d1d1f;
+}
+
+.section--pillar--group--toggle--icon .icon--vertical--line {
+  transform-origin: center;
+  transform: translate(-45%, -50%) rotate(90deg) ;
+  {{ transition('all .3s ease-in-out') }}
+}
+.section--pillar--group--toggle--icon .icon--horizontal--line {
+  background: {{ color('secondary') }};
+  transform: translate(-45%, -50%);
+}
+.section--pillar--group.active .section--pillar--group--toggle .section--pillar--group--toggle--icon .icon--vertical--line {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.section--pillar--group--content {
+  width:100%;
+}
+
+.section--pillar--group--content--inner--spacer {
+  display:block;
+  width:100%;
+  height:{{ short }};
+}
+
+{% call mediaLoop() %}
+.{{ media }}all--color--white .section--pillar--group {
+  border-bottom-color:{{ color("white") }};
+}
+.{{ media }}all--color--white .section--pillar--group--toggle--icon .icon--axis,
+.{{ media }}all--color--white .section--pillar--group--toggle--icon .icon--horizontal--line {
+  background:{{ color("white") }}!important;
+}
+.{{ media }}all--color--white .section--pillar--group--toggle--icon {
+  border-color:{{ color("white") }}!important;
+}
+{% endcall %}

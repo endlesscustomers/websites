@@ -1,0 +1,67 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--fullwidth h2 + .section--fullwidth-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--fullwidth .section--fullwidth-content h2,
+.section--fullwidth .section--fullwidth-content h3,
+.section--fullwidth .section--fullwidth-content h4,
+.section--fullwidth .section--fullwidth-content h5,
+.section--fullwidth .section--fullwidth-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+/*.section--fullwidth p,
+.section--fullwidth ul,
+.section--fullwidth ol,
+.section--fullwidth blockquote,
+.section--fullwidth picture,
+.section--fullwidth img,
+.section--fullwidth table {
+margin-bottom:0px!important;
+margin-top:28px!important;
+}*/
+
+.section--fullwidth .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+@media (max-width: 768px) {
+  .hs-landing-page .gridspacer--top + .section--fullwidth--video-true{
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .hs-landing-page img.border-radius{
+    border-radius: 0px !important;
+  }
+}
+
+/*.section--fullwidth h2+p,
+.section--fullwidth h3+p,
+.section--fullwidth h4+p,
+.section--fullwidth h5+p,
+.section--fullwidth h6+p {
+margin-top:10px!important;
+}*/

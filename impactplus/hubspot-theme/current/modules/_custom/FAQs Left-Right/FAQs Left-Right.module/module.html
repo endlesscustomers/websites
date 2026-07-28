@@ -1,0 +1,68 @@
+{# CSS #}
+{{ require_css( get_asset_url("../FAQs Left-Right.css"), { async: true } ) }}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--faqs-leftright relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"></div>
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--{{ module.layout_controls.header_content_alignment }} palm-text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      {% if module.header || module.content || module.preheader %}
+      <div class="grid__item lap-and-up-three-twelfths tablet-five-twelfths palm-one-whole hard--top tall--bottom palm-tall--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% if module.header %}
+        <h2>{{ module.header }}</h2>
+        {% endif %}
+        {% if module.content %}
+        {{ module.content }}
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="grid__item lap-and-up-eight-twelfths tablet-seven-twelfths palm-one-whole hard--ends text--left">
+        {% for faq in module.faqs %}
+        <div class="section--faqs-leftright--faq background--{{ module.layout_controls.faq_question_answer_background_color }} border-radius--10 margin--short--bottom">
+          <div class="section--faqs-leftright--faq--toggle" tabindex="0">
+            <{{ 'h3' if module.header else 'h2' }} class="hard--ends h5">
+              {{ faq.faq_header }}
+              </{{ 'h3' if module.header else 'h2' }}>
+              <div class="section--faqs-leftright--faq--toggle--icon">
+            <div class="icon--axis icon--vertical--line"></div>
+            <div class="icon--axis icon--horizontal--line"></div>
+          </div>
+        </div>
+        <div class="section--faqs-leftright--faq--content" style="display:none;">
+          <div class="section--faqs-leftright--faq--content--wrapper">
+            <div class="section--faqs-leftright--faq--content--inner p--{{ module.layout_controls.content_p_size }}">
+              <div class="first--hard--top last--hard--bottom">
+                {{ faq.faq_content }}
+              </div>
+              {% if (faq.cta.cta_type) && (faq.cta.cta_type != 'none') %}
+              <div class="margin--short--top margin--petite--bottom">
+                {{ snippets.button(faq.cta) }}
+              </div>
+              {% endif %}
+            </div>
+            {#<div class="section--faqs-leftright--faq--content--inner--spacer"></div>#}
+            <span class="clear"></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if snippets.multiButton(module.cta) %}
+  <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+    <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      {{ snippets.multiButton(module.cta) }}
+    </div>
+  </div>
+  {% endif %}
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+  </div>
+  {{ snippets.swoopSpacerBottom(module.background) }}
+</div>
+{{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

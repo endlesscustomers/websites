@@ -1,0 +1,563 @@
+{{ require_css( get_asset_url("../Columns.css"), { async: true} ) }}
+
+{% set layout_controls   = module.layout_controls %}
+{% set section_controls  = module.section_controls %}
+
+{% set columnWidthsKey = {
+  "one-whole":  1,
+  "one-half":   2,
+  "one-third":  3,
+  "one-fourth": 4,
+  "one-fifth":  5,
+  "one-sixth":  6
+} %}
+
+{% set columnWidths = {
+  "desk":   columnWidthsKey[layout_controls.number_of_columns_desktop],
+  "lap":    columnWidthsKey[layout_controls.number_of_columns_laptop|replace("lap-", "")],
+  "tablet": columnWidthsKey[layout_controls.number_of_columns_tablet|replace("tablet-", "")],
+  "palm":   columnWidthsKey[layout_controls.number_of_columns_mobile|replace("palm-", "")]
+} %}
+
+{% macro columns_scoped_rich_text_color_styles(section_controls) -%}
+  {% set rich_text_color_opacity                   = section_controls.text_color_override.rich_text_color_opacity|default(100) %}
+  {% set text_color_overridden_on_all_screen_sizes = section_controls.text_color_override.override_on_all_screen_sizes|default(false) %}
+  {% set text_color_overridden_on_desktop          = section_controls.text_color_override.override_on_desktop|default(false) %}
+  {% set text_color_overridden_on_laptop           = section_controls.text_color_override.override_on_laptop|default(false) %}
+  {% set text_color_overridden_on_tablet           = section_controls.text_color_override.override_on_tablet|default(false) %}
+  {% set text_color_overridden_on_mobile           = section_controls.text_color_override.override_on_mobile|default(false) %}
+  {# Matches Bullet List Columns: header intro + rich text columns; headings in column bodies excluded via :not. #}
+  {% set rte_selectors = [
+    '.section--columns .header--content *:not(strong, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .text--gradient)',
+    '.section--columns .section--columns--column--body--content *:not(strong, h2, .h2, h2, .h3, h2, .h4, h2, .h5, h2, .h6, a, .text--gradient)'
+  ] %}
+  {% require_css %}
+    <style>
+      {% scope_css %}
+        {% if text_color_overridden_on_all_screen_sizes %}
+          {{ rte_selectors|join(', ') }} {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% elif text_color_overridden_on_desktop %}
+          {% call functions.mediaQuery('desk') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_laptop %}
+          {% call functions.mediaQuery('lap') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_tablet %}
+          {% call functions.mediaQuery('tablet') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_mobile %}
+          {% call functions.mediaQuery('palm') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% endif %}
+      {% end_scope_css %}
+    </style>
+  {% end_require_css %}
+{%- endmacro %}
+
+{% macro columns_justify_from_alignment(header_and_content_container_alignment) -%}
+  {{- 'start' if 'left' == header_and_content_container_alignment else 'center' -}}
+{%- endmacro %}
+
+{% macro columns_divider_vertical_classes(is_first, index_one_based, widths, divider_opacity) -%}
+  {%- set parts = ['section--columns--divider--vertical'] -%}
+  {%- if is_first -%}
+    {% do parts.append('visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - 1) % widths['desk'] == 0 -%}
+    {% do parts.append('desk-visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - 1) % widths['lap'] == 0 -%}
+    {% do parts.append('lap-visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - 1) % widths['tablet'] == 0 -%}
+    {% do parts.append('tablet-visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - 1) % widths['palm'] == 0 -%}
+    {% do parts.append('palm-visuallyhidden') %}
+  {%- endif -%}
+  {% do parts.append('opacity--' ~ divider_opacity|string) %}
+  {{- parts|join(' ') -}}
+{%- endmacro %}
+
+{% macro columns_divider_horizontal_classes(index_one_based, widths, divider_opacity) -%}
+  {%- set parts = ['section--columns--divider--horizontal'] -%}
+  {%- if (index_one_based - (1 + widths['desk'])) < 0 -%}
+    {% do parts.append('desk-visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - (1 + widths['lap'])) < 0 -%}
+    {% do parts.append('lap-visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - (1 + widths['tablet'])) < 0 -%}
+    {% do parts.append('tablet-visuallyhidden') %}
+  {%- endif -%}
+  {%- if (index_one_based - (1 + widths['palm'])) < 0 -%}
+    {% do parts.append('palm-visuallyhidden') %}
+  {%- endif -%}
+  {% do parts.append('opacity--' ~ divider_opacity|string) %}
+  {{- parts|join(' ') -}}
+{%- endmacro %}
+
+{% macro columns_image_link_wrap(cta, link_classes) -%}
+  {%- if (cta.cta_type == "link") and cta.cta_hyperlink.href and cta.cta_button_text -%}
+    {%- set field_rel = cta.cta_hyperlink.rel | default('') | trim -%}
+    {%- set link_attributes = {
+      'title':  cta.cta_title_attribute ? cta.cta_title_attribute : cta.cta_button_text,
+      'href':   cta.cta_hyperlink.type == 'EMAIL_ADDRESS' ? 'mailto:' ~ cta.cta_hyperlink.href : cta.cta_hyperlink.href,
+      'class':  link_classes
+    } -%}
+    {% if cta.cta_open_in_new_tab %}
+      {% set merged_rel = field_rel ? ('noopener noreferrer ' ~ field_rel) : 'noopener noreferrer' %}
+      {% do link_attributes.update({
+        'target': '_blank',
+        'rel': merged_rel | trim
+      }) %}
+    {% elif field_rel %}
+      {% do link_attributes.update({ 'rel': field_rel }) %}
+    {% endif %}
+    <a {{ link_attributes|xmlattr }}>
+      {{- caller() -}}
+    </a>
+  {%- else -%}
+    {{- caller() -}}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro columns_render_lottie(item, layout_controls, section_controls, module_name, loop_index) -%}
+  {%- set icon_left         = ('left' == layout_controls.columns_icon_placement) -%}
+  {%- set max_width         = layout_controls.columns_image_size_controls.columns_native_image_icon_max_width -%}
+  {%- set lottie_wrap_styles = [] -%}
+  {%- if icon_left -%}
+    {%- do lottie_wrap_styles.append(
+      'flex-basis:' ~ max_width ~ 'px'
+    ) %}
+    {%- do lottie_wrap_styles.append(
+      'margin-top:' ~ layout_controls.icon_gap_between_icon_and_content ~ 'px'
+    ) %}
+  {%- endif -%}
+  {%- set lottie_wrap_attributes = {
+    'class': 'inline-block',
+    'style': lottie_wrap_styles|join(';')|trim
+  } -%}
+  <div {{ lottie_wrap_attributes|xmlattr }}>
+    {% call columns_image_link_wrap(item.cta, 'no--underline border--0') %}
+      <lottie-player
+        autoplay
+        {% if item.lottie_animation.lottie_embed_loop %}
+          loop
+        {% endif %}
+        id    = "{{ module_name }}--lottieplayer--{{ loop_index }}"
+        class = "inline-block"
+        mode  = "normal"
+        style = "padding:0; {{ 'width:' ~ item.lottie_animation.lottie_embed_width ~ 'px;' if item.lottie_animation.lottie_embed_width }}{% if icon_left %} height:auto;{% else %}{{ ' height:' ~ item.lottie_animation.lottie_embed_height ~ 'px;' if item.lottie_animation.lottie_embed_height }}{% endif %}"
+      >
+      </lottie-player>
+      {{ require_js('https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js', { async: true }) }}
+      <script>
+        const {{ module_name|replace('-','_') }}LottiePlayer{{ loop_index }} = document.querySelector("#{{ module_name }}--lottieplayer--{{ loop_index }}");
+        {{ module_name|replace('-','_') }}LottiePlayer{{ loop_index }}.addEventListener("rendered", (e) => {
+          {% if 'url' == item.lottie_animation.lottie_embed_type %}
+            {{ module_name|replace('-','_') }}LottiePlayer{{ loop_index }}.load("{{ item.lottie_animation.lottie_embed }}");
+          {% else %}
+            {{ module_name|replace('-','_') }}LottiePlayer{{ loop_index }}.load({{ item.lottie_animation.lottie_embed|tojson }});
+          {% endif %}
+        });
+      </script>
+    {% endcall %}
+  </div>
+{%- endmacro %}
+
+{% macro columns_render_native(item, layout_controls, section_controls) -%}
+  {%- if item.disable_image -%}
+  {%- else -%}
+    {%- set icon_left = ('left' == layout_controls.columns_icon_placement) -%}
+    {%- set max_width = layout_controls.columns_image_size_controls.columns_native_image_icon_max_width -%}
+    {%- if icon_left -%}
+      {%- set native_wrap_styles = [
+        'flex-basis:' ~ max_width ~ 'px',
+        'margin-top:' ~ layout_controls.icon_vertical_offset|default(7) ~ 'px'
+      ] -%}
+    {%- else -%}
+      {%- set native_wrap_styles = [
+        'margin-bottom:' ~ layout_controls.icon_gap_between_icon_and_content ~ 'px'
+      ] -%}
+    {%- endif -%}
+    <div style="{{ native_wrap_styles|join(';')|trim }}">
+      {% call columns_image_link_wrap(item.cta, 'no--underline border--0') %}
+        <img
+          class   = "inline-block"
+          src     = "{{ item.image_native.image.src }}"
+          alt     = "{{ item.image_native.image.alt }}"
+          width   = "{{ item.image_native.image.width }}"
+          height  = "{{ item.image_native.image.height }}"
+          style   = "width: {{ layout_controls.columns_image_size_controls.columns_native_image_icon_max_width }}px;height:auto;"
+          {% if section_controls.lazy_load_images %}loading="lazy"{% endif %}
+        />
+      {% endcall %}
+    </div>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro columns_render_logos(item, layout_controls, section_controls) -%}
+  {% call columns_image_link_wrap(item.cta, 'no--underline border--0 block') %}
+    <span class="block relative">
+      <img
+        class   = "block absolute z-index--2"
+        style   = "object-fit: contain;width:{{ '80%' if (item.image_full.image.width > item.image_full.image.height * 2) else 'auto' }};height:{{ 'auto' if (item.image_full.image.width > item.image_full.image.height * 2) else '80%' }};object-position:{{ item.image_full.image_horizontal_alignment }} {{ item.image_full.image_vertical_alignment }};top:50%;bottom:0%;right:0%;left:0%;margin-left:auto;margin-right:auto;transform:translateY(-50%);"
+        alt     = "{{ item.image_full.image.alt }}"
+        width   = "{{ item.image_full.image.width }}"
+        height  = "{{ item.image_full.image.height }}"
+        src     = "{{ item.image_full.image.src }}"
+        {% if section_controls.lazy_load_images == 'true' %}loading="lazy"{% endif %}
+      />
+      {{ snippets.aspectSpacer('2x1') }}
+    </span>
+  {% endcall %}
+{%- endmacro %}
+
+{% macro columns_render_full(item, layout_controls, section_controls) -%}
+  {% call columns_image_link_wrap(item.cta, 'no--underline border--0 block') %}
+    <span class="block relative border-radius--20 overflow--hidden">
+      <img
+        class   = "block absolute z-index--2 object--background-size--cover"
+        style   = "object-position:{{ item.image_full.image_horizontal_alignment }} {{ item.image_full.image_vertical_alignment }};top:0%;bottom:0%;right:0%;left:0%;"
+        alt     = "{{ item.image_full.image.alt }}"
+        width   = "{{ item.image_full.image.width }}"
+        height  = "{{ item.image_full.image.height }}"
+        src     = "{{ item.image_full.image.src }}"
+        {% if section_controls.lazy_load_images == 'true' %}loading="lazy"{% endif %}
+      />
+      {{ snippets.aspectSpacer(layout_controls.columns_image_aspect_ratio) }}
+    </span>
+  {% endcall %}
+{%- endmacro %}
+
+{% macro columns_column_cta_block(cta_field) -%}
+  {%- if ((cta_field.cta_type == "cta") and cta_field.cta) or ((cta_field.cta_type == "link") and cta_field.cta_hyperlink.href and cta_field.cta_button_text) or ((cta_field.cta_type == "anchor") and cta_field.cta_section_anchor_id and cta_field.cta_button_text) -%}
+    <div class="section--columns--column--body--cta">
+      <p class="block--singlebtn all--btn all--btn--{% if cta_field.cta_ghost_transparent_button %}transparent--{% endif %}{{ cta_field.cta_button_color }} margin--short--top hard--bottom">
+        {% if cta_field.cta_type == "cta" %}
+          {{ cta(cta_field.cta) }}
+        {% elif (cta_field.cta_type == "link") or (cta_field.cta_type == "anchor") %}
+          <a
+            title="{% if cta_field.cta_title_attribute %}{{ cta_field.cta_title_attribute }}{% else %}{{ cta_field.cta_button_text }}{% endif %}"
+            href="{% if cta_field.cta_type == 'anchor' %}#{{ cta_field.cta_section_anchor_id|replace('#','') }}{% else %}{% if cta_field.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ cta_field.cta_hyperlink.href }}{% endif %}"
+            class="btn btn--{% if cta_field.cta_ghost_transparent_button %}transparent--{% endif %}{{ cta_field.cta_button_color }} {% if cta_field.cta_arrow %}btn--arrow{% endif %}"
+            {%- if (cta_field.cta_type == "link") and cta_field.cta_open_in_new_tab %} target="_blank"{% endif %}
+          >{{ cta_field.cta_button_text }}</a>
+        {% endif %}
+      </p>
+    </div>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro columns_scoped_card_styles(layout_controls, section_controls) -%}
+  {% set text_color_overridden_on_all_screen_sizes =
+    section_controls.text_color_override.override_on_all_screen_sizes|default(false)
+  %}
+  {% set columns_bg_choice = layout_controls.columns_background_color.columns_background_color %}
+  {% set columns_card_background = '' %}
+  {% if columns_bg_choice != 'none' %}
+    {% if columns_bg_choice == 'custom' %}
+      {% set columns_card_background =
+        'rgba('
+        ~ layout_controls.columns_background_color.columns_custom_background_color.color|convert_rgb
+        ~ ', '
+        ~ (layout_controls.columns_background_color.columns_custom_background_color.opacity|int / 100)
+        ~ ')'
+      %}
+    {% else %}
+      {% set columns_card_background = functions.color(columns_bg_choice) %}
+    {% endif %}
+  {% endif %}
+  {% set border_color_choice = layout_controls.columns_border_color.border_color %}
+  {% set border_gradient = '' %}
+  {% set column_gradient_border_width = 2 %}
+  {% set columns_card_border_solid_color = '' %}
+  {% if border_color_choice == 'custom' %}
+    {% set columns_card_border_solid_color =
+      'rgba('
+      ~ layout_controls.columns_border_color.border_custom_color.color|convert_rgb
+      ~ ', '
+      ~ (layout_controls.columns_border_color.border_custom_color.opacity|int / 100)
+      ~ ')'
+    %}
+  {% elif border_color_choice == 'gradient' %}
+    {# Dark-section card (Figma 13641:6876): 90deg gradient, 50% mid stop, 1px stroke. Light card (13641:5955): 135deg, 51%, 2px. #}
+    {% if text_color_overridden_on_all_screen_sizes %}
+      {% set border_gradient = 'linear-gradient(90deg, #60A8FF 0%, #F472C8 50%, #7DD87A 100%)' %}
+      {% set column_gradient_border_width = 1 %}
+    {% else %}
+      {% set border_gradient = 'linear-gradient(135deg, #60A8FF 0%, #F472C8 51%, #7DD87A 100%)' %}
+      {% set column_gradient_border_width = 2 %}
+    {% endif %}
+  {% else %}
+    {% set columns_card_border_solid_color = functions.color(border_color_choice) %}
+  {% endif %}
+  {# Gradient border needs an opaque padding-box layer; transparent fill exposes the rainbow across the whole card. #}
+  {% set columns_gradient_inner_fill = '' %}
+  {% if border_gradient %}
+    {% if columns_card_background %}
+      {% set columns_gradient_inner_fill = columns_card_background %}
+    {% elif text_color_overridden_on_all_screen_sizes %}
+      {% set columns_gradient_inner_fill = functions.color('black') %}
+    {% else %}
+      {% set columns_gradient_inner_fill = functions.color('white') %}
+    {% endif %}
+  {% endif %}
+  {% set columns_card_border_radius_css = '' %}
+  {% if layout_controls.columns_add_border_radius_around_columns %}
+    {% if layout_controls.columns_border_radius.columns_border_radius_type == 'custom' %}
+      {% set columns_card_border_radius_css =
+        layout_controls.columns_border_radius.columns_custom_border_radius ~ 'px'
+      %}
+    {% else %}
+      {% set columns_card_border_radius_css = snippets.default_BorderRadius %}
+    {% endif %}
+  {% endif %}
+  {% require_css %}
+    <style>
+      {% scope_css %}
+        .section--columns--column .section--columns--column--body {
+          {% if border_gradient %}
+            border: {{ column_gradient_border_width }}px solid transparent;
+            background-image:
+              linear-gradient({{ columns_gradient_inner_fill }}, {{ columns_gradient_inner_fill }}),
+              {{ border_gradient }};
+            background-origin: padding-box, border-box;
+            background-clip: padding-box, border-box;
+          {% else %}
+            {% if columns_card_background %}
+              background-color: {{ columns_card_background }};
+            {% endif %}
+            {% if columns_card_border_solid_color %}
+              border-style: solid;
+              border-width: 1px;
+              border-color: {{ columns_card_border_solid_color }};
+            {% endif %}
+          {% endif %}
+          {% if columns_card_border_radius_css %}
+            border-radius: {{ columns_card_border_radius_css }};
+          {% endif %}
+        }
+      {% end_scope_css %}
+    </style>
+  {% end_require_css %}
+{%- endmacro %}
+
+{% set columns_justify = columns_justify_from_alignment(layout_controls.header_and_content_container_alignment) %}
+
+{% set section_root_classes = [
+  'section',
+  'section--columns',
+  layout_controls.show_border_divider_between_columns ? 'section--columns--hasdividers' : '',
+  layout_controls.columns_horizontally_align_buttons ? 'section--columns--equalizebuttons' : '',
+  'relative',
+  'overflow--hidden',
+  snippets.deviceVisibility(section_controls.device_visibility)|trim
+]|reject('equalto', '')|reject('equalto', null) %}
+
+{% set column_grid_classes = [
+  'grid',
+  'relative',
+  'hard--ends',
+  'text--center',
+  'flexgrid',
+  'justify--' ~ columns_justify,
+  'columns-image-placement--' ~ layout_controls.columns_icon_placement,
+  'columns-image-type--' ~ layout_controls.columns_image_type,
+  layout_controls.columns_width == 'wide' ? 'hard--sides' : '',
+  snippets.textColorOverride(section_controls.text_color_override)|trim
+]|reject('equalto', '')|reject('equalto', null) %}
+
+{% set column_grid_attributes = {
+  'data-columns--desk': columnWidths['desk'],
+  'data-columns--lap': columnWidths['lap'],
+  'data-columns--tablet': columnWidths['tablet'],
+  'data-columns--palm': columnWidths['palm']
+} %}
+
+{{ columns_scoped_rich_text_color_styles(section_controls) }}
+{{ columns_scoped_card_styles(layout_controls, section_controls) }}
+
+<div {{ 'id="' ~ section_controls.anchor_id|trim ~ '"' if section_controls.anchor_id }} class="{{ section_root_classes|join(' ')|trim }}" data-version="v2">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3 section--columns--outer">
+    <div class="section--columns--inner text--center">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(section_controls.spacing, "top")|trim }}"></div>
+
+      {% if module.header or module.content or module.preheader %}
+        <div class="grid relative hard--ends {{ snippets.textColorOverride(section_controls.text_color_override)|trim }} all--text--{{ layout_controls.header_content_alignment }} palm-all--text--{{ layout_controls.header_content_alignment_mobile }} {{ 'hard--sides' if layout_controls.header_container_width == 'wide' }} flexgrid justify--{{ columns_justify }}">
+          <div class="header--content grid__item {{ layout_controls.header_container_width }} tablet-{{ layout_controls.header_container_width_tablet }} palm-one-whole hard--top hard--bottom margin--{{ layout_controls.header_margin_bottom_spacing }}--bottom palm-margin--short--bottom first--hard--top last--hard--bottom all--text--{{ layout_controls.header_content_alignment }} palm-all--text--{{ layout_controls.header_content_alignment_mobile }}">
+            {% if module.preheader %}
+              <span class="h6 preheader preheader--{{ layout_controls.preheader_color }} margin--short--bottom">
+                {{ module.preheader }}
+              </span>
+            {% endif %}
+            {% if module.header %}
+              <h2 class="hard--top {{ 'hard--bottom' if not module.content }} {{ layout_controls.header_size }}">
+                {{ module.header }}
+              </h2>
+            {% endif %}
+            {{ module.content }}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="section--columns--grid {{ column_grid_classes|join(' ')|trim }}" {{ column_grid_attributes|xmlattr }}>
+        <div class="grid__item {{ layout_controls.columns_width }} tablet-{{ layout_controls.columns_width_tablet }} palm-one-whole section--columns--columns--wrapper flexgrid hard--ends text--{{ layout_controls.columns_content_alignment }} palm-all--text--{{ layout_controls.columns_content_alignment_mobile }}">
+          {% for item in module.column_content %}
+            {% set column_index = loop.index %}
+            {% set icon_native_or_lottie_left =
+              (
+                'native' == layout_controls.columns_image_type
+                or 'lottie' == layout_controls.columns_image_type
+              )
+              and (
+                'left' == layout_controls.columns_icon_placement
+              )
+            %}
+            {% set animation_classes =
+              layout_controls.enable_animation
+                ? ('animate--fade animate--fade-up animate--fade-delay--' ~ loop.index|string)
+                : ''
+            %}
+            {% set column_shell_parts = [
+              'section--columns--column',
+              'relative',
+              'hard--sides',
+              'grid__item',
+              layout_controls.number_of_columns_desktop,
+              layout_controls.number_of_columns_laptop,
+              layout_controls.number_of_columns_tablet,
+              layout_controls.number_of_columns_mobile,
+              'tall',
+              'first--hard--top',
+              'last--hard--bottom',
+              'valign--top',
+              layout_controls.columns_width == 'wide' ? 'padding--short' : '',
+              animation_classes,
+              has_column_negative ? 'section--columns--column--padding' : ''
+              ]|reject('equalto', '')|join(' ')|trim
+            %}
+            {% set column_padding_row_classes =
+              layout_controls.columns_image_type != 'full'
+                ? layout_controls.columns_inner_column_padding_desktop
+                : 'section--columns--column--body-padding'
+            %}
+            {% set column_body_flex_classes =
+              column_padding_row_classes
+              ~ ' '
+              ~ (
+                  icon_native_or_lottie_left
+                    ? 'valign--top justify--start'
+                    : 'direction--column justify--start no--wrap'
+                )
+            %}
+            {% set column_body_style =
+              icon_native_or_lottie_left
+                ? ('gap:' ~ layout_controls.icon_gap_between_icon_and_content ~ 'px;')
+                : ''
+            %}
+            {% set body_wrapper_style =
+              icon_native_or_lottie_left
+                ? 'flex:1;'
+                : (
+                    layout_controls.columns_image_type != 'none'
+                      ? ('margin-top:' ~ layout_controls.columns_space_between_icon_and_content ~ 'px;')
+                      : ''
+                  )
+            %}
+            {% set icon_left_padding_classes =
+              icon_native_or_lottie_left
+                ? 'padding--short--right hard--left'
+                : ''
+            %}
+            {% set header_tag =
+              module.header
+                ? 'h3'
+                : 'h2'
+            %}
+
+            <div class="{{ column_shell_parts }}">
+              {% if layout_controls.show_border_divider_between_columns %}
+                <span
+                  class = "{{ columns_divider_vertical_classes(loop.first, column_index, columnWidths, layout_controls.columns_divider_color.opacity) }}"
+                  style = "background:{{ layout_controls.columns_divider_color.color }};"
+                >
+                </span>
+              {% endif %}
+              {% if layout_controls.show_border_divider_between_columns %}
+                <span
+                  class = "{{ columns_divider_horizontal_classes(column_index, columnWidths, layout_controls.columns_divider_color.opacity) }}"
+                  style = "background:{{ layout_controls.columns_divider_color.color }};"
+                >
+                </span>
+              {% endif %}
+
+              <div class="section--columns--column--body flexgrid {{ column_body_flex_classes }}"{% if column_body_style %} style="{{ column_body_style }}"{% endif %}>
+                {% if layout_controls.columns_image_type == "lottie" %}
+                  {{ columns_render_lottie(item, layout_controls, section_controls, name, loop.index) }}
+                {% elif layout_controls.columns_image_type == "native" %}
+                  {{ columns_render_native(item, layout_controls, section_controls) }}
+                {% elif layout_controls.columns_image_type == "logos" %}
+                  {{ columns_render_logos(item, layout_controls, section_controls) }}
+                {% elif layout_controls.columns_image_type == "full" %}
+                  {{ columns_render_full(item, layout_controls, section_controls) }}
+                {% endif %}
+
+                <div class="section--columns--column--body--wrapper" style="{{ body_wrapper_style }}">
+                  <div class="section--columns--column--body--content block {% if layout_controls.columns_inner_column_padding_desktop == 'full' %}lap-and-up-{{ layout_controls.columns_inner_content_padding_desktop }}{% endif %} first--hard--top last--hard--bottom {{ icon_left_padding_classes }}">
+                    {% if item.header_label %}
+                      <{{ header_tag }} class="{{ layout_controls.column_header_size }} margin--{{ layout_controls.column_header_margin_bottom }}--bottom">
+                        {% call columns_image_link_wrap(item.cta, 'no--underline color--inherit') %}
+                          {{ item.header_label }}
+                        {% endcall %}
+                      </{{ header_tag }}>
+                    {% endif %}
+                    {{ item.description }}
+                  </div>
+                  {{ columns_column_cta_block(item.cta) }}
+                  {{ columns_column_cta_block(item.cta_secondary) }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if module.cta|length %}
+          <div class="grid hard--ends {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}">
+            <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(section_controls.text_color_override)|trim }} text--{{ columns_justify }} palm-text--{{ layout_controls.header_content_alignment_mobile }}">
+              {{ snippets.multiButton(module.cta) }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if module.cta_bottom_content %}
+          <div class="grid hard--ends {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}">
+            <div class="grid__item {{ layout_controls.header_container_width }} tablet-{{ layout_controls.header_container_width_tablet }} palm-one-whole {% if module.cta|length %}tall--top{% else %}short--top{% endif %} palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(section_controls.text_color_override)|trim }} all--text--{{ layout_controls.header_content_alignment }} palm-all--text--{{ layout_controls.header_content_alignment_mobile }}">
+              {{ module.cta_bottom_content }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(section_controls.spacing, "bottom")|trim }}"></div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name, section_controls.spacing, ".gridspacer--top", ".gridspacer--bottom") }}
+  </div>
+</div>

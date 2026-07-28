@@ -1,0 +1,12 @@
+.hs_cos_wrapper.hs_cos_wrapper_widget.hs_cos_wrapper_type_module{
+  overflow-y: scroll;
+  height: 100%;
+}
+
+#assessmentQuiz #progress-container{
+  height:15px;
+}
+
+.successForm .form.hs-form .hs-error-msgs.inputs-list{
+  margin-top: 0px !important;
+}

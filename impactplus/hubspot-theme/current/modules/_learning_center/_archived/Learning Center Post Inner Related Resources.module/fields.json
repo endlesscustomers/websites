@@ -1,0 +1,263 @@
+[ {
+  "id" : "1f59c0f9-3a37-c3d8-609c-757bf0f724c5",
+  "name" : "topics_clusters",
+  "label" : "Topics Clusters",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "4d2b31f0-f5f0-031f-3b31-ac442ae7ff4d",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "4d2b31f0-f5f0-031f-3b31-ac442ae7ff4d",
+    "name" : "topic_cluster_group_header",
+    "label" : "Topic Cluster: Group Header",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "In-House vs. Outsource & Readiness"
+  }, {
+    "id" : "36fe5d05-4dce-a1c3-29f4-bcfbe3fda151",
+    "name" : "resource_item",
+    "label" : "Resource Item",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : "b1d7924d-f1b5-0018-aced-90573fe0b1fe",
+      "default" : 4
+    },
+    "children" : [ {
+      "id" : "b1d7924d-f1b5-0018-aced-90573fe0b1fe",
+      "name" : "topic_cluster_resource_header",
+      "label" : "Resource Item: Header",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?"
+    }, {
+      "id" : "cc7ac3c3-050b-33f8-fd59-b817e03102ab",
+      "name" : "topic_cluster_url",
+      "label" : "Resource Item: URL",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "topic_cluster_group_header" : "In-House vs. Outsource & Readiness",
+    "resource_item" : [ {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "topic_cluster_group_header" : "In-House vs. Outsource & Readiness",
+    "resource_item" : [ {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "topic_cluster_group_header" : "In-House vs. Outsource & Readiness",
+    "resource_item" : [ {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "topic_cluster_resource_header" : "In-House vs Outsourced Marketing Teams: Which Is Better for Your Business?",
+      "topic_cluster_url" : {
+        "url" : {
+          "content_id" : 36573748256,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ]
+} ]

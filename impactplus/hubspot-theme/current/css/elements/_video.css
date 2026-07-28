@@ -1,0 +1,87 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.block--video {
+  position:relative;
+  text-decoration:none;
+}
+.block--video--icon {
+  text-decoration:none;
+}
+.block--video:before,
+.block--video--icon:before {
+  content:"";
+  background: {{ config.video_BackgroundColor }} url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_3' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 29 32' style='enable-background:new 0 0 29 32;' xml:space='preserve'%3E%3Cpolygon fill='%23{{ config.video_ArrowColor|render|replace("#","") }}' class='st0' points='29,16 0,0 0,32 '/%3E%3C/svg%3E") no-repeat 53% 50%;
+    background-size:29% auto;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    {{ transition("background .3s ease-in-out") }}
+    display:block;
+    z-index: 4;
+    }
+.block--video:before {
+  display:block;
+  position:absolute;
+  top:50%;
+  left:50%;
+  -webkit-transform:translateY(-50%) translateX(-50%);
+  -moz-transform:translateY(-50%) translateX(-50%);
+  transform:translateY(-50%) translateX(-50%);
+}
+.block--video img {
+  height: auto;
+  max-width: 100%;
+}
+.block--video:hover {
+  cursor:pointer;
+}
+.block--video--icon {
+  display:inline-block;
+  text-align:center;
+}
+.block--video--icon:hover:before,
+.block--video:hover:before,
+.fancybox.block--video--icon:hover,
+.fancybox:hover .block--video--icon:before {
+  background: {{ config.video_HoverBackgroundColor }} url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_3' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 29 32' style='enable-background:new 0 0 29 32;' xml:space='preserve'%3E%3Cpolygon fill='%23{{ config.video_HoverArrowColor|render|replace("#","") }}' class='st0' points='29,16 0,0 0,32 '/%3E%3C/svg%3E") no-repeat 53% 50%;
+    background-size:29% auto;
+    }
+
+@media (max-width:550px) {
+  .block--video:before,
+  .block--video--icon:before {
+    width:75px;
+    height:75px;
+  }
+}
+
+{# VIDYARD #}
+.vidyard-player-container .play-button {
+  outline:none;
+}
+#vidyard-overlay-wrapper {
+  transition: opacity .25s ease-in-out, filter .25s ease-in-out !important;
+  opacity: 1 !important;
+}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

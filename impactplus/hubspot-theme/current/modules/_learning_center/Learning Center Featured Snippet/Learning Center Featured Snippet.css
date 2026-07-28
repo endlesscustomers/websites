@@ -1,0 +1,53 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--lcfeaturedsnippet{
+  margin-top: 28px;
+  margin-bottom: 0px;
+  border-bottom: 1px solid #E1E7F4;
+}
+
+.section--lcfeaturedsnippet .section--lcfeaturedsnippet--content:before{
+  content: '';
+  width: 5px;
+  background: #0A6CFF;
+  height: calc(100% - 25px);
+  position: absolute;
+  border-radius: 10px;
+}
+
+.section--lcfeaturedsnippet .section--lcfeaturedsnippet--content h3,
+.section--lcfeaturedsnippet .section--lcfeaturedsnippet--content h3 *{
+  font-size: 24px !important;
+  margin-bottom: 8px !important;
+}
+
+@media (min-width: 768px) {
+  .section--lcfeaturedsnippet .section--lcfeaturedsnippet--content:before{
+    left: -24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section--lcfeaturedsnippet .section--lcfeaturedsnippet--content:before{
+    left: -16px;
+  }
+}

@@ -1,0 +1,156 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css'  %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/* Search */
+.section--searchinput input.hs-search-field__input {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-left:15px;
+  padding-right:45px;
+}
+.section--searchinput .section--searchinput--detail {
+  display:block;
+  position:absolute;
+  top:0px;
+  bottom:0px;
+  right:{{ config.input_HorizontalPadding }};
+}
+.section--searchinput .section--searchinput--detail:hover {
+  cursor:pointer; 
+}
+.section--searchinput .section--searchinput--detail:before {
+  content:"";
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23{{ color("primary")|render|replace("#","") }}" d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg>');
+  background-size: 18px;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 42px;
+  height: 100%;
+  display: block;
+}
+.section--searchinput .hs-search-field__suggestions {
+  text-align: left;
+  border:0px;
+  background:{{ color("white") }};
+}
+.section--searchinput .hs-search-field__suggestions > li {
+  background:transparent;
+}
+.section--searchinput .hs-search-field__suggestions > li > a {
+  display:block;
+  width:100%;
+  padding:3px 8px;
+  text-decoration:none;
+} 
+.section--searchinput .hs-search-field__suggestions > li:hover {
+  background:{{ color("lightgrey") }};
+}
+.section--searchinput .hs-search-field__suggestions #results-for {
+  background:transparent!important;
+  padding:3px 8px;
+}
+.section--searchresults {
+
+}
+.hs-search-results__listing {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hs-search-results__listing li {
+  margin: 0;
+  padding: 0;
+}
+.hs-search-highlight {
+  font-weight: bold; 
+  color:{{ color('primary') }};
+}
+.section--searchresults #hsresults {
+  text-align:center;
+}
+.section--searchresults #hsresults > li {
+  border-bottom:1px solid #D3D3D3;
+  padding-bottom:25px;
+  margin-bottom:25px;
+}
+.section--searchresults .hs-search-results__pagination {
+  display:block;
+  width:100%;
+  text-align:center;
+  font-family: {{ config.p_FontFamily }};
+  font-size: {{ config.p_FontSize }};
+  line-height: {{ config.p_LineHeight }};
+  font-style: {{ config.p_FontStyle }};
+  font-weight: {{ config.p_FontWeight }};
+  letter-spacing: {{ config.p_LetterSpacing }};
+  word-spacing: {{ config.p_WordSpacing }};
+}
+.section--searchresults .hs-search-results__pagination a {
+  text-decoration:none; 
+  line-height:20px;
+  {{ transition("all .25s ease-in-out") }};
+}
+.section--searchresults .hs-search-results__prev-page,
+.section--searchresults .hs-search-results__next-page {
+  display:inline-block;
+  vertical-align:middle;
+  width:auto;
+  float:none; 
+}
+.section--searchresults .hs-search-results__prev-page svg,
+.section--searchresults .hs-search-results__next-page svg {
+  fill:{{ config.p_Color }};
+  width:6px;
+  {{ transition("all .25s ease-in-out") }};
+}
+.section--searchresults .hs-search-results__pagenumbers {
+  display:inline-block;
+  vertical-align:middle;
+  padding-left:2px;
+  padding-right:2px;
+  overflow:visible;
+}
+.section--searchresults .hs-search-results__pagenumbers a {
+  display: block;
+  float:left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.section--searchresults .hs-search-results__pagination a:hover,
+.section--searchresults .hs-search-results__pagenumbers a:hover {
+  color: {{ color('primary') }}!important;
+}
+
+.section--searchresults a.hs-search-results__prev-page:hover svg,
+.section--searchresults a.hs-search-results__next-page:hover svg{
+  fill: {{ color('primary') }}!important;
+}
+
+.section--searchresults .hs-search-results__pagenumbers a.active {
+  font-weight:{{ bold }};
+  color: {{ color('primary') }};
+}
+.section--searchresults .hs-search-results__pagenumbers a.active:hover {
+  cursor:default; 
+}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

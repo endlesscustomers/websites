@@ -1,0 +1,133 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/* Base (hidden) */
+.eclc-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;                 /* keep on */
+  align-items: center;
+  justify-content: center;
+  opacity: 0;                    /* animate this */
+  visibility: hidden;            /* hide from a11y/AT */
+  pointer-events: none;          /* block clicks */
+  transition: opacity .25s ease; /* container fade */
+}
+.eclc-popup.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.eclc-popup form{
+  display: flex;
+  flex-wrap: wrap;
+}
+.eclc-popup form .legal-consent-container{
+  -webkit-box-ordinal-group: 3;
+  order: 3;
+  margin-top: 20px;
+}
+.eclc-popup form.hs-form .hs_submit{
+  padding-top: 0px !important;
+}
+.eclc-popup form .legal-consent-container * {
+  font-size: 14px !important;
+  margin-bottom: 0 !important;
+  font-weight: 500;
+  font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+  color: #4F5465 !important;
+  text-align: center !important;
+}
+
+.eclc-popup__overlay {
+  position: absolute; inset: 0;
+  background: rgba(29,29,31,.80);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+@media (min-width: 769px) { 
+  .eclc-popup__dialog {
+    border-radius: 12px;
+    width: calc(100% - 40px);
+    max-height: 90vh;
+  }
+}
+
+.eclc-popup__dialog {
+  position: relative;
+  max-width: 600px;
+  background: #fff;
+  padding: 60px;
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transition: opacity .25s ease, transform .25s ease;
+  will-change: opacity, transform;
+}
+
+/* animate in */
+.eclc-popup.is-open .eclc-popup__overlay { opacity: 1; }
+.eclc-popup.is-open .eclc-popup__dialog  { opacity: 1; transform: translateY(0) scale(1); }
+
+/* optional closing */
+.eclc-popup.closing .eclc-popup__overlay { opacity: 0; }
+.eclc-popup.closing .eclc-popup__dialog  { opacity: 0; transform: translateY(6px) scale(.98); }
+
+@media (max-width: 768px) { 
+  .eclc-popup__dialog { 
+    padding: 80px 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+  } 
+  
+  .eclc-popup__dialog .hs_submit *{
+    width: 100% !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eclc-popup, .eclc-popup__overlay, .eclc-popup__dialog { transition: none; }
+}
+
+/* Close button */
+.eclc-popup__close {
+  position: absolute; 
+  top: 12px; 
+  right: 12px;
+  background: transparent; 
+  border: 0; 
+  font-size: 28px; 
+  line-height: 1;
+  cursor: pointer; 
+  color: #444;
+  outline: 0;
+}
+
+/* Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .eclc-popup__overlay,
+  .eclc-popup__dialog {
+    transition: none;
+  }
+}

@@ -1,0 +1,101 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--heroform--share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  border-radius:50%;
+  text-decoration:none!important;
+  position:relative;
+  {{ transition("background .3s ease-in-out") }}
+}
+.section--heroform--share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--heroform--share--icon:first-child {
+  margin-left:0px;
+}
+.section--heroform--share--icon--facebook {
+  background:{{ color("facebook") }};
+}
+.section--heroform--share--icon--facebook:hover {
+  background:{{ colorShade(color("facebook")) }};
+}
+.section--heroform--share--icon--twitter {
+  background:{{ color("twitter") }};
+}
+.section--heroform--share--icon--twitter:hover {
+  background:{{ colorShade(color("twitter")) }};
+}
+.section--heroform--share--icon--linkedin {
+  background:{{ color("linkedin") }};
+}
+.section--heroform--share--icon--linkedin:hover {
+  background:{{ colorShade(color("linkedin")) }};
+}
+
+.section--heroform form.hs-form.stacked .actions{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--heroform .production--form input.hs-button, 
+.section--heroform form.hs-form .hs_submit input.hs-button{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--heroform .production--form input[type=email], 
+.section--heroform .production--form input[type=file], 
+.section--heroform .production--form input[type=number], 
+.section--heroform .production--form input[type=password], 
+.section--heroform .production--form input[type=search], 
+.section--heroform .production--form input[type=tel], 
+.section--heroform .production--form input[type=text], 
+.section--heroform .production--form textarea, 
+.section--heroform form.hs-form input[type=email].hs-input, 
+.section--heroform form.hs-form input[type=file].hs-input, 
+.section--heroform form.hs-form input[type=number].hs-input, 
+.section--heroform form.hs-form input[type=tel].hs-input, 
+.section--heroform form.hs-form input[type=text].hs-input, 
+.section--heroform form.hs-form textarea.hs-input,
+.section--heroform .production--form select, 
+.section--heroform form.hs-form select.hs-input{
+  background: #F3F7FF;
+  border-radius: 8px;
+  padding: 14px 20px 14px;
+}
+
+.section--heroform--content p, 
+.section--heroform--content .p,
+.section--heroform--content li{
+  color: #4F5465;
+}

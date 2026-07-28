@@ -1,0 +1,317 @@
+{{ require_css( get_asset_url( '../Stats - Cards.css' ), { async: true } ) }}
+
+{#####################################################
+  MARK: Map Module Controls -> Variables
+#####################################################}
+{% set section_controls = module.section_controls %}
+{% set layout_controls  = module.layout_controls %}
+
+{#####################################################
+  MARK: Macros
+#####################################################}
+{% macro cards_rgba(color_choice, custom_color) -%}
+  {%- if color_choice == "custom" and custom_color.color -%}
+    rgba({{ custom_color.color|convert_rgb }}, {{ custom_color.opacity|int/100 }})
+  {%- else -%}
+    rgba({{ functions.color(color_choice)|convert_rgb }}, 1)
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro cards_border_radius_class(layout_controls) -%}
+  {% if layout_controls.cards_add_border_radius_around_cards %}
+    {% set cards_border_radius = layout_controls.cards_border_radius %}
+    {% if cards_border_radius.cards_border_radius_type == "custom" %}
+      {{- "border-radius--" ~ cards_border_radius.cards_custom_border_radius -}}
+    {% else %}
+      {{- "border-radius" -}}
+    {% endif %}
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_statistic_number(item) -%}
+  {% set is_animated_countup = item.statistic_type == 'countup' and item.statistic_count_up_duration|float > 0 %}
+  {% set countup_duration_ms = item.statistic_count_up_duration|float * 1000 %}
+  {% if item.statistic_type == "countup" %}
+    <span
+      class="counterticker"
+      data-counterticker--to="{{ item.statistic_number }}"
+      data-counterticker--duration="{{ countup_duration_ms }}"
+      style="height:0px!important;width:0px!important;opacity:0;filter:alpha(opacity=0);"
+    >
+    </span>
+  {% endif %}
+  <div class="section--statscards--number">
+    {% if item.statistic_number_prefix_symbol %}
+      <span class="section--statscards--prefix {% if item.statistic_superscript_the_prefix_symbols %}section--statscards--prefix--super{% endif %}">{{ item.statistic_number_prefix_symbol }}</span>
+    {% endif %}
+    <span
+      class="section--statscards--number--inner {% if is_animated_countup %}counterticker{% endif %}"
+      data-counterticker--to="{{ item.statistic_number }}"
+      data-counterticker--duration="{{ countup_duration_ms }}"
+      data-counterticker--commas="{% if item.statistic_add_commas_every_thousand %}true{% else %}false{% endif %}"
+    >
+      {%- if is_animated_countup -%}
+        {{ item.statistic_count_up_start_number }}
+      {%- elif item.statistic_add_commas_every_thousand -%}
+        {{ item.statistic_number|string|format_currency("en-US")|replace("$","") }}
+      {%- else -%}
+        {{ item.statistic_number }}
+      {%- endif -%}
+    </span>
+    {% if item.statistic_number_suffix_symbol %}
+      <span class="section--statscards--suffix {% if item.statistic_superscript_the_suffix_symbols %}section--statscards--suffix--super{% endif %}">{{ item.statistic_number_suffix_symbol }}</span>
+    {% endif %}
+  </div>
+{%- endmacro %}
+
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ module.section_controls.anchor_id|trim ~ '"' if module.section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{#####################################################
+  MARK: Derived layout and card styles
+#####################################################}
+{% set column_widths_key = {
+  "one-whole":  1,
+  "one-half":   2,
+  "one-third":  3,
+  "one-fourth": 4,
+  "one-fifth":  5,
+  "one-sixth":  6
+} %}
+
+{% set column_widths = {
+  "desk":   column_widths_key[layout_controls.number_of_columns_desktop],
+  "lap":    column_widths_key[layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet": column_widths_key[layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":   column_widths_key[layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{% set cards_background_color   = layout_controls.cards_background_color %}
+{% set cards_border_color       = layout_controls.cards_border_color %}
+{% set background_color_rgba    = cards_rgba(cards_background_color.cards_background_color, cards_background_color.cards_custom_background_color) %}
+{% set border_color_rgba        = cards_rgba(cards_border_color.cards_border_color, cards_border_color.cards_custom_border_color) %}
+{% set border_width             = layout_controls.cards_border_width %}
+{% set border_radius_class      = cards_border_radius_class(layout_controls) %}
+{% set text_color_classes       = snippets.textColorOverride(section_controls.text_color_override)|trim %}
+{% set header_alignment_classes = 'all--text--' ~ layout_controls.header_content_alignment ~ ' palm-all--text--' ~ layout_controls.header_content_alignment_mobile %}
+{% set cta_alignment_classes    = 'text--' ~ layout_controls.header_content_alignment ~ ' palm-text--' ~ layout_controls.header_content_alignment_mobile %}
+{% set column_span_classes      = layout_controls.number_of_columns_desktop ~ ' ' ~ layout_controls.number_of_columns_laptop ~ ' ' ~ layout_controls.number_of_columns_tablet ~ ' ' ~ layout_controls.number_of_columns_mobile %}
+
+{% call render_section_shell('statscards', module) %}
+  {% if module.header || module.content || module.preheader %}
+    <div class="grid relative hard--ends {{ text_color_classes }} {{ header_alignment_classes }}" data-columns--desk="{{ column_widths['desk'] }}" data-columns--lap="{{ column_widths['lap'] }}" data-columns--tablet="{{ column_widths['tablet'] }}" data-columns--palm="{{ column_widths['palm'] }}">
+      <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom {{ header_alignment_classes }}">
+        {% if module.preheader %}
+          <span class="h6 preheader">
+            {{ module.preheader }}
+          </span>
+        {% endif %}
+
+        {% if module.header %}
+          <h2>
+            {{ module.header }}
+          </h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if module.statistics %}
+    <div class="grid relative hard--ends counterticker--parent {% if layout_controls.cards_width == 'wide' %}hard--sides{% endif %} {{ layout_controls.cards_text_color_override }} overflow--visible">
+      <div class="grid__item one-whole hard--ends text--center overflow--visible">
+        <div class="section--statscards--cards--wrapper flexgrid justify--{{ 'start' if 'left' == layout_controls.cards_content_alignment else 'center' }} {{ name|replace('-','_') }} {{ layout_controls.cards_pop_native_image_out_of_cards ? 'tall--top' : '' }}">
+          {% for item in module.statistics %}
+            <div class="section--statscards--card relative grid__item {{ column_span_classes }} hard valign--top">
+              <div class="section--statscards--card--inner">
+                <div class="section--statscards--card--body {{ border_radius_class }} border--{{ border_width }} {% if layout_controls.cards_box_shadow %}box-shadow{% endif %} {{ layout_controls.cards_text_color_override }}" style="border-color:{{ border_color_rgba }};background-color:{{ background_color_rgba }};">
+
+                  <div class="section--statscards--card--body--wrapper padding--short first--hard--top last--hard--bottom text--{{ layout_controls.cards_content_alignment }} palm-text--{{ layout_controls.cards_content_alignment_mobile }} tall">
+                    <div class="section--statscards--card--body--content block first--hard--top last--hard--bottom">
+                      {{ render_statistic_number(item) }}
+
+                      <{{ 'h3' if item.statistic_label else 'h2' }} class="h4">
+                        {{ item.statistic_label }}
+                      </{{ 'h3' if item.statistic_label else 'h2' }}>
+
+                      {{ item.statistic_description }}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ text_color_classes }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ text_color_classes }} {{ cta_alignment_classes }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+  {% endif %}
+{% endcall %}
+
+{% require_js %}
+  <script>
+    (function () {
+      const visibility_threshold = 0.3;
+      const module_cards_wrapper_selector = '.section--statscards--cards--wrapper.{{ name|replace("-","_") }}';
+
+      function add_commas_to_number(str_num_input) {
+        var n = str_num_input.toString().split('.');
+        n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        return n.join('.');
+      }
+
+      function animate_counter(element, duration, target_value, use_commas) {
+        var start_value = parseInt(element.textContent || 0, 10);
+        var start_time = null;
+
+        function animation(current_time) {
+          if (!start_time) {
+            start_time = current_time;
+          }
+
+          var elapsed = current_time - start_time;
+          var progress = Math.min(elapsed / duration, 1);
+          var current_value = Math.ceil(start_value + (target_value - start_value) * progress);
+
+          element.textContent = use_commas ? add_commas_to_number(current_value) : current_value;
+
+          if (progress < 1) {
+            requestAnimationFrame(animation);
+          }
+        }
+
+        requestAnimationFrame(animation);
+      }
+
+      function run_counter(counter) {
+        if (counter.classList.contains('counterticked')) {
+          return;
+        }
+
+        var target_value = parseFloat(counter.getAttribute('data-counterticker--to')) || 0;
+        var duration = parseInt(counter.getAttribute('data-counterticker--duration') || 2000, 10);
+        var use_commas = (counter.getAttribute('data-counterticker--commas') || 'true').toLowerCase() !== 'false';
+
+        animate_counter(counter, duration, target_value, use_commas);
+        counter.classList.add('counterticked');
+      }
+
+      function tick_counters_in_parent(counter_parent) {
+        if (!counter_parent || counter_parent.classList.contains('counterticker--parent--counterticked')) {
+          return;
+        }
+
+        counter_parent.querySelectorAll('.counterticker:not(.counterticked)').forEach(run_counter);
+        counter_parent.classList.add('counterticker--parent--counterticked');
+      }
+
+      function is_visible_enough(element, threshold) {
+        var rect = element.getBoundingClientRect();
+        var viewport_height = window.innerHeight || document.documentElement.clientHeight;
+
+        if (rect.height <= 0) {
+          return false;
+        }
+
+        var visible_height = Math.min(rect.bottom, viewport_height) - Math.max(rect.top, 0);
+
+        return visible_height / rect.height >= threshold;
+      }
+
+      function init_statscards_counterticker() {
+        var module_cards_wrapper = document.querySelector(module_cards_wrapper_selector);
+
+        if (!module_cards_wrapper) {
+          return;
+        }
+
+        var counter_parent = module_cards_wrapper.closest('.counterticker--parent');
+
+        if (!counter_parent || counter_parent.dataset.statscardsCountertickerInit === 'true') {
+          return;
+        }
+
+        counter_parent.dataset.statscardsCountertickerInit = 'true';
+
+        function trigger_if_visible() {
+          if (is_visible_enough(counter_parent, visibility_threshold)) {
+            tick_counters_in_parent(counter_parent);
+            return true;
+          }
+
+          return false;
+        }
+
+        if (trigger_if_visible()) {
+          return;
+        }
+
+        if (!('IntersectionObserver' in window)) {
+          function on_scroll_or_resize() {
+            if (trigger_if_visible()) {
+              window.removeEventListener('scroll', on_scroll_or_resize);
+              window.removeEventListener('resize', on_scroll_or_resize);
+            }
+          }
+
+          window.addEventListener('scroll', on_scroll_or_resize, { passive: true });
+          window.addEventListener('resize', on_scroll_or_resize, { passive: true });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.intersectionRatio >= visibility_threshold) {
+              tick_counters_in_parent(counter_parent);
+              observer.disconnect();
+            }
+          });
+        }, { threshold: [0, visibility_threshold] });
+
+        observer.observe(counter_parent);
+      }
+
+      function init_load_counters() {
+        document.querySelectorAll('.counterticker--load').forEach(run_counter);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init_statscards_counterticker);
+      } else {
+        init_statscards_counterticker();
+      }
+
+      window.addEventListener('load', function () {
+        init_statscards_counterticker();
+        init_load_counters();
+      });
+    })();
+  </script>
+{% end_require_js %}

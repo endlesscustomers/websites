@@ -1,0 +1,140 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--breadcrumbs ul {
+  display: inline-block;
+}
+.section--breadcrumbs ul li:first-child {
+  padding-left:0px;
+}
+.section--breadcrumbs li,
+.section--breadcrumbs li a {
+  font-family:    {{ config.breadcrumb_FontFamily }};
+  font-size:      {{ config.breadcrumb_FontSize }};
+	text-transform: {{ config.breadcrumb_TextTransform }};
+	letter-spacing: {{ config.breadcrumb_LetterSpacing }};
+}
+.section:not(.section--breadcrumbs-custom) .section--breadcrumbs li.first-crumb a {
+  visibility: hidden;
+  font-size: 0;
+  display: inline-block;
+  padding: 0;
+  line-height: 1;
+  transition: all .3s ease-in-out;
+}
+
+.section:not(.section--breadcrumbs-custom) .section--breadcrumbs li.first-crumb a:before {
+  content: '';
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%23{{ config.breadcrumb_Color|render|replace('#', '') }}' d='M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z'/%3E%3C/svg%3E");
+  display: inline-block;
+  visibility: visible;
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
+  transition: all .3s ease-in-out;
+  position:relative;
+  top:3px;
+  width: calc( {{ config.breadcrumb_FontSize }} - 1px );
+    height: calc( {{ config.breadcrumb_FontSize }} + 2px );
+}
+.section:not(.section--breadcrumbs-custom) .section--breadcrumbs li.first-crumb a:hover:before {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%23{{ config.breadcrumb_DefaultHoverColor|render|replace('#', '') }}' d='M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z'/%3E%3C/svg%3E");
+  background-position:center;
+  background-size:contain;
+}
+.section--breadcrumbs li a:after {
+  content: '';
+  display: block;
+  visibility: visible;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  position: absolute;
+  height: 1px;
+  background: {{ config.breadcrumb_DefaultHoverColor }};
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+.section--breadcrumbs li.first-crumb a:after {
+  display:none!important; 
+}
+.section--breadcrumbs li a:hover:after {
+  opacity: 1;
+}
+.section--breadcrumbs li.last-crumb {
+  font-size: {{ config.breadcrumb_FontSize }};
+  font-weight: {{ config.bold }}
+}
+.section--breadcrumbs li a {
+  text-decoration:none;
+  position: relative;
+  color:{{ breadcrumb_Color }};
+  {{ transition('all .3s ease-in-out') }}
+}
+.section--breadcrumbs li a:hover {
+  color:{{ breadcrumb_DefaultHoverColor }};
+}
+.section--breadcrumbs .hs-breadcrumb-menu-item {
+  padding: 0 10px 0 0;
+}
+.section:not(.section--breadcrumbs-custom) .section--breadcrumbs .hs-breadcrumb-menu-divider:before {
+  content: "\002F";
+  font-size: {{ breadcrumb_FontSize }};
+}
+{% call mediaLoop() %}
+  .section--breadcrumbs .{{ media }}all--color--white li a,
+  .section--breadcrumbs .{{ media }}all--color--white li.last-crumb  {
+    color: {{ color("white") }};
+  }
+  .section--breadcrumbs .{{ media }}all--color--white li.first-crumb a:before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%23{{ color('white')|render|replace('#', '') }}' d='M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z'/%3E%3C/svg%3E");
+  }
+  .section--breadcrumbs .{{ media }}all--color--white li a:hover {
+    color: {{ config.breadcrumb_WhiteHoverColor }};
+  }
+  .section--breadcrumbs .{{ media }}all--color--white li.first-crumb a:hover:before {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath fill='%23{{ breadcrumb_WhiteHoverColor|render|replace('#', '') }}' d='M575.8 255.5C575.8 273.5 560.8 287.6 543.8 287.6H511.8L512.5 447.7C512.5 450.5 512.3 453.1 512 455.8V472C512 494.1 494.1 512 472 512H456C454.9 512 453.8 511.1 452.7 511.9C451.3 511.1 449.9 512 448.5 512H392C369.9 512 352 494.1 352 472V384C352 366.3 337.7 352 320 352H256C238.3 352 224 366.3 224 384V472C224 494.1 206.1 512 184 512H128.1C126.6 512 125.1 511.9 123.6 511.8C122.4 511.9 121.2 512 120 512H104C81.91 512 64 494.1 64 472V360C64 359.1 64.03 358.1 64.09 357.2V287.6H32.05C14.02 287.6 0 273.5 0 255.5C0 246.5 3.004 238.5 10.01 231.5L266.4 8.016C273.4 1.002 281.4 0 288.4 0C295.4 0 303.4 2.004 309.5 7.014L564.8 231.5C572.8 238.5 576.9 246.5 575.8 255.5L575.8 255.5z'/%3E%3C/svg%3E");
+  }
+  .section--breadcrumbs .{{ media }}all--color--white li a:hover:after {
+    background: {{ config.breadcrumb_WhiteHoverColor }};
+  }
+{% endcall %}
+
+{% call mediaQuery('palm') %}
+  .section--breadcrumbs .section--breadcrumbs li,
+  .section--breadcrumbs .section--breadcrumbs .hs-breadcrumb-menu-divider:before {
+    display: none;
+  }
+  .section--breadcrumbs li:nth-last-child(2) {
+    display: block;
+    padding-left: 0;
+  }
+  .section:not(.section--breadcrumbs-custom) .section--breadcrumbs li:nth-last-child(2):before {
+    content: '\00AB';
+    position: relative;
+    display: inline-block;
+    padding-right: 10px;
+    font-size: {{ config.breadcrumb_FontSize }};
+  }
+{% endcall %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

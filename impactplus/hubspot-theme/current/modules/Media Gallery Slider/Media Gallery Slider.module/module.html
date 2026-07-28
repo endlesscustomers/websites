@@ -1,0 +1,207 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Media Gallery Slider.css"), { async: true} ) }}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--mediagalleryslider relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}" data-name="{{ name }}">
+  {{ snippets.background(module.background) }}
+
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% if module.header %}
+        <h2>{{ module.header }}</h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="block relative z-index--3">
+      <div class="grid hard--ends">
+        <div class="grid__item {{ module.gallery.gallery_content_width }} portable-one-whole hard--ends">
+          {# Gallery #}
+          <div id="gallery" class="gallery--slider--container">
+            <div class="relative lap-and-up-padding--short portable-hard--sides {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+              <div id="gallery--slider" class="gallery--slider {{ name }}">
+                {% for item in module.gallery.slides %}
+                <div class="f-carousel__slide" style="width:100%">
+                  {% if 'image' == item.media_type %}
+                  <a class="media--item no--underline block" href="{{ item.image.image.src }}" data-fancybox data-caption="" data-type="image">
+                    <span role="img" aria-lable="{{ item.image.image.alt }}" class="block gallery--image background--cover" style="background: url('{{ item.image.image.src }}') no-repeat center / cover;">
+                      {{ snippets.aspectSpacer('16:9') }}
+                    </span>
+                    {% if not module.gallery.disable_slide_captions %}
+                    <span class="block gallery--image--caption">
+                      <span class="gallery--image--caption--text">
+                        <p class="hard--ends">{{ item.image.image_caption_text }}&nbsp;</p>
+                      </span>
+                    </span>
+                    {% endif %}
+                  </a>
+                  {% elif 'video' == item.media_type %}
+                  <div class="media--item" data-type="video" data-videotype="{{ item.video.video_type }}">
+                    {% if item.video.video_type == "embed" %}
+                    <a
+                       role       = "img"
+                       aria-label = "{{ item.video.video_thumbnail_image.alt }}"
+                       class      = "block block--video"
+                       style      = "background:url('{{ item.video.video_thumbnail_image.src }}') no-repeat center / cover;"
+                       data-src   = "#{{ name }}--embed--{{ loop.index }}"
+                       data-fancybox
+                       >
+                      {{ snippets.aspectSpacer('16:9') }}
+                    </a>
+                    <div id="{{ name }}--embed--{{ loop.index }}" class="video--popover all--aspectratio" style="display:none;">
+                      {{ item.video.video_embed_code }}
+                    </div>
+                    {% elif item.video.video_type in ['modal','vidyard'] %}
+
+                    {% set anchor_attributes = [] %}
+                    {% if 'modal' == item.video.video_type %}
+                    {% do anchor_attributes.append( 'data-fancybox' ) %}
+                    {% do anchor_attributes.append( 'href="{{ item.video.video_url_of_iframe_embeddable_video_file.href }}"' ) %}
+                    {% elif 'vidyard' == item.video.video_type %}
+                    {% do anchor_attributes.append( 'href="javascript:;"' ) %}
+                    {% do anchor_attributes.append( 'onclick="launchLightbox_{{ name|replace('-','_') }}(\'{{ item.video.vidyard_video_uuid|trim }}\');"' ) %}
+                    {% endif %}
+
+                    <div class="wrapper" style="width:100%;max-width:100%;height:auto;">
+                      <a
+                         role       = "img"
+                         class      = "block block--video"
+                         title      = "{{ module.video.video_title_attribute ? module.video.video_title_attribute : 'Watch the Video' }}"
+                         aria-label = "{{ item.video.video_thumbnail_image.alt }}"
+                         style      = "background:url('{{ item.video.video_thumbnail_image.src }}') no-repeat center / cover;"
+                         {{ anchor_attributes|join(' ') }}
+                         >
+                        {{ snippets.aspectSpacer('16:9') }}
+                      </a>
+                    </div>
+                    {% endif %}
+
+                    {% if not module.gallery.disable_slide_captions %}
+                    <span class="block gallery--image--caption">
+                      <span class="gallery--image--caption--text">
+                        <p class="hard--ends">
+                          {{ item.video.video_label_text }}
+                        </p>
+                      </span>
+                    </span>
+                    {% endif %}
+
+                  </div>
+                  {% if 'vidyard' == item.video.video_type %}
+                  {% require_js %}
+                  {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+                  {% end_require_js %}
+                  <div class="visuallyhidden">
+                    <img class="vidyard-player-embed" alt="{{ item.video.vidyard_video_image_alt_tag }}" data-uuid="{{ item.video.vidyard_video_uuid|trim }}" data-type="lightbox" data-v="4">
+                  </div>
+                  <script>
+                    function launchLightbox_{{ name|replace('-','_') }}(uuid) {
+                      var players = VidyardV4.api.getPlayersByUUID(uuid);
+                      var player = players[0];
+                      player.showLightbox();
+                    }
+                  </script>
+                  {% endif %}
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="relative palm-visuallyhidden hard--ends lap-and-up-padding--short">
+              <div class="gallery--nav {{ name }}">
+                {% for item in module.gallery.slides %}
+                <div class="f-carousel__slide">
+                  {% if 'image' == item.media_type %}
+                  <div role="img" aria-label="{{ item.image.image.alt }}" class="gallery--image" style="background: url('{{ item.image.image.src }}') no-repeat center / cover;">
+                    {{ snippets.aspectSpacer('16:9') }}
+                  </div>
+                  {% elif 'video' == item.media_type %}
+                  <span role="img" aria-lable="{{ item.video.video_thumbnail_image.alt }}" class="block block--video gallery--image" style="background: url('{{ item.video.video_thumbnail_image.src }}') no-repeat center / cover;">
+                    {{ snippets.aspectSpacer('16:9') }}
+                  </span>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+
+</div>
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+{% require_js %}
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', function() {
+
+      $(this).find('.section--mediagalleryslider').each( function( index ) {
+
+        const thisSliderMain = this.querySelector('.gallery--slider');
+        const thisSliderNav  = this.querySelector('.gallery--nav');
+
+        const mainCarousel = new Carousel( thisSliderMain, {
+          infinite: true,
+          Navigation: true,
+          Dots:false,
+          groupAll: true,
+          l10n: {
+            NEXT: "{{ module.slider_controls.next_title_attribute || 'Next slide' }}",
+            PREV: "{{ module.slider_controls.previous_title_attribute || 'Previous slide' }}",
+            GOTO: "{{ module.slider_controls.navigation_title_attribute || 'Go to slide #%d' }}"
+          },
+        });
+
+        const navCarousel = new Carousel( thisSliderNav, {
+          Sync: {
+            target: mainCarousel,
+          },
+          Dots: false,
+          Navigation: true,
+          infinite: true,
+          center: true,
+          slidesPerPage: 1,
+        });
+
+        // Initialise Fancybox
+        Fancybox.bind('[data-fancybox]', {
+          Carousel: {
+            on: {
+              change: (that) => {
+                mainCarousel.slideTo(mainCarousel.findPageForSlide(that.page), {
+                  friction: 0,
+                });
+              },
+            },
+          },
+        });
+      });
+    });
+  </script>
+{% end_require_js %}

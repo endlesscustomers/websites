@@ -1,0 +1,16 @@
+[ {
+  "id" : "6ec717f3-dbb6-13f8-b2d5-56acf3eedf2a",
+  "name" : "inline_cta_list_select_option",
+  "label" : "Inline CTA List: Select Option",
+  "inline_help_text" : "Add your CTA internal name to the HubDB Table 'Endless Customers Learning Center Global CTA List' (https://app.hubspot.com/hubdb/145335/table/142827335). All CTA settings should be configured in the global module named 'Learning Center Global Inline CTA Library' found in the sidebar of the modules added to this page.",
+  "required" : true,
+  "locked" : false,
+  "table_name_or_id" : "142827335",
+  "columns_to_fetch" : [ ],
+  "display_columns" : [ "name" ],
+  "type" : "hubdbrow",
+  "display_width" : null,
+  "default" : {
+    "id" : 200891921796
+  }
+} ]

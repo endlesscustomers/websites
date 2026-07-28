@@ -1,0 +1,1353 @@
+{# Required inputs in Controls:
+
+- Disable Hello Bar on this Page
+- Disable Sticky Header
+
+#}
+
+<a class="skip-to-content-link" href="#maincontent">Skip to main content</a>
+
+{% set helloBarEnabled = false %}
+
+{% if (widget_data.controls.disable_hello_bar_on_this_page) %}
+{% elif (module.hello_bar.exclude_hello_bar_on_website_pages)&&("hs-site-page" in builtin_body_classes) %}
+{% elif (module.hello_bar.exclude_hello_bar_on_landing_pages)&&("hs-landing-page" in builtin_body_classes) %}
+{% elif (module.hello_bar.exclude_hello_bar_on_blogs)&&("hs-blog" in builtin_body_classes) %}
+{% elif (module.enable_hello_bar)||(request.query_dict.hello == "true") %}
+
+{% set helloBarBlocked = false %}
+
+{% if (module.hello_bar.hide_hello_bar_for_members_of_specific_contact_lists)&&(module.hello_bar.exluded_list_ids|length > 0)&&(request_contact.list_memberships) %}
+{% set memberLists = module.hello_bar.exluded_list_ids|join(",")|split(",") %}
+{% set contactLists = request_contact.list_memberships|join(",")|split(",") %}
+{% set overlapLists = contactLists|intersect(memberLists) %}
+{% if overlapLists|length > 0 %}
+{% set helloBarBlocked = true %}
+{% endif %}
+{% endif %}
+
+{% if helloBarBlocked == false %}
+{% set helloBarEnabled = true %}
+{% endif %}
+
+{% endif %}
+
+<header>
+
+  {% if helloBarEnabled %}
+  <div class="header--hello {{ module.hello_bar.device_visibility }}">
+    <div class="header--hello--body background--{{ module.hello_bar.background_color }}" style="{{ 'background-color:' ~ module.hello_bar.background_custom_color ~ ';' if 'custom' == module.hello_bar_background_color }}">
+      <div class="grid hard">
+        <div class="grid__item one-whole hard relative">
+          <div class="header--hello--content">
+            {% if module.hello_bar.text_content %}
+            <div class="header--hello--content--body {{ 'all--color--white' if module.hello_bar.override_text_to_white }} all--valign--middle">
+              <span>
+                {{ module.hello_bar.text_content }}
+              </span>
+              {% if
+                ( ( module.hello_bar.cta_button_text ) && ( module.hello_bar.cta_hyperlink_url.href ) ) ||
+                ( ( module.hello_bar.cta_type == 'cta' ) && ( module.hello_bar.cta_field ) )
+              %}
+              <span class="header--hello--content--cta">
+                {% if module.hello_bar.cta_type == "cta" %}
+                <span class="block all--btn all--btn--{{ module.hello_bar.cta_button_color }} all--btn--small all--btn--narrow">
+                  {{ cta(module.hello_bar.cta_field) }}
+                </span>
+                {% elif (module.hello_bar.cta_type == "link") %}
+                <a
+                   class="btn btn--{{ module.hello_bar.cta_button_color }} btn--small btn--narrow"
+                   href="{% if module.hello_bar.cta_hyperlink_url.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ module.hello_bar.cta_hyperlink_url.href }}"
+                   {% if ( module.hello_bar.cta_type == "link" ) && ( module.hello_bar.cta_open_hyperlink_in_new_tab ) %}
+                   target="_blank"
+                   {% endif %}
+                   >
+                  {{ module.hello_bar.cta_button_text }}
+                </a>
+                {% endif %}
+              </span>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+
+          <a class="header--hello--close">
+            <svg class="header--hello--close--icon" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g transform="translate(-1867.000000, -19.000000)">
+                  <path d="M1884.72732,35.4122098 L1877.315,27.999806 L1884.72732,20.5874022 C1885.09089,20.2238246 1885.09089,19.6355817 1884.72732,19.2723922 C1884.36413,18.9092026 1883.77551,18.9092026 1883.41232,19.2723922 L1876,26.684796 L1868.58768,19.2723922 C1868.2241,18.9092026 1867.63587,18.9092026 1867.27268,19.2723922 C1866.90911,19.6355817 1866.90911,20.2238246 1867.27268,20.5874022 L1874.685,27.999806 L1867.27268,35.4122098 C1866.90911,35.7757874 1866.90911,36.3640303 1867.27268,36.7276078 C1867.45389,36.9088146 1867.69213,37 1867.92998,37 C1868.16784,37 1868.40608,36.9088146 1868.58768,36.7276078 L1876,29.314816 L1883.41232,36.7276078 C1883.59392,36.9088146 1883.83177,37 1884.07002,37 C1884.30787,37 1884.54573,36.9088146 1884.72732,36.7276078 C1885.09089,36.3640303 1885.09089,35.7757874 1884.72732,35.4122098"></path>
+                </g>
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="header--body">
+
+    {% if module.top_bar.top_navigation|length > 0 or module.top_bar.top_left_text %}
+    <div class="header--top portable-visuallyhidden" aria-label="Top Bar Utility Menu" role="presentation" data-height="48">
+      <div class="grid hard--ends" role="presentation">
+        {% if module.top_bar.top_navigation|length > 0 %}
+        <div class="grid__item {% if module.top_bar.top_left_text %}nine-twelfths{% else %}one-whole{% endif %} hard--ends text--right" role="presentation">
+          <div class="header--top--nav all--valign--middle" role="presentation">
+            <nav class="header--top--nav--container" role="menubar">
+              {% for menuItem0 in module.top_bar.top_navigation %}
+              <div class="header--top--nav--item {% if (menuItem0.hyperlink.href == content.absolute_url) %}menu--item--active{% endif %}" role="presentation">
+                <a role="menuitem" class="header--top--nav--item--label" href="{% if menuItem0.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ menuItem0.hyperlink.href }}" {% if menuItem0.open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                  {% if menuItem0.menu_item_icon.name is defined  %}
+                  <span class="header--top--nav--item--icon--holder inline-block">
+                    {% icon name="{{ menuItem0.menu_item_icon.name }}" style="{{ menuItem0.menu_item_icon.type }}" unicode="{{ menuItem0.menu_item_icon.unicode }}" icon_set="{{ menuItem0.menu_item_icon.icon_set }}" width="12" height="12", purpose="decorative" %}
+                  </span>
+                  {% endif %}
+                  <span class="header--top--nav--item--label--inner" role="presentation">
+                    {{ menuItem0.menu_item_label }}
+                  </span>
+                </a>
+              </div>
+              {% endfor %}
+            </nav>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {# Header Main #}
+    <div class="header--main">
+      <div class="grid hard--ends">
+        <div class="grid__item one-whole hard overflow--visible all--valign--middle">
+
+          <a class="header--main--logo grid__item three-twelfths portable-seven-twelfths hard--ends lap-and-up-hard--left" title="{% if module.logo_svg.src %}{{ module.logo_svg.alt }}{% else %}{{ module.logo_png.alt }}{% endif %}" href="{{ module.logo_hyperlink_url.href }}">
+            <img alt="{% if module.logo_svg.src %}{{ module.logo_svg.alt }}{% else %}{{ module.logo_png.alt }}{% endif %}" class="header--main--logo--default" src="{% if module.logo_svg.src %}{{ module.logo_svg.src }}{% else %}{{ module.logo_png.src }}{% endif %}" {% if module.logo_svg.src && module.logo_png.src %}onerror="this.src='{{ module.logo_png.src }}'"{% endif %} width="{% if module.header.logo_svg.src %}{{ module.header.logo_svg.width }}{% else %}{{ module.header.logo_png.width }}{% endif %}" height="{% if module.header.logo_svg.src %}{{ module.header.logo_svg.height }}{% else %}{{ module.header.logo_png.height }}{% endif %}"/>
+            <img alt="{% if module.white_logo_svg.src %}{{ module.white_logo_svg.alt }}{% else %}{{ module.white_logo_png.alt }}{% endif %}" class="header--main--logo--white" src="{% if module.logo_white_svg.src %}{{ module.logo_white_svg.src }}{% else %}{{ module.logo_white_png.src }}{% endif %}" {% if module.logo_white_svg.src && module.logo_white_png.src %}onerror="this.src='{{ module.logo_white_png.src }}'"{% endif %} width="{% if module.header.logo_white_svg.src %}{{ module.header.logo_white_svg.width }}{% else %}{{ module.header.logo_white_png.width }}{% endif %}" height="{% if module.header.logo_white_svg.src %}{{ module.header.logo_white_svg.height }}{% else %}{{ module.header.logo_white_png.height }}{% endif %}" />
+          </a>
+
+          {% require_css %}
+            <style>
+              .header--main .header--main--logo img {
+                max-height: {{ module.logo_max_height }}px;
+                width:auto;
+                max-width:100%;
+                height:auto;
+              }
+              {% call functions.mediaQuery("portable") %}
+              .header--main .header--main--logo img {
+                max-height: {{ module.logo_max_height_mobile }}px !important;
+                width:auto;
+                max-width:100%;
+                height:auto!important;;
+              }
+              {% endcall %}
+            </style>
+          {% end_require_css %}
+
+          <div class="grid__item nine-twelfths portable-five-twelfths hard--ends lap-and-up-hard--right text--right">
+            <div class="header--main--nav--wrapper portable-visuallyhidden">
+              <nav aria-label="Main Menu" role="menubar" class="header--main--nav portable-visuallyhidden">
+                {# START: Main Navigation #}
+                {% for menuItem0 in module.main_navigation %}
+                {# START: Depth 0 #}
+                <div role="presentation" class="header--main--nav--item {% if menuItem0.child_menu_type != 'none' %}header--main--nav--item--parent{% endif %} {% if menuItem0.child_menu_type == "megamenu" %}header--main--nav--item--megamenu--parent{% endif %} {% if (menuItem0.hyperlink.href == content.absolute_url) %}menu--item--active{% endif %}">
+                  {% if menuItem0.add_a_hyperlink %}
+                  <a {% if menuItem0.child_menu_type != 'none' %}aria-haspopup="true" aria-expanded="false"{% endif %} class="header--main--nav--item--label" href="{% if menuItem0.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ menuItem0.hyperlink.href }}" {% if menuItem0.open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                    <span class="header--main--nav--item--label--inner">
+                      {{ menuItem0.menu_item_label }}
+                      {% if menuItem0.child_menu_type != 'none' %}
+                      <span class="header--main--nav--item--label--parent--indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>                      </span>
+                      {% endif %}
+                    </span>
+                  </a>
+                  {% else %}
+                  <span {% if menuItem0.child_menu_type != 'none' %}aria-haspopup="true" aria-expanded="false"{% endif %} class="header--main--nav--item--label">
+                    <span tabindex="0" class="header--main--nav--item--label--inner">
+                      {{ menuItem0.menu_item_label }}
+                      {% if menuItem0.child_menu_type != 'none' %}
+                      <span class="header--main--nav--item--label--parent--indicator">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>                      </span>
+                      {% endif %}
+                    </span>
+                  </span>
+                  {% endif %}
+                  {% if menuItem0.child_menu_type == "simplemenu" %}
+                  {# START: Nested Simple Menu #}
+                  <div class="header--main--nav--nestedmenu" role="presentation">
+                    {% simple_menu menu_tree="{{ menuItem0.nested_menu }}", no_wrapper=True %}
+                  </div>
+                  {# END: Nested Simple Menu #}
+                  {% elif menuItem0.child_menu_type == "megamenu" %}
+                  {# START: Mega Menu #}
+                  <div class="header--main--nav--megamenu  {{ menuItem0.mega_menu_dropdown_width }}" role="presentation">
+                    <div class="header--megamenu--wrapper" role="presentation">
+                      <div class="header--megamenu--body" role="presentation">
+                        <div class="header--megamenu--body--groups--wrapper" role="presentation">
+                          {% for megaGroup in menuItem0.mega_menu_groups %}
+                          <div class="header--megamenu--body--group background--{{ megaGroup.mega_menu_group_background_color }} {% if megaGroup.override_text_to_white %}all--color--white{% endif %}  header--megamenu--body--group--columns--{{ megaGroup.mega_menu_number_of_columns }}" style="width:{{ megaGroup.mega_menu_group_width }};" role="presentation">
+                            <div class="header--megamenu--group--wrapper" role="presentation">
+                              {% for link_block in megaGroup.mega_menu_link_blocks %}
+                              <div class="header--megamenu--link--block--wrapper" role="presentation">
+
+                                {% if link_block.link_block_icon.src %}
+                                <div class="header--megamenu--link--block--icon--wrapper">
+                                  <img src="{{ link_block.link_block_icon.src }}" width="{{ link_block.link_block_icon.width }}" height="{{ link_block.link_block_icon.height }}" alt="{{ link_block.link_block_icon.alt }}" />
+                                </div>
+                                {% endif %}
+
+                                <div class="header--megamenu--link--block--content">
+                                  {% if link_block.add_a_hyperlink_to_mega_menu_parent_label %}
+                                  <a role="menuitem" class="header--megamenu--group--header" href="{% if link_block.mega_menu_parent_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ link_block.mega_menu_parent_hyperlink.href }}" {% if link_block.open_mega_menu_parent_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                                    {% else %}
+                                    <span class="header--megamenu--group--header" role="presentation">
+                                      {% endif %}
+                                      <span class="header--megamenu--group--header--label" role="presentation">
+                                        <span class="header--megamenu--group--header--label--inner">
+                                          {{ link_block.mega_menu_parent_label }}
+                                          {% if link_block.add_a_hyperlink_to_mega_menu_parent_label %}
+                                          <span class="header--megamenu--group--header--label--parent--indicator">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg>                                          </span>
+                                          {% endif %}
+                                        </span>
+                                        {% if link_block.mega_menu_parent_description %}
+                                        <span class="header--megamenu--group--header--description">{{ link_block.mega_menu_parent_description }}</span>
+                                        {% endif %}
+                                      </span>
+                                      {% if link_block.add_a_hyperlink_to_mega_menu_parent_label %}
+                                      </a>
+                                    {% else %}
+                                    </span>
+                                  {% endif %}
+                                  {% if link_block.mega_menu_group_links %}
+                                  <div class="header--megamenu--group--nav" role="presentation">
+                                    {% simple_menu menu_tree="{{ link_block.mega_menu_group_links }}", flyouts=false, no_wrapper=True %}
+                                  </div>
+                                  {% endif %}
+                                </div>
+
+                              </div>
+                              {% endfor %}
+                            </div>
+                          </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                      {% if menuItem0.mega_menu_cta.show_mega_menu_cta %}
+                      <div class="header--megamenu--cta--wrapper" role="presentation">
+                        <div class="header--megamenu--cta" role="presentation">
+                          <div class="header--megamenu--cta--label" role="presentation">
+                            {{ menuItem0.mega_menu_cta.mega_menu_cta_text }}
+                          </div>
+                          <div class="header--megamenu--cta--button--wrapper" role="presentation">
+                            {% for button in menuItem0.mega_menu_cta.mega_menu_ctas %}
+                            <a role="menuitem" class="header--megamenu--cta--button btn btn--{{ button.button_color }}" href="{% if button.mega_menu_cta_hyperlink_url.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ button.mega_menu_cta_hyperlink_url.href }}" {% if button.mega_menu_cta_open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                              {{ button.mega_menu_cta_button_text }}
+                            </a>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {# END: Mega Menu #}
+                  {% endif %}
+                </div>
+                {# END: Depth 0 #}
+                {% endfor %}
+                {# END: Main Navigation #}
+              </nav>
+            </div>
+            <div class="header--main--secondarynav--wrapper" role="presentation">
+              {% if module.show_search %}
+              <div class="header--main--search">
+                <a title="Open Search" href="javascript:;" class="header--main--search--trigger">
+                  <span class="header--main--search--trigger--icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg></span>
+                  <span class="sr-only">Open Search</span>
+                </a>
+              </div>
+              {% endif %}
+              {% if module.secondary_navigation|length > 0 %}
+              <div class="header--main--secondarynav portable-visuallyhidden" role="presentation">
+                {# START: Secondary Navigation #}
+                {% for menuItem0 in module.secondary_navigation %}
+                {# START: Depth 0 #}
+                <div class="header--main--secondarynav--item {% if (menuItem0.hyperlink.href == content.absolute_url) %}menu--item--active{% endif %}" role="presentation">
+                  <a role="menuitem" class="header--main--secondarynav--item--label" href="{% if menuItem0.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ menuItem0.hyperlink.href }}" {% if menuItem0.open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                    <span class="header--main--secondarynav--item--label--inner">{{ menuItem0.menu_item_label }}</span>
+                  </a>
+                </div>
+                {# END: Depth 0 #}
+                {% endfor %}
+                {# END: Main Navigation #}
+              </div>
+              {% endif %}
+            </div>
+            {% if module.cta_button_text && module.cta_hyperlink_url %}
+              <a role="button" title="{{ module.cta_title_attribute_text }}" aria-label="{{ module.cta_title_attribute_text }}" class="header--main--cta btn btn--narrow portable-visuallyhidden" href="{% if module.cta_hyperlink_url.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ module.cta_hyperlink_url.href }}" {% if module.cta_open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                {{ module.cta_button_text }}
+              </a>
+            {% endif %}
+            <a class="header--main--menutrigger lap-and-up-visuallyhidden" role="presentation">
+              <span class="header--main--menutrigger--icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </a>
+          </div>
+
+          <div class="header--divider"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="main--search" class="header--main--search--input">
+    <div class="grid hard--ends portable-hard--sides">
+      <div class="grid__item hard one-whole desk-ten-twelfths">
+        <div class="header--search--lightbox--container">
+          {% if module.search_lightbox_header %}
+          <div class="h2 text--center color--white hard--ends">
+            {{ module.search_lightbox_header }}
+          </div>
+          {% endif %}
+          {% if module.search_lightbox_helper_text %}
+          <div class="p hard--top font--14 text--center color--white">
+            {{ module.search_lightbox_helper_text }}
+          </div>
+          {% endif %}
+          <div class="header--main--search--input--container relative">
+            <form onsubmit="event.preventDefault();headerSearch(this);">
+              <input role="searchbox" type="search" class="header--main--search--input--input" placeholder="{{ module.search_placeholder }}">
+              <input role="button" type="submit" class="visuallyhidden" value="Submit">
+              <div class="header--main--search--search">
+                <span class="header--main--search--search--icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/></svg></span>
+              </div>
+            </form>
+            <div class="header--main--search--close portable-visuallyhidden">
+              <a title="Close Search" href="javascript:;" class="header--main--search--close--icon">
+                <svg width="12px" height="12px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <path fill="#ffffff" d="M17.7273198,16.4122098 L10.3149959,8.99980599 L17.7273198,1.58740219 C18.0908934,1.22382461 18.0908934,0.635581711 17.7273198,0.272392162 C17.3641341,-0.0907973873 16.7755095,-0.0907973873 16.4123239,0.272392162 L9,7.68479596 L1.58767609,0.272392162 C1.22410244,-0.0907973873 0.635865875,-0.0907973873 0.27268024,0.272392162 C-0.0908934134,0.635581711 -0.0908934134,1.22382461 0.27268024,1.58740219 L7.68500415,8.99980599 L0.27268024,16.4122098 C-0.0908934134,16.7757874 -0.0908934134,17.3640303 0.27268024,17.7276078 C0.453885039,17.9088146 0.692128607,18 0.929984156,18 C1.16783971,18 1.40608327,17.9088146 1.58767609,17.7276078 L9,10.314816 L16.4123239,17.7276078 C16.5939167,17.9088146 16.8317723,18 17.0700158,18 C17.3078714,18 17.5457269,17.9088146 17.7273198,17.7276078 C18.0908934,17.3640303 18.0908934,16.7757874 17.7273198,16.4122098"></path>
+                </svg>
+                <span class="sr-only">Close Search</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mobilenav lap-and-up-visuallyhidden">
+    <div class="mobilenav--nav--wrapper">
+      <div class="mobilenav--nav">
+
+        {# START Level 0 #}
+        <div class="mobilenav--panel mobilenav--panel--depth--0 mobilenav--panel--active" rel="0" data-depth="0">
+          <div class="mobilenav--panel--outer">
+            <div class="mobilenav--panel--inner">
+
+              <div class="mobilenav--panel--body">
+                {# START: Mobile Navigation Menu #}
+                {% for item1 in module.main_navigation %}
+                {% set item1Index = loop.index %}
+                <div class="mobilenav--nav--item {% if item1.child_menu_type != 'none' %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}">
+                  {% if item1.add_a_hyperlink %}
+                  <a href="{% if item1.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item1.hyperlink.href }}" {% if item1.open_hyperlink_in_new_tab %}target="_blank"{% endif %} class="mobilenav--nav--item--label">
+                    {{ item1.menu_item_label }}
+                  </a>
+                  {% else %}
+                  <span class="mobilenav--nav--item--label">
+                    {{ item1.menu_item_label }}
+                  </span>
+                  {% endif %}
+
+                  {% if item1.child_menu_type == "simplemenu" %}
+                    {# START: Nested Simple Menu #}
+                    {# START Level 1 #}
+                    <div class="mobilenav--panel mobilenav--panel--depth--1" rel="p-{{ item1Index }}" data-depth="1">
+                      <div class="mobilenav--panel--outer">
+                        <div class="mobilenav--panel--inner">
+                          <div class="mobilenav--panel--body">
+                            <div class="mobilenav--nav--back" rel="0">
+                              <div class="mobilenav--nav--back--label">
+                                {{ item1.menu_item_label }}
+                                {# Back to Main Navigation #}
+                              </div>
+                            </div>
+                            {% if item1.add_a_hyperlink %}
+                              <div class="mobilenav--nav--item">
+                                <a href="{% if item1.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item1.hyperlink.href }}" target="{{ item1.linkTarget }}" class="mobilenav--nav--item--label">
+                                  {% if item1.mobile_menu_label %}{{ item1.mobile_menu_label }}{% else %}{{ item1.menu_item_label }}{% endif %}
+                                </a>
+                              </div>
+                            {% endif %}
+                            {% for item2 in item1.nested_menu %}
+                              {% set item2Index = loop.index %}
+                              <div class="mobilenav--nav--item {% if item2.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}">
+                                <a href="{{ item2.url }}" {% if item2.linkTarget %}target="{{ item2.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                  {{ item2.linkLabel }}
+                                </a>
+                                {% if item2.children|length > 0 %}
+                                  {# START Level 2 #}
+                                  <div class="mobilenav--panel mobilenav--panel--depth--2" rel="p-{{ item1Index }}-{{ item2Index }}" data-depth="2">
+                                    <div class="mobilenav--panel--outer">
+                                      <div class="mobilenav--panel--inner">
+                                        <div class="mobilenav--panel--body">
+                                          <div class="mobilenav--nav--back" rel="p-{{ item1Index }}">
+                                            <div class="mobilenav--nav--back--label">
+                                              {{ item2.linkLabel }}
+                                              {# Back to {{ item1.menu_item_label }} #}
+                                            </div>
+                                          </div>
+                                          {% if item2.url %}
+                                            <div class="mobilenav--nav--item {% if item3.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-0">
+                                              <a href="{{ item2.url }}" {% if item2.linkTarget %}target="{{ item2.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                {{ item2.linkLabel }}
+                                              </a>
+                                            </div>
+                                          {% endif %}
+                                          {% for item3 in item2.children %}
+                                            {% set item3Index = loop.index %}
+                                            <div class="mobilenav--nav--item {% if item3.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}">
+                                              <a href="{{ item3.url }}" {% if item3.linkTarget %}target="{{ item3.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                {{ item3.linkLabel }}
+                                              </a>
+                                              {% if item3.children|length > 0 %}
+                                                {# START Level 3 #}
+                                                <div class="mobilenav--panel mobilenav--panel--depth--3" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}" data-depth="3">
+                                                  <div class="mobilenav--panel--outer">
+                                                    <div class="mobilenav--panel--inner">
+                                                      <div class="mobilenav--panel--body">
+                                                        <div class="mobilenav--nav--back" rel="p-{{ item1Index }}-{{ item2Index }}">
+                                                          <div class="mobilenav--nav--back--label">
+                                                            {{ item3.linkLabel }}
+                                                            {# Back to {{ item2.linkLabel }} #}
+                                                          </div>
+                                                        </div>
+                                                        {% if item3.url %}
+                                                          <div class="mobilenav--nav--item {% if item3.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-0">
+                                                            <a href="{{ item3.url }}" {% if item3.linkTarget %}target="{{ item3.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                              {{ item3.linkLabel }}
+                                                            </a>
+                                                          </div>
+                                                        {% endif %}
+                                                        {% for item4 in item3.children %}
+                                                          {% set item4Index = loop.index %}
+                                                          <div class="mobilenav--nav--item {% if item4.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}">
+                                                            <a href="{{ item4.url }}" {% if item4.linkTarget %}target="{{ item4.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                              {{ item4.linkLabel }}
+                                                            </a>
+                                                            {% if item4.children|length > 0 %}
+                                                            {# START Level 4 #}
+                                                            <div class="mobilenav--panel mobilenav--panel--depth--4" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}" data-depth="4">
+                                                              <div class="mobilenav--panel--outer">
+                                                                <div class="mobilenav--panel--inner">
+                                                                  <div class="mobilenav--panel--body">
+                                                                    <div class="mobilenav--nav--back" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}">
+                                                                      <div class="mobilenav--nav--back--label">
+                                                                        {{ item4.linkLabel }}
+                                                                        {# Back to {{ item3.linkLabel }} #}
+                                                                      </div>
+                                                                    </div>
+                                                                    {% if item4.url %}
+                                                                      <div class="mobilenav--nav--item {% if item4.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-0">
+                                                                        <a href="{{ item4.url }}" {% if item4.linkTarget %}target="{{ item4.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                                          {{ item4.linkLabel }}
+                                                                        </a>
+                                                                      </div>
+                                                                    {% endif %}
+                                                                    {% for item5 in item4.children %}
+                                                                      {% set item5Index = loop.index %}
+                                                                      <div class="mobilenav--nav--item {% if item5.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}">
+                                                                        <a href="{{ item5.url }}" {% if item5.linkTarget %}target="{{ item5.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                                          {{ item5.linkLabel }}
+                                                                        </a>
+                                                                        {% if item5.children|length > 0 %}
+                                                                        {# START Level 5 #}
+                                                                        <div class="mobilenav--panel mobilenav--panel--depth--5" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}" data-depth="5">
+                                                                          <div class="mobilenav--panel--outer">
+                                                                            <div class="mobilenav--panel--inner">
+                                                                              <div class="mobilenav--panel--body">
+                                                                                <div class="mobilenav--nav--back" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}">
+                                                                                  <div class="mobilenav--nav--back--label">
+                                                                                    {{ item5.linkLabel }}
+                                                                                    {# Back to {{ item4.linkLabel }} #}
+                                                                                  </div>
+                                                                                </div>
+                                                                                {% if item5.url %}
+                                                                                  <div class="mobilenav--nav--item {% if item5.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}-0">
+                                                                                    <a href="{{ item5.url }}" {% if item5.linkTarget %}target="{{ item5.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                                                      {{ item5.linkLabel }}
+                                                                                    </a>
+                                                                                  </div>
+                                                                                {% endif %}
+                                                                                {% for item6 in item5.children %}
+                                                                                  {% set item6Index = loop.index %}
+                                                                                  <div class="mobilenav--nav--item {% if item6.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}-{{ item6Index }}">
+                                                                                    <a href="{{ item6.url }}" {% if item6.linkTarget %}target="{{ item6.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                                                      {{ item6.linkLabel }}
+                                                                                    </a>
+                                                                                    {% if item6.children|length > 0 %}
+                                                                                    {# START Level 6 #}
+                                                                                    <div class="mobilenav--panel mobilenav--panel--depth--6" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}-{{ item6Index }}" data-depth="6">
+                                                                                      <div class="mobilenav--panel--outer">
+                                                                                        <div class="mobilenav--panel--inner">
+                                                                                          <div class="mobilenav--panel--body">
+                                                                                            <div class="mobilenav--nav--back" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}">
+                                                                                              <div class="mobilenav--nav--back--label">
+                                                                                                {{ item6.linkLabel }}
+                                                                                                {# Back to {{ item5.linkLabel }} #}
+                                                                                              </div>
+                                                                                            </div>
+                                                                                            {% if item6.url %}
+                                                                                              <div class="mobilenav--nav--item {% if item6.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}-{{ item6Index }}-0">
+                                                                                                <a href="{{ item6.url }}" {% if item6.linkTarget %}target="{{ item6.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                                                                  {{ item6.linkLabel }}
+                                                                                                </a>
+                                                                                              </div>
+                                                                                            {% endif %}
+                                                                                            {% for item7 in item6.children %}
+                                                                                            {% set item7Index = loop.index %}
+                                                                                            <div class="mobilenav--nav--item" rel="p-{{ item1Index }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}-{{ item5Index }}-{{ item6Index }}-{{ item7Index }}">
+                                                                                              <a href="{{ item7.url }}" {% if item7.linkTarget %}target="{{ item7.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                                                                {{ item7.linkLabel }}
+                                                                                              </a>
+                                                                                            </div>
+                                                                                            {% endfor %}
+                                                                                          </div>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                    </div>
+                                                                                    {# END Level 5 #}
+                                                                                    {% endif %}
+                                                                                  </div>
+                                                                                {% endfor %}
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                        {# END Level 5 #}
+                                                                        {% endif %}
+                                                                      </div>
+                                                                    {% endfor %}
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            {# END Level 4 #}
+                                                            {% endif %}
+                                                          </div>
+                                                        {% endfor %}
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                {# END Level 3 #}
+                                              {% endif %}
+                                            </div>
+                                          {% endfor %}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {# END Level 2 #}
+                                {% endif %}
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {# END Level 1 #}
+                    {# END: Nested Simple Menu #}
+                  {% elif item1.child_menu_type == "megamenu" %}
+                  {# START: Megamenu #}
+                  {# START Level 1 #}
+                  <div class="mobilenav--panel mobilenav--panel--depth--1 mobilenav--panel--megagroup" rel="p-{{ item1Index }}" data-depth="1">
+                    <div class="mobilenav--panel--outer">
+                      <div class="mobilenav--panel--inner">
+                        <div class="mobilenav--panel--body">
+                          <div class="mobilenav--nav--back" rel="0">
+                            <div class="mobilenav--nav--back--label">
+                              {{ item1.menu_item_label }}
+                              {# Back to Main Navigation #}
+                            </div>
+                          </div>
+                          {% if item1.add_a_hyperlink %}
+                          <div class="mobilenav--nav--item">
+                            <a href="{% if item1.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item1.hyperlink.href }}" target="{{ item1.linkTarget }}" class="mobilenav--nav--item--label">
+                              <span class="mobilenav--nav--item--label--label">
+                                {% if item1.mobile_menu_label %}{{ item1.mobile_menu_label }}{% else %}{{ item1.menu_item_label }}{% endif %}
+                              </span>
+                            </a>
+                          </div>
+                          {% endif %}
+                          {% for group in item1.mega_menu_groups %}
+                          {% set groupIndex = loop.index %}
+                          {% for item2 in group.mega_menu_link_blocks %}
+                          {% set item2Index = loop.index %}
+                          <div class="mobilenav--nav--item {% if item2.mega_menu_group_links|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ groupIndex }}-{{ item2Index }}">
+                            <a class="mobilenav--nav--item--label {% if item2.link_block_icon.src %}flex{% endif %}" href="{% if item2.mega_menu_parent_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item2.mega_menu_parent_hyperlink.href }}" {% if item2.open_mega_menu_parent_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                              {% if item2.link_block_icon.src %}
+                              <div class="mobilenav--nav--item--label--icon">
+                                <img src="{{ item2.link_block_icon.src }}" width="{{ item2.link_block_icon.width }}" height="{{ item2.link_block_icon.height }}" alt="{{ item2.link_block_icon.alt }}" />
+                              </div>
+                              {% endif %}
+                              <div class="mobilenav--nav--item--label--container">
+                                <span class="mobilenav--nav--item--label--label">
+                                  {{ item2.mega_menu_parent_label }}
+                                </span>
+                                {% if item2.mega_menu_parent_description %}
+                                <span class="mobilenav--nav--item--label--description">
+                                  {{ item2.mega_menu_parent_description }}
+                                </span>
+                                {% endif %}
+                              </div>
+                            </a>
+                            {# START Level 2 #}
+                            <div class="mobilenav--panel mobilenav--panel--depth--2" rel="p-{{ item1Index }}-{{ groupIndex }}-{{ item2Index }}" data-depth="2">
+                              <div class="mobilenav--panel--outer">
+                                <div class="mobilenav--panel--inner">
+                                  <div class="mobilenav--panel--body">
+                                    <div class="mobilenav--nav--back" rel="p-{{ item1Index }}">
+                                      <div class="mobilenav--nav--back--label">
+                                        {{ item2.mega_menu_parent_label }}
+                                        {# Back to {{ item1.menu_item_label }} #}
+                                      </div>
+                                    </div>
+
+                                    {% if item2.add_a_hyperlink_to_mega_menu_parent_label %}
+                                    <div class="mobilenav--nav--item">
+                                      <a href="{% if item2.mega_menu_parent_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item2.mega_menu_parent_hyperlink.href }}" {% if item2.open_mega_menu_parent_hyperlink_in_new_tab %}target="_blank"{% endif %} class="mobilenav--nav--item--label">
+                                        {% if item2.mobile_menu_parent_label %}{{ item2.mobile_menu_parent_label }}{% else %}{{ item2.mega_menu_parent_label }}{% endif %}
+                                      </a>
+                                    </div>
+                                    {% endif %}
+                                    {% for item3 in item2.mega_menu_group_links %}
+                                    {% set item3Index = loop.index %}
+                                    <div class="mobilenav--nav--item {% if item2.children|length > 0 %}mobilenav--nav--item--parent{% endif %}" rel="p-{{ item1Index }}-{{ groupIndex }}-{{ item2Index }}-{{ item3Index }}">
+                                      <a href="{{ item3.url }}" {% if item3.linkTarget %}target="{{ item3.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                        {{ item3.linkLabel }}
+                                      </a>
+                                      {% if item3.children|length > 0 %}
+                                      {# START Level 3 #}
+                                      <div class="mobilenav--panel mobilenav--panel--depth--3" rel="p-{{ item1Index }}-{{ groupIndex }}-{{ item2Index }}-{{ item3Index }}" data-depth="3">
+                                        <div class="mobilenav--panel--outer">
+                                          <div class="mobilenav--panel--inner">
+                                            <div class="mobilenav--panel--body">
+                                              <div class="mobilenav--nav--back" rel="p-{{ item1Index }}-{{ item2Index }}">
+                                                <div class="mobilenav--nav--back--label">
+                                                  {{ item3.linkLabel }}
+                                                  {# Back to {{ item2.mega_menu_parent_label }} #}
+                                                </div>
+                                              </div>
+
+                                              {% if item3.children|length > 0 %}
+                                              {% for item4 in item3.children %}
+                                              {% set item4Index = loop.index %}
+                                              <div class="mobilenav--nav--item" rel="p-{{ item1Index }}-{{ groupIndex }}-{{ item2Index }}-{{ item3Index }}-{{ item4Index }}">
+                                                <a href="{{ item4.url }}" {% if item4.linkTarget %}target="{{ item4.linkTarget }}"{% endif %} class="mobilenav--nav--item--label">
+                                                  {{ item4.linkLabel }}
+                                                </a>
+                                              </div>
+                                              {% endfor %}
+                                              {% endif %}
+
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      {# END Level 3 #}
+                                      {% endif %}
+                                    </div>
+                                    {% endfor %}
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {# END Level 2 #}
+                          </div>
+                          {% endfor %}
+                          {% endfor %}
+                        </div>
+
+                        {% if (item1.mega_menu_cta.show_mega_menu_cta)&&(item1.mega_menu_cta.show_mega_menu_cta_in_mobile_navigation) %}
+                        <div class="mobilenav--cta--wrapper">
+                          <span class="block"></span>
+                          {% if item1.mega_menu_cta.mega_menu_cta_text %}
+                          <div class="mobilenav--cta--label">
+                            {{ item1.mega_menu_cta.mega_menu_cta_text }}
+                          </div>
+                          {% endif %}
+                          {% for button in item1.mega_menu_cta.mega_menu_ctas %}
+                          <a role="button" title="{{ button.mega_menu_cta_button_text }}" aria-label="{{ button.mega_menu_cta_button_text }}" class="mobilenav--cta btn btn--{{ button.button_color }}" href="{% if button.mega_menu_cta_hyperlink_url.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ button.mega_menu_cta_hyperlink_url.href }}" {% if button.mega_menu_cta_open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                            {{ button.mega_menu_cta_button_text }}
+                          </a>
+                          {% endfor %}
+                        </div>
+                        {% endif %}
+
+                      </div>
+                    </div>
+                  </div>
+                  {# END Level 1 #}
+                  {# END: Megamenu #}
+                  {% endif %}
+
+                </div>
+                {% endfor %}
+                {# END: Mobile Navigation Menu #}
+                {# START: Secondary Navigation Menu #}
+                {% for menuItem0 in module.secondary_navigation %}
+                <div class="mobilenav--nav--item" rel="s-{{ loop.index - 1 }}">
+                  <a href="{% if menuItem0.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ menuItem0.hyperlink.href }}" {% if menuItem0.open_hyperlink_in_new_tab %}target="_blank"{% endif %} class="mobilenav--nav--item--label">
+                    {{ menuItem0.menu_item_label }}
+                  </a>
+                </div>
+                {% endfor %}
+                {# END: Secondary Navigation Menu #}
+                {# START: Top Bar Navigation Menu #}
+                {% for menuItem0 in module.top_bar.top_navigation %}
+                <div class="mobilenav--nav--item" rel="s-{{ loop.index - 1 }}">
+                  <a href="{% if menuItem0.hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ menuItem0.hyperlink.href }}" {% if menuItem0.open_hyperlink_in_new_tab %}target="_blank"{% endif %} class="mobilenav--nav--item--label {% if menuItem0.menu_item_highlight %}mobilenav--nav--item--label--highlight{% endif %}">
+                    {% if menuItem0.menu_item_icon.name is defined  %}
+                    <span class="mobilenav--nav--item--icon--holder inline-block">
+                      {% icon name="{{ menuItem0.menu_item_icon.name }}" style="{{ menuItem0.menu_item_icon.type }}" unicode="{{ menuItem0.menu_item_icon.unicode }}" icon_set="{{ menuItem0.menu_item_icon.icon_set }}" width="12" height="12", purpose="decorative" %}
+                    </span>
+                    {% endif %}
+                    <span class="mobilenav--nav--item--label--inner inline-block">
+                      {{ menuItem0.menu_item_label }}
+                    </span>
+                  </a>
+                </div>
+                {% endfor %}
+                {# END: Top Bar Navigation Menu #}
+              </div>
+
+              {% if module.cta_button_text && module.cta_hyperlink_url %}
+              {# <div class="mobilenav--cta--spacer"></div> #}
+              <div class="mobilenav--cta--wrapper">
+                <span class="block"></span>
+                <a role="button" title="{{ module.cta_title_attribute_text }}" aria-label="{{ module.cta_title_attribute_text }}" class="mobilenav--cta btn btn--primary" href="{% if module.cta_hyperlink_url.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ module.cta_hyperlink_url.href }}"  {% if module.cta_open_hyperlink_in_new_tab %}target="_blank"{% endif %}>
+                  {{ module.cta_button_text }}
+                </a>
+              </div>
+              {% endif %}
+
+            </div>
+          </div>
+          {# END Level 0 #}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+{% require_js %}
+  <script>
+    {# HEADER SEARCH #}
+    function headerSearch() {
+      const searchInput = document.querySelector(".header--main--search--input--input");
+
+      if (searchInput) {
+        const searchTerm = searchInput.value.trim();
+
+        if (searchTerm.length > 0) {
+          window.location.href = "{{ module.url_of_hubspot_search_results_page.href }}?term=" + encodeURIComponent(searchTerm);
+        } else {
+          searchInput.focus();
+        }
+      }
+    }
+
+    {# SIZE ANCHOR #}
+    function sizeAnchor() {
+      const body = document.body;
+      const headerAnchor = body.querySelector(".header--anchor");
+      const section = body.querySelector(".body-container-wrapper .section");
+      const pageCenter = body.querySelector(".body-container-wrapper .page-center");
+
+      if (!headerAnchor) {
+        if (section) {
+          section.insertAdjacentHTML('afterbegin', "<div class='header--anchor'></div>");
+        } else if (pageCenter) {
+          pageCenter.insertAdjacentHTML('afterbegin', "<div class='header--anchor'></div>");
+        } else {
+          body.classList.add("header--static");
+        }
+      }
+
+      const thisHeader = body.querySelector("header");
+      let thisHelloHeight = 0;
+      if (body.classList.contains("header--hello--visible")) {
+        const headerHelloBody = thisHeader.querySelector(".header--hello--body");
+        thisHelloHeight = headerHelloBody ? headerHelloBody.offsetHeight : 0;
+      }
+
+      let thisHeaderTop = 0;
+      if (window.innerWidth > 1024) {
+        {% if not widget_data.controls.hide_navigation && module.top_bar.top_navigation|length > 0 %}
+          const headerTop = thisHeader.querySelector(".header--top");
+          thisHeaderTop = headerTop ? (headerTop.offsetHeight > 0 ? headerTop.offsetHeight : headerTop.dataset.height) : 0;
+        {% endif %}
+      }
+
+      const thisHeaderMain = thisHeader.querySelector(".header--main").offsetHeight;
+      const thisHeaderAnchor = body.querySelector(".header--anchor");
+      const thisOffsetBackground = body.querySelector('.section .background .background--layer.background--layer--offset ~ .background--layer');
+
+      if (!body.classList.contains("header--hello--transitioning")) {
+        const headerRect = thisHeader.getBoundingClientRect();
+        if (headerRect.top >= 0 && headerRect.bottom <= window.innerHeight) {
+          if (thisHeaderAnchor) {
+            thisHeaderAnchor.style.height = (thisHeaderMain + thisHeaderTop + thisHelloHeight) + "px";
+          }
+          if (thisOffsetBackground) {
+            thisOffsetBackground.style.marginTop = (thisHeaderMain + thisHeaderTop + thisHelloHeight + 20) + "px";
+          }
+        }
+      }
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Desktop Device Navigation
+      document.body.addEventListener('mouseenter', function(event) {
+        if (event.target.matches('.header--main--nav--item, .header--main--secondarynav--item')) {
+          const siblings = Array.from(event.target.parentNode.children);
+          siblings.forEach(sibling => sibling.classList.remove('active'));
+          event.target.classList.add('active');
+        }
+      }, true);
+
+      document.body.addEventListener('mouseleave', function(event) {
+        if (event.target.matches('.header--main--nav--item, .header--main--secondarynav--item')) {
+          event.target.classList.remove('active');
+        }
+      }, true);
+
+      document.body.addEventListener('mouseleave', function(event) {
+        if (event.target.matches('.header--main--nav .hs-menu-wrapper li.hs-item-has-children')) {
+          event.target.classList.remove('active');
+        }
+      }, true);
+
+      // Touch Device Navigation
+      document.addEventListener('touchstart', function(event) {
+        if (event.target.matches('.header--main--nav--item--label')) {
+          const parent = event.target.parentNode;
+          if (parent.classList.contains('active')) {
+            parent.classList.remove('active');
+            parent.blur();
+          } else {
+            parent.classList.add('active');
+            parent.focus();
+          }
+        }
+      }, true);
+
+      document.body.addEventListener('touchstart', function(event) {
+        console.log(event.target);
+        if (event.target.matches('.header--main--nav .hs-menu-wrapper li.hs-item-has-children > a')) {
+          const element = event.target;
+          const parentListItem = element.parentNode;
+          if (parentListItem.classList.contains('active')) {
+            parentListItem.classList.remove('active');
+          } else {
+            parentListItem.classList.add('active');
+          }
+        }
+      }, true);
+
+      // Tabbed navigation for non-touch devices
+      if (!touch()) {
+        document.addEventListener('focusin', function(event) {
+          if (event.target.matches('.header--main--nav--item')) {
+            const siblings = Array.from(event.target.parentNode.children);
+            siblings.forEach(sibling => sibling.classList.remove('active'));
+            event.target.classList.add('active');
+          }
+        }, true);
+
+        document.addEventListener('focusin', function(event) {
+          if (event.target.matches('.header--main--nav .hs-menu-wrapper li.hs-item-has-children')) {
+            event.target.classList.add('active');
+          }
+        }, true);
+
+        document.addEventListener('focusin', function(event) {
+          if (event.target.matches('.header--main--nav .hs-menu-wrapper li')) {
+            const siblings = Array.from(event.target.parentNode.children);
+            siblings.forEach(sibling => sibling.classList.remove('active'));
+          }
+        }, true);
+
+        document.addEventListener('focusin', function(event) {
+          if (event.target.matches('.header--main--search')) {
+            document.querySelectorAll('.header--main--nav--item.active, .header--main--nav .hs-menu-wrapper li.hs-item-has-children.active').forEach(el => el.classList.remove('active'));
+          }
+        }, true);
+
+        document.addEventListener('keyup', function(event) {
+          if (event.key === "Escape") {
+            document.querySelectorAll('.header--main--nav--item, .header--main--nav .hs-menu-wrapper li').forEach(el => el.classList.remove('active'));
+          }
+        });
+      }
+    });
+
+    {# Header sizing calculations function #}
+    let lastScrollDist = 0;
+    let helloBarTransition = false;
+
+    function sizeHeader() {
+      // Sticky header initialize
+      const body = document.body;
+      const header = body.querySelector("header");
+
+      if (!body.classList.contains("header--static")) {
+        const scrollDist = window.scrollY;
+        const headerBody = header.querySelector(".header--body");
+
+        body.classList.add("header--initialized");
+
+        let scrollDistOffset = 0;
+        if (body.classList.contains("header--hello--visible")) {
+          const headerHello = body.querySelector(".header--hello");
+          scrollDistOffset += headerHello ? headerHello.offsetHeight : 0;
+        }
+
+        const scrollDistRecalculated = scrollDist - (body.classList.contains("header--hello--visible") ? (body.querySelector(".header--hello--body").offsetHeight || 0) : 0);
+
+        let scrollDirection = "neutral";
+        if (scrollDistRecalculated < lastScrollDist) {
+          scrollDirection = "up";
+        } else if (scrollDistRecalculated > lastScrollDist) {
+          scrollDirection = "down";
+        }
+
+        lastScrollDist = scrollDistRecalculated;
+
+        let stickyStart = 0;
+        if (body.classList.contains("header--hello--visible") && !body.classList.contains("header--hello--closed")) {
+          const headerHello = body.querySelector(".header--hello");
+          stickyStart += headerHello ? headerHello.offsetHeight : 0;
+        }
+        stickyStart += headerBody.offsetHeight;
+
+        if ((scrollDist > (header.offsetHeight / 2)) && !helloBarTransition && (!body.classList.contains("mobilenav--active") || document.documentElement.clientWidth >= 1024)) {
+          body.classList.add("header--fixed");
+          body.classList.remove("header--notfixed");
+
+          if (scrollDist >= stickyStart) {
+            body.classList.remove("header--isanchored");
+            body.classList.add("header--issticky");
+
+            if (scrollDirection === "up") {
+              body.classList.remove("header--hidden");
+              body.classList.add("header--visible");
+              header.style.top = "";
+            } else if (scrollDirection === "down") {
+              body.classList.add("header--hidden");
+              body.classList.remove("header--visible");
+              header.style.top = (-1 * stickyStart) + "px";
+            }
+          } else {
+            body.classList.remove("header--hidden");
+            body.classList.add("header--visible");
+            header.style.top = "";
+          }
+        } else {
+          body.classList.add("header--isanchored");
+          body.classList.remove("header--issticky");
+          body.classList.add("header--notfixed");
+          body.classList.remove("header--fixed", "header--hidden");
+          body.classList.add("header--visible");
+          header.style.top = "";
+        }
+      }
+
+      if (typeof sizeSubmenu === "function") {
+        sizeSubmenu();
+      }
+    }
+
+    {# Mobile navigation sizing calculations function #}
+    function sizeMobilenav() {
+      const body = document.body;
+      const isMobilenavActive = body.classList.contains("mobilenav--active");
+      const isHeaderStatic = body.classList.contains("header--static");
+
+      if (isMobilenavActive) {
+        if (isHeaderStatic) {
+          window.scrollTo(0, 0);
+        }
+
+        const mobilenavCtaSpacer = body.querySelector(".mobilenav--cta--spacer");
+        if (mobilenavCtaSpacer) {
+          mobilenavCtaSpacer.style.height = "";
+        }
+
+        const header = body.querySelector("header .header--body");
+        const headerHeight = header ? header.offsetHeight : 0;
+        const headerHelloIsVisible = body.classList.contains("header--hello--visible");
+        const headerHello = body.querySelector("header .header--hello");
+        const headerHelloHeight = headerHelloIsVisible && headerHello ? headerHello.offsetHeight : 0;
+        const windowHeight = window.innerHeight;
+        const minHeight = windowHeight - headerHeight - headerHelloHeight;
+
+        const mobilenav = body.querySelector(".mobilenav");
+        if (mobilenav) {
+          mobilenav.style.height = `${minHeight}px`;
+        }
+
+        const mobilenavPanels = body.querySelectorAll(".mobilenav--panel");
+        mobilenavPanels.forEach(panel => {
+          const ctaSpacer = panel.querySelector(".mobilenav--cta--spacer");
+          if (ctaSpacer) {
+            const panelBody = panel.querySelector(".mobilenav--panel--body");
+            const panelCtaWrapper = panel.querySelector(".mobilenav--cta--wrapper");
+            const panelBodyHeight = panelBody ? panelBody.offsetHeight : 0;
+            const panelCtaHeight = panelCtaWrapper ? panelCtaWrapper.offsetHeight : 0;
+
+            if (panelBodyHeight + panelCtaHeight + 21 < minHeight) {
+              ctaSpacer.style.height = `${minHeight - (panelBodyHeight + panelCtaHeight + 21)}px`;
+            }
+          }
+        });
+      } else {
+        const elements = body.querySelectorAll(".mobilenav, .mobilenav--cta--spacer");
+        elements.forEach(el => {
+          el.style.height = "0px";
+        });
+      }
+    }
+
+    {# Attach mobile menu toggle event #}
+    document.querySelector(".header--main--menutrigger").addEventListener("click", function() {
+      const body = document.body;
+      const mobilenavNav = body.querySelector(".mobilenav--nav");
+      const mobilenavPanels = body.querySelectorAll(".mobilenav--panel");
+
+      if (body.classList.contains("mobilenav--active")) {
+        body.classList.remove("mobilenav--active");
+        sizeMobilenav();
+      } else {
+        if (mobilenavNav) {
+          mobilenavNav.classList.add("no--transition");
+          // Trigger reflow
+          mobilenavNav.offsetHeight;
+          mobilenavNav.style.left = "";
+        }
+
+        mobilenavPanels.forEach(panel => {
+          panel.classList.remove("mobilenav--panel--active");
+        });
+
+        if (mobilenavNav) {
+          // Trigger reflow
+          mobilenavNav.offsetHeight;
+          mobilenavNav.classList.remove("no--transition");
+        }
+
+        body.classList.add("mobilenav--active");
+        sizeMobilenav();
+      }
+    });
+
+    {# Prevent nested navigation menus from going off screen #}
+    function adjustSubmenuPosition(event) {
+      const item = event.currentTarget;
+      const thisChild = item.querySelector(":scope > ul");
+      if (thisChild) {
+        thisChild.style.marginLeft = ""; // Reset margin-left
+
+        const windowWidth = window.innerWidth;
+        const childOffset = thisChild.getBoundingClientRect().left;
+        const childWidth = thisChild.offsetWidth;
+        const childOverlap = windowWidth - (childOffset + childWidth);
+
+        if (childOverlap < 0) {
+          thisChild.style.marginLeft = `${childOverlap}px`;
+        }
+      }
+    }
+    document.querySelectorAll(".header--main--nav .hs-menu-wrapper li.hs-item-has-children").forEach(item => {
+      item.addEventListener("mouseenter", adjustSubmenuPosition);
+      item.addEventListener("touchstart", adjustSubmenuPosition);
+    });
+
+    {# Hello Bar #}
+    {% if helloBarEnabled %}
+    function helloCookieDefined(helloCookieName) {
+      var helloCookiePattern = new RegExp(/^(.*;)?\s*{{ module.hello_bar.cookie_name_id }}\s*=\s*[^;]+(.*)?$/);
+      return document.cookie.match(helloCookiePattern) ? true : false;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var body = document.body;
+      var headerHello = document.querySelector('.header--hello');
+      var headerHelloClose = document.querySelector('.header--hello--close');
+      var headerAnchor = document.querySelector('.header--anchor');
+      var headerBody = document.querySelector('header .header--body');
+
+      if (headerHelloClose) {
+        headerHelloClose.addEventListener('click', function () {
+          body.classList.add('header--hello--closed');
+          body.classList.remove('header--hello--visible');
+
+          // Slide up effect
+          headerHello.style.transition = 'height 0.3s ease';
+          headerHello.style.height = '0';
+          headerHello.style.overflow = 'hidden';
+
+          // Animate height
+          headerAnchor.style.transition = 'height 0.3s ease';
+          headerAnchor.style.height = headerBody.offsetHeight + 'px';
+
+          setCookie("{{ module.hello_bar.cookie_name_id }}", "1", {{ module.hello_bar.cookie_lifetime_days_when_closed }});
+        });
+      }
+
+      var helloContentLinks = document.querySelectorAll('.header--hello--content a, .header--hello--content .hs-cta-wrapper');
+      helloContentLinks.forEach(function(link) {
+        link.addEventListener('click', function () {
+          setCookie("{{ module.hello_bar.cookie_name_id }}", "1", {{ module.hello_bar.cookie_lifetime_days_when_clicked }});
+        });
+      });
+
+      sizeMobilenav();
+
+      if (helloCookieDefined() && ({% if request.query_dict.hello == "true" %}false{% else %}true{% endif %})) {
+        body.classList.remove('header--hello--visible');
+        if (headerHello) {
+          headerHello.style.display = 'none';
+        }
+      } else {
+        body.classList.add('header--hello--visible');
+        var helloVisibilityString = '{{ module.hello_bar.device_visibility }}';
+        var helloVisibility = helloVisibilityString.split(' ');
+        helloVisibility.forEach(function(visibility) {
+          body.classList.add('hello--' + visibility);
+        });
+        if (headerHello) {
+          headerHello.style.display = 'block';
+        }
+      }
+    });
+    {% endif %}
+
+    {# Attach search events #}
+    document.querySelector('.header--main--search--trigger').addEventListener('click', function() {
+      Fancybox.show([{
+        src: '#main--search',
+        type: 'inline',
+        closeButton: 'outside',
+      }], {
+        on: {
+          ready: (fancybox) => {
+            const searchElement = document.querySelector('.header--main--search--search');
+            if (searchElement) {
+              searchElement.classList.add('active');
+            }
+            document.body.classList.add('header--main--search--search--active');
+          },
+          destroy: (fancybox) => {
+            document.body.classList.remove('header--main--search--search--active');
+            const inputElement = document.querySelector('.header--main--search--input--input');
+            if (inputElement) {
+              inputElement.value = '';
+              inputElement.blur();
+            }
+            if (window.innerWidth > 1023) {
+              const triggerElement = document.querySelector('.header--main--search--trigger');
+              if (triggerElement) {
+                triggerElement.focus();
+              }
+            }
+          }
+        }
+      });
+    });
+
+    document.querySelector('.header--main--search--close').addEventListener('click', function() {
+      Fancybox.close();
+    });
+
+    document.querySelector('.header--main--search--search').addEventListener('click', function() {
+      if (this.classList.contains('active')) {
+        headerSearch();
+      }
+    });
+
+    {# Mobile Nav panels #}
+    // Move each mobilenav--panel to .mobilenav--nav
+    document.querySelectorAll(".mobilenav--panel").forEach(panel => {
+      const nav = document.querySelector(".mobilenav--nav");
+      if (nav) {
+        nav.appendChild(panel);
+      }
+    });
+
+    // Handle click on .mobilenav--nav--item--parent > .mobilenav--nav--item--label
+    document.querySelectorAll(".mobilenav--nav--item--parent > .mobilenav--nav--item--label").forEach(label => {
+      label.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const parent = this.closest(".mobilenav--nav--item--parent");
+        const panel = this.closest(".mobilenav--panel");
+        if (parent && panel) {
+          const thisDepth = parseInt(panel.getAttribute("data-depth")) + 1;
+          const thisRel = parent.getAttribute("rel");
+          const thisPanel = document.querySelector(`.mobilenav--panel[rel='${thisRel}']`);
+          const thisPanelHeight = thisPanel ? thisPanel.querySelector(".mobilenav--panel--body").offsetHeight : 0;
+
+          document.querySelectorAll(`.mobilenav--panel[data-depth='${thisDepth}']`).forEach(p => {
+            p.scrollTop = 0;
+            p.style.zIndex = "";
+          });
+
+          document.querySelectorAll(".mobilenav--panel").forEach(p => p.classList.remove("mobilenav--panel--active"));
+          if (thisPanel) {
+            thisPanel.classList.add("mobilenav--panel--active");
+            thisPanel.style.zIndex = "2";
+          }
+
+          const upper = document.querySelector(".mobilenav--upper");
+          if (upper) {
+            upper.style.minHeight = `${thisPanelHeight}px`;
+          }
+
+          sizeMobilenav();
+
+          const nav = document.querySelector(".mobilenav--nav");
+          if (nav) {
+            nav.style.left = `${-100 * thisDepth}%`;
+          }
+        }
+      });
+    });
+
+    // Handle click on .mobilenav--nav--back--label
+    document.querySelectorAll(".mobilenav--nav--back--label").forEach(label => {
+      label.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const back = this.closest(".mobilenav--nav--back");
+        const panel = this.closest(".mobilenav--panel");
+        if (back && panel) {
+          const thisDepth = parseInt(panel.getAttribute("data-depth")) - 1;
+          const thisRel = back.getAttribute("rel");
+          const thisPanel = document.querySelector(`.mobilenav--panel[rel='${thisRel}']`);
+
+          document.querySelectorAll(`.mobilenav--panel[data-depth='${thisDepth}']`).forEach(p => {
+            p.scrollTop = 0;
+            p.style.zIndex = "";
+          });
+
+          document.querySelectorAll(".mobilenav--panel").forEach(p => p.classList.remove("mobilenav--panel--active"));
+          if (thisPanel) {
+            thisPanel.classList.add("mobilenav--panel--active");
+            thisPanel.style.zIndex = "2";
+          }
+
+          sizeMobilenav();
+
+          const nav = document.querySelector(".mobilenav--nav");
+          if (nav) {
+            nav.style.left = `${-100 * thisDepth}%`;
+          }
+        }
+      });
+    });
+
+    {# Initialize header calculations #}
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.scrollY < 200) {
+        window.scrollTo(0, 0);
+      }
+      sizeHeader();
+
+      const body = document.body;
+      const header = document.querySelector("header");
+
+      if (!body.classList.contains("header--static")) {
+        let scrollDist = window.scrollY;
+
+        let stickyStart = 0;
+        if (body.classList.contains("header--hello--visible")) {
+          const headerHello = document.querySelector(".header--hello");
+          stickyStart += headerHello ? headerHello.offsetHeight : 0;
+        }
+        const headerBody = document.querySelector(".header--body");
+        stickyStart += headerBody ? headerBody.offsetHeight : 0;
+
+        if (scrollDist >= stickyStart) {
+          body.classList.remove("header--fixed");
+          body.classList.add("header--fixed", "header--hidden");
+          body.classList.remove("header--visible");
+
+          if (header) {
+            header.classList.add("no--transition");
+            header.offsetHeight; // Trigger reflow
+            header.style.top = `${-1 * stickyStart - 15}px`;
+            header.offsetHeight; // Trigger reflow
+            header.classList.remove("no--transition");
+          }
+        }
+      }
+      sizeMobilenav();
+    });
+
+    window.addEventListener('wheel', function() {
+      sizeHeader();
+    });
+
+    document.body.addEventListener('touchmove', function() {
+      sizeHeader();
+    });
+
+    document.addEventListener('scroll', function() {
+      sizeHeader();
+    });
+
+    window.addEventListener('load', function() {
+      sizeAnchor();
+      sizeHeader();
+      sizeMobilenav();
+    });
+
+    window.addEventListener('resize', function() {
+      sizeAnchor();
+      sizeHeader();
+      sizeMobilenav();
+    });
+
+    {# Mobile navigation search submit function and event #}
+    function mobileSearch() {
+      const searchInput = document.querySelector(".mobilenav--search--input");
+
+      if (searchInput && searchInput.value.trim().length > 0) {
+        window.location.href = "{{ module.url_of_hubspot_search_results_page.href }}?term=" + encodeURIComponent(searchInput.value);
+      }
+    }
+
+    // Attach click event to the search submit button
+    const searchSubmitButton = document.querySelector(".mobilenav--search--submit");
+    if (searchSubmitButton) {
+      searchSubmitButton.addEventListener("click", function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        const searchForm = document.querySelector(".mobilenav--search form");
+        if (searchForm) {
+          searchForm.submit();
+        }
+      });
+    }
+  </script>
+{% end_require_js %}

@@ -1,0 +1,342 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+.bugfix {/*!*/}
+
+html {
+  background:{{ color("white") }};
+}
+* {
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
+html, body {
+  padding:0px;
+  margin:0px;
+  opacity:1!important;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+{## MODIFIERS ##}
+{% call mediaLoop() %}
+
+{# DISPLAY #}
+.{{ media }}block, .{{ media }}block[class*="span"] {display:block!important;}
+.{{ media }}table, .{{ media }}table[class*="span"] {display:table!important;}
+.{{ media }}inline, .{{ media }}inline[class*="span"] {display:inline!important;}
+.{{ media }}inline-block, .{{ media }}inline-block[class*="span"] {display:inline-block!important;}
+.{{ media }}absolute, .{{ media }}absolute[class*="span"] {position:absolute!important;}
+.{{ media }}relative, .{{ media }}relative[class*="span"] {position:relative!important;}
+
+{# POSITION #}
+.{{ media }}left--0 {left:0;}
+.{{ media }}right--0 {right:0;}
+.{{ media }}top--0 {top:0;}
+.{{ media }}bottom--0 {bottom:0;}
+.{{ media }}left--auto {left:auto;}
+.{{ media }}right--auto {right:auto;}
+.{{ media }}top--auto {top:auto;}
+.{{ media }}bottom--auto {bottom:auto;}
+
+{# HORIZONTAL ALIGN #}
+.{{ media }}text--center, .{{ media }}all--text--center, .{{ media }}all--text--center * {text-align:center!important;}
+.{{ media }}text--left, .{{ media }}all--text--left, .{{ media }}all--text--left * {text-align:left!important;}
+.{{ media }}text--right, .{{ media }}all--text--right, .{{ media }}all--text--right * {text-align:right!important;}
+
+.{{ media }}all--text--center ul {display:inline-block;}
+.{{ media }}all--text--center ul li {text-align:left!important;}
+
+{# VERTICAL ALIGN #}
+.{{ media }}valign--top, .{{ media }}all--valign--top, .{{ media }}all--valign--top * {vertical-align:top;}
+.{{ media }}valign--bottom, .{{ media }}all--valign--bottom, .{{ media }}all--valign--bottom * {vertical-align:bottom;}
+.{{ media }}valign--middle, .{{ media }}all--valign--middle, .{{ media }}all--valign--middle * {vertical-align:middle;}
+
+{# FLOATS #}
+.{{ media }}float--center {display:block;margin:0px auto 25px;float:none;text-align:center;}
+.{{ media }}float--left {margin-right:25px;margin-bottom:25px;float:left;max-width:25%!important;}
+.{{ media }}float--right {margin-left:25px;margin-bottom:25px;float:right;max-width:25%!important;}
+.{{ media }}float--none {float:none!important;}
+
+{# OVERFLOWS #}
+.{{ media }}overflow--auto {overflow:auto!important;}
+.{{ media }}overflow--hidden {overflow:hidden!important;}
+.{{ media }}overflow-x--hidden {overflow-x:hidden!important;}
+.{{ media }}overflow-y--hidden {overflow-y:hidden!important;}
+.{{ media }}overflow--visible {overflow:visible!important;}
+
+{# HEIGHTS & WIDTHS #}
+.{{ media }}max-width--auto {max-width:none!important;}
+.{{ media }}width--max {width:100%!important;max-width: 100% !important;}
+.{{ media }}height--max {height:100%!important;}
+.{{ media }}width--auto {width:auto!important;}
+.{{ media }}height--auto {height:auto!important;}
+
+{# FLOATS #}
+.{{ media }}left {float:left!important;}
+.{{ media }}right {float:right!important;}
+
+{% endcall %}
+
+{# VISUALLYHIDDEN #}
+{% call mediaLoop() %}
+.{{ media }}visuallyhidden {display:none!important;}
+{% endcall %}
+html.no-opacity .lap-visuallyhidden,
+html.no-opacity .lap-and-up-visuallyhidden,
+html.no-opacity .desk-visuallyhidden {
+  display:none;
+}
+
+{## Vertical Padding ##}
+{% call mediaLoop() %}
+
+{# TOP & BOTTOM #}
+.{{ media }}basic {
+  padding-top:{{ config.basic }}{{ important }};
+  padding-bottom:{{ config.basic }}{{ important }};
+}
+.{{ media }}short {
+  padding-top:{{ config.short }}{{ important }};
+  padding-bottom:{{ config.short }}{{ important }};
+}
+.{{ media }}tall {
+  padding-top:{{ config.tall }}{{ important }};
+  padding-bottom:{{ config.tall }}{{ important }};
+}
+.{{ media }}grande {
+  padding-top:{{ config.grande }}{{ important }};
+  padding-bottom:{{ config.grande }}{{ important }};
+}
+.{{ media }}venti {
+  padding-top:{{ config.venti }}{{ important }};
+  padding-bottom:{{ config.venti }}{{ important }};
+}
+.{{ media }}trenta {
+  padding-top:{{ config.trenta }}{{ important }};
+  padding-bottom:{{ config.trenta }}{{ important }};
+}
+{# TOP #}
+.{{ media }}basic--top {
+  padding-top:{{ config.basic }}{{ important }};
+}
+.{{ media }}short--top {
+  padding-top:{{ config.short }}{{ important }};
+}
+.{{ media }}tall--top {
+  padding-top:{{ config.tall }}{{ important }};
+}
+.{{ media }}grande--top {
+  padding-top:{{ config.grande }}{{ important }};
+}
+.{{ media }}venti--top {
+  padding-top:{{ config.venti }}{{ important }};
+}
+.{{ media }}trenta--top {
+  padding-top:{{ config.trenta }}{{ important }};
+}
+{# BOTTOM #}
+.{{ media }}basic--bottom {
+  padding-bottom:{{ config.basic }}{{ important }};
+}
+.{{ media }}short--bottom {
+  padding-bottom:{{ config.short }}{{ important }};
+}
+.{{ media }}tall--bottom {
+  padding-bottom:{{ config.tall }}{{ important }};
+}
+.{{ media }}grande--bottom {
+  padding-bottom:{{ config.grande }}{{ important }};
+}
+.{{ media }}venti--bottom {
+  padding-bottom:{{ config.venti }}{{ important }};
+}
+.{{ media }}trenta--bottom {
+  padding-bottom:{{ config.trenta }}{{ important }};
+}
+{% endcall %}
+
+{# NEGATIVE TOP #}
+{% call mediaLoop() %}
+.{{ media }}negative--basic--top {
+  margin-top:-{{ config.basic }}{{ important }};
+}
+.{{ media }}negative--short--top {
+  margin-top:-{{ config.short }}{{ important }};
+}
+.{{ media }}negative--tall--top {
+  margin-top:-{{ config.tall }}{{ important }};
+}
+.{{ media }}negative--grande--top {
+  margin-top:-{{ config.grande }}{{ important }};
+}
+.{{ media }}negative--venti--top {
+  margin-top:-{{ config.venti }}{{ important }};
+}
+.{{ media }}negative--trenta--top {
+  margin-top:-{{ config.trenta }}{{ important }};
+}
+{# NEGATIVE BOTTOM #}
+.{{ media }}negative--basic--bottom {
+  margin-bottom:-{{ config.basic }}{{ important }};
+}
+.{{ media }}negative--short--bottom {
+  margin-bottom:-{{ config.short }}{{ important }};
+}
+.{{ media }}negative--tall--bottom {
+  margin-bottom:-{{ config.tall }}{{ important }};
+}
+.{{ media }}negative--grande--bottom {
+  margin-bottom:-{{ config.grande }}{{ important }};
+}
+.{{ media }}negative--venti--bottom {
+  margin-bottom:-{{ config.venti }}{{ important }};
+}
+.{{ media }}negative--trenta--bottom {
+  margin-bottom:-{{ config.trenta }}{{ important }};
+}
+{% endcall %}
+
+{# REMOVE PADDING AND MARGIN #}
+{% call mediaLoop() %}
+.{{ media }}hard, .{{ media }}hard--top, .{{ media }}hard--ends {
+  padding-top:0px!important;
+  margin-top:0px!important;
+}
+.{{ media }}hard, .{{ media }}hard--right, .{{ media }}hard--sides {
+  padding-right:0px!important;
+  margin-right:0px!important;
+}
+.{{ media }}hard, .{{ media }}hard--bottom, .{{ media }}hard--ends {
+  padding-bottom:0px!important;
+  margin-bottom:0px!important;
+}
+.{{ media }}hard, .{{ media }}hard--left, .{{ media }}hard--sides {
+  padding-left:0px!important;
+  margin-left:0px!important;
+}
+{% endcall %}
+
+.first--hard--top > *:first-child, .all--first--hard--top *:first-child {
+  margin-top:0px!important;
+}
+.last--hard--bottom > *:last-child, .all--last--hard--bottom *:last-child {
+  margin-bottom:0px!important;
+}
+
+{## PADDING & MARGIN ##}
+{% call mediaLoop() %}
+
+{# PADDING #}
+.{{ media }}padding--basic, .{{ media }}padding--basic--left {
+  padding-left:{{ config.basic }}!important;
+}
+.{{ media }}padding--basic, .{{ media }}padding--basic--right {
+  padding-right:{{ config.basic }}!important;
+}
+.{{ media }}padding--short, .{{ media }}padding--short--left {
+  padding-left:{{ config.short }}!important;
+}
+.{{ media }}padding--short, .{{ media }}padding--short--right {
+  padding-right:{{ config.short }}!important;
+}
+.{{ media }}padding--tall, .{{ media }}padding--tall--left {
+  padding-left:{{ config.tall }}!important;
+}
+.{{ media }}padding--tall, .{{ media }}padding--tall--right {
+  padding-right:{{ config.tall }}!important;
+}
+.{{ media }}padding--grande, .{{ media }}padding--grande--left {
+  padding-left:{{ config.grande }}!important;
+}
+.{{ media }}padding--grande, .{{ media }}padding--grande--right {
+  padding-right:{{ config.grande }}!important;
+}
+.{{ media }}padding--venti, .{{ media }}padding--venti--left {
+  padding-left:{{ config.venti }}!important;
+}
+.{{ media }}padding--venti, .{{ media }}padding--venti--right {
+  padding-right:{{ config.venti }}!important;
+}
+.{{ media }}padding--trenta, .{{ media }}padding--trenta--left {
+  padding-left:{{ config.trenta }}!important;
+}
+.{{ media }}padding--trenta, .{{ media }}padding--trenta--right {
+  padding-right:{{ config.trenta }}!important;
+}
+
+{# MARGIN #}
+.{{ media }}margin--basic, .{{ media }}margin--basic--top {
+  margin-top:{{ config.basic }}!important;
+}
+.{{ media }}margin--basic, .{{ media }}margin--basic--bottom {
+  margin-bottom:{{ config.basic }}!important;
+}
+.{{ media }}margin--short, .{{ media }}margin--short--top {
+  margin-top:{{ config.short }}!important;
+}
+.{{ media }}margin--short, .{{ media }}margin--short--bottom {
+  margin-bottom:{{ config.short }}!important;
+}
+.{{ media }}margin--tall, .{{ media }}margin--tall--top {
+  margin-top:{{ config.tall }}!important;
+}
+.{{ media }}margin--tall, .{{ media }}margin--tall--bottom {
+  margin-bottom:{{ config.tall }}!important;
+}
+.{{ media }}margin--grande, .{{ media }}margin--grande--top {
+  margin-top:{{ config.grande }}!important;
+}
+.{{ media }}margin--grande, .{{ media }}margin--grande--bottom {
+  margin-bottom:{{ config.grande }}!important;
+}
+.{{ media }}margin--venti, .{{ media }}margin--venti--top {
+  margin-top:{{ config.venti }}!important;
+}
+.{{ media }}margin--venti, .{{ media }}margin--venti--bottom {
+  margin-bottom:{{ config.venti }}!important;
+}
+.{{ media }}margin--trenta, .{{ media }}margin--trenta--top {
+  margin-top:{{ config.trenta }}!important;
+}
+.{{ media }}margin--trenta, .{{ media }}margin--trenta--bottom {
+  margin-bottom:{{ config.trenta }}!important;
+}
+{% endcall %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.h1xl{
+  font-family: {{ config.h1xl_FontFamily }};
+  font-size: {{ config.h1xl_FontSize }};
+  line-height: {{ config.h1xl_LineHeight }};
+  font-style: {{ config.h1xl_FontStyle }};
+  font-weight: {{ config.h1xl_FontWeight }};
+  text-transform: {{ config.h1xl_TextTransform }};
+  text-decoration: {{ config.h1xl_TextDecoration }};
+  letter-spacing: {{ config.h1xl_LetterSpacing }};
+  word-spacing: {{ config.h1xl_WordSpacing }};
+  color:{{ config.h1xl_Color }};
+}

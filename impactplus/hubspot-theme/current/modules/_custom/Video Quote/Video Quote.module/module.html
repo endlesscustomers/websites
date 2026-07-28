@@ -1,0 +1,53 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Video Quote.css"), { async: true } ) }}
+
+{% set contentClasses = module.layout_controls.content_widths_desktop %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--video-quote relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+
+  <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"> </div>
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+
+    {% if module.banner_content %}
+    <div class="grid hard--ends section--video-quote relative {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item {{ contentClasses }} hard--ends last--hard--bottom all--text--center palm-all--text--center ">
+        <div class="first--hard--top last--hard--bottom flex flex-flow--column flex-align--center">
+          <div class="grid__item hard one-whole tablet-one-whole palm-one-whole">
+            <div class="font--script first--hard--top last--hard--bottom inline-block hard--ends relative {% if module.banner_video_uuid|trim %}hover--pointer{% endif %}" {% if module.banner_video_uuid|trim %}onclick="launchVidLightbox('{{ module.banner_video_uuid|trim }}', '0');"{% endif %}>
+              {{ module.banner_content }}
+            </div>
+            <div class="p hard--ends margin--petite--top">
+              {{ module.testimonial_byline }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+
+    {% if (module.video.video_type == "vidyard")&&(module.media_type == "video") %}
+    {% require_js %}
+    {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: false } ) }}
+    {% end_require_js %}
+    <div class="visuallyhidden">
+      <img class="vidyard-player-embed" alt="{{ module.video.video_image_alt_tag }}" data-uuid="{{ module.video.vidyard_video_uuid|trim }}" data-type="lightbox" data-v="4">
+    </div>
+    {% require_js %}
+    <script>
+      function launchLightbox_{{ name|replace('-','_') }}(uuid) {
+        var players = VidyardV4.api.getPlayersByUUID(uuid);
+        var player = players[0];
+        player.showLightbox();
+      }
+    </script>
+    {% end_require_js %}
+    {% endif %}
+    
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}"></div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

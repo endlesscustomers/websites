@@ -1,0 +1,409 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/**
+* Typography
+*/
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--table--label {
+  font-family: {{ font('reading') }};
+  font-size: 15px;
+  font-weight: {{ bolder }};
+}
+
+.section--pricing--table .section--pricingtable--table--byline {
+  font-family: {{ font('reading') }};
+  font-size: 16px;
+  font-weight: {{ medium }};
+}
+
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--column {
+  display: flex;
+  flex-direction: column;
+  /*justify-content: flex-end;*/
+  align-items: center;
+  flex: 1;
+}
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--row .section--pricingtable--table--preheader,
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--column .section--pricingtable--table--preheader {
+  font-family: {{ font('reading') }};
+  font-size: 16px !important;
+  font-weight: {{ config.bold }};
+  color: {{ color('primary') }};
+  background: white;
+  display: inline-block;
+  padding: 3px 10px !important;
+  border-radius: 50px;
+  border: 1px solid #E1E7F4;
+  position: absolute;
+  z-index: 10;
+  margin: 0 auto;
+  top: -15px;
+}
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--column .section--pricingtable--table--label {
+  display: block;
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--row .section--pricingtable--table--supporting--text,
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--column .section--pricingtable--table--supporting--text {
+  display: block;
+}
+{# TABLE LABEL #}
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--label .section--pricingtable--table--label {
+  font-family: {{ font('reading') }};
+  font-size: 22px!important;
+  font-weight: {{ bolder }};
+}
+{# CATEGORY #}
+.section--pricing--table .section--pricingtable--attributes--toggle .section--pricingtable--table--label {
+  font-family: {{ font('reading') }};
+  font-size: 16px;
+  font-weight: {{ bolder }};
+}
+{# SUB-CATEGORY #}
+.section--pricing--table .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label {
+  font-family: {{ font('reading') }};
+  font-size: 16px;
+  font-weight: {{ bolder }};
+}
+{# FEATURE #}
+.section--pricing--table .section--pricingtable--attributes--label .section--pricingtable--table--label {
+  font-family: {{ font('reading') }};
+  font-size: 16px;
+  font-weight: {{ bolder }};
+}
+
+.section--pricing--table .section--pricingtable--attributes--label .section--pricingtable--table--label.section--pricingtable--table--label--underline{
+  line-height: 1.3em;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+.section--pricing--table .section--pricingtable--attributes--value .section--pricingtable--table--label p {
+  font-family: {{ font('reading') }};
+  font-size: 14px;
+  font-weight: {{ normal }};
+}
+
+.section--pricingtable--table--byline{
+  color: #777779;
+  font-size: 14px !important;
+  line-height: 1.2em !important;
+}
+
+{% call mediaQuery("portable") %}
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--label .section--pricingtable--table--label {
+  font-size: 18px!important;
+}
+{% endcall %}
+
+/**
+* Table Styles
+*/
+.section--pricing--table .section--pricingtable--attributes--header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  /*overflow: hidden;*/
+}
+.section--pricing--table .section--pricingtable--attributes--body .section--pricingtable--attributes--group:last-child {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.section--pricing--table .section--pricingtable-mobile--wrapper {
+  border-radius: 10px;
+}
+.section--pricing--table .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+.section--pricing--table .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label,
+.section--pricing--table .section--pricingtable--attributes--label {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width:25%;
+  text-align: left;
+  vertical-align: middle;
+  padding: 14px 20px;
+}
+{% call mediaQuery('palm') %}
+.grid.palm-hard--sides{
+  width:100% !important;
+  max-width:100% !important;
+}
+
+.section--pricing--table .section--pricingtable--attributes--label{
+  align-items: flex-start;
+}
+
+.section--pricing--table .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+.section--pricing--table .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label {
+  align-items: center;
+}
+
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--row .section--pricingtable--attributes--label {
+  padding: 16px 56px 8px 56px;
+}
+
+.section--pricingtable-plans .f-carousel__slide{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.section--pricing--table .f-carousel__dots{
+  margin-bottom: 8px !important;
+  position: static !important; 
+}
+
+.section--pricing--table .f-carousel.has-dots{
+  margin-bottom: 0px !important;
+}
+
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--row .section--pricingtable--table--preheader{
+  position: static;
+  margin-bottom: 8px;
+}
+
+.section--pricing--table .section--pricingtable--attributes--row .section--pricingtable--attributes--label {
+  padding: 32px 20px 32px 0px;
+}
+
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--row .section--pricingtable--table--preheader{
+  padding: 3px 10px !important;
+  font-size: 12px !important;
+  top: -13px;
+}
+
+.section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner{
+  left: .5px !important;
+  z-index: 10000000 !important;
+  width: calc((100vw / 2) - 23px) !important;
+  line-height: 1.55em;
+}
+
+{% endcall %}
+.section--pricing--table .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+.section--pricing--table .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label {
+  width:100%!important;
+}
+
+.section--pricing--table .section--pricingtable--attributes--value,
+.section--pricing--table .section--pricingtable--attributes--column {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:12%;
+  text-align: center;
+  vertical-align: middle;
+}
+.section--pricing--table .section--pricingtable--attributes--row {
+  align-items:stretch;
+  display:flex;
+  border-top-width: 1px;
+  border-top-style: solid;
+  position:relative;
+}
+/*.section--pricing--table .section--pricingtable--attributes--group {
+border-width: 1px;
+border-style: solid;
+border-top: 0;
+}*/
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--row {
+  border: 0;
+}
+.section--pricing--table .section--pricingtable--attributes--value,
+.section--pricing--table .section--pricingtable--attributes--column {
+  flex:1;
+}
+.section--pricing--table .section--pricingtable--attributes--group {
+  background-color: {{ color('white') }};
+}
+
+{% call mediaQuery("palm") %}
+.section--pricing--table .section--pricingtable--attributes--label {
+  width:50%;
+}
+
+.section--pricing--table .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+.section--pricing--table .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label,
+.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--label {
+  width:100%!important;
+}
+
+.section--pricingtable--table--context br{
+  display: none;
+}
+{% endcall %}
+
+/**
+* Table
+*/
+.section--pricing--table .section--pricingtable--attributes--column .section--pricingtable--table--label {
+  padding: 30px 14px 24px 14px;
+  display:block;
+  position:relative;
+}
+
+.section--pricing--table .section--pricingtable--attributes--value{
+  padding: 14px;
+}
+
+.section--pricing--table .section--pricingtable--attributes--value .section--pricingtable--table--label{
+  padding: 0px 14px 8px 14px;
+  display:block;
+  position:relative;
+}
+
+.section--pricing--table .section--pricingtable--attributes--value .section--pricingtable--table--label strong {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: {{ config.medium }};
+  color: {{ color('primary') }};
+}
+
+{% call mediaQuery(">tablet") %}
+/* .section--pricing--table .section--pricingtable--wrapper {
+-webkit-box-shadow:{{ config.default_BoxShadow }};
+-moz-box-shadow:{{ config.default_BoxShadow }};
+box-shadow:{{ config.default_BoxShadow }};
+}*/
+{% endcall %}
+
+/**
+* Tool Tip
+*/
+
+.section--pricing--table .section--pricingtable--table--label--tooltip svg {
+  fill: rgba(35, 31, 32, 0.2);
+  margin-left:4px;
+}
+.section--pricing--table .section--pricingtable--table--label--tooltip {
+  top:2px;
+  cursor:help;
+}
+
+.section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner {
+  position: absolute;
+  bottom: 150%;
+  left: -20px;
+  width: calc(((1182px - ((100vw - 1182px) - (100vw - 1182px) + 20px))) / 4);
+  pointer-events: none;
+  padding: 20px;
+  color: {{ color('black') }};
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3em;
+  text-align: left;
+  background: #fff;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity .15s ease-in-out;
+  border:1px solid #E1E7F4;
+  filter: drop-shadow(0px 0px 30px rgba(88, 88, 88, 0.15));
+  border-radius: 10px;
+  z-index: 30;
+  line-height: 1.45em;
+}
+
+@media (max-width: 1206px) {
+  .section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner {
+    width: calc((100vw / 4) - 11px);
+  }
+}
+
+
+.section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner:after, 
+.section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner:before {
+  top: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 13px;
+  margin-left: -13px;
+}
+.section--pricing--table .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner:before {
+  border-color: rgba(225, 231, 244, 0);
+  border-top-color: #E1E7F4;
+  border-width: 14px;
+  margin-left: -14px;
+}
+
+/*.section--pricing--table .section--pricingtable--table--label--inner:after, 
+.section--pricing--table .section--pricingtable--table--label--inner:before{
+top: -10px;
+left: 50%;
+border: solid transparent;
+content: "";
+height: 0;
+width: 0;
+position: absolute;
+pointer-events: none;
+opacity: 0;
+transition: opacity .15s ease-in-out;
+} 
+
+.section--pricing--table .section--pricingtable--table--label--inner:before{
+border-color: rgba(255, 255, 255, 0);
+border-top-color: #ffffff;
+border-width: 13px;
+margin-left: -13px;
+z-index: 40;
+}
+
+.section--pricing--table .section--pricingtable--table--label--inner:after{
+border-color: rgba(225, 231, 244, 0);
+border-top-color: #E1E7F4;
+border-width: 14px;
+margin-left: -14px;
+}*/
+
+.section--pricingtable--table--label.section--pricingtable--table--label--underline:hover .section--pricingtable--table--label--inner:before,
+.section--pricingtable--table--label.section--pricingtable--table--label--underline:hover .section--pricingtable--table--label--inner:after,
+.section--pricingtable--table--label.section--pricingtable--table--label--underline.active .section--pricingtable--table--label--inner:before,
+.section--pricingtable--table--label.section--pricingtable--table--label--underline.active .section--pricingtable--table--label--inner:after{
+  opacity: 1;
+}
+
+.section--pricing--table .section--pricingtable--table--label.section--pricingtable--table--label--underline.active .section--pricingtable--table--label--tooltip--inner {
+  opacity: 1;
+  pointer-events: auto;
+  cursor:pointer;
+}
+
+@media ( hover:hover)  and ( pointer:fine ) {
+  .section--pricing--table .section--pricingtable--table--label.section--pricingtable--table--label--underline:hover .section--pricingtable--table--label--tooltip .section--pricingtable--table--label--tooltip--inner{
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

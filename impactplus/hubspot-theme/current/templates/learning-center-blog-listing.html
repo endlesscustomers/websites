@@ -1,0 +1,392 @@
+<!--
+  templateType: blog_listing
+  isAvailableForNewContent: true
+  label: Learning Center Blog Listing - IMPACT Production Theme
+-->
+
+{% module
+    "controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Navigation and Footer Page Settings',
+    label="Navigation and Footer Page Settings",
+    no_wrapper=True,
+    export_to_template_context= True,
+    header_design= "solid",
+    hide_navigation= false,
+    disable_sticky_header= false,
+    disable_hello_bar_on_this_page= false,
+    page_type= "other"
+  %}
+
+{% module
+	"bop"
+	path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Global Blog - Post Controls",
+	label="Blog Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--blog') %}
+{% do body_classes_array.append('header--static') %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+{% set template_css = "../../css/templates/learning_center_blog.css" %}
+
+{% set isSubscriber = false %}
+{% if widget_data.bop.subscribe_controls.subscribe_subscriber_list_id && request_contact.list_memberships %}
+{% set memberLists = widget_data.bop.subscribe_controls.subscribe_subscriber_list_id|map(attribute='list_id')|join(",")|split(",") %}
+{% set contactLists = request_contact.list_memberships|join(",")|split(",") %}
+{% set overlapLists = contactLists|intersect(memberLists) %}
+{% if overlapLists|length > 0 %}
+{% set isSubscriber = true %}
+{% endif %}
+{% endif %}
+
+{% block body %}
+<div class="header--anchor"></div>
+
+{% set daySuffix = {"01":"1st","02":"2nd","03":"3rd","04":"4th","05":"5th","06":"6th","07":"7th","08":"8th","09":"9th","10":"10th","11":"11th","12":"12th","13":"13th","14":"14th","15":"15th","16":"16th","17":"17th","18":"18th","19":"19th","20":"20th","21":"21st","22":"22nd","23":"23rd","24":"24th","25":"25th","26":"26th","27":"27th","28":"28th","29":"29th","30":"30th","31":"31st"} %}
+
+{# ### START MACROS ### #}
+{% macro blogCard(class,featured,animate) %}
+<div class="section--listing--card relative grid__item {{ class }} {{ animate }} palm-one-whole hard valign--top">
+  <span class="section--listing--card--wrapper text--left relative">
+    <span class="section--listing--card--inner block relative box-shadow box--hover overflow--hidden background--white border-radius">
+      <a href="{{ content.absolute_url }}" title="{{ content.name|escape }}" class="no--underline color--inherit absolute" style="left:15px;right:15px;top:15px;bottom:15px;"></a>
+
+      <span class="section--listing--card--body first--hard--top last--hard--bottom">
+
+        <span class="block" role="img" aria-label="{% if content.featured_image %}{{ content.featured_image_alt_text }}{% else %}{{ widget_data.bop.featured_image_controls.default_featured_image.alt }}{% endif %}" style="background:url('{% if content.featured_image %}{{ content.featured_image }}{% else %}{{ widget_data.bop.featured_image_controls.default_featured_image.src }}{% endif %}') no-repeat center center;background-size:cover;">
+          {{ snippets.aspectSpacer('2x1') }}
+        </span>
+
+        <span class="section--listing--card--body--wrapper padding--short short">
+          <span class="section--listing--card--body--content block first--hard--top last--hard--bottom">
+            <p class="font--14" style="margin-bottom:10px;">
+              {% for topic in content.topic_list %}
+              <a class="relative z-index--5 no--underline" href="{{ group.absolute_url }}/topic/{{ topic.slug }}" title="{{ topic.name|escape }}">{{ topic.name }}</a>
+              {% if not loop.last %}<span class="inline-block" style="padding:0 2px;">|</span>{% endif %}
+              {% endfor %}
+            </p>
+
+            {% if featured == 'featured' %}
+            <h2 class="hard--top">
+              {{ content.name }}
+            </h2>
+
+            <div class="section--listing--card--subheader p"></div>
+
+            {% require_js %}
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const subheaderElement = document.querySelector(".section--listing--card--subheader");
+                const url = "{{ content.absolute_url|replace('http:','https:') }}?featuredonly=true";
+
+                fetch(url)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                  }
+                  return response.text();
+                })
+                  .then(data => {
+                  // Create a temporary DOM element to parse the fetched HTML
+                  const tempDiv = document.createElement('div');
+                  tempDiv.innerHTML = data;
+
+                  // Select the desired part of the fetched content
+                  const postSubheader = tempDiv.querySelector("#postSubheader");
+                  if (postSubheader) {
+                    subheaderElement.innerHTML = postSubheader.innerHTML;
+                  }
+
+                  // Check if the subheader is empty
+                  if (subheaderElement.innerHTML.trim() === '') {
+                    subheaderElement.innerHTML = '<p>{{ content.post_summary|striptags|truncatehtml(175, "...", false)|escape }}</p>';
+                  }
+                })
+                  .catch(error => {
+                  console.error('There was a problem with the fetch operation:', error);
+                });
+              });
+            </script>
+            {% end_require_js %}
+
+            {% else %}
+            <h2 class="h5 hard--top">
+              {{ content.name }}
+            </h2>
+            {% endif %}
+
+            <p class="font--14">
+              {{ content.publish_date_local_time.strftime('%B') }} {{ daySuffix[content.publish_date_local_time.strftime('%d')] }}, {{ content.publish_date_local_time.strftime('%Y') }}<span class="section--listing--card--spacer">|</span>{{ content.post_body|striptags|wordcount|divide(300) }} min read
+            </p>
+          </span>
+        </span>
+      </span>
+    </span>
+  </span>
+</div>
+{% endmacro %}
+
+{% macro blogCardCTA(class) %}
+<div class="section--listing--ctacard relative grid__item {{ class }} palm-one-whole hard valign--top">
+  <span class="section--listing--ctacard--wrapper text--left relative">
+    <span
+          class="section--listing--ctacard--inner block relative box-shadow box--hover overflow--hidden background--{{ 'custom' != widget_data.bop.inline_cta_controls.background_color.background_color ? widget_data.bop.inline_cta_controls.background_color.background_color : '' }} border-radius"
+          style="{{ 'custom' == widget_data.bop.inline_cta_controls.background_color.background_color ? 'background-color: rgba(' ~ ( widget_data.bop.inline_cta_controls.background_color.background_custom_color.color ? widget_data.bop.inline_cta_controls.background_color.background_custom_color.color|convert_rgb : '' ) ~ ', ' ~ ( widget_data.bop.inline_cta_controls.background_color.background_custom_color.opacity / 100 ) : '' }}"
+          >
+      <span class="section--listing--ctacard--body first--hard--top last--hard--bottom">
+        <span class="section--listing--ctacard--body--wrapper padding--short short">
+          <span class="section--listing--ctacard--body--content block text--center first--hard--top last--hard--bottom {{ widget_data.bop.inline_cta_controls.override_text_to_white ? 'all--color--white' : '' }}">
+            <h2 class="h3">
+              {{ widget_data.bop.inline_cta_controls.inline_cta_header }}
+            </h2>
+            <p>
+              {{ widget_data.bop.inline_cta_controls.inline_cta_body }}
+            </p>
+
+            {% set href = widget_data.bop.inline_cta_controls.inline_cta_button_link.url.href %}
+
+            <a class="btn btn{% if widget_data.bop.inline_cta_controls.inline_cta_ghost_transparent_button %}--transparent{% endif %}--{{  widget_data.bop.inline_cta_controls.inline_cta_button_color }}"
+               href="{{ href }}"
+               title="{{ widget_data.bop.inline_cta_controls.inline_cta_title_attribute }}"
+               {% if widget_data.bop.inline_cta_controls.inline_cta_button_link.open_in_new_tab %}target="_blank"{% endif %}
+               {% if widget_data.bop.inline_cta_controls.inline_cta_button_link.rel %}rel="{{ widget_data.bop.inline_cta_controls.inline_cta_button_link.rel }}"{% endif %}
+               >
+              {{ widget_data.bop.inline_cta_controls.inline_cta_button_text }}
+            </a>
+
+          </span>
+        </span>
+      </span>
+    </span>
+  </span>
+</div>
+{% endmacro %}
+
+{% macro blogSubscribe() %}
+<div class="section--listing--subscribecard relative grid__item one-whole hard valign--top">
+  <span class="section--listing--subscribecard--wrapper relative">
+    <span
+          class="section--listing--subscribecard--inner block relative box-shadow overflow--hidden background--{{ 'custom' != widget_data.bop.subscribe_controls.background_color.background_color ? widget_data.bop.subscribe_controls.background_color.background_color : '' }} border-radius"
+          style="{{ 'custom' == widget_data.bop.subscribe_controls.background_color.background_color ? 'background-color: rgba(' ~ ( widget_data.bop.subscribe_controls.background_color.background_custom_color.color ? widget_data.bop.subscribe_controls.background_color.background_custom_color.color|convert_rgb : '' ) ~ ', ' ~ ( widget_data.bop.subscribe_controls.background_color.background_custom_color.opacity / 100 ) : '' }}"
+          >
+      <span class="section--listing--subscribecard--body--wrapper block padding--short tall text--center {{ widget_data.bop.subscribe_controls.override_text_to_white ? 'all--labels--white' : '' }} all--btn all--btn{% if widget_data.bop.subscribe_controls.subscribe_ghost_transparent_button %}--transparent{% endif %}--{{ widget_data.bop.subscribe_controls.subscribe_button_color }} ">
+        {% if widget_data.bop.subscribe_controls.subscribe_header %}
+        <span class="grid__item eight-twelfths portable-one-whole hard first--hard--top">
+          <h2 class="h3 text--center {{ widget_data.bop.subscribe_controls.override_text_to_white ? 'all--color--white color--white' : '' }}">
+            {{ widget_data.bop.subscribe_controls.subscribe_header }}
+          </h2>
+        </span>
+        {% endif %}
+        {% form
+							form_to_use="{{ widget_data.bop.subscribe_controls.subscribe_form.form_id }}"
+							response_response_type="{{ widget_data.bop.subscribe_controls.subscribe_form.response_type }}"
+							response_message="{{ widget_data.bop.subscribe_controls.subscribe_form.message }}"
+							response_redirect_id="{{ widget_data.bop.subscribe_controls.subscribe_form.redirect_id }}"
+							response_redirect_url="{{ widget_data.bop.subscribe_controls.subscribe_form.redirect_url}}"
+							gotowebinar_webinar_key="{{ widget_data.bop.subscribe_controls.subscribe_form.gotowebinar_webinar_key }}"
+							no_title=True
+						%}
+
+      </span>
+    </span>
+  </span>
+</div>
+{% endmacro %}
+{# ### END MACROS ### #}
+
+<div class="block">
+
+  {# Subscribe Popup #}
+  {% module "subpop" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Popup/Learning Center Popup", label="Subscription Popup", no_wrapper=True %}
+
+  {% if is_listing_view %}
+  {% else %}
+  {# Mobile Bottom Bar #}
+  {% module "indpost" path='/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Mobile Bottom Navigation/Learning Center Mobile Bottom Navigation', label="Bottom Bar Navigation", no_wrapper=True %}
+  {% endif %}
+
+  {% if blog_author %}
+  {# ##### START AUTHOR LISTING ##### #}
+
+  <div class="section--listing--breadcrumbs grid hard--ends text--left">
+    <div class="grid__item eight-twelfths palm-one-whole tall text--left">
+      <p class="hard--ends">
+        <a href="{{ widget_data.bop.breadcrumb_controls.learning_center_link.url.href }}" {% if widget_data.bop.breadcrumb_controls.learning_center_link.open_in_new_tab %}target="_blank"{% endif %} {% if widget_data.bop.breadcrumb_controls.learning_center_link.rel %}rel="{{ module.breadcrumb_controls.learning_center_link.rel }}"{% endif %} title="{{ widget_data.bop.breadcrumb_controls.learning_center_text }}" >{{ widget_data.bop.breadcrumb_controls.learning_center_text }}</a><span class="section--listing--breadcrumbs-spacer">/</span><a href="{{ group.absolute_url }}" title="{{ group.public_title }}" >{{ group.public_title }}</a><span class="section--listing--breadcrumbs-spacer">/</span>{{ blog_author.display_name }}
+      </p>
+    </div>
+  </div>
+
+  <div class="grid hard--ends">
+    <div class="grid__item ten-twelfths palm-one-whole hard--top">
+      <div class="flexgrid justify--center tablet-row--reverse lap-and-up-row--reverse valign--middle">
+
+        <div class="grid__item eight-twelfths palm-one-whole hard--ends {% if blog_author.avatar %}text--left{% else %}text--center{% endif %} palm-margin--short--bottom first--hard--top last--hard--bottom">
+          <h1>
+            {{ blog_author.display_name }}
+          </h1>
+          {% if blog_author.bio %}
+          <p>{{ blog_author.bio }}</p>
+          {% endif %}
+          {% if blog_author.has_social_profiles %}
+          <div class="section--author-listing--social">
+            <p class="bold hard--bottom">
+              Connect:
+            </p>
+            {% if blog_author.facebook %}
+            <a class="inline-block" href="{{ blog_author.facebook }}" target="_blank" rel="noopener" title="Connect with {{ blog_author.display_name|encode }} on Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+            </a>
+            {% endif %}
+            {% if blog_author.linkedin %}
+            <a class="inline-block" href="{{ blog_author.linkedin }}" target="_blank" rel="noopener" title="Connect with {{ blog_author.display_name|encode }} on LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+            </a>
+            {% endif %}
+            {% if blog_author.twitter %}
+            <a class="inline-block" href="{{ blog_author.twitter }}" target="_blank" rel="noopener" title="Connect with {{ blog_author.display_name|encode }} on Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+            </a>
+            {% endif %}
+            {% if blog_author.email %}
+            <a class="inline-block" href="mailto:{{ blog_author.email }}" target="_blank" rel="noopener" title="Connect with {{ blog_author.display_name|encode }} via Email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M464 64C490.5 64 512 85.49 512 112C512 127.1 504.9 141.3 492.8 150.4L275.2 313.6C263.8 322.1 248.2 322.1 236.8 313.6L19.2 150.4C7.113 141.3 0 127.1 0 112C0 85.49 21.49 64 48 64H464zM217.6 339.2C240.4 356.3 271.6 356.3 294.4 339.2L512 176V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V176L217.6 339.2z"/></svg>
+            </a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        {% if blog_author.avatar %}
+        <div class="grid__item four-twelfths palm-one-whole hard--ends text--right palm-text--center">
+          <span role="img" aria-label="{{ blog_author.display_name }}" class="block section--author-listing--author-image border-radius--circle" style="margin:0 auto;background:url('{{ blog_author.avatar }}');background-repeat:no-repeat;background-position:center;background-size:cover;">
+            {{ snippets.aspectSpacer('1x1') }}
+          </span>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  {# ##### END AUTHOR LISTING ##### #}
+  {% elif topic %}
+  {# ##### START TOPIC LISTING ##### #}
+
+  <div class="section--listing--breadcrumbs grid hard--ends text--left">
+    <div class="grid__item eight-twelfths palm-one-whole tall text--left">
+      <p class="hard--ends">
+        <a href="{{ widget_data.bop.breadcrumb_controls.learning_center_link.url.href }}" {% if widget_data.bop.breadcrumb_controls.learning_center_link.open_in_new_tab %}target="_blank"{% endif %} {% if widget_data.bop.breadcrumb_controls.learning_center_link.rel %}rel="{{ module.breadcrumb_controls.learning_center_link.rel }}"{% endif %} title="{{ widget_data.bop.breadcrumb_controls.learning_center_text }}" >{{ widget_data.bop.breadcrumb_controls.learning_center_text }}</a><span class="section--listing--breadcrumbs-spacer">/</span><a href="{{ group.absolute_url }}" title="{{ group.public_title }}" >{{ group.public_title }}</a><span class="section--listing--breadcrumbs-spacer">/</span>{{ page_meta.html_title|split(" | ")|last }}
+      </p>
+    </div>
+  </div>
+
+  <div class="grid hard--ends">
+    <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top portable-tall--bottom first--hard--top last--hard--bottom">
+      <h1>
+        {{ page_meta.html_title|split(" | ")|last }}
+        <br/>
+        <span class="p hard--ends">{{ group.public_title }}</span>
+      </h1>
+    </div>
+  </div>
+
+  {# ##### END TOPIC LISTING ##### #}
+  {% else %}
+
+  {# BREADCRUMB #}
+
+
+  {% endif %}
+
+  {# ##### START LISTING ##### #}
+
+  {% if simple_list_page %}
+  {# ##### START SIMPLE LISTING ##### #}
+
+  <div class="grid hard--top tall--bottom">
+
+    {% for content in contents %}
+    <div class="grid__item eight-twelfths hard--ends text--left overflow--visible {% if not loop.last %}border--0 border--bottom--1 border--grey tall margin--tall--bottom{% endif %}">
+      <h2 class="hard--top">
+        <a href="{{ content.absolute_url }}" title="{{ content.name|escape }}" class="no--underline">{{ content.name }}</a>
+      </h2>
+      <p class="font--14">
+        {{ content.publish_date_local_time.strftime('%B') }} {{ daySuffix[content.publish_date_local_time.strftime('%d')] }}, {{ content.publish_date_local_time.strftime('%Y') }}<span class="section--listing--card--spacer">|</span>{{ content.post_body|wordcount|divide(300) }} min read
+      </p>
+    </div>
+    {% endfor %}
+
+  </div>
+
+  {# ##### END SIMPLE LISTING ##### #}
+  {% else %}
+  {# ##### START NORMAL LISTING ##### #}
+
+  <div class="eclc--listing">
+    {% dnd_area "dnd_area"
+      label="Main section",
+      class="body-container body-container--flex"
+    %}
+
+    {% end_dnd_area %}
+
+    {# ##### START PAGINATION ##### #}
+    {#<div class="section--pagination grid__item one-whole text--center flexgrid">
+          {% set totalShowPages = 4 %}
+					{% set page_list = [-1, 0, 1] %}
+					{% if contents.total_page_count - current_page_num == 1 %}
+						{% set offset = -1 %}
+					{% elif contents.total_page_count - current_page_num == 0 %}
+						{% set offset = -2 %}
+					{% elif current_page_num == 2 %}
+						{% set offset = 1 %}
+					{% elif current_page_num == 1 %}
+						{% set offset = 2 %}
+					{% else %}
+						{% set offset = 0 %}
+					{% endif %}
+
+					<div class="pagination--prev grid__item one-third palm-one-half hard--ends text--right palm-text--left">
+						{% if last_page_num %}
+							<a class="prev-link" href="{{ blog_page_link(last_page_num) }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/></svg> Previous</a>
+						{% endif %}
+					</div>
+					<div class="pagination--pages grid__item one-third palm-one-whole hard--ends">
+
+            <a {% if 1 == current_page_num %}class="active"{% endif %} href="{{ blog_page_link(1) }}" title="Page 1">1</a>
+            {% if (contents.total_page_count > totalShowPages)&&(current_page_num >= 4) %}
+            <span class="elipses inline-block p hard--ends">...</span>
+            {% endif %}
+
+            {% for page in page_list %}
+            {% set this_page = current_page_num + page + offset %}
+            {% if this_page > 1 and this_page <= contents.total_page_count - 1 %}
+            <a {% if this_page == current_page_num %}class="active"{% endif %} href="{{ blog_page_link(this_page) }}" title="Page {{ this_page }}">{{ this_page }}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if (contents.total_page_count > totalShowPages)&&(contents.total_page_count - current_page_num > 2) %}
+            <span class="elipses p hard--ends">...</span>
+            {% endif %}
+            {% if (contents.total_page_count > 1) %}
+            <a {% if contents.total_page_count == current_page_num %}class="active"{% endif %} href="{{ blog_page_link(contents.total_page_count) }}" title="Page {{ contents.total_page_count }}">{{ contents.total_page_count }}</a>
+            {% endif %}
+
+					</div>
+					<div class="pagination--next grid__item one-third palm-one-half hard--ends text--left palm-text--right">
+						{% if next_page_num %}
+							<a class="next-link" href="{{ blog_page_link(current_page_num + 1) }}">Next <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg></a>
+						{% endif %}
+					</div>
+				</div>#}
+    {# ##### END PAGINATION ##### #}
+  </div>
+  {# ##### END NORMAL LISTING ##### #}
+  {% endif %}
+</div>
+{# ##### END LISTING ##### #}
+{% endblock %}

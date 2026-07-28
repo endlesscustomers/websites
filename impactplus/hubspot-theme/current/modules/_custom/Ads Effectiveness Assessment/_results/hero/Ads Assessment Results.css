@@ -1,0 +1,177 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+:root {
+  --blue:          rgb(10, 108, 255);
+  --blue-light:    rgb(175, 202, 255);
+  --blue-tint:     #e8f0fe;
+  --bg:            rgb(246, 249, 252);
+  --white:         #ffffff;
+  --text-dark:     rgb(29, 29, 31);
+  --text-mid:      rgb(79, 84, 101);
+  --text-muted:    #9ca3af;
+  --shadow-card:   rgba(0,0,0,0.25) 0px 3px 40px -5px;
+  --radius-card:   8px;
+}
+
+{% call mediaQuery("lap-and-up") %}
+.section--hero--contentpadding--short{
+  padding-right: 20px;
+}
+
+.section--hero--contentpadding--tall{
+  padding-right: 40px;
+}
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+.section--hero--contentpadding--short{
+  padding-right: 20px;
+}
+
+.section--hero--contentpadding--tall{
+  padding-right: 40px;
+}
+{% endcall %}
+
+/* ── Error / loading states ── */
+#adsResultsModule .results-notice {
+  background: var(--white);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  color: var(--text-mid);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── Header ── */
+#adsResultsModule .results-profile-badge {
+  display: inline-block;
+  border-radius: 99px;
+  padding: 6px 16px !important;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* Profile badge color themes — mirrors score card band palette */
+#adsResultsModule .results-profile-badge--strong {
+  background: #d1fae5;
+  color: #059669;
+  border: 1px solid #6ee7b7;
+}
+#adsResultsModule .results-profile-badge--mixed {
+  background: #fef3c7;
+  color: #d97706;
+  border: 1px solid #fcd34d;
+}
+#adsResultsModule .results-profile-badge--weak {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 2px solid #fca5a5;
+}
+
+
+/* ── Score grid ── */
+
+#adsResultsModule .scores-grid{
+  flex-wrap: wrap;
+}
+
+#adsResultsModule .score-card {
+  border-radius:24px;
+  border: 1px solid transparent;
+  padding: 24px !important;
+}
+
+#adsResultsModule .score-card-name{
+  margin-bottom: 2px;
+}
+
+#adsResultsModule .score-card .score-card-band{margin-top: 0px}
+#adsResultsModule .score-card .score-card-pct{margin-top: 0px}
+
+#adsResultsModule .score-card--strong { background: #d1fae5; border-color: #6ee7b7; }
+#adsResultsModule .score-card--mixed  { background: #fef3c7; border-color: #fcd34d; }
+#adsResultsModule .score-card--weak   { background: #fee2e2; border-color: #fca5a5; }
+
+#adsResultsModule .score-card-band--strong { color: #059669; }
+#adsResultsModule .score-card-band--mixed  { color: #d97706; }
+#adsResultsModule .score-card-band--weak   { color: #dc2626; }
+
+/* ── Divider ── */
+#adsResultsModule .results-divider { height: 1px; background: #e5e7eb; margin: 28px 0; }
+
+/* ── Copy blocks ── */
+#adsResultsModule .results-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#adsResultsModule .results-list ul{
+  list-style: none;
+  padding-left: 0px;
+}
+
+#adsResultsModule .results-list li{
+  color: #4F5465;
+  line-height: 1.2em;
+  padding-left: 28px;
+  position: relative;
+}
+
+#adsResultsModule .results-list li:before{
+  background-image: url(https://www.impactplus.com/hubfs/IMPACT_Framework_3/Arrows/Arrows_Right__Primary.svg);
+  width: 16px;
+  height: 12px;
+  background-size: 16px 12px;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+#adsResultsModule .results-list li:not(:last-child){
+  margin-bottom: 14px;
+}
+
+.results-watch-wrapper .results-watch{
+  display: flex;
+}
+
+.results-watch-wrapper .results-watch:first-child:before{
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FC9639' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='8' x2='12' y2='12'/%3E%3Cline x1='12' y1='16' x2='12.01' y2='16'/%3E%3C/svg%3E");
+}
+
+.results-watch-wrapper .results-watch:before{
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  margin-right: 8px;
+}

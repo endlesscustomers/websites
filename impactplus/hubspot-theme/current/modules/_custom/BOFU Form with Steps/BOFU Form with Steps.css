@@ -1,0 +1,323 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--fullwidth h2 + .section--fullwidth-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--fullwidth .section--fullwidth-content h2,
+.section--fullwidth .section--fullwidth-content h3,
+.section--fullwidth .section--fullwidth-content h4,
+.section--fullwidth .section--fullwidth-content h5,
+.section--fullwidth .section--fullwidth-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+/*.section--fullwidth p,
+.section--fullwidth ul,
+.section--fullwidth ol,
+.section--fullwidth blockquote,
+.section--fullwidth picture,
+.section--fullwidth img,
+.section--fullwidth table {
+margin-bottom:0px!important;
+margin-top:28px!important;
+}*/
+
+.section--fullwidth .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+@media (max-width: 768px) {
+  .hs-landing-page .gridspacer--top + .section--fullwidth--video-true{
+    width: 100%;
+    max-width: 100% !important;
+  }
+}
+
+{# ***************************** Steps ***************************** #}
+
+.box-shadow--bofu{
+  box-shadow: 0px 10.61px 22px rgba(0, 0, 0, 0.11);
+  background: white;
+}
+
+@media screen and (min-width: 769px){
+  .progress--container{
+    width: 90%;
+    /*margin: 20px auto 20px auto;
+    padding: 20px;*/
+  }
+}
+
+@media screen and (max-width: 768px){
+  .progress--container,
+  .progress--container .progress-wrapper .progress-items{
+    width: 100% !important;
+  }
+
+  .progress--container .progress-wrapper .progress-items .icon-indicator{
+    margin: 0px 12px;
+  }
+
+  .bofuForm--container{
+    padding: 40px 24px 0px 24px !important;
+  }
+
+  .progress--container .progress-wrapper .progress-items .progress-item span.font--reading {
+    display: none;
+  }
+}
+
+.bofuForm--container{
+  position:relative;
+  background: white;
+  min-height: 600px;
+}
+
+@media screen and (min-width: 769px){
+  .bofuForm--container{
+    box-shadow: 0px 20px 20px -10px rgba(95, 109, 137, 0.10), 0px 5px 20px -5px rgba(95, 109, 137, 0.10);
+    border: 1px solid #F3F7FF;
+    border-radius: 50px;
+  }
+}
+
+.progress--container .progress-wrapper .progress-items{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  width: 80%;
+  align-items: start;
+  margin: 0 auto;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  justify-self: center;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item:first-child{
+  align-items: center;
+  justify-self: start;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item:first-child:before{
+  content: '';
+  background: white;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  z-index: -1;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item:last-child:before{
+  content: '';
+  background: white;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  right: 0;
+  z-index: -1;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item:last-child{
+  align-items: center;
+  justify-self: end;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item span{
+  opacity: .5;
+  margin-top: 6px;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item.active span{
+  opacity: 1 !important;
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item.active span.font--reading{
+  color: {{ color("primary") }};
+}
+
+.progress--container .progress-wrapper .progress-items .progress-item.color--blue span{
+  opacity: 1;
+}
+
+.progress-wrapper-line{
+  width: calc((100% - (13px * (3 - 1))) / (3 - 1));
+  background-image: linear-gradient(to right, #e1e7f4 45%, transparent 45%);
+  background-size: 5px 2px;
+  background-repeat: repeat-x;
+  border-radius: 10px;
+  height: 2px;
+  overflow: hidden;
+  top: 10px;
+  position: relative;
+}
+
+.progress-wrapper-line:nth-child(2){
+  left: 0;
+}
+
+.progress-wrapper-line:nth-child(4){
+  right: 0;
+}
+
+.progress-wrapper-line.progress-wrapper-bar--fill{
+  background: #0A6CFF;
+}
+
+.progress-item{
+  cursor: pointer;
+  position: relative;
+  flex: 0 0;
+}
+
+.stage-progress-bar--first .indicator{
+  margin-left: -7px;
+}
+
+/*.stage-progress-bar--first .progress-item{
+margin-left: -50%;
+}*/
+
+.stage-progress-bar--shift .indicator{
+  margin-left: -7px;
+}
+
+.stage-progress-bar--center .progress-item{
+  left: -50%;
+}
+
+.stage-progress-bar--last{
+  position: absolute;
+  left: 100%;
+}
+
+.stage-progress-bar--last .indicator{
+  margin: 0 auto;
+}
+
+.stage-progress-bar--last .progress-item{
+  left: 0;
+}
+
+.progress-wrapper-bar.active{
+  background: #0A6CFF;
+}
+
+.progress-item.active .number{
+  color: white;
+}
+
+.progress-item.active .indicator{
+  background: #0A6CFF;
+  border: 2px solid #0A6CFF;
+}
+
+.progress-item .indicator{
+  z-index: 1;
+  position: relative;
+  border: 2px solid #5597be;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+}
+
+.progress-item .progress-item{
+  color: #4F5465;
+  font-size: .75rem;
+  font-weight: 600;
+  margin-top: 7px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.stage-progress-bar--shift .progress-item{
+  left: -50%;
+}
+
+.progress-item.background--primary .progress-item{
+  color: #ffffff !important;
+}
+
+.stage-progress-bar--last .indicator{
+  margin: 0 auto;
+}
+
+.progress-item .indicator{
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(10,108,255, 0.75);
+  border-radius: 100%;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  position: relative;
+  width: 24px;
+  z-index: 1;
+}
+
+/* Form to Meeting Transition */
+.bofu--confirm {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: none;
+}
+
+.bofuForm--inner {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  min-height: 1200px
+}
+
+.bofu--meetingInv {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Card Columns */
+
+.section--cards-column-group .section--card-content-columns-wrapper {
+  display: inline-flex;
+  flex-flow: column;
+  flex-grow: 1;
+  padding: 24px
+}
+
+.section--cards-layout--two-col .section--card-content-columns-wrapper {
+  justify-content: space-between
+}
+
+.section--card-content-columns--center {
+  flex-flow: wrap
+}
+
+.section--cards-layout--two-col .section--card-content-columns-container {
+  flex-direction: column
+}

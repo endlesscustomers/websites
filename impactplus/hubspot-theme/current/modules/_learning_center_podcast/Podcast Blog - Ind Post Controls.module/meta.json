@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 211343107142,
+  "label" : "Blog Ind Post Controls",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : false
+}

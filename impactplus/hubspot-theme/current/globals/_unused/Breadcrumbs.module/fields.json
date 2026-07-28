@@ -1,0 +1,40 @@
+[ {
+  "id" : "show_breadcrumbs",
+  "name" : "show_breadcrumbs",
+  "label" : "Show Breadcrumbs",
+  "required" : false,
+  "locked" : true,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "breadcrumbs",
+  "name" : "breadcrumbs",
+  "label" : "Breadcrumbs",
+  "required" : false,
+  "locked" : true,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "show_breadcrumbs",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "breadcrumbs.breadcrumbs_menu",
+    "name" : "breadcrumbs_menu",
+    "label" : "Breadcrumbs Menu",
+    "required" : false,
+    "locked" : false,
+    "type" : "menu",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : { }
+} ]

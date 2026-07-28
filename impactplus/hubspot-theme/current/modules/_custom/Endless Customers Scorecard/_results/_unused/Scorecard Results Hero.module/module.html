@@ -1,0 +1,254 @@
+{# ***** Global Macro Snippets ***** #}
+{% import '/impact-agency-services-v3/Global_Snippets_Marcos.html' as snippets %}
+
+<style>
+  {{ module.total_score_hubspot_internal_value }}{
+    display:none;
+  }
+</style>
+
+{# CSS #}
+{#{{ require_css(get_asset_url('/IMPACT Publisher Modules/- Legacy CSS Files -/Score_Your_Company-Inbound_Marketing-Assessments.css'), { async: true } ) }}#}
+
+<div class="section--recordings-popup-container {% if (is_in_page_editor) || (is_in_page_previewer) %}ineditor{% endif %}" data-redirect="{{ module.redirect_link_add_main_landing_page_url }}" data-totalname="{{ module.total_score_cookie_name }}">
+  <div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--results-score relative {{ module.section_controls.device_visibility }}">
+    {{ snippets.background(module.background) }}
+
+    <div class="relative z-index--10">
+      <div class="grid {{ module.spacing.top_padding }} {{ module.spacing.top_padding_mobile }} {{ module.spacing.bottom_padding }} {{ module.spacing.bottom_padding_mobile }}">
+        <div class="grid__item lap-and-up-ten-twelfths portable-eleven-twelfths palm-eleven-twelfths palm-hard--sides hard--ends first--hard--top last--hard--bottom lap-and-up-margin--standard--bottom tablet-margin--standard--bottom palm-margin--short--bottom text--center portable-all--text--center">
+          <div class="block serif--display">
+            {{ module.heading_subheading }}
+          </div>
+          <div class="text--center hard--ends lap-and-up-margin--tall--top">
+            <div class="relative resultsScore--container">
+              <canvas id="resultsScore--number"></canvas>
+            </div>
+          </div>
+          {#<div class="resultsScore--share margin--grande--bottom visuallyhidden palm-all--text--center palm-margin--tall--bottom">
+            <h6 class="font--19 normal-weight inline-block hard--ends resultsScore--share-header palm-margin--short--bottom" style="color:#5a6a7c; letter-spacing:0px !important;">
+              Share Your Results:
+            </h6>
+            <div class="inline-block all--text--center palm-block palm-margin--short--bottom">
+              <a class="resultsScore--share-icon resultsScore--facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.impactbnd.com/scorecard">
+                <i class="fa fa-facebook color--facebook font--20"></i>
+              </a>
+              <a class="resultsScore--share-icon resultsScore--linkedin" href="#" target="_blank">
+                <i class="fa fa-linkedin color--linkedin font--20"></i>
+              </a>
+              <a class="resultsScore--share-icon resultsScore--twitter" href="#" target="_blank">
+                <i class="fa fa-twitter color--twitter font--20"></i>
+              </a>
+            </div>
+          </div>#}
+        </div>
+        {{ snippets.gridCustomSpacingNum(name,module.spacing,".grid",".grid") }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .resultsScore--container{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+
+  #resultsScore--number{
+    max-width: 500px;
+    max-height: 500px;
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{#
+<script>
+// Set a cookie for the editor
+var assessmentScore;
+var cookieScore = $('.section--recordings-popup-container').attr('data-totalname');
+console.log($.cookie(cookieScore));
+
+$.cookie('salesAssessmentTotalScore');
+
+function scoreCalc(scoreType){
+  console.log(scoreType);
+
+  assessmentScore = scoreType;
+  var assessmentScoreColorStart = "#fab15c";
+  var assessmentScoreColorStop = "#fab15c";
+
+  if (assessmentScore<19){
+
+    assessmentScoreColorStart = '#e8675d';
+    assessmentScoreColorStop = '#e8675d';
+
+  } else if(assessmentScore>20&&assessmentScore<=39) {
+
+    assessmentScoreColorStart = '#fab15c';
+    assessmentScoreColorStop = '#fab15c';
+
+  } else if(assessmentScore>40&&assessmentScore<=59){
+
+    assessmentScoreColorStart = '#ecc617';
+    assessmentScoreColorStop = '#ecc617';
+
+  } else if(assessmentScore>60&&assessmentScore<=79){
+
+    assessmentScoreColorStart = '#c0db53';
+    assessmentScoreColorStop = '#c0db53';
+
+  } else if(assessmentScore>80){
+
+    assessmentScoreColorStart = '#01C4A2';
+    assessmentScoreColorStop = '#01C4A2';
+
+  }
+
+  if (scoreType > 80){
+    $('.resultsScore--share').removeClass('visuallyhidden');
+
+    if (!$('.resultsScore--share').hasClass('visuallyhidden')) {
+      $(".resultsScore--twitter").attr("href", "https://twitter.com/home?status=%20My%20organization%20scored%20a%20"+assessmentScore+"%20on%20%40impactbnd%20Digital%20Sales%20and%20Marketing%20Scorecard,%20how%20will%20yours%20stand%20up?%20https%3A//www.impactbnd.com/scorecard");
+      $(".resultsScore--linkedin").attr("href", "https://www.linkedin.com/shareArticle?mini=true&url=https%3A//impactbnd.com/scorecard&title=The%20Inbound%20Assessment&summary=%20My%20organization%20scored%20a%20"+assessmentScore+"25%20on%20IMPACTs%20Inbound%20assessment,%20how%20will%20yours%20stand%20up?&source=");
+    }
+  }
+
+  // CODE FOR SCORE CARD EXPLAINATIONS MODULE
+
+  // HTML for this function can be found n the 'Inbound Assessment Results Score
+  function isBetween() {
+    $(".scorecard--number-group").each(function(i) {
+      var scoreMin = $(this).attr('data-min');
+      var scoreMax = $(this).attr('data-max');
+
+      if (assessmentScore >= scoreMin && assessmentScore <= scoreMax) {
+        $(this).css('display', 'block');
+      }
+    });
+  }  
+
+  isBetween(); 
+
+  $('.resultsScore--number--center').css('color', assessmentScoreColorStop);
+  var opts = {
+    lineWidth: 0.1,
+    angle: 0.15, 
+    strokeColor: '#E0E0E0',   
+    generateGradient: true,
+    colorStart: assessmentScoreColorStart,  
+    colorStop: assessmentScoreColorStop,  
+  };
+
+  var target = document.getElementById('resultsScore--number'); // your canvas element
+  var gauge = new Donut(target);
+  gauge.setOptions(opts); 
+  gauge.maxValue = 100; 
+  gauge.animationSpeed = 50; 
+  gauge.set($.cookie(cookieScore));
+
+  $('.resultsScore--number--center').text($.cookie(cookieScore));
+}
+
+var myurl = "https://www-impactplus-com.sandbox.hs-sites.com/";
+
+if ((window.location.href.indexOf(myurl) > -1) || ($(".section--recordings-popup-container").hasClass("ineditor"))) {
+  console.log('page editor')
+  assessmentScore = 81;
+  scoreCalc(assessmentScore);
+} else {
+  if (!!$.cookie(cookieScore)) {
+    console.log('found cookie');
+    assessmentScore = parseInt($.cookie(cookieScore));
+    console.log(assessmentScore);
+    scoreCalc(assessmentScore);
+  } else {
+    // Cookie doesnt exists, and not in editor
+    var lpRedirect = $('.section--recordings-popup-container').attr('data-redirect');
+    console.log('redirect');
+    window.location.replace(lpRedirect);
+  }
+}
+
+    </script>
+    #}
+
+
+<script>
+  const centerTextPlugin = {
+    id: 'centerText',
+    beforeDraw(chart) {
+      const { width, height } = chart;
+      const ctx = chart.ctx;
+
+      const fontSize1 = (height / 28);
+      const fontSize2 = (height / 7);
+
+      const line1 = 'Your Overall Score';
+      const line2 = '75';
+
+      ctx.save();
+
+      // Line 1: smaller text
+      ctx.font = `${fontSize1}px proxima-nova`;
+      ctx.fillStyle = '#666';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(line1, width / 2, height / 2.9); // move up
+
+      // Line 2: larger text (score)
+      ctx.font = `bold ${fontSize2}px proxima-nova`;
+      ctx.fillStyle = '#333';
+      ctx.fillText(line2, width / 2, height / 2.25); // move down
+
+      ctx.restore();
+    }
+  };
+  const ctx = document.getElementById('resultsScore--number').getContext('2d');
+
+  const myDonutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['The Right Content', 'The Right Website', 'The Right Sales Activities', 'The Right Technology', 'The Right Culture of Performance'],
+      datasets: [{
+        label: 'Scores',
+        data: [25, 15, 20, 30, 10], // Your 5 scores here
+        backgroundColor: [
+          '#FF6384',
+          '#36A2EB',
+          '#FFCE56',
+          '#4BC0C0',
+          '#9966FF'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true, 
+      maintainAspectRatio: true, 
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            boxWidth: 30,      // Default is 40, adjust to widen/narrow legend icons
+            padding: 20,       // Space between legend items
+            font: {
+              size: 14         // Optional: make text more readable
+            }
+          }
+        }
+      },
+      layout: {
+        padding: {
+          top: 10,
+          bottom: 10,
+          left: 20,
+          right: 20
+        }
+      }
+    },
+    plugins: [centerTextPlugin] // plugin for the center number
+  });
+</script>

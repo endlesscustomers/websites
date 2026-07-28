@@ -1,0 +1,10 @@
+{
+  "global" : true,
+  "content_types" : [ "BLOG_LISTING", "BLOG_POST" ],
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 196135137859,
+  "label" : "[IM-UI] Learning Center Mobile Bottom Subavigation",
+  "icon" : "https://www.impactplus.com/hubfs/impact-logo-highres-black-half.svg",
+  "is_available_for_new_content" : false
+}

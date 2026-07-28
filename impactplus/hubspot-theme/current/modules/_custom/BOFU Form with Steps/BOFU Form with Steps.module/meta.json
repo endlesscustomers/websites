@@ -1,0 +1,10 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING" ],
+  "inline_help_text" : "How to edit this module: https://share.vidyard.com/watch/Ax2FqSGf6CNPvtBkdeH1Up\nHow this module is configured in the Design Manager: https://share.vidyard.com/watch/M586GJypyDMVpPUMqNwUK6",
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 210699853333,
+  "label" : "[IM-UI] BOFU Form with Steps",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : true
+}

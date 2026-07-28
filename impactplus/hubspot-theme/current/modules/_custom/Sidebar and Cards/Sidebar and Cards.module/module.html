@@ -1,0 +1,222 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Sidebar and Cards.css"), { async: true } ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":1,
+  "one-half":2,
+  "one-third":3,
+  "one-fourth":4,
+  "one-fifth":5,
+  "one-sixth":6
+} %}
+{% set columnWidths = {
+  "desk":columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet":columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{% if module.layout_controls.cards_background_color.cards_background_color == "custom" %}
+{% set backgroundColor = module.layout_controls.cards_background_color.cards_custom_background_color.color %}
+{% set backgroundOpacity = module.layout_controls.cards_background_color.cards_custom_background_color.opacity|int/100 %}
+{% set backgroundColorRgba = "rgba("+backgroundColor|convert_rgb+", "+backgroundOpacity+")" %}
+{% else %}
+{% set backgroundColor = functions.color(module.layout_controls.cards_background_color.cards_background_color) %}
+{% set backgroundOpacity = 1 %}
+{% set backgroundColorRgba = "rgba("+backgroundColor|convert_rgb+", "+backgroundOpacity+")" %}
+{% endif %}
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--sidebar-cards {% if module.layout_controls.cards_horizontally_align_buttons %}section--sidebar-cards--equalizebuttons{% endif %} relative {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }} z-index--10">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3 section--sidebar-cards--outer">
+    <div class="section--sidebar-cards--inner">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }} lap-and-up-visuallyhidden tablet-visuallyhidden"></div>
+      <div class="section--sidebar-cards--inner-grid grid relative hard--ends" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+        <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }} palm-visuallyhidden"></div>
+        {# MOBILE SPACER #}
+        <div class="section--sidebar-cards--sidebar-spacer section--sidebar-cards--sidebar grid__item three-twelfths tablet-three-twelfths palm-one-whole text--left palm-hard--ends z-index--1 lap-and-up-visuallyhidden tablet-visuallyhidden" style="opacity:0; pointer-events: none;">
+          <div class="section--sidebar-cards--sidebar-header p lap-and-up-visuallyhidden tablet-visuallyhidden hard--top">
+            {{ module.sidebar_mobile_menu_heading }}
+            <span class="section--sidebar-cards--sidebar-arrow">
+              <img src="https://www.impactplus.com/hubfs/Photography/Icons/Black%20Icons/arrow%20down%20icon%20-%20black.svg" alt="Mobile Hamburger Menu" height="11" width="20">
+            </span>
+          </div>
+        </div>
+        {# END MOBILE SPACER #}
+        <div class="section--sidebar-cards--sidebar grid__item three-twelfths tablet-four-twelfths palm-one-whole text--left palm-hard--ends z-index--10">
+          <div class="section--sidebar-cards--sidebar-wrapper">
+            <div class="section--sidebar-cards--sidebar-header p lap-and-up-visuallyhidden tablet-visuallyhidden hard--top">
+              {{ module.sidebar_mobile_menu_heading }}
+              <span class="section--sidebar-cards--sidebar-arrow">
+                <img src="https://www.impactplus.com/hubfs/Photography/Icons/Black%20Icons/arrow%20down%20icon%20-%20black.svg" alt="Mobile Hamburger Menu" height="11" width="20">
+              </span>
+            </div>
+            <div class="section--sidebar-cards--sidebar-menu palm--collapsed">
+              {% simple_menu menu_tree="{{ module.sidebar_menu_items }}" %}
+            </div>
+          </div>
+        </div>
+
+        <div class="grid__item nine-twelfths tablet-eight-twelfths palm-one-whole hard--top hard--bottom palm-margin--tall--top first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}"> 
+          {% for group in module.card_group %}
+
+          {% if group.card_layout_settings.cards_border_color.cards_border_color == "custom" %}
+          {% set borderColor = group.card_layout_settings.cards_border_color.cards_custom_border_color.color %}
+          {% set borderOpacity = group.card_layout_settings.cards_border_color.cards_custom_border_color.opacity|int/100 %}
+          {% set borderColorRgba = "rgba("+borderColor|convert_rgb+", "+borderOpacity+")" %}
+          {% else %}
+          {% set borderColor = functions.color(group.card_layout_settings.cards_border_color.cards_border_color) %}
+          {% set borderOpacity = 1 %}
+          {% set borderColorRgba = "rgba("+borderColor|convert_rgb+", "+borderOpacity+")" %}
+          {% endif %}
+
+          {% set borderWidth = group.card_layout_settings.cards_border_width %}
+
+          {% if module.layout_controls.cards_add_border_radius_around_cards %}
+          {% if group.card_layout_settings.cards_border_radius.cards_border_radius_type == "custom" %}
+          {% set borderRadius = group.card_layout_settings.cards_border_radius.cards_custom_border_radius %}
+          {% set borderRadiusClass = "border-radius--"+borderRadius %}
+          {% else %}
+          {% set borderRadiusClass = "border-radius" %}
+          {% endif %}
+          {% else %}
+          {% set borderRadiusClass = "" %}
+          {% endif %}
+
+          <div {% if group.section_anchor_id %}id="{{ group.section_anchor_id|trim }}"{% endif %} class="section--sidebar-cards--group grid__item one-whole hard--sides {% if loop.first %}hard--top{% elif loop.last %}hard--bottom{% else %}venti--top portable-tall--top palm-hard--top{% endif %}">
+            {% if group.header || group.content %}
+            <div class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+              {% if group.header %}
+              <div class="section--sidebar-cards--header-group last--hard--bottom margin--petite--bottom flex flex-align--center">
+                {% if group.header_graphic.src %}
+                <img class="lazy" src="{{ group.header_graphic.src|escape_url }}" alt="{{ group.header_graphic.alt|escape_attr }}" style="margin-right: 20px; width: {{ group.header_graphic_width }}px;">
+                {% endif %}
+                <h2 class="hard--ends">{{ group.header }}</h2>
+              </div>
+              {% endif %}
+              <div class="first--hard--top">{{ group.content }}</div>
+            </div>
+            {% endif %}
+            <div class="section--sidebar-cards--cards--wrapper">
+              {% set animationClasses = '' %}
+              {% if module.layout_controls.enable_animation %}
+              {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}' %}
+              {% endif %}
+
+              {% for item in group.cards_content %}
+
+              <div class="section--sidebar-cards--card grid {{ animationClasses }} relative grid__item {{ module.layout_controls.number_of_columns_desktop }} {{ module.layout_controls.number_of_columns_laptop }} {{ module.layout_controls.number_of_columns_tablet }} {{ module.layout_controls.number_of_columns_mobile }} hard valign--top">
+                {% if ( (item.cta.cta_type == "link") && (item.cta.cta_hyperlink.href) &&  (item.cta.cta_button_text) ) || (item.cta.cta_type == "anchor") %}
+                <a class="section--sidebar-cards--card--link no--underline border--0 card--hover text--{{ module.layout_controls.cards_content_alignment }} palm-text--{{ module.layout_controls.cards_content_alignment_mobile }}" title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_type == 'anchor' %}#{{ item.cta.cta_section_anchor_id|replace('#','') }}{% else %}{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}{% endif %}" {% if (item.cta.cta_type == "link")&&(item.cta.cta_open_in_new_tab) %}target="_blank"{% endif %}>
+                  {% endif %}
+                  <span class="section--sidebar-cards--card--inner">
+                    <span class="section--sidebar-cards--card--body overflow--hidden first--hard--top last--hard--bottom text--{{ module.layout_controls.cards_content_alignment }} palm-text--{{ module.layout_controls.cards_content_alignment_mobile }} {% if module.layout_controls.cards_image_type == "native" %}{{ module.layout_controls.cards_inner_padding }}--top{% endif %} {{ borderRadiusClass }} border--left--0 border--right--0 border--bottom--0{% if (module.layout_controls.cards_image_type != 'full') %} border--{{ borderWidth }}{% endif %} {% if module.layout_controls.cards_box_shadow %}box-shadow {% if ((item.cta.cta_type == "cta")&&(item.cta.cta))||((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text))||((item.cta.cta_type == "anchor")&&(item.cta.cta_section_anchor_id)&&(item.cta.cta_button_text)) %}box--hover{% endif %}{% endif %} {{ module.layout_controls.cards_text_color_override }}" style="{% if (module.layout_controls.cards_image_type != 'full') %}border-color:{{ borderColorRgba }};{% endif %}background-color:{{ backgroundColorRgba }};">
+                      {% if 'lottie' == module.layout_controls.cards_image_type %}
+                      <span class="inline-block short--top padding--short {{ module.layout_controls.cards_add_drop_shadow_to_native_icons ? 'svg--shadow' : '' }} {{ module.layout_controls.cards_pop_native_image_out_of_cards ? 'negative--tall--top' : '' }} text--{{ module.layout_controls.cards_content_alignment }} palm-text--{{ module.layout_controls.cards_content_alignment_mobile }}">
+                        <lottie-player
+                                       autoplay
+                                       {% if item.lottie_animation.lottie_embed_loop %}
+                                       loop
+                                       {% endif %}
+                                       id    = "{{ name }}--lottieplayer--{{ loop.index }}"
+                                       class = "inline-block"
+                                       mode  = "normal"
+                                       style = "{{ 'width:' ~ item.lottie_animation.lottie_embed_width ~ 'px;' if item.lottie_animation.lottie_embed_width }} {{ 'height:' ~ item.lottie_animation.lottie_embed_height ~ 'px;' if item.lottie_animation.lottie_embed_height }}"
+                                       >
+                        </lottie-player>
+                        {{ require_js( 'https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js', { async: true } ) }}
+                        {% require_js %}
+                        <script>
+                          const {{ name|replace('-','_') }}LottiePlayer{{ loop.index }} = document.querySelector("#{{ name }}--lottieplayer--{{ loop.index }}");
+                                                                                                                 {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.addEventListener("rendered", (e) => {
+                            {% if 'url' == item.lottie_animation.lottie_embed_type %}
+                            {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load("{{ item.lottie_animation.lottie_embed }}");
+                                                                                         {% else %}
+                                                                                         {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load({{ item.lottie_animation.lottie_embed|tojson }});
+                            {% endif %}
+                          });
+                        </script>
+                        {% end_require_js %}
+                      </span>
+                      {% elif 'native' == module.layout_controls.cards_image_type %}
+                      <span class="block padding--{{ module.layout_controls.cards_inner_padding }}">
+                        <img class="inline-block" src="{{ item.image_native.image.src }}" alt="{{ item.image_native.image.alt }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} width="{% if (item.image_native.image.size_type == 'auto_custom_max') %}{{ item.image_native.image.max_width }}{% elif (item.image_native.image.size_type == 'exact') %}{{ item.image_native.image.width }}{% else %}{{ item.image_native.image.width }}{% endif %}" height="{% if (item.image_native.image.size_type == 'auto_custom_max') %}{{ item.image_native.image.max_height }}{% else %}{{ item.image_native.image.height }}{% endif %}" style="width:auto;height:{{ module.layout_controls.cards_native_image_icon_max_height }}px;" />
+                      </span>
+                      {% elif 'logos' == module.layout_controls.cards_image_type %}
+                      <span class="block {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.image_full.image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.image_full.image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? "background:url('{{ item.image_full.image.src }}');" : "" }} background-repeat: no-repeat; background-position: center; background-size: {{ '80% auto' if (item.image_full.image.width > item.image_full.image.height * 2) else 'auto 80%' }};">
+                        {{ snippets.aspectSpacer('2x1') }}
+                      </span>
+                      {% elif 'full' == module.layout_controls.cards_image_type %}
+                      <span class="block {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.image_full.image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.image_full.image.src }}"' : '' }}  style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.image_full.image.src }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                        {{ snippets.aspectSpacer(module.layout_controls.cards_image_aspect_ratio) }}
+                      </span>
+                      {% endif %}
+                      <span class="section--sidebar-cards--card--body--wrapper padding--{{ module.layout_controls.cards_inner_padding }} {% if module.layout_controls.cards_image_type == "native" %}short--top{% else %}demi--top{% endif %} demi--bottom {% if (module.layout_controls.cards_image_type == 'full') %}border-radius--{{ borderRadius }} border--{{ borderWidth }}{% endif %}" {% if (module.layout_controls.cards_image_type == 'full') %}style="border-color:{{ borderColorRgba }};border-top:0px;-webkit-border-top-left-radius: 0px;-webkit-border-top-right-radius: 0px;-moz-border-radius-topleft: 0px;-moz-border-radius-topright: 0px;border-top-left-radius: 0px;border-top-right-radius: 0px;"{% endif %}>
+                        <span class="section--sidebar-cards--card--body--content block first--hard--top last--hard--bottom">
+                          {% if item.header_label %}
+                          <{{ 'h3' if group.header else 'h2' }} class="{{ module.layout_controls.cards_inner_header_size }} margin--petite--bottom">{{ item.header_label }}</{{ 'h3' if module.header else 'h2' }}>
+                            {% endif %}
+
+                            <div class="inline-block first--hard--top p--{{ module.layout_controls.cards_paragraph_size }} last--hard--bottom margin--petite--bottom">{{ item.description }}</div>
+                      </span>
+                      {% if ((item.cta.cta_type == "cta")&&(item.cta.cta))||((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text))||((item.cta.cta_type == "anchor")&&(item.cta.cta_section_anchor_id)&&(item.cta.cta_button_text)) %}
+                      <span class="section--sidebar-cards--card--body--cta">
+                        <span class="p all--btn all--btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} margin--short--top hard--bottom">
+                          {% if item.cta.cta_type == "cta" %}
+                          {{ cta(item.cta.cta) }}
+                          {% elif (item.cta.cta_type == "link")||(item.cta.cta_type == "anchor") %}
+                          <span class="btn btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} p--{{ module.layout_controls.cards_paragraph_size }}">
+                            {{ item.cta.cta_button_text }}
+                          </span>
+                          {% endif %}
+                        </span>
+                      </span>
+                      {% endif %}
+                    </span>
+                  </span>
+                  </span>
+                {% if ( (item.cta.cta_type == "link") && (item.cta.cta_hyperlink.href) &&  (item.cta.cta_button_text) ) || (item.cta.cta_type == "anchor") %}
+                </a>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+
+      {% if snippets.multiButton(module.cta) %}
+      <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+        <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+          {{ snippets.multiButton(module.cta) }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+  </div>
+</div>
+{{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

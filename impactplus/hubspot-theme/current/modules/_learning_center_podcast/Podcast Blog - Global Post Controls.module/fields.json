@@ -1,0 +1,150 @@
+[ {
+  "id" : "edcdf3bc-29d8-dc49-f9b3-375bedca5bf5",
+  "name" : "sidebar_form",
+  "label" : "Sidebar Form",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "c8162fc7-76c0-a4d0-18bb-c9b2b12472f6",
+    "name" : "preheader",
+    "label" : "Preheader",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Subscribe to the Podcast"
+  }, {
+    "id" : "19f0c7a1-e4d0-7ae8-e7c0-1a0958f3fa64",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Never miss an update from the Endless Customers Podcast"
+  }, {
+    "id" : "c62ff76e-2015-554b-5727-448164754142",
+    "name" : "subheader",
+    "label" : "Subheader",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Each week have the latest episode delivered directly to your inbox with the latest insights, tactics, and success stories."
+  }, {
+    "id" : "78d29f70-e529-cb70-a093-1519f5616f18",
+    "name" : "sidebar_form",
+    "label" : "Form",
+    "required" : false,
+    "locked" : false,
+    "embed_versions" : [ "v2", "v4" ],
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "a2340e8a-79a4-4932-b7a0-3fe22cdf26df",
+      "response_type" : "inline",
+      "message" : "Thanks! Stay tuned for the next episode.",
+      "form_type" : "HUBSPOT"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "preheader" : "Subscribe to the Podcast",
+    "header" : "Never miss an update from the Endless Customers Podcast",
+    "subheader" : "Each week have the latest episode delivered directly to your inbox with the latest insights, tactics, and success stories.",
+    "sidebar_form" : {
+      "form_id" : "a2340e8a-79a4-4932-b7a0-3fe22cdf26df",
+      "response_type" : "inline",
+      "message" : "Thanks! Stay tuned for the next episode.",
+      "form_type" : "HUBSPOT"
+    }
+  }
+}, {
+  "id" : "d8751ac8-9184-4af4-f6b3-ddc31f06ce6c",
+  "name" : "additional_offers_or_resources",
+  "label" : "Sidebar Additional Offers or Resources",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "0f05dc24-a1b5-e1a3-8ae4-077dbb182397",
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "0f05dc24-a1b5-e1a3-8ae4-077dbb182397",
+    "name" : "heading",
+    "label" : "Content",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Attend the Endless Customers Conference"
+  }, {
+    "id" : "09c5456a-0da4-2379-44a3-0b4b92d63a06",
+    "name" : "resource_url",
+    "label" : "Resource URL",
+    "required" : true,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "BLOG" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : 194882872233,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "heading" : "Attend the Endless Customers Conference",
+    "resource_url" : {
+      "url" : {
+        "content_id" : 194882872233,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "heading" : "Attend the Endless Customers Conference",
+    "resource_url" : {
+      "url" : {
+        "content_id" : 194882872233,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "heading" : "Attend the Endless Customers Conference",
+    "resource_url" : {
+      "url" : {
+        "content_id" : 194882872233,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ]
+} ]

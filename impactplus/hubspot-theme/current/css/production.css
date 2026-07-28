@@ -1,0 +1,49 @@
+{% import './_config.css' as config %}
+{% import './mixins/_functions.css'  %}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{#
+Production Theme Framework © 2023 IMPACT Branding & Design LLC. ALL RIGHTS RESERVED.
+IMPACT Branding & Design LLC grants you a nonexclusive, nontransferable, limited right to access and use this
+installation of Production Theme Framework. By using this installation of Production Theme Framework, you agree not
+to modify, reverse engineer, disassemble, or decompile the Production Theme Framework or any portion thereof.
+Any unauthorized copying, reproduction, republishing, uploading, posting, distribution, transmission, display
+or other use of this material without the express written permission of IMPACT Branding & Design is prohibited.
+#}
+
+
+{# ******************** BASE ******************** #}
+{% include './base/_containers-dnd.css' %}
+{% include './base/_grid.css' %}
+{% include './base/_base.css' %}
+{% include './base/_layout.css' %}
+
+{# ******************** ELEMENTS ******************** #}
+{% include './elements/_breadcrumbs.css' %}
+{% include './elements/_background.css' %}
+{% include './elements/_bullets.css' %}
+{% include './elements/_buttons.css' %}
+{% include './elements/_fonts.css' %}
+{% include './elements/_forms.css' %}
+{% include './elements/_swoops.css' %}
+{% include './elements/_tags.css' %}
+{% include './elements/_tables.css' %}
+{% include './elements/_typography.css' %}
+{% include './elements/_video.css' %}
+
+{% include './elements/_colors.css' %}
+
+{# ******************** UTILITIES ******************** #}
+{% include './utilities/_fades.css' %}
+{% include './utilities/_fancybox.css' %}
+{% include './utilities/_helpers.css' %}
+
+{# ******************** CUSTOM ******************** #}
+{% include './_custom.css' %}

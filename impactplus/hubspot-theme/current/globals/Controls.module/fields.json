@@ -1,0 +1,1058 @@
+[ {
+  "id" : "bf635a7d-1427-8f15-d07f-892b0dcec33f",
+  "name" : "header_design",
+  "label" : "Header Design",
+  "inline_help_text" : "This option determines which design variation of your global header is used for this page. When using the Transparent option, ensure the first section of your page has a darker background on which white text would be legible. Otherwise, use the Solid option.",
+  "required" : true,
+  "locked" : true,
+  "display" : "select",
+  "choices" : [ [ "transparent", "Transparent" ], [ "solid", "Solid" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "transparent"
+}, {
+  "id" : "4a0418cc-1720-1212-a1f5-3350b4ca3e67",
+  "name" : "hide_navigation",
+  "label" : "Hide Navigation",
+  "help_text" : "This module allows you to hide the header, footer, and mobile navigation menus. It's suggested that you remove the navigation menus on any Landing Pages that aren't in the navigation menus. If your global header has sticky functionality, enabling this input will disable the sticky functionality on this page as well.",
+  "required" : false,
+  "locked" : true,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "48e63743-d1e7-b432-32b1-a6064f1c4bc3",
+  "name" : "disable_sticky_header",
+  "label" : "Disable Sticky Header",
+  "help_text" : "This module allows you to disable the sticky functionality of the global header on this page. This input will not affect the functionality of other sticky elements.",
+  "required" : false,
+  "locked" : true,
+  "visibility" : {
+    "controlling_field" : "4a0418cc-1720-1212-a1f5-3350b4ca3e67",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "NOT_EQUAL",
+    "access" : null
+  },
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "aff08c83-eb31-1989-9c08-7d2805b30c98",
+  "name" : "disable_hello_bar_on_this_page",
+  "label" : "Disable Hello Bar on this Page",
+  "help_text" : "You can disable the Hello Bar for specific content types within the Hello Bar's global settings which is in the global Header.",
+  "required" : false,
+  "locked" : true,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "f5bad649-577b-fe0f-4370-10cd33394752",
+  "name" : "page_type",
+  "label" : "Page Type",
+  "help_text" : "This is used for internal organization purposes to make it easy to retroactively add global scripts or settings based on page type. You can ignore this on pages with a predetermined template, such as a blog.",
+  "required" : true,
+  "locked" : true,
+  "display" : "radio",
+  "choices" : [ [ "other", "Other" ], [ "about", "About" ], [ "casestudies--outer", "Case Studies (Outer)" ], [ "casestudies--inner", "Case Studies (Inner)" ], [ "homepage", "Homepage" ], [ "industry", "Industry" ], [ "lp", "Landing Page" ], [ "partners", "Partners" ], [ "product--outer", "Product (Outer)" ], [ "product--inner", "Product (Inner)" ], [ "resources", "Resources" ], [ "services--outer", "Services (Outer)" ], [ "services--inner", "Services (Inner)" ], [ "solutions--outer", "Solutions (Outer)" ], [ "solutions--inner", "Solutions (Inner)" ], [ "team--outer", "Team (Outer)" ], [ "team--inner", "Team (Inner)" ], [ "typ", "Thank You Page" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "other"
+}, {
+  "id" : "58f06f79-2f76-5c0c-c691-5ce4054ecd2e",
+  "name" : "navigation_position",
+  "label" : "Primary and Secondary Navigation Position",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "sticky", "Sticky (Default)" ], [ "static", "Static" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "sticky"
+}, {
+  "id" : "26ca028c-968d-6b84-d7aa-04c5303d9395",
+  "name" : "primary_navigation",
+  "label" : "Primary Navigation",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "0dfed81e-330f-b9cd-0d14-bfc17df6aaf6",
+    "name" : "primary_navigation_select_type",
+    "label" : "Primary Navigation: Select Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Standard" ], [ "playbook", "Playbook Navigation" ], [ "logo-only", "Logo Only" ], [ "none", "None" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "487e06bb-56b9-a4f2-82ea-0689c58ae8fa",
+    "name" : "navigation_background_color",
+    "label" : "Primary Navigation: Background Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation.primary_navigation_select_type",
+      "controlling_value_regex" : "logo-only",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "livid-100", "Off White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "white"
+  }, {
+    "id" : "f59cd883-5d03-05df-74f5-b2325bd5cdb1",
+    "name" : "playbook_navigation_title",
+    "label" : "Playbook Navigation: Playbook Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0dfed81e-330f-b9cd-0d14-bfc17df6aaf6",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "playbook",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "The Ultimate Inbound Marketing Strategy Playbook 2021"
+  }, {
+    "id" : "97deca7b-90f6-67c3-880b-dcabac97b5fc",
+    "name" : "primary_navigation_theme",
+    "label" : "Primary Navigation: Color Theme",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0dfed81e-330f-b9cd-0d14-bfc17df6aaf6",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "default",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "grey", "Grey" ], [ "black", "Black" ], [ "white", "White" ], [ "transparent", "Transparent" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "black"
+  }, {
+    "id" : "9bafc9d8-618d-7137-0206-0d355dc99a3a",
+    "name" : "primary_navigation_add_dropdown",
+    "label" : "Primary Navigation: Additional Style Options",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation.primary_navigation_select_type",
+      "controlling_value_regex" : "default",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "none", "None" ], [ "dropshadow", "Add Dropshadow" ] ],
+    "multiple" : true,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "primary_navigation_select_type" : "default",
+    "navigation_background_color" : "white",
+    "playbook_navigation_title" : "The Ultimate Inbound Marketing Strategy Playbook 2021",
+    "primary_navigation_theme" : "black",
+    "primary_navigation_add_dropdown" : [ ]
+  }
+}, {
+  "id" : "9b1d32e5-9860-2261-87e0-17f00f0c3449",
+  "name" : "logo_settings",
+  "label" : "Primary Navigation: Logo Settings",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "primary_navigation.primary_navigation_select_type",
+    "controlling_value_regex" : "logo-only",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "49534bb3-e988-9b20-dd7b-f607e2d1ab5b",
+    "name" : "logo_option",
+    "label" : "Logo Option",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation.primary_navigation_select_type",
+      "controlling_value_regex" : "logo-only",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "default", "IMPACT Logo" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "b0ef3c14-35bb-c496-1d45-a269f113ef14",
+    "name" : "logo_custom_image",
+    "label" : "Logo: Custom Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_option",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : false,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "exact",
+      "src" : "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/Logo/Blue%20Logo%20-%20Full/IMPACT-Logo--Blue-Full.svg",
+      "alt" : "IMPACT-Logo--Blue-Full",
+      "loading" : "lazy",
+      "width" : 400,
+      "height" : 400,
+      "max_width" : 400,
+      "max_height" : 400
+    }
+  }, {
+    "id" : "a09082a4-7abc-4004-fb47-cd6f2c2520ed",
+    "name" : "logo_custom_link",
+    "label" : "Logo: Custom Image Link",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_option",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "supported_types" : [ "CONTENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : 18191346788,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "17e54d4b-572a-5b2e-b181-af5bb42b1c35",
+    "name" : "navigation_color_option",
+    "label" : "Logo Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_option",
+      "controlling_value_regex" : "default",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "black", "Black" ], [ "white", "White" ], [ "blue", "Blue" ], [ "blue-square-white-text", "Blue Square with White Text" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "black"
+  }, {
+    "id" : "ef5d90c6-412a-ff40-4594-2a37c1ab96c8",
+    "name" : "placement_of_logo",
+    "label" : "Logo Placement",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation.primary_navigation_select_type",
+      "controlling_value_regex" : "logo-only",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "left", "Left Aligned" ], [ "center", "Center Aligned" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "88bf78e0-a0ef-13c5-4910-1432358d1052",
+    "name" : "logo_spacing",
+    "label" : "Logo Top and Bottom Spacing",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation.primary_navigation_select_type",
+      "controlling_value_regex" : "logo-only",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "hard--ends", "None" ], [ "short", "Extra Small" ], [ "tall", "Small" ], [ "grande", "Medium" ], [ "venti", "Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "short"
+  }, {
+    "id" : "81aa0149-9321-ce8a-84d1-af5b9831c437",
+    "name" : "logo_top_spacing",
+    "label" : "Logo: Top Spacing",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_spacing",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null
+  }, {
+    "id" : "20d02734-b057-dcb9-6e76-6f3fdbcdf4a3",
+    "name" : "logo_top_spacing_unit",
+    "label" : "Logo: Top Spacing Unit",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_spacing",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "padding-top", "Padding" ], [ "margin-top", "Margin" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null
+  }, {
+    "id" : "0be8efab-fa44-5902-86f0-33398bf72c18",
+    "name" : "logo_bottom_spacing",
+    "label" : "Logo: Bottom Spacing",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_spacing",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null
+  }, {
+    "id" : "0c93f769-49d0-da26-b406-e703eb23f1e5",
+    "name" : "logo_bottom_spacing_unit",
+    "label" : "Logo: Bottom Spacing Unit",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "logo_settings.logo_spacing",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "padding-bottom", "Padding" ], [ "margin-bottom", "Margin" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "logo_option" : "default",
+    "logo_custom_image" : {
+      "size_type" : "exact",
+      "src" : "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/Logo/Blue%20Logo%20-%20Full/IMPACT-Logo--Blue-Full.svg",
+      "alt" : "IMPACT-Logo--Blue-Full",
+      "loading" : "lazy",
+      "width" : 400,
+      "height" : 400,
+      "max_width" : 400,
+      "max_height" : 400
+    },
+    "logo_custom_link" : {
+      "url" : {
+        "content_id" : 18191346788,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "navigation_color_option" : "black",
+    "placement_of_logo" : "center",
+    "logo_spacing" : "short"
+  }
+}, {
+  "id" : "c592eccf-10b0-b4a3-769f-56ed531475c5",
+  "name" : "secondary_navigation",
+  "label" : "Secondary Navigation",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "4e9de419-b7ae-381b-4b63-741530214476",
+    "name" : "secondary_navigation_type",
+    "label" : "Secondary Navigation: Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "none", "None" ], [ "custom", "Standard" ], [ "pillar", "Pillar Navigation" ], [ "learning-center", "Learning Center" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "none"
+  }, {
+    "id" : "cfe1362c-b30b-da4d-a5d0-a38feb81d014",
+    "name" : "secondary_navigation_position",
+    "label" : "Secondary Navigation: Placement",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "default", "Below Primary Navigation" ], [ "peekaboo", "Peek-a-boo (appears on scroll)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "3c4e4b59-0212-2eb4-c44a-ec65a5507822",
+    "name" : "secondary_navigation_theme",
+    "label" : "Secondary Navigation: Color Theme",
+    "inline_help_text" : "Must set regardless if secondary is hidden or not. If this is hidden, match this color theme on the primary nav theme.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "grey", "Grey" ], [ "black", "Black" ], [ "transparent", "Transparent" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "white"
+  }, {
+    "id" : "1a8fb42b-401b-a556-3161-13bade2468aa",
+    "name" : "secondary_navigation_font_color",
+    "label" : "Secondary Navigation: Font Color",
+    "help_text" : "Option is only available when the secondary 'transparent' or 'translucent' option is selected.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "3c4e4b59-0212-2eb4-c44a-ec65a5507822",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "transparent|translucent",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "white", "White" ], [ "light-grey", "Light Grey" ], [ "med-grey", "Medium Grey" ], [ "obsidian", "Black" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "med-grey"
+  }, {
+    "id" : "778a0c05-d5c6-2294-74a2-b86dd36f45be",
+    "name" : "secondary_navigation_additional_styles",
+    "label" : "Secondary Navigation: Style Options",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "dropshadow", "Add Dropshadow" ], [ "bottom-border", "Add Bottom Border" ] ],
+    "multiple" : true,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ ]
+  }, {
+    "id" : "bc2a02ab-1fae-fb3b-11f7-c43d0c04b6d7",
+    "name" : "secondary_navigation_layout",
+    "label" : "Secondary Navigation: Layout Options",
+    "inline_help_text" : "Select all layouts you want to add.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "left-logo", "Left Aligned Logo" ], [ "left-text", "Left Aligned Text" ], [ "center-menu", "Center Menu" ], [ "ctas", "Right Aligned CTAs" ] ],
+    "multiple" : true,
+    "reordering_enabled" : false,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ "left-logo", "left-text", "center-menu" ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "secondary_navigation_type" : "none",
+    "secondary_navigation_position" : "default",
+    "secondary_navigation_theme" : "white",
+    "secondary_navigation_font_color" : "med-grey",
+    "secondary_navigation_additional_styles" : [ ],
+    "secondary_navigation_layout" : [ "left-logo", "left-text", "center-menu" ]
+  }
+}, {
+  "id" : "9a37c972-0e16-d0ce-f39b-27ed5cf328b0",
+  "name" : "secondary_navigation_standard_layout_settings",
+  "label" : "Secondary Navigation: Standard Layout Settings",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+    "controlling_value_regex" : "custom",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "2b730ef9-9ead-4570-2ec7-53918d3e094a",
+    "name" : "left_logo_color",
+    "label" : "Secondary Navigation: Logo Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_layout",
+      "controlling_value_regex" : "left-logo",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "black", "Black" ], [ "white", "White" ], [ "blue", "Blue" ], [ "blue-square-white-text", "Blue Square with White Text" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "black"
+  }, {
+    "id" : "36703604-c48e-1c1e-4e54-5b5ba2d4baeb",
+    "name" : "left_aligned_title",
+    "label" : "Secondary Navigation: Left Aligned Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_layout",
+      "controlling_value_regex" : "left-text",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "B2B Content Marketing: Strategy, Tips, Examples and more"
+  }, {
+    "id" : "c7f3e3f7-6109-0aab-f315-142f17344064",
+    "name" : "secondary_navigation_center_menu",
+    "label" : "Secondary Navigation: Center Menu",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_layout",
+      "controlling_value_regex" : "center-menu",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "ef3f5211-609e-46d7-d4c2-6ea9d39cb018",
+      "name" : "secondary_navigation_menu_option",
+      "label" : "Secondary Navigation: Menu Option",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "secondary_navigation.secondary_navigation_layout",
+        "controlling_value_regex" : "center-menu",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "advanced", "Use a saved menu" ], [ "simple", "New menu (not reusable)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    }, {
+      "id" : "14950728-8790-1f50-1f53-44f5053ce9f5",
+      "name" : "secondary_navigation_select_pre_built_menu",
+      "label" : "Secondary Navigation: Select Pre-built Menu",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "secondary_navigation_standard_layout_settings.secondary_navigation_center_menu.secondary_navigation_menu_option",
+        "controlling_value_regex" : "advanced",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "menu",
+      "display_width" : null
+    }, {
+      "id" : "a0026f7d-e7f5-aa1f-7517-a958f9c8cd10",
+      "name" : "secondary_navigation_simple_menu",
+      "label" : "Secondary Navigation: Menu",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "secondary_navigation_standard_layout_settings.secondary_navigation_center_menu.secondary_navigation_menu_option",
+        "controlling_value_regex" : "simple",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "simplemenu",
+      "display_width" : null,
+      "default" : [ ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "secondary_navigation_simple_menu" : [ ]
+    }
+  }, {
+    "id" : "236ca463-cf06-fa05-de29-bfe605d4bb27",
+    "name" : "cta",
+    "label" : "Secondary Navigation: CTAs",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 2,
+      "sorting_label_field" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+      "default" : null
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_layout",
+      "controlling_value_regex" : "ctas",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+      "name" : "cta_type",
+      "label" : "CTA: Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "link", "Custom Link" ], [ "inline link", "Simple Link (no button styling)" ], [ "anchor", "Scroll to Section" ], [ "none", "No CTA" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "link"
+    }, {
+      "id" : "2ae9979e-0b6b-a5a4-b521-37c17f18da58",
+      "name" : "cta_hyperlink",
+      "label" : "CTA: Hyperlink",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|inline link",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "type" : "CONTENT",
+        "href" : null,
+        "content_id" : 18638101535
+      }
+    }, {
+      "id" : "ab0d04d2-f337-2a1d-0f92-46cb1262fc89",
+      "name" : "cta_open_in_new_tab",
+      "label" : "CTA: Open in new tab?",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "ecb679b3-7889-c988-ac6e-e5ecd6d4a53b",
+      "name" : "cta_text",
+      "label" : "CTA Text",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "secondary_navigation_standard_layout_settings.cta.cta_type",
+        "controlling_value_regex" : "link|anchor",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "71aa6310-dea3-e578-c5ef-69ae64bbbb01",
+        "name" : "cta_button_text",
+        "label" : "CTA: Button Text",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "link|anchor",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Get Started"
+      }, {
+        "id" : "cf0e62d3-d464-686c-0be8-9645dfabb2db",
+        "name" : "include_arrow",
+        "label" : "CTA: Include Arrow Next to Text",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : true
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "cta_button_text" : "Get Started",
+        "include_arrow" : true
+      }
+    }, {
+      "id" : "2dc57d92-91aa-a110-8e9e-c7ecab8631f8",
+      "name" : "cta_section_anchor_id",
+      "label" : "CTA: Section Anchor ID",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "anchor",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null
+    }, {
+      "id" : "0a9305fe-5d7b-cb9a-66e3-4470f6747615",
+      "name" : "cta_field",
+      "label" : "CTA",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b90eeb28-a0d3-64fd-a0d8-f5dc2beedc3e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "cta",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "cta",
+      "display_width" : null
+    }, {
+      "id" : "f20d7a5e-13b9-cc29-4698-ef223b4db53a",
+      "name" : "cta_color",
+      "label" : "CTA: Button Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "blue", "IMPACT Blue" ], [ "orange", "Orange" ], [ "light-blue", "Light Blue" ], [ "green", "Green" ], [ "light-grey", "Light Grey" ], [ "middle-grey", "Grey" ], [ "obsidian", "Black" ], [ "theme-color", "Template Theme Color (applicable templates only)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "blue"
+    }, {
+      "id" : "b3d6cadb-75e6-898c-6c08-ca600a333df4",
+      "name" : "cta_ghost_transparent_button",
+      "label" : "CTA: Ghost / Transparent Button",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ ]
+  }, {
+    "id" : "7a4a6767-e894-aeeb-1b35-eae3e0686295",
+    "name" : "mobile_secondary_navigation_icon",
+    "label" : "Mobile Secondary Navigation Icon (if applicable)",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Navigation%20Icons/Web%20design.svg",
+      "alt" : "Web design",
+      "loading" : "lazy",
+      "width" : 28,
+      "height" : 23,
+      "max_width" : 28,
+      "max_height" : 23
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "left_logo_color" : "black",
+    "left_aligned_title" : "B2B Content Marketing: Strategy, Tips, Examples and more",
+    "secondary_navigation_center_menu" : {
+      "secondary_navigation_simple_menu" : [ ]
+    },
+    "cta" : [ ],
+    "mobile_secondary_navigation_icon" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Navigation%20Icons/Web%20design.svg",
+      "alt" : "Web design",
+      "loading" : "lazy",
+      "width" : 28,
+      "height" : 23,
+      "max_width" : 28,
+      "max_height" : 23
+    }
+  }
+}, {
+  "id" : "d3140cb3-dbbd-1a64-799e-e809f43f7aad",
+  "name" : "secondary_navigation_pillar_menu_settings",
+  "label" : "Secondary Navigation: Pillar Menu Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "67d52838-b277-121d-16f6-72c8122ccb3d",
+    "name" : "category_tag",
+    "label" : "Secondary Navigation: Pillar Category Tag",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "pillar",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "tag_value" : "NAME",
+    "type" : "tag",
+    "display_width" : null,
+    "default" : "Lead Generation"
+  }, {
+    "id" : "aac616e1-c4ec-d73c-392b-3e914f42e2a3",
+    "name" : "pillar_menu_add_menu_items",
+    "label" : "Secondary Navigation: Pillar Menu Items",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "pillar",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "simplemenu",
+    "display_width" : null,
+    "default" : [ ]
+  }, {
+    "id" : "c29b38cb-f16b-2728-5bf3-09de2d5278b6",
+    "name" : "pillar_menu_starting_chapter_number",
+    "label" : "Secondary Navigation: Pillar Sidebar Starting Chapter Number",
+    "inline_help_text" : "Useful in cases where you would like a 'introduction' menu item to start at '00', as opposed to '01'. If there is no intro in the menu, select '01' in the dropdown below.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_navigation.secondary_navigation_type",
+      "controlling_value_regex" : "pillar",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "one", "01 (Default)" ], [ "zero", "00" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "one"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "category_tag" : "Lead Generation",
+    "pillar_menu_add_menu_items" : [ ],
+    "pillar_menu_starting_chapter_number" : "one"
+  }
+} ]

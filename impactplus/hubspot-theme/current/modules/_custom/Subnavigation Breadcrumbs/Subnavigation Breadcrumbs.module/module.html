@@ -1,0 +1,100 @@
+{% if module.disable_breadcrumbs %}
+{% else %}
+
+{# CSS #}
+{{ require_css( get_asset_url("../Subnavigation Breadcrumbs.css"), { async: false} ) }}
+
+{% set node = [] %}
+
+{# Breadcrumbs Nav Macro #}
+{% if module.breadcrumb_menu_type == 'breadcrumb' %}
+
+{% set breadcrumb_menu = menu(module.breadcrumbs_menu, "breadcrumb") %}
+
+{% for item in breadcrumb_menu %}
+  {% do node.append({
+    "link_name": item.label,
+    "link_href": item.url,
+    "new_tab": item.open_in_new_tab
+  }) %}
+{% endfor %}
+
+{% else %}
+
+{% for item in module.custom_breadcrumbs %}
+  {% do node.append({
+    "link_name": item.breadcrumb_menu_text,
+    "link_href": item.breadcrumb_link_field.href,
+    "new_tab": item.breadcrumb_link_field.open_in_new_tab
+  }) %}
+{% endfor %}
+
+
+{% endif %}
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--breadcrumbs-custom relative {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"></div>
+  <div class="block relative z-index--10">
+    <div class="section--breadcrumbs">
+      <div class="grid hard--ends">
+        <div class="grid__item one-whole hard--ends palm-hard--bottom text--left {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="flex flex-align--center" style="justify-content: space-between; margin-top: -4px;"> 
+            {# {% if widget_data.indpost.post_settings.template_type == 'pillar' %}background--offwhite{% else %}background--white{% endif %} #}
+            <div class="hs-breadcrumb--cover grid__item one-whole absolute top--0 left--0 right--0 bottom--0 z-index--3" style="display: none;"></div>
+            <div class="hs-breadcrumb-menu-wrapper" role="navigation">
+              <ul class="hs-breadcrumb-menu">
+                {# Step 1: Calculate total character length of all link names #}
+                {% set lengths = [] %}
+                {% for i in node %}
+                {% do lengths.append(i.link_name|striptags|length) %}
+                {% endfor %}
+                {% set total_len = lengths|sum %}
+
+                {# Step 2: Output breadcrumb list with truncation on the last item if needed #}
+                {% for item in node %}
+                {% set is_last = loop.last %}
+                {% set is_over_limit = total_len > 140 %}
+
+                <li class="hs-breadcrumb-menu-item 
+                           {% if (loop.length > 2) and (is_last) %}palm-visuallyhidden{% endif %}
+                           {% if loop.first %}customlink-first{% endif %}
+                           {% if is_last %}customlink-last{% endif %}">
+                  <{% if item.link_href %}a{% else %}span{% endif %} class="section--breadcrumbs--customlink hs-breadcrumb-label hard--ends
+                                                                            {% if (loop.length > 1) and loop.first %}bold color--black
+                                                                            {% elif (loop.length > 1) and is_last %}medium color--midgrey
+                                                                            {% else %}medium color--black{% endif %}" 
+                     {% if item.link_href %}href="{{ item.link_href }}"{% endif %}>
+
+                    {% if module.add_back_arrow %}
+                    <span>
+                      <img class="hs-breadcrumb-back valign--middle" 
+                           src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/back-icon.svg" 
+                           alt="Return to {{ item.link_name }}">
+                    </span>{% endif %}{% if is_last and is_over_limit %}{{ item.link_name|striptags|truncate(50, false, '...') }}{% else %}{{ item.link_name }}{% endif %}</{% if item.link_href %}a{% else %}span{% endif %}>
+
+                  {% if not is_last %}
+                  <span class="hs-breadcrumb-menu-divider"></span>
+                  {% endif %}
+                </li>
+
+                {% if (loop.length > 2) and is_last %}
+                {# Mobile truncated last item #}
+                <li class="hs-breadcrumb-menu-item customlink-last">
+                  <{% if item.link_href %}a{% else %}span{% endif %} class="section--breadcrumbs--customlink hs-breadcrumb-label medium hard--ends color--midgrey lap-and-up-visuallyhidden tablet-visuallyhidden" {% if item.link_href %}href="{{ item.link_href }}"{% endif %}>{{ item.link_name|striptags|truncate(50, false, '...') }}</{% if item.link_href %}a{% else %}span{% endif %}>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}"></div>
+</div>
+{% endif %}

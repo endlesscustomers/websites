@@ -1,0 +1,81 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--cards-column-group .section--card-content-columns-wrapper{ 
+  padding: 24px;
+  flex-flow: column;
+  flex-grow: 1;
+  display: inline-flex;
+}
+
+.section--cards-layout--three-col .section--card-content-columns-wrapper{ 
+  justify-content: space-between;
+}
+
+.section--cards-layout--full-width .section--card-content-columns-wrapper{ 
+  justify-content: center;
+}
+
+.section--card-content-columns--center{
+  flex-flow: wrap;
+}
+
+.section--cards-layout--three-col .section--card-content-columns-container{
+  flex-direction: column;
+}
+
+
+{% call mediaQuery("lap-and-up") %}
+.section--cards-layout--full-width .section--resource-slider--featured-image-wrapper{
+  height: 100%;
+  width: 64%;
+}
+
+.section--cards-layout--full-width .section--card-content-columns-container{
+  flex-direction: row;
+}
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+.section--cards-layout--full-width .section--resource-slider--featured-image-wrapper{
+  height: 100%;
+  width: 64%;
+}
+
+.section--cards-layout--full-width .section--card-content-columns-container{
+  flex-direction: row;
+}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+.section--cards-layout--full-width .section--resource-slider--featured-image-wrapper{
+  height: 100%;
+  width: 100%;
+}
+
+.section--cards-layout--full-width .section--card-content-columns-container{
+  flex-direction: column;
+}
+{% endcall %}
+
+.section--cards-layout--full-width .section--resource-slider--featured-image{
+  height: 100%;
+}

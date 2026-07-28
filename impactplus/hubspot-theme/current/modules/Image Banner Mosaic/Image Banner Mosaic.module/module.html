@@ -1,0 +1,65 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Image Banner Mosaic.css"), { async: true} ) }}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--imagebannermosaic relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }}">
+      <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% if module.header %}
+        <h2>{{ module.header }}</h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+    {% endif %}
+    {% if module.images|length > 0 %}
+    <div class="grid relative hard--ends {% if module.layout_controls.image_banner_mosaic_container_width == 'wide' %}hard--sides{% endif %}">
+      <div class="grid__item one-whole short all--text--center hard">
+        <div class="block relative overflow--hidden">
+          {{ snippets.aspectSpacer(module.layout_controls.image_banner_mosaic_aspect_ratio) }}
+          <div class="section--imagebannermosaic--inner">
+            {% for item in module.images %}
+            <div class="section--imagebannermosaic--item section--imagebannermosaic--item--{{ module.images|length }}-{{ loop.index }}">
+              {% if item.click_function == "hyperlink" %}
+              <a class="section--imagebannermosaic--item--inner" href="{{ item.hyperlink_url.href }}" {% if item.open_hyperlink_in_new_tab %}target="_blank"{% endif %} style="background:url('{{ item.image.src }}') no-repeat {{ item.image_horizontal_alignment }} {{ item.image_vertical_alignment }};background-size:cover;">
+
+              </a>
+              {% elif item.click_function == "lightbox" %}
+              <a class="section--imagebannermosaic--item--inner fancybox" data-fancybox="{{ name }}" href="{{ item.image.src }}" style="background:url('{{ item.image.src }}') no-repeat {{ item.image_horizontal_alignment }} {{ item.image_vertical_alignment }};background-size:cover;">
+
+              </a>
+              {% else %}
+              <span class="section--imagebannermosaic--item--inner" style="background:url('{{ item.image.src }}') no-repeat {{ item.image_horizontal_alignment }} {{ item.image_vertical_alignment }};background-size:cover;">
+
+              </span>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

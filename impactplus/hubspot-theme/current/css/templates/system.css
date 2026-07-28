@@ -1,0 +1,104 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css'  %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/* System pages */
+.systems-page .success {
+  background-color: #CDE3CC;
+  border: 1.5px solid #4F7D24;
+  border-radius: 6px;
+  color: #4F7D24;
+  display: inline-block;
+  margin: 1.4rem 0;
+  padding: 0.1rem 0.7rem;
+  width: 100%;
+}
+.systems-page form .hs-form-field {
+	margin-bottom: {{ config.short }};
+}
+.systems-page form label {
+  margin-bottom: {{ config.label_Spacing }};
+}
+.systems-page form input {
+  max-width: 100%;
+}
+
+.systems-page form input[type='submit'] {
+  margin: 0.7rem 0;
+  display: block;
+}
+
+/* Password prompt */
+
+.password-prompt input[type=password] {
+  height: auto !important;
+  margin-bottom: 1.4rem;
+}
+
+.systems-page #hs-login-widget-remember,
+.systems-page #hs-login-widget-remember ~ label {
+  display: inline-block;
+  margin-bottom: 0.175rem;
+}
+
+.systems-page #hs_login_reset {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+/* Membership pages */
+
+#hs-membership-form a[class*='show-password'] {
+  font-size: 15px;
+  margin:10px 0;
+  display:block;
+  font-family:{{ config.label_FontFamily }};
+  line-height:{{ config.label_LineHeight }};
+  font-style:{{ config.label_FontStyle }};
+  font-weight:{{ config.label_FontWeight }};
+  letter-spacing:{{ config.label_LetterSpacing }};
+  text-transform:{{ config.label_TextTransform }};
+  word-spacing:{{ config.label_WordSpacing }};
+  color:{{ config.label_Color }};
+}
+
+/* Input error messages */
+.systems-page .hs-form-field ul.hs-error-msgs,
+.systems-page .hs-form-field ul.no-list,
+.systems-page .form-input-validation-message ul.hs-error-msgs {
+  padding-left: 0;
+  margin: 0;
+	list-style: none;
+}
+
+.systems-page ul.no-list label {
+  font-size: 12px;
+  font-style: italic;
+  color: #DD2D2D;
+  text-align:right;
+  margin: 5px 0 20px;
+}
+
+.form-input-validation-message ul.hs-error-msgs li {
+  margin: 0;
+}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

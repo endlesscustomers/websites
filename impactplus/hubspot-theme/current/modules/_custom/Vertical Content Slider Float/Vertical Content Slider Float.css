@@ -1,0 +1,79 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{% call mediaQuery(">tablet") %}
+.section--verticalcontentsliderfloat--row h4 {
+  {{ transition("all .25s ease-in-out") }}
+}
+{# .section--verticalcontentsliderfloat--row.active--list--item h3 {
+    color: {{ color('primary') }};
+  }
+  .section--verticalcontentsliderfloat--scrollitem--outer {
+    width: 83.33%; 
+  } #}
+.section--verticalcontentsliderfloat--row.active--list--item .active--state--icon {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+{% endcall %}
+
+.section--verticalcontentsliderfloat--row {
+  display:block;
+  width:100%;
+  border-bottom-color: {{ color('grey') }};
+}
+.section--verticalcontentsliderfloat--row--inner {
+  display:block;
+  width:100%;
+  text-decoration:none; 
+}
+.section--verticalcontentsliderfloat--row--content {
+  display:block;
+  flex:1;
+}
+.section--verticalcontentsliderfloat--row--content h3+p {
+  margin-top:-24px;
+}
+{#### CUSTOM ####}
+.section--verticalcontentsliderfloat--padding{
+  padding: 18px 20px;
+}
+{% call mediaQuery(">tablet") %}
+.section--verticalcontentsliderfloat--panel{
+  height: inherit;
+}
+.section--verticalcontentsliderfloat--scrollitem--outer{
+  height: 100%;
+}
+.section--verticalcontentsliderfloat--scrollitem{
+  height: inherit;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.section--verticalcontentsliderfloat--floatimage{
+  height: auto;
+  max-width: 100%;
+  position: absolute;
+  right: 55%;
+  top: 30%;
+}
+{% endcall %}

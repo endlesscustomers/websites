@@ -1,0 +1,169 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/HubUI/assets/Config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/HubUI/assets/Functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--leftrightslider .section--leftrightslider--image {
+  display:block;
+  width:67px;
+  height:67px;
+  border-radius:50%;
+}
+.section--leftrightslider--byline .section--leftrightslider--image--container {
+  max-width:82px;
+  flex:0 0 auto;
+  padding-right:15px;
+}
+{% call mediaQuery("palm") %}
+.section--leftrightslider--byline .section--leftrightslider--image--container {
+  padding-right:0px;
+  margin-bottom:15px;
+}
+{% endcall %}
+
+.section--leftrightslider .testimonial--slider {
+  position:relative;
+}
+
+{### ARROWS ###}
+.section--leftrightslider .f-carousel__button.is-prev {
+  left: -14px !important;
+  background: transparent;
+}
+.section--leftrightslider .f-carousel__button.is-next {
+  right: -14px !important;
+  background: transparent;
+}
+.section--leftrightslider .f-button svg {
+  stroke: {{ config.flexslider_Arrow }}; 
+  {{ transition("all .25s ease-in-out") }};
+}
+.section--leftrightslider .f-button:hover svg {
+  stroke: {{ config.flexslider_ArrowHover }}; 
+}
+
+{### DOTS ###}
+.section--leftrightslider .f-carousel__dots li,
+.section--leftrightslider .f-carousel__dots li:hover {
+  opacity:1;
+}
+.section--leftrightslider .f-carousel__dots button {
+  width:55px;
+}
+.section--leftrightslider .f-carousel__dots .f-carousel__dot {
+  height:3px;
+  width:45px;
+  border-radius:1.5px;
+}
+
+.section--leftrightslider .f-carousel__dots .f-carousel__dot {
+  background-color: {{ config.flexslider_Navigation }}; 
+  {{ transition("all .25s ease-in-out") }};
+  opacity:1;
+}
+.section--leftrightslider .f-carousel__dots li.is-current .f-carousel__dot,
+.section--leftrightslider .f-carousel__dots li:hover .f-carousel__dot {
+  background-color: {{ config.flexslider_NavigationActive }}; 
+}
+
+{% call mediaQuery("lap-and-up") %}
+.section--leftrightslider .f-carousel__slide {
+  display:flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+.section--leftrightslider .testimonial--slider--content h3 {
+  font-size: {{ config.h4_MobileFontSize }}!important;
+  line-height: {{ config.h4_MobileLineHeight }}!important;
+}
+{% endcall %}
+
+{% call mediaLoop() %}
+.section--leftrightslider .{{ media }}all--color--white .f-button svg {
+  stroke:{{ color('white') }};
+}
+.section--leftrightslider .{{ media }}all--color--white .f-button:hover svg {
+  stroke:{{ color('primary') }};
+}
+.section--leftrightslider .{{ media }}all--color--white .f-carousel__dots .f-carousel__dot {
+  background-color:{{ color('white') }};
+}
+.section--leftrightslider .{{ media }}all--color--white .f-carousel__dots li.is-current .f-carousel__dot,
+.section--leftrightslider .{{ media }}all--color--white .f-carousel__dots li:hover .f-carousel__dot {
+  background-color:{{ color('primary') }};
+}
+{% endcall %}
+
+.leftright--slider{
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+.section--leftright-slider-controls-container .section--leftrightl-slider-prev{
+  margin-right: 8px;
+}
+
+.section--leftright-slider-controls-container .section--leftrightl-slider-prev,
+.section--leftright-slider-controls-container .section--leftrightl-slider-next{
+  border: 1px solid ; 
+  background: #fff; 
+  border-radius: 50px; 
+  align-items: center;
+  height: 35px;
+  width: 35px;
+}
+
+.section--leftright-slider-controls-container img{
+  filter: invert(8%) sepia(7%) saturate(435%) hue-rotate(202deg) brightness(102%) contrast(91%);
+}
+
+{% call mediaQuery("lap-and-up") %}
+.section--leftrightslider .f-carousel__slide {
+  padding: 0 30px;
+}
+
+.section--leftright-slider-controls{
+  justify-content: end;
+}
+
+.section--leftright-slider-controls-container{
+  position: absolute;
+  top: 76px;
+}
+
+.f-carousel__slide .flexgrid > .grid__item{
+  margin-top: 35px;
+}
+
+.section--leftright-slider-controls-spacer{
+  height: 35px;
+  width: 35px;
+  pointer-events: none;
+}
+{% endcall %}
+
+{% call mediaQuery("portable") %}
+.section--leftright-slider-controls{
+  justify-content: center;
+}
+{% endcall %}

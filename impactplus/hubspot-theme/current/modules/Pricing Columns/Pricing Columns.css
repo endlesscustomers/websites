@@ -1,0 +1,122 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{% set icon_color  = '{{ color("darkgrey") }}' %}
+{% set check_color = '{{ color("primary") }}' %}
+
+{#####################################################
+  MARK: Featuer Pill
+#####################################################}
+.section--pricingcolumns--column--feature--wrapper {
+  position: relative;
+  z-index: 2;
+  overflow: visible !important;
+}
+.section--pricingcolumns--column--feature {
+  display:inline-block;
+  padding:8px 16px;
+  width:auto;
+  border-radius: 9999px;
+  text-align: center;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  font-size: 16px;
+  line-height: 1em;
+}
+.section--pricingcolumns--column--feature p {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+.section--pricingcolumns--bullet--icon svg {
+  width:18px;
+}
+
+.section--pricingcolumns--bullet--icon svg g {
+  fill:{{ check_color }};
+}
+
+.section--pricingcolumns--bullet--icon {
+  flex: 0 0 35px;
+  padding-right:17px;
+  position:relative;
+  top:-3px;
+}
+
+.section--pricingcolumns--bullet--type--xmark {
+  top:-4px;
+}
+
+.section--pricingcolumns--bullet--label {
+  display:table;
+}
+
+.section--pricingcolumns--bullet + .section--pricingcolumns--bullet {
+  margin-top:15px;
+}
+
+.section--pricingcolumns--bullet--type--xmark svg g {
+  fill: {{ icon_color }};
+}
+
+.section--pricingcolumns .section--pricingcolumns--column--wrapper {
+  display:block;
+  margin-left:-16px;
+  margin-right:-16px;
+}
+
+.section--pricingcolumns .section--pricingcolumns--column--inner {
+  padding: 8px;
+}
+.section--pricingcolumns .section--pricingcolumns--column.one-whole .section--pricingcolumns--column--inner.column--highlighted {
+  padding: 24px 8px 8px 8px !important;
+}
+
+{# IMPACT brand gradient border when column is highlighted (Figma IMPACT-Website pricing columns). Matches .text--gradient / gradient CTAs. #}
+.section--pricingcolumns .column--highlighted .section--pricingcolumns--column--body {
+  position: relative;
+  border-color: transparent !important;
+}
+
+.section--pricingcolumns .column--highlighted .section--pricingcolumns--column--body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(90deg, #60a8ff 0%, #f472c8 50.63%, #7dd87a 101.27%);
+  pointer-events: none;
+  z-index: 0;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+{% call mediaQuery('portable') %}
+  .section--pricingcolumns .section--pricingcolumns--column--inner {
+    padding: 48px 8px 0;
+  }
+  .section--pricingcolumns .section--pricingcolumns--column:first-child .section--pricingcolumns--column--inner {
+    padding-top: 0 !important;
+  }
+{% endcall %}

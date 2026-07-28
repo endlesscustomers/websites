@@ -1,0 +1,33 @@
+<!--
+  templateType: email_subscriptions_confirmation_page
+  isAvailableForNewContent: true
+  label: Email Subscriptions Confirmation - IMPACT Production Theme
+-->
+
+{% set template_css = "../../css/templates/subscription.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle    = "Confirm subscriptions" %}
+{% set body_classes = 'pagetype--site pagetype--subscription header--static'%}
+
+{% block body %}
+<div class="header--anchor"></div>
+<section class="content-wrapper">
+	<div class="systems-page">
+		<div class="grid relative z-index--2 basic palm-tall">
+			<div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--ends text--left">
+			{% email_subscriptions_confirmation
+				"email_subscriptions_confirmation"
+				header='Email Unsubscribe',
+				subheader_text='<p>If this is not your email address, please ignore this page since the email associated with this page was most likely forwarded to you.</p>',
+				subscription_update_success='You have successfully updated your email preferences.',
+				unsubscribe_all_success='You have successfully unsubscribed from all email communications.',
+				label='Subscriptions Update Confirmation'
+				%}
+			</div>
+			<span class="clear"></span>
+		</div>
+	</div>
+</section>
+{% endblock body %}

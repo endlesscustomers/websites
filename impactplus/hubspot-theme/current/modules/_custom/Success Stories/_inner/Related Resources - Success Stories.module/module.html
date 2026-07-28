@@ -1,0 +1,142 @@
+{% set listofRelated = [] %}
+
+{% set caseStudyTable = hubdb_table_rows(6689454) %}
+{% set caseStudyOp = [] %}
+
+{% do caseStudyOp.append(module.hubdb_case_study_details.columns) %}
+
+{# Selected Inner Case Studies Industries - is a single select #}
+{% set compIndustry = caseStudyOp|map('company_industry') %}
+{% set compIndustry = compIndustry|map('name') %}
+{% set compIndustry = compIndustry|join %}
+
+{# Selected Inner Case Studies Services Recieved - its a multiselect#}
+{% set compServices = caseStudyOp|map('company_service_type') %}
+{% set compServices = compServices[0] %}
+{% set compServices = compServices|map('name') %}
+{% set compServices = compServices[0]|join %}
+
+{# Selected Inner Case Studies Company Type - is a multiselect #}
+{% set compType = caseStudyOp|map('company_type') %}
+{% set compType = compType[0] %}
+{% set compType = compType|map('name') %}
+{% set compType = compType[0]|join %}
+
+{# Construct a new array without the case study for the page we are actively viewing #}
+{% set caseStudyTable = caseStudyTable|rejectattr('client_name', "equalto", caseStudyOp[0]['client_name']) %}
+
+{# Return only items that have a case study title #}
+{% set caseStudyTable = caseStudyTable|selectattr('case_study_title') %}
+
+{# Same Industry #}
+{% for row in caseStudyTable %}
+{% if row.company_industry.name == compIndustry %}
+{% do listofRelated.append(row) %}
+{% endif %}
+{% endfor %}
+
+{# Same Service #}
+{% for row in caseStudyTable %}
+{% for item in row.company_service_type %}
+{% if item.name == compServices %}
+{% do listofRelated.append(row) %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{# Same Company Type #}
+{% for row in caseStudyTable %}
+{% for item in row.company_type %}
+{% if item.name == compType %}
+{% do listofRelated.append(row) %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+{# Remove Duplicates #}
+{% set listofRelated = listofRelated|unique %}
+
+<div class="section--casestudy section--casestudy--related-post grid hard--ends margin--grande--bottom">
+  <div class="resource-cards--wrapper">
+    <div class="all--valign--bottom lap-and-up-text--left tablet-text--left palm-text--center margin--short--bottom">
+      <div class="resource-cards--header grid__item nine-twelfths palm-one-whole relative z-index--10 hard--ends first--hard--top last--hard--bottom">
+        <h2 class="hard--top">Related Success Stories</h2>
+      </div>
+    </div>
+  </div>
+  <div class="section--casestudy--results">
+    {% for row in listofRelated %}
+    {% if loop.index < 4 %}
+    <div class="section--casestudy--results--item grid__item one-third tablet-one-half palm-one-whole hard text--center relative">
+      <div class="flex height--max">                
+        <span class="section--casestudy--results--item--inner">
+          <span class="section--casestudy--results--item--body background--white box-shadow box--hover overflow--hidden default" style="border-radius: 24px;">
+            {% if row.vidyard_video_utm || row.client_image %}
+            <span role="img" aria-label="{{ row.case_study_title }}" class="block relative" style="background:url('{% if row.vidyard_video_utm %}https://play.vidyard.com/{{ row.vidyard_video_utm }}.jpg{% else %}{{ row.client_image.url }}{% endif %}') no-repeat; background-size: cover; background-position: center;">
+              <a title="{{ row.case_study_title|escape }}" href="{{ row.resource_link }}" class="no--underline color--inherit height--max width--max absolute left--0 right--0 top--0 bottom--0"></a>
+              <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding:56.5% 0px 0px 0px;"></span>
+            </span>
+            {% endif %}
+            <span class="section--casestudy--results--item--body--wrapper">
+              <span class="section--casestudy--results--item--upper relative z-index--4 all--text--left">
+                <span class="section--casestudy--results--item--logo inline-block overflow--visible margin--short--bottom">
+                  <img class="lazy" data-src="{{ row.client_logo.url }}" alt="{{ row.client_name }}" style="height: 34px;">
+                </span>
+                <span class="block overflow--visible">
+                  <span class="block all--valign--top all--text--left overflow--visible first--hard--top last--hard--bottom">
+                    {% if row.case_study_title %}
+                    <a title="{{ row.case_study_title|escape }}" href="{{ row.resource_link }}" class="no--underline">
+                      <h4 class="bold color--neutral-700 hard--ends">{{ row.case_study_title }}</h4>
+                    </a>
+                    {% endif %}
+                  </span>
+                </span>
+              </span>
+              <span class="section--casestudy--results--item--lower text--left" style="margin-top:auto;">
+                <span class="section--casestudy--results--item--tags flex margin--short--top flex-wrap--wrap">
+                  {% if row.company_service_type %}
+                  {% for item in row.company_service_type %}
+                  <span class="section--casestudy--results--item--tag overflow--visible">
+                    <div class="p flex hard--ends normalcase font--15 light">
+                      <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                        <span>{{ item.name }}</span>
+                      </span>
+                    </div>
+                  </span>
+                  {% endfor %}
+                  {% endif %}
+
+                  {% if row.company_type %}
+                  {% for item in row.company_type %}
+                  <span class="section--casestudy--results--item--tag overflow--visible">
+                    <div class="p flex hard--ends normalcase font--15 light">
+                      <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                        <span>{{ item.name }}</span>
+                      </span>
+                    </div>
+                  </span>
+                  {% endfor %}
+                  {% endif %}
+                  {% if row.company_industry %}
+                  {% for item in row.company_industry %}
+                  <span class="section--casestudy--results--item--tag overflow--visible">
+                    <div class="p flex hard--ends normalcase font--15 light">
+                      <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                        <span>{{ item.name }}</span>
+                      </span>
+                    </div>
+                  </span>
+                  {% endfor %}
+                  {% endif %}
+                </span>
+              </span>
+            </span>
+          </span>
+        </span>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {# End Related Cards #}
+  </div>
+</div>

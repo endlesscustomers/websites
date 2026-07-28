@@ -1,0 +1,53 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Flexible Drag and Drop (Blank) - IMPACT Production Theme
+-->
+
+{% module
+    "controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Navigation and Footer Page Settings',
+    label="Page and Navigation Controls",
+    no_wrapper=True,
+    export_to_template_context= True,
+    header_design= "solid",
+    hide_navigation= false,
+    disable_sticky_header= false,
+    disable_hello_bar_on_this_page= false,
+    page_type= "other"
+  %}
+{# module
+    "breadcrumb_controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/_unused/Breadcrumbs',
+    label="Breadcrumb Controls",
+    no_wrapper=True,
+    export_to_template_context=True
+  #}
+
+{# ### CUSTOM ADDED CONTROLS - NEED TO BE MIGRATED TO SETTINGS & CONTROLS ### #}
+{% set body_id = widget_data.controls.page_settings_options.body_id %}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--site pagetype--{{ widget_data.controls.page_type }}') %}
+{% do body_classes_array.append('header--{{ widget_data.controls.header_design }}') %}
+{% if widget_data.controls.header_design == "transparent" %}
+{% do body_classes_array.append('header--notfixed header--isanchored') %}
+{% endif %}
+
+{% if widget_data.controls.hide_navigation %}
+{% do body_classes_array.append('no--navigation header--static') %}
+{% elif widget_data.controls.disable_sticky_header %}
+{% do body_classes_array.append('header--static') %}
+{% endif %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+
+{% block body %}
+{% dnd_area "dnd_area"
+      label="Main section",
+      class="body-container body-container--flex"
+    %}
+{% end_dnd_area %}
+{% endblock body %}

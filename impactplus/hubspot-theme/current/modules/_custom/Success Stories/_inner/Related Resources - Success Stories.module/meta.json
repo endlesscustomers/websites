@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 190113908508,
+  "label" : "[IM] Related Resources - Success Stories",
+  "icon" : "https://www.impactplus.com/hubfs/im_module-library-icon--v2-01-1.svg",
+  "is_available_for_new_content" : true
+}

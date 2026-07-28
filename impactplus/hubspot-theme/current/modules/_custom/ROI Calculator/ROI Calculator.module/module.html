@@ -1,0 +1,1019 @@
+<div class="background--offwhite">
+  <div class="grid hard--top">
+
+    <!-- Header -->
+    <div class="grid__item one-whole palm-one-whole hard--bottom venti--top">
+      <div class="margin--short--bottom">
+        {% if module.image_preheader.src %}
+        {% set sizeAttrs = 'width="{{ module.image_preheader.width|escape_attr }}" height="{{ module.image_preheader.height|escape_attr }}"' %}
+        {% if module.image_preheader.size_type == 'auto' %}
+        {% set sizeAttrs = 'width="{{ module.image_preheader.width|escape_attr }}" height="{{ module.image_preheader.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% elif module.image_preheader.size_type == 'auto_custom_max' %}
+        {% set sizeAttrs = 'width="{{ module.image_preheader.max_width|escape_attr }}" height="{{ module.image_preheader.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% endif %}
+        {% set loadingAttr = module.image_preheader.loading != 'disabled' ? 'loading="{{ module.image_preheader.loading|escape_attr }}"' : '' %}
+        <img src="{{ module.image_preheader.src|escape_url }}" alt="{{ module.image_preheader.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+        {% endif %}
+      </div>
+      <h1 class="hard--ends" style="margin-left: 4px;">{{ module.header }}</h1>
+    </div>
+    <div class="grid__item ten-twelfths palm-one-whole margin--petite--top hard--top venti--bottom">
+      <div class="hard--ends first--hard--top last--hard--bottom">{{ module.content }}</div>
+    </div>
+
+    <!-- Two-column Layout -->
+    <div class="panel--container production--form" style="display: flex; flex-wrap: wrap; justify-content: left;">
+      <!-- Left: Input Panel -->
+      <div class="grid__item one-whole hard--ends">
+
+        <div class="panel--padding background--shadow background--white">
+          <div class="heading-group flex flex-align--center margin--short--bottom">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="28" height="28"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#0A6CFF"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 class="lucide lucide-target w-5 h-5 mr-2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            <h2 class="h3 font--heading hard--ends" style="margin-left: 8px;">About Your Business</h2>
+          </div>
+
+          <!-- Fields -->
+          <div class="margin--short--bottom">
+
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">
+                Industry
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    Different industries have different sales cycles, close rates, and trust factors. This affects how quickly you'll see results and the potential market size.
+                  </span>
+                </span>
+              </label>
+
+            </div>
+
+            <select id="industry" class="width--max">
+              <option value="association">Association</option>
+              <option value="automotive">Automotive</option>
+              <option value="building-materials">Building Materials</option>
+              <option value="business-services" selected>Business Services</option>
+              <option value="communications">Communications</option>
+              <option value="construction">Construction / Home Improvement</option>
+              <option value="consulting">Consulting / Coaching / Training</option>
+              <option value="consumer-products">Consumer Products</option>
+              <option value="cybersecurity">Cybersecurity</option>
+              <option value="ecommerce">Ecommerce</option>
+              <option value="education">Education</option>
+              <option value="engineering">Engineering</option>
+              <option value="financial-services">Financial Services</option>
+              <option value="healthcare">Health Services</option>
+              <option value="insurance">Insurance</option>
+              <option value="it-services">IT / Managed Services</option>
+              <option value="legal-services">Legal Services</option>
+              <option value="manufacturing">Manufacturing</option>
+              <option value="marketing-agency">Marketing Agency</option>
+              <option value="real-estate">Real Estate</option>
+              <option value="software-saas">Software / SaaS</option>
+              <option value="technology">Technology</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">
+                Market Scope
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This dramatically affects your total addressable market. Local businesses compete for hundreds of deals, while national companies compete for thousands.
+                  </span>
+                </span>
+              </label>
+            </div>
+
+            <select id="marketScope" class="width--max">
+              <option value="local">Local (single city/metro)</option>
+              <option value="regional" selected>Regional (multi-state area)</option>
+              <option value="national">National (entire country)</option>
+              <option value="international">International</option>
+            </select>
+          </div>
+
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">Annual Revenue
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This helps us understand your business scale and estimate your market size. We use this to calculate potential deal values and market opportunity.
+                  </span>
+                </span>    
+              </label>
+            </div>
+            <input type="text" id="annualRevenue" value="10,000,000" class="width--max">
+          </div>
+
+          <div class="roi--current-investment">
+            <h3 class="p p--default bold text--left hard--bottom">Current Marketing Investment</h3>
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom medium p p--sm hard--ends">
+                Estimated Current Marketing Investment as Percentage of Revenue 
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This helps us understand your business scale and estimate your market size. We use this to calculate potential deal values and market opportunity.
+                  </span>
+                </span>    
+              </label>
+            </div>
+            <div class="flex flex-align--center width--max">
+              <input style="flex-grow: 1;" type="range" id="marketingInvestmentPercent" min="1" max="25" value="10">
+              <span id="marketingPercentDisplay" class="h5 color--primary hard--ends">10%</span>
+            </div>
+            <div id="marketingInvestmentDisplay" class="text--center margin--short--top p p--sm color--midgrey"></div>
+          </div>
+
+          <div class="roi-divider margin--standard--top"></div>
+
+          <h3 class="h5 font--heading margin--short--bottom all--text--left margin--standard--top">Current Technology & Team</h3>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">Do you have a CRM, marketing platform, and AI tools that meet your needs?
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    Essential tools include CRM for sales pipeline, marketing automation, analytics, content management, and AI integration. Costs vary by company size - larger organizations typically need more advanced enterprise features.
+                  </span>
+                </span>  
+              </label>
+
+            </div>
+            <select id="hasSuitableCRM" class="width--max">
+              <option value="yes" selected>Yes, we're satisfied with our current setup</option>
+              <option value="upgrades">Yes, but could use some upgrades</option>
+              <option value="no">No, we need better tools</option>
+              <option value="not-sure">Not sure/needs evaluation</option>
+            </select>
+          </div>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">Do you have a Content Manager on staff?
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    A content manager is essential for Endless Customers success. If you don't have one, we'll factor in hiring costs (~$65K/year) to your investment calculation.
+                  </span>
+                </span>     
+              </label>
+
+            </div>
+            <select id="hasContentManager" class="width--max">
+              <option value="yes">Yes</option>
+              <option value="no" selected>No, would need to hire</option>
+            </select>
+          </div>
+          <div class="margin--basic--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">Do you have a Videographer on staff?
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    Video is crucial for building trust. If you don't have a videographer, we'll include hiring costs (~$55K/year) and equipment (~$5K) in your investment.
+                  </span>
+                </span>     
+              </label>
+            </div>
+            <select id="hasVideographer" class="width--max">
+              <option value="yes">Yes</option>
+              <option value="no" selected>No, we would need to hire one</option>
+            </select>
+          </div>
+
+          <div class="roi-divider margin--standard--top"></div>
+
+          <h3 class="h5 font--heading margin--short--bottom text--left">Current Sales Performance</h3>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">
+                Average Deal Size
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This helps calculate the total revenue impact. Trusted brands typically command 5-12% premium pricing over competitors.
+                  </span>
+                </span>     
+              </label>
+            </div>
+            <input type="text" id="averageDealSize" value="50,000" class="width--max">
+          </div>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">
+                Deals You Close Per Month
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This shows your current market capture rate. We'll use this to estimate what percentage of the total available market you're currently winning.
+                  </span>
+                </span>   
+              </label>
+            </div>
+            <input type="number" id="monthlyDealsWon" value="4" class="width--max">
+          </div>
+          <div class="margin--basic--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">Average Sales Cycle (Days)</label>
+            </div>
+            <input type="number" id="salesCycleDays" value="90" class="width--max">
+          </div>
+
+          <div class="roi-divider margin--standard--top"></div>
+
+          <h3 class="h5 font--heading margin--short--bottom text--left">Market Reality Check</h3>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">
+                Estimated Deals Per Month Lost to Competitors
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    These are deals you knew about and competed for but lost. This helps us understand your competitive win rate and the immediate opportunity.
+                  </span>
+                </span>     
+              </label>
+            </div>
+
+            <input type="number" id="competitorDealsLost" value="8" class="width--max">
+          </div>
+          <div class="margin--basic--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">Estimated potential customers in your market who don't buy from you (%)
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    Most businesses only capture a small fraction of their total addressable market. A local business might capture 15-30%, while national companies often capture less than 5-15% of potential customers. The rest go to competitors or don't buy at all. Becoming "most trusted" dramatically reduces this number.
+                  </span>
+                </span>     
+              </label>
+            </div>
+            <input type="number" id="potentialCustomersChooseCompetitors" value="70" class="width--max">
+          </div>
+
+          <div class="roi-divider margin--standard--top"></div>
+
+          <h3 class="h5 font--heading margin--short--bottom text--left">Growth Goals & Capacity</h3>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">
+                Growth Ambition
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This caps the calculations at realistic levels based on your goals. We won't show you capturing 50% market share if you only want to double your business.
+                  </span>
+                </span>     
+              </label>
+
+            </div>
+            <select id="growthGoal" class="width--max">
+              <option value="maintain">Maintain current size (+10%)</option>
+              <option value="grow-50">Grow by 50%</option>
+              <option value="double" selected>Double the business</option>
+              <option value="triple">Triple the business</option>
+              <option value="aggressive">Aggressive growth (5x+)</option>
+            </select>
+          </div>
+          <div class="margin--short--bottom">
+            <div class="form-tooltip-group flex">
+              <label class="margin--petite--bottom">How well can your organization scale to handle significantly more customers?
+                <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                  <span class="section--roi--label--tooltip--inner font--reading">
+                    This affects the timeline and maximum growth we'll show. If you need significant restructuring, growth will be more gradual and realistic.
+                  </span>
+                </span>     
+              </label>
+            </div>
+            <select id="scalingCapacity" class="width--max">
+              <option value="ready-to-scale">We can scale easily with our current infrastructure</option>
+              <option value="can-scale-with-hiring" selected>We'd need to hire/expand but can manage growth</option>
+              <option value="need-restructuring">We'd need significant restructuring to handle major growth</option>
+            </select>
+          </div>
+
+          <div class="roi-divider margin--standard--top"></div>
+
+          <label class="margin--petite--bottom margin--short--top">Coaching Plan</label>
+
+          <select id="coachingPlan" class="width--max">
+            <option value="guidance">Guidance - $5,500/month</option>
+            <option value="mastery" selected>Mastery - $8,000/month</option>
+            <option value="accelerated">Mastery Accelerated - $10,500/month</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Right: Results Panel -->
+      <div class="grid__item one-whole hard--ends margin--short--top">
+
+        <!-- Your Market Reality -->
+        <div class="background--white background--shadow border border--lightgrey panel--padding all--text--left">
+          <div class="heading-group flex flex-align--center margin--short--bottom">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="#0A6CFF"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 class="lucide lucide-eye w-5 h-5 mr-2">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            <h2 class="h5 font--heading hard--ends" style="margin-left: 8px;">Your Market Reality</h2>
+          </div>
+          <div class="all--text--left">
+            <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides">
+              <div class="bg-blue-50 last--hard--bottom padding--short short border-radius--12">
+                <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-5 h-5 text-blue-600 mr-2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <p class="hard--ends bolder font--17 text-blue-800" style="margin-left: 8px;">
+                    Total Addressable Market (regional)
+                    <span class="section--roi--label--tooltip lap-and-up-relative inline-block">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#777779" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-help w-4 h-4 text-gray-400 hover:text-blue-600 cursor-help ml-1"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg>
+                      <span class="section--roi--label--tooltip--inner font--reading">
+                        Regular meetings between IMPACT coaches and your senior leaders to review progress, address challenges, and drive results. These sessions focus on accountability, decision-making, and removing roadblocks. They are designed to keep implementation on track and help your team achieve mastery within 24 months.
+                      </span>
+                    </span>
+                  </p>
+                </div>
+                <p id="totalMarketDeals" class="h4 hard--ends text-blue-600">~1,500 deals/year</p>
+                <p id="totalMarketRevenue" class="hard--ends p--sm text-blue-600">$75,000,000 opportunity</p>
+              </div>
+            </div>
+
+            <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides">
+              <div class="bg-green-50 last--hard--bottom padding--short short border-radius--12">
+                <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy w-5 h-5 text-green-600 mr-2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                  <p class="hard--ends bolder font--17 text-green-800" style="margin-left: 8px;">You Currently Win</p>
+                </div>
+                <p id="currentMarketShare" class="h4 hard--ends text-green-600">3.2%</p>
+                <p id="currentDeals" class="hard--ends p--sm text-green-600">48 deals/year</p>
+              </div>
+            </div>
+
+            <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides">
+              <div class="bg-amber-50 last--hard--bottom padding--short short border-radius--12">
+                <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-building w-5 h-5 text-amber-600 mr-2"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg>
+                  <p class="hard--ends bolder font--17 text-amber-800" style="margin-left: 8px;">Market Opportunity</p>
+                </div>
+                <p id="missedRevenue" class="h4 hard--ends text-amber-600">$52,500,000</p>
+                <p class="hard--ends p--sm text-amber-600">addressable through improved market position</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario Selector -->
+        <div class="background--white border border--lightgrey panel--padding margin--short--top margin--short--bottom background--shadow all--text--left">
+          <h2 class="h5 font--heading hard--ends margin--petite--bottom">What “Most Trusted” Could Mean</h2>
+
+          <div class="flexgrid valign--middle" style="justify-content: flex-start; gap: 12px;">
+            <button class="scenario-btn btn btn--mist btn--width--small margin--short--right btn-padding--small" data-scenario="conservative">Conservative</button>
+            <button class="scenario-btn btn btn--primary btn--width--small margin--short--right btn-padding--small" data-scenario="realistic">Realistic</button>
+            <button class="scenario-btn btn btn--mist btn--width--small btn-padding--small" data-scenario="optimistic">Optimistic</button>
+          </div>
+
+          <div id="scenarioDescription" class="background--offwhite panel--padding border-radius--8 margin--short--top"></div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="flexgrid">
+          <div class="grid__item one-whole hard margin--short--bottom" style="display: flex; gap: 2.7%;">
+            <div class="grid__item one-whole lap-and-up-six-twelfths hard">
+              <div class="bg-gradient-to-r--blue color--white panel--padding all--color--white background--shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye w-6 h-6"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <h3 class="h5 font--heading margin--short--bottom hard--top">Market Share Gap</h3>
+                <p id="marketShareGap" class="h3 margin--short--bottom">92.0%</p>
+                <p class="p--sm hard--bottom line-height--small">Market opportunity after implementing Endless Customers</p>
+              </div>
+            </div>
+            <div class="grid__item one-whole lap-and-up-six-twelfths hard">
+              <div class="bg-gradient-to-r--green color--white panel--padding all--color--white background--shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up w-6 h-6"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                <h3 class="h5 font--heading margin--short--bottom hard--top">24-Month ROI</h3>
+                <p id="roiMultiplier" class="h3 margin--short--bottom">5.2x</p>
+                <p id="roiPercentage" class="p--sm hard--bottom line-height--small">420% gain</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Financial Breakdown -->
+          <div class="grid__item one-whole hard background--white border border--lightgrey padding--grande margin--short--bottom background--shadow panel--padding">
+            <div class="heading-group flex flex-align--center margin--short--bottom">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-dollar-sign w-5 h-5 mr-2 text-green-600"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              <h3 class="h5 font--heading hard--ends">The Investment Breakdown</h3>
+            </div>
+            <div class="flexgrid">
+
+              <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides text--left">
+                <div class="bg-blue-50 last--hard--bottom padding--short short border-radius--12">
+                  <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                    <p class="p hard--ends bolder font--17 text-blue-800" >Monthly Investment</p>
+                  </div>
+                  <p id="monthlyInvestment" class="h4 hard--ends text-blue-600">~1,500 deals/year</p>
+                  <p class="hard--ends p--default text-blue-600">Average over 24 months</p>
+                  <p class="hard--ends p--sm text-blue-600 margin--petite--bottom">Includes estimated additional spend beyond coaching program</p>
+                  <p id="investmentDetails" class="hard--ends p p--sm text-blue-600"></p>
+                </div>
+              </div>
+
+              <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides text--left">
+                <div class="bg-green-50 last--hard--bottom padding--short short border-radius--12">
+                  <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                    <p class="p hard--ends bolder font--17 text-green-800">Additional Revenue</p>
+                  </div>
+                  <p id="totalRevenueLift" class="h4 hard--ends text-green-600">$1,920,000</p>
+                  <p class="hard--ends p--default text-green-600 margin--petite--bottom">New revenue generated</p>
+                  <p id="revenueBreakdown" class="hard--ends p p--sm text-green-700"></p>
+                </div>
+              </div>
+              <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides text--left">
+                <div class="bg-purple-50 last--hard--bottom padding--short short border-radius--12">
+                  <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                    <p class="p hard--ends bolder font--17 text-purple-800">Estimated Return on Investment</p>
+                  </div>
+                  <p id="netGain" class="h4 hard--ends text-purple-600">$1,920,000</p>
+                  <p class="hard--ends p--default text-purple-600 margin--petite--bottom">Revenue minus investment</p>
+                  <p id="roiDetails" class="hard--ends p p--sm text-purple-600"></p>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <!-- Payback Timeline -->
+          <div class="grid__item one-whole hard background--white border border--lightgrey padding--grande margin--short--bottom background--shadow panel--padding">
+
+            <div class="heading-group flex flex-align--center margin--short--bottom">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock w-5 h-5 mr-2 text-blue-600"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <h2 class="h5 font--heading hard--ends" style="margin-left: 8px;">Your Journey to ROI</h2>
+            </div>
+
+            <div class="flexgrid valign--middle justify--between background--offwhite panel--padding border-radius--12">
+              <div class="text--left">
+                <p class="p bold hard--ends">Positive ROI Typically Begins</p>
+                <p class="p p--sm color--midgrey hard--ends">When gains exceed monthly investment</p>
+              </div>
+              <div>
+                <p id="paybackPeriod" class="h3 color--primary hard--ends">9-15 months</p>
+                <a class="p p--sm color--primary hard--ends" href="#roiEffects">What affects timeline?</a>
+              </div>
+            </div>
+
+
+            <div class="flexgrid valign--middle bg-blue-50 panel--padding margin--short--top border-radius--12">
+              <div class="text--left">
+                <p class="p bold hard--ends text-blue-800">Early Wins (Months 1-6)</p>
+                <p class="p p--sm color--primary hard--ends text-blue-600 line-height--small" style="margin-top: 4px !important">The quickest wins come when initial content is created and used in your sales process. Deals you would typically lose start closing at higher rates, and sales cycles shorten when buyers trust you before the first call. Teams that fully embrace the system see results sooner.</p>
+              </div>
+            </div>
+
+            <div class="flexgrid">
+              <div class="grid__item one-whole panel--padding border--1 border--mist border-radius--12 text--left hard--sides margin--short--top">
+                <p class="p bold hard--ends">Months 1-6: Foundation</p>
+                <ul class="hard--bottom margin--petite--top p p--sm all--color--midgrey" style="padding-left: 20px; margin-top: 6px;">
+                  <li>Team alignment & training</li>
+                  <li>First content pieces created</li>
+                  <li>Sales process integration begins</li>
+                  <li>Early wins: faster deal closures</li>
+                </ul>
+              </div>
+
+              <div class="grid__item one-whole panel--padding border--1 border--mist border-radius--12 text--left hard--sides margin--short--top">
+                <p class="p bold hard--ends">Months 6-18: Momentum</p>
+                <ul class="hard--bottom margin--petite--top p p--sm all--color--midgrey" style="padding-left: 20px; margin-top: 6px;">
+                  <li>Consistent content production</li>
+                  <li>Higher close rates on pipeline</li>
+                  <li>Positive ROI typically achieved</li>
+                  <li id="year1Range">Range: $1,132,800-$1,699,200 lift</li>
+                </ul>
+              </div>
+
+              <div class="grid__item one-whole panel--padding border--1 border--mist border-radius--12 text--left hard--sides margin--short--top">
+                <p class="p bold hard--ends">Months 18-30+: Leadership</p>
+                <ul class="hard--bottom margin--petite--top p p--sm all--color--midgrey" style="padding-left: 20px; margin-top: 6px;">
+                  <li>Market recognition accelerates</li>
+                  <li>More inbound opportunities</li>
+                  <li>Premium pricing realized</li>
+                  <li id="year2Range">Range: $2,380,800-$3,571,200 lift</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Investment Summary -->
+          <div id="success-factors" class="grid__item one-whole hard background--white border border--lightgrey padding--grande margin--short--bottom background--shadow panel--padding">
+            <div class="heading-group text--left">
+              <div class="flex flex-align--center margin--petite--bottom">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy w-5 h-5 mr-2 text-green-600"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                <h2 class="h5 font--heading hard--ends" style="margin-left: 8px;">What Determines Your Success & Timeline</h2>
+              </div>
+              <p class="p p--default hard--ends color--midgrey">
+                The majority of our clients achieve or exceed these results. Some clients see positive ROI in 3-6 months, others take 12-18 months. Your timeline depends on how well your organization embraces the Endless Customers system:
+              </p>
+            </div>
+
+            <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides text--left margin--short--top">
+              <div class="bg-green-50 last--hard--bottom padding--short short border-radius--12">
+                <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy w-5 h-5 text-green-600 mr-2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                  <p class="hard--ends bolder font--17 text-green-800" style="margin-left: 8px;">Fast Track (3-6 Months to ROI)</p>
+                </div>
+                <ul class="hard--ends p p--sm all--text-green-700" style="padding-left: 20px; margin-top: 6px;">
+                  <li><strong>Full leadership commitment</strong> - Make content creation a top priority</li>
+                  <li><strong>Existing content/video team</strong> - Can hit the ground running</li>
+                  <li><strong>Embrace all tools</strong> - Video, AI, and modern marketing tech</li>
+                  <li><strong>Organizational agility</strong> - Minimal red tape and quick decisions</li>
+                  <li><strong>Unified revenue team</strong> - Sales and marketing fully aligned</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="grid__item one-whole hard--ends margin--short--bottom hard--sides text--left hard--top">
+              <div class="bg-amber-50 last--hard--bottom padding--short short border-radius--12">
+                <div class="heading-group flex flex-align--center" style="margin-bottom: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       width="20"
+                       height="20"
+                       viewBox="0 0 20 20"
+                       fill="none"
+                       stroke="#92400e"
+                       stroke-width="2"
+                       stroke-linecap="round"
+                       stroke-linejoin="round"
+                       class="lucide lucide-circle-alert mr-2">
+                    <circle cx="10" cy="10" r="8"></circle>
+                    <line x1="10" y1="6.5" x2="10" y2="10.5"></line>
+                    <line x1="10" y1="13.5" x2="10.01" y2="13.5"></line>
+                  </svg>
+
+                  <p class="hard--ends bolder font--17 text-amber-800" style="margin-left: 8px;">Longer Timeline (12-18+ Months)</p>
+                </div>
+
+                <ul class="hard--ends p p--sm all--text-amber-700" style="padding-left: 20px; margin-top: 6px;">
+                  <li>Inconsistent content publishing</li>
+                  <li>Resistance to video or AI tools</li>
+                  <li>Need to hire content manager/videographer</li>
+                  <li>Significant organizational red tape</li>
+                  <li>Not fully applying coaching recommendations</li>
+                </ul>
+                <p class="p p--sm all--text-amber-700 margin--petite--top">
+                  Like EOS or other business systems, success requires consistent execution and commitment across the organization.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CTA -->
+          <div class="bg-gradient-to-r color--white padding--grande text--center border-radius--16 panel--padding grid__item one-whole hard--sides" style="padding-left: 60px !important; padding-right: 60px !important;">
+            <h3 class="font--heading margin--short--bottom color--white margin--short--top">Investment Opportunity Summary</h3>
+            <div class="p--default first--hard--top">
+              <p id="summaryText" class="margin--short--bottom color--white line-height--small" style="opacity:0.9;"></p>
+              <p id="potentialRevenue" class="color--white hard--ends line-height--small" style="opacity:0.9;"></p>
+            </div>
+            <div class="flexgrid justify--center margin--short--top margin--short--bottom">
+              <div class="grid__item hard--ends">
+                <button class="btn btn--white margin--short--right" style="display:none;">Download ROI Analysis</button>
+              </div>
+              <div class="grid__item hard--ends block--singlebtn">
+                <a href="https://www.impactplus.com/services/schedule-now" class="btn btn--primary btn btn--arrow btn--basic-transition">Discuss Implementation Strategy</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% require_js %}
+  <script>
+    document.querySelectorAll('.section--roi--label--tooltip').forEach(function(tooltip) {
+      tooltip.addEventListener('mouseenter', function() {
+        this.classList.add('active');
+      });
+
+      tooltip.addEventListener('mouseleave', function() {
+        this.classList.remove('active');
+      });
+    });
+
+    document.body.addEventListener('touchstart', function(event) {
+      if (event.target.closest('.section--roi--label--tooltip--inner')) {
+        const tooltip = event.target.closest('.section--roi--label--tooltip');
+        if (tooltip.classList.contains('active')) {
+          tooltip.classList.remove('active');
+        } else {
+          tooltip.classList.add('active');
+        }
+      }
+    });
+  </script>
+
+
+
+
+  <script>
+    $(document).ready(function() {
+      var industryDefaults = {
+        'association': { baseCloseRate: 30, baseSalesCycle: 45, trustMultiplier: 1.4, avgMarketSize: 500 },
+        'automotive': { baseCloseRate: 22, baseSalesCycle: 30, trustMultiplier: 1.3, avgMarketSize: 2000 },
+        'building-materials': { baseCloseRate: 25, baseSalesCycle: 60, trustMultiplier: 1.3, avgMarketSize: 800 },
+        'business-services': { baseCloseRate: 28, baseSalesCycle: 75, trustMultiplier: 1.5, avgMarketSize: 1500 },
+        'communications': { baseCloseRate: 32, baseSalesCycle: 90, trustMultiplier: 1.4, avgMarketSize: 600 },
+        'construction': { baseCloseRate: 20, baseSalesCycle: 120, trustMultiplier: 1.4, avgMarketSize: 1200 },
+        'consulting': { baseCloseRate: 35, baseSalesCycle: 60, trustMultiplier: 1.6, avgMarketSize: 2000 },
+        'consumer-products': { baseCloseRate: 18, baseSalesCycle: 45, trustMultiplier: 1.2, avgMarketSize: 5000 },
+        'cybersecurity': { baseCloseRate: 25, baseSalesCycle: 120, trustMultiplier: 1.5, avgMarketSize: 400 },
+        'ecommerce': { baseCloseRate: 15, baseSalesCycle: 30, trustMultiplier: 1.3, avgMarketSize: 10000 },
+        'education': { baseCloseRate: 28, baseSalesCycle: 180, trustMultiplier: 1.3, avgMarketSize: 800 },
+        'engineering': { baseCloseRate: 22, baseSalesCycle: 150, trustMultiplier: 1.3, avgMarketSize: 600 },
+        'financial-services': { baseCloseRate: 30, baseSalesCycle: 90, trustMultiplier: 1.4, avgMarketSize: 1000 },
+        'healthcare': { baseCloseRate: 32, baseSalesCycle: 120, trustMultiplier: 1.4, avgMarketSize: 800 },
+        'insurance': { baseCloseRate: 25, baseSalesCycle: 45, trustMultiplier: 1.3, avgMarketSize: 2000 },
+        'it-services': { baseCloseRate: 26, baseSalesCycle: 90, trustMultiplier: 1.4, avgMarketSize: 1200 },
+        'legal-services': { baseCloseRate: 35, baseSalesCycle: 60, trustMultiplier: 1.5, avgMarketSize: 800 },
+        'manufacturing': { baseCloseRate: 18, baseSalesCycle: 180, trustMultiplier: 1.2, avgMarketSize: 400 },
+        'marketing-agency': { baseCloseRate: 28, baseSalesCycle: 45, trustMultiplier: 1.5, avgMarketSize: 1500 },
+        'real-estate': { baseCloseRate: 20, baseSalesCycle: 90, trustMultiplier: 1.3, avgMarketSize: 3000 },
+        'software-saas': { baseCloseRate: 22, baseSalesCycle: 120, trustMultiplier: 1.4, avgMarketSize: 2000 },
+        'technology': { baseCloseRate: 24, baseSalesCycle: 90, trustMultiplier: 1.4, avgMarketSize: 1000 },
+        'other': { baseCloseRate: 25, baseSalesCycle: 90, trustMultiplier: 1.3, avgMarketSize: 1000 }
+      };
+
+      var marketScopeMultipliers = {
+        'local': 0.2,
+        'regional': 1.0,
+        'national': 3.5,
+        'international': 8.0
+      };
+
+      var coachingCosts = {
+        guidance: 5500,
+        mastery: 8000,
+        accelerated: 10500
+      };
+
+      var scenarios = {
+        conservative: {
+          marketShareGain: 3,
+          trustPremium: 1.05,
+          closeRateImprovement: 1.15,
+          salesCycleImprovement: 0.9,
+          referralIncrease: 1.2,
+          year1RealizationRate: 0.2
+        },
+        realistic: {
+          marketShareGain: 5,
+          trustPremium: 1.08,
+          closeRateImprovement: 1.25,
+          salesCycleImprovement: 0.8,
+          referralIncrease: 1.4,
+          year1RealizationRate: 0.35
+        },
+        optimistic: {
+          marketShareGain: 8,
+          trustPremium: 1.12,
+          closeRateImprovement: 1.35,
+          salesCycleImprovement: 0.7,
+          referralIncrease: 1.6,
+          year1RealizationRate: 0.5
+        }
+      };
+
+      var activeScenario = 'realistic';
+      var calculatedResults = {};
+
+      function formatCurrency(amount) {
+        return '$' + Math.round(amount).toLocaleString('en-US');
+      }
+
+      function parseNumericInput(value) {
+        return parseFloat(String(value).replace(/[$,]/g, '')) || 0;
+      }
+
+      function getCRMUpgradeCost(revenue, crmStatus) {
+        if (crmStatus === 'yes') return 0;
+
+        var upgradeCost, newCost;
+        if (revenue < 5000000) {
+          upgradeCost = 3000;
+          newCost = 8000;
+        } else if (revenue < 15000000) {
+          upgradeCost = 6000;
+          newCost = 12000;
+        } else if (revenue < 50000000) {
+          upgradeCost = 10000;
+          newCost = 18000;
+        } else {
+          upgradeCost = 15000;
+          newCost = 25000;
+        }
+
+        if (crmStatus === 'upgrades') return upgradeCost;
+        if (crmStatus === 'no') return newCost;
+        if (crmStatus === 'not-sure') return upgradeCost;
+        return 0;
+      }
+
+      function calculateROI() {
+        var inputs = {
+          industry: $('#industry').val(),
+          marketScope: $('#marketScope').val(),
+          annualRevenue: parseNumericInput($('#annualRevenue').val()),
+          marketingInvestmentPercent: parseFloat($('#marketingInvestmentPercent').val()),
+          hasSuitableCRM: $('#hasSuitableCRM').val(),
+          hasContentManager: $('#hasContentManager').val(),
+          hasVideographer: $('#hasVideographer').val(),
+          averageDealSize: parseNumericInput($('#averageDealSize').val()),
+          monthlyDealsWon: parseFloat($('#monthlyDealsWon').val()),
+          salesCycleDays: parseFloat($('#salesCycleDays').val()),
+          competitorDealsLost: parseFloat($('#competitorDealsLost').val()),
+          potentialCustomersChooseCompetitors: parseFloat($('#potentialCustomersChooseCompetitors').val()),
+          growthGoal: $('#growthGoal').val(),
+          scalingCapacity: $('#scalingCapacity').val(),
+          coachingPlan: $('#coachingPlan').val()
+        };
+
+        var industry = industryDefaults[inputs.industry];
+        var scopeMultiplier = marketScopeMultipliers[inputs.marketScope];
+
+        var currentAnnualDeals = inputs.monthlyDealsWon * 12;
+        var currentAnnualRevenue = currentAnnualDeals * inputs.averageDealSize;
+
+        var estimatedMarketDeals = Math.round(industry.avgMarketSize * scopeMultiplier);
+        var totalMarketRevenue = estimatedMarketDeals * inputs.averageDealSize;
+        var currentMarketShare = (currentAnnualDeals / estimatedMarketDeals) * 100;
+        var competitorDealsAnnual = inputs.competitorDealsLost * 12;
+        var totalMissedDeals = competitorDealsAnnual + Math.round(estimatedMarketDeals * (inputs.potentialCustomersChooseCompetitors / 100));
+        var missedRevenue = totalMissedDeals * inputs.averageDealSize;
+
+        var alignmentDay = 10000;
+        var monthlyCoaching = coachingCosts[inputs.coachingPlan];
+        var contentManagerSalary = inputs.hasContentManager === 'yes' ? 0 : 65000;
+        var videographerSalary = inputs.hasVideographer === 'yes' ? 0 : 55000;
+        var crmUpgradeCost = getCRMUpgradeCost(inputs.annualRevenue, inputs.hasSuitableCRM);
+        var videoEquipment = inputs.hasVideographer === 'yes' ? 0 : 5000;
+
+        var year1Investment = alignmentDay + (monthlyCoaching * 12) + contentManagerSalary + (videographerSalary * 0.5) + crmUpgradeCost + videoEquipment;
+        var year2Investment = (monthlyCoaching * 12) + contentManagerSalary + videographerSalary + (crmUpgradeCost * 0.5);
+        var totalInvestment = year1Investment + year2Investment;
+
+        var capacityMultiplier = inputs.scalingCapacity === 'ready-to-scale' ? 1.0 : (inputs.scalingCapacity === 'can-scale-with-hiring' ? 0.8 : 0.6);
+        var growthAmbitionMap = {
+          'maintain': 1.1,
+          'grow-50': 1.5,
+          'double': 2.0,
+          'triple': 3.0,
+          'aggressive': 5.0
+        };
+        var growthAmbition = growthAmbitionMap[inputs.growthGoal] || 2.0;
+
+        var scenarioResults = {};
+
+        $.each(scenarios, function(scenarioKey, s) {
+
+          // --- FIX A: prevent market share from decreasing ---
+          var theoreticalNewShareRaw = Math.min(
+            currentMarketShare + s.marketShareGain,
+            (currentAnnualDeals * growthAmbition * capacityMultiplier / estimatedMarketDeals) * 100,
+            15
+          );
+
+          var theoreticalNewShare = Math.max(currentMarketShare, theoreticalNewShareRaw);
+          // ---------------------------------------------------
+
+          var newAnnualDeals = Math.round(
+            estimatedMarketDeals * (theoreticalNewShare / 100)
+          );
+          var additionalDeals = newAnnualDeals - currentAnnualDeals;
+
+          var newAnnualDeals = Math.round(estimatedMarketDeals * (theoreticalNewShare / 100));
+          var additionalDeals = newAnnualDeals - currentAnnualDeals;
+
+          var year1NewDeals = currentAnnualDeals + Math.round(additionalDeals * s.year1RealizationRate);
+          var year1DealSize = inputs.averageDealSize * (1 + ((s.trustPremium - 1) * s.year1RealizationRate));
+          var year1Revenue = year1NewDeals * year1DealSize;
+          var year1Lift = Math.max(0, year1Revenue - currentAnnualRevenue);
+
+          var year2DealSize = inputs.averageDealSize * s.trustPremium;
+          var year2Revenue = newAnnualDeals * year2DealSize;
+          var year2Lift = year2Revenue - currentAnnualRevenue;
+
+          var totalRevenueLift = year1Lift + year2Lift;
+          var netGain = totalRevenueLift - totalInvestment;
+          var roi = totalInvestment > 0 ? (netGain / totalInvestment) * 100 : 0;
+
+          var monthlyInvestmentYear1 = year1Investment / 12;
+          var monthlyInvestmentYear2 = year2Investment / 12;
+          var monthlyGainYear1 = year1Lift / 12;
+          var monthlyGainYear2 = year2Lift / 12;
+
+          var monthsToPayback = 25;
+
+          for (var month = 6; month <= 24; month++) {
+            var cumulativeInvestment = 0;
+            var cumulativeGains = 0;
+
+            for (var m = 1; m <= month; m++) {
+              if (m <= 12) {
+                cumulativeInvestment += monthlyInvestmentYear1;
+                cumulativeGains += monthlyGainYear1;
+              } else {
+                cumulativeInvestment += monthlyInvestmentYear2;
+                cumulativeGains += monthlyGainYear2;
+              }
+            }
+
+            if (cumulativeGains >= cumulativeInvestment && monthsToPayback === 25) {
+              monthsToPayback = month;
+              break;
+            }
+          }
+
+          scenarioResults[scenarioKey] = {
+            currentMarketShare: currentMarketShare,
+            theoreticalNewShare: theoreticalNewShare,
+            missedRevenue: missedRevenue,
+            year1Lift: year1Lift,
+            year2Lift: year2Lift,
+            totalRevenueLift: totalRevenueLift,
+            totalInvestment: totalInvestment,
+            netGain: netGain,
+            roi: roi,
+            monthsToPayback: monthsToPayback,
+            newAnnualDeals: newAnnualDeals,
+            additionalDeals: additionalDeals,
+            year1Revenue: year1Revenue,
+            year2Revenue: year2Revenue
+          };
+        });
+
+        calculatedResults = {
+          current: {
+            annualRevenue: currentAnnualRevenue,
+            deals: currentAnnualDeals,
+            marketShare: currentMarketShare
+          },
+          market: {
+            totalDeals: estimatedMarketDeals,
+            totalRevenue: totalMarketRevenue,
+            missedDeals: totalMissedDeals,
+            missedRevenue: missedRevenue
+          },
+          scenarios: scenarioResults,
+          investment: {
+            year1: year1Investment,
+            year2: year2Investment,
+            total: totalInvestment
+          }
+        };
+
+        updateDisplay();
+      }
+
+      function updateDisplay() {
+        var results = calculatedResults;
+        var scenario = results.scenarios[activeScenario];
+
+        $('#totalMarketDeals').text('~' + results.market.totalDeals.toLocaleString() + ' deals/year');
+        $('#totalMarketRevenue').text(formatCurrency(results.market.totalRevenue) + ' opportunity');
+        $('#currentMarketShare').text(results.current.marketShare.toFixed(1) + '%');
+        $('#currentDeals').text(Math.round(results.current.deals) + ' deals/year');
+        $('#missedRevenue').text(formatCurrency(results.market.missedRevenue));
+
+        var marketGap = 100 - results.current.marketShare - scenario.theoreticalNewShare;
+        $('#marketShareGap').text(marketGap.toFixed(1) + '%');
+
+        var roiMultiplier = scenario.roi > 0 ? (scenario.roi / 100 + 1).toFixed(1) : '1.0';
+        $('#roiMultiplier').text(roiMultiplier + 'x');
+        $('#roiPercentage').text('Return on Endless Customers investment (' + (scenario.roi > 0 ? Math.round(scenario.roi) : '0') + '% gain)');
+
+        $('#monthlyInvestment').text(formatCurrency(results.investment.total / 24) + '/month');
+        $('#investmentDetails').html('<div>Total: ' + formatCurrency(results.investment.total) + ' over 24 months</div>');
+
+        $('#totalRevenueLift').text(formatCurrency(scenario.totalRevenueLift));
+        $('#revenueBreakdown').html(
+          '<div>Year 1: ' + formatCurrency(scenario.year1Lift * 0.8) + '-' + formatCurrency(scenario.year1Lift * 1.2) + '</div>' +
+          '<div>Year 2: ' + formatCurrency(scenario.year2Lift * 0.8) + '-' + formatCurrency(scenario.year2Lift * 1.2) + '</div>'
+        );
+
+        $('#netGain').text(formatCurrency(Math.max(0, scenario.netGain)));
+        $('#roiDetails').html(
+          '<div>New Market Share: ' + scenario.theoreticalNewShare.toFixed(1) + '%</div>' +
+          '<div>ROI Ratio: ' + roiMultiplier + ':1</div>'
+        );
+
+        var paybackMin = Math.max(6, Math.round(scenario.monthsToPayback));
+        var paybackMax = Math.min(18, Math.round(scenario.monthsToPayback) + 6);
+        $('#paybackPeriod').text(scenario.monthsToPayback <= 24 ? paybackMin + '-' + paybackMax + ' months' : '12-24 months');
+
+        $('#year1Range').html('Range: ' + formatCurrency(scenario.year1Lift * 0.8) + ' - ' + formatCurrency(scenario.year1Lift * 1.2) + ' lift');
+        $('#year2Range').html('Range: ' + formatCurrency(scenario.year2Lift * 0.8) + ' - ' + formatCurrency(scenario.year2Lift * 1.2) + ' lift');
+
+        updateScenarioDescription();
+
+        $('#summaryText').html('The ' + activeScenario + ' scenario projects a <strong>' + roiMultiplier + 'x return</strong> on your investment over 24 months.');
+        $('#potentialRevenue').html('This analysis suggests <strong>' + formatCurrency(scenario.totalRevenueLift) + '</strong> in additional revenue potential through improved market positioning and trust-building.');
+      }
+
+      function updateScenarioDescription() {
+        var descriptions = {
+          conservative: '<div class="scenario-description"><p class="bold margin--short--bottom hard--top"><strong>Conservative Scenario:</strong></p><ul class="p p--default hard--bottom" style="padding-left: 20px;"><li>Market share grows by +3 percentage points</li><li>15% improvement in close rates</li><li>5% pricing premium</li><li>20% more referrals</li></ul></div><p class="bold margin--short--bottom">Why These Numbers:</p><ul class="p p--default hard--bottom" style="padding-left: 20px;"><li>Trusted brands show up in more searches</li><li>Buyers call you first, not last</li><li>Less price shopping, faster decisions</li><li>Customers become advocates</li></ul></div></div>',
+          realistic: '<div class="scenario-description"><p class="bold margin--short--bottom hard--top"><strong>Realistic Scenario:</strong></p><ul class="p p--default hard--bottom" style="padding-left: 20px;"><li>Market share grows by +5 percentage points</li><li>25% improvement in close rates</li><li>8% pricing premium</li><li>40% more referrals</li></ul></div><p class="bold margin--short--bottom">Why These Numbers:</p><ul class="p p--default hard--bottom" style="padding-left: 20px;"><li>Trusted brands show up in more searches</li><li>Buyers call you first, not last</li><li>Less price shopping, faster decisions</li><li>Customers become advocates</li></ul></div></div>',
+          optimistic: '<div class="scenario-description"><p class="bold margin--short--bottom hard--top"><strong>Optimistic Scenario:</strong></p><ul class="p p--default hard--bottom" style="padding-left: 20px;"><li>Market share grows by +8 percentage points</li><li>35% improvement in close rates</li><li>12% pricing premium</li><li>60% more referrals</li></ul></div><p class="bold margin--short--bottom">Why These Numbers:</p><ul class="p p--default hard--bottom" style="padding-left: 20px;"><li>Trusted brands show up in more searches</li><li>Buyers call you first, not last</li><li>Less price shopping, faster decisions</li><li>Customers become advocates</li></ul></div></div>'
+        };
+
+        $('#scenarioDescription').html(descriptions[activeScenario]);
+      }
+
+      $('#marketingInvestmentPercent').on('input', function() {
+        var value = $(this).val();
+        $('#marketingPercentDisplay').text(value + '%');
+
+        var revenue = parseNumericInput($('#annualRevenue').val());
+        var annual = revenue * (value / 100);
+        var monthly = annual / 12;
+
+        $('#marketingInvestmentDisplay').html(
+          value + '% of ' + formatCurrency(revenue) + ' = <strong>' + formatCurrency(annual) + ' annually</strong><br>' +
+          '<span class="text-xs text-gray-500">(' + formatCurrency(monthly) + ' per month)</span>'
+        );
+
+        calculateROI();
+      });
+
+      $('.scenario-btn').on('click', function() {
+        $('.scenario-btn').removeClass('btn--primary').addClass('btn--mist');
+        $(this).removeClass('btn--mist').addClass('btn--primary');
+        activeScenario = $(this).data('scenario');
+        updateDisplay();
+      });
+
+      $('input, select').on('change input', function() {
+        if ($(this).attr('id') === 'annualRevenue') {
+          var revenue = parseNumericInput($(this).val());
+          var percent = parseFloat($('#marketingInvestmentPercent').val());
+          var annual = revenue * (percent / 100);
+          var monthly = annual / 12;
+
+          $('#marketingInvestmentDisplay').html(
+            percent + '% of ' + formatCurrency(revenue) + ' = <strong>' + formatCurrency(annual) + ' annually</strong><br>' +
+            '<span class="p font--14 color--midgrey hard--ends">(' + formatCurrency(monthly) + ' per month)</span>'
+          );
+        }
+
+        calculateROI(); 
+      });
+
+      $('#annualRevenue, #averageDealSize').on('blur', function() {
+        var value = parseNumericInput($(this).val());
+        $(this).val(value.toLocaleString()); 
+      });
+
+      $('#annualRevenue, #averageDealSize').on('focus', function() {
+        var value = parseNumericInput($(this).val());
+        $(this).val(value);
+      });
+
+      calculateROI();
+
+      var initialRevenue = parseNumericInput($('#annualRevenue').val());
+      var initialPercent = parseFloat($('#marketingInvestmentPercent').val());
+      var initialAnnual = initialRevenue * (initialPercent / 100);
+      var initialMonthly = initialAnnual / 12;
+
+      $('#marketingInvestmentDisplay').html(
+        initialPercent + '% of ' + formatCurrency(initialRevenue) + ' = <strong>' + formatCurrency(initialAnnual) + ' annually</strong><br>' +
+        '<span class="text-xs text-gray-500">(' + formatCurrency(initialMonthly) + ' per month)</span>'
+      );
+    });
+
+
+  </script>
+  {% end_require_js %}

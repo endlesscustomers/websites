@@ -1,0 +1,147 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Flexible Drag and Drop (Tabs) - IMPACT Production Theme
+-->
+{% module
+"controls"
+path='/IM-IMPACT-Prod-Theme-2025/globals/_unused/Controls',
+label="Settings & Controls",
+no_wrapper=True,
+export_to_template_context= True,
+header_design= "solid",
+hide_navigation= false,
+disable_sticky_header= false,
+disable_hello_bar_on_this_page= false,
+page_type= "other"
+%}
+
+{% module
+"breadcrumb_controls"
+path='/IM-IMPACT-Prod-Theme-2025/globals/_unused/Breadcrumbs',
+label="Breadcrumb Controls",
+no_wrapper=True,
+export_to_template_context=True
+%}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--site pagetype--{{ widget_data.controls.page_type }}') %}
+{% do body_classes_array.append('header--{{ widget_data.controls.header_design }}') %}
+{% if widget_data.controls.header_design == "transparent" %}
+{% do body_classes_array.append('header--notfixed header--isanchored') %}
+{% endif %}
+
+{% if widget_data.controls.hide_navigation %}
+{% do body_classes_array.append('no--navigation header--static') %}
+{% elif widget_data.controls.disable_sticky_header %}
+{% do body_classes_array.append('header--static') %}
+{% endif %}
+
+{% do body_classes_array.append('pagetype--tabs') %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+
+{% block body %}
+
+<div class="body-container body-container--flex">
+  
+  {% require_css %}
+    <style>
+      .pagetype--tabs .section--tabscontent {
+        display: none;
+      }
+      .pagetype--tabs .section--tabscontent.active{
+        display: block;
+      }
+    </style>
+  {% end_require_css %}
+  
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Top Static Section
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_top"
+  label="Main section - Top Static Section"
+%}
+{% end_dnd_area %}
+  
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Tab Section 1
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_section1"
+    label="Tab Section 1 - Content",
+    class="inline-editor--spacing section--tabscontent section--1 active"
+%}
+{% end_dnd_area %}
+ 
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Tab Section 2
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_section2"
+    label="Tab Section 2 - Content",
+    class="inline-editor--spacing section--tabscontent section--2"
+%}
+{% end_dnd_area %}
+  
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Tab Section 3
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_section3"
+    label="Tab Section 3 - Content",
+    class="inline-editor--spacing section--tabscontent section--3"
+%}
+{% end_dnd_area %}
+  
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Tab Section 4
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_section4"
+    label="Tab Section 4 - Content",
+    class="inline-editor--spacing section--tabscontent section--4"
+%}
+{% end_dnd_area %}
+
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Tab Section 5
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_section5"
+    label="Tab Section 5 - Content",
+    class="inline-editor--spacing section--tabscontent section--5"
+%}
+{% end_dnd_area %}
+  
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Tab Section 6
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_section6"
+    label="Tab Section 6 - Content",
+    class="inline-editor--spacing ection--tabscontent section--6"
+%}
+{% end_dnd_area %}
+  
+  {% if is_in_editor %}
+  <div class="short background--lightgrey p text--center bold margin--grande--top">
+    Lower Static Section
+  </div>
+  {% endif %}
+{% dnd_area "dnd_area_lower"
+  label="Main section - Lower Static Section"
+%}
+{% end_dnd_area %}
+</div>
+{% endblock body %}

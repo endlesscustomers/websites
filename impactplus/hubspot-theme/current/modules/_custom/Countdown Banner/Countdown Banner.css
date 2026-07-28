@@ -1,0 +1,67 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+
+.section--countdown-banner .countdown--container {
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+}
+
+@media screen and (min-width: 680px) (max-width: 1023px) {
+  .section--countdown-banner .lg--script{
+    font-size: 34px !important;
+  }
+
+  .section--countdown-banner .md--script{
+    font-size: 30px !important;
+  }
+
+  .section--countdown-banner h6{
+    font-size: 16px !important;
+  }
+
+  .section--countdown-banner .p{
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (max-width: 679px) {
+  .section--countdown-banner--wrapper{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .section--countdown-banner .lg--script{
+    font-size: 30px !important;
+  }
+
+  .section--countdown-banner .md--script{
+    font-size: 26px !important;
+  }
+
+  .section--countdown-banner h6{
+    font-size: 14px !important;
+  }
+
+  .section--countdown-banner .p{
+    font-size: 12px !important;
+  }
+}

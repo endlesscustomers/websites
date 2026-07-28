@@ -1,0 +1,50 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/HubUI/assets/Config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/HubUI/assets/Functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--bulletlistcolumns--row {
+  display:block;
+  width:100%;
+}
+.section--bulletlistcolumns--row--inner {
+  display:block;
+  width:100%;
+  text-decoration:none; 
+}
+.section--bulletlistcolumns--row--content {
+  display:block;
+}
+
+.section--bulletlistcolumns .section--bulletlistcolumns--row a:hover .btn--simple:after {
+  transform: translateX(5px);
+}
+
+.section--bulletlistcolumns--row--divider {
+  display:block;
+  width:100%;
+  height:1px;
+  background:rgba(150,150,150,.5);
+}
+
+{% call mediaLoop() %}
+.{{ media }}all--color--white .section--bulletlistcolumns--row--divider {
+  background:rgba({{ color("white")|convert_rgb }},.5);
+}
+{% endcall %}

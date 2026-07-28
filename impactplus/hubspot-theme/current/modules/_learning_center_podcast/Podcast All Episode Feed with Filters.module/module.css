@@ -1,0 +1,123 @@
+.topic-cards-container {
+  transition: min-height 0.3s ease;
+}
+
+.resource-card {
+  display:flex;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.pagination-controls button.is-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.section--richtext-columns--filter-item{
+  padding: 6px 16px;
+  border-radius: 50px;
+  border: 1px solid #E1E7F4;
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+  transition: background .4s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .section--richtext-columns--filter-item{
+    margin-right: 12px;
+  }
+}
+
+.sort-dropdown {
+  position: relative;
+  display: inline-block;
+  font-size: 0.875rem;
+  color: var(--color-darkgrey, #333);
+}
+
+.sort-select {
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding-right: 1.5em;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.sort-select:focus {
+  outline: none;
+}
+
+.sort-arrow {
+  position: absolute;
+  right: 0.2em;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.7em;
+  opacity: 0.6;
+}
+
+@media (max-width: 767px) {
+  .section--card-content-columns-inner{
+    font-size: 14px !important;
+  }
+
+  p.section--richtext-columns--filter-item{
+    margin-right: 12px;
+    font-size: 14px !important;
+  }
+
+  .section--richtext-columns--filters > .flex{
+    flex-flow: column;
+    align-items: flex-start;
+  }
+
+  #sort-order,
+  .section--richtext-columns--sort-container p{
+    font-size: 14px !important;
+  }
+}
+
+.section--richtext-columns--filter-item:hover{
+  background: #F6F9FC;
+}
+
+.section--richtext-columns--filter-item.active{
+  background: #F6F9FC;
+  font-weight: bold;
+}
+
+.prev-page, .next-page{
+  color: #1d1d1f !important;
+}
+
+.prev-page:after{
+  content: unset
+}
+
+.next-page:after{
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 12"><path fill="%21d1d1f" d="M12.425 5.61946C12.3773 5.49681 12.3059 5.38476 12.2149 5.28973L7.21279 0.29385C7.11951 0.200688 7.00878 0.126788 6.8869 0.0763693C6.76503 0.0259505 6.63441 0 6.50249 0C6.23608 0 5.98058 0.105701 5.7922 0.29385C5.69892 0.387011 5.62493 0.49761 5.57445 0.619332C5.52397 0.741054 5.49799 0.871514 5.49799 1.00326C5.49799 1.26935 5.60382 1.52453 5.7922 1.71268L9.09357 4.99997H1.50042C1.23509 4.99997 0.980629 5.10524 0.793015 5.29262C0.605401 5.48001 0.5 5.73415 0.5 5.99915C0.5 6.26415 0.605401 6.51829 0.793015 6.70567C0.980629 6.89305 1.23509 6.99832 1.50042 6.99832H9.09357L5.7922 10.2856C5.69843 10.3785 5.62401 10.489 5.57322 10.6108C5.52243 10.7325 5.49628 10.8631 5.49628 10.995C5.49628 11.1269 5.52243 11.2575 5.57322 11.3793C5.62401 11.501 5.69843 11.6116 5.7922 11.7044C5.8852 11.7981 5.99585 11.8724 6.11776 11.9232C6.23967 11.9739 6.37043 12 6.50249 12C6.63456 12 6.76532 11.9739 6.88723 11.9232C7.00914 11.8724 7.11979 11.7981 7.21279 11.7044L12.2149 6.70856C12.3059 6.61354 12.3773 6.50149 12.425 6.37883C12.525 6.13557 12.525 5.86272 12.425 5.61946Z"/></svg>');
+}
+
+.prev-page:before{
+  content: "";
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 12'><path fill='%21d1d1f' transform='rotate(180 6.5 6)' d='M12.425 5.61946C12.3773 5.49681 12.3059 5.38476 12.2149 5.28973L7.21279 0.29385C7.11951 0.200688 7.00878 0.126788 6.8869 0.0763693C6.76503 0.0259505 6.63441 0 6.50249 0C6.23608 0 5.98058 0.105701 5.7922 0.29385C5.69892 0.387011 5.62493 0.49761 5.57445 0.619332C5.52397 0.741054 5.49799 0.871514 5.49799 1.00326C5.49799 1.26935 5.60382 1.52453 5.7922 1.71268L9.09357 4.99997H1.50042C1.23509 4.99997 0.980629 5.10524 0.793015 5.29262C0.605401 5.48001 0.5 5.73415 0.5 5.99915C0.5 6.26415 0.605401 6.51829 0.793015 6.70567C0.980629 6.89305 1.23509 6.99832 1.50042 6.99832H9.09357L5.7922 10.2856C5.69843 10.3785 5.62401 10.489 5.57322 10.6108C5.52243 10.7325 5.49628 10.8631 5.49628 10.995C5.49628 11.1269 5.52243 11.2575 5.57322 11.3793C5.62401 11.501 5.69843 11.6116 5.7922 11.7044C5.8852 11.7981 5.99585 11.8724 6.11776 11.9232C6.23967 11.9739 6.37043 12 6.50249 12C6.63456 12 6.76532 11.9739 6.88723 11.9232C7.00914 11.8724 7.11979 11.7981 7.21279 11.7044L12.2149 6.70856C12.3059 6.61354 12.3773 6.50149 12.425 6.37883C12.525 6.13557 12.525 5.86272 12.425 5.61946Z'/></svg>");
+  background-size: 12px 13px;
+  background-repeat: no-repeat;
+  margin-right: 6px;
+  margin-top: 1px;
+  padding-right: 10px;
+  top: 1px;
+  right: 0px;
+  position: relative;
+  background-position: center center;
+  transition: 0.3s ease-in-out;
+}
+
+.prev-page:hover:before{
+  right: 5px;
+}

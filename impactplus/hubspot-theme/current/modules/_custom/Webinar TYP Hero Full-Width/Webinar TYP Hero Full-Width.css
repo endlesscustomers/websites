@@ -1,0 +1,146 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--fullwidth h2 + .section--fullwidth-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--fullwidth .section--fullwidth-content h2,
+.section--fullwidth .section--fullwidth-content h3,
+.section--fullwidth .section--fullwidth-content h4,
+.section--fullwidth .section--fullwidth-content h5,
+.section--fullwidth .section--fullwidth-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+/*.section--fullwidth p,
+.section--fullwidth ul,
+.section--fullwidth ol,
+.section--fullwidth blockquote,
+.section--fullwidth picture,
+.section--fullwidth img,
+.section--fullwidth table {
+margin-bottom:0px!important;
+margin-top:28px!important;
+}*/
+
+.section--fullwidth .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+/*.section--fullwidth h2+p,
+.section--fullwidth h3+p,
+.section--fullwidth h4+p,
+.section--fullwidth h5+p,
+.section--fullwidth h6+p {
+margin-top:10px!important;
+}*/
+
+/* Social Share */
+
+.section--lcsocialshare-share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:20px;
+  height:20px;
+  line-height:20px;
+  text-align:center;
+  text-decoration:none!important;
+  position:relative;
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(50deg) brightness(115%) contrast(112%);
+}
+.section--lcsocialshare-share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--lcsocialshare-share--icon:first-child {
+  margin-left:0px;
+}
+
+.section--lcsocialshare--share--link{
+  position: relative;
+  border-radius: 50%;
+  height: 34px;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #AAC6E3;
+  {{ transition("background .2s ease-in-out") }}
+}
+
+.mini-nav__item:not(:first-child){
+  margin-left: 10px;
+}
+
+.section--lcsocialshare--share--link:hover{
+  background: {{ color('black') }};
+}
+
+.section--lcsocialshare--share--link .mini-nav__tooltip,
+.tooltip-container .mini-nav__tooltip{
+  top: calc(100% + 4px);
+}
+
+.section--lcsocialshare .section--lcsocialshare--share--link .socialshare--share--icon{
+  filter: invert(32%) sepia(6%) saturate(1298%) hue-rotate(189deg) brightness(94%) contrast(89%);
+  margin-right: 16px;
+}
+
+.section--lcsocialshare .copy-tooltip {
+  position: absolute;
+  background: #fff;
+  color: #1d1d1f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.2s ease;
+  bottom: -54px;
+  left: calc(50% + 8px);
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.section--lcsocialshare .tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+{% call mediaQuery("tablet-and-up") %}
+.section--lcsocialshare h6{
+  margin-top: 5px !important;
+}
+{% endcall %}
+
+.section--lcsocialshare .tooltip-container.show-tooltip .copy-tooltip {
+  opacity: 1;
+}

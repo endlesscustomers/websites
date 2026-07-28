@@ -1,0 +1,317 @@
+[ {
+  "id" : "27fec9cf-af23-d8ae-6bbf-381605a60af6",
+  "name" : "popup_image",
+  "label" : "Popup Image",
+  "required" : true,
+  "locked" : false,
+  "responsive" : true,
+  "resizable" : false,
+  "show_loading" : false,
+  "type" : "image",
+  "display_width" : null,
+  "default" : {
+    "size_type" : "auto",
+    "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/images/general/ai_assessment_popup_bg-1.png",
+    "alt" : "ai_assessment_popup_bg-1",
+    "loading" : "lazy",
+    "width" : 406,
+    "height" : 424,
+    "max_width" : 406,
+    "max_height" : 424
+  }
+}, {
+  "id" : "7c222741-0be4-91d8-49bc-77a60d175899",
+  "name" : "primary_popup_header",
+  "label" : "Primary Popup: Header",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Yale Appliance didn’t skip the assessment"
+}, {
+  "id" : "60af9907-b48e-fed4-0094-277ba7515adc",
+  "name" : "primary_popup_subheader",
+  "label" : "Primary Popup: Subheader",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<p><span>Not the right time? No pressure.</span></p>\n<p><span>But if you’re on the fence, just know the top brands in Endless Customers completed the quiz -- and they haven’t looked back since.</span></p>"
+}, {
+  "id" : "2b445cbe-cb57-8b63-9370-3eb7e47740b3",
+  "name" : "cta_primary",
+  "label" : "CTA: Primary",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "9bea67e9-3a57-76dd-2504-f87630939343",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Get it Now"
+  }, {
+    "id" : "19be51de-880b-c490-c1e1-85e05f19007d",
+    "name" : "cta_hyperlink",
+    "label" : "CTA: Hyperlink",
+    "required" : true,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : 55756862253,
+      "href" : null,
+      "type" : "CONTENT"
+    }
+  }, {
+    "id" : "f5e7ee29-bc28-b437-aebd-3fede192083e",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "mist", "Light Grey" ], [ "white", "White" ], [ "gradient", "Gradient" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "primary"
+  }, {
+    "id" : "8e07aa89-c848-3bf5-c803-1362beac3211",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "6fa0e30b-aae0-afad-bdc7-01549b72752c",
+    "name" : "cta_arrow",
+    "label" : "CTA: Include Arrow Next to Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "4ce5a991-ad9c-b71e-306d-448c05301921",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|anchor",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "4ce5a991-ad9c-b71e-306d-448c05301921",
+    "name" : "cta_type",
+    "label" : "[HIDDEN] CTA: Type",
+    "required" : true,
+    "locked" : true,
+    "display" : "select",
+    "choices" : [ [ "link", "Custom Link" ], [ "cta", "HubSpot Call-to-Action" ], [ "anchor", "Scroll to Section" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "link"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "cta_button_text" : "Get it Now",
+    "cta_hyperlink" : {
+      "content_id" : 55756862253,
+      "href" : null,
+      "type" : "CONTENT"
+    },
+    "cta_button_color" : "primary",
+    "cta_ghost_transparent_button" : false,
+    "cta_arrow" : false,
+    "cta_type" : "link"
+  }
+}, {
+  "id" : "6602bf7d-07c2-f533-e21c-a81acc8b885b",
+  "name" : "cta_secondary",
+  "label" : "CTA: Secondary (Triggers Form)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "7dc90708-2076-9731-b730-4561181b021b",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Maybe Later"
+  }, {
+    "id" : "ecc1318d-867e-3788-0f04-d582b5d6bfea",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "mist", "Light Grey" ], [ "white", "White" ], [ "gradient", "Gradient" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "mist"
+  }, {
+    "id" : "e31456b7-5799-8a45-6403-e8395973bdc6",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "d82bcf9b-13f0-bacc-91ea-e52d96eb0025",
+    "name" : "cta_arrow",
+    "label" : "CTA: Include Arrow Next to Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "e3c47be4-dd2a-f105-4820-194788e3a78a",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|anchor",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "e3c47be4-dd2a-f105-4820-194788e3a78a",
+    "name" : "cta_type",
+    "label" : "[HIDDEN] CTA: Type",
+    "required" : true,
+    "locked" : true,
+    "display" : "select",
+    "choices" : [ [ "link", "Custom Link" ], [ "cta", "HubSpot Call-to-Action" ], [ "anchor", "Scroll to Section" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "anchor"
+  }, {
+    "id" : "ff046702-a89b-2ace-ef9d-e5422fa7a3f6",
+    "name" : "cta_hyperlink",
+    "label" : "[HIDDEN] CTA: Hyperlink",
+    "required" : true,
+    "locked" : true,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : 55756862253,
+      "href" : null,
+      "type" : "CONTENT"
+    }
+  }, {
+    "id" : "409ba635-776e-22c2-a31f-577c698d3f3e",
+    "name" : "cta_section_anchor_id",
+    "label" : "[HIDDEN] CTA: Section Anchor ID",
+    "required" : false,
+    "locked" : true,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "cta_button_text" : "Maybe Later",
+    "cta_button_color" : "mist",
+    "cta_ghost_transparent_button" : true,
+    "cta_arrow" : false,
+    "cta_type" : "anchor",
+    "cta_hyperlink" : {
+      "content_id" : 55756862253,
+      "href" : null,
+      "type" : "CONTENT"
+    },
+    "cta_section_anchor_id" : "#"
+  }
+}, {
+  "id" : "e09f5076-9aaa-4753-f598-bc02eb2b1c73",
+  "name" : "secondary_cta_content_and_form_settings",
+  "label" : "Secondary Popup: Content and Form Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "97eac83f-2804-5f79-d4da-c3676cf355a2",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Never Miss an Update From The Endless Customers Podcast"
+  }, {
+    "id" : "302af133-f851-0afe-2ef2-510f4c7564eb",
+    "name" : "subheader",
+    "label" : "Subheader",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Each week have the latest episode delivered directly to your inbox with the latest insights, tactics, and success stories."
+  }, {
+    "id" : "fa19c759-1cd3-aa56-ca98-0b8d3a27b9d3",
+    "name" : "popup_form",
+    "label" : "Popup Form",
+    "required" : false,
+    "locked" : false,
+    "embed_versions" : [ "v2", "v4" ],
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "a2340e8a-79a4-4932-b7a0-3fe22cdf26df",
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form.",
+      "form_type" : "HUBSPOT"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "header" : "Never Miss an Update From The Endless Customers Podcast",
+    "subheader" : "Each week have the latest episode delivered directly to your inbox with the latest insights, tactics, and success stories.",
+    "popup_form" : {
+      "form_id" : "a2340e8a-79a4-4932-b7a0-3fe22cdf26df",
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form.",
+      "form_type" : "HUBSPOT"
+    }
+  }
+} ]

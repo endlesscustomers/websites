@@ -1,0 +1,185 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Left-Right Content.css"), { async: true } ) }}
+
+{# MEDIA COLUMN WIDTH #}
+{% set mediaClasses = "one-half palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set mediaClasses = "eight-twelfths" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set mediaClasses = "seven-twelfths" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set mediaClasses = "five-twelfths" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set mediaClasses = "four-twelfths" %} 
+{% elif module.layout_controls.column_widths == "nine-twelfths" %}
+{% set mediaClasses = "three-twelfths" %}
+{% endif %}
+
+{% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-eight-twelfths" %}
+{% set mediaTabletWidthNumerical = (8/12) %}
+{% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-seven-twelfths" %}
+{% set mediaTabletWidthNumerical = (7/12) %}
+{% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-five-twelfths" %}
+{% set mediaTabletWidthNumerical = (5/12) %}
+{% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-four-twelfths" %}
+{% set mediaTabletWidthNumerical = (4/12) %}
+{% elif module.layout_controls.column_widths_tablet == "nine-twelfths" %}
+{% set mediaClasses = mediaClasses+" tablet-three-twelfths" %}
+{% set mediaTabletWidthNumerical = (3/12) %}
+{% else %}
+{% set mediaClasses = mediaClasses+" tablet-one-half" %}
+{% set mediaTabletWidthNumerical = (1/2) %}
+{% endif %}
+
+{# CONTENT COLUMN WIDTH #}
+{# 6/12 #}
+{% set contentClasses = "five-half-twelfths palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set contentClasses = "four-twelfths" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set contentClasses = "five-twelfths" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set contentClasses = "seven-twelfths" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set contentClasses = "eight-twelfths" %}
+{% elif module.layout_controls.column_widths == "nine-twelfths" %}
+{% set contentClasses = "nine-twelfths" %}
+{% endif %}
+
+{% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-four-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-five-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-seven-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-eight-twelfths" %}
+{% elif module.layout_controls.column_widths_tablet == "nine-twelfths" %}
+{% set contentClasses = contentClasses+" tablet-nine-twelfths" %}
+{% else %}
+{% set contentClasses = contentClasses+" tablet-five-twelfths" %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--leftright relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background,module.section_controls.lazy_load_images) }}
+
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid {{ module.layout_controls.content_vertical_alignment }} hard--ends relative z-index--2">
+      {% if module.layout_controls.enable_accordian_layout_mobile %}
+      <div class="grid__item one-whole hard--ends text--left lap-and-up-visuallyhidden tablet-visuallyhidden section--leftright--accordian--{{ module.layout_controls.accordion_settings.accordian_style }} margin--short--bottom">
+        <div class="section--leftright--accordian {% if (module.layout_controls.accordion_settings.accordian_style == "background") && (module.layout_controls.accordion_settings.background_color.background_color != 'custom') %}background--{{ module.layout_controls.accordion_settings.background_color.background_color }}{% endif %}" {% if (module.layout_controls.accordion_settings.accordian_style == "background") && (module.layout_controls.accordion_settings.background_color.background_color == 'custom') %}style="background: rgba({{ module.layout_controls.accordion_settings.background_color.background_custom_color.color|convert_rgb }}, {{ module.layout_controls.accordion_settings.background_color.background_custom_color.opacity }})"{% endif %}>
+          <div class="section--leftright--accordian--toggle" tabindex="0">
+            <h5 class="hard--ends first--hard--top">
+              {{ module.header }}
+            </h5>
+            <div class="section--leftright--accordian--toggle--icon">
+              <div class="icon--axis icon--vertical--line"></div>
+              <div class="icon--axis icon--horizontal--line"></div>
+            </div>
+          </div>
+          <div class="section--leftright--accordian--content" style="display:none;">
+            <div class="section--leftright--accordian--content--wrapper">
+              <div class="section--leftright--accordian--content--inner first--hard--top last--hard--bottom">
+                {{ module.content }}
+
+              </div>
+              <div class="section--leftright--accordian--content--inner--spacer"></div>
+              <span class="clear"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="section--leftright--wrapper grid__item {{ module.layout_controls.column_wrapper_width }} tablet-one-whole palm-one-whole hard--ends hard--sides flexgrid {{ module.layout_controls.content_vertical_alignment }} {% if module.layout_controls.content_position_mobile == 'bottom' %}palm-column--reverse{% endif %} {% if module.layout_controls.content_position == 'right' %}row--reverse{% endif %}" style="margin: 0 auto !important;">
+        <div class="grid__item {{ contentClasses }} palm-one-whole {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} hard--ends first--hard--top last--hard--bottom text--left palm-text--{{ module.layout_controls.content_alignment_mobile }} {% if module.layout_controls.enable_accordian_layout_mobile %}palm-visuallyhidden{% endif %}">
+
+          {% if module.preheader %}
+          <span class="h6 preheader margin--short--bottom">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <h2 class="{{ module.header_size }} hard--ends">{{ module.header }}</h2>
+          {% endif %}
+          <div class="p--{{ module.layout_controls.content_p_size }} first--hard--top" {% if module.header %}style="margin-top: 12px !important;"{% endif %}>{{ module.content }}</div>
+          {{ snippets.bulletsList(module.bullets) }}
+        </div>
+        <div class="grid__item {{ mediaClasses }} palm-one-whole {{ module.layout_controls.content_vertical_alignment }} {% if module.layout_controls.content_position_mobile == 'bottom' %}tall--bottom hard--top{% else %}tall--top hard--bottom{% endif %} tablet-hard--ends lap-and-up-hard--ends all--text--center {% if module.layout_controls.enable_accordian_layout_mobile %}palm-visuallyhidden{% endif %} palm-hard--top">
+          {% set animationClasses = '' %}
+          {% if module.layout_controls.enable_animation %}
+          {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-{{ module.layout_controls.animation_direction == "side" ? module.layout_controls.content_position : module.layout_controls.animation_direction }}' %}
+          {% endif %}
+          <div class="block {{ animationClasses }} {{ snippets.deviceVisibility(module.media_device_visibility) }}">
+            <div class="podcast--subscribe-btns flex flex-align--center">
+              {# Apple Podcasts #}
+              <a class="hard p podcast--subscribe-btn no--underline border-radius--16 btn--basic-transition" href="{{ module.episode_urls.apple_podcast_link.href }}" target="_blank" aria-label="Listen to Endless Customers on Apple Podcasts (opens in new tab)">
+                <img class="lazy hard--top" data-src="https://www.impactplus.com/hubfs/Endless%20Customers/Hosting%20Platforms%20Icons/Apple%20Podcasts_Logo.svg" alt="Endless Customers on Apple Podcasts" style="width: 28px;">
+                <span class="flex" style="justify-content: space-between; width: 100%; align-items: center;">
+                  <span>Apple Podcasts</span>
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/blue/arrow_in_circle.svg">
+                </span>
+              </a>
+              {# Youtube #}
+              <a class="hard p podcast--subscribe-btn no--underline border-radius--16 btn--basic-transition" href="{{ module.episode_urls.youtube_episode_url.href }}" target="_blank" aria-label="Listen to Endless Customers on Youtube (opens in new tab)">
+                <img class="lazy hard--top" data-src="https://www.impactplus.com/hubfs/Endless%20Customers/Hosting%20Platforms%20Icons/YouTube_Logo.svg" alt="Endless Customers on Youtube" style="width: 28px;">
+                <span class="flex" style="justify-content: space-between; width: 100%; align-items: center;">
+                  <span>Youtube</span>
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/blue/arrow_in_circle.svg">
+                </span>
+              </a>
+              {# iHeartRadio #}
+              <a class="hard p podcast--subscribe-btn no--underline border-radius--16 btn--basic-transition" href="{{ module.episode_urls.iheartradio_episode_url.href }}" target="_blank" aria-label="Listen to Endless Customers on iHeartRadio (opens in new tab)">
+                <img class="lazy hard--top" data-src="https://www.impactplus.com/hubfs/Endless%20Customers/Hosting%20Platforms%20Icons/IHeartRadio_Logo.svg" alt="Endless Customers on iHeartRadio" style="width: 28px;">
+                <span class="flex" style="justify-content: space-between; width: 100%; align-items: center;">
+                  <span>iHeartRadio</span>
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/blue/arrow_in_circle.svg">
+                </span>
+              </a>
+              {# Spotify #}
+              <a class="hard p podcast--subscribe-btn no--underline border-radius--16 btn--basic-transition" href="{{ module.episode_urls.spotify_episode_url.href }}" target="_blank" aria-label="Listen to Endless Customers on Spotify (opens in new tab)">
+                <img class="lazy hard--top" data-src="https://www.impactplus.com/hubfs/Endless%20Customers/Hosting%20Platforms%20Icons/Spotify_Logo.svg" alt="Endless Customers on Spotify" style="width: 28px;">
+                <span class="flex" style="justify-content: space-between; width: 100%; align-items: center;">
+                  <span>Spotify</span>
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/blue/arrow_in_circle.svg">
+                </span>
+              </a>
+              {# Amazon Music #}
+              <a class="hard p podcast--subscribe-btn no--underline border-radius--16 btn--basic-transition" href="{{ module.episode_urls.amazon_music_episode_url.href }}" target="_blank" aria-label="Listen to Endless Customers on Amazon Music (opens in new tab)">
+                <img class="lazy hard--top" data-src="https://www.impactplus.com/hubfs/Endless%20Customers/Hosting%20Platforms%20Icons/Amazon%20Music_Logo_v2.svg" alt="Endless Customers on Apple Music" style="width: 28px;">
+                <span class="flex" style="justify-content: space-between; width: 100%; align-items: center;">
+                  <span>Amazon Music</span>
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/blue/arrow_in_circle.svg">
+                </span>
+              </a>
+              {# RSS #}
+              <a class="hard p podcast--subscribe-btn no--underline border-radius--16 btn--basic-transition" href="https://feed.podbean.com/endlesscustomers/feed.xml" target="_blank" aria-label="View the Endless Customers RSS Feed (opens in new tab)">
+                <img class="lazy hard--top" data-src="https://www.impactplus.com/hubfs/Endless%20Customers/Hosting%20Platforms%20Icons/RSS_icon.svg" alt="Endless Customers RSS Podcast" style="width: 28px;">
+                <span class="flex" style="justify-content: space-between; width: 100%; align-items: center;">
+                  <span>RSS Feed</span>
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/blue/arrow_in_circle.svg">
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

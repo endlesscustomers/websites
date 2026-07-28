@@ -1,0 +1,14 @@
+{{ require_css( get_asset_url("/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Featured Snippet/Learning Center Featured Snippet.css"), { async: true } ) }}
+
+{% if module.content %}
+<div class="section section--lcfeaturedsnippet relative newclass">
+  <div class="section--lcfeaturedsnippet--content">
+    <h6 class="margin--short--bottom" style="color: #6C6C6E !important;">
+      At a Glance
+    </h6> 
+    <div class="block relative z-index--3 first--hard--top">
+      {{ module.content|replace('h1','h3')|replace('h2','h3')|replace('h4','h3')|replace('h5','h3')|replace('h6','h3')|replace('<em>','')|replace('</em>','') }}
+    </div>
+  </div>
+</div>
+{% endif %} 

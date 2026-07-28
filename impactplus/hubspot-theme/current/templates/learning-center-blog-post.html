@@ -1,0 +1,1098 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Learning Center Blog Post - IMPACT Production Theme
+-->
+
+{% module
+	"bop"
+	path="../modules/_learning_center/Learning Center Global Blog - Post Controls",
+	label="Global Blog Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% module
+	"indpost"
+	path="../modules/_learning_center/Learning Center Blog - Ind Post Controls",
+	label="Individual Blog Post Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% set lcArticlesTable = 127897189 %} 
+
+{# --- Settings the Preheader/Topic Name and Icon --- #}
+{% if widget_data.indpost.preheader_settings.preheader_type == "hubdb" %}
+{% set topic_name = widget_data.indpost.post_settings.pillar_selection.columns.resource_topic[0].name %}
+
+{% set current_url = content.absolute_url %}
+{% set rows = hubdb_table_rows(lcArticlesTable) %}
+{% set matched = [] %}
+
+{% for row in rows %}
+
+{% if current_url is string_containing row.resource_link %}
+{% do matched.append(row) %}
+{% endif %}
+{% endfor %}
+
+{% set icon = matched[0]['resource_topic'][0]['topic_icon']['url'] %}
+{% set preheader = matched[0]['resource_topic'][0]['resource_topic'] %}
+{% set preheaderLink = matched[0]['resource_topic'][0]['topic_page_url'] %}
+
+{% else %}
+
+{# Custom #}
+{% set icon = widget_data.indpost.preheader_settings.preheader_image.src %}
+{% set preheader = widget_data.indpost.preheader_settings.preheader_text %}
+{% set preheaderLink = widget_data.indpost.preheader_settings.preheader_url %}
+{% endif %}
+
+{# --- End Settings the Preheader/Topic Name and Icon --- #}
+
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_lcsnippets.css' as lcsnippets %} 
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--blog') %}
+{% do body_classes_array.append('header--static') %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+{% set template_css = "../../css/templates/learning_center_blog.css" %}
+
+
+{% block additional_head_content %}
+<!-- Start Additional Head -->
+{% if not is_listing_view %}
+<meta content="{{ content.publish_date_local_time|format_datetime('yyyy-MM-dd\'T\'HH:mm:ssXXX', 'UTC') }}" itemprop="datePublished">
+<meta content="{{ content.updated|format_datetime('yyyy-MM-dd\'T\'HH:mm:ssXXX', 'UTC') }}" itemprop="dateModified">
+<meta content="{{ content.blog_author.display_name }}" itemprop="author">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script type='application/ld+json'>
+{
+    "@context": "https://schema.org",
+    "@graph": [{
+        "@type": "Organization",
+        "legalName": "IMPACT",
+        "description": "IMPACT teaches leaders & their teams how to generate more customers from their website, content, and sales efforts using our Endless Customers System",
+        "name": "IMPACT",
+        "Founder": [{
+            "@type": "Person",
+            "name": "Marcus Sheridan",
+            "sameAs": [
+              "https://www.linkedin.com/in/marcussheridan/",
+              "https://twitter.com/TheSalesLion",
+              "https://g.co/kgs/KqMfFg"
+            ]
+          },
+          {
+            "@type": "Person",
+            "name": "Bob Ruffolo",
+            "sameAs": [
+              "https://www.linkedin.com/in/bobruffolo/",
+              "https://twitter.com/BobRuffolo"
+            ]
+          }
+        ],
+        "foundingDate": "2009",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "ratingCount": "163"
+        },
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "telephone": "+12032654377",
+          "contactType": "customer service"
+        }],
+        "url": "https://www.impactplus.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.impactplus.com/hubfs/Photography/Icons/Navigation_3_2023/Logos/IMPACT-logo--black.svg"
+        },
+        "sameAs": [
+          "https://www.facebook.com/impactbnd/",
+          "https://twitter.com/Impactbnd",
+          "https://www.linkedin.com/company/impact-branding-&-design-llc",
+          "https://www.instagram.com/impactbnd/",
+          "https://www.youtube.com/@IMPACTbnd"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "IMPACT",
+        "url": "https://www.impactplus.com",
+        "@id": "https://www.impactplus.com/#website",
+        "publisher": {
+          "@id": "https://www.impactplus.com/#Organization"
+        },
+         "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.impactplus.com/ss-results?sitesearch={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "{{ page_meta.html_title }}",
+        "image": "{{ content.featured_image }}", 
+        "author": {
+          "@type": "Person",
+          "name": "{{ content.blog_post_author.display_name }}"
+        },
+        "datePublished": "{{ content.published_date|format_date("yyyy-MM-dd'T'HH:mm:ssZ") }}",
+        "dateModified" : "{{ content.updated|format_datetime('yyyy-MM-dd\'T\'HH:mm:ssZ') }}",
+        "publisher": {
+          "@id": "https://www.impactplus.com/#Organization"
+        },
+        "mainEntityOfPage": {
+          "@type": "Webpage",
+          "@id": "https://www.impactplus.com/#Webpage",
+          "url": "{{ content.absolute_url }}",
+          "audience": {
+            "@type": "Audience",
+            "name": "businesses"
+          },
+          "inLanguage": "en",
+          "keywords": "{{ content.topic_list|join(', ') }}",
+          "name": "{{ page_meta.html_title }}",
+          "headline": "{{ page_meta.html_title }}",
+          "text": "{{ content.post_body|striptags|replace('"','”') }}",
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["#hs_cos_wrapper_name", "#hs_cos_wrapper_post_body"]
+            },
+            "description": "{{ page_meta.meta_description|striptags }}"
+          }
+        }
+      ]
+    }
+</script>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+{% set globalCtaData = [] %}
+{% module "inlineArticleCTAs" path="/IM-IMPACT-Prod-Theme-2025/modules/_custom/Landing Page Global CTA/Learning Center Global CTA Library.module", label="Inner Blog Global CTA Library", no_wrapper=True, export_to_template_context=True %}
+{% set globalCtaData = globalCtaData %} 
+
+{% set videoArticle = [] %}
+{% for topic in content.topic_list %}
+{% if (topic.name|lower == 'videos') || (topic.name|lower == 'video') || (topic.name|lower == 'podcasts') || (topic.name|lower == 'podcast') %}
+{% do videoArticle.append('true') %}
+{% endif %}
+{% endfor %}
+
+{% set videoArticle = videoArticle|join %}
+
+{# HIDE FEATURED IMAGE IN BLOG POST #}
+
+{% set hideFeatured = [] %}
+{% for controls in widget_data.bop.blog_controls %}
+
+{% if controls.select_blog == content.parent_blog.id %}
+
+{% if controls.additional_controls.hide_featured_image_from_post_content %}
+{% do hideFeatured.append('true') %}
+{% endif %}
+
+{% endif %}
+
+{% endfor %}
+
+{% set hideFeatured = hideFeatured|join %}
+
+{% if (content.post_list_summary_featured_image)&&(hideFeatured == 'true') %}
+
+{% set featuredImageSlug = content.post_list_summary_featured_image|split('//') %}
+{% set featuredImageSlug = featuredImageSlug[1] %}
+{% set featuredImageSlug = featuredImageSlug|join("/") %}
+{% set featuredImageSlug = featuredImageSlug|split('/') %}
+{% set featuredImageDomain = featuredImageSlug[0] %}
+{% set featuredImageSlug = featuredImageSlug|join("/") %}
+{% set featuredImageSlug = featuredImageSlug|replace(featuredImageDomain,"") %}
+{% set hubID = hub_id %}
+{% set featuredImageSlug = featuredImageSlug|replace(hub_id,"") %}
+
+<style>
+  {% if request.postDict.inpageEditorUI %}
+  body .bop--single--body img[src*="{{ featuredImageSlug|replace("//","/") }}"] {display:block!important;}
+  {% else %}
+  body .bop--single--body img[src*="{{ featuredImageSlug|replace("//","/") }}"] {display:none!important;}
+  {% endif %}
+</style>
+{% else %}
+{% endif %}
+
+{# Subscribe Popup #}
+{% module "subpop" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Popup/Learning Center Popup", label="Subscription Popup", no_wrapper=True %}
+
+{# Mobile Bottom Bar #}
+{# module "indpost" path='/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Mobile Bottom Navigation/Learning Center Mobile Bottom Navigation', label="Bottom Bar Navigation", no_wrapper=True #}
+
+{# Hero or Sidebar CTA #}
+{% set articleCTA = [] %}
+
+{% for topicMatch in widget_data.bop.article_pillar_inner_ctas %}
+{% if topicMatch.select_topic_for_cta.columns.resource_topic == matched[0]['resource_topic'][0]['resource_topic'] %}
+{% do articleCTA.append(topicMatch) %}
+{% endif %}
+{% endfor %}
+
+{# Matching Blog Post Author to Team HubDB table to Pull Bio #}
+{% set authorTable = hubdb_table_rows(849412) %}
+
+{% set relatedAuthor = [] %}
+{% set articleAuthor = content.blog_post_author %}
+
+{% set IMPACTAuthor = authorTable|selectattr('name','equalto', articleAuthor) %}
+{% set IMPACTAuthor = IMPACTAuthor[0] %}
+
+{% if IMPACTAuthor|length > 0 %}
+
+{# Team Author Variables #}
+{% set relatedAuthor2 = relatedAuthor.append({
+  "name":IMPACTAuthor.name,
+  "headshot":IMPACTAuthor.square_team_photo.url,
+  "bio_url":IMPACTAuthor.bio_page_url,
+  "bio": IMPACTAuthor.bio,
+  "linkedin_url": IMPACTAuthor.linkedin_profile_url
+}) %}
+
+{% else %}
+
+{% set authorPage = articleAuthor|lower|replace(' ','-') %}
+
+{# Non-team Author Variables #}
+
+{% set relatedAuthor2 = relatedAuthor.append({
+  "name":articleAuthor.name,
+  "headshot":articleAuthor.avatar,
+  "bio_url":'',
+  "bio": '',
+  "linkedin_url": ''
+}) %}
+
+{% endif %}
+
+{% set relatedAuthor = relatedAuthor[0] %} 
+
+{### End Author HubDB Team Member Match Function ###}
+
+<div class="header--anchor"></div>
+
+<div class="body-container body-container--blog-post body--template-type--{{ widget_data.indpost.post_settings.template_type }}">
+  {# Blog post #}
+  <div class="content-wrapper">
+    <article class="post-inner palm-overflow--hidden">
+      {# Breadcrumbs #}
+      <div class="{% if widget_data.indpost.post_settings.template_type == 'pillar' %}background--offwhite{% else %}background--white{% endif %}">
+        {{ lcsnippets.breadcrumbs_subnav() }}
+      </div>
+      {# End Breadcrumbs #}
+
+      {% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+      {# Preheader #}
+      <div class="post-inner--title background--offwhite overflow--hidden section--hero-content">
+        <div class="grid hard--ends align--center">
+          <div class="grid__item eleven-twelfths palm-one-whole grande--top lap-and-up-tall--top tablet-tall--top palm-tall--top {% if articleCTA|length %}short--bottom{% else %}hard--bottom{% endif %} first--hard--top last--hard--bottom text--center">
+            {# Preheader #}
+            <div class="relative overflow--hidden palm-visuallyhidden">
+              <div class="block relative z-index--3">
+                {{ lcsnippets.lc_preheader() }}
+                <div class="block gridspacer--bottom desk-hard--bottom lap-hard--bottom tablet-hard--bottom palm-hard--bottom"></div>
+              </div>
+            </div>
+            <h1 class="hard--top margin--short--bottom">{{ content.name }}</h1>
+
+            {# Mobile TOC #}
+            {#<div class="section--chapter-list--mobile hard--top lap-and-up-visuallyhidden tablet-visuallyhidden">
+              <div class="text--left">
+                {% if widget_data.indpost.table_of_contents_settings.heading %}
+                <p class="section--chapter-list--title hard--top margin--short--bottom">{{ widget_data.indpost.table_of_contents_settings.heading }}</p>
+                {% endif %}
+                <div class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" aria-label="Navigation Menu">
+                  <ul class="section--chapter-list--page-menu section--chapter-list--depth-1" role="menu">
+                    {% for child in widget_data.indpost.table_of_contents_settings.toc_menu_items %}
+                    <li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative
+                               {% if child.children|length %}hs-menu-depth-1--has-children {% if not loop.first %}chapter--closed{% endif %}{% endif %}
+                               {% if loop.first %} hs-menu-item--active{% endif %}"
+                        role="none">
+                      <span class="section--chapter-list-marker-container flex flex-align--center"
+                            aria-haspopup="{{ 'true' if child.children|length else 'false' }}"
+                            aria-expanded="false">
+                        <a class="relative flex" href="{{ child.url or child.linkParams or '#' }}" role="menuitem">
+                          <span class="section--chapter-list--index">{{ child.linkLabel }}</span>
+                          <img class="section--chapter-list-marker {% if child.children|length %}section--chapter-list-marker--visible{% endif %} inline-block hover--pointer"
+                               src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/arrow-down.svg"
+                               alt="{{ child.linkLabel|striptags }} Dropdown Arrow"
+                               style="width:10px;height:7px;{% if not child.children|length %}visibility:hidden;{% endif %}">
+                        </a>
+                      </span>
+                      {% if child.children|length %}
+                      <ul class="sidebar-menu--depth-2 section--chapter-list--page-menu section--chapter-list--depth-2" role="menu" style="display:none;">
+                        {% for child2 in child.children %}
+                        <li class="hs-menu-item hs-menu-depth-2" role="none">
+                          <a class="relative" href="{{ child2.url or child2.linkParams or '#' }}" role="menuitem">
+                            <span class="section--chapter-list--index">{{ child2.linkLabel }}</span>
+                          </a>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {% require_js %}
+            <script>
+
+              jQuery(function($){
+                $('.section--chapter-list--mobile').each(function(){
+                  var $wrap = $(this);
+                  var $title = $wrap.find('.section--chapter-list--title');
+                  var $menu  = $wrap.find('.section--chapter-list--page-menu.section--chapter-list--depth-1');
+
+                  $title.on('click', function(){
+                    $wrap.toggleClass('open');
+                    $menu.stop(true,true).fadeToggle(150);
+                  });
+
+                  // close on outside click
+                  $(document).on('click', function(e){
+                    if (!$wrap.is(e.target) && $wrap.has(e.target).length === 0) {
+                      $wrap.removeClass('open');
+                      $menu.stop(true,true).fadeOut(150);
+                    }
+                  });
+
+                  // optional: close on ESC
+                  $wrap.on('keydown', function(e){
+                    if (e.key === 'Escape') {
+                      $wrap.removeClass('open');
+                      $menu.stop(true,true).fadeOut(150);
+                    }
+                  });
+                });
+              });
+            </script>
+
+            {% end_require_js %}
+            #}
+
+            {#<div class="inline-block first--hard--top last--hard--bottom negative--short--top">
+            {% module "subheader" path="@hubspot/rich_text", label="Resource Subheader", html="" %}
+          </div>#}
+            <p class="hard--ends p--small semibold">Last updated on {{ content.updated|datetimeformat("%B %e, %Y") }}</p>
+          </div>
+        </div>
+      </div>
+
+      {# Hero CTA #}
+      {% if articleCTA|length %}
+      {% for cta in articleCTA %}
+      <div class="section section--global-topic-cta relative overflow--hidden">
+        <div class="background learning_center_cta">
+          <div class="background--layer z-index--1 opacity--100 background--offwhite" style="top:0; bottom:0; right:0; left:0;"></div>
+        </div>
+
+        <div class="block relative z-index--3">
+          <div class="block gridspacer--top desk-short--top lap-short--top tablet-short--top palm-short--top"></div>
+
+          <div class="grid hard--ends section--fullwidth--video-false">
+            <div class="relative grid__item tall padding--tall eight-twelfths portable-one-whole border--1 border--mist border-radius overflow--hidden">
+              <div class="background learning_center_cta">
+                <div class="background--layer z-index--1 opacity--100 background--white" style="top:0; bottom:0; right:0; left:0;"></div>
+              </div>
+
+              <div class="relative z-index--4">
+                <div class="grid__item one-whole hard--top hard--bottom last--hard--bottom all--text--center palm-all--text--center hard--sides">
+                  <div class="first--hard--top last--hard--bottom flex flex-flow--column flex-align--center">
+                    <div class="grid__item hard--sides hard--ends margin--short--bottom full tablet-ten-twelfths palm-one-whole first--hard--top last--hard--bottom hard--sides">
+                      <h6>{{ cta.header }}</h6>
+                    </div>
+                    <div class="grid__item hard eleven-twelfths tablet-one-whole palm-one-whole hard--sides">
+                      <div class="p hard--ends first--hard--top last--hard--bottom">
+                        {{ cta.content }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-flow--column flex-align--center">
+                  <div class="grid__item one-whole hard--ends margin--standard--top first--hard--top last--hard--bottom text--center palm-text--center">
+                    <span>
+                      <span class="block"></span>
+                      <span class="hard--top block--multibutton block--multibuttons" style="gap: 8px;">
+                        <span class="block--multibutton--btn all--btn all--btn--primary palm-width--max">
+                          <a role="button" title="Our Coaching Program" class="btn btn--primary palm-width--max" href="{{ cta.primary_button.primary_button_url.href }}" target="_blank">
+                            {{ cta.primary_button.primary_button_text }}
+                          </a>
+                        </span>
+
+                        <span class="block--multibutton--btn all--btn all--btn--transparent--mist palm-width--max">
+                          <a role="button" title="Schedule a Call" class="btn btn--transparent--mist palm-width--max" href="{{ cta.secondary_button.secondary_button_url.href }}" target="_blank">
+                            {{ cta.secondary_button.secondary_button_text }}
+                          </a>
+                        </span>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {# End Hero CTA #}
+      <div class="background--offwhite overflow--hidden block gridspacer--bottom desk-venti--bottom lap-venti--bottom tablet-tall--bottom palm-tall--bottom"></div>
+      {% endif %}
+
+      {# Blog Inner Contents #}
+      <div id="flex-sidebar-wrapper" class="grid flexgrid palm-overflow--hidden {% if widget_data.indpost.post_settings.template_type != 'pillar' %}hard--top margin--petite--top{% endif %}">
+        {% if (widget_data.indpost.post_settings.template_type == 'supporting_article') %}
+        <div class="grid__item one-whole palm-one-whole text--left margin--standard--bottom hard--bottom {% if widget_data.indpost.post_settings.template_type != 'pillar' %}palm-short--top{% endif %}">
+          <div class="relative overflow--hidden">
+            <div class="block relative z-index--3">
+              {{ lcsnippets.lc_preheader() }}
+              <div class="block gridspacer--bottom desk-hard--bottom lap-hard--bottom tablet-hard--bottom palm-hard--bottom"></div>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="post--single main-body--content grid__item text--left {% if widget_data.indpost.post_settings.template_type == 'supporting_article' || widget_data.indpost.post_settings.template_type == 'article' %}eight-twelfths tablet-seven-twelfths palm-one-whole hard--top{% else %}eight-twelfths palm-one-whole{% endif %} hard--bottom palm-hard--top">
+          {% if widget_data.indpost.post_settings.template_type == 'supporting_article' || widget_data.indpost.post_settings.template_type == 'article' %}
+          <div class="post--single--title section--hero-content">
+            <h1 class="hard--top margin--short--bottom" style="font-size: 48px;">{{ content.name }}</h1>
+            {% if content.blog_post_author %}
+            <p class="hard--ends margin--petite--bottom p--default">
+              <span class="color--midgrey">Written by</span> {% if relatedAuthor.bio_url %}<a href="{{ relatedAuthor.bio_url }}" title="Read {{ content.blog_post_author.display_name }}'s Bio" target="_blank">{% endif %}<span class="author--profile--name {% if relatedAuthor.bio_url %}{% else %}color--midgrey{% endif %}">{{ content.blog_post_author.display_name }}</span>{% if relatedAuthor.bio_url %}</a>{% endif %}{% if (widget_data.indpost.post_settings.secondary_author|length) && (widget_data.indpost.post_settings.hide_secondary_author != true) %}<span class="h4 inline-block hard--ends bold valign--middle" style="line-height: .5em !important; color: #ccc !important;">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="color--midgrey">Edited by</span> <a href="{{ widget_data.indpost.post_settings.secondary_author.columns.bio_page_url }}" title="Read {{ widget_data.indpost.post_settings.secondary_author.columns.Name }}'s Bio" target="_blank"><span class="author--profile--name">{{ widget_data.indpost.post_settings.secondary_author.columns.Name }}</span></a>{% endif %}
+            </p>
+            {% endif %}
+            <p class="hard--ends p--default margin--short--bottom color--midgrey">Last updated on {{ content.updated|datetimeformat("%B %e, %Y") }}</p>
+          </div>
+          {% endif %}
+          {% if widget_data.indpost.post_settings.template_type == 'supporting_article' || widget_data.indpost.post_settings.template_type == 'article' %}
+          {% else %}
+          <a id="introduction"></a>
+          {% endif %}
+
+          {# Featured Image or Video #}    
+          {% set videoType = [] %}
+          {% module "article_featured_media" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Featured Image or Video/Learning Center Featured Image or Video", label="Featured Image/Media" %}
+          {% set videoType = videoType[0] %}
+
+          <div class="post--single--audio-caption text--center margin--standard--top hard--bottom">
+            {% module "narration"
+            path="@hubspot/blog_audio",
+            overrideable=False,
+            styles={
+              groupColors: {
+                override: 'custom',
+                background: { color: '#F6F9FC' },
+                text: { color: '#1D1D1F' }
+              }
+            }
+          %}
+          </div>
+
+          {# ***** FEATURED SNIPPET MODULE ***** #}
+          <div class="container--featuredsnippet">
+            {% module "featured_snippet" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Featured Snippet/Learning Center Featured Snippet", label="Featured Snippet" %}
+          </div>
+          <div class="container--postbody last--hard--bottom">
+            {% if content.post_body %}
+            {{ content.post_body|replace('img src','img class="lazy" data-src')|replace('http:','https:')|replace('hs-responsive-embed-target-iframe','hs-responsive-embed-target-iframe lazy')|replace('src="//www.youtube.com/embed','class="lazy" data-src="//www.youtube.com/embed')|replace('src="https://www.youtube.com/embed','class="lazy" data-src="https://www.youtube.com/embed')|replace('<!--more-->','<!--more-->{{ readMoreCTA }}')|replace('h1','h2')|replace('class="giphy-embed"','class="giphy-embed lazy"')|replace('src="https://giphy.com','data-src="https://giphy.com') }}
+            {% endif %}
+          </div>
+
+          {# ------ START AUTHOR EXPERIEMENT ------ #}
+          {% if widget_data.indpost.post_settings.article_author_type == "experiment_general_author" %}
+          <div class="container--author last--hard--bottom border--1 border--left--0 border--right--0 border--bottom--0 border--mist margin--tall--top">
+            <div class="author-section">
+              <p class="p--default font--19 color--midgrey">
+                {% if content.blog_post_author == 'Marcus Sheridan' %}
+                This article was authored by <a href="https://www.impactplus.com/team/marcus-sheridan" target='_blank' class="underline normal color--primary inline-block">Marcus Sheridan</a>, Author of <a href="https://www.endlesscustomers.com" target='_blank' class="underline normal color--primary inline-block">Endless Customers</a>, with significant contributions from Bob Ruffolo, CEO of IMPACT, various <a href="https://www.impactplus.com/endless-customers-coaching" target='_blank' class="underline normal color--primary inline-block">Endless Customers Coaches</a>, Content Manager Austin Mock, and IMPACT’s marketing team. This article is regularly updated.
+                {% else %}
+                This article was authored by <a href="https://www.impactplus.com/team/bob-ruffolo" target='_blank' class="underline normal color--primary inline-block">Bob Ruffolo</a>, CEO of IMPACT, with significant contributions from Marcus Sheridan, Author of <a href="https://www.endlesscustomers.com" target='_blank' class="underline normal color--primary inline-block">Endless Customers</a>, various <a href="https://www.impactplus.com/endless-customers-coaching" target='_blank' class="underline normal color--primary inline-block">Endless Customers Coaches</a>, Content Manager Austin Mock, and IMPACT’s marketing team. This article is regularly updated.
+                {% endif %}
+              </p>
+              <img class="lazy border-radius--16" style="width: 100%;" data-src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/general/impact_live_group-min.jpg" alt="IMPACT">
+            </div>
+          </div>
+          {% endif %}
+
+          {# Pillar Resources #}
+          {% if widget_data.indpost.post_settings.template_type == 'supporting_article' || widget_data.indpost.post_settings.template_type == 'article' %}
+          {% else %}
+          <a id="addresources"></a>
+          <div class="border--1 border--left--0 border--right--0 border--bottom--0 border--mist margin--tall--top">
+            {{ lcsnippets.pillar_resources(content.name|striptags, heading='Additional Resources', heading_size='h2', is_active='active') }}
+          </div>
+          {% endif %}
+
+          {% if widget_data.indpost.post_settings.article_author_type == "hide" || widget_data.indpost.post_settings.article_author_type == "experiment_general_author" %}
+          {% else %}
+          {% if widget_data.indpost.post_settings.template_type == 'supporting_article' || widget_data.indpost.post_settings.template_type == 'article' %}
+          {% if content.blog_post_author %}
+          <div class="container--author last--hard--bottom background--offwhite margin--tall--top" style="padding: 32px !important; border-radius: 24px;">
+            <div class="author-section" style="display:flex; {% if relatedAuthor.bio %}align-items:flex-start;{% else %}align-items:center;{% endif %}gap:24px;">
+              {% if relatedAuthor.headshot %}
+              <img class="lazy" data-src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}" style="width:90px; height:90px; border-radius:50%; object-fit:cover;">
+              {% endif %}
+              <div class="author-section--details">
+                <p class="p p--default color--midgrey hard--ends">Written By</p>
+                <div class="author-section--name-social flex">
+                  {% if relatedAuthor.bio_url %}
+                  <a class="color--midgrey no--underline" style="margin-top: 0px !important;" href="{{ relatedAuthor.bio_url }}" title="{{ relatedAuthor.name }}'s Bio">
+                    {% endif %}
+                    <span class="h3 hard--ends color--midgrey" style="margin-top: 0px !important;">{{ relatedAuthor.name }}</span>
+                    {% if relatedAuthor.bio_url %}
+                  </a>
+                  {% endif %}
+                  {% if relatedAuthor.linkedin_url %}
+                  <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item palm-visuallyhidden" style="margin-left: 20px !important; width: 30px; height: 30px;" rel="noopener" target="_blank" title="{{ content.blog_post_author.display_name }}'s LinkedIn" href="{{ relatedAuthor.linkedin_url }}">
+                    <img class="section--lcsocialshare-share--icon lazy" style="max-width: 100%; height: 13px; width: 13px;" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="{{ content.blog_post_author.display_name }}'s LinkedIn">
+                  </a>
+                  {% endif %}
+                </div>
+                {% if relatedAuthor.bio %}
+                {% set paragraphs = relatedAuthor.bio|split('</p>')|reject('equalto', '')|list %}
+                {% set first_two = paragraphs[:2] %}
+                <div class="p p--default all--color--midgrey hard--ends margin--petite--top first--hard--top last--hard--bottom palm-visuallyhidden">{{ first_two|join('</p>')|striptags }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="p p--default all--color--midgrey hard--ends margin--short--top first--hard--top last--hard--bottom lap-and-up-visuallyhidden tablet-visuallyhidden">{{ first_two|join('</p>')|striptags }}</div>
+            {% if relatedAuthor.linkedin_url %}
+            <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item lap-and-up-visuallyhidden tablet-visuallyhidden" style="margin-top: 20px !important; margin-left: 0px !important; width: 30px; height: 30px;" rel="noopener" target="_blank" title="{{ content.blog_post_author.display_name }}'s LinkedIn" href="{{ relatedAuthor.bio_url }}">
+              <img class="section--lcsocialshare-share--icon lazy" style="max-width: 100%; height: 13px; width: 13px;" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="{{ content.blog_post_author.display_name }}'s LinkedIn">
+            </a>
+            {% endif %}
+          </div>
+          {% endif %}
+          {% else %}
+          <div class="container--author last--hard--bottom background--offwhite margin--petite--top" style="padding: 0px 30px !important; border-radius: 12px;">
+            <div class="author-section" style="display:flex; align-items:flex-start; gap:24px;">
+              <img src="{% if widget_data.indpost.post_settings.article_author_type == "general_author" %}https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/impact_author.png{% else %}{{ content.blog_post_author.avatar }}{% endif %}" 
+                   alt="{% if widget_data.indpost.post_settings.article_author_type == "general_author" %}{% else %}{{ content.blog_post_author.display_name }}{% endif %}" 
+                   style="width:90px; height:90px; border-radius:50%; object-fit:cover; margin: 25px 0;">
+              <p class="p--default">
+                {% if widget_data.indpost.post_settings.article_author_type == "general_author" %}
+                This article was produced as a collective effort of the <a href="https://www.impactplus.com/team" target='_blank' class="underline" style="font-weight: 500 !important;">IMPACT Team</a> and is regularly updated.
+                {% else %}
+                By {{ content.blog_post_author.first_name }} {{ content.blog_post_author.last_name }}
+                {% endif %}
+              </p>
+            </div>
+          </div>
+          {% endif %}
+
+          {% endif %}
+
+        </div>
+
+        <div class="sidebar-sticky--content grid__item text--left hard--left {% if widget_data.indpost.post_settings.template_type == 'supporting_article' || widget_data.indpost.post_settings.template_type == 'article' %}hard--top four-twelfths tablet-five-twelfths{% else %}four-twelfths{% endif %} hard--bottom palm-visuallyhidden">
+          {% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}
+          <style>
+            .sidebar--supporting-title{
+              padding-left: 24px;
+              line-height: 1.35em !important;
+            }
+
+            .sidebar--supporting-title:before {
+              content: '';
+              background: url(https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/pillar_2_bracket.svg);
+              width: 13px;
+              height: 13px;
+              display: block;
+              position: absolute;
+              left: 0px;
+              right: 0;
+              background-size: 13px 13px;
+            }
+          </style>
+
+          <p class="bold p--sm hard--ends color--black">
+            <a class="bold p--sm hard--ends color--black no--underline" href="{{ preheaderLink }}">
+              {{ preheader }}
+            </a>
+          </p>
+          <p class="sidebar--supporting-title p--sm margin--petite--top hard--bottom relative color--midgrey">{{ content.name }}</p>
+          {% endif %}
+
+          {% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+          {# Table of Contents #}
+          {{ lcsnippets.chapter_toc(widget_data.indpost.table_of_contents_settings.heading,widget_data.indpost.table_of_contents_settings.toc_menu_items, 'first--active') }}
+          {% endif %}
+
+          {# Share Links #}
+          <div class="margin--tall--top">
+            {{ lcsnippets.lc_social_share(content.absolute_url, content.html_title, content.meta_description, 16) }} 
+          </div>
+
+          {#<div class="margin--standard--top margin--petite--bottom flex flex-align--center">
+            <p class="semibold p--sm hard--ends color--black" style="margin-right: 8px;">
+              Have a question?
+            </p>
+            <div class="section--eclc--ai-chat relative btn btn--small flex flex-align--center z-index--2 border--2 border--mist flex-justify--center" style="width: auto; padding: 12px 20px;">
+              <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 20px; height: auto; margin-right: 6px;">
+                <path d="M13 0C5.83213 0 0 5.83213 0 13C0 15.4993 0.700375 17.8994 2.028 19.968L0.0585 24.8853C-0.06175 25.1875 0.00812499 25.532 0.238875 25.7628C0.39325 25.9171 0.60125 26 0.8125 26C0.914875 26 1.01562 25.9805 1.11475 25.9415L6.032 23.972C8.10062 25.2996 10.5007 26 13 26C20.1679 26 26 20.1679 26 13C26 5.83213 20.1679 0 13 0ZM13 24.375C10.6827 24.375 8.46462 23.6892 6.58775 22.3909C6.45125 22.295 6.28875 22.2463 6.12625 22.2463C6.02387 22.2463 5.9215 22.2658 5.824 22.3048L2.27175 23.7283L3.69525 20.176C3.796 19.9225 3.7635 19.6349 3.60912 19.4123C2.31075 17.5354 1.625 15.3173 1.625 13C1.625 6.7275 6.7275 1.625 13 1.625C19.2725 1.625 24.375 6.7275 24.375 13C24.375 19.2725 19.2725 24.375 13 24.375Z" fill="#4F5465"></path>
+                <path d="M12.247 6.5C12.2465 6.53449 12.2456 6.56902 12.2456 6.60362C12.2456 10.5525 15.4468 13.7536 19.3956 13.7536C19.4302 13.7536 19.4647 13.7527 19.4992 13.7522V13.7548C19.4647 13.7543 19.4302 13.7536 19.3956 13.7536C15.4814 13.7536 12.3024 16.8989 12.247 20.8H12.2444C12.1894 16.9334 9.06579 13.8098 5.19922 13.7548V13.7522C9.10028 13.6968 12.2456 10.5179 12.2456 6.60362C12.2456 6.56902 12.2447 6.53449 12.2442 6.5H12.247Z" fill="#4F5465"></path>
+                <path d="M16.8636 6.5C16.8634 6.51254 16.8631 6.5251 16.8631 6.53768C16.8631 7.97362 18.0272 9.13768 19.4631 9.13768C18.0397 9.13768 16.8838 10.2814 16.8636 11.7C16.8436 10.294 15.7068 9.1581 14.3008 9.13812C15.7193 9.11797 16.8631 7.96104 16.8631 6.53768C16.8631 6.5251 16.8628 6.51254 16.8626 6.5H16.8636Z" fill="#4F5465"></path>
+              </svg>
+              <span class="p p--sm hard--ends semibold all--color--midgrey line-height--small" tabindex="0" style="text-align: left !important;">Ask our AI Chatbot</span>
+              <span class="section--eclc--ai-chat-bg absolute top--0 right--0 left--0 bottom--0 border-radius--pill"></span>
+            </div>
+          </div>#}
+
+          {% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}
+          {% if articleCTA|length %}
+          {% for cta in articleCTA %}
+          <div class="section section--global-topic-cta relative overflow--hidden">
+            <div class="block relative z-index--3">
+              <div class="block gridspacer--top desk-short--top lap-short--top tablet-short--top palm-short--top"></div>
+              <div class="relative border--1 border--mist border-radius overflow--hidden" style="padding: 32px !important;">
+                <div class="background learning_center_cta">
+                  <div class="background--layer z-index--1 opacity--100 background--white" style="top:0; bottom:0; right:0; left:0;"></div>
+                </div>
+
+                <div class="relative z-index--4">
+                  <div class="grid__item one-whole hard--top hard--bottom last--hard--bottom palm-all--text--center hard--sides">
+                    <div class="first--hard--top last--hard--bottom flex flex-flow--column flex-align--center all--text--left">
+                      <div class="grid__item hard--sides hard--ends margin--petite--bottom full tablet-one-whole palm-one-whole first--hard--top last--hard--bottom hard--sides">
+                        <h6 class="line-height--small margin--petite--bottom">{{ cta.header }}</h6>
+                      </div>
+                      <div class="p p--default hard--ends first--hard--top last--hard--bottom all--color--midgrey">
+                        {{ cta.content }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-flow--column flex-align--center">
+                    <div class="grid__item one-whole hard--ends margin--short--top first--hard--top last--hard--bottom text--center palm-text--center">
+                      <span>
+                        <span class="block"></span>
+                        <span class="hard--top block--multibutton block--multibuttons" style="gap: 12px;">
+                          <span class="block--multibutton--btn all--btn all--btn--primary width--max">
+                            <a role="button" title="Our Coaching Program" class="btn btn--primary width--max" href="{{ cta.primary_button.primary_button_url.href }}" target="_blank">
+                              {{ cta.primary_button.primary_button_text }}
+                            </a>
+                          </span>
+
+                          <span class="block--multibutton--btn all--btn all--btn--transparent--mist width--max">
+                            <a role="button" title="Schedule a Call" class="btn btn--transparent--mist width--max" href="{{ cta.secondary_button.secondary_button_url.href }}" target="_blank">
+                              {{ cta.secondary_button.secondary_button_text }}
+                            </a>
+                          </span>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endif %}
+
+          {% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+          {# Pillar Module #}
+          {{ lcsnippets.pillar_resources(content.name|striptags, heading_size='h4') }}
+          {% endif %}
+
+          <div class="flex-sidebar--trigger" style="opacity:0;">.</div>
+          <div class="flex-sidebar--width--sticky margin--tall--top">
+
+            {% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+            {# Table of Contents Sticky #}
+            <div class="margin--tall--bottom">
+              {{ lcsnippets.chapter_toc(widget_data.indpost.table_of_contents_settings.heading,widget_data.indpost.table_of_contents_settings.toc_menu_items, 'hs-menu-item--active') }}
+            </div>
+            {% endif %}
+
+            {% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}
+            {% if articleCTA|length %}
+            {% for cta in articleCTA %}
+            <div class="section section--global-topic-cta relative overflow--hidden margin--standard--bottom"> 
+              <div class="block relative z-index--3">
+                <div class="relative border--1 border--mist border-radius overflow--hidden" style="padding: 32px !important;">
+                  <div class="background learning_center_cta">
+                    <div class="background--layer z-index--1 opacity--100 background--white" style="top:0; bottom:0; right:0; left:0;"></div>
+                  </div>
+
+                  <div class="relative z-index--4">
+                    <div class="grid__item one-whole hard--top hard--bottom last--hard--bottom palm-all--text--center hard--sides">
+                      <div class="first--hard--top last--hard--bottom flex flex-flow--column flex-align--center all--text--left">
+                        <div class="grid__item hard--sides hard--ends margin--petite--bottom full tablet-one-whole palm-one-whole first--hard--top last--hard--bottom hard--sides">
+                          <h6 class="line-height--small margin--petite--bottom">{{ cta.header }}</h6>
+                        </div>
+                        <div class="p p--default hard--ends first--hard--top last--hard--bottom all--color--midgrey">
+                          {{ cta.content }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-flow--column flex-align--center">
+                      <div class="grid__item one-whole hard--ends margin--short--top first--hard--top last--hard--bottom text--center palm-text--center">
+                        <span>
+                          <span class="block"></span>
+                          <span class="hard--top block--multibutton block--multibuttons" style="gap: 12px;">
+                            <span class="block--multibutton--btn all--btn all--btn--primary width--max">
+                              <a role="button" title="Our Coaching Program" class="btn btn--primary width--max" href="{{ cta.primary_button.primary_button_url.href }}" target="_blank">
+                                {{ cta.primary_button.primary_button_text }}
+                              </a>
+                            </span>
+
+                            <span class="block--multibutton--btn all--btn all--btn--transparent--mist width--max">
+                              <a role="button" title="Schedule a Call" class="btn btn--transparent--mist width--max" href="{{ cta.secondary_button.secondary_button_url.href }}" target="_blank">
+                                {{ cta.secondary_button.secondary_button_text }}
+                              </a>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endif %}
+
+            {# Share Links Sticky #}
+            <div style="padding-bottom: 20px;">
+              {{ lcsnippets.lc_social_share(content.absolute_url, content.html_title, content.meta_description, 16) }} 
+            </div>
+
+            {% require_js %}
+            <script>
+              $(function () {
+                var $win = $(window);
+                var $el  = $('.flex-sidebar--width--sticky'); // the thing you show/hide
+                var $nav = $('.headerIMPlus-navigation-container--inner-container');
+                var $trigger = $('.flex-sidebar--trigger').first(); // your trigger point
+
+                if (!$trigger.length) return; // bail if no trigger present
+
+                var triggerY = 0; // threshold scrollTop to show
+                var rafId = null;
+                var resizeTimer = null;
+
+                function measure() {
+                  var navH = $nav.outerHeight() || 0;
+                  var trigTop = ($trigger.offset() && $trigger.offset().top) || 0;
+
+                  // Show when scrollTop >= (triggerTop - navHeight)
+                  triggerY = trigTop - navH;
+                }
+
+                function update() {
+                  var show = $win.scrollTop() >= triggerY;
+                  $el.toggleClass('is-visible', show);
+                }
+
+                function onScroll() {
+                  if (rafId) return;
+                  rafId = requestAnimationFrame(function () {
+                    update();
+                    rafId = null;
+                  });
+                }
+
+                // Recalculate on resize (layout/nav height can change)
+                $win.on('resize', function () {
+                  clearTimeout(resizeTimer);
+                  resizeTimer = setTimeout(function () {
+                    measure();
+                    update();
+                  }, 120);
+                  onScroll(); // keep UI responsive during resize drag
+                });
+
+                $win.on('scroll', onScroll);
+
+                // Initial
+                measure();
+                update();
+              });
+
+            </script>
+            {% end_require_js %}
+            {# End Pillar Module #}
+
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+{# For Articles with Video #}
+{% if videoType == 'youtube' %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+{% endif %}
+
+
+{# end Blog Inner Contents #}
+
+{% endblock body %}
+
+{% require_js %}
+
+<script>
+
+  {# Flex Sidebar and Secondary Nav Hash Scroll #}
+  $(document).ready(function() {
+    $('a[href*="#"]').on("click", function(e) {
+      e.preventDefault();
+
+      var target = $(this).attr("href");
+      console.log("Clicked link with href:", target);
+
+      try {
+        // skip if target is just "#"
+        if (target === "#" || !target) {
+          console.warn("Skipping invalid target:", target);
+          return;
+        }
+
+        // check if an element exists with that ID
+        if ($(target).length === 0) {
+          console.warn("No element found for selector:", target);
+          return;
+        }
+
+        // Checking if the click was on the secondary navigation mobile accordion
+        if ($(this).closest('.headerIMPlus--navigation-links--menu').hasClass("tray--open")) {
+          subnavClosePortDown();
+        }
+
+        // perform animated scrolling
+        $('html, body').stop().animate({
+          scrollTop: $(target).offset().top - $('.headerIMPlus--flex-nav-spacer').height()
+        }, 400);
+
+        location.hash = target;
+
+        console.log('blog scroll trigger')
+      } catch (err) {
+        console.error("Scroll script error for target:", target, err);
+      }
+    });
+  });
+  {# End Secondary Navigation Menu Dropdowns #}
+
+  // Cache selectors
+  var topMenu = $(".section--chapter-list--page-menu"),
+      topMenuHeight = 110,
+      menuItems = topMenu.find("a"),
+      scrollItems = menuItems.map(function(){
+        var item = $($(this).attr("href"));
+        if (item.length) return item;
+      });
+
+  $(function () {
+    // Initial active: hash match or first item
+    var initHash = window.location.hash;
+    menuItems.closest('li').removeClass("hs-menu-item--active");
+    if (initHash && menuItems.filter("[href='" + initHash + "']").length) {
+      menuItems.filter("[href='" + initHash + "']").closest('li').addClass("hs-menu-item--active");
+    } else {
+      menuItems.first().closest('li').addClass("hs-menu-item--active");
+    }
+
+    $(window).on("scroll resize", function() {
+      var fromTop = $(this).scrollTop() + topMenuHeight;
+
+      var cur = scrollItems.map(function(){
+        if ($(this).offset().top < fromTop) return this;
+      });
+      cur = cur[cur.length - 1];
+      var id = cur && cur.length ? cur[0].id : "";
+
+      menuItems.closest('li').removeClass("hs-menu-item--active");
+      if (id) {
+        menuItems.closest('li').removeClass("hs-menu-item--active").end().filter("[href='#"+id+"']").closest('li').addClass("hs-menu-item--active");
+      } else {
+        // Fallback when nothing matches
+        menuItems.first().closest('li').addClass("hs-menu-item--active");
+      }
+    }).trigger("scroll"); // run once on load
+  });
+
+
+  {# Copy to Clipboard #}
+  function copyToClipboard(container, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const tooltip = container.querySelector('.copy-tooltip');
+      container.classList.add('show-tooltip');
+      setTimeout(() => {
+        container.classList.remove('show-tooltip');
+      }, 1500);
+    }).catch(err => {
+      console.error('Copy failed', err);
+    });
+  }
+  {# End Copy to Clipboard #}
+
+  {# Injecting H2/H3 ID attributes #}
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log('injectid')
+    const headings = document.querySelectorAll(".container--postbody h2, .container--postbody h3");
+
+    const usedIds = new Set();
+
+    function slugify(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, "")   // remove special chars
+        .replace(/\s+/g, "-")       // spaces → dashes
+        .replace(/-+/g, "-");       // collapse dashes
+    }
+
+    headings.forEach((heading) => {
+      if (heading.id) return;
+
+      let baseId = slugify(heading.textContent);
+      let uniqueId = baseId;
+      let counter = 1;
+
+      // ensure uniqueness
+      while (usedIds.has(uniqueId)) {
+        uniqueId = `${baseId}-${counter++}`;
+      }
+
+      usedIds.add(uniqueId);
+      heading.id = uniqueId;
+    });
+  });
+  {# Injecting H2/H3 ID attributes #}
+
+  {# Expand Topic Clusters #}
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqToggles = document.querySelectorAll('.section--pillar--group--toggle')
+
+    console.log('faqToggles');
+
+
+    faqToggles.forEach(function (toggle) {
+      toggle.addEventListener('click', function (event) {
+        if (a11yClick(event) === true) {
+          console.log('clickkkk');
+          toggleFaq(toggle)
+        }
+      })
+
+      toggle.addEventListener('keypress', function (event) {
+        if (a11yClick(event) === true) {
+          toggleFaq(toggle)
+        }
+      })
+    })
+
+    const contentInners = document.querySelectorAll(
+      '.section--pillar--group--content--inner'
+    )
+
+    contentInners.forEach(function (contentInner) {
+      contentInner.addEventListener('scroll', function () {
+        this.scrollTop = 0 // Reset scroll position to the top
+      })
+    })
+
+    function toggleFaq(toggle) {
+      const thisGroup = toggle.closest('.section--pillar--group')
+      const thisContent = thisGroup.querySelector('.section--pillar--group--content')
+
+      if (!thisGroup.classList.contains('active')) {
+        thisGroup.classList.add('active')
+        slideDown(thisContent)
+      } else {
+        thisGroup.classList.remove('active')
+        slideUp(thisContent)
+      }
+    }
+  })
+
+  function a11yClick(event) {
+    // Add your accessibility click check here
+    return event.type === 'click' || event.key === 'Enter' || event.key === ' '
+  }
+
+
+  {# Opening and Closing Search #}
+  $(function () {
+    const $searchIcon   = $('.mini-nav__search');
+    const $searchWrap   = $('.mini-nav__search-container');
+    const $searchBar    = $('.section--eclc--search');
+
+    // Start hidden
+    $searchBar.hide();
+
+    // Toggle search on icon click
+    $searchIcon.on('click', function (e) {
+      e.stopPropagation(); // prevent immediate outside-click close
+      $('.hs-breadcrumb--cover').fadeIn(200);
+      $searchIcon.fadeOut(200, function () {
+        $searchBar.fadeIn(200);
+      });
+    });
+
+    // Revert when clicking outside the container
+    $(document).on('click', function (e) {
+      if (!$searchWrap.is(e.target) && $searchWrap.has(e.target).length === 0) {
+        if ($searchBar.is(':visible')) {
+          $('#searchBoxEclc').blur();
+
+          $searchBar.fadeOut(200, function () {
+            $searchIcon.fadeIn(50);
+          });
+          setTimeout(() => {
+            $('.hs-breadcrumb--cover').fadeOut(200);
+          }, 200);
+        }
+      }
+    });
+  });
+</script>
+
+<script>
+  ['click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+    window.addEventListener(e, lcVideo, {
+      once: true
+    });
+  });
+  var vidTrig = false;
+
+  function lcVideo() {
+    if (!vidTrig) {
+      vidTrig = true;
+      if ($(".vidyard-player-embed").length > 0){$("<script>").appendTo(".footer-container").on("load", function(){}).prop("type","text/javascript").prop("src","https://play.vidyard.com/embed/v4.js");}
+
+      if ($(".featured-type--youtube").length > 0){
+        // Used for video dynamic pages
+        const player = new Plyr('#plyrplayer');
+      }
+    }
+  }
+</script>
+
+{% end_require_js %}

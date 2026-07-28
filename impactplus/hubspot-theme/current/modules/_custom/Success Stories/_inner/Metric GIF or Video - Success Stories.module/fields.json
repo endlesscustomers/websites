@@ -1,0 +1,37 @@
+[ {
+  "id" : "8ba1c3ae-8549-ca63-029d-9a88f1b450f9",
+  "name" : "image_and_header",
+  "label" : "Image and Header",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "172ceb86-b57b-3293-1a8b-c47b08bf4c6c",
+    "name" : "text_description",
+    "label" : "Metric Header/Subheader",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null
+  }, {
+    "picker" : "file",
+    "id" : "f5b33401-0db6-573a-666d-9f7468594b0c",
+    "name" : "video_of_gif_file",
+    "label" : "Video of GIF File",
+    "required" : false,
+    "locked" : false,
+    "type" : "file",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+} ]

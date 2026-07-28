@@ -1,0 +1,79 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--bloglcfeed--wrapper {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: -{{ short }};
+  margin-right: -{{ short }};
+}
+.section--bloglcfeed--item--inner {
+  padding: {{ short }};
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.section--bloglcfeed--item--body {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+.section--bloglcfeed--item--body--wrapper {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+.section--bloglcfeed--item--lower {
+  margin-top: auto;
+}
+
+.section--bloglcfeed--item--tag {
+  background-color:{{ color('white') }};
+  border-radius: 15px 0px 0px 0px;
+  padding:3px 17px;
+}
+
+.section--bloglcfeed--item--tag p {
+  color:{{ color('darkgrey') }};
+}
+.section--bloglcfeed a .box-shadow.box--hover {
+  {{ transition("all .3s ease-out") }}
+}
+.section--bloglcfeed a:hover .box-shadow.box--hover {
+  {{ boxShadow(config.default_HoverBoxShadow) }}
+}
+
+.section--bloglcfeed a:hover .btn--simple {
+  color: {{ color('primary') }} !important;
+}
+.section--bloglcfeed a:hover .btn--simple:after {
+  left:5px;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="%23{{ color('primary')|render|replace("#","") }}" d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg>');
+}
+
+{% call mediaQuery("palm") %}
+.section--bloglcfeed--item {
+  max-width:450px;
+  margin:0 auto;
+}
+{% endcall %}

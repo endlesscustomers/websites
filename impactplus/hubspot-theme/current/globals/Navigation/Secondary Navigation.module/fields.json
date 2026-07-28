@@ -1,0 +1,287 @@
+[ {
+  "id" : "hide_on_load",
+  "name" : "hide_on_load",
+  "label" : "Hide on Load",
+  "help_text" : "",
+  "inline_help_text" : "This will hide the secondary navigation on page load.",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "41dfe015-b854-930f-45b9-e15a2f08a953",
+  "name" : "left_aligned_item_content_type",
+  "label" : "Secondary Navigation: Left Aligned Item Content Type",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "none", "None" ], [ "logo", "Logo" ], [ "text", "Text" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "logo"
+}, {
+  "id" : "left_aligned_item_content_type_mobile_behavior",
+  "name" : "left_aligned_item_content_type_mobile_behavior",
+  "label" : "Secondary Navigation: Content Type Mobile Behavior",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "hidden", "Hide on Mobile" ], [ "stacked", "Stack Center-Aligned on Mobile" ], [ "inline", "Inline Left-Aligned on Mobile" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "inline"
+}, {
+  "id" : "d3216a28-970f-0ce5-cde3-b5b76d2d5913",
+  "name" : "secondary_navigation_left_aligned_text",
+  "label" : "Secondary Navigation: Left Aligned Text",
+  "inline_help_text" : "Must specify a name. If you don't want this text to show within the secondary navigation, use the next module to hide it.",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "left_aligned_item_content_type",
+    "controlling_value_regex" : "text",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Digital Sales & Marketing Mastery"
+}, {
+  "id" : "50f920de-474a-1f23-0e9a-4831364726cb",
+  "name" : "secondary_navigation_logo",
+  "label" : "Secondary Navigation: Logo",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "left_aligned_item_content_type",
+    "controlling_value_regex" : "logo",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "responsive" : true,
+  "resizable" : true,
+  "show_loading" : false,
+  "type" : "image",
+  "display_width" : null,
+  "default" : {
+    "size_type" : "auto",
+    "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/Imported%20images/ddd.jpeg",
+    "alt" : "ddd",
+    "loading" : "eager",
+    "width" : 200,
+    "height" : 45,
+    "max_width" : 200,
+    "max_height" : 45
+  }
+}, {
+  "id" : "d6fa55a9-3bf9-7cbd-b6e8-4d7d2650f774",
+  "name" : "secondary_navigation_menu",
+  "label" : "Secondary Navigation: Menu",
+  "required" : false,
+  "locked" : false,
+  "type" : "menu",
+  "display_width" : null
+}, {
+  "id" : "2cb08bbd-47aa-252b-e431-52cd8c8297e9",
+  "name" : "cta_button_visibility",
+  "label" : "Secondary Navigation: CTA Button Visibility",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "hide", "Hide (Default)" ], [ "show", "Show" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "hide"
+}, {
+  "id" : "edd8dd0b-a74f-2f38-4ab4-807fe5644b48",
+  "name" : "secondary_cta",
+  "label" : "Secondary Navigation: CTA Button",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "2cb08bbd-47aa-252b-e431-52cd8c8297e9",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "show",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "47688a65-8e8f-4071-7419-49aa90d139a2",
+    "name" : "cta_type",
+    "label" : "CTA: Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ], [ "anchor", "Scroll to Section" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "link"
+  }, {
+    "id" : "45b4fd68-ee22-9461-1fd5-6db5e80f2538",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "white", "White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "primary"
+  }, {
+    "id" : "dbb80edb-975d-c972-bb92-7237013124e2",
+    "name" : "cta_arrow",
+    "label" : "CTA: Add Arrow After Text?",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "e21b5d18-5697-1c7e-ae73-c383d97771dd",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "c93d9b42-21ff-ea69-4b18-9fbb84bb3475",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Schedule Call"
+  }, {
+    "id" : "db477ed5-6de2-6586-961f-f373e8af6332",
+    "name" : "cta_hyperlink",
+    "label" : "CTA: Hyperlink",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_cta.cta_type",
+      "controlling_value_regex" : "link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "CONTENT"
+    }
+  }, {
+    "id" : "5d9366f5-826a-b449-031d-adced8f4d758",
+    "name" : "cta_open_in_new_tab",
+    "label" : "CTA: Open in new tab?",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "c9f46a21-748a-e234-d312-194d41e2f633",
+    "name" : "cta_title_attribute",
+    "label" : "CTA: Title Attribute",
+    "inline_help_text" : "CTA title attribute gives additional information about the page being linked to. Leave this blank to use your button text.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_cta.cta_type",
+      "controlling_value_regex" : "link|anchor",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "c2147e49-554a-fc29-6596-2bf7c88d21d3",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_cta.cta_type",
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null
+  }, {
+    "id" : "fdc1b73a-5c83-8f63-60b1-0c1387f5feb8",
+    "name" : "cta_section_anchor_id",
+    "label" : "CTA: Section Anchor ID",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "secondary_cta.cta_type",
+      "controlling_value_regex" : "anchor",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "section-id"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "cta_type" : "link",
+    "cta_button_color" : "primary",
+    "cta_arrow" : true,
+    "cta_ghost_transparent_button" : false,
+    "cta_button_text" : "Schedule Call",
+    "cta_hyperlink" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "CONTENT"
+    },
+    "cta_open_in_new_tab" : false,
+    "cta_section_anchor_id" : "section-id"
+  }
+} ]

@@ -1,0 +1,74 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+#serviceGuide .section:not(.section--hero) span.preheader {
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem 1.25rem;
+  background-color: #fff;
+  border: 1.5px solid {{ color("mist") }};
+  border-radius: 999px;
+  color: {{ color("primary") }};
+  white-space: nowrap;
+  display: inline-block;
+  margin-bottom: 0px !important;
+}
+
+#serviceGuide .section:not(.section--hero) span.preheader::before,
+#serviceGuide .section:not(.section--hero) span.preheader::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 50vw;
+  height: 1px;
+  background-color: {{ color("mist") }};
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+#serviceGuide .section:not(.section--hero) span.preheader::before {
+  right: 100%;
+}
+
+#serviceGuide .section:not(.section--hero) span.preheader::after {
+  left: 100%;
+}
+
+#serviceGuide .section:not(.section--hero) .gridspacer--top + .grid > .grid__item{
+  overflow:hidden;
+}
+
+#serviceGuide .section--cards--card--body--content p{
+  color: {{ color("midgrey") }};
+}
+
+/* SINGLE TESTIMONIAL */
+#serviceGuide .section--columns--testimonial-column--body--content h4,
+#serviceGuide .section--columns--testimonial-column--body--content h4 *{
+  font-family: {{ font("reading") }};
+  font-weight: {{ config.medium }};
+}
+
+#serviceGuide .section--columns--testimonial-column--body--content h4,
+#serviceGuide .section--columns--testimonial-column--body--content h4 *{
+  font-size: 26px;
+  line-height: 1.25em;
+}

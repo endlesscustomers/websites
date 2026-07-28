@@ -1,0 +1,168 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--testimonialcolumns--divider--vertical {
+  display:inline;
+  position:absolute;
+  left: 0 !important;
+  top:auto;
+  width:1px;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:0px;
+}
+
+.section--testimonialcolumns--divider--horizontal {
+  display:block;
+  position:absolute;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:1px;
+  top:0px;
+  left:{{ (config.grid_ColumnSpacing) }} !important;
+  right:{{ (config.grid_ColumnSpacing) }} !important;
+}
+
+.section--testimonialcolumns--grid > .grid__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.section--testimonialcolumns--grid .section--testimonialcolumns--columns--wrapper.justify--start {
+  justify-content: flex-start;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--column {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--grid[data-columns--desk="1"] .section--testimonialcolumns--column,
+.section--testimonialcolumns .section--testimonialcolumns--grid[data-columns--lap="1"] .section--testimonialcolumns--column,
+.section--testimonialcolumns .section--testimonialcolumns--grid[data-columns--lap="1"] .section--testimonialcolumns--column,
+.section--testimonialcolumns .section--testimonialcolumns--grid[data-columns--tablet="1"] .section--testimonialcolumns--column,
+.section--testimonialcolumns .section--testimonialcolumns--grid[data-columns--palm="1"] .section--testimonialcolumns--column{
+  padding-top: 14px !important;
+  padding-bottom: 14px !important;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--grid .p+.p,
+.section--testimonialcolumns .section--testimonialcolumns--grid .p+ol,
+.section--testimonialcolumns .section--testimonialcolumns--grid .p+ul,
+.section--testimonialcolumns .section--testimonialcolumns--grid h6+ol,
+.section--testimonialcolumns .section--testimonialcolumns--grid h6+ul,
+.section--testimonialcolumns .section--testimonialcolumns--grid ol+.p,
+.section--testimonialcolumns .section--testimonialcolumns--grid ol+h6,
+.section--testimonialcolumns .section--testimonialcolumns--grid ol+p,
+.section--testimonialcolumns .section--testimonialcolumns--grid p+ol,
+.section--testimonialcolumns .section--testimonialcolumns--grid p+p,
+.section--testimonialcolumns .section--testimonialcolumns--grid p+ul,
+.section--testimonialcolumns .section--testimonialcolumns--grid ul+h6,
+.section--testimonialcolumns .section--testimonialcolumns--grid ul+p{
+  margin-top: -16px;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--column--body{
+  height: 100%;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--column--body--wrapper {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+
+.section--testimonialcolumns.section--testimonialcolumns--equalizebuttons .section--testimonialcolumns--column--body--cta {
+  margin-top: auto;
+}
+
+.section--testimonialcolumns .grid.hard .section--testimonialcolumns--divider--horizontal,
+.section--testimonialcolumns .grid.hard--sides .section--testimonialcolumns--divider--horizontal {
+  left:{{ config.short }};
+  right:{{ config.short }};
+}
+
+.section--testimonialcolumns--column--body--padding .section--testimonialcolumns--column--body--wrapper{
+  padding: 32px;
+  border-radius: {{ config.default_BorderRadius }};
+}
+
+.section--testimonialcolumns--column--byline .section--testimonialcolumns--column--image--container{
+  flex: 0 0 auto;
+  max-width: 82px;
+  padding-right: 20px;
+}
+
+.section--testimonialcolumns--column .section--testimonialcolumns--column--image {
+  border-radius: 50%;
+  display: block;
+  height: 67px;
+  width: 67px;
+}
+
+.section--testimonialcolumns--column--source p span:first-child{
+  margin-bottom: 5px;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--column--body--content {
+  position: relative;
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--column--body--content::before {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='86' height='61' viewBox='0 0 86 61' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M67.8453 16.7316C70.9568 12.4028 76.838 7.7427 84.8446 3.86321C86.9253 2.85503 85.9867 -0.269786 83.6898 0.0187311C66.8671 2.13187 55.9634 9.44833 50.0091 20.3288C47.7945 24.3755 46.4031 28.6829 45.6622 33.0799C45.1736 35.979 45.0446 38.1547 45.0446 40.6676C45.0446 51.8969 54.2115 61 65.5194 61C76.8273 61 85.9942 51.8969 85.9942 40.6676C85.9942 29.4383 76.6811 20.3288 65.9788 20.3288C66.5434 18.7893 66.679 18.3543 67.8453 16.7316ZM22.8007 16.7316C25.9122 12.4028 31.7934 7.7427 39.8 3.86321C41.8807 2.85503 40.9421 -0.269786 38.6452 0.0187311C21.8225 2.13187 10.9188 9.44833 4.96446 20.3288C2.74988 24.3755 1.35852 28.6829 0.617563 33.0799C0.129021 35.979 0 38.1547 0 40.6676C0 51.8969 9.16689 61 20.4748 61C31.7828 61 40.9496 51.8969 40.9496 40.6676C40.9496 29.4383 31.6365 20.3288 20.9342 20.3288C21.4988 18.7893 21.6344 18.3543 22.8007 16.7316Z' fill='black' fill-opacity='0.1'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-top: -25px;
+  margin-left: -55px;
+  width: 86px;
+  height: 61px;
+  pointer-events: none;
+}
+
+.section--testimonialcolumns .all--color--white .section--testimonialcolumns--column--body--content::before {
+  background-image: url("data:image/svg+xml,%3Csvg width='86' height='61' viewBox='0 0 86 61' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M67.8453 16.7316C70.9568 12.4028 76.838 7.7427 84.8446 3.86321C86.9253 2.85503 85.9867 -0.269786 83.6898 0.0187311C66.8671 2.13187 55.9634 9.44833 50.0091 20.3288C47.7945 24.3755 46.4031 28.6829 45.6622 33.0799C45.1736 35.979 45.0446 38.1547 45.0446 40.6676C45.0446 51.8969 54.2115 61 65.5194 61C76.8273 61 85.9942 51.8969 85.9942 40.6676C85.9942 29.4383 76.6811 20.3288 65.9788 20.3288C66.5434 18.7893 66.679 18.3543 67.8453 16.7316ZM22.8007 16.7316C25.9122 12.4028 31.7934 7.7427 39.8 3.86321C41.8807 2.85503 40.9421 -0.269786 38.6452 0.0187311C21.8225 2.13187 10.9188 9.44833 4.96446 20.3288C2.74988 24.3755 1.35852 28.6829 0.617563 33.0799C0.129021 35.979 0 38.1547 0 40.6676C0 51.8969 9.16689 61 20.4748 61C31.7828 61 40.9496 51.8969 40.9496 40.6676C40.9496 29.4383 31.6365 20.3288 20.9342 20.3288C21.4988 18.7893 21.6344 18.3543 22.8007 16.7316Z' fill='white' fill-opacity='0.1'/%3E%3C/svg%3E%0A");
+}
+
+.section--testimonialcolumns .background--none .section--testimonialcolumns--column--body--content::before {
+  content: '';
+}
+
+.section--testimonialcolumns .section--testimonialcolumns--column--body--content > * {
+  position: relative;
+  z-index: 1;
+}
+
+{% call mediaQuery('portable') %}
+  .section--testimonialcolumns .section--testimonialcolumns--column--body--content::before {
+    margin-top: -40px;
+    margin-left: -40px;
+  }
+{% endcall %}

@@ -1,0 +1,179 @@
+{# ***** Global Macro Snippets ***** #}
+{% import '/impact-agency-services-v3/Global_Snippets_Marcos.html' as snippets %}
+{% import '/IMPACT-Learning-Center/im-snippets.css' as snippetslc %}
+
+{# CSS #}
+{{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/modules/_custom/Video Testimonial Slider/Video Testimonial Slider.css'), { async: true } ) }}
+
+{# JS #}
+{{ require_js(get_asset_url('/IM-IMPACT-Prod-Theme-2025/modules/_custom/Video Testimonial Slider/Video Testimonial Slider.js'), { defer: true } ) }}
+
+{% set authorTable = hubdb_table_rows(849412) %}
+
+{# Array of the Resources #}
+{% set resourcesArray = [] %}
+
+{% set learningCenterTableID = '127897189' %}
+{% set learningCenterTable = hubdb_table_rows(learningCenterTableID, "limit=25&orderBy=-published_date") %}
+
+
+<div class="section--recordings-popup-container">
+  <div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--video-slider relative agency---lazy--default {{ module.section_controls.device_visibility }}">
+    {{ snippets.background(module.background) }}
+    <div class="section--video-group relative z-index--10 section--video-slider--slide snap-slider">
+      <div class="grid {{ module.section_controls.spacing.top_padding }} {{ module.section_controls.spacing.top_padding_mobile }} hard--bottom">
+
+        <div class="video-cards--wrapper grid__item one-whole lap-and-up-hard--sides tablet-hard--sides hard--ends">
+
+          <div class="all--valign--bottom text--left lap-and-up-margin--short--bottom tablet-margin--short--bottom margin--short--top palm-hard--bottom flex flex-justify--space-between flex-align--center">
+            <div class="video-cards--header grid__item ten-twelfths palm-nine-twelfths hard--ends palm-hard--sides relative z-index--10 text--left first--hard--top last--hard--bottom hard--top">
+              {{ module.heading_subheading }}
+            </div>
+            <div class="section--blogcards--slider-controls grid__item two-twelfths palm-three-twelfths palm-hard--sides hard--ends palm-margin--tall--top relative z-index--10 lap-and-up-text--right portable-text--right palm-left--right {% if learningCenterTable|length < 4 %}lap-and-up-visuallyhidden{% endif %}">
+              <div class="section--blogcards--slider-controls--container">
+                <div class="section--blogcards--slider-controls-prev hover--pointer arrow-dis flex flex-align--center flex-justify--center" data-prev>
+                  <img class="lazy" data-src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_left.svg" alt="Prev Slide" height="15" width="15">
+                </div>
+                <div class="section--blogcards--slider-controls-next hover--pointer flex flex-align--center flex-justify--center" data-next>
+                  <img class="lazy" data-src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_right.svg" alt="Next Slide" height="15" width="15">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-cards--wrapper grid hard--top {{ module.section_controls.spacing.bottom_padding }} {{ module.section_controls.spacing.bottom_padding_mobile }} overflow--hidden" data-slider>
+        <div class="video-cards grid__item one-whole hard--ends hard--sides blog-card---row-margin relative z-index--99 flex">
+
+          {% for row in module.testimonial_slide %}  
+          <div class="video--cards--article-item grid__item one-third relative hard--ends video-cards-item video-cards-item--padding">
+
+            <span class="section--blogcards--slider--item--body background--white overflow--hidden default">
+            {% if row.resource_image %}
+            <span role="img" aria-label="{{ row.resource_image_alt_text }}" class="block relative lazy" data-bg="{{ row.testimonial_thumbnail.url }}" style="background-repeat: no-repeat; background-size: cover; background-position: center 75%;">
+                <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding: 50.5% 0px 0px 0px;"></span>
+            </span>
+            {% endif %}
+            <span class="section--blogcards--slider--item--body--wrapper">
+              <span class="section--blogcards--slider--item--upper relative z-index--4 all--text--left">
+                {% if row.testimonial_logo.src %}
+                	<img data-src="{{ row.testimonial_logo.src|escape_url }}" alt="{{ row.testimonial_logo.alt|escape_attr }}" style="max-height: 40px;">
+                {% endif %}
+                <span class="block overflow--visible" style="{% if row.resource_link or row.resource_link_text %}padding: 7px 0px 0px 0px;{% else %}padding:25px;{% endif %}">
+                  <span class="block all--valign--top all--text--left overflow--visible first--hard--top last--hard--bottom">
+                    {% if row.testimonial_content %}
+                   
+                      <p class="bold p--large color--black line-height--small hard--top margin--short--botom">{{ row.rtestimonial_content }}</p>
+                      <div class="p font--16 light inline-block hard--bottom">{{ row.testimonial_name }}, {{ row.estimonial_title_company }}</div>
+                    {% endif %}
+                  </span>
+                </span>
+              </span>
+            </span>
+          </span>
+            
+            <!--<span class="section--blogcards--slider--item--body background--white overflow--hidden default">
+              {% if row.resource_image %}
+              <span role="img" aria-label="{{ row.resource_image_alt_text }}" class="block relative lazy" data-bg="{{ row.resource_image.url }}" style="background-repeat: no-repeat; background-size: cover; background-position: center 75%;">
+                <a title="{{ row.resource_title|escape }}" href="{{ row.resource_link }}" aria-label="{{ row.resource_title|escape }}" class="no--underline color--inherit height--max width--max absolute left--0 right--0 top--0 bottom--0" style="position: inherit !important;">
+                  <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding: 50.5% 0px 0px 0px;"></span>
+                </a>
+              </span>
+              {% endif %}
+              <span class="section--blogcards--slider--item--body--wrapper">
+                <span class="section--blogcards--slider--item--upper relative z-index--4 all--text--left">
+                  {% if row.resource_type %}
+                  <span class="section--blogcards--slider--item--topic inline-block overflow--visible">
+                    <div class="p flex bold hard--ends normalcase font--15">
+                      {% for item in row.resource_topic %}
+                      {% if loop.first %}
+                      <span class="color--blue">{{ item.name }}</span>
+                      {% endif %}
+                      {% endfor %}
+                    </div>
+                  </span>
+                  {% endif %}
+                  <span class="block overflow--visible" style="{% if row.resource_link or row.resource_link_text %}padding: 7px 0px 0px 0px;{% else %}padding:25px;{% endif %}">
+                    <span class="block all--valign--top all--text--left overflow--visible first--hard--top last--hard--bottom">
+                      {% if row.resource_title %}
+                      <a title="{{ row.resource_title|escape }}" href="{{ row.resource_link }}" class="no--underline">
+                        <p class="bold color--black line-height--small hard--top margin--short--botom">{{ row.resource_title }}</p>
+                        <div class="p font--14 light inline-block hard--bottom">{{ row.published_date|datetimeformat('%B %e, %Y') }}</div>
+                      </a>
+                      {% endif %}
+                    </span>
+                  </span>
+                </span>
+
+                {% set tableAuthor = row.resource_author[0] %}
+
+                {% if authorTable|map('name')|intersect([tableAuthor.name])|length > 0 %}
+
+                {% set newVar = tableAuthor.name %}
+
+                {% set IMPACTAuthor = authorTable|selectattr('name','equalto', newVar) %}
+                {% set IMPACTAuthor = IMPACTAuthor[0] %}
+
+                {# Team Author Variables #}
+                {% set authorName = IMPACTAuthor.name %}
+                {% set authorHeadshot = IMPACTAuthor.square_team_photo.url %}
+                {% set authorBio = IMPACTAuthor.bio_page_url %}
+
+                {% else %}
+
+                {% set authorPage = tableAuthor.name|lower|replace(' ','-') %}
+
+                {# Non-team Author Variables #}
+                {% set authorName = tableAuthor['name'] %}
+                {% set authorHeadshot = tableAuthor['square_headshot']['url'] %}
+                {% set authorBio = blog_author_url("default", authorPage) %}
+
+                {% endif %}
+
+                <span class="section--blogcards--slider--item--lower text--left inline-block width--max" style="margin-top:auto;padding:4px 30px 20px 25px;">
+                  {% if row.resource_author %}
+                  <span class="section--blogcards--slider--author flex flex-align--center">
+                    <img class="lazy border-radius--circle" width="30" height="30" data-src="{{ authorHeadshot }}" alt="{{ authorName }}">
+                    <a class="p font--14 no--underline hard--ends z-index--3 relative bold color--neutral-700 thisisit" href="{{ authorBio }}" >
+                      <span style="margin-left:10px;">{{ authorName }}</span>
+                    </a>
+                  </span>
+                  {% endif %}
+                  {% if row.resource_type %}
+                  <span class="section--blogcards--slider--item--tags flex margin--short--top" style="flex-flow: wrap;">
+                    {% set rowTypes = row.resource_type|map('name') %}
+                    {% for item in row.resource_type %}
+                    {% if learningTypes|selectattr('contentType','equalto', item.name)|length > 0 %}
+                    {% set matchedResource = learningTypes|selectattr('contentType','equalto', item.name) %}
+                    <span class="section--blogcards--slider--item--tag overflow--visible">
+                      <div class="p flex hard--ends normalcase font--14 normal--weight line-height--small">
+                        <span id="{{ item.name|lower }}" class="flex flex-align--center">
+                          <img class="lazy" data-src="{{ matchedResource[0]['parameters']['contentIcon'] }}" alt="{{ item.name }}" width="{{ matchedResource[0]['parameters']['iconWidth'] }}" height="{{ matchedResource[0]['parameters']['iconHeight'] }}">
+                          <span>{{ item.name }}</span>
+                        </span>
+                      </div>
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                  </span>
+                  {% endif %}
+                </span>
+              </span>
+            </span>-->
+          </div>
+          {# Spacer for Slider #}
+          {% if loop.last %}
+          <div class="video--cards--article-item-spacer video--cards--article-item relative hard--bottom video-cards-item video-cards-item--padding" style="height: 1px;">
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div> <!-- end slider -->
+  </div>
+</div>
+
+
+

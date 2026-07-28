@@ -1,0 +1,180 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/************************************************************************************************************/
+/* GOOGLE FONTS FOR MERRIWEATHER AND KALAM */
+/* Font files can be found here: https://app.hubspot.com/files/145335/?folderId=159846433901 */
+/************************************************************************************************************/
+
+/* CRITICAL FONTS - Keep swap (because we're preloading them) */
+
+/* Merriweather - HEADINGS (Critical!) */
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 900;
+  src: url('https://www.impactplus.com/hubfs/IMPACT_Font_Files/2025/merriweather/merriweather-v31-latin-900.woff2') format('woff2');
+  font-display: swap; /* Keep swap - we preloaded this */
+}
+
+/* Proxima Nova 500 - BODY PARAGRAPHS (Critical!) */
+@font-face {
+  font-family:"proxima-nova";
+  src:url("https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-500.woff2") format("woff2");
+  font-display: swap; /* Keep swap - we preloaded this */
+  font-style:normal;
+  font-weight:500;
+  font-stretch:normal;
+}
+
+/* NON-CRITICAL FONTS - Change to optional to prevent CLS */
+
+@font-face {
+  font-family:"proxima-nova";
+  src:url("https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-700.woff2") format("woff2");
+  font-display: swap; 
+  font-style:normal;
+  font-weight:700;
+  font-stretch:normal;
+}
+
+@font-face {
+  font-family:"proxima-nova";
+  src:url("https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-600.woff2") format("woff2");
+  font-display: swap; 
+  font-style:normal;
+  font-weight:600;
+  font-stretch:normal;
+}
+
+@font-face {
+  font-family:"proxima-nova";
+  src:url("https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-400-regular.woff2") format("woff2");
+  font-display: swap; 
+  font-style:normal;
+  font-weight:400;
+  font-stretch:normal;
+}
+
+@font-face { 
+  font-family: "Felt Tip Roman";
+  font-style: bold;
+  font-weight: 700;
+  src: url('https://www.impactplus.com/hubfs/IMPACT_Font_Files/2025/felt_tip/FeltTipRomBold.woff2') format('woff2');
+  font-display: swap; 
+}
+
+.font--script{
+  font-family: "Felt Tip Roman" !important;
+}
+.tk-proxima-nova { font-family: "proxima-nova",sans-serif; }
+
+
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Extralight.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Extralight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-ExtralightItalic.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-ExtralightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Light.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-LightItalic.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Regular.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Italic.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Medium.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-MediumItalic.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Semibold.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-SemiboldItalic.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-SemiboldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-Bold.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('https://www.impactplus.com/hubfs/GeneralSans-BoldItalic.woff') format('woff'),
+       url('https://www.impactplus.com/hubfs/GeneralSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}

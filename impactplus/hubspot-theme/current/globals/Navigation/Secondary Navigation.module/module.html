@@ -1,0 +1,109 @@
+{# import '/_IMPACT_Production/_globals/_macros/Global_Snippets_Marcos.html' as snippets #}
+
+{{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/globals/Navigation/_css/secondary_navigation_styles.css'), { async: false } ) }}
+
+{% set secondary_nav   = menu(module.secondary_navigation_menu) %}
+{% set mobile_behavior = module.left_aligned_item_content_type_mobile_behavior|default('inline') %}
+
+
+<div class="headerIMPlus--secondary--spacer {{ 'visuallyhidden' if module.hide_on_load }}">
+</div>
+
+<div class="headerIMPlus--secondary headerIMPlus-secondary--background--white-theme headerIMPlus--navigation-links--menu--color--light-grey {{ 'visuallyhidden' if module.hide_on_load }}">
+  <div class='headerIMPlus-secondary-navigation'>
+    <div class="headerIMPlus-secondary-scroller relative height--max">
+      <div class="headerIMPlus--main headerIMPlus--learning-center-toggle grid hard--ends palm-hard--sides palm-width--max">
+        <div class="headerIMPlus--secondary--inner headerIMPlus--secondary--inner-default {{ 'headerIMPlus--secondary--inner-palm-flex-row' if 'text' == module.left_aligned_item_content_type else 'headerIMPlus--secondary--inner-palm-flex-col' }} {{ 'palm-direction--column' if mobile_behavior == 'stacked' }} grid__item one-whole palm-one-whole hard--ends palm-hard--sides">
+          {% if 'text' == module.left_aligned_item_content_type %}
+            <p class="font--reading header--main--title no--underline p bold color--black p--default hard--ends {{ 'palm-visuallyhidden' if 'hidden' == mobile_behavior }}">
+              {{ module.secondary_navigation_left_aligned_text }}
+            </p>
+          {% elif 'logo' == module.left_aligned_item_content_type %}
+            {% if module.secondary_navigation_logo.src %}
+              {% set sizeAttrs = 'width="{{ module.secondary_navigation_logo.width|escape_attr }}" height="{{ module.secondary_navigation_logo.height|escape_attr }}"' %}
+              {% if module.secondary_navigation_logo.size_type == 'auto' %}
+                {% set sizeAttrs = 'width="{{ module.secondary_navigation_logo.width|escape_attr }}" height="{{ module.secondary_navigation_logo.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+              {% elif module.secondary_navigation_logo.size_type == 'auto_custom_max' %}
+                {% set sizeAttrs = 'width="{{ module.secondary_navigation_logo.max_width|escape_attr }}" height="{{ module.secondary_navigation_logo.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+              {% endif %}
+              {% set loadingAttr = module.secondary_navigation_logo.loading != 'disabled' ? 'loading="{{ module.secondary_navigation_logo.loading|escape_attr }}"' : '' %}
+              <div class="header--main--title {{ 'palm-visuallyhidden' if 'hidden' == mobile_behavior }}">
+                <img
+                  src = "{{ module.secondary_navigation_logo.src|escape_url }}"
+                  alt = "{{ module.secondary_navigation_logo.alt|escape_attr }}"
+                  {{ loadingAttr }}
+                  {{ sizeAttrs }}
+                />
+              </div>
+            {% endif %}
+          {% endif %}
+          <div class='headerIMPlus--navigation-center'>
+            <div class='headerIMPlus--navigation-links headerIMPlus--navigation-links--center-alignment'>
+              <div class='headerIMPlus--navigation-links--menu'>
+                <div class='headerIMPlus--navigation-links--menu--container'>
+                  <span id="hs_cos_wrapper_primary_and_secondary_navigation_" class="headerIMPlus--navigation-links--menu--secondary-mobile-accordian headerIMPlus--navigation-links--menu--mobile-color hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu grid__item lap-and-up-one-whole table-one-whole palm-one-whole hard" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_primary_and_secondary_navigation_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="55491391614" aria-label="Navigation Menu">
+                    <ul role="menu" class="active-branch">
+                      {% for child1 in secondary_nav.children %}
+                        {% set menuIndex = loop.index %}
+                        <li class="hs-menu-item hs-menu-depth-1 {% if child1.children %}hs-item-has-children{% endif %}" role="none">
+                          <span {% if content.absolute_url == child1.url %}class="hs-menu-item--active"{% endif %}>
+                            <a class="headerIMPlus--menu-item secondary--click-track headerIMPlus--menu--dropdown color--neutralgrey {% if content.absolute_url == child1.url %}active{% endif %}" data-menu-type="secondary" href="{% if child1.url %}{{ child1.url }}{% else %}javascript:;{% endif %}" role="menuitem">{{ child1.label }}</a>
+                            {% if child1.children %}
+                            <ul class="hs-ul-depth-2 {% for child2 in child1.children %}{% if loop.first %}{% if child2.children %}hs-ul-haschildren{% else %}hs-ul-nochildren{% endif %}{% endif %}{% endfor %}" style="{% for menuWidth in lcsubNavData.learning_center_dropdown_widths %} {% if menuWidth.dropdown_top_label == child1.label %}width:{{ menuWidth.secondary_navigation_dropdown_width }}px; column-count:{{ menuWidth.number_of_column_within_dropdown }}; {% endif %}{% endfor %}">
+                              {% for child2 in child1.children %}
+                              <li class="hs-menu-item hs-menu-depth-2 hs-menu-child" role="none">
+                                {% if child2.label %}<a class="headerIMPlus--menu-item headerIMPlus--menu-item secondary--click-track" data-menu-type="secondary" href="{{ child2.url }}" target="{{ child2.linkTarget }}" role="menuitem">{{ child2.label }}</a>{% endif %}
+                                {% if child2.children %}
+                                <ul class="hs-ul-depth-3">
+                                  {% for child3 in child2.children %}
+                                  <li class="hs-menu-item hs-menu-depth-3 hs-menu-child" role="none">
+                                    <a class="headerIMPlus--menu-item secondary--click-track" href="{{ child3.url }}" data-menu-type="secondary" role="menuitem">{{ child3.label }}</a>
+                                  </li>
+                                  {% endfor %}
+                                </ul>
+                                {% endif %}
+                              </li>
+                              {% endfor %}
+                            </ul>
+                            {% endif %}
+                          </span>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% if module.cta_button_visibility %}
+            <div class="headerIMPlus--navigation-cta-wrapper {% if module.left_aligned_item_content_type == "text" %}palm-visuallyhidden{% else %}portable-visuallyhidden{% else %}{% endif %}">
+              <div class='headerIMPlus--navigation-cta'>
+                {{ snippets.button(module.secondary_cta) }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {# Expanding Mobile Menu #}
+  <div class="headerIMPlus--sidebar-items background--white absolute left--0 right--0">
+    <div class="grid hard--ends">
+      <div class="grid__item one-whole palm-one-whole hard--ends">
+        <div id="hs_menu_wrapper_widget_1631046267538_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="54748351895" aria-label="Navigation Menu">
+          <ul class="headerIMPlus--sidebar--page-menu headerIMPlus--sidebar--depth-1" role="menu" style="margin: 14px 0 24px 0px !important;">
+            {% for child in secondary_nav.children %}
+              <li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative {% if child.children|length > 0 %}hs-menu-depth-1--has-children chapter--closed{% endif %}" role="none">
+                <a class="relative no--underline font--18" href="{% if child.children|length > 0 %}javascript:;{% else %}{{ child.url }}{% endif %}" role="menuitem">
+                  <span class="headerIMPlus--sidebar--index">{{ child.label }}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# End Expanding Mobile Menu #}
+</div>

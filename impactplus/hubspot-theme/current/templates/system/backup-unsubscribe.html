@@ -1,0 +1,26 @@
+<!--
+  templateType: email_backup_unsubscribe_page
+  isAvailableForNewContent: true
+  label: Email Backup Unsubscribe - IMPACT Production Theme
+-->
+
+{% set template_css = "../../css/templates/subscription.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle    = "Unsubscribe" %}
+{% set body_classes = 'pagetype--site pagetype--subscription header--static'%}
+
+{% block body %}
+<div class="header--anchor"></div>
+<section class="content-wrapper">
+	<div class="systems-page">
+		<div class="grid relative z-index--2 basic palm-tall">
+			<div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--ends text--left production--form all--btn all--btn--primary">
+				{% email_simple_subscription "email_simple_subscription" button_text='Unsubscribe', header='Email Unsubscribe', input_help_text='Your email address:', input_placeholder='email@example.com', label='Backup Unsubscribe' %}
+			</div>
+			<span class="clear"></span>
+		</div>
+	</div>
+</section>
+{% endblock body %}

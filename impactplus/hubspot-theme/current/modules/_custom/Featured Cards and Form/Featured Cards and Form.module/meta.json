@@ -1,0 +1,14 @@
+{
+  "content_tags" : [ {
+    "name" : "LAYOUT",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "categories" : [ "TEXT" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 187933119413,
+  "label" : "[IM-UI] Featured Cards and Form",
+  "icon" : "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/Logo/White%20Logo%20-%20Half/impact-logo-IM-white-01.svg",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,539 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--comparisontable-plans {
+  -webkit-transition: top 0.4s ease-in-out;
+  -moz-transition: top 0.4s ease-in-out;
+  -ms-transition: top 0.4s ease-in-out;
+  -o-transition: top 0.4s ease-in-out;
+  transition: top 0.4s ease-in-out;
+}
+
+{## BYLINE ##}
+.section--comparisontable .section--comparisontable--table--byline {
+  font-size: 14px;
+  line-height: 1.2em !important;
+}
+
+{## TABLE LABEL - TOP LEFT CORNER CELL ##}
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--label {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+{## COLUMN BUTTONS ##}
+.section--comparisontable .section--comparisontable--table--button {
+  margin-top:auto!important;
+  padding-top: {{ config.short }}!important;
+}
+
+.section--comparisontable .section--comparisontable--table--button .btn,
+.section--comparisontable .section--comparisontable--table--button .all--btn {
+  min-width: auto;
+}
+
+.section--comparisontable .section--comparisontable--table--button .btn--simple,
+.section--comparisontable .section--comparisontable--table--button .all--btn--simple {
+  padding: {{ config.btn_VerticalPadding }} {{ config.btn_HorizontalPadding }}!important;
+}
+
+{## COLUMN HEADER - PLANS ##}
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--label {
+  display: block;
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  position:relative;
+  padding: 30px 14px 24px 14px;
+}
+
+.section--comparisontable .pricingCarouselColumns .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--label {
+  padding: 14px 20px 14px 20px;
+}
+
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--row .section--comparisontable--table--supporting--text,
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--supporting--text {
+  display: block;
+}
+
+{## COLUMN HEADER - HIGHLIGHT LABEL ##}
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--highlightlabel {
+  padding: 6px 12px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+}
+
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--highlightlabel p {
+  line-height:1em;
+  font-size:16px;
+}
+
+{% call mediaQuery('>tablet') %}
+  .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column .section--comparisontable--table--highlightlabel {
+    position: absolute;
+    top: -15px;
+    z-index: 2;
+  }
+{% endcall %}
+
+{% call mediaQuery('palm') %}
+  .section--comparisontable--table--highlightlabel {
+    margin-top:10px;
+  }
+{% endcall %}
+
+{# This is to make sure the highlight label don't get cutoff by the overflow #}
+.pricingCarouselColumns .carousel__viewport,
+.pricingCarouselColumns .f-carousel__viewport {
+  overflow: visible;
+}
+
+.pricingCarouselColumns .carousel__slide,
+.pricingCarouselColumns .f-carousel__slide {
+  opacity: 0;
+}
+
+.pricingCarouselColumns .carousel__slide.is-selected,
+.pricingCarouselColumns .f-carousel__slide.is-selected {
+  opacity: 1;
+}
+
+{## TABLE STYLES ##}
+.section--comparisontable .section--comparisontable--features--categoryrowheader .section--comparisontable--table--label,
+.section--comparisontable .section--comparisontable--features--subcategoryrowheader .section--comparisontable--table--label,
+.section--comparisontable .section--comparisontable--features--label {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width:33%;
+  text-align: left;
+  vertical-align: middle;
+  padding: 14px 20px;
+}
+
+.section--comparisontable .section--comparisontable--features--categoryrowheader .section--comparisontable--table--label,
+.section--comparisontable .section--comparisontable--features--subcategoryrowheader .section--comparisontable--table--label {
+  width:100%!important;
+}
+
+.section--comparisontable.section--comparisontable--accordions .section--comparisontable--features--categoryrowheader .section--comparisontable--table--label {
+  padding-left:10px;
+}
+.section--comparisontable.section--comparisontable--accordions .section--comparisontable--features--subcategoryrowheader .section--comparisontable--table--label {
+  padding-left:44px;
+  {# 20 + 14 + 10 #}
+}
+
+.section--comparisontable .section--comparisontable--features--row {
+  align-items:stretch;
+  display:flex;
+  position:relative;
+}
+
+.section--comparisontable .section--comparisontable--features--value,
+.section--comparisontable .section--comparisontable--features--column {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.section--comparisontable .section--comparisontable--features--value {
+  padding: 14px;
+}
+
+{% call mediaQuery('palm') %}
+  .grid.palm-hard--sides{
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  {## SLIDER ##}
+  .section--comparisontable-columns .carousel__slide,
+  .section--comparisontable-columns .f-carousel__slide {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  {### ARROWS ###}
+  .section--comparisontable .carousel__button svg,
+  .section--comparisontable .f-button svg {
+    stroke: {{ config.flexslider_Arrow }};
+    {{ transition("all .25s ease-in-out") }};
+  }
+
+  @media ( hover:hover)  and ( pointer:fine ) {
+    .section--comparisontable .carousel__button:hover svg,
+    .section--comparisontable .f-button:hover svg {
+      stroke: {{ config.flexslider_ArrowHover }};
+    }
+  }
+
+  {### DOTS ###}
+  .section--comparisontable .carousel__dots,
+  .section--comparisontable .f-carousel__dots {
+    padding-bottom: 8px !important;
+    position: static !important;
+  }
+
+  .section--comparisontable .carousel.has-dots,
+  .section--comparisontable .f-carousel.has-dots{
+    margin-bottom: 0px !important;
+  }
+
+  .section--comparisontable .carousel__dots li.carousel__dot:after,
+  .section--comparisontable .f-carousel__dots li {
+    opacity:1;
+  }
+
+  .section--comparisontable .carousel__dots li.carousel__dot:after,
+  .section--comparisontable .f-carousel__dots .f-carousel__dot {
+    background-color: {{ config.flexslider_Navigation }};
+    {{ transition("all .25s ease-in-out") }};
+    opacity:1;
+  }
+
+  .section--comparisontable .carousel__dots li.carousel__dot.is-selected:after,
+  .section--comparisontable .f-carousel__dots li.is-current .f-carousel__dot {
+    background-color: {{ config.flexslider_NavigationActive }};
+  }
+
+  .section--comparisontable .all--color--white .carousel__button svg,
+  .section--comparisontable .all--color--white .f-button svg {
+    stroke:{{ color('white') }};
+  }
+
+  .section--comparisontable .all--color--white .carousel__dots li.carousel__dot:after,
+  .section--comparisontable .all--color--white .f-carousel__dots .f-carousel__dot {
+    background-color:{{ color('white') }};
+  }
+
+  .section--comparisontable .all--color--white .carousel__dots li.carousel__dot.is-selected:after,
+  .section--comparisontable .all--color--white .f-carousel__dots li.is-current .f-carousel__dot {
+    background-color:{{ color('primary') }};
+  }
+
+  @media ( hover:hover)  and ( pointer:fine ) {
+    .section--comparisontable .carousel__dots li.carousel__dot:hover:after,
+    .section--comparisontable .f-carousel__dots li:hover {
+      opacity:1;
+    }
+
+    .section--comparisontable .carousel__dots li.carousel__dot:hover:after,
+    .section--comparisontable .f-carousel__dots li:hover .f-carousel__dot {
+      background-color: {{ config.flexslider_NavigationActive }};
+    }
+
+    .section--comparisontable .all--color--white .carousel__button:hover svg,
+    .section--comparisontable .all--color--white .f-button:hover svg {
+      stroke:{{ color('primary') }};
+    }
+
+    .section--comparisontable .all--color--white .carousel__dots li.carousel__dot:hover:after,
+    .section--comparisontable .all--color--white .f-carousel__dots li:hover .f-carousel__dot {
+      background-color:{{ color('primary') }};
+    }
+  }
+
+  {## TOOLTIP ##}
+  .section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner {
+    left: .5px !important;
+    z-index: 9 !important;
+    width: calc((100vw / 2) - 23px) !important;
+    line-height: 1.55em;
+  }
+
+  {## Columns ##}
+  .section--comparisontable .section--comparisontable--plans .section--comparisontable--features--row {
+    border: 0!important;
+  }
+
+{% endcall %}
+
+
+
+
+
+
+.section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--row {
+  border: 0;
+}
+
+.section--comparisontable .section--comparisontable--features--value,
+.section--comparisontable .section--comparisontable--features--column {
+  flex:1;
+}
+
+{% call mediaQuery("palm") %}
+  .section--comparisontable .section--comparisontable--features--label {
+    width:50%;
+  }
+
+  .section--comparisontable .section--comparisontable--features--categoryrowheader .section--comparisontable--table--label,
+  .section--comparisontable .section--comparisontable--features--subcategoryrowheader .section--comparisontable--table--label,
+  .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--label {
+    width:100%!important;
+  }
+
+  .section--comparisontable--table--context br{
+    display: none;
+  }
+{% endcall %}
+
+{## Tool Tip ##}
+{# This is to make sure the tooltips don't get cutoff by the overflow #}
+.pricingCarouselFeatures .f-carousel__viewport {
+  overflow: visible;
+}
+
+.pricingCarouselFeatures .f-carousel__slide {
+  opacity: 0;
+}
+
+.pricingCarouselFeatures .f-carousel__slide.is-selected {
+  opacity: 1;
+}
+
+.section--comparisontable .section--comparisontable--table--label--tooltip {
+  align-items: center;
+}
+
+.section--comparisontable .section--comparisontable--table--label--tooltip svg {
+  margin-left:4px;
+  width:14px;
+  height:14px;
+}
+
+.section--comparisontable .section--comparisontable--table--label--tooltip {
+  top:2px;
+  cursor:help;
+}
+
+.section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner {
+  position: absolute;
+  bottom: 150%;
+  left: -20px;
+  width: calc(((1182px - ((100vw - 1182px) - (100vw - 1182px) + 20px))) / 4);
+  pointer-events: none;
+  padding: 20px;
+  color: {{ color('black') }};
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.3em;
+  text-align: left;
+  background: #fff;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity .15s ease-in-out;
+  border:1px solid #E1E7F4;
+  filter: drop-shadow(0px 0px 30px rgba(88, 88, 88, 0.15));
+  border-radius: 10px;
+  z-index: 30;
+  line-height: 1.45em;
+}
+
+@media (max-width: 1206px) {
+  .section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner {
+    width: calc((100vw / 4) - 11px);
+  }
+}
+
+.section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner:after,
+.section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner:before {
+  top: 100%;
+  left: 10%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #ffffff;
+  border-width: 13px;
+  margin-left: -13px;
+}
+.section--comparisontable .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner:before {
+  border-color: rgba(225, 231, 244, 0);
+  border-top-color: #E1E7F4;
+  border-width: 14px;
+  margin-left: -14px;
+}
+
+.section--comparisontable--table--label.section--comparisontable--table--label--tooltop:hover .section--comparisontable--table--label--inner:before,
+.section--comparisontable--table--label.section--comparisontable--table--label--tooltip:hover .section--comparisontable--table--label--inner:after,
+.section--comparisontable--table--label.section--comparisontable--table--label--tooltip.active .section--comparisontable--table--label--inner:before,
+.section--comparisontable--table--label.section--comparisontable--table--label--tooltip.active .section--comparisontable--table--label--inner:after{
+  opacity: 1;
+}
+
+.section--comparisontable .section--comparisontable--table--label.section--comparisontable--table--label--tooltip.active .section--comparisontable--table--label--tooltip--inner {
+  opacity: 1;
+  pointer-events: auto;
+  cursor:pointer;
+}
+
+@media ( hover:hover)  and ( pointer:fine ) {
+  .section--comparisontable .section--comparisontable--table--label.section--comparisontable--table--label--tooltip:hover .section--comparisontable--table--label--tooltip .section--comparisontable--table--label--tooltip--inner{
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+{## ICONS ##}
+.section--comparisontable--table--icons span.icon--spacer {
+  width:16px;
+  height:16px;
+  display:inline-block;
+}
+.section--comparisontable--table--icons svg {
+  width:16px;
+  height:16px;
+}
+
+{## ACCORDION ##}
+.section--comparisontable--features--categoryrowcontent {
+  width: 100%;
+}
+
+.section--comparisontable.section--comparisontable--accordions .section--comparisontable--features--categoryrowcontent.is-open {
+  display: block;
+}
+
+{# EXPAND IN EDITOR #}
+.hs-inline-edit .section--comparisontable.section--comparisontable--accordions .section--comparisontable--features--categoryrowcontent {
+  display: block!important;
+}
+
+{## CATEGORY ##}
+.section--comparisontable--features--categoryrowheader {
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.section--comparisontable--accordions .section--comparisontable--features--category .section--comparisontable--features--categoryrowheader {
+  cursor: pointer;
+}
+
+.section--comparisontable--features--categoryrowheader--icon {
+  margin-left: 20px;
+}
+
+.section--comparisontable--features--categoryrowheader--icon-svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.section--comparisontable--features--categoryrowheader.active .section--comparisontable--features--categoryrowheader--icon-svg {
+  transform: rotate(180deg);
+}
+
+.section--comparisontable--accordions .section--comparisontable--features--group .section--comparisontable--features--category:not(:last-child) .section--comparisontable--features--categoryrowheader::after {
+  {{ transition('all .3s ease-in-out') }}
+  background-color: transparent;
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.section--comparisontable--accordions .section--comparisontable--features--category:not(.is-open) .section--comparisontable--features--categoryrowheader {
+  position: relative;
+}
+
+.section--comparisontable--accordions .section--comparisontable--features--group .section--comparisontable--features--category:not(:last-child) .section--comparisontable--features--categoryrowheader::after {
+  background-color: #FFF;
+}
+
+{## TOGGLE ##}
+.section--comparisontable--toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: {{ font('reading') }};
+  font-size: {{ config.p_FontSize }};
+  color: {{ config.p_Color }};
+  font-weight: {{ config.bold }};
+}
+
+.section--comparisontable--toggle-label {
+  user-select: none;
+}
+
+.section--comparisontable--toggle .toggle {
+  position: relative;
+  width: 68px;
+  height: 28px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+{# THUMB #}
+.section--comparisontable--toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+{# ON STATE #}
+.section--comparisontable--toggle .toggle[aria-checked="true"] .section--comparisontable--toggle-thumb {
+  transform: translateX(40px);
+}
+
+{# focus style for keyboard users #}
+.section--comparisontable--toggle .toggle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 80, 255, 0.5);
+}

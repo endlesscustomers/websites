@@ -1,0 +1,1497 @@
+[ {
+  "id" : "71627f78-f9ce-66d2-377f-59cc89ab0bfa",
+  "name" : "hide_section",
+  "label" : "Hide Section?",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "010f968e-9b16-b03a-0d59-d5d913fe96d5",
+  "name" : "section_controls",
+  "label" : "Section Controls",
+  "help_text" : "This group contains modules which affect various parts of this section, such as layout, spacing, or miscellaneous settings specific to this section.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "06b3428d-0244-3077-686b-8ceb97544fcc",
+    "name" : "anchor_id",
+    "label" : "Anchor ID",
+    "help_text" : "Add a unique ID to allow anchor links to this section. Only alphanumeric characters, hyphens, and underscores are permitted. (Example: section-name) When linking to this section in an inline hyperlink, place a hashtag before the anchor ID.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "a8c57824-54f3-9b41-7357-78fbff5fde01",
+    "name" : "device_visibility",
+    "label" : "Device Visibility",
+    "help_text" : "Use this dropdown to determine when to show/hide this section. When only showing this section on certain screen sizes, ensure this section does not contain necessary features like an anchor or design elements that are necessary for the page's appearance such as angles or background gradients. Also ensure any related sections such as dividers are also appropriately configured to only show when needed.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Show at all screen sizes" ], [ "lap-and-up-visuallyhidden", "Hide on Desktop" ], [ "lap-and-up-visuallyhidden tablet-visuallyhidden", "Hide on Desktop and Tablet" ], [ "portable-visuallyhidden", "Hide on Tablet and Mobile" ], [ "palm-visuallyhidden", "Hide on Mobile" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "6bda5543-1d75-2780-3fda-ea2c659ed181",
+    "name" : "spacing",
+    "label" : "Spacing",
+    "help_text" : "Use these modules to control the spacing at the top and bottom of this section. This is especially useful for reducing white space between sections which share the same background color.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+      "name" : "top_padding",
+      "label" : "Top Padding",
+      "help_text" : "",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "lap-and-up-hard--top tablet-hard--top", "None" ], [ "short--top", "Extra Small (Default)" ], [ "tall--top", "Small" ], [ "grande--top", "Medium" ], [ "venti--top", "Large" ], [ "trenta--top", "Extra Large" ], [ "custom", "Custom" ], [ "x_large", "2x Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "grande--top"
+    }, {
+      "id" : "69afd11f-7070-505e-cc0a-69a6c2276421",
+      "name" : "top_padding_custom",
+      "label" : "Top Padding: Custom Padding Amount",
+      "help_text" : "The significance of this number is determined by the Top Padding: Custom Padding Measurement Unit input.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 0,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 26
+    }, {
+      "id" : "94c9024f-3f0a-fc38-6aba-6e64bc1b0935",
+      "name" : "top_padding_custom_measurement_unit",
+      "label" : "Top Padding: Custom Padding Measurement Unit",
+      "help_text" : "This input determines the significance of the Top Padding: Custom Padding Amount input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "vw"
+    }, {
+      "id" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+      "name" : "top_padding_mobile",
+      "label" : "Top Padding (Mobile)",
+      "help_text" : "",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "palm-hard--top", "None" ], [ "palm-short--top", "Extra Small (Default)" ], [ "palm-tall--top", "Small" ], [ "palm-grande--top", "Medium" ], [ "palm-venti--top", "Large" ], [ "palm-trenta--top", "Extra Large" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "palm-short--top"
+    }, {
+      "id" : "04f69a1d-5825-e743-42cc-fc33f3d6fbcc",
+      "name" : "top_padding_mobile_custom",
+      "label" : "Top Padding: Custom Padding Amount (Mobile)",
+      "help_text" : "The significance of this number is determined by the Top Padding: Custom Padding Measurement Unit (Mobile) input.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 0,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 26
+    }, {
+      "id" : "690ee351-05f4-58d3-0b97-d517499251c5",
+      "name" : "top_padding_mobile_custom_measurement_unit",
+      "label" : "Top Padding: Custom Padding Measurement Unit (Mobile)",
+      "help_text" : "This input determines the significance of the Top Padding: Custom Padding Amount (Mobile) input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "px"
+    }, {
+      "id" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+      "name" : "bottom_padding",
+      "label" : "Bottom Padding",
+      "help_text" : "",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "lap-and-up-hard--bottom tablet-hard--bottom", "None" ], [ "short--bottom", "Extra Small (Default)" ], [ "tall--bottom", "Small" ], [ "grande--bottom", "Medium" ], [ "venti--bottom", "Large" ], [ "trenta--bottom", "Extra Large" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "tall--bottom"
+    }, {
+      "id" : "0fcbfc06-166f-4ef4-35e8-da4761fe0543",
+      "name" : "bottom_padding_custom",
+      "label" : "Bottom Padding: Custom Padding Amount",
+      "help_text" : "The significance of this number is determined by the Bottom Padding: Custom Padding Measurement Unit input.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 0,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 26
+    }, {
+      "id" : "e9173a48-901a-b720-d9f0-421f4eae5282",
+      "name" : "bottom_padding_custom_measurement_unit",
+      "label" : "Bottom Padding: Custom Padding Measurement Unit",
+      "help_text" : "This input determines the significance of the Bottom Padding: Custom Padding Amount input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "px"
+    }, {
+      "id" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+      "name" : "bottom_padding_mobile",
+      "label" : "Bottom Padding (Mobile)",
+      "help_text" : "",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "palm-hard--bottom", "None" ], [ "palm-short--bottom", "Extra Small (Default)" ], [ "palm-tall--bottom", "Small" ], [ "palm-grande--bottom", "Medium" ], [ "palm-venti--bottom", "Large" ], [ "palm-trenta--bottom", "Extra Large" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "palm-short--bottom"
+    }, {
+      "id" : "bc95e219-3a18-83ee-16c2-75b6e6bdcfd6",
+      "name" : "bottom_padding_mobile_custom",
+      "label" : "Bottom Padding: Custom Padding Amount (Mobile)",
+      "help_text" : "The significance of this number is determined by the Bottom Padding: Custom Padding Measurement Unit (Mobile) input.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 0,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 26
+    }, {
+      "id" : "6f103824-1239-6af5-0521-228bc8a8770b",
+      "name" : "bottom_padding_mobile_custom_measurement_unit",
+      "label" : "Bottom Padding: Custom Padding Measurement Unit (Mobile)",
+      "help_text" : "This input determines the significance of the Bottom Padding: Custom Padding Amount (Mobile) input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "vw"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "top_padding" : "grande--top",
+      "top_padding_custom" : 26,
+      "top_padding_custom_measurement_unit" : "vw",
+      "top_padding_mobile" : "palm-short--top",
+      "top_padding_mobile_custom" : 26,
+      "top_padding_mobile_custom_measurement_unit" : "px",
+      "bottom_padding" : "tall--bottom",
+      "bottom_padding_custom" : 26,
+      "bottom_padding_custom_measurement_unit" : "px",
+      "bottom_padding_mobile" : "palm-short--bottom",
+      "bottom_padding_mobile_custom" : 26,
+      "bottom_padding_mobile_custom_measurement_unit" : "vw"
+    }
+  }, {
+    "id" : "d5f24b76-559a-5df9-0d22-92880c27c71d",
+    "name" : "text_color_override",
+    "label" : "Text Color Override",
+    "help_text" : "This module will override any text which appears directly on your background. Use this module to make all text white when using a darker background color to ensure the text is legible.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Default" ], [ "all--color--white", "White" ], [ "lap-and-up-all--color--white", "White (Desktop only)" ], [ "lap-and-up-all--color--white tablet-all--color--white", "White (Desktop and Tablet only)" ], [ "portable-all--color--white", "White (Tablet and Mobile only)" ], [ "palm-all--color--white", "White (Mobile only)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "9365dd29-831a-860c-729d-42e199553050",
+    "name" : "content_alignment_desktop",
+    "label" : "Content Alignment (Desktop)",
+    "help_text" : "If using a Video with a Video Label for the Featured Media in this section, please note that the Center alignment option for this input includes the height of the video label which will cause your alignment not to appear centered.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "90848c99-d53e-fcb9-384f-055de7c5506b",
+    "name" : "content_alignment_mobile",
+    "label" : "Content Alignment (Mobile)",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "device_visibility" : "default",
+    "spacing" : {
+      "top_padding" : "grande--top",
+      "top_padding_custom" : 26,
+      "top_padding_custom_measurement_unit" : "vw",
+      "top_padding_mobile" : "palm-short--top",
+      "top_padding_mobile_custom" : 26,
+      "top_padding_mobile_custom_measurement_unit" : "px",
+      "bottom_padding" : "tall--bottom",
+      "bottom_padding_custom" : 26,
+      "bottom_padding_custom_measurement_unit" : "px",
+      "bottom_padding_mobile" : "palm-short--bottom",
+      "bottom_padding_mobile_custom" : 26,
+      "bottom_padding_mobile_custom_measurement_unit" : "vw"
+    },
+    "text_color_override" : "default",
+    "content_alignment_desktop" : "center",
+    "content_alignment_mobile" : "center"
+  }
+}, {
+  "id" : "78f85a3d-876c-71bb-0205-aa71c135f90e",
+  "name" : "background",
+  "label" : "Background Layers",
+  "help_text" : "Add one or more background layers here. Layers are overlaid on top of each other with the first layer in your list being the back and the last layer in your list being the front. Using multiple layers allows you to stack multiple levels of imagery on top of each other such as a background image with an overlay or texture. After changing settings in this module group, click Apply to preview your changes.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+    "name" : "background_type",
+    "label" : "Background: Type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "image", "Image" ], [ "color", "Color" ], [ "gradient", "Gradient" ], [ "video", "Video" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "color"
+  }, {
+    "id" : "ab149ea9-e69b-fa57-06af-91f8e497a1b0",
+    "name" : "device_visibility",
+    "label" : "Device Visibility",
+    "help_text" : "Use this dropdown to determine when to show/hide this background layer. When only showing this layer on certain screen sizes, ensure this layer is not necessary for your content to be legible.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Show at all screen sizes" ], [ "lap-and-up-visuallyhidden", "Hide on Desktop" ], [ "lap-and-up-visuallyhidden tablet-visuallyhidden", "Hide on Desktop and Tablet" ], [ "portable-visuallyhidden", "Hide on Tablet and Mobile" ], [ "palm-visuallyhidden", "Hide on Mobile" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "c0fed185-874a-18e5-7c95-9415b39cb1ad",
+    "name" : "background_accent",
+    "label" : "Background Accent",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f0382e43-fb9a-5d7c-83d0-1ccfc3054ef1",
+      "name" : "background_accent_pattern",
+      "label" : "Background: Accent Design",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "dotted-square-top-left", "Dotted Square Top Left" ], [ "dotted-square-top-right", "Dotted Square Top Right" ], [ "dotted-pattern-left", "Dotted Pattern Left Side" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "none"
+    }, {
+      "id" : "b17fb012-0f4c-679a-c832-f0dbef6f86d2",
+      "name" : "background_dotted_color_choice",
+      "label" : "Background: Accent Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "off-white", "Off White" ], [ "neutral-500", "Light Grey" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_accent_pattern" : "none"
+    }
+  }, {
+    "id" : "060ae3ea-cde5-bed3-5df7-1584b2450f9b",
+    "name" : "background_opacity",
+    "label" : "Background: Opacity",
+    "help_text" : "Use this module to adjust this background layer's opacity (transparency). 100 is solid and 0 is completely transparent.",
+    "required" : true,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 100
+  }, {
+    "id" : "c2718646-ce77-7c3c-7e8e-d39d8c211ebd",
+    "name" : "background_color",
+    "label" : "Background: Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "color",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+      "name" : "background_color",
+      "label" : "Background: Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "darkgrey", "Dark Grey" ], [ "grey", "Grey" ], [ "lightgrey", "Light Grey" ], [ "offwhite", "Off White" ], [ "white", "White" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "fa3f8f10-ba2d-a90c-9c54-949a4e2b2728",
+      "name" : "background_custom_color",
+      "label" : "Background: Custom Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "90216235-1b15-56c3-5d4f-6c1944438b92",
+    "name" : "background_gradient",
+    "label" : "Background: Gradient",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "gradient",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+      "name" : "background_gradient_type",
+      "label" : "Background: Gradient Type",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "linear", "Linear" ], [ "radial", "Radial (Inside to Outside)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "linear"
+    }, {
+      "id" : "aecd7c17-ac43-9a98-6cfe-c8e4e938d38e",
+      "name" : "background_linear_gradient_direction",
+      "label" : "Background: Linear Gradient Direction",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "linear",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "180", "Top to Bottom" ], [ "135", "Top-Left to Bottom-Right" ], [ "90", "Left to Right" ], [ "45", "Bottom-Left to Top-Right" ], [ "0", "Bottom to Top" ], [ "315", "Bottom-Right to Top-Left" ], [ "270", "Right to Left" ], [ "225", "Top-Right to Bottom-Left" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "90"
+    }, {
+      "id" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+      "name" : "background_gradient_start_color",
+      "label" : "Background: Gradient Start Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "d234f0ed-247b-24f9-1952-79e98864d481",
+      "name" : "background_gradient_start_color_opacity",
+      "label" : "Background Gradient: Start Color Opacity",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "3ccb88cd-ce15-528b-e3dd-8498590d4df5",
+      "name" : "background_gradient_custom_start_color",
+      "label" : "Background: Gradient Custom Start Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#084975",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "83ced365-4e17-b79b-9fcb-7614f35398e2",
+      "name" : "background_gradient_start_color_position",
+      "label" : "Background Gradient: Start Color Position",
+      "help_text" : "This number determines where the start color will be positioned in the gradient. This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 0 will use your gradient start color settings, whereas anything between this number and the end color will be the transition area between the two colors.  This number must be less than the value of your gradient end color, otherwise it may cause issues with the direction of your gradient. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+      "name" : "background_gradient_end_color",
+      "label" : "Background: Gradient End Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "6ca80323-4a65-5113-0e30-d5ec6bc76c2a",
+      "name" : "background_gradient_end_color_opacity",
+      "label" : "Background Gradient: End Color Opacity",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "e0ad6c5f-f395-4b3d-ba23-b4071d680930",
+      "name" : "background_gradient_custom_end_color",
+      "label" : "Background: Gradient Custom End Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "42fd95d0-1b0d-8086-b6e9-3c7a7ce6ecb0",
+      "name" : "background_gradient_end_color_position",
+      "label" : "Background Gradient: End Color Position",
+      "help_text" : "This number determines where the end color will be positioned in the gradient. This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 100 will use your gradient end color settings, whereas anything between this number and the start color will be the transition area between the two colors.  This number must be greater than the value of your gradient start color, otherwise it may cause issues with the direction of your gradient. (Default: 100)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_gradient_type" : "linear",
+      "background_linear_gradient_direction" : "90",
+      "background_gradient_start_color" : "white",
+      "background_gradient_start_color_opacity" : 100,
+      "background_gradient_custom_start_color" : {
+        "color" : "#084975",
+        "opacity" : 100
+      },
+      "background_gradient_start_color_position" : 0,
+      "background_gradient_end_color" : "white",
+      "background_gradient_end_color_opacity" : 100,
+      "background_gradient_custom_end_color" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      },
+      "background_gradient_end_color_position" : 100
+    }
+  }, {
+    "id" : "01110ebb-d579-d812-ff29-0966ea7c18d2",
+    "name" : "background_image",
+    "label" : "Background: Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "33403847-1e61-ec0a-510a-60f40e191b3c",
+      "name" : "background_image",
+      "label" : "Background: Image",
+      "required" : true,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      }
+    }, {
+      "id" : "5b90124c-5f9a-bb90-d2a0-b9b4a932ddf2",
+      "name" : "background_image_size",
+      "label" : "Background: Image Size",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "background-size--cover", "Scale to Fill" ], [ "background-size--contain", "Scale to Fit" ], [ "background-size--contain--y", "Scale to Fit Height" ], [ "background-size--contain--x", "Scale to Fit Width" ], [ "background-size--stretch", "Stretch to Fill" ], [ "background-size--auto", "Native Size (use image's native height and width)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "background-size--cover"
+    }, {
+      "id" : "3d70cb26-5d51-3e97-deaf-d9037bd23f34",
+      "name" : "background_image_repeat",
+      "label" : "Background: Image Repeat",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "background-repeat", "Repeat" ], [ "background-repeat--y", "Repeat Vertical" ], [ "background-repeat--x", "Repeat Horizontal" ], [ "background-repeat--none", "No Repeat" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "background-repeat--none"
+    }, {
+      "id" : "0940bcef-9bc6-e689-319c-399244d45c71",
+      "name" : "background_image_horizontal_alignment",
+      "label" : "Background: Image Horizontal Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "0%", "Left" ], [ "25%", "Left-Center" ], [ "50%", "Center" ], [ "75%", "Right-Center" ], [ "100%", "Right" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "50%"
+    }, {
+      "id" : "22dc7bb4-74d7-ff27-fad6-430b0820e61d",
+      "name" : "background_image_vertical_alignment",
+      "label" : "Background: Image Vertical Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "0%", "Top" ], [ "25%", "Top-Center" ], [ "50%", "Center" ], [ "75%", "Bottom-Center" ], [ "100%", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "50%"
+    }, {
+      "id" : "8f363a0e-3f3a-6659-b6bd-5103add6620e",
+      "name" : "background_image_parallax_fixed_when_scrolling",
+      "label" : "Background: Image Parallax / Fixed When Scrolling",
+      "help_text" : "Enable this to make your image fixed so it does not scroll with the rest of the page. The image will remain still regardless of where the user is scrolled. This is similar to a parallax effect but unlike a parallax the image will not move at all. This feature is useful when you need to use the same background image in consecutive sections since it will cause the images to line up with each other when they otherwise wouldn’t. When using this effect, pick your image carefully or use an overlay when needed since since the positioning of the image in relation to your content will be highly dependent on screen size and scroll distance.",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      },
+      "background_image_size" : "background-size--cover",
+      "background_image_repeat" : "background-repeat--none",
+      "background_image_horizontal_alignment" : "50%",
+      "background_image_vertical_alignment" : "50%",
+      "background_image_parallax_fixed_when_scrolling" : false
+    }
+  }, {
+    "id" : "7f1e64f9-0ab1-5f1d-4def-7b316d5dc7e4",
+    "name" : "background_video",
+    "label" : "Background: Video",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "video",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "7dc31c6e-af9a-c7db-7184-e06bd7d105f7",
+      "name" : "background_url_of_video_file_mp4",
+      "label" : "Background: URL of Video File (MP4)",
+      "required" : true,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      }
+    }, {
+      "id" : "231d7d69-8c72-3d50-dc8f-bc20088e0d9c",
+      "name" : "background_fallback_background_image",
+      "label" : "Background: Fallback Background Image",
+      "help_text" : "This image will show while the video is still loading or on devices which cannot display the video. For best appearance, this image should be identical to the first frame of your video so it seamlessly transitions once the video begins playing. Set the height and width attributes of this input to the height and width of your video file.",
+      "required" : true,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_url_of_video_file_mp4" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      },
+      "background_fallback_background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      }
+    }
+  }, {
+    "id" : "e2fcaf25-c813-922f-82b8-6d345953c77d",
+    "name" : "background_offset",
+    "label" : "Background: Offset",
+    "help_text" : "These inputs determine how much of the height and width of the section this background should cover. This is useful for when you only want a background layer to cover a certain percentage of the section. If your layer should cover the entire height and width of the section, the value of each of these inputs should be 0.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "27b6bc9c-f3ab-4df3-4adf-a63e55034515",
+      "name" : "background_left_offset_percentage",
+      "label" : "Background: Left Offset Percentage",
+      "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the left edge and 100 being the right edge. Use this input to control the offset from the left edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Right Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "e5083a38-5e2a-ee83-7f40-d8054e8c072d",
+      "name" : "background_right_offset_percentage",
+      "label" : "Background: Right Offset Percentage",
+      "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the right edge and 100 being the left edge. Use this input to control the offset from the right edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Left Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "c9c38c1c-b844-3923-e204-6792d23d4174",
+      "name" : "background_top_offset_percentage",
+      "label" : "Background: Top Offset Percentage",
+      "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the top edge and 100 being the bottom edge. Use this input to control the offset from the top edge of the section or set it to 0 if the background should go all the way to the top edge. This number must be less than 100 minus the value of your Bottom Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "fe177880-4a33-33b7-5ecc-1c9aa4de61d5",
+      "name" : "background_bottom_offset_percentage",
+      "label" : "Background: Bottom Offset Percentage",
+      "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the bottom edge and 100 being the top edge. Use this input to control the offset from the bottom edge of the section or set it to 0 if the background should go all the way to the bottom edge. This number must be less than 100 minus the value of your Top Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_left_offset_percentage" : 0,
+      "background_right_offset_percentage" : 0,
+      "background_top_offset_percentage" : 0,
+      "background_bottom_offset_percentage" : 0
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "background_type" : "color",
+    "device_visibility" : "default",
+    "background_accent" : {
+      "background_accent_pattern" : "none"
+    },
+    "background_opacity" : 100,
+    "background_color" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    },
+    "background_gradient" : {
+      "background_gradient_start_color_position" : 0,
+      "background_linear_gradient_direction" : "90",
+      "background_gradient_end_color_position" : 100,
+      "background_gradient_custom_start_color" : {
+        "color" : "#084975",
+        "opacity" : 100
+      },
+      "background_gradient_end_color_opacity" : 100,
+      "background_gradient_type" : "linear",
+      "background_gradient_end_color" : "white",
+      "background_gradient_start_color" : "white",
+      "background_gradient_custom_end_color" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      },
+      "background_gradient_start_color_opacity" : 100
+    },
+    "background_image" : {
+      "background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      },
+      "background_image_vertical_alignment" : "50%",
+      "background_fixed_background_image" : false,
+      "background_image_horizontal_alignment" : "50%",
+      "background_image_size" : "background-size--cover",
+      "background_image_repeat" : "background-repeat--none"
+    },
+    "background_video" : {
+      "background_fixed_background_image" : false,
+      "background_fallback_background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      },
+      "background_url_of_video_file_mp4" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      }
+    },
+    "background_offset" : {
+      "background_left_offset_percentage" : 0,
+      "background_bottom_offset_percentage" : 0,
+      "background_top_offset_percentage" : 0,
+      "background_right_offset_percentage" : 0
+    }
+  } ]
+}, {
+  "id" : "48fddca9-92d6-b462-36ab-62abf31447f0",
+  "name" : "heading_subheading",
+  "label" : "Heading",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<h2><span data-metadata=\"<!--(figmeta)eyJmaWxlS2V5IjoibmJtejNwcG1hYTZ6TWR1b3daQ01qdiIsInBhc3RlSUQiOjEzNTIxNDg3MTEsImRhdGFUeXBlIjoic2NlbmUifQo=(/figmeta)-->\"></span><span data-buffer=\"<!--(figma)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(/figma)-->\"></span><span>Recent insights from our Learning Center</span></h2>"
+}, {
+  "id" : "fd17f044-4a20-8961-5330-80d846969f63",
+  "name" : "slider_items",
+  "label" : "Slider Items",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "a9f4f373-8dc6-1b8f-6abb-c53e56a58164",
+    "default" : 8
+  },
+  "children" : [ {
+    "id" : "7ffe32a2-b3d1-c28f-af69-9b27e6ea6dc3",
+    "name" : "slider_image",
+    "label" : "Slider: Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    }
+  }, {
+    "picker" : "file",
+    "id" : "76ed307a-8005-9eb8-a5d8-e49c987ea7c6",
+    "name" : "slider_video_preview",
+    "label" : "Slider: Video Preview on Hover",
+    "required" : false,
+    "locked" : false,
+    "type" : "file",
+    "display_width" : null,
+    "default" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4"
+  }, {
+    "id" : "22797e31-259b-19bb-72a0-799055518f5c",
+    "name" : "video_horizontal_offset",
+    "label" : "Video: Horizontal Offset",
+    "help_text" : "Positions the video within the card. Increasing the number moves the video right, while decreasing it moves it left.",
+    "inline_help_text" : "",
+    "required" : false,
+    "locked" : false,
+    "display" : "slider",
+    "min" : -100,
+    "max" : 100,
+    "step" : 1,
+    "suffix" : "%",
+    "type" : "number",
+    "display_width" : null,
+    "default" : -33
+  }, {
+    "id" : "269da57b-e75a-ad36-03a8-2fe949ae1a73",
+    "name" : "slider_vidyard_uuid",
+    "label" : "Slider: Vidyard UUID for Video Popup",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "jH7JGgTo1y9NLtyuZvtBK4"
+  }, {
+    "id" : "a9f4f373-8dc6-1b8f-6abb-c53e56a58164",
+    "name" : "slider_text",
+    "label" : "Slider: Text",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>"
+  }, {
+    "id" : "c0645700-1e71-0f8d-bc7f-fef9129d32e3",
+    "name" : "slider_video_button_text",
+    "label" : "Slider: Video Button Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Watch the full story"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  }, {
+    "slider_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/example_testimonial_card.jpg",
+      "alt" : "example_testimonial_card",
+      "loading" : "lazy",
+      "width" : 268,
+      "height" : 476,
+      "max_width" : 268,
+      "max_height" : 476
+    },
+    "slider_video_preview" : "https://www.impactplus.com/hubfs/AES-hover-thumbnail.mp4",
+    "slider_vidyard_uuid" : "jH7JGgTo1y9NLtyuZvtBK4",
+    "slider_text" : "<p><span>AES generated <strong>$1M in revenue</strong> from their website.</span></p>",
+    "slider_video_button_text" : "Watch the full story",
+    "number_field" : -33
+  } ]
+}, {
+  "id" : "b041a053-083c-f800-6bc2-de6ac1e86c3c",
+  "name" : "cta",
+  "label" : "[HIDDEN] CTA",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "f14401dc-40b0-8997-4372-409baf90cac9",
+    "name" : "cta_type",
+    "label" : "CTA: Type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ], [ "anchor", "Scroll to Section" ], [ "none", "No CTA" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "none"
+  }, {
+    "id" : "79b2b007-6323-ca3d-6d53-51ed160990fe",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "orange", "Orange" ], [ "blue", "Blue" ], [ "neutral-300", "Light Grey" ], [ "neutral-600", "Medium Grey" ], [ "neutral-700", "Black" ], [ "white", "White" ], [ "gradient", "Gradient" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "orange"
+  }, {
+    "id" : "ead6a2e3-2809-4754-b7c6-1fc34ebad073",
+    "name" : "cta_arrow",
+    "label" : "CTA: Add Arrow After Text?",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|anchor",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "28fcf7e1-d749-b62d-6320-624cfee68ae6",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "help_text" : "Enable this to use a transparent “ghost” style for your button.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "79b2b007-6323-ca3d-6d53-51ed160990fe",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "simple",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "d2945bf3-627b-40ff-e8f8-ebb691148662",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|anchor",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Learn More"
+  }, {
+    "id" : "934434f2-92a8-57f7-6cc0-d071b242beab",
+    "name" : "cta_hyperlink",
+    "label" : "CTA: Hyperlink",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : null,
+      "href" : "https://www.impactbnd.com/",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "21993ea7-3d88-ee5a-c78b-a72879110100",
+    "name" : "cta_open_in_new_tab",
+    "label" : "CTA: Open in new tab?",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "79dae4c4-ebcb-84bb-47a9-b8e342948526",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null,
+    "default" : "2ee9c9ce-988e-460e-bce4-b6272251c65b"
+  }, {
+    "id" : "881318de-e405-1369-466c-57ac2015807d",
+    "name" : "cta_section_anchor_id",
+    "label" : "CTA: Section Anchor ID",
+    "help_text" : "Add the anchor ID of a section on this page to link to it. To link to a section on a different page, use the Custom Link option and add the section ID to the end of the URL preceded by a hashtag.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "f14401dc-40b0-8997-4372-409baf90cac9",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "anchor",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "section-id"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+} ]

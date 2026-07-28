@@ -1,0 +1,225 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %} 
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--fullwidth h2 + .section--fullwidth-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--fullwidth .section--fullwidth-content h2,
+.section--fullwidth .section--fullwidth-content h3,
+.section--fullwidth .section--fullwidth-content h4,
+.section--fullwidth .section--fullwidth-content h5,
+.section--fullwidth .section--fullwidth-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+.section--fullwidth .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+@media (max-width: 768px) {
+  .hs-landing-page .gridspacer--top + .section--fullwidth--video-true{
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .hs-landing-page img.border-radius{
+    border-radius: 0px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .section--card-content-columns-header br{
+    display:none;
+  }
+}
+
+.hs-blog-listing #headerIMPlus .headerIMPlus-navigation-container .headerIMPlus-main {
+  box-shadow: inset 0 -1px 0 #e1e7f4;
+}
+
+.section--cards-column-large .section--card-content-columns-container {
+  display: flex;
+  flex-direction: column;                /* mobile */
+  gap: 20px;
+}
+
+/* image column (left) */
+.section--cards-column-large .section--resource-slider--featured-image-wrapper {
+  flex: 0 0 44.5%;                                  
+}
+
+@media (min-width: 768px) {
+  .section--cards-column-large .section--resource-slider--featured-image-wrapper{
+    min-height: 390px
+  }
+}
+
+/* ratio box keeps aspect */
+.section--cards-column-large .section--resource-slider--featured-image {
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+}
+.section--cards-column-large .section--resource-slider--featured-image > span {
+  display: block;
+  width: 100%;
+  padding-top: 53%;                       /* aspect ratio */
+}
+
+/* content column (right) */
+.section--cards-column-large .section--card-content-columns-wrapper {
+  flex: 1 1 auto;
+  min-width: 0;                           /* prevent overflow in flex layouts */
+}
+
+/* switch to row on larger screens */
+@media (min-width: 768px) {
+  .section--cards-column-large .section--card-content-columns-container {
+    flex-direction: row;                  /* desktop/tablet: side-by-side */
+    align-items: stretch;
+  }
+}
+
+.section--eclc--topics--tertiary .section--eclc--topics--tertiary-flex-wrapper{
+  gap: 20px;
+}
+
+.section--eclc--topics--tertiary .section--cards-column-group {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  margin-top: 0px !important;
+  flex-grow: 1;
+  justify-content: stretch; 
+}
+
+@media (min-width: 1024px) {
+  .section--eclc--topics--tertiary .section--cards-column-group {
+    max-width: 214px;
+  }
+}
+
+.section--eclc--topics--tertiary .section--card-content-columns-top{
+  flex-direction: row;
+  gap: 10px;
+}
+
+.section--card-content-columns-container{
+  width: 100%; 
+  flex-direction: column; 
+  border-radius: 16px; 
+  padding: 20px;
+}
+
+.section--eclc--search {
+  margin: 0 auto;
+  display: inline-block;
+  width: 100%;
+}
+
+.section--eclc--search section{
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px !important;
+}
+
+.section--eclc--search .section--eclc--searchbox{
+  border: 1px solid #E1E7F4 !important;
+  border-radius: 50px !important;
+  padding: 15px 20px 15px 50px !important;
+  text-align: left !important;
+  flex-grow: 1;
+  margin: 20px 0 !important;
+  /* Resetting their Styles */
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: none !important;
+  background-position: initial !important;
+  background-repeat: initial !important;
+  background-size: initial !important;
+  max-width: none !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+}
+
+.section--eclc--searchbox::placeholder {
+  color: #4F5465;
+  opacity: 1;
+}
+.section--eclc--searchbox::-webkit-input-placeholder { color: #4F5465; }
+.section--eclc--searchbox:-ms-input-placeholder { color: #4F5465; }
+.section--eclc--searchbox::-ms-input-placeholder { color: #4F5465; }
+
+.section--eclc--search section::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  background: url('https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/search-icon.svg') no-repeat center;
+  background-size: contain;
+  pointer-events: none; /* so clicks go to the input */
+}
+
+.section--eclc--searchbox::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  height: 16px;
+  width: 16px;
+  background: url('https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Close.svg') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.section--eclc--searchbox:focus::-webkit-search-cancel-button {
+  opacity: 1; /* brighten on focus */
+}
+
+.section--eclc--searchbox:focus,
+.section--eclc--searchbox:focus-visible,
+.ss360-searchBoxWrapper:focus-within{
+  border-color: #E1E7F4 !important;
+  outline: none;
+}
+
+.section--eclc--hero-ctas{
+  gap: 10px;
+}
+
+
+.section--eclc--hero-ctas .section--eclc--subscribe-pop:hover{
+  background: white;
+}
+
+.section--eclc--hero-ctas .btn{ 
+  padding: 12px 20px;
+  border-width: 2px !important;
+}

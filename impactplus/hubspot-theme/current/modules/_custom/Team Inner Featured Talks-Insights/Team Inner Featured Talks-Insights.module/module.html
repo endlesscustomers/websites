@@ -1,0 +1,378 @@
+{{ require_css( get_asset_url("../Team Inner Featured Talks-Insights.css"), { async: true} ) }}
+
+{#####################################################
+  MARK: Map Module Controls -> Variables
+#####################################################}
+{% set section_controls         = module.section_controls %}
+{% set layout_controls          = module.layout_controls %}
+{% set content_classes_desktop  = layout_controls.column_widths %}
+{% set content_classes_tablet   = layout_controls.column_widths_tablet %}
+{% set featured_items_style     = layout_controls.featured_items_style %}
+{% set text_color_override      = snippets.textColorOverride(section_controls.text_color_override)|trim %}
+{% set header_alignment_classes = 'all--text--' ~ layout_controls.header_content_alignment ~ ' palm-all--text--' ~ layout_controls.header_content_alignment_mobile %}
+
+{#####################################################
+  MARK: Macros
+#####################################################}
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ section_controls.anchor_id|trim ~ '"' if section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro render_section_header(module, layout_controls, text_color_override, header_alignment_classes) -%}
+  {% if module.header or module.content or module.preheader %}
+
+    {% set header_grid_attributes = {
+      'class': 'grid relative hard--ends {{ text_color_override }} ' ~ header_alignment_classes,
+    } %}
+
+    <div {{ header_grid_attributes|xmlattr }}>
+
+      {% set header_grid_classes = [
+        'grid__item',
+        layout_controls.header_width,
+        'tablet-ten-twelfths',
+        'palm-one-whole',
+        'hard--ends',
+        'first--hard--top',
+        'last--hard--bottom',
+        'all--text--' ~ layout_controls.header_content_alignment,
+        'palm-all--text--' ~ layout_controls.header_content_alignment_mobile
+      ]|reject('equalto','')|reject('equalto',null) %}
+
+      <div class="{{ header_grid_classes|join(' ')|trim }}">
+        {% if module.preheader %}
+          <span class="h6 preheader">
+            {{ module.preheader }}
+          </span>
+        {% endif %}
+        {% if module.header %}
+          <h2>
+            {{ module.header }}
+          </h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_media_classes(content_width) -%}
+  {% set class_map = {
+    'four-twelfths':  'eight-twelfths',
+    'five-twelfths':  'seven-twelfths',
+    'six-twelfths':   'six-twelfths',
+    'seven-twelfths': 'five-twelfths',
+    'eight-twelfths': 'four-twelfths',
+    'nine-twelfths':  'three-twelfths'
+  } %}
+  {{ class_map[content_width]|trim }}
+{%- endmacro %}
+
+{% macro render_animation_classes(index) -%}
+  {% set animation_classes = [] %}
+  {% if layout_controls.enable_animation %}
+    {% do animation_classes.append('animate--fade animate--fade-right animate--fade-delay--' ~ index) %}
+  {% endif %}
+  {{ animation_classes|join(' ') }}
+{%- endmacro %}
+
+{% macro render_hubspot_image_size_attrs(image) -%}
+  {# HubL must run outside quoted strings — build style once, reference in attrs dict #}
+  {%- set image_cover_styles = [
+    'width:100%;',
+    'height:100%;',
+    'object-fit:cover;',
+    'object-position:center;',
+    'aspect-ratio:16/9;'
+  ]|join -%}
+  {%- set attrs = {} -%}
+  {%- if image.size_type == 'auto' -%}
+    {%- do attrs.update({
+      'width':  image.width,
+      'height': image.height,
+      'style':  image_cover_styles
+    }) -%}
+  {%- elif image.size_type == 'auto_custom_max' -%}
+    {%- do attrs.update({
+      'width':  image.max_width,
+      'height': image.max_height,
+      'style':  image_cover_styles
+    }) -%}
+  {%- else -%}
+    {%- do attrs.update({
+      'width':  image.width,
+      'height': image.height,
+      'style':  image_cover_styles
+    }) -%}
+  {%- endif -%}
+  {{- attrs|xmlattr -}}
+{%- endmacro %}
+
+{% macro render_featured_item_video_lightbox_attrs(video, index) -%}
+  {%- set attrs = {
+    'title': video.video_title_attribute if video.video_title_attribute else 'Watch the Video'
+  } -%}
+  {%- if video.video_type == 'modal' -%}
+    {%- do attrs.update({
+      'data-fancybox': '',
+      'href': video.video_url_of_iframe_embeddable_video_file.href
+    }) -%}
+    {%- if '.mp4' not in video.video_url_of_iframe_embeddable_video_file.href -%}
+      {%- do attrs.update({
+        'data-type': 'iframe',
+        'data-width': '936',
+        'data-height': '636'
+      }) -%}
+    {%- endif -%}
+  {%- elif video.video_type == 'hubspot' -%}
+    {%- do attrs.update({
+      'data-src': '#' ~ name ~ '--embed--' ~ index,
+      'data-fancybox': ''
+    }) -%}
+  {%- elif video.video_type == 'vidyard' -%}
+    {%- do attrs.update({
+      'href': 'javascript:;',
+      'onclick': "launchLightbox_" ~ index ~ "_" ~ (name|replace('-','_')) ~ "('" ~ (video.vidyard_video_uuid|trim) ~ "');"
+    }) -%}
+  {%- endif -%}
+  {{- attrs|xmlattr -}}
+{%- endmacro %}
+
+{% macro render_featured_item_video_label(video, text_color_override, tag, extra_classes) -%}
+  {%- if video.video_label_text -%}
+    {%- if tag == 'span' -%}
+      <span class="block short--top all--text--center block--video--label {{ text_color_override }} {{ extra_classes|trim }}">
+        <p class="hard--ends">{{ video.video_label_text }}</p>
+      </span>
+    {%- else -%}
+      <div class="block short--top all--text--center block--video--label {{ text_color_override }} {{ extra_classes|trim }}">
+        <p class="hard--ends">{{ video.video_label_text }}</p>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro render_featured_item_main_content(item, item_index) -%}
+  <div class="item--header first--hard--top last--hard--bottom text--left palm-text--{{ layout_controls.content_alignment_mobile }} {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}">
+    {% if item.preheader %}
+      <span class="h6 preheader">
+        {{ item.preheader }}
+      </span>
+    {% endif %}
+    {% if item.header %}
+      {% if module.header %}
+        <h3>{{ item.header }}</h3>
+      {% else %}
+        <h2>{{ item.header }}</h2>
+      {% endif %}
+    {% endif %}
+    {{ item.content }}
+  </div>
+  {% if item.cta %}
+    <div class="short--top text--left palm-text--{{ layout_controls.content_alignment_mobile }}">
+      {{ snippets.multiButton(item.cta,[],name,item_index) }}
+    </div>
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_featured_item_media_content(item, index) -%}
+  {% if 'image' == item.media_type %}
+    {% if item.image.image.src %}
+      <div class="height--max {{ 'border-radius--8' if layout_controls.add_media_border_radius }} overflow--hidden">
+        <img
+          class=""
+          src="{{ item.image.image.src|escape_url }}"
+          alt="{{ item.image.image.alt|escape_attr }}"
+          {% if section_controls.lazy_load_images %}loading="lazy"{% endif %}
+          {{ render_hubspot_image_size_attrs(item.image.image) }}
+        />
+      </div>
+    {% endif %}
+  {% elif 'video' == item.media_type %}
+    {% if item.video.video_type == 'embed' %}
+      <div class="block height--max all--aspectratio {{ 'border-radius--8' if layout_controls.add_media_border_radius }} overflow--hidden">
+        {{ snippets.videoOptimization(item.video.video_embed_code) }}
+        {% if ('vidyard' in item.video.video_embed_code) %}
+          {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+        {% endif %}
+      </div>
+    {% elif item.video.video_type in ['modal', 'vidyard', 'hubspot'] %}
+      {% if
+        ('none' != item.video.video_thumbnail_type)||
+        ('none' != item.video.video_thumbnail_type_mobile)
+      %}
+        <div class="block height--max {{ 'border-radius--8' if layout_controls.add_media_border_radius }} overflow--hidden {{ 'lap-and-up-visuallyhidden tablet-visuallyhidden' if item.video.video_thumbnail_type == 'none' }} {{ 'palm-visuallyhidden' if item.video.video_thumbnail_type_mobile == 'none' }}" style="{% if (item.video.video_thumbnail_image.size_type == 'auto_custom_max') %}width:{{ item.video.video_thumbnail_image.max_width }}px;max-width:100%;{% elif (item.video.video_thumbnail_image.size_type == 'exact') %}width:{{ item.video.video_thumbnail_image.width }}px;max-width:100%;{% endif %}margin:0 auto;">
+          <a class="block height--max {{ 'block--video' if not item.video.hide_video_play_icon }}" {{ render_featured_item_video_lightbox_attrs(item.video, index) }}>
+            <img
+              {% if section_controls.lazy_load_images %}
+              loading="lazy"
+              {% endif %}
+              class = "block"
+              src   = "{{ item.video.video_thumbnail_image.src }}"
+              alt   = "{{ item.video.video_thumbnail_image.alt }}"
+              {{ render_hubspot_image_size_attrs(item.video.video_thumbnail_image) }}
+            />
+          </a>
+        </div>
+      {% endif %}
+      {% if
+        ('none' == item.video.video_thumbnail_type)||
+        ('none' == item.video.video_thumbnail_type_mobile)
+      %}
+        <div class="block {{ 'lap-and-up-visuallyhidden tablet-visuallyhidden' if item.video.video_thumbnail_type != 'none' }} {{ 'palm-visuallyhidden' if item.video.video_thumbnail_type_mobile != 'none' }}">
+          <a class="inline-block no--underline" style="width:320px;max-width:100%;" {{ render_featured_item_video_lightbox_attrs(item.video, index) }}>
+            {% if not item.video.hide_video_play_icon %}
+              <span class="block--video--icon {{ text_color_override }}"></span>
+            {% endif %}
+            {{ render_featured_item_video_label(item.video, text_color_override, 'span', '') }}
+          </a>
+        </div>
+      {% endif %}
+      {% if item.video.video_type == 'hubspot' %}
+        {% if item.video.video_hubspot_video.player_id %}
+          <div id="{{ name }}--embed--{{ index }}" class="video--popover all--aspectratio" style="display:none;">
+            {% set max_width  = item.video.video_hubspot_video.size_type == 'auto_custom_max' ? item.video.video_hubspot_video.max_width : item.video.video_hubspot_video.width %}
+            {% set max_height = item.video.video_hubspot_video.size_type == 'auto_custom_max' ? item.video.video_hubspot_video.max_height : item.video.video_hubspot_video.height %}
+            {% set playColor  = item.video.video_hubspot_play_button_color.color %}
+            {% video_player "embed_player"
+              placeholder_alt_text = {{ item.video.video_image_alt_tag }}
+              play_button_color    = {{ playColor }}
+              player_id            = {{ item.video.video_hubspot_video.player_id }}
+              type                 = {{ item.video.video_hubspot_video.player_type || 'scriptV4' }}
+              full_width           = {{ item.video.video_hubspot_video.size_type == 'auto_full_width' }},
+              conversion_asset     = {{ item.video.video_hubspot_video.conversion_asset|tojson|safe }}
+            %}
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+
+    {% set video_label_below_visibility = '' %}
+    {% if
+      (item.video.video_type in ['modal', 'vidyard', 'hubspot']) and
+      ('none' == item.video.video_thumbnail_type)
+    %}
+      {% set video_label_below_visibility = video_label_below_visibility ~ ' lap-and-up-visuallyhidden tablet-visuallyhidden' %}
+    {% endif %}
+
+    {% if
+      (item.video.video_type in ['modal', 'vidyard', 'hubspot']) and
+      (item.video.video_thumbnail_type_mobile == 'none')
+    %}
+      {% set video_label_below_visibility = video_label_below_visibility ~ ' palm-visuallyhidden' %}
+    {% endif %}
+
+    {{ render_featured_item_video_label(item.video, text_color_override, 'div', video_label_below_visibility) }}
+  {% endif %}
+{%- endmacro %}
+
+{#####################################################
+  MARK: Variable Assembly
+#####################################################}
+{% set media_classes_desktop = render_media_classes(content_classes_desktop)|trim %}
+{% set media_classes_tablet  = render_media_classes(content_classes_tablet)|trim %}
+
+
+{#####################################################
+  Trying to remove cognitive load by using a wrapping
+  macro that removes all the default section clutter
+#####################################################}
+{% call render_section_shell('teaminnerfeaturedtalksinsights', module) %}
+  {{ render_section_header(module, layout_controls, text_color_override) }}
+
+  <div class="grid hard--ends relative z-index--2 {{ 'separator--' ~ featured_items_style }}">
+    {% for item in module.featured_items %}
+      <div class="featured--item grid__item one-whole flexgrid valign--stretch {{ 'palm-column--reverse' if 'bottom' == layout_controls.content_position_mobile }} {{ 'row--reverse' if 'right' == layout_controls.content_position }} {{ render_animation_classes(loop.index)|trim }}">
+        <div class="grid__item flexgrid direction--column align--center {{ content_classes_desktop }} {{ content_classes_tablet }} palm-one-whole hard--ends" style="flex:1;">
+          {{ render_featured_item_main_content(item, loop.index) }}
+        </div>
+        <div class="grid__item {{ media_classes_desktop }} {{ media_classes_tablet }} palm-one-whole tablet-hard--{{ 'right' == layout_controls.content_position ? 'left' : 'right' }} lap-and-up-hard--{{ 'right' == layout_controls.content_position ? 'left' : 'right' }} {{ 'short--bottom hard--top' if 'bottom' == layout_controls.content_position_mobile else 'short--top hard--bottom' }} tablet-hard--ends lap-and-up-hard--ends palm-hard--sides all--text--center">
+          {{ render_featured_item_media_content(item, loop.index) }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endcall %}
+
+{% set vidyard_active = { "value": "false" } %}
+{% for item in module.featured_items %}
+  {% if ('video' == item.media_type) and ('vidyard' == item.video.video_type) %}
+    {% do vidyard_active.update({ "value": "true" }) %}
+  {% endif %}
+  {% for cta in item.cta %}
+    {% if ('video' == cta.cta_type) and cta.video_uuid %}
+      {% do vidyard_active.update({ "value": "true" }) %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% if "true" == vidyard_active.value %}
+  {% require_js %}
+    {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+  {% end_require_js %}
+{% endif %}
+
+{% for item in module.featured_items %}
+  {% set item_index = loop.index %}
+  {% if ('video' == item.media_type) and ('vidyard' == item.video.video_type) %}
+    <div class="visuallyhidden">
+      <img
+        class="vidyard-player-embed"
+        alt="{{ item.video.video_image_alt_tag }}"
+        data-uuid="{{ item.video.vidyard_video_uuid|trim }}"
+        data-type="lightbox"
+        data-v="4"
+      />
+    </div>
+    {% require_js %}
+      <script>
+        function launchLightbox_{{ item_index }}_{{ name|replace('-','_') }}(uuid) {
+          var players = VidyardV4.api.getPlayersByUUID(uuid);
+          var player = players[0];
+          player.showLightbox();
+        }
+      </script>
+    {% end_require_js %}
+  {% endif %}
+
+  {% for cta in item.cta %}
+    {% if ('video' == cta.cta_type) and cta.video_uuid %}
+      <div class="visuallyhidden">
+        <img
+          class="vidyard-player-embed"
+          alt="{{ cta.video_image_alt_tag }}"
+          data-uuid="{{ cta.video_uuid|trim }}"
+          data-type="lightbox"
+          data-v="4"
+        />
+      </div>
+      {% require_js %}
+        <script>
+          function launchLightbox_{{ item_index }}_{{ name|replace('-','_') }}(uuid) {
+            var players = VidyardV4.api.getPlayersByUUID(uuid);
+            var player = players[0];
+            player.showLightbox();
+          }
+        </script>
+      {% end_require_js %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}

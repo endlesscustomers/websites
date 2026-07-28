@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 211344770727,
+  "label" : "[IM-UI] Podcast Listing Page Episode Filter Feed",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : true
+}

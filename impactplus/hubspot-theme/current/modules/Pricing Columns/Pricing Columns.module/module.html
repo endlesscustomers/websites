@@ -1,0 +1,388 @@
+{{ require_css( get_asset_url("../Pricing Columns.css"), { async: true} ) }}
+
+{#####################################################
+// MARK: Map Module Controls -> Variables
+#####################################################}
+{% set section_controls          = module.section_controls %}
+{% set layout_controls           = module.layout_controls %}
+{% set border_width              = layout_controls.columns_border_width %}
+{% set columns_background        = layout_controls.columns_background_color %}
+{% set header_container_width    = layout_controls.header_container_width %}
+{% set columns_container_width   = layout_controls.columns_container_width %}
+{% set columns_content_alignment = layout_controls.columns_content_alignment|default('center') %}
+{% set columns_equalize          = layout_controls.columns_equalize|default(true) %}
+
+{% set column_widths_key = {
+  "one-whole":  1,
+  "one-half":   2,
+  "one-third":  3,
+  "one-fourth": 4,
+  "one-fifth":  5,
+  "one-sixth":  6
+} %}
+
+{% set column_widths = {
+  "desk":   column_widths_key[layout_controls.number_of_columns_desktop],
+  "lap":    column_widths_key[layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet": column_widths_key[layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":   column_widths_key[layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{#####################################################
+// MARK: Macros
+#####################################################}
+{% macro render_section_shell(section_slug, additional_section_classes, module) -%}
+  <div {{ 'id="' ~ section_controls.anchor_id|trim ~ '"' if section_controls.anchor_id }} class="section section--{{ section_slug }} {{ name }} {{ additional_section_classes|trim }} relative overflow--hidden {{ snippets.deviceVisibility(section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3  section--{{ section_slug }}--outer">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro render_additional_section_classes(module) -%}
+  {% set section_classes = [] %}
+  {% if (module.table.enable_category_accordion) %}
+    {% do section_classes.append('section--comparisontable--accordions') %}
+  {% endif %}
+  {{ section_classes|join(' ')|trim }}
+{%- endmacro %}
+
+{% macro scoped_rich_text_color_styles(module_slug, section_controls, layout_controls) -%}
+  {% set rich_text_color_opacity                   = section_controls.text_color_override.rich_text_color_opacity|default(100) %}
+  {% set text_color_overridden_on_all_screen_sizes = section_controls.text_color_override.override_on_all_screen_sizes|default(false) %}
+  {% set text_color_overridden_on_desktop          = section_controls.text_color_override.override_on_desktop|default(false) %}
+  {% set text_color_overridden_on_laptop           = section_controls.text_color_override.override_on_laptop|default(false) %}
+  {% set text_color_overridden_on_tablet           = section_controls.text_color_override.override_on_tablet|default(false) %}
+  {% set text_color_overridden_on_mobile           = section_controls.text_color_override.override_on_mobile|default(false) %}
+  {% set columns_text_color_override               = 'all--color--white' in [layout_controls.columns_text_color_override, layout_controls.columns_price_text_color_override] %}
+
+  {% set rte_selectors = [
+    '.section--' ~ module_slug ~ ' .header--content *:not(strong, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .text--gradient)',
+    '.section--' ~ module_slug ~ ' .section--' ~ module_slug ~ '--column--body *:not(strong, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, a, .text--gradient, .item--price)'
+  ] %}
+  {% require_css %}
+    <style>
+      {% scope_css %}
+        {% if text_color_overridden_on_all_screen_sizes or columns_text_color_override %}
+          {% if text_color_overridden_on_all_screen_sizes %}
+            {{ rte_selectors[0] }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endif %}
+          {% if columns_text_color_override %}
+            {{ rte_selectors[1] }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endif %}
+        {% elif text_color_overridden_on_desktop %}
+          {% call functions.mediaQuery('desk') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_laptop %}
+          {% call functions.mediaQuery('lap') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_tablet %}
+          {% call functions.mediaQuery('tablet') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_mobile %}
+          {% call functions.mediaQuery('palm') %}
+            {{ rte_selectors|join(', ') }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% endif %}
+      {% end_scope_css %}
+    </style>
+  {% end_require_css %}
+{%- endmacro %}
+
+{% macro render_content_widths(control_value) -%}
+  {% set content_widths = [
+    'palm-one-whole',
+    'tablet-ten-twelfths'
+  ] %}
+  {% if 'narrow' == control_value %}
+    {% do content_widths.append('eight-twelfths') %}
+  {% elif 'default' == control_value %}
+    {% do content_widths.append('one-whole') %}
+  {% else %}
+    {% do content_widths.append(control_value) %}
+  {% endif %}
+  {{ content_widths|reverse|join(' ') }}
+{%- endmacro %}
+
+{% macro pricing_columns_rgba(choice, custom_obj) -%}
+  {% if choice == 'custom' and custom_obj.color %}
+    {{- 'rgba(' ~ custom_obj.color|convert_rgb ~ ', ' ~ (custom_obj.opacity|int/100) ~ ')' -}}
+  {% else %}
+    {{- 'rgba(' ~ functions.color(choice)|convert_rgb ~ ', 1)' -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro pricing_columns_raw_color(choice, custom_obj) -%}
+  {% if choice == 'custom' and custom_obj.color %}
+    {{- custom_obj.color -}}
+  {% else %}
+    {{- functions.color(choice) -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro pricing_columns_border_radius_class(layout_controls) -%}
+  {% if layout_controls.columns_add_border_radius_around_columns %}
+    {% if layout_controls.columns_border_radius.columns_border_radius_type == 'custom' %}
+      {{- 'border-radius--' ~ layout_controls.columns_border_radius.columns_border_radius -}}
+    {% else %}
+      {{- 'border-radius' -}}
+    {% endif %}
+  {% endif %}
+{%- endmacro %}
+
+{% macro equalize_classes(column_widths, suffix, equalize) -%}
+  {% if equalize %}
+    {% set equalize_class_list = [] %}
+    {% for key, value in column_widths.items() %}
+      {% if value != 1 %}
+        {% if suffix %}
+          {% do equalize_class_list.append(key ~ '-equalize--' ~ suffix) %}
+        {% else %}
+          {% do equalize_class_list.append(key ~ '-equalize') %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {{- equalize_class_list|join(' ')|trim -}}
+  {% endif %}
+{%- endmacro %}
+
+{% set background_color_rgba = pricing_columns_rgba(
+  columns_background.columns_background_color,
+  columns_background.columns_custom_background_color
+) %}
+
+{% if layout_controls.columns_highlight_price_in_a_different_color %}
+  {% set price_background = layout_controls.columns_price_background_color %}
+  {% set price_background_color_rgba = pricing_columns_rgba(
+    price_background.columns_price_background_color,
+    price_background.columns_price_custom_background_color
+  ) %}
+{% else %}
+  {% set price_background_color_rgba = background_color_rgba %}
+{% endif %}
+
+{% set columns_border = layout_controls.columns_border_color %}
+{% set border_color_rgba = pricing_columns_rgba(
+  columns_border.columns_border_color,
+  columns_border.columns_custom_border_color
+) %}
+
+{% set border_radius_class = pricing_columns_border_radius_class(layout_controls) %}
+
+{#####################################################
+// Trying to remove cognitive load by using a wrapping
+// macro that removes all the default section clutter
+#####################################################}
+{% call render_section_shell('pricingcolumns', render_additional_section_classes(module), module) %}
+  {% if module.header or module.content or module.preheader %}
+    <div class="grid relative hard--ends {{ 'hard--sides' if header_container_width == 'hard--sides' }} text--{{ layout_controls.container_alignment }} {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}" data-columns--desk="{{ column_widths['desk'] }}" data-columns--lap="{{ column_widths['lap'] }}" data-columns--tablet="{{ column_widths['tablet'] }}" data-columns--palm="{{ column_widths['palm'] }}">
+      <div class="section--pricingcolumns--headings grid__item {{ render_content_widths(header_container_width)|trim }} hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ layout_controls.header_content_alignment }} palm-all--text--{{ layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+          <span class="h6 preheader">
+            {{ module.preheader }}
+          </span>
+        {% endif %}
+        {% if module.header %}
+          <h2>
+            {{ module.header }}
+          </h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="grid relative hard--ends {{ 'hard--sides' if columns_container_width == 'hard--sides' }} overflow--visible">
+    <div class="grid__item {{ render_content_widths(columns_container_width)|trim }} hard--ends text--center overflow--visible">
+      <div class="section--pricingcolumns--column--wrapper">
+        {% for item in module.columns_content %}
+          <div class="section--pricingcolumns--column relative grid__item {{ layout_controls.number_of_columns_desktop }} {{ layout_controls.number_of_columns_laptop }} {{ layout_controls.number_of_columns_tablet }} {{ layout_controls.number_of_columns_mobile }} hard valign--top">
+            <div class="section--pricingcolumns--column--inner {{ 'column--highlighted' if item.highlight_this_column }}">
+              <div class="section--pricingcolumns--column--feature--wrapper {{ equalize_classes(column_widths, 4, columns_equalize)|trim if columns_equalize else 'equalize--1' }}">
+                {% if item.highlight_this_column %}
+                  {% set highlight_background = item.highlight_label_background_color %}
+                  {% set highlight_text       = item.highlight_label_text_color %}
+
+                  {% set highlight_background_color = pricing_columns_raw_color(
+                    highlight_background.highlight_label_background_color,
+                    highlight_background.highlight_custom_label_background_color
+                  ) %}
+                  {% set highlight_text_color_rgba = pricing_columns_rgba(
+                    highlight_text.highlight_label_text_color,
+                    highlight_text.highlight_custom_label_text_color
+                  ) %}
+                  <div class="section--pricingcolumns--column--feature" style="background-color:{{ highlight_background_color|trim }};">
+                    <p class="hard--ends bold" style="color:{{ highlight_text_color_rgba|trim }};">
+                      {{ item.highlight_label_text|trim }}
+                    </p>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="section--pricingcolumns--column--body {{ 'equalize' if columns_equalize }} overflow--hidden first--hard--top last--hard--bottom {{ border_radius_class|trim }} border--{{ '2' if item.highlight_this_column else border_width|trim }} {{ 'box-shadow' if layout_controls.columns_box_shadow }}" style="border-color:{{ border_color_rgba|trim }};background-color:{{ background_color_rgba|trim }};">
+                <div class="first--hard--top last--hard--bottom {{ layout_controls.columns_text_color_override }} all--text--{{ columns_content_alignment }} {{ equalize_classes(column_widths, 5, columns_equalize)|trim }}" style="padding:28px 20px {{ 0 if not layout_controls.columns_highlight_price_in_a_different_color else 25 }}px 20px;">
+                  {% if item.header_label or item.description_subheader %}
+                    {% if item.header_label %}
+                      <h3 class="hard--ends">
+                        {{ item.header_label }}
+                      </h3>
+                    {% endif %}
+                    {% if item.description_subheader %}
+                      <p class="hard--ends">
+                        {{ item.description_subheader }}
+                      </p>
+                    {% endif %}
+                  {% endif %}
+                </div>
+                <div class="all--text--{{ columns_content_alignment }} {{ equalize_classes(column_widths, 1, columns_equalize)|trim }} {{ layout_controls.columns_price_text_color_override if layout_controls.columns_highlight_price_in_a_different_color  else layout_controls.columns_text_color_override }}" style="background-color:{{ price_background_color_rgba }};">
+                  {% if item.price or item.price_label %}
+                    <div class="item--price--wrapper block first--hard--top last--hard--bottom" style="padding:25px 20px 25px 20px;">
+                      {% if item.price %}
+                        <p class="hard--ends">
+                          <span class="item--price font--reading font--45 bold hard--ends">
+                            {{ item.price }}
+                          </span>
+                        </p>
+                      {% endif %}
+                      {% if item.price_label %}
+                        <p class="hard--ends">
+                          {{ item.price_label }}
+                        </p>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if item.content %}
+                    <div class="all--text--{{ columns_content_alignment }} first--hard--top last--hard--bottom" style="padding:0 20px;">
+                      {{ item.content }}
+                    </div>
+                  {% endif %}
+                </div>
+                {% set column_has_content = (item.pricing_information_content) and ('richtext' == layout_controls.columns_pricing_information_content_type) or (item.bullets_list_of_features|length > 0) and ('bullets' == layout_controls.columns_pricing_information_content_type) %}
+                <div class="{{ layout_controls.columns_text_color_override }}" style="padding:{{ 25 if column_has_content else 0 }}px 20px 25px 20px;">
+                  <div class="block {{ equalize_classes(column_widths, 2, columns_equalize)|trim }}">
+                    {% if item.bullets_header %}
+                      <p class="hard--top text--{{ columns_content_alignment }} bold" style="margin-bottom: 16px;">
+                        {{ item.bullets_header }}
+                      </p>
+                    {% endif %}
+                    <div class="block first--hard--top last--hard--bottom text--left">
+                      {% if (item.pricing_information_content) and ('richtext' == layout_controls.columns_pricing_information_content_type) %}
+                        {{ item.pricing_information_content }}
+                      {% endif %}
+                      {% if (item.bullets_list_of_features|length > 0) and ('bullets' == layout_controls.columns_pricing_information_content_type) %}
+                        <div class="section--pricingcolumns--bullets">
+                          {% for feature in item.bullets_list_of_features %}
+                            <div class="section--pricingcolumns--bullet {% if feature.bullet_type == "xmark" %}section--pricingcolumns--bullet--type--xmark{% endif %}">
+                              <div class="flexgrid valign--top align--start no--wrap">
+                                {% set bullet_icon_top = 8 %}
+                                {% if feature.bullet_type == 'fontawesome' %}
+                                  {% set bullet_icon_top = feature.bullet_image_vertical_offset %}
+                                {% endif %}
+                                <span class="section--pricingcolumns--bullet--icon relative" style="top:{{ bullet_icon_top }}px;">
+                                  {% if 'xmark' == feature.bullet_type %}
+                                    <svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g transform="translate(-1204.000000, -805.000000)" fill="#D4D8DC">
+                                          <g transform="translate(356.000000, 143.000000)">
+                                            <g transform="translate(846.000000, 660.000000)">
+                                              <path d="M15.2367685,16.15 C14.9926451,16.15 14.7634841,16.0549794 14.5907603,15.8822623 L9.50013125,10.7918343 L4.40923974,15.8822623 C4.23677838,16.0549794 4.00735489,16.15 3.76349399,16.15 C3.51963309,16.15 3.2902096,16.0549794 3.11748574,15.8822623 C2.94528687,15.7095453 2.85,15.4803933 2.85,15.2365421 C2.85,14.9926908 2.94528687,14.7632764 3.11748574,14.5908218 L8.20837725,9.50013124 L3.11748574,4.4091782 C2.94528687,4.23672364 2.85,4.0073092 2.85,3.76345793 C2.85,3.51960666 2.94528687,3.29045472 3.11748574,3.11773767 C3.28994711,2.94528311 3.51963309,2.85 3.76349399,2.85 C4.00735489,2.85 4.23677838,2.94528311 4.40923974,3.11773767 L9.50013125,8.20842823 L14.5907603,3.11773767 C14.7634841,2.94528311 14.9926451,2.85 15.2367685,2.85 C15.4806294,2.85 15.7100529,2.94528311 15.8825143,3.11773767 C16.0549756,3.29045472 16.15,3.51960666 16.15,3.76345793 C16.15,4.0073092 16.0549756,4.23672364 15.8825143,4.4091782 L10.7918853,9.50013124 L15.8825143,14.5908218 C16.0549756,14.7632764 16.15,14.9926908 16.15,15.2365421 C16.15,15.4803933 16.0549756,15.7095453 15.8825143,15.8822623 C15.7100529,16.0552419 15.4808919,16.15 15.2367685,16.15" id="Fill-4" transform="translate(9.500000, 9.500000) rotate(-270.000000) translate(-9.500000, -9.500000) "></path>
+                                            </g>
+                                          </g>
+                                        </g>
+                                      </g>
+                                    </svg>
+                                  {% elif 'fontawesome' == feature.bullet_type %}
+                                    {% if feature.bullet_custom_icon.name is defined %}
+                                      {% icon
+                                        name     = "{{ feature.bullet_custom_icon.name }}"
+                                        style    = "{{ feature.bullet_custom_icon.type }}"
+                                        unicode  = "{{ feature.bullet_custom_icon.unicode }}"
+                                        icon_set = "{{ feature.bullet_custom_icon.icon_set }}"
+                                        width    = "22"
+                                        purpose  = "decorative"
+                                      %}
+                                    {% endif %}
+                                  {% else %}
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                                      <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                                    </svg>
+                                  {% endif %}
+                                </span>
+                                <span class="section--pricingcolumns--bullet--label one-whole first--hard--top last--hard--bottom p hard--ends">
+                                  {{ feature.bullet_label }}
+                                </span>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    </div>
+                    {% if
+                      ((item.cta.cta_type == "cta") and (item.cta.cta)) or
+                      ((item.cta.cta_type == "link") and (item.cta.cta_hyperlink.href) and (item.cta.cta_button_text)) or
+                      ((item.cta.cta_type == "anchor") and (item.cta.cta_section_anchor_id) and (item.cta.cta_button_text))
+                    %}
+                      <div class="block" style="padding-top:25px;"></div>
+                    {% endif %}
+                  </div>
+                  <div class="block {{ equalize_classes(column_widths, 3, columns_equalize)|trim }}">
+                    <div class="{{ 'equalize--bottom' if columns_equalize }}">
+                      {% if snippets.button(item.cta) %}
+                        <div class="block first--hard--top last--hard--bottom text--{{ columns_content_alignment }}">
+                          {{ snippets.button(item.cta) }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(section_controls.text_color_override)|trim }} all--text--{{ layout_controls.header_content_alignment }} palm-all--text--{{ layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+  {% endif %}
+{% endcall %}
+
+{% require_js %}
+  {{ snippets.productionEqualize() }}
+{% end_require_js %}
+
+{{ scoped_rich_text_color_styles('pricingcolumns', section_controls, layout_controls) }}

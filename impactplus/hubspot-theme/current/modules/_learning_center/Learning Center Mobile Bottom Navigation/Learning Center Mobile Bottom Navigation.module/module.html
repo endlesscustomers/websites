@@ -1,0 +1,137 @@
+{{ require_css( get_asset_url("../Learning Center Mobile Bottom Navigation.css"), { async: true } ) }}
+
+<nav class="mobile-bar" aria-label="Mobile actions">
+  <div class="article-bar--progress relative z-index--10" style="width: 0%;"></div>
+  <div class="mobile-bar--nav relative">
+    <div class="grid hard--ends">
+      <div class="mobile-bar--wrapper grid__item one-whole hard--ends hard--sides">
+        <div class="mobile-bar__item section--eclc--search-pop hover--pointer">
+          <img class="mobile-bar__icon" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/search-icon.svg" alt="Search" height="20" aria-hidden="true">
+          <p class="mobile-bar__label hover--pointer font--12">Search</p>
+        </div>
+
+        <div class="mobile-bar__item section--eclc--subscribe-pop"> 
+          <img class="mobile-bar__icon" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/subscribe.svg" alt="Subscribe" height="16" aria-hidden="true">
+          <p class="mobile-bar__label hover--pointer font--12">Subscribe</p>
+        </div>
+ 
+        <div class="mobile-bar__item" data-mobilebar="share-pop">
+          <img class="mobile-bar__icon relative" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/share_bottom_bar.svg" alt="Share" height="19" aria-hidden="true" style="top: 2px;">
+          <p id="mobile-bar__share" class="mobile-bar__label hover--pointer font--12">Share</p>
+        </div>    
+
+        {#<div class="mobile-bar__item">
+          <img class="mobile-bar__icon" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/ai-chat.svg" alt="AI Chat" height="20" aria-hidden="true">
+          <p class="mobile-bar__label hover--pointer font--12">AI Chat</p>
+        </div>#}
+
+        <div class="mobile-bar__item mobile-bar__item--action relative" role="presentation">
+          <a class="absolute top--0 left--0 right--0 bottom--0 z-index--10" href="https://www.impactplus.com/services/coaching-skills-mastery"></a>
+          <div class="mobile-bar__item--action--group inline-block relative" style="margin: 0 auto;">
+            <div class="mobile-bar__item_dot absolute background--primary" style="top: -2%; height: 6px; width: 6px; border-radius: 50%; right: -55%;"></div>
+            <img class="mobile-bar__icon" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/chart-up-bar.svg" alt="Coaching" height="19" aria-hidden="true">
+          </div>
+          <span class="p hard--ends mobile-bar__action-link font--12">Coaching</span>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-bar--share background--white" style="border-top-left-radius: 16px; border-top-right-radius: 16px; box-shadow: 0 -6px 16px rgba(0, 0, 0, .06); display:none;" data-mobilebar="share-pop">
+      <div class="grid hard--ends">
+        <div class="grid__item one-whole hard--ends">
+          <div class="section--lcsocialshare--share-group margin--petite--top margin--petite--bottom flex" style="justify-content: space-between; margin-bottom: 14px !important;">
+            <a style="margin-left: 0px;" class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item"
+               rel="noopener" target="_blank" title="Share on LinkedIn"
+               href="https://www.linkedin.com/shareArticle?url={{ content.absolute_url }}&title={{ content.html_title }}&summary={{ desc|urlencode }}">
+              <img class="section--lcsocialshare-share--icon lazy"
+                   data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg"
+                   alt="Share on LinkedIn" loading="lazy" style="max-width:100%;height:15px;">
+            </a>
+
+            <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--twitter mini-nav__item"
+               rel="noopener" target="_blank" title="Share on X"
+               href="https://twitter.com/intent/tweet?url={{ content.absolute_url }}&text={{ content.html_title }}">
+              <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+                   data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/x%20corp.svg"
+                   alt="Share on X" loading="lazy" style="max-width:100%;height:15px;">
+            </a>
+
+            <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--facebook mini-nav__item"
+               rel="noopener" target="_blank" title="Share on Facebook"
+               href="https://www.facebook.com/sharer/sharer.php?u={{ content.absolute_url }}">
+              <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+                   data-src="https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/facebook-logo.svg"
+                   alt="Share on Facebook" loading="lazy" style="max-width:100%;height:15px;">
+            </a>
+
+            <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--email mini-nav__item"
+               rel="noopener" target="_blank" title="Mail to"
+               href="mailto:?subject={{ content.html_title }}&body={{ ('I came across this resource and thought it would be valuable: ' ~ url)|urlencode }}">
+              <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+                   data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/mail-to.svg"
+                   alt="Email link" loading="lazy" style="max-width:100%;height:15px;">
+            </a>
+
+            <div class="tooltip-container inline-block mini-nav__item" onclick="lcCopyToClipboard(this, '{{ content.absolute_url }}')">
+              <a class="section--lcsocialshare--share--link" rel="noopener" title="Copy Link" href="javascript:void(0);">
+                <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+                     data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg"
+                     alt="Copy link" loading="lazy" style="max-width:100%;height:15px;">
+              </a>
+              <!--<div class="copy-tooltip p hard--ends">Link copied!</div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{% require_js %}
+<script>
+  $(document).on("scroll", function(){
+    var pixels = $(document).scrollTop();
+    var pageHeight = $('.post--single.main-body--content').height() - $(window).height();
+    var progress = 100 * pixels / pageHeight;
+    $(".article-bar--progress").css("width", progress + "%");
+  })
+
+
+  {# Toggle for Share #}
+  $(function () {
+    $(document).on('click', '[data-mobilebar]', function () {
+      var targetKey = $(this).data('mobilebar');
+
+      // Find the matching target div (not the clicked item)
+      var $target = $('[data-mobilebar="' + targetKey + '"]').not(this);
+
+      if ($target.length) {
+        $target.stop(true, true).slideToggle(200);
+      }
+    });
+  });
+
+  function checkSafeAreaInsetBottom() {
+    var $el = $('.mobile-bar--nav');
+
+    if (!$el.length) {
+      console.warn('⚠️ .mobile-bar--nav element not found.');
+      return;
+    }
+
+    // Temporarily set a CSS custom test property
+    $el.css('height', 'env(safe-area-inset-bottom)');
+
+    // Read computed pixel value
+    var insetValue = parseFloat(window.getComputedStyle($el[0]).height);
+
+    // Reset the height to its original value (to avoid layout shift)
+    $el.css('height', '');
+
+    console.log('Safe area inset bottom:', insetValue, 'px');
+    return insetValue || 0;
+  }
+
+  // Run it:
+  checkSafeAreaInsetBottom();
+</script>
+{% end_require_js %}

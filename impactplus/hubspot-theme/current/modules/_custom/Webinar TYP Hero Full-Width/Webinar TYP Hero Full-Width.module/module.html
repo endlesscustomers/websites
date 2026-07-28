@@ -1,0 +1,280 @@
+{{ require_css( get_asset_url("../Webinar TYP Hero Full-Width.css"), { async: true } ) }} 
+
+{% macro page_social_share(
+  url=content.absolute_url,
+  title=content.html_title,
+  desc=content.meta_description,
+  icon_height=18
+) %}
+<div class="section section--lcsocialshare relative">
+  <div class="block relative z-index--10 grid__item hard--sides hard--ends">
+    <h4 class="hard--ends margin--petite--bottom font--reading">Share this Webinar:</h4>
+    <div class="section--lcsocialshare--share flex flex-align--center flex-justify--center flex-wrap--wrap hard--top palm-margin--hard--top">
+      <div class="section--lcsocialshare--share-group margin--petite--top flex">
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item"
+           rel="noopener" target="_blank" title="Share on LinkedIn"
+           href="https://www.linkedin.com/shareArticle?url={{ url }}&title={{ title|urlencode }}&summary={{ desc|urlencode }}">
+          <img class="section--lcsocialshare-share--icon lazy"
+               data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg"
+               alt="Share on LinkedIn" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share on LinkedIn</span>
+        </a>
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--twitter mini-nav__item"
+           rel="noopener" target="_blank" title="Share on X"
+           href="https://twitter.com/intent/tweet?url={{ url }}&text={{ title|urlencode }}">
+          <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+               data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/x%20corp.svg"
+               alt="Share on X" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share on X</span>
+        </a>
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--facebook mini-nav__item"
+           rel="noopener" target="_blank" title="Share on Facebook"
+           href="https://www.facebook.com/sharer/sharer.php?u={{ url }}">
+          <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+               data-src="https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/facebook-logo.svg"
+               alt="Share on Facebook" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share on Facebook</span>
+        </a>
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--email mini-nav__item"
+           rel="noopener" target="_blank" title="Mail to"
+           href="mailto:?subject={{ title|urlencode }}&body={{ ('I came across this resource and thought it would be valuable: ' ~ url)|urlencode }}">
+          <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+               data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/mail-to.svg"
+               alt="Email link" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share via Email</span>
+        </a>
+
+        <div class="tooltip-container inline-block mini-nav__item" onclick="lcCopyToClipboard(this, '{{ url }}')">
+          <a class="section--lcsocialshare--share--link" rel="noopener" title="Copy Link" href="javascript:void(0);">
+            <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+                 data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg"
+                 alt="Copy link" style="max-width:100%;height:{{ icon_height }}px;">
+          </a>
+          <span class="mini-nav__tooltip semibold font--reading">Copy to Clipboard</span>
+          <div class="copy-tooltip p hard--ends">Link copied!</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{% if module.layout_controls.container_alignment == 'center' %}
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--fullwidth relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends section--fullwidth--video-{{ module.enable_lightbox_video }} relative">
+      {{ snippets.background(module.container_background) }}
+      {% if module.preheader || module.header || module.content %}
+      <div class="section--fullwidth--content {% if module.layout_controls.container_width != 'default' %} grid__item tall padding--tall {{ module.layout_controls.container_width }} {% if module.layout_controls.add_colored_border_to_container_background %}border--1 border--mist{% endif %} border-radius overflow--hidden{% endif %}{% endif %} tablet-ten-twelfths palm-one-whole">
+        <div class="grid__item one-whole hard--top {% if module.enable_lightbox_video %}tall--bottom palm-short--bottom{% else %}hard--bottom{% endif %} last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }} {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+          <div class="section--fullwidth--content-container first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} flex flex-flow--column flex-align--{{ gridAlignmentDesktop }}">
+
+            {% if module.preheader %}
+            {#<span class="h6 preheader">{{ module.preheader }}</span>#}
+            {% endif %}
+
+            {% if widget_data.webinar_ind_template.template_type == "upcoming_typ" %}
+            {% if module.header %}
+            <div class="section--fullwidth--header grid__item hard--sides hard--ends margin--short--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-{{ module.layout_controls.content_width }} palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-{{ module.layout_controls.content_width }} palm-one-whole{% endif %} first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              <h1>{{ module.header }}</h1>
+              <p class="p--lg bold">See you on {{ widget_data.webinar_ind_template.webinar_date_and_time|datetimeformat('%B %-d, %Y @ %-I:%M %p %Z') }}</p>
+            </div>
+            {% endif %}
+            <div class="section--fullwidth--contents grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              {% if module.content %}
+              {{ module.content }}
+              {% endif %}
+            </div>
+            {% elif widget_data.webinar_ind_template.template_type == "ondemand_typ" %}
+            <div class="section--fullwidth--header grid__item hard--sides hard--ends margin--short--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-{{ module.layout_controls.content_width }} palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-{{ module.layout_controls.content_width }} palm-one-whole{% endif %} first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              <h1>{{ widget_data.webinar_ind_template.webinar_title }}</h1>
+              <p class="p--lg bold">On Demand Webinar | {{ widget_data.webinar_ind_template.webinar_length }}</p>
+            </div>
+            <div class="section--fullwidth--contents grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              {% if module.on_demand_webinar_content %}
+              {{ module.on_demand_webinar_content }}
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if (module.conversion_type != 'none')  %}
+      <div class="flex flex-flow--column flex-align--{{ gridAlignmentDesktop }}">
+
+        {% if module.conversion_type != 'none' && (widget_data.webinar_ind_template.template_type == "ondemand_typ") %}
+        <div class="grid__item {% if module.conversion_type == 'cta' && module.layout_controls.content_width == 'full' %}one-whole{% else %}eight-twelfths tablet-ten-twelfths palm-one-whole{% endif %} hard--ends {% if module.cta|length > 0 or module.conversion_type == 'form' %}  {% if module.on_demand_webinar_content %}margin--standard--top{% else %}margin--petite--top margin--short--bottom{% endif %} {% endif %} first--hard--top last--hard--bottom text--{{ module.layout_controls.content_alignment }} palm-text--{{ module.layout_controls.content_alignment_mobile }}">
+          {% if (module.conversion_type == 'cta') %}
+          <span class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+            {{ snippets.multiButton(module.cta) }}
+          </span>
+          {% elif module.conversion_type == 'form' %}
+          <div class="grid__item ten-twelfths palm-one-whole hard--sides background--white border-radius margin--tall--top padding--tall tall box-shadow all--text--left all--btn all--btn--{% if module.form.form_ghost_transparent_button %}transparent--{% endif %}{{ module.form.form_button_color }} all--btn--center">
+            {% if module.form.form_header %}
+            {{ module.form.form_header }}
+            {% endif %}
+            {% form
+              form_to_use="{{ module.form.form.form_id }}"
+              response_response_type="{{ module.form.form.response_type }}"
+              response_message="{{ module.form.form.message }}"
+              response_redirect_id="{{ module.form.form.redirect_id }}"
+              response_redirect_url="{{ module.form.form.redirect_url }}"
+              gotowebinar_webinar_key="{{ module.form.form.gotowebinar_webinar_key }}"
+              follow_up_type_simple="{{ module.form.send_a_follow_up_email }}"
+              simple_email_for_live_id="{{ module.form.email }}"
+              notifications_are_overridden="{{ module.form.send_form_notifications_to_specified_email_addresses_instead_of_the_form_defaults }}"
+              notifications_override_email_addresses="{{ module.form.email_addresses }}"
+              no_title=True
+            %}
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if widget_data.webinar_ind_template.template_type == "ondemand_typ" %}
+        <div class="grid__item relative one-whole tablet-one-whole palm-one-whole hard--ends all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="block margin--tall--top">
+            {% if (module.video.video_thumbnail_type != 'none')||(module.video.video_thumbnail_type_mobile != 'none') %}
+            <div class="block {% if module.video.video_thumbnail_type == 'none' %}lap-and-up-visuallyhidden tablet-visuallyhidden{% endif %} {# if module.video.video_thumbnail_type_mobile == 'none' %}palm-visuallyhidden{% endif #}" style="height: 100%; position: relative;">
+              <a class="video--inline-group block block--video" 
+                 {% if module.video.video_type == 'modal' %}
+                 data-fancybox 
+                 {% if '.mp4' in module.video.video_url_of_iframe_embeddable_video_file.href %}{% else %}data-type="iframe" data-width="936" data-height="636"{% endif %} 
+                 href="{{ module.video.video_url_of_iframe_embeddable_video_file.href }}"
+                 {% elif module.video.video_type == 'hubspot' %}
+                 data-src="#{{ name }}--embed" data-fancybox
+                 {% elif module.video.video_type == 'vidyard' %}
+                 href="javascript:;" onclick="playInline_{{ name|replace('-','_') }}('{{ module.video.vidyard_video_uuid|trim }}');"
+                 {% endif %}>
+                {% if module.video.video_thumbnail_type == 'video' %}
+                <div class="animate--fade animate--fade-up overflow--hidden border-radius video--shadow">
+                  <video class="section-hero-custom--video--player" style="width: 100%; height: 100%; object-fit: cover;" src="{{ module.video.vide_gif_or_mp4_embed }}" muted="" autoplay="" loop="" playsinline="" poster="{{ module.video.vide_gif_or_mp4_embed }}" type="video/mp4"></video>
+                </div>
+                {% elif module.video.video_thumbnail_type == 'thumbnail' %}
+                {% set sizeAttrs = 'width="{{ module.video.video_thumbnail_image.width }}" height="{{ module.video.video_thumbnail_image.height }}"' %}
+                {% if module.video.video_thumbnail_image.size_type == 'auto' %}
+                {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+                {% elif module.video.video_thumbnail_image.size_type == 'auto_custom_max' %}
+                {% set sizeAttrs = 'width="{{ module.video.video_thumbnail_image.max_width }}" height="{{ module.video.video_thumbnail_image.max_height }}" style="max-width: 100%; height: auto;"' %}
+                {% endif %}
+                {% endif %}
+
+                {% if module.video.video_type == 'vidyard' %}
+                <div class="video--vidyard-group">
+                  <div class="video--vidyard-label-poster">
+                    <img class="block border-radius video--shadow width--max" src="https://play.vidyard.com/{{ module.video.vidyard_video_uuid|trim }}.jpg" alt="{{ module.video.video_thumbnail_image.alt }}" {% if (module.video.video_thumbnail_type == 'vidyard') %}style="max-width:{{ module.video.video_max_width }}px; margin: 0 auto;"{% else %}width="{% if (module.video.video_thumbnail_image.size_type == 'auto_custom_max') %}{{ module.video.video_thumbnail_image.max_width }}{% elif (module.video.video_thumbnail_image.size_type == 'exact') %}{{ module.video.video_thumbnail_image.width }}{% else %}{{ module.video.video_thumbnail_image.width }}{% endif %}" height="{% if (module.video.video_thumbnail_image.size_type == 'auto_custom_max') %}{{ module.video.video_thumbnail_image.max_height }}{% else %}{{ module.video.video_thumbnail_image.height }}{% endif %}{% endif %}" />
+                  </div>                
+                  <div class="video--vidyard-inline border-radius video--shadow overflow--hidden visuallyhidden" style="max-width:{{ module.video.video_max_width }}px; margin: 0 auto;">
+                    <img class="vidyard-player-embed" alt="{{ module.video.vidyard_video_image_alt_tag }}" data-uuid="{{ module.video.vidyard_video_uuid|trim }}" data-type="inline" data-v="4">
+                  </div>
+                </div>
+                {% else %}
+                <img class="block border-radius video--shadow overflow--hidden" src="{{ module.video.video_thumbnail_image.src }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} alt="{{ module.video.video_thumbnail_image.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                {% endif %}
+
+              </a>
+            </div>
+            {% endif %}
+            {% if (module.video.video_thumbnail_type == 'none')||(module.video.video_thumbnail_type_mobile == 'none') %}
+            <div class="block {% if module.video.video_thumbnail_type != 'none' %}lap-and-up-visuallyhidden tablet-visuallyhidden{% endif %} {% if module.video.video_thumbnail_type_mobile != 'none' %}palm-visuallyhidden{% endif %}">
+              <a class="inline-block no--underline" {% if module.video.video_type == 'modal' %}data-fancybox {% if '.mp4' in module.video.video_url_of_iframe_embeddable_video_file.href %}{% else %}data-type="iframe" data-width="936" data-height="636"{% endif %} href="{{ module.video.video_url_of_iframe_embeddable_video_file.href }}"{% elif module.video.video_type == 'hubspot' %}data-src="#{{ name }}--embed" data-fancybox{% elif module.video.video_type == 'vidyard' %}href="javascript:;" onclick="launchLightbox_{{ name|replace('-','_') }}('{{ module.video.vidyard_video_uuid|trim }}');"{% endif %} style="width:320px;max-width:100%;">
+                <span class="block--video--icon"></span>
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="socialshare--typ margin--tall--top">
+          {{ page_social_share(widget_data.webinar_ind_template.webinar_landing_page_url, widget_data.webinar_ind_template.webinar_title, widget_data.webinar_ind_template.webinar_meta_description, 16) }} 
+        </div>
+
+      </div>
+      {% endif %}
+    </div>
+
+    <style>
+      /* Hide the play button when video is playing */
+      .video--inline-group.video--playing::before {
+        display: none !important;
+        opacity: 0 !important;
+      }
+    </style>
+
+    {% if widget_data.webinar_ind_template.template_type == "ondemand_typ" %}
+    {% if (module.video.video_type == "vidyard")&&(module.enable_video != 'none') %}
+    {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+    {% require_js %}
+    <script>
+      function playInline_{{ name|replace('-','_') }}(uuid) {
+        var poster = document.querySelector('.video--vidyard-label-poster');
+        var inlinePlayer = document.querySelector('.video--vidyard-inline');
+        var playButtonContainer = document.querySelector('.video--inline-group');
+        var container = poster.parentElement;
+
+        // Hide the :before play button by adding a class
+        playButtonContainer.classList.add('video--playing');
+
+        // Add transition styles
+        container.style.position = 'relative';
+        poster.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        inlinePlayer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+        // Fade out and scale down poster
+        poster.style.opacity = '0';
+
+        setTimeout(function() {
+          // Hide poster
+          poster.style.display = 'none';
+
+          // Prepare inline player
+          inlinePlayer.classList.remove('visuallyhidden');
+          inlinePlayer.style.display = 'block';
+          inlinePlayer.style.opacity = '0';
+
+          // Fade in and scale to normal
+          setTimeout(function() {
+            inlinePlayer.style.opacity = '1';
+          }, 50);
+
+          // Wait for Vidyard player to be ready, THEN play
+          VidyardV4.api.addReadyListener(function(data, player) {
+            // Player is ready, now we can play it
+            player.play();
+          }, uuid);
+
+          // Trigger Vidyard to render the player
+          VidyardV4.api.renderDOMPlayers();
+
+        }, 400);
+      }
+    </script>
+    {% end_require_js %}
+    {% endif %}
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

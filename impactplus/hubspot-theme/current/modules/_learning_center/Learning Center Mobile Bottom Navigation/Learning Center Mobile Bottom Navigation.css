@@ -1,0 +1,141 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/* Hidden by default (desktop) */
+@media (min-width: 769px) {
+  .mobile-bar { 
+    display: none; 
+  }
+}
+/* Show at 769px and below */
+@media (max-width: 768px) {
+  .mobile-bar {
+    position: fixed;
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    z-index: 999;
+  }
+
+  :root{
+    /* optional limit so huge insets don’t over-pad */
+    --sab-max: 16px;
+  }
+
+  /* Base: works everywhere; on non-iOS this will be 16px bottom padding */
+  .mobile-bar--nav{
+    /* top right bottom left */
+    padding: 16px 0 16px 0;
+    background:#fff;
+    border-top:1px solid #E5E7EB;
+    box-shadow:0 -6px 16px rgba(0,0,0,.06);
+  }
+
+  /* Legacy iOS 11–12: constant() */
+  @supports (padding: constant(safe-area-inset-bottom)) {
+    .mobile-bar--nav{
+      padding-bottom: calc(0px + min(constant(safe-area-inset-bottom, 0px), var(--sab-max)));
+    }
+  }
+
+  /* If you want a small iOS-only cushion even when env() ends up 0 in some webviews,
+  you can add ~12px just for WebKit-based iOS browsers.
+  (Comment this block out if you don’t want the cushion.) */
+  @supports (-webkit-touch-callout: none) {
+    .mobile-bar--nav{
+      /* keep the safe-area logic, but ensure at least +12px on iOS browsers */
+      padding-bottom: max(calc(16px + min(env(safe-area-inset-bottom, 0px), var(--sab-max))), 16px /* 16 base + 12 cushion */
+      );
+    }
+  }
+
+  /* Older iOS + cushion */
+  @supports (-webkit-touch-callout: none) and (padding: constant(safe-area-inset-bottom)) {
+    .mobile-bar--nav{
+      padding-bottom: max(calc(16px + min(constant(safe-area-inset-bottom, 0px), var(--sab-max))), 16px);
+    }
+  }
+
+  .mobile-bar .mobile-bar--wrapper{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .mobile-bar__item {
+    flex: 1 1 0;
+    text-align: center;
+    text-decoration: none;
+    color: #111827;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+  }
+
+  .mobile-bar__icon {
+    width: auto;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .mobile-bar__label {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #374151;
+  }
+
+  /* Last item (border-left + link) */
+  .mobile-bar__item--action {
+    align-items: stretch;
+    justify-content: end;
+    border-left: 1px solid #e5e7eb;
+    padding-left: 4vw;
+  }
+
+  .mobile-bar__action-link {
+    display: inline-block;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+
+/* Optional: prevent content being hidden under bar */
+@media (max-width: 768px) {
+  body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+}
+
+.mobile-bar--share{
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 100%;
+}
+
+.mobile-bar--share .section--lcsocialshare--share--link{
+  background: #1d1d1f;
+}

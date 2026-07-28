@@ -1,0 +1,113 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/HubUI/assets/Config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/HubUI/assets/Functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--testimonialslider .section--testimonialslider--image {
+  display:block;
+  width:67px;
+  height:67px;
+  border-radius:50%;
+}
+.section--testimonialslider--byline .section--testimonialslider--image--container {
+  max-width:82px;
+  flex:0 0 auto;
+  padding-right:15px;
+}
+{% call mediaQuery("palm") %}
+.section--testimonialslider--byline .section--testimonialslider--image--container {
+  padding-right:0px;
+  margin-bottom:15px;
+}
+{% endcall %}
+
+.section--testimonialslider .testimonial--slider {
+  position:relative;
+}
+.section--testimonialslider .f-carousel__slide {
+  padding:0 30px;
+  display:flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content:center;
+}
+
+{### ARROWS ###}
+.section--testimonialslider .f-carousel__button.is-prev {
+	left: -14px !important;
+	background: transparent;
+}
+.section--testimonialslider .f-carousel__button.is-next {
+	right: -14px !important;
+	background: transparent;
+}
+.section--testimonialslider .f-button svg {
+  stroke: {{ config.flexslider_Arrow }}; 
+  {{ transition("all .25s ease-in-out") }};
+}
+.section--testimonialslider .f-button:hover svg {
+  stroke: {{ config.flexslider_ArrowHover }}; 
+}
+
+{### DOTS ###}
+.section--testimonialslider .f-carousel__dots li,
+.section--testimonialslider .f-carousel__dots li:hover {
+  opacity:1;
+}
+.section--testimonialslider .f-carousel__dots button {
+  width:55px;
+}
+.section--testimonialslider .f-carousel__dots .f-carousel__dot {
+  height:3px;
+  width:45px;
+  border-radius:1.5px;
+}
+
+.section--testimonialslider .f-carousel__dots .f-carousel__dot {
+  background-color: {{ config.flexslider_Navigation }}; 
+  {{ transition("all .25s ease-in-out") }};
+  opacity:1;
+}
+.section--testimonialslider .f-carousel__dots li.is-current .f-carousel__dot,
+.section--testimonialslider .f-carousel__dots li:hover .f-carousel__dot {
+  background-color: {{ config.flexslider_NavigationActive }}; 
+}
+
+{% call mediaQuery("palm") %}
+.section--testimonialslider .testimonial--slider--content h3 {
+  font-size: {{ config.h4_MobileFontSize }}!important;
+  line-height: {{ config.h4_MobileLineHeight }}!important;
+}
+{% endcall %}
+
+{% call mediaLoop() %}
+.section--testimonialslider .{{ media }}all--color--white .f-button svg {
+  stroke:{{ color('white') }};
+}
+.section--testimonialslider .{{ media }}all--color--white .f-button:hover svg {
+  stroke:{{ color('primary') }};
+}
+.section--testimonialslider .{{ media }}all--color--white .f-carousel__dots .f-carousel__dot {
+  background-color:{{ color('white') }};
+}
+.section--testimonialslider .{{ media }}all--color--white .f-carousel__dots li.is-current .f-carousel__dot,
+.section--testimonialslider .{{ media }}all--color--white .f-carousel__dots li:hover .f-carousel__dot {
+  background-color:{{ color('primary') }};
+}
+{% endcall %}

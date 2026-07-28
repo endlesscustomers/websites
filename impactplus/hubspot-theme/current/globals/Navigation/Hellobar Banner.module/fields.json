@@ -1,0 +1,355 @@
+[ {
+  "id" : "e3495ddf-4dff-d419-864f-f3e90018438c",
+  "name" : "cta_options",
+  "label" : "CTA Options",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "fd6a11c7-0e52-e290-df68-d1b61511a744",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "68283b8a-588b-3c8f-df8b-cb3572820189",
+    "name" : "hide_cta",
+    "label" : "Hide CTA?",
+    "help_text" : "CTA will not show on the blog. This is useful if you want to temporarily hide a CTA on the blog without fully deleting it from the editor.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "fd6a11c7-0e52-e290-df68-d1b61511a744",
+    "name" : "cta_label",
+    "label" : "CTA Name",
+    "inline_help_text" : "Used as the label on this module. Not used anywhere on the website.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "df145d92-5c4d-efe1-4cf2-47d473c9b9dc",
+    "name" : "set_as_default_cta",
+    "label" : "Set as Default CTA",
+    "inline_help_text" : "If selected, these CTAs will show up on all blog articles that don't match any 'topic' or 'URL' options.",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "fd43c8f7-9ffa-948d-8817-8dc2de221191",
+    "name" : "blog_call_to_action_sidebar_options",
+    "label" : "Call-to-Action Settings & Setup",
+    "required" : false,
+    "locked" : true,
+    "children" : [ {
+      "id" : "7ca9ac0f-bab3-a691-4500-68b969b2e80e",
+      "name" : "cta_layout_type",
+      "label" : "CTA: Layout Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "default", "Image + Text (Default)" ], [ "textform", "Text + Form" ], [ "text only", "Text Only" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "default"
+    }, {
+      "id" : "3e6b2567-e3a7-ad74-729d-aab69ce99bc8",
+      "name" : "preheader",
+      "label" : "Preheader [Optional]",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Free Guide:"
+    }, {
+      "id" : "75a83052-7ff9-a2b7-8d8c-5c59cf6e852b",
+      "name" : "cta_name",
+      "label" : "CTA Header",
+      "inline_help_text" : "Used across all CTAs as the name of the offer",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "The Ultimate Inbound Marketing Strategy Playbook 2021"
+    }, {
+      "id" : "128d7ef5-d5e0-2a39-9fed-e181c915f7be",
+      "name" : "cta_subheader_optional",
+      "label" : "CTA Subheader [Optional]",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "7ca9ac0f-bab3-a691-4500-68b969b2e80e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "text only|textform",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null
+    }, {
+      "id" : "534dba63-8b03-953e-0f31-f967e24ab9fb",
+      "name" : "bottom_cta_image",
+      "label" : "Offer Image",
+      "inline_help_text" : "Used for the bottom article, slide-in, and mobile slide up CTA",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "7ca9ac0f-bab3-a691-4500-68b969b2e80e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "default",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : true,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://www.impactplus.com/hubfs/inbound-marketing-strategy-playbook-cover.png",
+        "alt" : "inbound-marketing-strategy-playbook-cover",
+        "loading" : "lazy",
+        "width" : 355,
+        "height" : 412,
+        "max_width" : 200,
+        "max_height" : 232
+      }
+    }, {
+      "id" : "2ab8f4cf-86d5-cf73-b0ea-1db717e4505a",
+      "name" : "set_image_max_width",
+      "label" : "Set Image Max Width",
+      "inline_help_text" : "Used in bottom article section",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "7ca9ac0f-bab3-a691-4500-68b969b2e80e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "default",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 200,
+      "max" : 350,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 200
+    }, {
+      "id" : "8f5073f9-0e02-e2dc-29af-6a73cf452f87",
+      "name" : "bottom_cta_vertical_image_offset",
+      "label" : "Bottom CTA: Vertical Image Offset",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "7ca9ac0f-bab3-a691-4500-68b969b2e80e",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "default",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null
+    }, {
+      "id" : "503f3639-523a-31e6-c04d-afba38e58ccb",
+      "name" : "button_color",
+      "label" : "Button Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "blue", "Blue" ], [ "orange", "Orange" ], [ "green", "Green" ], [ "lightest-grey", "Lightest Grey" ], [ "light-grey", "Light Grey" ], [ "black", "Black" ], [ "white", "White" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "blue"
+    }, {
+      "id" : "91aa2a49-e8b8-6415-3f7a-ea2b7792a672",
+      "name" : "cta",
+      "label" : "CTA",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_options.blog_call_to_action_sidebar_options.cta_layout_type",
+        "controlling_value_regex" : "text only|default",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "type" : "cta",
+      "display_width" : null,
+      "default" : "150591958572"
+    }, {
+      "id" : "8e8ac7b3-a4f8-f51a-229b-95f1c5745fc9",
+      "name" : "downloadable_offer_settings",
+      "label" : "Form Settings",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_options.blog_call_to_action_sidebar_options.cta_layout_type",
+        "controlling_value_regex" : "textform",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "92dd7cb2-a9ff-7154-4759-0bea5999327b",
+        "name" : "tertiary_navigation_popup_header",
+        "label" : "Tertiary Navigation Popup Header",
+        "inline_help_text" : "This is a heading that will be put above the form that shows when clicking the tertiary navigation button. In some cases, forms already have a heading added to them through the form tool. In those cases, omit using this heading.",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Fill out the form to get your playbook"
+      }, {
+        "id" : "7e9af59a-6099-92aa-6534-2e3fbed2c504",
+        "name" : "offer_form",
+        "label" : "Downloadable Offer Form",
+        "required" : false,
+        "locked" : false,
+        "embed_versions" : [ "v2", "v4" ],
+        "type" : "form",
+        "display_width" : null,
+        "default" : {
+          "response_type" : "inline",
+          "message" : "Thanks for submitting the form."
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "tertiary_navigation_popup_header" : "Fill out the form to get your playbook",
+        "offer_form" : {
+          "response_type" : "inline",
+          "message" : "Thanks for submitting the form."
+        }
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "cta_layout_type" : "default",
+      "preheader" : "Free Guide:",
+      "cta_name" : "The Ultimate Inbound Marketing Strategy Playbook 2021",
+      "bottom_cta_image" : {
+        "size_type" : "auto_custom_max",
+        "src" : "https://www.impactplus.com/hubfs/inbound-marketing-strategy-playbook-cover.png",
+        "alt" : "inbound-marketing-strategy-playbook-cover",
+        "loading" : "lazy",
+        "width" : 355,
+        "height" : 412,
+        "max_width" : 200,
+        "max_height" : 232
+      },
+      "set_image_max_width" : 200,
+      "button_color" : "blue",
+      "cta" : "150591958572",
+      "downloadable_offer_settings" : {
+        "tertiary_navigation_popup_header" : "Fill out the form to get your playbook",
+        "offer_form" : {
+          "response_type" : "inline",
+          "message" : "Thanks for submitting the form."
+        }
+      }
+    }
+  }, {
+    "id" : "1b1aaea4-0be7-911d-63f3-1a26b8b81227",
+    "name" : "cta_page_topic_visibility",
+    "label" : "CTA Page/Topic Visibility",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "df145d92-5c4d-efe1-4cf2-47d473c9b9dc",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "81dba6dc-59cd-c1f4-7b29-a775f00cca00",
+      "name" : "topic",
+      "label" : "Tag Where CTAs Will Show",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : null
+      },
+      "tag_value" : "NAME",
+      "type" : "tag",
+      "display_width" : null
+    }, {
+      "id" : "e8663db7-c149-489d-5373-96dcd8be076c",
+      "name" : "urls",
+      "label" : "URLs Where CTA Will Show",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : null
+      },
+      "supported_types" : [ "CONTENT", "BLOG", "EXTERNAL" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "CONTENT"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "urls" : {
+        "content_id" : null,
+        "href" : "",
+        "type" : "CONTENT"
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+} ]

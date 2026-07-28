@@ -1,0 +1,63 @@
+<!--
+templateType: section
+label: Inbound Assessment Results Score Buckets - IMPACT UI Custom
+isAvailableForNewContent: true
+-->
+
+{# ***** Global Macro Snippets ***** #}
+{% import '/impact-agency-services-v3/Global_Snippets_Marcos.html' as snippets %}
+
+
+{% if module.hide_section %}
+{% else %}
+<div class="section section--quote-bubble-columns relative agency---lazy--default {{ module.section_controls.device_visibility }}">
+  {% if content.absolute_url is string_containing "https://www.impactplus.com/services/master-module-examples" %}
+  <div class="module-name absolute z-index--10">
+    <p class="hard--ends color--white">Inbound Assessment Results Score Buckets - IMPACT UI Custom</p>
+  </div>
+  {% endif %}
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--20">
+    <div class="grid {{ module.spacing.top_padding }} {{ module.spacing.bottom_padding }} {{ module.spacing.top_padding_mobile }} {{ module.spacing.bottom_padding_mobile }} lap-and-up-text--{{ module.section_controls.content_alignment_desktop }} portable-text--{{ module.section_controls.content_alignment_mobile }}">
+      <div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="grid__item {{ module.section_heading_width }} palm-eleven-twelfths short--top margin--{{ headerSpace }} hard--sides hard--ends">
+        {% if module.preheader || module.header %}
+        <div class="block text--{% if module.section_controls.column_alignment %}{{ module.section_controls.column_alignment }}{% else %}left{% endif %}">
+          {% if module.preheader %}
+          <span class="h3 font--script hard--top margin--petite--bottom color--blue animate--fade animate--fade-up animate--fade-delay--1 light">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="lap-and-up-all--text--{{  module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }} {{ module.section_controls.text_color_override }} first--hard--top animate--fade animate--fade-up animate--fade-delay--1"> 
+            {{ module.header|replace(';"',' !important;"')|replace('<h1>','<span class="h1">')|replace('</h1>','</span>') }}
+          </div>
+          {% endif %}
+        </div>  
+        {% endif %} 
+
+        {# Score Ranges #}
+        <div class='relative animate--fade animate--fade-up animate--fade-delay--2 lap-and-up-all--text--{{  module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }}'>
+          {% for scoreGroup in module.scorecard_results_group %}
+          <div class="scorecard--number-group bucket--{{ loop.index }}" style="display:none;" data-bucket="bucket--{{ loop.index }}" data-min="{{ scoreGroup.score_min }}" data-max="{{ scoreGroup.score_max }}">
+            <div class="scorecardMeaning text--left">
+              {{ scoreGroup.score_meaning_content }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {# Score Ranges #}
+      </div>
+
+      {% if module.cta|length > 0 %}      
+      {% for sectionBlockCTA in module.cta %}
+      {% set fadeInNum = loop.index + module.columns|length %}
+      <div class="grid__item one-whole palm-one-whole hard--bottom short--top palm-short--top text--center palm-block {{ sectionBlockCTA.cta_mobile_width }} {% if module.section_controls.cta_settings.cta_button_size == "btn--equalize-width" %}{{ module.section_controls.cta_settings.cta_button_size }} {{ module.section_controls.cta_settings.button_width_size }}{% else %}{% endif %}">
+        <div class="{% if module.section_controls.cta_settings.cta_button_size == "btn--equalize-width" %}btn--equalize-width--cta{% else %}inline-block{% endif %} animate--fade animate--fade-up animate--fade-delay-list--{{ fadeInNum }} " style="padding-top: 10px !important; margin: 0px 10px !important;">
+          {{ snippets.button(sectionBlockCTA) }}
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {{ snippets.gridCustomSpacingNum(name,module.spacing,".grid",".grid") }}
+    </div>
+  </div>
+</div>
+{% endif %}

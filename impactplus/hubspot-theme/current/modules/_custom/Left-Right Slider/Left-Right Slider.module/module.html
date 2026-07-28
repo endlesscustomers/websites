@@ -1,0 +1,195 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Left-Right Slider.css"), { async: true} ) }}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="{{ name }} section section--leftrightslider relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+      <div class="grid__item {{ module.layout_controls.header_width }} tablet-ten-twelfths palm-one-whole hard--top lap-and-up-short--bottom tablet-tall--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% if module.header %}
+        <h2>{{ module.header }}</h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="grid hard--ends">
+      <div class="grid__item one-whole hard text--center">
+
+        <div class="f-carousel leftright--slider {{ name }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} relative">
+          {# Controls #}
+          <div class="section--leftright-slider-controls flex">
+            <div class="grid__item one-half tablet-ten-twelfths palm-one-whole hard--ends">
+              <div class="section--leftright-slider-controls-container flex flex-align--center">
+                <button data-carousel-prev class="section--leftrightl-slider-prev hover--pointer flex flex-align--center flex-justify--center">
+                  <img data-carousel-prev loading='lazy' src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_left.svg" alt="Prev Slide" height="15" width="15" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_left.svg">
+                </button>
+                <button data-carousel-next class="section--leftrightl-slider-next hover--pointer flex flex-align--center flex-justify--center">
+                  <img data-carousel-next loading='lazy' src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_right.svg" alt="Next Slide" height="15" width="15" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_right.svg">
+                </button>
+              </div>
+            </div>
+          </div>
+          {# End Controls #}
+          {% for testimonial in module.testimonial_slider %}
+          <div class="f-carousel__slide" style="width:100%">
+            <div class="flexgrid {% if testimonial.featured_media_type == 'none' %}justify--center{% endif %} portable-justify--center {% if testimonial.featured_media_position_desktop == 'left' %}row--reverse{% endif %} {% if testimonial.featured_media_position_mobile != 'below' %}palm-column--reverse{% endif %} {{ testimonial.featured_media_vertical_alignment }}">
+              <div class="grid__item short--bottom lap-and-up-short--top first--hard--top last--hard--bottom portable-hard--top {% if testimonial.featured_media_type == 'none' %}eight-twelfths tablet-ten-twelfths palm-one-whole text--center{% else %}one-half tablet-ten-twelfths palm-one-whole text--left{% endif %} first--hard--top last--hard--bottom">
+                <div class="section--leftright-slider-controls-spacer opacity--0 portable-visuallyhidden"></div>
+                {{ testimonial.testimonial_quote_content }}
+              </div>
+              {% if testimonial.featured_media_type != 'none' %}
+              <div class="grid__item short one-half palm-one-whole text--center {{ snippets.deviceVisibility(testimonial.featured_media_device_visibility) }}">
+                {% if testimonial.featured_media_type == "image" %}
+                <div class="block">
+                  {% if testimonial.image.image.src %}
+
+                  {% set sizeAttrs = 'width="{{ testimonial.image.image.width }}" height="{{ testimonial.image.image.height }}"' %}
+                  {% if testimonial.image.image.size_type == 'auto' %}
+                  {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+                  {% elif testimonialimage.image.size_type == 'auto_custom_max' %}
+                  {% set sizeAttrs = 'width="{{ testimonial.image.image.max_width }}" height="{{ testimonial.image.image.max_height }}" style="max-width: 100%; height: auto;"' %}
+                  {% endif %}
+
+                  <img class="inline-block {{ 'border-radius' if testimonial.add_featured_media_border_radius }} {{ 'box-shadow' if testimonial.add_featured_media_dropshadow }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} src="{{ testimonial.image.image.src }}" alt="{{ testimonial.image.image.alt }}" {{ sizeAttrs }}>
+
+                  {% endif %}
+                </div>
+                {% elif testimonial.featured_media_type == "video" %}
+                <div class="block">
+                  <div class="block">
+                    <a title="{% if testimonial.video.video_title_attribute %}{{ testimonial.video.video_title_attribute }}{% else %}Watch the Video{% endif %}" class="block block--video" {% if testimonial.video.video_type == "modal" %}href="{{ testimonial.video.video_url_of_iframe_embeddable_video_file.href }}"{% elif testimonial.video.video_type == 'hubspot' %}data-src="#{{ name }}--embed--{{ loop.index }}" data-fancybox{% elif testimonial.video.video_type == "vidyard" %}href="javascript:;" onclick="launchLightbox_{{ loop.index }}_{{ name|replace('-','_') }}('{{ testimonial.video.vidyard_video_uuid|trim }}');"{% endif %}>
+
+                      {% set sizeAttrs = 'width="{{ testimonial.video.video_thumbnail_image.width }}" height="{{ testimonial.video.video_thumbnail_image.height }}"' %}
+                      {% if testimonial.video.video_thumbnail_image.size_type == 'auto' %}
+                      {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+                      {% elif testimonial.video.video_thumbnail_image.size_type == 'auto_custom_max' %}
+                      {% set sizeAttrs = 'width="{{ testimonial.video.video_thumbnail_image.max_width }}" height="{{ testimonial.video.video_thumbnail_image.max_height }}" style="max-width: 100%; height: auto;"' %}
+                      {% endif %}
+
+                      <img class="inline-block {{ 'border-radius' if testimonial.add_featured_media_border_radius }} {{ 'box-shadow' if testimonial.add_featured_media_dropshadow }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} src="{{ testimonial.video.video_thumbnail_image.src }}" alt="{{ testimonial.video.video_thumbnail_image.alt }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} {{ sizeAttrs }}>
+
+                    </a>
+                  </div>
+                  {% if testimonial.video.video_label_text %}
+                  <div class="block short--top all--text--center block--video--label">
+                    <p class="hard--ends">
+                      {{ testimonial.video.video_label_text }}
+                    </p>
+                  </div>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+
+
+        </div>
+      </div>
+    </div>
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+
+    {% for testimonial in module.testimonial_slider %}
+    {% if (testimonial.video.video_type == "hubspot")&&(testimonial.featured_media_type == "video") %}
+    {% if testimonial.video.video_hubspot_video.player_id %}
+    <div id="{{ name }}--embed--{{ loop.index }}" class="video--popover all--aspectratio" style="display:none;">
+
+      {% set max_width  = testimonial.video.video_hubspot_video.size_type =  = 'auto_custom_max' ? testimonial.video.video_hubspot_video.max_width:  testimonial.video.video_hubspot_video.width %}
+      {% set max_height = testimonial.video.video_hubspot_video.size_type =  = 'auto_custom_max' ? testimonial.video.video_hubspot_video.max_height: testimonial.video.video_hubspot_video.height %}
+      {% set playColor  = testimonial.video.video_hubspot_play_button_color.color %}
+      {% video_player "embed_player"
+              placeholder_alt_text = {{ testimonial.video.video_image_alt_tag }}
+              play_button_color    = {{ playColor }}
+              player_id            = {{ testimonial.video.video_hubspot_video.player_id }}
+              type                 = {{ testimonial.video.video_hubspot_video.player_type || 'scriptV4' }}
+              full_width           = {{ testimonial.video.video_hubspot_video.size_type == 'auto_full_width' }},
+              conversion_asset     = {{ testimonial.video.video_hubspot_video.conversion_asset|tojson|safe }}
+            %}
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+{% set vidyardActive = { "value": "false" } %}
+{% for testimonial in module.testimonial_slider %}
+{% if (testimonial.featured_media_type == "video") && (testimonial.video.video_type == "vidyard") %}
+{% do vidyardActive.update({ "value" : "true" }) %}
+{% endif %}
+{% endfor %}
+
+{% if "true" == vidyardActive.value %}
+{% require_js %}
+{{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+{% end_require_js %}
+{% endif %}
+
+{% for testimonial in module.testimonial_slider %}
+{% if (testimonial.video.video_type == "vidyard")&&(testimonial.featured_media_type == "video") %}
+<div class="visuallyhidden">
+  <img class="vidyard-player-embed" alt="{{ testimonial.video.vidyard_video_image_alt_tag }}" data-uuid="{{ testimonial.video.vidyard_video_uuid|trim }}" data-type="lightbox" data-v="4">
+</div>
+{% require_js %}
+<script>
+  function launchLightbox_{{ loop.index }}_{{ name|replace('-','_') }}(uuid) {
+    var players = VidyardV4.api.getPlayersByUUID(uuid);
+    var player = players[0];
+    player.showLightbox();
+  }
+</script>
+{% end_require_js %}
+{% endif %}
+{% endfor %}
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+
+{% require_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const sliders = document.querySelectorAll('.section--leftrightslider.{{ name }}');
+
+                                              sliders.forEach(function (slider) {
+      const thisSliderMain = slider.querySelector('.leftright--slider.{{ name }}');
+
+                                                  const mainCarousel = new Carousel(thisSliderMain, {
+                                                  infinite: true,
+                                                  friction: 0.6,
+                                                  slidesPerPage: 1,
+                                                  transition: 'fade',
+                                                  Dots: false,
+                                                  Navigation: false,
+                                                  center: false,
+                                                  l10n: {
+                                                  NEXT: "{{ module.slider_controls.next_title_attribute || 'Next slide' }}",
+                                                  PREV: "{{ module.slider_controls.previous_title_attribute || 'Previous slide' }}"
+                                                  },
+  });
+  });
+  });
+</script>
+{% end_require_js %}

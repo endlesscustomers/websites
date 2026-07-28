@@ -1,0 +1,247 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--leftrightcasestudy--card {
+  box-sizing: border-box;
+  padding: 40px !important;
+  border-radius: 20px;
+  border: 1px solid transparent;
+}
+
+.section--leftrightcasestudy--card-inner {
+  gap: 20px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.section--leftrightcasestudy--columns-row {
+  width: 100%;
+  align-items: stretch;
+}
+
+.section--leftrightcasestudy--columns-row > .grid__item {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+{% call mediaQuery('lap-and-up') %}
+  .section--leftrightcasestudy--stats-column {
+    flex: 0 0 200px !important;
+    max-width: 200px;
+    width: 200px;
+  }
+
+  .section--leftrightcasestudy--content-column {
+    flex: 1 1 auto;
+  }
+{% endcall %}
+
+.section--leftrightcasestudy .preheader {
+  padding: 8px 16px !important;
+  border-radius: 100px !important;
+}
+
+.section--leftrightcasestudy .preheader::after {
+  display: none !important;
+}
+
+.all--color--white.section--leftrightcasestudy--content-container p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.section--leftrightcasestudy--content-container p:last-child {
+  margin-bottom: 0;
+}
+
+{# MARK: Testimonial #}
+.section--leftrightcasestudy--testimonial--container {
+  box-sizing: border-box;
+  background-color: #252235;
+  border: 1px solid #36324e;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section--leftrightcasestudy--testimonial--container h1,
+.section--leftrightcasestudy--testimonial--container h2,
+.section--leftrightcasestudy--testimonial--container h3,
+.section--leftrightcasestudy--testimonial--container h4,
+.section--leftrightcasestudy--testimonial--container p {
+  font-family: {{ font('reading') }};
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0;
+}
+.all--color--white.section--leftrightcasestudy--testimonial--container h1,
+.all--color--white.section--leftrightcasestudy--testimonial--container h2,
+.all--color--white.section--leftrightcasestudy--testimonial--container h3,
+.all--color--white.section--leftrightcasestudy--testimonial--container h4,
+.all--color--white.section--leftrightcasestudy--testimonial--container p {
+  color: #ffffff;
+}
+
+.section--leftrightcasestudy--testimonial--footer {
+  gap: 16px;
+  align-items: center;
+}
+
+.section--leftrightcasestudy--testimonial--footer-image {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.section--leftrightcasestudy--testimonial--footer-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section--leftrightcasestudy--testimonial--footer-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 0;
+  gap: 0;
+}
+
+.section--leftrightcasestudy--testimonial--footer-name {
+  display: block;
+  font-family: {{ font('reading') }};
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.section--leftrightcasestudy--testimonial--footer-title {
+  display: block;
+  font-family: {{ font('reading') }};
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+{# MARK: Stats #}
+.section--leftrightcasestudy--stats-header {
+  font-family: {{ font('reading') }};
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+
+.all--color--white.section--leftrightcasestudy--stats-header {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.section--leftrightcasestudy--stats-container {
+  box-sizing: border-box;
+  padding-top: 30px;
+}
+{% call mediaQuery('lap-and-up') %}
+  .section--leftrightcasestudy--stats-container {
+    padding-top: 0;
+    padding-left: 25px;
+  }
+{% endcall %}
+
+.section--leftrightcasestudy--stats-container .stat {
+  padding: 20px 0;
+  border-bottom: 1px solid #36324e;
+}
+
+.section--leftrightcasestudy--stats-container .stat:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section--leftrightcasestudy--stats-container .stat:first-child {
+  padding-top: 0;
+}
+
+.section--leftrightcasestudy--stats-container .stat-text {
+  display: inline-block;
+  font-family: {{ font('reading') }};
+  font-weight: 600;
+  font-size: 37px;
+  line-height: 40px;
+  text-align: left;
+  background-image: linear-gradient(
+    90deg,
+    rgb(96, 168, 255) 0%,
+    rgb(244, 114, 200) 50%,
+    rgb(125, 216, 122) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.section--leftrightcasestudy--stats-container .stat-supporting-statement {
+  display: block;
+  font-family: {{ font('reading') }};
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.section--leftrightcasestudy--columns-row > .section--leftrightcasestudy--stats-column:only-child {
+  flex: 1 1 auto !important;
+  max-width: 100%;
+  width: 100%;
+}
+
+.section--leftrightcasestudy--columns-row > .section--leftrightcasestudy--stats-column:only-child .section--leftrightcasestudy--stats-container {
+  border-left: none;
+  padding-left: 0;
+}
+
+{% call mediaQuery('palm') %}
+  .section--leftrightcasestudy--stats-container {
+    padding-left: 0;
+    margin-top: 8px;
+  }
+
+  .section--leftrightcasestudy--stats-header {
+    margin: 0;
+  }
+
+  .section--leftrightcasestudy--content-container {
+    padding-right: 0;
+  }
+
+  .section--leftrightcasestudy--stats-column {
+    flex: 1 1 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+{% endcall %}

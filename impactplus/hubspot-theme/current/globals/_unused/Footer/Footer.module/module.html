@@ -1,0 +1,229 @@
+{# Calculate column widths (affects only desktop if unmodified) #}
+{% set singleColumns = module.quicklinks_menu_columns|selectattr("column_span","equalto","1")|length %}
+{% set doubleColumns = module.quicklinks_menu_columns|selectattr("column_span","equalto","2")|length %}
+{% set tripleColumns = module.quicklinks_menu_columns|selectattr("column_span","equalto","3")|length %}
+{% set totalColumns = singleColumns + (doubleColumns * 2) + (tripleColumns * 3) %}
+
+{% set marginWidth = functions.grid_ColumnSpacing/2 %}
+{% set collapsedMargins = (1 * doubleColumns) + (2 * tripleColumns) %}
+{% set totalMargins = (module.quicklinks_menu_columns|length * 2) %}
+{% set totalMarginWidth = totalMargins * marginWidth %}
+{% set totalColumnWidth = 100 - totalMarginWidth - (doubleColumns * marginWidth) - (tripleColumns * 2 * marginWidth) %}
+
+{% set singleColumnWidth = totalColumnWidth / totalColumns %}
+{% set doubleColumnWidth = (singleColumnWidth * 2) + (1 * marginWidth) %}
+{% set tripleColumnWidth = (singleColumnWidth * 3) + (2 * marginWidth) %}
+
+<footer>
+  <div class="footer--main">
+    <div class="grid tall">
+      <div class="grid__item one-whole hard text--left">
+        {% for column in module.quicklinks_menu_columns %}
+        {# Apply column width #}
+        {% if column.column_span|int == 3 %}
+        {% set columnWidth = tripleColumnWidth %}
+        {% elif column.column_span|int == 2 %}
+        {% set columnWidth = doubleColumnWidth %}
+        {% else %}
+        {% set columnWidth = singleColumnWidth %}
+        {% endif %}
+        <div class="footer--main--column footer--main--column--{{ column.column_span }}col" style="width:{{ columnWidth|string }}%;">
+
+          {% for group in column.column_content_group %}
+          <div class="block {% if group.content_type == "none" %}footer--main--menu--none{% endif %} {% if group.content_type != "richtext" %}short portable-hard{% else %}short{% endif %} first--hard--top last--hard--bottom {% if group.content_type != 'richtext' %}footer--main--menu--wrapper{% endif %}  {% if not group.disable_mobile_accordion && group.content_type != 'richtext' && group.content_type != 'none' %}footer--main--menu--wrapper--accordion{% else %}footer--main--menu--wrapper--static{% endif %}">
+            {% if group.group_header_label %}
+            {% if group.group_header_label_link_group.group_header_label_link.url.href %}
+            {% set href = group.group_header_label_link_group.group_header_label_link.url.href %}
+            {% if group.group_header_label_link_group.group_header_label_link.url.type is equalto "EMAIL_ADDRESS" %}
+            {% set href = "mailto:" + href %}
+            {% endif %}
+            {% set rel = [] %}
+            {% if group.group_header_label_link_group.group_header_label_link.no_follow %}
+            {% do rel.append("nofollow") %}
+            {% endif %}
+            {% if group.group_header_label_link_group.group_header_label_link.open_in_new_tab %}
+            {% do rel.append("noopener") %}
+            {% endif %}
+
+            <a href="{{ href }}" class="footer--group--header--link" title="{{ group.group_header_label_link_group.group_header_label_link_title_attribute|escape }}" {% if group.group_header_label_link_group.group_header_label_link.open_in_new_tab %}target="_blank"{% endif %} {% if rel %}rel="{{ rel|join(" ") }}"{% endif %}>
+              <span class="footer--group--header">{{ group.group_header_label }}</span>
+            </a>
+            {% else %}
+            <span class="footer--group--header--nolink footer--group--header">{{ group.group_header_label }}</span>
+            {% endif %}
+            {% endif %}
+
+            {% if group.content_type == "richtext" %}
+            {% for item in group.richtext %}
+            <div class="footer--richtext--wrapper block all--valign--top">
+              <div class="flexgrid valign--top align--start no--wrap">
+                {% if item.icon_code.name != '' %}
+                <div class="footer--richtext--icon--holder">
+                  {% icon name="{{ item.icon_code.name }}" style="{{ item.icon_code.type }}" unicode="{{ item.icon_code.unicode }}" icon_set="{{ item.icon_code.icon_set }}" width="14" height="14", purpose="decorative" %}
+                </div>
+                {% endif %}
+                <div class="one-whole first--hard--top last--hard--bottom">
+                  {{ item.text_content }}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if group.content_type == "links" %}
+            <div class="all--valign--top footer--main--menu--content {% if group.social_group_content %}footer--main--menu--content--social{% endif %}">
+              <ul class="hard no--bullets">
+                {% for link in group.links %}
+
+                {% set href = link.link.url.href %}
+                {% if link.link.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+                {% endif %}
+                {% set rel = [] %}
+                {% if link.link.no_follow %}
+                {% do rel.append("nofollow") %}
+                {% endif %}
+                {% if link.link.open_in_new_tab %}
+                {% do rel.append("noopener") %}
+                {% endif %}
+
+                <li>
+                  <a href="{{ href }}" title="{{ link.link_title_attribute }}" class="block all--valign--top custom--link" {% if link.link.open_in_new_tab %}target="_blank"{% endif %} {% if rel %}rel="{{ rel|join(" ") }}"{% endif %}>
+                    <span class="footer--links--icon--holder inline-block">{% if item.icon_code.name != '' %}{% icon name="{{ link.icon_code.name }}" style="{{ link.icon_code.type }}" unicode="{{ link.icon_code.unicode }}" icon_set="{{ link.icon_code.icon_set }}" width="14" height="14", purpose="decorative" no_wrapper=True %}{% endif %}</span><span class="inline-block first--hard--top last--hard--bottom">{{ link.link_text }}</span>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            {% if group.content_type == "menu" %}
+            {% set colFooterNav = menu(group.menu) %}
+            <div class="all--valign--top footer--main--menu--content">
+              <ul role="menu" class="hard no--bullets">
+                {% if group.group_header_label && group.group_header_label_link.url.href %}
+                <li class="lap-and-up-visuallyhidden" role="none"><a href="{{ href }}" role="menuitem" {% if group.group_header_label_link.open_in_new_tab %}target="_blank"{% endif %} {% if rel %}rel="{{ rel|join(" ") }}"{% endif %}>{{ group.group_header_label }}</a></li>
+                {% endif %}
+                {% for item1 in colFooterNav.children %}
+                <li role="none"><a href="{{ item1.url }}" role="menuitem" {% if item1.linkTarget %}target="_blank"{% endif %}>{{ item1.label }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+
+            {% if group.content_type == "logo" %}
+            <div class="short--bottom all--valign--top">
+              {% set href = group.logo.logo_hyperlink_url.url.href %}
+              {% if group.logo.logo_hyperlink_url.url.type is equalto "EMAIL_ADDRESS" %}
+              {% set href = "mailto:" + href %}
+              {% endif %}
+              {% set rel = [] %}
+              {% if group.logo.logo_hyperlink_url.no_follow %}
+              {% do rel.append("nofollow") %}
+              {% endif %}
+              {% if group.logo.logo_hyperlink_url.open_in_new_tab %}
+              {% do rel.append("noopener") %}
+              {% endif %}
+
+              {% if href %}
+              <a href="{{ href }}" {% if group.logo.logo_hyperlink_url.open_in_new_tab %}target="_blank"{% endif %} {% if rel %}rel="{{ rel|join(" ") }}"{% endif %} class="footer--main--logo margin--short--top">
+                {% endif %}
+                <img class="footer--main--logo" src="{% if group.logo.logo.src %}{{ group.logo.logo.src }}{% elif group.logo.logo_png.src %}{{ group.logo.logo_png.src }}{% endif %}" alt="{% if group.logo.logo.src %}{{ group.logo.logo.src }}{% elif group.logo.logo_png.src %}{{ group.logo.logo_png.alt }}{% endif %}" style="width:{% if group.logo.logo.src %}{{ group.logo.logo.width }}{% elif group.logo.logo_png.src %}{{ group.logo.logo_png.width }}{% endif %}px;height:auto;" {% if group.logo.logo.src && module.logo.logo_png.src %}onerror="this.src='{{ group.logo.logo_png.src }}';"{% endif %} />
+                {% if href %}
+              </a>
+              {% endif %}
+
+            </div>
+            {% endif %}
+
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="footer--copyright">
+    <div class="grid hard--ends">
+      <div class="grid__item one-third portable-one-whole short valign--middle text--left portable-text--center">
+        <p class="hard--ends font--15">
+          &copy; {{ year }} {% if module.company_name %}{{ module.company_name }}{% else %}{{ site_settings.company_name }}{% endif %}
+          <br/>
+          All Rights Reserved.
+          {% if module.company_location %}
+          <br/>
+          {{ module.company_location }}
+          {% endif %}
+        </p>
+      </div>
+      <div class="footer--copyright--review grid__item one-third portable-one-whole {% if module.show_review %}short{% else %}hard--ends{% endif %} valign--middle text--center">
+        {% if module.show_review %}
+        {% for start in range(1,6) %}
+        <span class="inline-block">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/></svg>
+        </span>
+        {% endfor %}
+        <p class="font--15 hard--top bold font--heading">
+          {{ module.review.review }}
+        </p>
+        <p class="font--15 hard--bottom">
+          - {{ module.review.review_byline }}
+        </p>
+        {% endif %}
+      </div>
+      <div class="grid__item one-third portable-one-whole {% if module.legal_links|length > 0 %}short{% else %}hard--ends{% endif %} valign--middle text--right portable-text--center">
+        {% if module.legal_links|length > 0 %}
+        <p class="hard--ends font--15">
+          {% for item in module.legal_links %}
+          {% set href = item.link.url.href %}
+          {% if item.link.url.type is equalto "EMAIL_ADDRESS" %}
+          {% set href = "mailto:" + href %}
+          {% endif %}
+          {% set rel = [] %}
+          {% if item.link.no_follow %}
+          {% do rel.append("nofollow") %}
+          {% endif %}
+          {% if item.link.open_in_new_tab %}
+          {% do rel.append("noopener") %}
+          {% endif %}
+
+          <a href="{{ href }}" title="{{ item.link_title_attribute }}" {% if item.link.open_in_new_tab %}target="_blank"{% endif %} {% if rel %}rel="{{ rel|join(" ") }}"{% endif %}>{{ item.link_text }}</a>
+          {% if not loop.last %} <span class="">|</span> {% endif %}
+          {% endfor %}
+        </p>
+        {% endif %}
+        <p class="hard--ends font--15">
+          <a href="https://www.impactplus.com/services/website-design-hubspot-wordpress" target="_blank" title="HubSpot Website Design by IMPACT" rel="nofollow">HubSpot Website Design</a> by IMPACT
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% require_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuHeaders = document.querySelectorAll(".footer--main .footer--main--menu--wrapper.footer--main--menu--wrapper--accordion .footer--group--header--nolink, .footer--main .footer--main--menu--wrapper.footer--main--menu--wrapper--accordion .footer--group--header--link");
+
+      menuHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          if (viewport("portable")) {
+            const thisWrapper = this.closest(".footer--main--menu--wrapper");
+            const thisMenu = thisWrapper.querySelector(".footer--main--menu--content");
+
+            if (thisWrapper.classList.contains("footer--main--menu--open")) {
+              thisWrapper.classList.remove("footer--main--menu--open");
+              slideUp(thisMenu)
+            } else {
+              thisWrapper.classList.add("footer--main--menu--open");
+              slideDown(thisMenu)
+            }
+          }
+        });
+      });
+    });
+  </script>
+{% end_require_js %}
+

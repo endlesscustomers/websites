@@ -1,0 +1,157 @@
+{# CSS #}
+{{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/modules/_custom/Video Testimonial Overflow Slider/Video Testimonial Overflow Slider.css'), { async: true } ) }}
+
+<div class="section--recordings-popup-container">
+  <div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--video-testimonial-slider relative agency---lazy--default {{ module.section_controls.device_visibility }}">
+    {{ snippets.background(module.background) }}
+    <div class="section--video-testimonial-slider--slide relative z-index--10 snap-slider">
+      <div class="grid {{ module.section_controls.spacing.top_padding }} {{ module.section_controls.spacing.top_padding_mobile }} hard--bottom">
+
+        <div class="section--video-testimonial-wrapper grid__item one-whole lap-and-up-hard--sides tablet-hard--sides hard--ends">
+
+          <div class="section--video-testimonial-header-controls all--valign--bottom text--left lap-and-up-margin--short--bottom tablet-margin--short--bottom margin--short--top palm-hard--bottom flex flex-justify--space-between flex-align--end">
+            <div class="section--video-testimonial--header grid__item ten-twelfths palm-one-whole hard--ends palm-hard--sides relative z-index--10 first--hard--top last--hard--bottom hard--top">
+              {{ module.heading_subheading }}
+            </div>
+            <div class="section--video-testimonial-slider-controls grid__item two-twelfths palm-one-whole palm-hard--sides hard--ends relative z-index--10 lap-and-up-text--right tablet-text--right palm-left--right palm-margin--petite--top {% if module.slider_items|length < 4 %}lap-and-up-visuallyhidden{% endif %}">
+              <div class="section--video-testimonial-slider-controls-container flex flex-align--center">
+                <div class="section--video-testimonial-slider-prev hover--pointer arrow-dis flex flex-align--center flex-justify--center" data-prev>
+                  <img class="lazy" data-src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_left.svg" alt="Prev Slide" height="15" width="15">
+                </div>
+                <div class="section--video-testimonial-slider-next hover--pointer flex flex-align--center flex-justify--center" data-next>
+                  <img class="lazy" data-src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/black/arrow_right.svg" alt="Next Slide" height="15" width="15">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section--video-testimonial-wrapper grid hard--top hard--sides {{ module.section_controls.spacing.bottom_padding }} {{ module.section_controls.spacing.bottom_padding_mobile }}" data-slider>
+        <div class="resource-cards grid__item one-whole hard--ends hard--sides blog-card---row-margin relative z-index--99 flex">
+
+          {% for row in module.slider_items %}  
+          <div class="section--video-testimonial--article-item relative hard--bottom resource-cards-item resource-cards-item--padding overflow--hidden {% if module.layout_controls.add_topic_filtering == "yes" %}resource-card--multi-filter {% for filterItem in resource.filters %}{{ filterItem|lower|replace(' ','-') }} {% endfor %}{% endif %}">
+            <div class="section--video-testimonial-slider--results--item--body overflow--hidden default">
+              {% if row.slider_image %}
+              <div class="section--video-testimonial-slider--results--image block relative lazy" role="img" aria-label="{{ row.slider_image.alt|escape_attr }}" data-bg="{{ row.slider_image.src|escape_url }}" style="background-repeat: no-repeat; background-size: cover; background-position: center;">
+                <video class="section--video-testimonial--preview-video" muted loop playsinline style="left: {{ row.video_horizontal_offset }}%;">
+                  <source src="{{ row.slider_video_preview }}" type="video/mp4">
+                </video>
+                <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding: 177% 0px 0px 0px;"></span>
+              </div>
+              <div class="section--video-testimonial--article-content p absolute bottom--0 hard--ends all--color--white all--text--left line-height--small">
+                <div class="first--hard--top last--hard--bottom portable-margin--short--bottom">{{ row.slider_text }}</div>
+                <div class="section--video-testimonial--btn btn btn--small flex flex-align--center" onclick="launchVidLightbox('{{ row.slider_vidyard_uuid }}');">
+                  <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/white/play-white.svg" loading="lazy" style="margin-right: 8px;" width="28" height="28" alt="Play Video {{ row.slider_text }}">
+                  <span class="p font--16 hard--ends bold" tabindex="0">{{ row.slider_video_button_text }}</span>
+                </div>
+              </div>
+              {% endif %}
+
+            </div>
+          </div>
+          {% endfor %}
+
+
+          {# Spacer for Slider #}
+          <div class="section--video-testimonial--article-item-spacer section--video-testimonial--article-item relative hard--bottom resource-cards-item resource-cards-item--padding" style="height: 1px;">
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- end slider -->
+  </div>
+</div>
+
+{% require_js %}
+<script>
+
+  var sliders = document.querySelectorAll(".snap-slider"); 
+  var cardWidth = $('.section--video-testimonial--article-item').outerWidth(true);
+
+  sliders.forEach((index) => {
+
+    var slider = index.querySelector("[data-slider]"); 
+    var prevButton = index.querySelector("[data-prev]");
+    var nextButton = index.querySelector("[data-next]");
+
+    /* Watching the Scroll Position to Disable the Prev/Next Buttons */
+    slider.addEventListener("scroll", event => {
+
+      var maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+      var maxScrollRound = Math.floor(maxScrollLeft);
+      var scrollValue = slider.scrollLeft;
+      var scrollValueRound = Math.round(scrollValue);
+
+      if (scrollValueRound >= (maxScrollRound - 2)) {
+        prevButton.classList.remove("arrow-dis");
+        nextButton.classList.add("arrow-dis");
+      } else if (scrollValueRound == 0) {
+        nextButton.classList.remove("arrow-dis");
+        prevButton.classList.add("arrow-dis");
+      } else {
+        nextButton.classList.remove("arrow-dis");
+        prevButton.classList.remove("arrow-dis");
+      }
+    }, { passive: true });
+
+    function slide(direction) {
+      let left;
+      const { scrollLeft, clientWidth } = slider;
+
+      switch (direction) {
+        case "prev":
+          left = scrollLeft - cardWidth;
+          break;
+        case "next":
+        default:
+          left = cardWidth + scrollLeft;
+          break;
+      }
+
+      slider.scroll({
+        left,
+        behavior: "smooth"
+      });
+    }
+
+    if (slider && prevButton && nextButton) {
+      prevButton.addEventListener("click", () => slide("prev"));
+      nextButton.addEventListener("click", () => slide("next"));
+    }
+  });
+
+  $(window).on('resize', function () {
+    cardWidth = $('.blog--listing--cards--article-item').outerWidth(true);
+  });
+
+
+  // Video Preview Hover
+
+  document.querySelectorAll(".section--video-testimonial--article-item").forEach(container => {
+    const video = container.querySelector(".section--video-testimonial--preview-video");
+
+    container.addEventListener("mouseenter", () => {
+      video.currentTime = 0; // Restart video
+      video.muted = true; // Ensure muted (required for autoplay)
+
+      try {
+        video.play();
+      } catch (err) {
+        console.error("Autoplay failed:", err);
+      }
+    });
+
+    container.addEventListener("mouseleave", () => {
+      video.style.opacity = "0";
+      setTimeout(() => {
+        video.pause();
+        video.currentTime = 0;
+      }, 400);
+    });
+  });
+
+</script>
+{% end_require_js %}
+

@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 188930566021,
+  "label" : "Navigation and Footer Page Options",
+  "icon" : "https://www.impactplus.com/hubfs/impact-logo-highres-black-half.svg",
+  "is_available_for_new_content" : false
+}

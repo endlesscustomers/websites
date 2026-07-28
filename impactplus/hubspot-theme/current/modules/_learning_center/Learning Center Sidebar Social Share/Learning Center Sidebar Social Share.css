@@ -1,0 +1,89 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--lcsocialshare-share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:20px;
+  height:20px;
+  line-height:20px;
+  text-align:center;
+  text-decoration:none!important;
+  position:relative;
+  {{ transition("background .3s ease-in-out") }}
+  margin-left: 4px !important;
+  filter: invert(28%) sepia(2%) saturate(5581%) hue-rotate(190deg) brightness(99%) contrast(78%);
+}
+.section--lcsocialshare-share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--lcsocialshare-share--icon:first-child {
+  margin-left:0px;
+}
+
+.section--lcsocialshare--share--link{
+  margin-left: 10px;
+}
+
+.section--lcsocialshare .section--lcsocialshare--share--link .socialshare--share--icon{
+  filter: invert(32%) sepia(6%) saturate(1298%) hue-rotate(189deg) brightness(94%) contrast(89%);
+  margin-right: 16px;
+}
+
+.section--lcsocialshare .copy-tooltip {
+  position: absolute;
+  background: #fff;
+  color: #1d1d1f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.2s ease;
+  bottom: -54px;
+  left: calc(50% + 8px);
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.section--lcsocialshare .tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+{% call mediaQuery("tablet-and-up") %}
+.section--lcsocialshare h6{
+  margin-top: 5px !important;
+}
+{% endcall %}
+
+.section--lcsocialshare .tooltip-container.show-tooltip .copy-tooltip {
+  opacity: 1;
+}

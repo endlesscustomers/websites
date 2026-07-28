@@ -1,0 +1,99 @@
+{{ require_css( get_asset_url("../Learning Center Resource Category Cards.css"), { async: true } ) }}
+
+
+{% if module.layout_controls.container_alignment == 'center' %} 
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--lc-categorycards relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends">
+      <div class="grid__item one-whole hard--top {% if module.enable_lightbox_video %}tall--bottom palm-short--bottom{% else %}hard--bottom{% endif %} last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }}">
+        <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}  flex flex-flow--column flex-align--{{ gridAlignmentDesktop }}">
+          {% if module.preheader %}
+          <span class="h6 preheader color--darkgrey margin--petite--bottom">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="grid__item hard--sides hard--ends {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-ten-twelfths palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-ten-twelfths palm-one-whole{% endif %} first--hard--top last--hard--bottom">
+            <h2 class="{% if module.content %}{% else %}last--hard--bottom{% endif %}">{{ module.header }}</h2>
+          </div>
+          {% endif %}
+          <div class="grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom">
+            {% if module.content %}
+            {{ module.content }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {# Webinar Cards #}
+      <div class="section--card-content-columns-headings--content-columns margin--standard--bottom">
+        <div class="section--card-content-columns--grid grid__item palm-one-whole hard--ends hard--sides">
+          <div class="section--card-content-columns--center flex flex-justify--left all--text--left">
+
+            {% set dbTableId = module.resource_table %}
+            {% set dbColumns = hubdb_table_rows(dbTableId, "resource_type__contains=" ~ module.hubdb_resource_type|urlencode ~ "&orderBy=published_date&limit=12") %}
+
+
+            {% for item in dbColumns %}
+            <div class="section--cards-column-group section--cards-layout--{{ module.resource_cards_layout_type }} grid__item {% if module.resource_cards_layout_type == 'three-col' %}one-third tablet-one-half{% endif %} {% if module.resource_cards_layout_type == 'full-width' %}one-whole{% endif %} palm-one-whole hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--{{ loop.index + 1 }} margin--standard--top relative z-index--30">
+              <div class="section--card-content-columns-container flex overflow--hidden border--1 border--mist" style="width: 100%; border-radius: 16px;">
+                <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative border--1 border--mist border--left--0 border--top--0 border--right--0 border--mist">
+                  <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer z-index--1" title="{{ item.resource_title }}" href="{{ item.resource_link }}"></a>
+                  <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ item.resource_title }}" data-bg="{{ item.resource_image.url }}" style="background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                    {% if module.resource_cards_layout_type == 'three-col' %}
+                    <span style="display: block; width: 100%; margin: 0px; padding: 52.25% 0px 0px;"></span>
+                    {% elif module.resource_cards_layout_type == 'full-width' %}
+                    <img src="https://placeholdit.com/440x297" style="opacity:0;" alt="" role="presentation">
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="section--card-content-columns-wrapper relative width--max">
+                  <div class="section--card-content-columns-group">
+                    <div class="section--card-content-columns-header h5 hard--top margin--petite--bottom last--hard--bottom relative">
+                      <a class="section--cards--card--link no--underline border--0 hover--pointer z-index--1 no--underline h5 hard--ends color--obsidian" title="{{ item.resource_title }}" href="{{ item.resource_link }}">
+                        {{ item.resource_title }}
+                      </a>
+                    </div>
+                    <div class="section--card-content-columns-description p p--sm hard--ends last--hard--bottom color--midgrey">{{ item.resource_description }}</div>
+                  </div>
+                  <div class="section--richtext-columns--button-container" style="text--center">
+                    <span class="section--cards--card--body--cta">
+                      <span class="p all--btn all--btn--simple margin--petite--top hard--bottom">
+                        <a class="section--cards--card--link no--underline border--0 hover--pointer z-index--1 relative" title="{{ item.resource_title }}" href="{{ item.resource_link }}">
+                          <span class="btn btn--simple">
+                            {{ module.resource_card_link_text }}
+                          </span>
+                        </a>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+
+      {# End Webinar Cards #}
+    </div>
+
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

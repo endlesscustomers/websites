@@ -1,0 +1,1943 @@
+<!--
+templateType: "blog"
+isAvailableForNewContent: true 
+-->
+
+<!DOCTYPE html>
+<html class="overflow-x--hidden no-js" lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+  {% include "Production/Site_Head.html" %}
+
+  {# Blog Styles #}
+  {# require_css(get_asset_url('/production/The_IMPACT_Learning_Center_Blog_Styles.css'), { async: true } ) #}
+
+  {# Article Smart CTAs 
+  {% set smartCtaData = [] %}
+  {% set vOffset = [] %}
+  {% module "cta_controls" label="Blog Article CTA Setup: Click to Edit CTAs" path='/_IMPACT_Production/_modules/_IMPACT_UI/_custom/_IMPACT_blog/Post Inner/IMPACT Blog Call-to-Actions - IMPACT UI Custom' %}
+  {% set smartCtaData = smartCtaData[0] %}
+  {% set smartCtaData = smartCtaData['blog_call_to_action_sidebar_options'] %}
+  {% set smartCtaButton = cta(smartCtaData.cta) %}
+  {% if vOffset|length %}
+  {% set vOffset = vOffset|join %}
+  {% else %}
+  {% set vOffset = 0 %}
+  {% endif %}
+  #}
+
+
+  {% set daySuffix = {"01":"1st","02":"2nd","03":"3rd","04":"4th","05":"5th","06":"6th","07":"7th","08":"8th","09":"9th","10":"10th","11":"11th","12":"12th","13":"13th","14":"14th","15":"15th","16":"16th","17":"17th","18":"18th","19":"19th","20":"20th","21":"21st","22":"22nd","23":"23rd","24":"24th","25":"25th","26":"26th","27":"27th","28":"28th","29":"29th","30":"30th","31":"31st"} %}
+
+  {#<style>
+    .ctaPopup--global-cta--image img{
+      width: {% if smartCtaData.set_image_max_width %}{{ smartCtaData.set_image_max_width }}{% else %}200{% endif %}px;
+      position:relative;
+      z-index:200;
+    }
+    @media screen and (min-width: 680px){
+      .bottom-article--global-cta--inner .bottom-article--global-cta--image-wrapper{
+        max-width: calc({% if smartCtaData.set_image_max_width %}{{ smartCtaData.set_image_max_width }}{% else %}200{% endif %}px + {{ vOffset }}px);
+      }
+    }
+    .bottom-article--global-cta--inner .bottom-article--global-cta--image-wrapper{
+      display: flex;
+      margin-top:{% if smartCtaData.bottom_cta_vertical_image_offset %}-{% endif %}{{ vOffset }}px;
+    }
+
+
+    .bottom-article--global-cta--image > img{
+      width: calc({% if smartCtaData.set_image_max_width %}{{ smartCtaData.set_image_max_width }}{% else %}200{% endif %}px + {{ vOffset }}px);
+    }
+
+    @media screen and (min-width: 680px){
+      .bottom-article--global-cta{
+        margin-top:calc(10px + {{ vOffset }}px);
+      }
+    }
+  </style>#}
+
+  <body class="{% if is_listing_view %}blog--listing--cards {% endif %} overflow-x--hidden background--white relative" id="impactArticles">
+
+    {% global_partial path="/IM-IMPACT-Prod-Theme-2025/templates/partials/header.html" %}
+
+    {# Form Contents Macro #}
+    {# set formContents = formContents[0] #}
+
+    {# Bottom Right Slide-in CTA. Will show the default on the listing and topic pages #}
+    {#<div class="bottomleft--global-cta palm-visuallyhidden">
+      <img class="bottomleft--global-cta--close hover--pointer" src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/navigation-global--close-symbol-black-01.svg" alt="Close Bottom Left Popup Offer" width="10" height="10">
+      <div class="grid padding--short" style="padding-top:30px !important; padding-bottom:30px !important;">
+        {% if smartCtaData.cta_layout_type != 'text only' && (smartCtaData.cta_layout_type != "textform") %}
+        <div class="bottomleft--global-cta--image grid__item one-half hard valign--middle">
+          <div class="bottomleft--global-cta--image--alignment">
+            <img class="lazy-slidein" data-src="{{ smartCtaData.bottom_cta_image.src }}" alt="{{ smartCtaData.bottom_cta_image.alt }}">
+          </div>
+        </div>
+        {% endif %}
+        <div class="grid__item {% if (smartCtaData.cta_layout_type != "text only") && (smartCtaData.cta_layout_type != "textform") %}one-half{% else %}one-whole{% endif %} hard valign--middle bottomleft--global-cta--image">
+          {% if smartCtaData.preheader %}<p class="hard--top color--blue bold font--14 margin--petite--bottom line-height--small">{{ smartCtaData.preheader }}</p>{% endif %}
+          <div class="{% if smartCtaData.preheader %}{% else %}hard--top{% endif %} line-height--small negative--short--top margin--short--bottom h2 font--{% if (smartCtaData.cta_layout_type == "text only") || (smartCtaData.cta_layout_type == "textform") %}20{% else %}15{% endif %}">
+            {{ smartCtaData.cta_name }}
+          </div>
+          {% if (smartCtaData.cta_layout_type == "text only") || (smartCtaData.cta_layout_type == "textform") %}
+          <div class="p font--16 margin--short--bottom" style="line-height:1.4em;">
+            {{ smartCtaData.cta_subheader_optional }}
+          </div>
+          {% endif %}
+          {% if smartCtaData.cta_layout_type != "textform" %}
+          {% if (smartCtaData.bottom_cta_image.width < smartCtaData.bottom_cta_image.height) || (smartCtaData.bottom_cta_image.width == smartCtaData.bottom_cta_image.height) %}
+          <div class="all--btn all--btn--{{ smartCtaData.button_color }} font--14 bold" style="margin-top:5px;">
+            {{ cta(smartCtaData.cta) }}
+          </div>
+          {% endif %}
+          {% endif %}
+        </div>
+        {% if smartCtaData.cta_layout_type != "textform" %}
+        {% if smartCtaData.bottom_cta_image.width > smartCtaData.bottom_cta_image.height %}
+        <div class="all--btn all--btn--{{ smartCtaData.button_color }} font--14 bold width--max" style="padding: 0px 20px; margin-top:0px;">
+          {{ cta(smartCtaData.cta) }}
+        </div>
+        {% else %}
+        {% endif %}
+        {% endif %}
+        {% if smartCtaData.cta_layout_type == "textform" %}
+        <div class="smartCTA--form-target"><div class="smartCTA--slidein-article-form smartCTA--form-target—1 all--btn all--btn--blue"></div></div>
+        {% endif %}
+      </div>
+    </div>#}
+
+    {% if is_listing_view %}
+    {# ############# LISTING PAGE ############# #}
+    <div class="blog--listing--cards--container" style="background:#F6F9FC;">
+
+      {# ############# BLOG AUTHOR PAGE ############# #}
+      {% if blog_author %}
+
+      {#<div class="section blog--listing--author--section relative">
+        <div class="background background--white" style="z-index: 1;">
+          <div class="background--layer default  background--slanted z-index--1 opacity--100 " style="transform: skewY(-12deg); background-color:rgba(246, 249, 252, 1.0); top:0%;bottom:0%;right:0%; left:0%;"></div>
+          <div class="background--small-slant background--slant-grey" style=" transform: skewY(-12deg) translateY(0); top: calc(100% - ((tan(-12deg)*25vw) + 30px));"></div>
+        </div>
+
+        <div class="blog--listing--cards--author-profile grid tall--top trenta--bottom palm-hard--sides z-index--10 relative">
+          <div class="grid__item one-half tablet-five-twelfths palm-eleven-twelfths short">
+            {% if blog_author.avatar %}
+            <div class="author--page--avatar--image border-radius--circle">
+              <div class="author--page--avatar">
+                <div class="author--page--avatar-container overflow--hidden border-radius--circle">
+                  <img src="{{ blog_author.avatar }}" alt="{{ blog_author.display_name }}">
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+
+          <div class="grid__item one-half tablet-seven-twelfths palm-eleven-twelfths lap-and-up-hard--top tablet-hard--top short palm-short">
+            <h1 class="hard--ends">
+              <span class="author--profile--name font--heading">{{ blog_author.display_name }}</span>
+            </h1>
+            <div class="author--profile--bio margin--short--top">
+              {% set bio = blog_author.bio|split(".", 5) %}
+              <p class="font--heading hard--top" style="margin-bottom: 30px !important;">
+                {% for descript in bio %}{% if loop.index < 5 %}{{ descript }}.{% if loop.index != 4 %}&nbsp;{% endif %}{% endif %}{% endfor %}&nbsp;<a class='author--profile--bio-popup normal--weight color--dark-grey' href='#authorExpand' rel='authorExpand'>Read More</a>
+              </p>
+            </div>
+            {% if blog_author.has_social_profiles %}
+            <div class="post--listing-author-section-social">
+              <ul class="no--bullets hard">
+                <li class="color--obsidian inline-block font--heading font--16 bold" style="padding-right: 4px; position: relative;">
+                  Connect:
+                </li>
+                {% if blog_author.twitter %}
+                <li class="post--listing-author-link inline-block" style="margin-left:8px; margin-right:8px;">
+                  <a href="{{ blog_author.twitter }}" target="_blank">
+                    <img class="palm-visuallyhidden" src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/x%20corp.svg" alt="Share in X" style="height: 17px;">
+                    <img class="lazy lap-and-up-visuallyhidden tablet-visuallyhidden" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/x%20corp.svg" alt="Share in X" style="height: 17px;">
+                  </a>
+                </li>
+                {% endif %}
+                {% if blog_author.linkedin %}
+                <li class="post--listing-author-link inline-block" style="margin-left:8px; margin-right:8px;">
+                  <a href="{{ blog_author.linkedin }}" target="_blank">
+                    <i class="fa fa-linkedin font--22" style="position: relative; top: -1px;"></i>
+                  </a>
+                </li>
+                {% endif %}
+                {% if blog_author.website %}
+                <li class="post--listing-author-link inline-block" style="margin-left:8px; margin-right:8px;">
+                  <a href="{{ blog_author.website }}" target="_blank">
+                    <img class="palm-visuallyhidden" src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg" alt="Visit {{ blog_author.display_name }}'s Website" style=" height: 18px;">
+                    <img class="lazy lap-and-up-visuallyhidden tablet-visuallyhidden" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg" alt="Visit {{ blog_author.display_name }}'s Website" style=" height: 18px;">
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div id='productionPopUp' class='popupTemplate--apple-white'>
+        <div id='productionPopUpVcenter'></div>
+        <div class='productionPopupInner expertsInner'>
+          <div class='grid relative hard--ends' style="z-index:999;">
+            <div class='productionPopupContainer background--white'>
+              <div class='productionClose hover--pointer'> 
+                <div class="productionClose--container absolute">
+                  <img src="https://www.impactplus.com/hubfs/IMPACT%20Plus/Assets/close--_Inverted.svg" class="absolute productionClose--inverted" width="26" height="26" alt="Close Inverted">
+                  <img src="https://www.impactplus.com/hubfs/IMPACT%20Plus/Assets/close--_Default.svg" class="background--white absolute productionClose--default" width="26" height="26" alt="Close Default">
+                </div>
+              </div>
+              <div class='productionPopupContainer--padding'>
+                <div class='productionPopupContent' id='unlockContentWrapper'> 
+                  <div class='productionPopup--singles'>
+                    <div class="productionPopUp--event-content">
+                      <div class="p hard--ends text--left">
+                        <h2 class="hard--ends">
+                          <span class="author--profile--name font--heading">{{ blog_author.display_name }}</span>
+                        </h2>
+                        <div class="author--profile--bio margin--short--top">
+                          <div class="font--heading hard--top p">{{ blog_author.bio }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='popupTemplate--apple-white-overlay'></div>#}
+      {% endif %}
+
+      {# ############# START STANDARD LISTING PAGE ############# #}
+
+      <div class="section blog--listing--cards--wrapper {% if blog_author %}relative background--white{% endif %}">
+        {# simple_list_page indicates the "blog/all" page, which is a list of links to every blog post #}
+        {% if tag || blog_author %}
+        {% if tag %}
+        <div class="grid short">
+          <div class="grid__item ten-twelfths palm-eleven-twelfths venti--top short--bottom palm-grande--bottom palm-tall--top">
+            <div class="blog--listing--header all--text--center">
+              <h1 class="hard--ends bolder">
+                {{ page_meta.html_title|split(' | ')|last }} Articles
+              </h1>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="grid  {% if blog_author %}hard--top short--bottom{% else %}hard--ends{% endif %}">
+          {% if blog_author %}
+          <div class="grid__item one-whole hard--top palm-tall--top hard--bottom palm-eleven-twelfths">
+            <h4 class="bold hard--ends font--24 margin--petite--bottom">
+              More from {{ blog_author.display_name }}
+            </h4>
+          </div>
+          {% endif %}
+          <div class="grid__item one-whole grid__item one-whole lap-and-up-hard--sides portable-hard--sides hard--ends lap-and-up-width--max portable-width--max lap-and-up-hard--sides portable-hard--sides">
+            <div class="blog--listing--cards--listing blog-card--standard blog-card---mobile-flex-wrap">
+              {% for content in contents %}
+
+              {# Word Count #}
+              {% set initialPostWords = content.post_body|striptags|wordcount %}
+              {% set calculatedPostWords = (initialPostWords/100) * 100 %}
+              {% set finishedPostWords = calculatedPostWords|divide(300)|round(2) %}
+              {% set readTimeRounded = finishedPostWords|round %}
+
+              {% if content.post_list_summary_featured_image %}
+              {% set featuredImage = content.post_list_summary_featured_image %}
+              {% else %}
+              {% set featuredImage = blogFallback %}
+              {% endif %}
+
+              {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 300) %}
+              {% set resizedFeaturedImage = resizedFeaturedImage|replace('impactbnd.com','impactplus.com') %}
+
+              {### Start Topic URL Replacement Function ###}
+              {# Matching Single Post Topics to Learning Center Topics #}
+              {% if content.tag_list|length %}
+              {% set postSingleList = [] %}
+
+              {% for tag in content.tag_list %}
+
+              {# Check if the topic exists in the table #}
+              {% if lcTopicMatch|map('topic')|intersect([tag.name])|length > 0 %}
+
+              {% set topicID = lcTopicMatch|selectattr('topic','equalto',tag.name) %}
+              {% set topicID = topicID[0] %}
+
+              {% set postSingleList2 = postSingleList.append({
+               "topic":tag.name,
+               "url":learningCenterURL+topicID.id,
+              }) %}
+
+              {% else %}
+
+              {% set postSingleList2 = postSingleList.append({
+               "topic":tag.name,
+               "url":blogTopicURL+tag.slug,
+               }) %}
+
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+
+              {% set postSingleList = postSingleList[0] %}
+              {### End Topic URL Replacement Function ###}
+
+              <div class="blog--listing--cards--article-item blog-card--standard-item blog-card--standard-item--padding blog--listing--cards--rss-item grid__item three-twelfths tablet-four-twelfths palm-eleven-twelfths hard--sides hard--top relative lap-and-up-margin--tall--bottom tablet-margin--tall--bottom palm-hard--bottom palm-margin--tall--bottom">
+                <div class="blog-card--standard--inner">
+                  <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative">
+                    <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0" href="{{ content.absolute_url }}" aria-label="{{ content.name }} (opens in a new tab)" target="_blank"></a>
+                    <div class="section--resource-slider--featured-image-hover-overlay"></div>
+                    <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" data-bg="{{ content.post_list_summary_featured_image }}" style="background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                      <span class="aspectspacer-16x9"></span>
+                    </div>
+                  </div>
+                  <div class="blog-card--standard--content grid__item one-whole hard--sides background--white">
+                    <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0 z-index--10" href="{{ content.absolute_url }}" aria-label="{{ content.name }} (opens in a new tab)" target="_blank"></a>
+                    <div class="flex overflow--visible" style="flex-direction: column; justify-content: space-between;">
+                      <div class="blog-card--standard--content--upper">
+                        <div class="p hard--ends font--14 bold">
+                          {# Replace for LC Launch #}
+                          {#{% if postSingleList|length > 0 %}
+                          <a class="inline z-index--10 relative no--underline color--blue" href="{{ postSingleList['url'] }}">
+                            {{ postSingleList['topic'] }}
+                          </a>
+                          {% endif %}#}
+                          {% if content.tag_list|length > 0 %}
+                          {% for tag in content.tag_list %}
+                          {% if loop.first %}
+                          <a class="blog-card--standard--topic-tag inline z-index--10 relative no--underline color--blue" href="{{ blog_tag_url(group.id, tag.slug) }}">
+                            {{ tag.name }}
+                          </a>
+                          {% endif %}
+                          {% endfor %}
+                          {% endif %}
+                        </div>
+                        <h4 class="short--ends font--heading bolder hard--bottom hard--top" style="margin-top:10px !important; line-height:1.2em;">
+                          {{ content.name }}
+                        </h4>
+                      </div>
+                      <div class="blog-card--standard--content--lower all--valign--middle table">
+                        <div class="table-cell">
+                          <div class="p font--14 light inline-block hard--bottom margin--short--top">
+                            {{ content.publish_date_local_time|datetimeformat('%B %e, %Y') }}{#<span style="color:#6e6e73;">&nbsp;|&nbsp;</span>{{ readTimeRounded }} min read#}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {#{% module "thelatestSubscribe" path="/HubUI/sections/learning center_8-2021/Subscribe to THE LATEST - Learning Center - IMPACT Publisher", label="Subscribe to THE LATEST Section" %}#}
+
+          {% if blog_author || tag %} 
+          {% else %}
+          <div class="grid__item one-whole grid__item one-whole lap-and-up-hard--sides portable-hard--sides hard--ends lap-and-up-width--max portable-width--max">
+            <div class="blog--listing--cards--listing blog-card--standard blog-card---row-margin blog-card---mobile-flex-wrap">
+
+              {% if request.path is string_containing "/topic" %}
+              {% set customPosts = blog_recent_topic_posts(group.id, topic, 16) %}
+              {% elif blog_author %}
+              {% set customPosts = blog_recent_author_posts(group.id, blog_author.slug, 16) %}
+              {% endif %}
+
+              {% for content in customPosts %}
+
+              {% if loop.index > 8 %}
+
+              {# Word Count #}
+              {% set initialPostWords = content.post_body|striptags|wordcount %}
+              {% set calculatedPostWords = (initialPostWords/100) * 100 %}
+              {% set finishedPostWords = calculatedPostWords|divide(300)|round(2) %}
+              {% set readTimeRounded = finishedPostWords|round %}
+
+              {% if content.post_list_summary_featured_image %}
+              {% set featuredImage = content.post_list_summary_featured_image %}
+              {% else %}
+              {% set featuredImage = blogFallback %}
+              {% endif %}
+
+              {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 300) %}
+              {% set resizedFeaturedImage = resizedFeaturedImage|replace('impactbnd.com','impactplus.com') %}
+
+              {### Start Author HubDB Team Member Match Function ###}
+              {% set relatedAuthor = [] %}
+              {% set articleAuthor = content.blog_post_author %}
+
+              {% set IMPACTAuthor = authorTable|selectattr('name','equalto', articleAuthor) %}
+              {% set IMPACTAuthor = IMPACTAuthor[0] %}
+
+              {% if IMPACTAuthor|length > 0 %}
+
+              {# Team Author Variables #}
+              {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":IMPACTAuthor.name,
+                  "headshot":IMPACTAuthor.square_team_photo.url,
+                  "bio":IMPACTAuthor.bio_page_url
+                 }) %}
+
+              {% else %}
+
+              {% set authorPage = articleAuthor|lower|replace(' ','-') %}
+
+              {# Non-team Author Variables #}
+
+              {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":articleAuthor.name,
+                  "headshot":articleAuthor.avatar,
+                  "bio":blog_author_url("default", authorPage)
+                 }) %}
+
+              {% endif %}
+
+              {% set relatedAuthor = relatedAuthor[0] %} 
+              {### End Author HubDB Team Member Match Function ###}
+
+              {### Start Topic URL Replacement Function ###}
+              {# Matching Single Post Topics to Learning Center Topics #}
+              {% if content.tag_list %}
+              {% set postSingleList = [] %}
+
+              {% for tag in content.tag_list %}
+
+              {# Check if the topic exists in the table #}
+              {% if lcTopicMatch|map('topic')|intersect([tag.name])|length > 0 %}
+
+              {% set topicID = lcTopicMatch|selectattr('topic','equalto',tag.name) %}
+              {% set topicID = topicID[0] %}
+
+              {% set postSingleList2 = postSingleList.append({
+               "topic":tag.name,
+               "url":learningCenterURL+topicID.id,
+              }) %}
+
+              {% else %}
+
+              {% set postSingleList2 = postSingleList.append({
+               "topic":tag.name,
+               "url":blogTopicURL+tag.slug,
+              }) %}
+
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+
+              {% set postSingleList = postSingleList[0] %}
+              {### End Topic URL Replacement Function ###}
+
+              <div class="blog--listing--cards--post-item blog--listing--cards--article-item blog-card--standard-item blog-card--standard-item--padding grid__item three-twelfths upper-tablet--one-third tablet-four-twelfths palm-eleven-twelfths palm-margin--tall--bottom hard--sides hard--top relative lap-and-up-margin--tall--bottom tablet-margin--tall--bottom palm-hard--bottom">
+                <div class="blog-card--standard--inner portable-margin--tall--bottom">
+                  <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative">
+                    <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}" target="_blank"></a>
+                    <div class="section--resource-slider--featured-image-hover-overlay"></div>
+                    <div class="section--resource-slider--featured-image grid__item one-whole hard" style="background:url('{{ content.post_list_summary_featured_image }}'); background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                      <span class="aspectspacer-16x9"></span>
+                    </div>
+                  </div>
+                  <div class="blog-card--standard--content grid__item one-whole hard--sides background--white">
+                    <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0 z-index--10" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}"></a>
+                    <div class="block overflow--visible">
+                      <div class="p hard--ends font--14 normal--weight">
+                        {# Replace for LC Launch #}
+                        {#{% if postSingleList|length > 0 %}
+                          <a class="inline z-index--10 relative no--underline" href="{{ postSingleList['url'] }}">
+                            <span class="color--blue bold">{{ postSingleList['topic'] }}</span>
+                          </a>
+                          {% endif %}#}
+                        {% for tag in content.tag_list %}
+                        {% if loop.first %}
+                        <a class="nline z-index--10 relative no--underline" href="{{ blog_tag_url(group.id, tag.slug) }}">
+                          <span class="color--blue bold">{{ tag.name }}</span>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                      </div>
+                      <h4 class="short--ends font--heading bolder hard--bottom hard--top margin--petite--top line-height--small">
+                        {{ content.name }}
+                      </h4>
+                      <div class="p font--14 light inline-block margin--petite--top hard--bottom">
+                        {{ content.publish_date_local_time|datetimeformat('%B %e, %Y') }}{#<span style="color:#6e6e73;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>{{ readTimeRounded }} min read#}
+                      </div>
+                      <div class="all--valign--middle table relative" style="margin-top: 15px !important;">
+                        <a class="z-index--10 absolute top--0 left--0 right--0 bottom--0" href="{{ relatedAuthor.bio }}"></a>
+                        <span class="section--learningcenter--results--item--lower block text--left flex flex-align--center" style="margin-top:auto;">
+                          <img class="lazy border-radius--circle" width="30" height="30" data-src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}">
+                          <span class="p inline font--14 no--underline color--obsidian hard--ends bold" style="margin-left:10px;">{{ relatedAuthor.name }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% elif is_listing_view && not blog_author && not tag %}
+
+        {# NEW LISTING PAGE #}
+        {% set imBlogRecent = blog_recent_posts(group.id, 16) %}
+
+        <div class="grid hard--top hard--bottom">
+          <div class="grid__item ten-twelfths palm-eleven-twelfths venti--top venti--bottom palm-tall--bottom palm-tall--top">
+            <div class="blog--listing--header all--text--center">
+              <h1 class="hard--ends">
+                Newest Insights
+              </h1>
+            </div>
+          </div>
+
+          {% if current_page_num == 1 %} 
+          <div class="post-listing--top-posts lap-and-up-flex lap-and-up-margin--short--bottom tablet-margin--short--bottom relative z-index--5 flex-justify--center">
+            <div class="grid__item six-twelfths upper-tablet--five-twelfths portable-one-whole post--listing--featured-post hard--ends feature-cards--padding palm-hard--sides palm-eleven-twelfths">
+              <div class="blog-card--standard halign--flex--center portable-margin--tall--bottom height--max">
+                {% for content in contents %}
+
+                {% if loop.index == 1 %}
+
+                {# Word Count #}
+                {% set initialPostWords = content.post_body|striptags|wordcount %}
+                {% set calculatedPostWords = (initialPostWords/100) * 100 %}
+                {% set finishedPostWords = calculatedPostWords|divide(300)|round(2) %}
+                {% set readTimeRounded = finishedPostWords|round %}
+
+                {### Start Author HubDB Team Member Match Function ###}
+                {% set relatedAuthor = [] %}
+                {% set articleAuthor = content.blog_post_author %}
+
+                {% set IMPACTAuthor = authorTable|selectattr('name','equalto', articleAuthor) %}
+                {% set IMPACTAuthor = IMPACTAuthor[0] %}
+
+                {% if IMPACTAuthor|length > 0 %}
+
+                {# Team Author Variables #}
+                {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":IMPACTAuthor.name,
+                  "headshot":IMPACTAuthor.square_team_photo.url,
+                  "bio":IMPACTAuthor.bio_page_url
+                 }) %}
+
+                {% else %}
+
+                {% set authorPage = articleAuthor|lower|replace(' ','-') %}
+
+                {# Non-team Author Variables #}
+                {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":articleAuthor.name,
+                  "headshot":articleAuthor.avatar,
+                  "bio":blog_author_url("default", authorPage)
+                 }) %}
+
+                {% endif %}
+
+                {% set relatedAuthor = relatedAuthor[0] %} 
+                {### End Author HubDB Team Member Match Function ###}
+
+                {### Start Topic URL Replacement Function ###}
+                {# Matching Single Post Topics to Learning Center Topics #}
+                {% if content.tag_list %}
+                {% set postSingleList = [] %}
+
+                {% for tag in content.tag_list %}
+
+                {# Check if the topic exists in the table #}
+                {% if lcTopicMatch|map('topic')|intersect([tag.name])|length > 0 %}
+
+                {% set topicID = lcTopicMatch|selectattr('topic','equalto',tag.name) %}
+                {% set topicID = topicID[0] %}
+
+                {% set postSingleList2 = postSingleList.append({
+                  "topic":tag.name,
+                  "url":learningCenterURL+topicID.id,
+                 }) %}
+
+                {% else %}
+
+                {% set postSingleList2 = postSingleList.append({
+                  "topic":tag.name,
+                  "url":blogTopicURL+tag.slug,
+                 }) %}
+
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% set postSingleList = postSingleList[0] %}
+                {### End Topic URL Replacement Function ###}
+
+                {% if content.post_list_summary_featured_image %}
+                {% set featuredImage = content.post_list_summary_featured_image %}
+                {% else %}
+                {% set featuredImage = blogFallback %}
+                {% endif %}
+
+                {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 300) %}
+                {% set resizedFeaturedImage = resizedFeaturedImage|replace('impactbnd.com','impactplus.com') %}
+
+                <div class="blog-card--featured-item-first grid__item one-whole relative hard animate--fade animate--fade-up animate--fade-delay--1">
+                  <div class="blog-card--standard--inner height--max">
+                    <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative">
+                      <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}" target="_blank"></a>
+                      <div class="section--resource-slider--featured-image-hover-overlay"></div>
+                      <div class="section--resource-slider--featured-image grid__item one-whole hard" style="background:url('{{ content.post_list_summary_featured_image }}'); background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                        <span class="aspectspacer-16x9"></span>
+                      </div>
+                    </div>
+                    <div class="blog-card--standard--content grid__item one-whole hard--sides background--white">
+                      <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0 z-index--10" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}"></a>
+                      <div class="block overflow--visible">
+                        <div class="blog-card--standard--content--upper">
+                          <div class="hard--ends h6 normal--weight">
+                            {# Replace for LC Launch #}
+                            {#{% if postSingleList|length > 0 %}
+                          {% if postSingleList|length > 0 %}
+                          <a class="post-listing--featured-topic inline z-index--10 relative no--underline bold" href="{{ postSingleList['url'] }}">
+                            <span class="color--blue bold">{{ postSingleList['topic'] }}</span>
+                          </a>
+                          {% endif %}
+                          {% endif %}#}
+                            {% for tag in content.tag_list %}
+                            {% if loop.first %}
+                            <a class="blog-card--standard--topic-tag post-listing--featured-topic inline z-index--10 relative no--underline bold" href="{{ blog_tag_url(group.id, tag.slug) }}">
+                              <span class="color--blue bold">{{ tag.name }}</span>
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                          </div>
+                          <h2 class="short--ends font--heading bolder hard--bottom hard--top" style="margin-top:15px !important; line-height:1.2em;">
+                            {{ content.name }}
+                          </h2>
+                          <div class="post-listing--top-post--subheader p hard--ends"></div>
+                          <div class="all--valign--middle">
+                            <div class="p light inline-block post-listing--featured-datetime hard--bottom color--middle-grey" style="margin-top: 15px !important;">
+                              {{ content.publish_date_local_time|datetimeformat('%b %e, %Y') }}{#<span style="color:#6e6e73;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>{{ readTimeRounded }} min read#}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="blog-card--standard--content--lower p lighter inline-block hard--bottom margin--short--top relative">
+                          <a class="z-index--10 absolute top--0 left--0 right--0 bottom--0" href="{{ relatedAuthor.bio }}" aria-label="Picture of Author {{ relatedAuthor.bio }}"></a>
+                          <span class="section--learningcenter--results--item--lower block text--left flex flex-align--center" style="margin-top:auto;">
+                            <img class="lazy border-radius--circle" width="42" height="42" data-src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}">
+                            <span class="p inline no--underline color--obsidian hard--ends bold" style="margin-left:10px;">{{ relatedAuthor.name }}</span>
+                          </span>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+            <div class="post--listing--featured-posts-group grid__item six-twelfths portable-one-whole hard upper-tablet--seven-twelfths">
+              <div class="blog-card--standard height--max blog-card---mobile-flex-wrap text--center">
+                {% for content in contents %}
+
+                {% if loop.index > 1  && loop.index < 6 %}
+
+                {# Word Count #}
+                {% set initialPostWords = content.post_body|striptags|wordcount %}
+                {% set calculatedPostWords = (initialPostWords/100) * 100 %}
+                {% set finishedPostWords = calculatedPostWords|divide(300)|round(2) %}
+                {% set readTimeRounded = finishedPostWords|round %}
+
+                {### Start Author HubDB Team Member Match Function ###}
+                {% set relatedAuthor = [] %}
+                {% set articleAuthor = content.blog_post_author %}
+                {% set articleAuthorName = articleAuthor.display_name %}
+
+                {% set IMPACTAuthor = authorTable|selectattr('name','equalto', articleAuthorName) %}
+                {% set IMPACTAuthor = IMPACTAuthor[0] %}
+
+                {% if IMPACTAuthor|length > 0 %}
+
+                {# Team Author Variables #}
+                {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":IMPACTAuthor.name,
+                  "headshot":IMPACTAuthor.square_team_photo.url,
+                  "bio":IMPACTAuthor.bio_page_url
+                 }) %}
+
+                {% else %}
+
+                {% set authorPage = articleAuthorName|lower|replace(' ','-') %}
+
+                {# Non-team Author Variables #}
+
+                {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":articleAuthor.name,
+                  "headshot":articleAuthor.avatar,
+                  "bio":blog_author_url("default", authorPage)
+                 }) %}
+
+                {% endif %}
+
+                {% set relatedAuthor = relatedAuthor[0] %} 
+                {### End Author HubDB Team Member Match Function ###}
+
+                {% if content.post_list_summary_featured_image %}
+                {% set featuredImage = content.post_list_summary_featured_image %}
+                {% else %}
+                {% set featuredImage = blogFallback %}
+                {% endif %}
+
+                {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 300) %}
+                {% set resizedFeaturedImage = resizedFeaturedImage|replace('impactbnd.com','impactplus.com') %}
+
+                {### Start Topic URL Replacement Function ###}
+                {# Matching Single Post Topics to Learning Center Topics #}
+                {% if content.tag_list %}
+                {% set postSingleList = [] %}
+
+                {% for tag in content.tag_list %}
+
+                {# Check if the topic exists in the table #}
+                {% if lcTopicMatch|map('topic')|intersect([tag.name])|length > 0 %}
+
+                {% set topicID = lcTopicMatch|selectattr('topic','equalto',tag.name) %}
+                {% set topicID = topicID[0] %}
+
+                {% set postSingleList2 = postSingleList.append({
+                  "topic":tag.name,
+                  "url":learningCenterURL+topicID.id,
+                 }) %}
+
+                {% else %}
+
+                {% set postSingleList2 = postSingleList.append({
+                  "topic":tag.name,
+                  "url":blogTopicURL+tag.slug,
+                }) %}
+
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% set postSingleList = postSingleList[0] %}
+                {### End Topic URL Replacement Function ###}
+
+                {% if loop.index is divisibleby 2 %}<div class="lap-and-up-flex tablet-flex">{% endif %}
+
+                <div class="blog-card--standard-item blog--listing--cards--article-item blog-card--feature-item--margin grid__item one-whole palm-eleven-twelfths lap-and-up-hard portable-hard--ends palm-hard--ends palm-hard--sides relative animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}">
+                  <div class="blog-card--standard--inner portable-margin--tall--bottom">
+                    <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative">
+                      <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}" target="_blank"></a>
+                      <div class="section--resource-slider--featured-image-hover-overlay"></div>
+                      <div class="section--resource-slider--featured-image grid__item one-whole hard" style="background:url('{{ content.post_list_summary_featured_image }}'); background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                        <span class="aspectspacer-16x9"></span>
+                      </div>
+                    </div>
+                    <div class="blog-card--standard--content grid__item one-whole hard--sides background--white">
+                      <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0 z-index--10" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}"></a>
+                      <div class="block overflow--visible">
+                        <div class="blog-card--standard--content--upper">
+                          <div class="p hard--ends font--14 normal--weight">
+                            {# Replace for LC Launch #}
+                            {#{% if postSingleList|length > 0 %}
+                            <a class="inline z-index--10 relative no--underline" href="{{ postSingleList['url'] }}">
+                              <span class="color--blue bold">{{ postSingleList['topic'] }}</span>
+                            </a>
+                            {% endif %}#}
+                            {% for tag in content.tag_list %}
+                            {% if loop.first %}
+                            <a class="inline z-index--10 relative no--underline blog-card--standard--topic-tag" href="{{ blog_tag_url(group.id, tag.slug) }}">
+                              <span class="color--blue bold">{{ tag.name }}</span>
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                          </div>
+                          <h4 class="short--ends font--heading bolder hard--bottom hard--top margin--petite--top line-height--small">
+                            {{ content.name }}
+                          </h4>
+                          <div class="p font--14 light inline-block margin--petite--top hard--bottom">
+                            {{ content.publish_date_local_time|datetimeformat('%B %e, %Y') }}{#<span style="color:#6e6e73;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>{{ readTimeRounded }} min read#}
+                          </div>
+                        </div>
+                        <div class="blog-card--standard--content--lower all--valign--middle table relative" style="margin-top: 15px !important;">
+                          <a class="z-index--10 absolute top--0 left--0 right--0 bottom--0" href="{{ relatedAuthor.bio }}" aria-label="Picture of Author {{ relatedAuthor.bio }}"></a>
+                          <span class="section--learningcenter--results--item--lower block text--left flex flex-align--center" style="margin-top:auto;">
+                            <img class="lazy border-radius--circle" width="30" height="30" data-src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}">
+                            <span class="p inline font--14 no--underline color--obsidian hard--ends bold" style="margin-left:10px;">{{ relatedAuthor.name }}</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% if loop.index is not divisibleby 2 %}</div>{% endif %}
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>  
+          </div>
+          {% endif %}
+
+          {% if current_page_num == 1 %} 
+          {#<div class="animate--fade animate--fade-up">
+            {% module "thelatestSubscribe" path="/HubUI/sections/learning center_8-2021/Subscribe to THE LATEST - Learning Center - IMPACT Publisher", label="Subscribe to THE LATEST Section" %}
+          </div>#}
+          {% endif %}
+
+          <div class="grid__item one-whole hard text--center animate--fade animate--fade-up">
+            <div class="blog--listing--cards--listing blog-card--standard blog-card---mobile-flex-wrap">
+              {% if current_page_num == 1 %} 
+              {% set customContent = imBlogRecent %}
+              {% set loopIndex = 5 %}
+              {% else %}
+              {% set customContent = contents %}
+              {% set loopIndex = 0 %}
+              {% endif %}
+
+              {% for content in customContent %}
+
+              {% if loop.index > loopIndex %}
+
+              {# Word Count #}
+              {% set initialPostWords = content.post_body|striptags|wordcount %}
+              {% set calculatedPostWords = (initialPostWords/100) * 100 %}
+              {% set finishedPostWords = calculatedPostWords|divide(300)|round(2) %}
+              {% set readTimeRounded = finishedPostWords|round %}
+
+              {### Start Author HubDB Team Member Match Function ###}
+              {% set relatedAuthor = [] %}
+              {% set articleAuthor = content.blog_post_author %}
+
+              {% set IMPACTAuthor = authorTable|selectattr('name','equalto', articleAuthor) %}
+              {% set IMPACTAuthor = IMPACTAuthor[0] %}
+
+              {% if IMPACTAuthor|length > 0 %}
+
+              {# Team Author Variables #}
+              {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":IMPACTAuthor.name,
+                  "headshot":IMPACTAuthor.square_team_photo.url,
+                  "bio":IMPACTAuthor.bio_page_url
+                 }) %}
+
+              {% else %}
+
+              {% set authorPage = articleAuthor|lower|replace(' ','-') %}
+
+              {# Non-team Author Variables #}
+
+              {% set relatedAuthor2 = relatedAuthor.append({
+                  "name":articleAuthor.name,
+                  "headshot":articleAuthor.avatar,
+                  "bio":blog_author_url("default", authorPage)
+                 }) %}
+
+              {% endif %}
+
+              {% set relatedAuthor = relatedAuthor[0] %} 
+              {### End Author HubDB Team Member Match Function ###}
+
+              {% if content.post_list_summary_featured_image %}
+              {% set featuredImage = content.post_list_summary_featured_image %}
+              {% else %}
+              {% set featuredImage = blogFallback %}
+              {% endif %}
+
+              {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 300) %}
+              {% set resizedFeaturedImage = resizedFeaturedImage|replace('impactbnd.com','impactplus.com') %}
+
+              {### Start Topic URL Replacement Function ###}
+              {# Matching Single Post Topics to Learning Center Topics #}
+              {% if content.tag_list %}
+              {% set postSingleList = [] %}
+
+              {% for tag in content.tag_list %}
+
+              {# Check if the topic exists in the table #}
+              {% if lcTopicMatch|map('topic')|intersect([tag.name])|length > 0 %}
+
+              {% set topicID = lcTopicMatch|selectattr('topic','equalto',tag.name) %}
+              {% set topicID = topicID[0] %}
+
+              {% set postSingleList2 = postSingleList.append({
+                "topic":tag.name,
+                "url":learningCenterURL+topicID.id,
+               }) %}
+
+              {% else %}
+
+              {% set postSingleList2 = postSingleList.append({
+                "topic":tag.name,
+                "url":blogTopicURL+tag.slug,
+               }) %}
+
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+
+              {% set postSingleList = postSingleList[0] %}
+              {### End Topic URL Replacement Function ###}
+
+              {% if loop.index == 13 %}
+              <div class="blog-card--standard-item blog-card--standard-item--padding grid__item three-twelfths upper-tablet--one-third tablet-four-twelfths palm-eleven-twelfths hard--sides hard--top relative lap-and-up-margin--tall--bottom tablet-margin--tall--bottom palm-hard--bottom margin--tall--bottom">
+                {% module "midRollCTA" path="/IMPACT Publisher Modules/Card CTA - IMPACT Publisher", label="Blog CTA Card Block" %}
+              </div>
+              {% endif %}
+
+              <div class="blog--listing--cards--post-item blog--listing--cards--article-item blog-card--standard-item blog-card--standard-item--padding grid__item three-twelfths upper-tablet--one-third tablet-four-twelfths palm-eleven-twelfths palm-margin--tall--bottom hard--sides hard--top relative lap-and-up-margin--tall--bottom tablet-margin--tall--bottom palm-hard--bottom">
+                <div class="blog-card--standard--inner portable-margin--tall--bottom">
+                  <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative">
+                    <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}" target="_blank"></a>
+                    <div class="section--resource-slider--featured-image-hover-overlay"></div>
+                    <div class="section--resource-slider--featured-image grid__item one-whole hard" style="background:url('{{ content.post_list_summary_featured_image }}'); background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                      <span class="aspectspacer-16x9"></span>
+                    </div>
+                  </div>
+                  <div class="blog-card--standard--content grid__item one-whole hard--sides background--white">
+                    <a class="no--underline block width--max height--max absolute top--0 left--0 right--0 bottom--0 z-index--10" aria-label="{{ content.name }} (opens in a new tab)" href="{{ content.absolute_url }}"></a>
+                    <div class="block overflow--visible">
+                      <div class="blog-card--standard--content--upper">
+                        <div class="p hard--ends font--14 normal--weight">
+                          {# Replace for LC Launch #}
+                          {#{% if postSingleList|length > 0 %}
+                            <a class="inline z-index--10 relative no--underline" href="{{ postSingleList['url'] }}">
+                              <span class="color--blue bold">{{ postSingleList['topic'] }}</span>
+                            </a>
+                            {% endif %}#}
+                          {% for tag in content.tag_list %}
+                          {% if loop.first %}
+                          <a class="inline z-index--10 relative no--underline blog-card--standard--topic-tag" href="{{ blog_tag_url(group.id, tag.slug) }}">
+                            <span class="color--blue bold">{{ tag.name }}</span>
+                          </a>
+                          {% endif %}
+                          {% endfor %}
+                        </div>
+                        <h4 class="short--ends font--heading bolder hard--bottom hard--top margin--petite--top line-height--small">
+                          {{ content.name }}
+                        </h4>
+                        <div class="p font--14 light inline-block margin--petite--top hard--bottom">
+                          {{ content.publish_date_local_time|datetimeformat('%B %e, %Y') }}{#<span style="color:#6e6e73;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>{{ readTimeRounded }} min read#}
+                        </div>
+                      </div>
+                      <div class="blog-card--standard--content--lower all--valign--middle table relative" style="margin-top: 15px !important;">
+                        <a class="z-index--10 absolute top--0 left--0 right--0 bottom--0" href="{{ relatedAuthor.bio }}"></a>
+                        <span class="section--learningcenter--results--item--lower block text--left flex flex-align--center" style="margin-top:auto;">
+                          <img class="lazy border-radius--circle" width="30" height="30" data-src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}">
+                          <span class="p inline font--14 no--underline color--obsidian hard--ends bold" style="margin-left:10px;">{{ relatedAuthor.name }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+
+            </div>
+          </div>
+
+        </div>
+        {% endif %}
+        {# END NEW LISTING PAGE #}
+      </div>
+
+      {# ############# END STANDARD LISTING PAGE ############# #}
+
+      <div class="blog--listing--cards--pagination visuallyhidden"> 
+        <p class="hard text--center relative"></p>
+        {% if (last_page_num) && !(last_page_num <= 0) %}
+        <a class="previous-posts-link" href="{{ blog_page_link(last_page_num) }}">
+          Previous
+        </a>
+        {% endif %}
+        <a class="all-posts-link" href="{{ group.absolute_url }}/all">
+          All posts
+        </a>
+        {% if next_page_num <= 0 %}
+        {# Page number would be 0 #}
+        {% else %}
+        {% if blog_author || tag %} 
+        <a class="next-posts-link" href="{{ blog_page_link(next_page_num) }}">
+          Next
+        </a>
+        {% else %}
+        <a class="next-posts-link" href="{% if current_page_num == 1 %}{{ blog_page_link(3) }}{% else %}{{ blog_page_link(next_page_num) }}{% endif %}">
+          Next
+        </a>
+        {% endif %}
+        {% endif %}
+      </div>
+
+    </div>
+
+
+    {% else %}
+
+    {# ######### START POST SINGLE TEMPLATE ######### #}
+
+    {# ***** Hero Background Choice Variabled ***** #}
+    {% choice "pageBackgroundPosition" label="Page Background: Vertical Position", choices="[[\"0%\", \"Top\"], [\"25%\", \"Top-Center\"], [\"50%\", \"Center\"], [\"75%\", \"Bottom-Center\"], [\"100%\", \"Bottom\"]]", value="50%", export_to_template_context=True %}
+
+    {# ***** FEATURED SNIPPET MODULE ***** #}
+    {% rich_text "featuredSnippet" label="Featured Snippet Section: Add Content", html="", no_wrapper=True, export_to_template_context=True %}
+    {% set imageALT = content.name|striptags|replace('"', '') %}   
+
+    <article class="post--single" style="padding-top: 0px;">
+      <div class="post--single-meta">
+        <div class="post--single--hero relative">
+          <div class="background z-index--0">
+            <div class="background--layer default  background--slanted z-index--1 opacity--100 " style="transform: skewY(-12deg); background-color:rgba(246, 249, 252, 1.0); top:0%;bottom:0%;right:0%; left:0%;"></div>
+          </div>
+          <div class="grid hard--bottom grande--top tablet-grande--top palm-short--top relative z-index--50">
+            <div class="lap-and-up-margin--short--bottom tablet-margin--short--bottom flex palm-hard--bottom">
+                          <div class="post--single--featured-title-wrapper grid__item eight-twelfths tablet-nine-twelfths palm-one-whole palm-short--top hard--top hard--sides palm-hard--bottom lap-and-up-hard--bottom portable-hard--bottom valign--middle palm-hard--sides text--center">
+                <div class="grid__item one-whole palm-eleven-twelfths hard--ends palm-hard--sides">
+                  {% if content.tag_list|length > 0 %}
+                  <div class="post-single--topics margin--short--bottom lap-and-up-visuallyhidden tablet-visuallyhidden">
+                    {# Replace for LC Launch #}
+                    {#{% if postSingleList|length > 0 %}
+                    <span class="font--15 color--slate-500"><a class="font--15 color--slate-500 inline-block no--underline light {% if loop.first %}hard--ends{% else %}margin--petite--top hard--bottom{% endif %}" href="{{ postSingleList['url'] }}">{{ postSingleList['topic'] }}</a>{% if not loop.last %}&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}</span>
+                    {% endif %}
+                    #}
+                    {% for tag in content.tag_list %}
+                    <span class="font--14 color--slate-500"><a class="font--14 color--slate-500 inline-block no--underline light {% if loop.first %}hard--ends{% else %}margin--petite--top hard--bottom{% endif %}" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>{% if not loop.last %}&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}</span>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <h1 class="hard--top hard--bottom">
+                    <span class="post--single--hero--title hard--ends" style="margin-top:0px !important;">
+                      {{ content.name }}
+                    </span>
+                  </h1>
+                  {# Mobile Author #}
+                  <div class="post-single--article-details--mobile margin--standard--top lap-and-up-visuallyhidden tablet-visuallyhidden">
+                    <div class="post-single--blog--author grid__item seven-twelfths hard--ends">
+                      <div class="post-single--blog--author-details flex" style="align-items: center;">
+                        <img class="border-radius--circle" src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}" width="50" height="50">
+                        <div style="margin-left:15px;">
+                          <p class="post--single-author post-single--heading-line hard--ends bold all--color--obsidian font--15" data-hubspot-form-id="author_data" data-hubspot-name="Blog Author">
+                            By <a class="post--single-author-link font--heading no--underline hard--top" href="{{ relatedAuthor.bio }}"> {{ relatedAuthor.name }}</a>
+                          </p>
+                          <p class="post--single--pubslish-date font--15 color--slate-500 hard--ends">{{ content.publish_date_local_time|datetimeformat('%b %e, %Y') }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    {#<div class='section--learningcenter--sub section--learningcenter--sub--mobile headerIMPlus--navigation-cta relative grid__item five-twelfths hard--ends'>
+                      <!-- Learning Center Subscribe -->
+                    </div>#}
+                  </div>
+                  {# End Mobile Author #}
+                  <div class="post--single--featured-image-wrapper margin--tall--top">
+                    {% set videoType = [] %}
+                    {% module "article_featured_media" path='/_IMPACT_Production/_modules/_IMPACT_UI/_custom/_IMPACT_blog/Post Inner/Article Featured Image or Video/Article Featured Image or Video - IMPACT UI Custom', label="Article Featured Image or Video" %}
+                    {% set videoType = videoType[0] %}
+                  </div>
+                </div>
+
+                {#
+              {% rich_text "articleSubheader" label="Hero Section: Article Subheader", html="", export_to_template_context=True %}
+              {% if widget_data.articleSubheader.html %}
+              <div class="post--single--hero--article-subheader p hard--bottom">
+                {{ widget_data.articleSubheader.html }}
+              </div>
+              {% endif %}
+              #}
+
+              </div>
+            </div>
+              <div class="grid__item one-fourth hard--ends palm-visuallyhidden">
+                <div class="post-single--blog--author margin--petite--top">
+                  {# Desktop Author #}
+                  <div class="post-single--article-details--desktop post-single--blog--author-details">
+                    <img class="border-radius--circle" src="{{ relatedAuthor.headshot }}" alt="{{ relatedAuthor.name }}" width="50" height="50">
+                    <p class="post--single-author post-single--heading-line margin--short--top hard--bottom bold all--color--obsidian font--15" data-hubspot-form-id="author_data" data-hubspot-name="Blog Author">
+                      By <a class="post--single-author-link font--heading no--underline hard--top" href="{{ relatedAuthor.bio }}"> {{ relatedAuthor.name }}</a>
+                    </p>
+                    <p class="post--single--pubslish-date font--15 color--slate-500 margin--petite--top">{{ content.publish_date_local_time|datetimeformat('%b %e, %Y') }}</p>
+                  </div>
+                  {% if content.tag_list|length > 0 %}
+                  <div class="post-single--topics">
+                    <p class="post-single--heading-line font--15 color--obsidian bold margin--petite--bottom margin--standard--top" style="margin-top: 30px !important;">Topics:</p>
+                    {# Replace for LC Launch #}
+                    {#{% if postSingleList|length > 0 %}
+                    <a class="font--15 color--slate-500 block no--underline light hard--ends" href="{{ postSingleList['url'] }}">{{ postSingleList['topic'] }}</a>
+                    {% endif %}#}
+                    {% for tag in content.tag_list %}
+                    <a class="post-item--topic-link font--15 color--slate-500 block no--underline light hard--ends" style="{% if not loop.first %}margin-top: 4px !important;{% endif %}" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+                  <div class="post-single--share">
+                    <p class="font--15 color--obsidian bold margin--petite--bottom margin--standard--top post-single--heading-line" style="margin-top: 30px !important;">Share:</p>
+                    <div class="post--single--share-links all--valign--middle">
+                      <a class="inline-block" href="https://www.linkedin.com/shareArticle?url={{ content.absolute_url }}&title={{ content.html_title|urlencode }}&summary={{ content.meta_description|urlencode }}" title="Share on Linkedin" aria-label="Share Article on Linkedin">
+                        <i :aria-hidden="true" class="fa fa-linkedin"></i>
+                      </a>
+                      <a class="inline-block" href="https://www.facebook.com/sharer/sharer.php?u={{ content.absolute_url }}" title="Share on Facebook" aria-label="Share Article on Facebook">
+                        <i :aria-hidden="true" class="fa fa-facebook"></i>
+                      </a>
+                      <a class="inline-block" href="https://twitter.com/intent/tweet?text={{ content.html_title|urlencode }}&url={{ content.absolute_url }}&via=impactbnd" title="Share on Twitter" aria-label="Share Article on Twitter">
+                        <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/x%20corp.svg" alt="Share in X" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 16px;" width="17" height="16">
+                      </a>
+                      <a class="inline-block" href="http://www.facebook.com/dialog/send?app_id=122669230914322&amp;link={{ content.absolute_url }}&amp;redirect_uri=https://www.impactplus.com" title="Share on Messenger">
+                        <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Facebook_Messenger_logo_black.svg" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 19px;" width="19" height="19" alt="Share in Facebook Messenger">
+                      </a>
+                      <a class="inline-block" href="https://api.whatsapp.com/send?text={{ content.absolute_url }}" title="Share on WhatsApp" aria-label="Share Article on WhatsApp">
+                        <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/whatsapp%20logo.svg" alt="Share in WhatsApp" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 21px;" width="21" height="21">
+                      </a>
+                      <a class="inline-block" href="mailto:?subject=Check%20out%20this%20article%20from%20IMPACT&body={{ content.absolute_url }}" title="Share through email" aria-label="Share Article through Email">
+                        <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/Email.svg" alt="Share through email" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 15px;" width="21" height="15">
+                      </a>
+                    </div>
+                  </div>
+                  <div class='section--learningcenter--sub section--learningcenter--sub--desktop headerIMPlus--navigation-cta relative margin--standard--top'>
+                    <div class="section--learningcenter--sub--inner">
+                      <a href="javascript:;" class='headerIMPlus--menu-item headerIMPlus--navigation-subscribe-leadform-btn secondary--click-track headerIMPlus--secondary-navigation-subscribe-leadform-btn btn btn--blue-600 border-radius--pill header--nav-btn palm-right'>
+                        Subscribe 
+                      </a>
+                      {{ imsnippets.inlineSubscribeForm() }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+  
+          </div>
+        </div>
+
+        <div class="grid hard--ends z-index--10">
+          <div class="flex" style="flex-flow: wrap;">
+            <div class="grid__item one-fourth palm-visuallyhidden"></div>
+            <div class="section post--single-containing-body grid__item eight-twelfths hard--sides tablet-nine-twelfths palm-one-whole grande--bottom hard--top palm-short--top palm-text--center" style="min-height:400px;">
+              <div class="section post--single-body text--center">
+                {% if widget_data.featuredSnippet.html %}
+                <div class="impact-featured-snippet text--left palm-margin--short--bottom">
+                  <div class="impact-featured-snippet--inner">
+                    {{ widget_data.featuredSnippet.html|replace('h1','h2') }}
+                  </div>
+                </div>
+                {% else %}
+                {% endif %}
+                <div class="post--single-body--container grid__item one-whole palm-eleven-twelfths palm-hard--sides hard--top {% if isPodcast == true %}hard--bottom{% else %}short--bottom{% endif %}">
+
+                  {# Inner Article CTA #}
+                  {% if smartCtaData|length > 0 %}
+                  {% if widget_data.blogArticleControls.cta_form_visibility_settings.hide_mid_article_form_cta == true %}
+                  {% set readMoreCTA = "" %}
+                  {% else %}
+                  {% if smartCtaData.cta_layout_type == 'textform' %}
+                  {# readMoreCTA = "<div class='readMore--global-cta readMore--global-in-article-form smartCTA--form-download'><div class='h5 bold text--center margin--petite--bottom' title='{{ smartCtaData.preheader }}&nbsp;{{ smartCtaData.cta_name }}'>{{ smartCtaData.preheader }}&nbsp;{{ smartCtaData.cta_name }}</div><div class='grid__item ten-twelfths portable-one-whole p font--17 hard--ends margin--short--bottom text--center' style='line-height:1.4em;margin:0 auto'>{{ smartCtaData.cta_subheader_optional }}</div><div class='smartCTA--form-target readmore--form all--btn all--btn--blue'><div class='smartCTA--inner-article-form smartCTA--form-target—3'></div></div></div>" #}
+                  {% else %}
+                  {# set readMoreCTA = "<p class='readMore--global-cta all--text--center'><a class='h4 color--blue light no--underline' title='{{ smartCtaData.preheader }}&nbsp;{{ smartCtaData.cta_name }}' href='{{ smartCtaData.url_of_offer.href }}'>{{ smartCtaData.preheader }}&nbsp;{{ smartCtaData.cta_name }}</a></p>" #}
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {# end dev stuff #}
+
+                  {% if content.post_body %}
+                  {{ content.post_body|replace('img src','img class="lazy" data-src')|replace('http:','https:')|replace('hs-responsive-embed-target-iframe','hs-responsive-embed-target-iframe lazy')|replace('src="//www.youtube.com/embed','class="lazy" data-src="//www.youtube.com/embed')|replace('src="https://www.youtube.com/embed','class="lazy" data-src="https://www.youtube.com/embed')|replace('<!--more-->','<!--more-->{{ readMoreCTA }}')|replace('h1','h2')|replace('class="giphy-embed"','class="giphy-embed lazy"')|replace('src="https://giphy.com','data-src="https://giphy.com') }}
+                  {% endif %}
+
+                  {% if isPodcast == true %}
+                  {% module "podcast_subscription" label="Podcast Subscription Section" path='/IMPACT_Grid/- Modules -/- Custom Modules -/The IMPACT Blog/Post Inner/Podcast Subscription Content - Blog Inner - IMPACT Grid.module' %}
+                  {% endif %}
+
+                  {# Bottom of the blog smart CTA #}
+                  {% if smartCtaData|length > 0 %}
+                  {% if smartCtaData.cta_layout_type == 'textform' %}
+                  {% set containerClasses = 'bottom-article--global-cta--form' %}
+                  {% else %}
+                  {% set containerClasses = '' %}
+                  {% endif %}
+
+                  {# Update this to allow for smart CTAs with a url added to override this. Rather than hard coding this url #}
+                  {# Podcast normally shouldn't have the BotB CTA. This is a custom override to allow it for this specific podcase episode#}
+                  {% if (content.absolute_url == "https://www.impactplus.com/blog/the-story-of-they-ask-you-answer") && (isPodcast == true) %}
+                  {% set boTbCTA = true %}
+                  {% elif (content.absolute_url != "https://www.impactplus.com/blog/the-story-of-they-ask-you-answer") && (isPodcast == true) %}
+                  {% set boTbCTA = true %} {# Used to be false to hide the CTA on podcast articles #}
+                  {% elif (content.absolute_url != "https://www.impactplus.com/blog/the-story-of-they-ask-you-answer") && (isPodcast != true) %}
+                  {% set boTbCTA = true %}
+                  {% endif %}
+
+                  <div class="cta-top-trigger thisisatest">
+                    {% if boTbCTA == true %}
+                    <div class="grid__item {{ containerClasses }} palm-eleven-twelfths hard--top hard--bottom portable-short--bottom palm-grande--top palm-hard--sides relative z-index--10">
+                      <div class="bottom-article--global-cta">
+                        <div class="bottom-article--global-cta--inner">
+                          {% if (smartCtaData.cta_layout_type != "text only") && (smartCtaData.cta_layout_type != "textform") %}
+                          <div class="bottom-article--global-cta--image-wrapper palm-relative">
+                            <div class="bottom-article--global-cta--image valign--middle lap-and-up-relative tablet-relative">
+                              <img src="{{ smartCtaData.bottom_cta_image.src }}" alt="{{ smartCtaData.bottom_cta_image.alt }}" loading="lazy">
+                              <div class="bottom-article--global-cta--image--alignment palm-visuallyhidden"> 
+                                <img class="lazy" data-src="{{ smartCtaData.bottom_cta_image.src }}" alt="{{ smartCtaData.bottom_cta_image.alt }}" style="visibility:hidden;">
+                              </div>
+                            </div>
+                          </div>
+                          {% endif %}
+                          <div class="bottom-article--global-cta--text valign--middle {% if (smartCtaData.cta_layout_type == "default") %}{% else %}text--center{% endif %}">
+                            <div class="block">
+                              {% if smartCtaData.preheader %}<p class="hard--top color--blue bold font--14 margin--petite--bottom {% if smartCtaData.cta_layout_type == "textform" %}text--center{% endif %} palm-text--center" style="margin-top:0px !important;">{{ smartCtaData.preheader }}</p>{% endif %}
+                              <div class="{% if smartCtaData.preheader %}{% else %}hard--top text--center{% endif %} line-height--small h2 font--{% if (smartCtaData.cta_layout_type == "text only") || (smartCtaData.cta_layout_type == "textform") %}23{% else %}18{% endif %} negative--short--top {% if (smartCtaData.cta_layout_type != "text only") && (smartCtaData.cta_layout_type != "textform") %}palm-visuallyhidden{% else %}palm-margin--petite--top lap-and-up-hard--bottom{% endif %}">
+                                {{ smartCtaData.cta_name }}
+                              </div>
+                              {% if (smartCtaData.cta_layout_type == "text only") || (smartCtaData.cta_layout_type == "textform") %}
+                              <div class="p font--17 margin--petite--top margin--short--bottom {% if (smartCtaData.cta_layout_type == "textform") || (smartCtaData.cta_layout_type == "text only") %}text--center{% endif %} palm-text--center" style="line-height:1.4em;">
+                                {{ smartCtaData.cta_subheader_optional }}
+                              </div>
+                              {% endif %}
+                              {% if (smartCtaData.cta_layout_type != "text only") && (smartCtaData.cta_layout_type != "textform") %}
+                              <div class="line-height--small negative--short--top lap-and-up-visuallyhidden tablet-visuallyhidden">
+                                {{ smartCtaData.bottom_blog_and_popup.content }}
+                              </div>
+                              {% endif %}
+                              {% if smartCtaData.cta_layout_type == 'textform' %}
+                              <div class="smartCTA--form-target smartCTA--form-download palm-margin--short--top all--btn all--btn--blue" style="margin-top:10px;">
+                                <div class="smartCTA--bottom-article-form smartCTA--form-target—3 all--btn all--btn--{{ smartCtaData.button_color }}"></div>
+                              </div>
+                              {% else %}
+                              <div class="palm-margin--short--top {% if (smartCtaData.cta_layout_type == "default") %}{% else %}text--center{% endif %}">
+                                <div class="all--btn all--btn--{{ smartCtaData.button_color }} bold">
+                                  {{ cta(smartCtaData.cta) }}
+                                </div>
+                              </div>
+                              {% endif %}
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  </div>
+
+                  {# Mobile Share #}
+                  <div class="post-single--share text--center lap-and-up-visuallyhidden tablet-visuallyhidden">
+                    <p class="font--15 color--obsidian bold margin--petite--bottom margin--standard--top post-single--heading-line" style="margin-top: 30px !important;">Share:</p>
+                    <div class="post--single--share-links all--valign--middle">
+                      <a class="inline-block" href="https://www.linkedin.com/shareArticle?url={{ content.absolute_url }}&title={{ content.html_title|urlencode }}&summary={{ content.meta_description|urlencode }}" title="Share on Linkedin">
+                        <i aria-hidden="true" class="fa fa-linkedin"></i>
+                      </a>
+                      <a class="inline-block" href="https://www.facebook.com/sharer/sharer.php?u={{ content.absolute_url }}" title="Share on Facebook">
+                        <i aria-hidden="true" class="fa fa-facebook"></i>
+                      </a>
+                      <a class="inline-block" href="https://twitter.com/intent/tweet?text={{ content.html_title|urlencode }}&url={{ content.absolute_url }}&via=impactbnd" title="Share on Twitter">
+                        <img class="lazy" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/x%20corp.svg" alt="Share in X" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 16px;">
+                      </a>
+                      <a class="inline-block" href="http://www.facebook.com/dialog/send?app_id=122669230914322&amp;link={{ content.absolute_url }}&amp;redirect_uri=https://www.impactplus.com" title="Share on Messenger">
+                        <img class="lazy" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Facebook_Messenger_logo_black.svg" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 19px;" alt="Share in Facebook Messenger">
+                      </a>
+                      <a class="inline-block" href="https://api.whatsapp.com/send?text={{ content.absolute_url }}" title="Share on WhatsApp">
+                        <img class="lazy" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/whatsapp%20logo.svg" alt="Share in WhatsApp" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 21px;">
+                      </a>
+                      <a class="inline-block" href="mailto:?subject=Check%20out%20this%20article%20from%20IMPACT&body={{ content.absolute_url }}" title="Share through email">
+                        <img class="lazy" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/Email.svg" alt="Share through email" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 15px;">
+                      </a>
+                    </div>
+                  </div>
+                  {# End Mobile Share #}
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+    {% endif %}
+
+    {% if not is_listing_view && not blog_author %}
+    <div class="section-related-articles--subscribe block relative z-index--10 palm-margin--tall--top">
+      <div class="background">
+        <div class="background--layer lazy default z-index--1 opacity--100 background-size--contain background-repeat--none background-size--contain--x" data-bg="https://www.impactplus.com/hubfs/IMPACT%20Live/2024/Assets/Backgrounds/Pill%20Slant%20-%20Tall%20-%20High%20to%20Low%20-%20Blue%20Green%20Pills.svg" style="background-position: 0% 100%; inset: 0%;"></div>
+      </div>
+      {% module "related_articles" label="Related Articles/Episodes Section" path='/IMPACT_Grid/- Modules -/- Custom Modules -/The IMPACT Blog/Post Inner/Blog Related Cards - Blog Post - IMPACT Grid/Blog Related Cards - Blog Post - IMPACT Grid.module' %}
+      {# if not content.absolute_url is string_containing '/author' %}
+      {% module "botb_sub" label="Blog Subscription Form" path='/IMPACT_Grid/- Modules -/- Custom Modules -/The IMPACT Blog/Post Inner/Bottom of the Blog Subscription Form - Blog Inner - IMPACT Grid.module' %}
+      {% endif #}
+    </div>
+    {% endif %}
+
+    {# 'Leadflows' popup form #}
+    <style>
+      .leadinModal-template .leadinModal-overlay { 
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: #000;
+        transition: opacity .8s ease-in-out;
+        -webkit-backface-visibility: hidden;
+        background-color: rgba(0,0,0,.7);
+      }
+
+      .leadinModal-template{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: visible;
+        -webkit-overflow-scrolling: touch;
+        z-index: 9999;
+        font-size: 16px;
+        padding-top: 200px;
+      }
+
+      .leadinModal-template .leadinModal-content{
+        background-color: #ebebeb;
+        padding: 0;
+        width: 40em;
+        overflow: auto;
+        max-height: 70%;
+        margin: 0 auto;
+        max-width: 100%;
+        box-shadow: 0 0 5px rgb(0, 0, 0, 0.25);
+        position: relative;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+
+      .leadinModal-template .leadinModal-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        z-index: 1000;
+        display: inline;
+        text-decoration: none;
+        text-align: center;
+        border: none;
+        background: none;
+        padding:0;
+      }
+
+      .leadinModal-template .leadinModal-close:before{
+        content: "\00D7";
+        display: inline-block!important;
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 25px;
+        text-align: right;
+        color: #7a7676;
+        background: transparent;
+        padding-top: 6px;
+        padding-right: 12px;
+      }
+
+      .leadinModal-template .leadin-preview-wrapper{
+        padding: 3em 3.5em;
+        display: block;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .leadinModal-template .leadin-preview-wrapper h4{
+        margin-top:0px;
+        margin-bottom: 0.6em;
+        color: #444;
+        font-size: 1.35em;
+        line-height:1.4em;
+      }
+
+      .leadinModal-template .leadin-preview-wrapper .leadinModal-description-body p{
+        color: #444;
+        font-size: 1.15em;
+        font-weight: 400;
+        margin-top: 10px !important;
+        margin-bottom: 0px !important;
+      }
+
+      .leadinModal-template .leadin-advance-button{
+        margin-top: 30px !important;
+      }
+
+      .leadinModal-template .hbspt-form{
+        padding-top:10px;
+      }
+
+      .leadinModal-template .hs-fieldtype-text > label {
+        font-weight: 600 !important;
+        padding-top: 0.8em;
+        font-size: 14px !important;
+        float: none;
+        color: #666 !important;
+      }
+
+      .leadinModal-template .grid form.hs-form input[type=email].hs-input, 
+      .leadinModal-template .grid form.hs-form input[type=number].hs-input, 
+      .leadinModal-template .grid form.hs-form input[type=password].hs-input, 
+      .leadinModal-template .grid form.hs-form input[type=tel].hs-input, 
+      .leadinModal-template .grid form.hs-form input[type=text].hs-input, 
+      .leadinModal-template .grid form.hs-form select.hs-input, 
+      .leadinModal-template .grid form.hs-form textarea.hs-input{
+        -webkit-border-radius: 0.25em;
+        -moz-border-radius: .25em;
+        -ms-border-radius: .25em;
+        -o-border-radius: .25em;
+        border-radius: 0.25em;
+        width: 100%;
+        padding: 0.5em;
+        border: 1px solid #ddd;
+        height: 2.6em;
+        resize: vertical;
+      }
+
+      .leadinModal-template .grid form.hs-form .hs-form-field>.input{
+        margin-bottom:0px;
+      }
+
+      .leadinModal-template .grid form.hs-form .legal-consent-container{
+        margin-top:10px;
+      }
+
+      .leadinModal-template .grid form.hs-form .legal-consent-container p,
+      .leadinModal-template .grid form.hs-form .legal-consent-container label{
+        font-size: 14px;
+        line-height: 1.4em;
+        color: #666;
+      }
+
+      .leadinModal-template .legal-consent-container .hs-form-booleancheckbox-display>span {
+        margin-left: 27px;
+      }
+
+      .leadinModal-template .grid form.hs-form .hs_submit input{
+        width: 100%; 
+      }
+
+    </style>
+
+    {# Form Contents Pulls from the Global Navigation #}
+    <div id="leadinModal-latest" class="leadinModal-template leadinModal-reset" style="display:none;" tabindex="0">
+      <div class="leadinModal-overlay" style="opacity:0;"></div>
+      <div class="leadinModal-content" role="dialog" aria-modal="true" aria-label="Join 40,000+ sales and marketing pros who receive our weekly newsletter straight from Marcus Sheridan">
+        <button class="leadinModal-close" aria-label="Close"></button>
+        <div class="leadinModal-content-wrapper" id="leadinModal-content-wrapper-2382556" tabindex="-1">
+          <div class="leadin-content-body leadin-preview-wrapper-no-image">
+            <div class="leadin-preview-wrapper">
+              <div class="leadinModal--content-form">
+                <h4>{{ formContents.heading }}</h4>
+                {% set subheaderLength = formContents.subheading %}
+                {% if subheaderLength|length > 0 %}<div class="leadinModal-description-body"><p>{{ formContents.subheading }}</p></div>{% endif %}
+                <div class="advance-wrapper"><button class="leadin-button leadin-advance-button btn btn--blue btn--small width--max">Subscribe now</button></div>
+                <div class="leadinModal-form form--wrapper grid hard all--btn all--btn--blue all--btn--small" style="display:none;"></div>
+              </div>
+              <h4 class="leadinModal-form--thanks text--center hard--bottom" style="display:none;">{{ formContents.thankYou }}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# endif 'Leadflows' popup form #}
+
+    {# ***** FOOTER Jquery ***** #}
+    {% global_partial path="/IM-IMPACT-Prod-Theme-2025/templates/partials/footer.html" %}
+    {{ standard_footer_includes }}
+
+    <div id="jqueryUI"></div>
+
+    {# ***** Default Lazy Load ***** #}
+    <script>
+      var myLazyLoad = new LazyLoad({
+        elements_selector: ".lazy"
+      });
+    </script>
+
+    {# ***** Custom Lazy Load - Used on slide-in CTAs #}
+    <script>
+      var lazyloadImages = document.querySelectorAll("img.lazy-slidein");    
+      var lazyloadFin = false;
+
+      function lazyloadSlidein() { 
+        lazyloadImages.forEach(function(img) {
+          img.src = img.dataset.src;
+          img.classList.remove('lazy-slidein');
+        });
+        if(lazyloadImages.length == 0) { 
+          lazyloadFin = true;
+        }
+      }
+
+      $(document).ready(function() {
+        if (($(".bottomleft--global-cta").length > 0) && ($(".post--single-body").length > 0)){
+
+          // First Div we scroll past
+          var fTopofDiv = $(".post--single-body").offset().top; //gets offset of header
+
+          // Second Div
+          var lTopofDiv = $(".cta-top-trigger").offset().top; //gets offset of header
+
+          $(window).scroll(function(){
+
+            $(window).scrollTop() < (lTopofDiv)
+            if( ($(window).scrollTop() > (fTopofDiv)) && ($(window).scrollTop() < (lTopofDiv - $(window).height())) ){
+              if ($('.bottomleft--global-cta').hasClass("bottomleft--global-cta--removed")) {
+              } else {
+                if (!$('.bottomleft--global-cta').hasClass("bottomleft--global-cta--slidein")) {
+                  if(lazyloadFin == false) {
+                    lazyloadSlidein();
+                  }
+                  $('.bottomleft--global-cta').addClass('bottomleft--global-cta--slidein');
+                }
+              }
+            } else {
+              $('.bottomleft--global-cta').removeClass('bottomleft--global-cta--slidein');
+            }
+          });
+
+          $('.bottomleft--global-cta--close').click(function () {
+            if ($('.bottomleft--global-cta').hasClass("bottomleft--global-cta--slidein")) {
+              $('.bottomleft--global-cta').removeClass('bottomleft--global-cta--slidein');
+              $('.bottomleft--global-cta').addClass('bottomleft--global-cta--removed');
+            }
+          });
+        }
+      });	
+    </script>
+
+    {# ***** Function to check if in hubspot template editor ***** #}
+    <script>
+      function editor() {
+        try {
+          return window.self !== window.top;
+        } catch (e) {
+          return true;
+        }
+      }
+    </script>
+
+    {% if not is_listing_view && not blog_author %}
+    <script>
+      $(document).ready(function() {
+        // Select links wrapped in p, li, or ol tags within the postBodyContainer
+        $('#hs_cos_wrapper_post_body p a, #hs_cos_wrapper_post_body li a, #hs_cos_wrapper_post_body ol li a').each(function() {
+          // Get the text of the link
+          var linkText = $(this).text();
+
+          // Check if the link has the attribute 'target="_blank"'
+          if ($(this).attr('target') === '_blank') {
+            // If yes, append the linkText and '(opens in a new tab)'
+            linkText += ' (opens in a new tab)';
+          }
+
+          // Add an aria-label attribute with the modified text
+          $(this).attr('aria-label', linkText);
+        });
+      });
+    </script>
+    {% endif %}
+
+    {# ***** Breadcrumb Mobile Reveal for Ellipsis ***** #}
+    <script>
+      $(document).ready(function () {  
+        if ($('.breadcrumbs--truncate').length > 0 ) {
+          $('.breadcrumbs--truncate').click(function() {
+            $(this).addClass('visuallyhidden');
+            $('.breadcrumbs--truncate-full').removeClass('palm-visuallyhidden');
+          });
+        }
+      });
+    </script>
+
+    {# ***** Background Positioned image for /blog featured post ***** #}
+    {% if is_listing_view && not blog_author %}
+    {% if current_page_num == 1 %} 
+    {% for content in contents %}
+    {% if loop.index == 1 %}
+    <script>
+      /*$(".post-listing--top-post--subheader").load("{{ content.absolute_url }}?featuredonly=true" + " " +"#postSubheader:eq(0)");*/
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% endif %}
+
+    {# ***** Append Subscribe Button Next to Mobile Author ***** #}
+    <script>
+      /*function mobileSubscribeBtn(){
+        if ($(window).width() <= 680){
+          if ($('.section--learningcenter--sub--desktop').find('.section--learningcenter--sub--inner').length > 0) {
+            // If the mobile sidebar hasnt already been cloned 
+            if ($('.post-single--article-details--mobile').find('.section--learningcenter--sub--inner').length < 1) {
+              $('.section--learningcenter--sub--inner').clone().appendTo('.section--learningcenter--sub--mobile');
+            }
+          }
+        }
+      }
+      $(document).ready(function() {
+        mobileSubscribeBtn();
+      }); 
+
+      $(window).resize(function() {
+        mobileSubscribeBtn();
+      });*/
+    </script>
+
+
+    {# Blog Post Inner Featured Image Loader #}
+    {% if not is_listing_view %}
+
+    {% if videoType == 'youtube' %}
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    {% endif %}
+
+    <script>
+      ['click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+        window.addEventListener(e, videosAdded, {
+          once: true
+        });
+      });
+      var injVideos = false;
+
+      function videosAdded() {
+        if (!injVideos) {
+          injVideos = true;
+          if ($(".vidyard-player-embed").length > 0){$("<script>").appendTo(".footer-container").on("load", function(){}).prop("type","text/javascript").prop("src","https://play.vidyard.com/embed/v4.js");}
+
+          {% if videoType == 'youtube' %}
+          // Used for video dynamic pages
+          const player = new Plyr('#plyrplayer');
+          {% endif %}
+        }
+      }
+    </script>
+    {% endif %}
+    {# End Blog Post Inner Featured Image Loader #}
+
+
+    {# ***** Global Article CTA Scripts ***** #}
+    {% if smartCtaData|length > 0 %}
+    <script>
+
+      {# Injecting Form for Inner Article Form #}
+      {% if smartCtaData.cta_layout_type == 'textform' %}
+
+      function innerArticleFormInj(){
+        {% for x in range(1,4) %} 
+        if (!$(".smartCTA--form-target—{{ loop.index }} form").length){
+               hbspt.forms.create({
+               region: "na1",
+               portalId: "145335",
+               target: '.smartCTA--form-target—{{ loop.index }}',
+               formId: '{{ smartCtaData.downloadable_offer_settings.offer_form.form_id }}',
+               formInstanceId: '{{ loop.index }}',  
+               inlineMessage: 'You all set! Stay tuned for the upcoming newsletter.'
+               });
+      }
+      {% endfor %}         
+      }
+
+      {# Injecting Form for Bottom Article Form #}
+      function bottomArticleFormInj(){
+        if (!$(".smartCTA--bottom-article-form form").length){
+          hbspt.forms.create({
+            region: "na1",
+            portalId: "145335",
+            target: '.smartCTA--bottom-article-form',
+            formId: '{{ smartCtaData.downloadable_offer_settings.offer_form.form_id }}',
+            inlineMessage: '{{ inlineFormsMessage }}'
+          });
+        }
+      }*/
+
+      {# Injecting Forms.js #}
+      $(window).one('scroll',function() {
+        if (hubspotFormsLoaded) {
+          innerArticleFormInj();
+          bottomArticleFormInj();
+        }
+        injectScript('https://js.hsforms.net/forms/v2.js')
+          .then(() => {
+          innerArticleFormInj();
+          bottomArticleFormInj();
+        }).catch(error => {
+          console.error(error);
+        });
+      });
+      {% endif %}
+
+      {# Bottom of the blog subscription form #}
+      function subscribeBoTBForm(){
+        if (!$("#learningCenter--subscribe-form-target form").length){
+          hbspt.forms.create({
+            region: "na1",
+            target: "#learningCenter--subscribe-form-target",
+            portalId: "145335",
+            formId: "7af9c8bf-8c4e-42f2-b0c0-68b6baeee1d9"
+          });
+        }
+      }
+
+      {# Injecting Forms.js #}
+      $(window).one('scroll',function() {
+        if (hubspotFormsLoaded) {
+          subscribeBoTBForm();
+        }
+        injectScript('https://js.hsforms.net/forms/v2.js')
+          .then(() => {
+          subscribeBoTBForm();
+        }).catch(error => {
+          console.error(error);
+        });
+      });
+
+      {# Leadflows Alternative Popup #}
+      {% if request.domain == "145335.hubspotpreview-na1.com" %}
+      {% else %}
+      if (!$.cookie('leadinPopup')) {
+        var mouseLeftOnce = false;
+
+        ['click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+          window.addEventListener(e, jUInteraction, {
+            once: true
+          });
+        });
+
+        var jUserInteracted = false;
+
+        function jUInteraction() {
+          if (!jUserInteracted) {
+            jUserInteracted = true;
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "https://code.jquery.com/ui/1.13.2/jquery-ui.min.js";
+            s.crossorigin = "anonymous";
+            // Use any selector
+            $("#jqueryUI").append(s);
+          }
+        }
+
+        function leadInPopupForm(){
+          if (!$("#leadinModal-latest form").length){
+            hbspt.forms.create({
+              region: "na1",
+              target: ".leadinModal-form",
+              portalId: "145335",
+              formId: "{{ formContents.formId }}",
+              onFormSubmit: function () {
+              $('.leadinModal--content-form').css('display','none');
+              $('.leadinModal-form--thanks').css('display','block');
+              setTimeout(function () {
+                closeLeadInPopup();
+              }, 5000);
+            }
+          });
+        }
+      }
+
+      function closeLeadInPopup(){
+        $("#leadinModal-latest").css("top", "50px").animate({
+          top: -100,
+          opacity:0
+        },{ 
+          duration: 800, 
+          easing: 'easeInQuad',
+          complete: function(){
+            $(this).hide();
+          }
+        });
+      }
+
+      // When clicking the first subscribe
+      $('.leadin-button').on('click', function() {
+        $('.advance-wrapper').css('display','none');
+        $('.form--wrapper').css('display','block');
+      });
+
+      // On Close
+      $('.leadinModal-close').on('click', function() {
+        closeLeadInPopup();
+        $(".leadinModal-overlay").css('opacity','0');
+      });
+
+
+      $(document).mouseleave(function () {
+        if (mouseLeftOnce == false) {
+          $.cookie('leadinPopup', '1', {expires: 7});
+
+          // Add the form in
+          if (hubspotFormsLoaded) {
+            leadInPopupForm();
+          }
+
+          injectScript('https://js.hsforms.net/forms/v2.js')
+            .then(() => {
+            leadInPopupForm();
+
+            // Revealing the Popup
+            if ($('.leadinModal-form .hs_email.hs-email input').val()) {
+              // Don't show, email field had a value, which means they're a contact
+            } else {
+              // Stop any ongoing animations and show the modal
+              $("#leadinModal-latest").stop(true, true)
+                .css("top", "-100px")
+                .show()
+                .animate({top: 50}, 1000, 'easeOutCubic');
+
+              $(".leadinModal-overlay").css('opacity', '1');
+            }
+            mouseLeftOnce = true;
+          })
+            .catch(error => {
+            console.error(error);
+          });
+        }
+      });
+
+      }
+      {% endif %}
+      {# End Leadflows Alternative Popup #}
+
+      /*function globalMobileCTA(){ 
+        $('.bottomMobile--global-cta').on('click', function() { 
+          $('body').addClass('ctaPopup--global-cta--popup--active bottomMobile--global-cta--hidden');
+        });
+        $('.ctaPopup--global-cta--image-close').click(function(){ 
+          $('.ctaPopup--global-cta--popup--overlay').css('opacity','0');
+          $('.ctaPopup--global-cta--popup').css({"opacity":"0", "top":"30px"});
+          $('body').removeClass('bottomMobile--global-cta--hidden');   
+          setTimeout(function () {
+            $('body').removeClass('ctaPopup--global-cta--popup--active');   
+            $('.ctaPopup--global-cta--popup--overlay').css('opacity','1');
+            $('.ctaPopup--global-cta--popup').css({"opacity":"", "top":""});
+          }, 500); 
+        });
+      }
+
+      $(document).ready(function() {
+        globalMobileCTA()
+      });
+
+      $(window).resize(function () {
+        globalMobileCTA()
+      });*/
+
+    </script>
+    {% endif %}
+
+
+    {# ***** Script to remove legacy douplicate featured image from the blog content editor ***** #}
+    <script>
+      /*var featureImg = "{{ content.featured_image }}";
+          var featureImgIndex = featureImg.lastIndexOf('/');
+          featureImg = featureImg.substring(featureImgIndex);
+
+          $('.post--single .post--single-body').find('img').each(function () {
+            var checkImg = $(this).attr('src');
+            var checkImgIndex = checkImg.lastIndexOf('/');
+            checkImg = checkImg.substring(checkImgIndex); 
+
+            if ((checkImg.indexOf(featureImg) > -1) && (!$(this).hasClass("featured-print--image")) && (!$(this).hasClass("post--single-featured-image--single")) ) { 
+              $(this).css('display','none');
+            }
+          });*/
+    </script>
+
+    {% if blog_author %}
+    <script>
+      function materialApplePopup(){ 
+        $('.author--profile--bio-popup').on('click', function() { 
+          if ($(this).attr("rel")) {
+            console.log('has-rel');
+            $('html').addClass('popupTemplate--apple-white--active');
+            $(this).parents('.blog--listing--cards--container').addClass('popupTemplate--apple-white--section-active'); 
+            $('.popupTemplate--apple-white').find('.productionPopup--singles').removeClass('visuallyhidden'); 
+            $('#productionPopUp.popupTemplate--apple-white').addClass('popupTemplate--apple-white--zoom-up');
+          }
+        });
+        $('.productionClose--container').click(function(){ 
+          $('#productionPopUp.popupTemplate--apple-white').removeClass('popupTemplate--apple-white--zoom-up');
+          $('.productionPopupInner, .popupTemplate--apple-white-overlay').css('opacity','0');
+          $('#hs_cos_wrapper_flexColumn .section').css('filter','blur(0px)'); 
+          setTimeout(function () {
+            $('html').removeClass('popupTemplate--apple-white--active');
+            $('.blog--listing--cards--container').removeClass('popupTemplate--apple-white--section-active'); 
+            $('.popupTemplate--apple-white .productionPopup--singles').addClass('visuallyhidden');  
+            $('.productionPopupInner, .popupTemplate--apple-white-overlay').css('opacity','1');
+            $('.section').css('filter','');
+            $('.popupTemplate--apple-white-overlay').css({
+              'backdrop-filter' : '',
+              'background' : '', 
+              '-webkit-backdrop-filter' : '',
+            });
+          }, 730); 
+        });
+      }
+
+      $(document).ready(function() {
+        materialApplePopup()
+      });
+
+      $(window).resize(function () {
+        materialApplePopup()
+      });
+    </script>
+    {% endif %}
+
+
+    <script>
+      /* Topics Header */
+      {% if content.absolute_url is string_containing "/blog/topic/" %}
+      var topicName = $('.header--sub').find('.header--sub--title--link').text();     
+      $('.header--sub').find('.header--sub--topics-menu--subnav .header--sub--topics-active').html(topicName); 
+      {% endif %}
+    </script>
+
+
+    {# Infinite Scroll - Disabled on Articles to allow people to scroll to bottom page CTA #}
+    {% if is_listing_view || blog_author || tag %}
+    <script src="http://cdn2.hubspot.net/hub/299021/file-1152548840-js/js/ajaxscroll.min.js"></script>
+
+    <script>
+      var ias = $.ias({
+        container:  '.blog--listing--cards--listing',
+        item:       '.blog--listing--cards--article-item',
+        pagination: '.blog--listing--cards--pagination',
+        next:       '.next-posts-link'
+      });
+
+      {% if blog_author || tag %} 
+      ias.extension(new IASSpinnerExtension({offset: 1}));
+
+      ias.extension(new IASTriggerExtension({
+        html: '<div class="text--center block margin--tall--bottom width--max"><span class="btn btn--blue btn--scroll--trigger palm-margin--short--top bold font--17 z-index--10 relative">Load more articles</span></span>',
+        offset: 1
+      }));
+      {% else %}
+      ias.extension(new IASSpinnerExtension());
+      {% endif %}
+
+
+      ias.on('render', function(items) {
+        $(items).each(function(index) {
+        });
+      });	
+
+      ias.on('rendered', function(items) {
+        myLazyLoad.update();
+      });		
+
+      {% if next_page_num <= 0 %}
+      {% else %}
+      ias.extension(new IASNoneLeftExtension({html: "<div class='end-text text--center'><p class='short padding--short'><em>You have reached the end of our posts.</p></div>"}));
+      {% endif %}
+
+      {% endif %}
+
+    </script>
+    {# Currently Disabled in favor of the bottom Sticky Bar #}
+    {% if widget_data.includeLeadMagnetPopup.value %}
+    {% endif %}
+  </body>
+
+</html>

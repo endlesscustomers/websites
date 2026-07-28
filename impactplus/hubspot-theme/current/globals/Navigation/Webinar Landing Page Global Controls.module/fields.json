@@ -1,0 +1,71 @@
+[ {
+  "id" : "85bc9feb-9426-c0fc-2558-a44900d36f55",
+  "name" : "upcoming_lp_webinar_defaults",
+  "label" : "Upcoming Webinar LP: Content Defaults",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "f612d028-5a20-e541-87a7-9c713a923625",
+    "name" : "preheader",
+    "label" : "Preheader",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Free Upcoming Webinar"
+  }, {
+    "id" : "b4caaf14-5ebb-2080-6ffe-bcac72f1840e",
+    "name" : "form_header",
+    "label" : "Form Header",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h3>Register Now</h3>\n<p>Simply fill out the form below and we'll register you and send you a calendar invite.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "preheader" : "Free Upcoming Webinar",
+    "form_header" : "<h3>Register Now</h3>\n<p>Simply fill out the form below and we'll register you and send you a calendar invite.</p>"
+  }
+}, {
+  "id" : "79bd1879-f56d-2f39-9a02-d20f2873d3d1",
+  "name" : "ondemand_lp_webinar_defaults",
+  "label" : "On-Demand Webinar LP: Content Defaults",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "98ec0565-9f90-e436-d192-baa62a0b049b",
+    "name" : "preheader",
+    "label" : "Preheader",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "On-Demand Webinar"
+  }, {
+    "id" : "349488a0-b205-d004-fe27-5f6528693029",
+    "name" : "form_header",
+    "label" : "Form Header",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h4><span>Watch On-Demand</span></h4>\n<p>Simply fill out the form to watch the recording immediately.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "preheader" : "On-Demand Webinar",
+    "form_header" : "<h4><span>Watch On-Demand</span></h4>\n<p>Simply fill out the form to watch the recording immediately.</p>"
+  }
+} ]
