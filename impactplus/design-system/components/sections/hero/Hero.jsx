@@ -2,9 +2,8 @@ import React from "react";
 import { Button } from "../../core/Button.jsx";
 import { Callout } from "../../core/Callout.jsx";
 
-/** Centered page hero: eyebrow, big serif headline (with an optional brand-blue
- * highlight phrase), subtitle, and a row of CTAs. Optionally overlays a
- * handwritten Kalam callout. Mirrors the program/home page hero. */
+/** Page hero with an unboxed eyebrow, large General Sans headline, supporting
+ * copy, and a governed primary/secondary CTA row. */
 export function Hero({
   eyebrow, title, highlight, subtitle,
   primaryCta, primaryHref, secondaryCta, secondaryHref,
@@ -31,7 +30,7 @@ export function Hero({
         {(primaryCta || secondaryCta) && (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", marginTop: "6px", justifyContent: isCenter ? "center" : "flex-start" }}>
             {primaryCta && <Button variant="primary" size="lg" withArrow href={primaryHref}>{primaryCta}</Button>}
-            {secondaryCta && <Button variant={onDark ? "outline" : "dark"} size="lg" href={secondaryHref}>{secondaryCta}</Button>}
+            {secondaryCta && <Button variant={onDark ? "outline" : "dark"} size="lg" withArrow={false} href={secondaryHref}>{secondaryCta}</Button>}
           </div>
         )}
         {children}

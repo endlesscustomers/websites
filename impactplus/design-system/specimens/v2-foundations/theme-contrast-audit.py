@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Audit every proposed V2 specimen theme color role.
+"""Audit every approved V2 theme color role.
 
-This is intentionally local to the unapproved specimen. Promote the checks with
-the tokens only after Bob approves the color-switching model.
+Keep this check synchronized with the scoped tokens in ``tokens/v2.css`` and
+run it whenever a theme role changes.
 """
 
 THEMES = {

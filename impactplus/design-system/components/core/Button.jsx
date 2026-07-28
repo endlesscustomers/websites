@@ -24,7 +24,7 @@ export function Button({
   variant = "primary",
   size = "md",
   href,
-  withArrow = false,
+  withArrow,
   disabled = false,
   onClick,
   style,
@@ -32,6 +32,7 @@ export function Button({
 }) {
   const s = SIZES[size] || SIZES.md;
   const isLink = variant === "link";
+  const showArrow = withArrow ?? (variant === "primary" || variant === "dark");
 
   const base = {
     display: "inline-flex",
@@ -53,8 +54,8 @@ export function Button({
   };
 
   const variants = {
-    primary: { background: "var(--color-brand)", color: "var(--ec-white)" },
-    dark: { background: "var(--ec-neutral-700)", color: "var(--ec-white)" },
+    primary: { background: "var(--color-brand-strong)", color: "var(--ec-white)" },
+    dark: { background: "var(--ec-navy)", color: "var(--ec-white)" },
     secondary: { background: "var(--ec-green-400)", color: "var(--ec-neutral-700)" },
     outline: { background: "transparent", color: "currentColor", borderColor: "currentColor" },
     ghost: { background: "var(--ec-blue-100)", color: "var(--color-brand)" },
@@ -74,13 +75,15 @@ export function Button({
     else if (variant === "outline") styleObj.background = "rgba(255,255,255,0.12)";
     else if (variant === "ghost") styleObj.background = "var(--ec-blue-200)";
     else if (variant === "link") styleObj.textDecoration = "underline";
-    if (!isLink) styleObj.transform = "translateY(-1px)";
+    if (!isLink) styleObj.transform = "translateY(-2px)";
   }
 
   const Tag = href ? "a" : "button";
   return (
     <Tag
       href={href}
+      data-impact-button="true"
+      data-impact-button-variant={variant}
       onClick={disabled ? undefined : onClick}
       disabled={Tag === "button" ? disabled : undefined}
       style={styleObj}
@@ -89,7 +92,7 @@ export function Button({
       {...rest}
     >
       {children}
-      {withArrow && <ArrowRight size={size === "lg" ? 20 : 18} />}
+      {showArrow && <ArrowRight size={size === "lg" ? 20 : 18} />}
     </Tag>
   );
 }

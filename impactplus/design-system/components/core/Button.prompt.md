@@ -6,4 +6,6 @@ One-sentence: IMPACT's pill-shaped call-to-action button — the blue `primary` 
 <Button variant="link" withArrow>Get a Free Chapter of the Book</Button>
 ```
 
-Variants: `primary` (IMPACT Blue), `dark` (near-black), `secondary` (green pill), `outline` (uses currentColor — put it on dark bands), `ghost` (soft blue), `link` (inline arrow text-link). Sizes `sm | md | lg`. Set `withArrow` for the trailing arrow, `href` to render an anchor.
+Variants: `primary` (active V2 theme color), `dark` (near-black), `secondary`, `outline` (uses currentColor), `ghost`, and `link`. Sizes `sm | md | lg`; set `href` to render an anchor.
+
+V2 defaults: primary and dark buttons include the trailing arrow unless `withArrow={false}` is explicit. Secondary, outline, and ghost buttons do not include an arrow by default. Every action remains pill-shaped, rises 2px on hover, and never gains an underline. Dark buttons darken rather than invert; outline/ghost behavior must retain accessible contrast for its field.

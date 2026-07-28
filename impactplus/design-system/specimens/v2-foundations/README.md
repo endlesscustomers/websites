@@ -1,6 +1,6 @@
 # V2 Foundations specimen
 
-Status: **local review artifact — not approved and not uploaded to HubSpot**
+Status: **approved foundation — local implementation authority; not uploaded to HubSpot**
 
 Open `index.html` to review the proposed shared foundation for both coded-body pages and marketer-managed HubSpot pages.
 
@@ -41,15 +41,9 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - The main navigation is a transparent overlay on the hero field, so it always shares the active theme color instead of creating a separate navigation band.
 - Highlights below the hero use white text on the active accessible strong color, with only a few pixels of vertical extension and slightly more below the letterforms. The hero does not use a headline highlight.
 
-## Review gate
+## Approval
 
-Bob must approve or amend these five decisions before the values become V2 production tokens:
-
-1. Typography roles.
-2. Component shape.
-3. Color behavior.
-4. Section rhythm.
-5. Shared expression across coded and managed pages.
+Bob approved the complete V2 Foundations direction on 2026-07-28. Its typography roles, component shape, color behavior, section rhythm, and shared coded/managed expression now govern new V2 work. Approval authorizes local and draft implementation; it does not authorize a HubSpot production publish.
 
 ## Validation completed
 
@@ -59,12 +53,12 @@ Bob must approve or amend these five decisions before the values become V2 produ
 - Browser console: no warnings or errors.
 - Computed font roles: General Sans for headings and Proxima Nova for body copy.
 
-## After approval
+## Implementation sequence
 
-1. Promote approved experimental aliases into the canonical V2 tokens.
-2. Build the global navigation and footer against those tokens.
-3. Apply the foundation to the Deep Diagnostic coded-body proof.
-4. Apply the same foundation to one managed-module proof.
-5. Upload only the isolated V2 assets in draft mode and create Content Staging review pages.
+1. Promote the approved values into a scoped canonical V2 token layer.
+2. Apply the foundation to the Deep Diagnostic coded-body proof.
+3. Build the global navigation and footer against the same tokens.
+4. Apply the foundation to one managed-module proof.
+5. Upload only isolated V2 assets in draft mode and create Content Staging review pages.
 
 Never publish production from this specimen folder.

@@ -8,6 +8,12 @@ You Answer* by Marcus Sheridan). This system exists to help the team build **new
 marketing website pages** that match the live site, re-purposing its modules and
 sections.
 
+> **V2 authority (approved 2026-07-28).** New V2 work uses the scoped
+> `.impact-v2` foundation in `tokens/v2.css` and the approved specimen in
+> `specimens/v2-foundations/`. Historical live-site observations below remain
+> useful migration context, but they do not override the approved V2 type,
+> color, shape, spacing, control, or interaction rules.
+
 ## Sources
 - Four full-page screenshots of live pages (`uploads/image (5)–(8).png`):
   the coaching **Program** page, the **Homepage**, **How it Works**, and
@@ -70,10 +76,11 @@ attributions (person, title, company). Always attribute quotes to a real person.
 
 ## VISUAL FOUNDATIONS
 
-**Overall vibe.** Trustworthy, editorial, and warm-but-professional. A bold
-**serif** headline voice over clean sans body, punctuated by playful
-**handwritten** annotations and hand-drawn arrows — the detail that makes IMPACT
-feel human rather than corporate.
+**Overall vibe.** Confident, direct, high-contrast, and human. V2 uses Wynter's
+restrained visual grammar—large assertions, flat color fields, decisive rules,
+and generous rhythm—expressed through IMPACT's palette, General Sans display
+type, Proxima Nova body type, pill actions, real proof, and conversion journey.
+Kalam is reserved for rare meaningful annotations.
 
 **Color.** Primary is **IMPACT Blue `#0A6CFF`** (CTAs, links, accents). Secondary
 is **Green 400 `#01E6BE`** (pills, highlights) with **Green 500 `#01C4A2`** for
@@ -86,10 +93,10 @@ service has its own accent (Sales green, HubSpot orange, Website magenta, AI
 teal, Marketing blue) with matching light/dark gradients. Max **1–2 background
 colors per page** (white + livid, or a dark band).
 
-**Type.** Headings + FAQ questions: **Merriweather** (serif, Bold/Black) — sturdy,
-traditional, high-trust. Body + UI: **Proxima Nova** (see caveat). Decorative
-callouts/stats: **Kalam** (handwritten). Scale (px): display 60 · h1 48 · h2 36 ·
-h4 24 · h5 20 · body 18 (default) / 16 / 14.
+**Type.** Headings, FAQ questions, key statistics, and short proof statements:
+**General Sans**. Body + UI: **Proxima Nova**, with distinct Lead, Standard, and
+Compact roles. Decorative callouts: **Kalam**, used sparingly. The approved
+responsive values live in `tokens/v2.css` and the V2 Foundations specimen.
 
 **Backgrounds.** Mostly flat white and flat livid sections. Heroes are **full-bleed
 photography** (real conference/team photos) with a dark overlay for legibility.
@@ -100,15 +107,16 @@ warm, natural, real people — never stocky or cold.
 Photos sit inside **pill / arch-topped rounded masks** on the "How it Works" page
 (tall rounded-top rectangles). Avatars are circular.
 
-**Cards.** White surface, **16px radius** (`--radius-lg`), hairline `#E1E7F4`
-border, soft cool shadow (`--shadow-card` = `0 10px 30px rgba(31,45,61,.08)`).
-On hover they **lift 3px** and deepen the shadow. FAQ rows are livid-tinted with
-**12px radius** and a circular outline **"+"** that rotates 45° when open.
+**Cards.** V2 cards use a restrained **8px radius**, firm borders, and little or
+no shadow. Separation comes from contrast, spacing, and rules—not floating
+surfaces. Interactive cards may use a restrained lift when it communicates
+clickability. FAQ controls retain a clear outlined toggle and accessible state.
 
-**Buttons.** Fully **pill-shaped** (`border-radius:999px`), Proxima-Nova bold.
-Primary = solid IMPACT Blue; "Learn More" = near-black; outline = currentColor on
-dark bands; plus an inline arrow **text-link** ("Get a Free Chapter →"). Hover
-darkens the fill and nudges up 1px. Many CTAs carry a trailing **→** arrow.
+**Buttons.** Fully **pill-shaped** (`border-radius:999px`), Proxima Nova bold.
+Primary and dark actions carry a trailing **→** by default; secondary, outline,
+and ghost actions do not. All buttons rise **2px** on hover and never gain an
+underline. Black buttons darken toward true black instead of inverting. Colored
+fills and hover states use the active accessible V2 theme role.
 
 **Borders & dividers.** Hairline `#E1E7F4` for card/section borders; `#EEEEEE`
 for light dividers; `#2B2B2B` stroke for divider lines on dark.
@@ -159,8 +167,8 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 - **StarRating** — gold review stars.
 - **CheckItem** — benefit row with the green circular check.
 - **Callout** — handwritten Kalam annotation + optional hand-drawn arrow.
-- **SectionHeading** — eyebrow + serif title (+highlight) + subtitle.
-- **StatCallout** — oversized serif/handwritten number + label.
+- **SectionHeading** — unboxed eyebrow + General Sans title (+optional trimmed highlight) + subtitle.
+- **StatCallout** — oversized General Sans/rare handwritten number + label.
 
 **Cards** (`components/cards/`)
 - **Card** — base white shadow-card surface.
@@ -172,15 +180,15 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 - **BlogCard** — Learning-Center article card (thumbnail + title + date + author).
 
 **Sections** (`components/sections/`) — full-width page modules that mirror the real site bands, composing the primitives above.
-- **Hero** — centered page hero: eyebrow, serif headline + blue highlight, subtitle, CTA row, optional handwritten callout.
+- **Hero** — strong active-theme field with transparent navigation, white General Sans headline without highlight, white supporting copy, and governed primary/ghost CTA row.
 - **FeatureGrid** — "What You'll Get / Gain": centered heading over a responsive FeatureCard grid.
 - **TeamGrid** — "Meet Your Team": heading over a TeamCard grid.
 - **QualifierBand** — dark "Is This Right for You?" band: heading + two-column green checklist + note.
-- **QuoteBand** — large serif pull-quote band with attribution (muted / dark / plain).
+- **QuoteBand** — large General Sans pull-quote band with attribution (muted / dark / plain).
 - **TestimonialWall** — heading over star-review cards; `carousel` mode for a scroll-snap track with prev/next controls.
 - **StepBand** — "Path to Endless Customers": heading over a row of numbered, palette-colored StepCards.
 - **CtaBand** — full-width closing CTA: heading + subtitle + CTAs, on the dark surface or over a scrimmed photo.
-- **SplitFeature** — How-it-Works step (eyebrow/serif title/body beside a photo); `step` renders the numbered "STEP N" variant with a ghosted watermark.
+- **SplitFeature** — How-it-Works step (unboxed eyebrow/General Sans title/body beside a photo); `step` renders the numbered "STEP N" variant with a ghosted watermark.
 - **VideoFeature** — video poster with a centered play button + name overlay.
 - **PeekingVideo** — hero video that peeks up above the fold, straddling the hero band and the section below.
 
@@ -206,7 +214,7 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 
 **Content** (`components/content/`)
 - **Prose** — long-form text block pairing the two existing paragraph styles: a larger lead (`--text-lg`, 20px) over default body (`--text-base`, 18px).
-- **FaqAccordion** — serif FAQ rows with rotating "+" toggle.
+- **FaqAccordion** — General Sans FAQ rows with rotating "+" toggle.
 - **LogoWall** — grayscale client-logo band.
 - **NewsletterForm** — inline email capture (pill field + blue submit).
 - **PricingTable** — plan comparison grid (checks / values / "Not Available").
@@ -224,7 +232,7 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 
 ## Index / manifest
 - `styles.css` — global entry point (import this one file). `@import`s everything below.
-- `tokens/` — `fonts.css`, `colors.css`, `typography.css`, `spacing.css`, `effects.css`, `base.css`.
+- `tokens/` — `fonts.css`, `colors.css`, `typography.css`, `spacing.css`, `effects.css`, `base.css`, and the approved scoped `v2.css` layer.
 - `components/{core,cards,content,chrome,sections}/` — the 24 components above (`.jsx` + `.d.ts` + `.prompt.md` + a `*.card.html` per folder).
 - `guidelines/` — foundation specimen cards (Colors, Type, Spacing, Brand).
 - `assets/README.md` — logo/imagery/icon URL inventory + localization notes.

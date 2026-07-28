@@ -1,0 +1,199 @@
+/* Deep Diagnostic & Roadmap — first coded-body proof of approved IMPACT V2. */
+
+.ddr-v2 {
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+}
+
+.ddr-v2 a:hover { text-decoration: none; }
+
+/* Global shell remains a local proof until the shared V2 navigation is built. */
+.ddr-v2 .hero-wrap > header { background: transparent !important; }
+.ddr-v2 .hero-wrap > header > div {
+  width: min(calc(100% - 48px), 1240px);
+  max-width: none !important;
+  padding-block: 18px !important;
+}
+.ddr-v2 .hero-wrap > header nav a:hover,
+.ddr-v2 .hero-wrap > header > div > div a:hover { text-decoration: none !important; }
+
+/* Hero: the approved V2 white-on-strong-color field. */
+.ddr-v2 .hero-wrap {
+  min-height: auto;
+  border-bottom: 4px solid var(--ec-navy);
+  background: var(--v2-theme-strong);
+}
+.ddr-v2 .hero-grid {
+  width: min(calc(100% - 48px), 1240px);
+  max-width: none;
+  gap: clamp(52px, 7vw, 104px);
+  padding: clamp(96px, 10vw, 140px) 0 clamp(104px, 11vw, 150px);
+}
+.ddr-v2 .hero-eyebrow {
+  margin-bottom: 22px;
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  opacity: 1;
+}
+.ddr-v2 .hero-h1 {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: white;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6.4vw, 82px);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: .96;
+}
+.ddr-v2 .hero-sub {
+  max-width: 680px;
+  margin-top: clamp(30px, 3vw, 42px);
+  color: white;
+  font-size: clamp(19px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.55;
+}
+.ddr-v2 .hero-cta-row { margin-top: 34px; }
+.ddr-v2 .hero-micro { margin-top: 16px; color: white; }
+.ddr-v2 .hero-trust { margin-top: 30px; color: white; }
+.ddr-v2 .guarantee-chip {
+  color: white;
+  text-decoration: none;
+}
+.ddr-v2 .hero-video-card {
+  border: 2px solid var(--ec-navy);
+  border-radius: var(--v2-radius-card);
+  box-shadow: none;
+}
+.ddr-v2 .hero-video-caption { border-top: 2px solid var(--ec-navy); }
+
+/* Editorial rhythm and hierarchy. */
+.ddr-v2 .sec-open { padding-top: clamp(88px, 10vw, 128px); }
+.ddr-v2 .band,
+.ddr-v2 .wyg-beat,
+.ddr-v2 .pg-pricing,
+.ddr-v2 .post-section { padding-block: var(--v2-section-space); }
+.ddr-v2 .sec-line {
+  width: 72px;
+  height: 4px;
+  margin-bottom: 22px;
+  background: var(--v2-theme-strong);
+}
+.ddr-v2 .chapter-eyebrow,
+.ddr-v2 .post-eyebrow,
+.ddr-v2 .wyg-kicker,
+.ddr-v2 .how-step-label,
+.ddr-v2 .pg-after-label,
+.ddr-v2 .pg-guarantee-eyebrow,
+.ddr-v2 .pg-promise-label,
+.ddr-v2 .pg-ongoing-label,
+.ddr-v2 .post-authority-label {
+  color: var(--v2-theme-text);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+.ddr-v2 .wynter-h2,
+.ddr-v2 .post-h2 {
+  max-width: 980px;
+  color: var(--text-heading);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  line-height: .98;
+}
+.ddr-v2 .post-h2 { margin-bottom: var(--v2-heading-space); }
+.ddr-v2 .wyg-h3,
+.ddr-v2 .pg-subhead,
+.ddr-v2 .post-authority-panel h3,
+.ddr-v2 .how-step h3 {
+  font-family: var(--font-display);
+  letter-spacing: -.025em;
+}
+.ddr-v2 .wyg-h3 { font-size: clamp(32px, 4vw, 48px); line-height: 1.04; }
+.ddr-v2 .sec-desc { margin-top: 28px; }
+.ddr-v2 .prose-lead { line-height: 1.55; }
+.ddr-v2 .prose-body { line-height: 1.62; }
+
+/* Flat, bordered components replace soft legacy cards and heavy shadows. */
+.ddr-v2 .fit2-not,
+.ddr-v2 .post-booking-panel {
+  border: var(--v2-border);
+  border-radius: var(--v2-radius-card);
+  background: white;
+}
+.ddr-v2 .post-booking-panel { border-top-width: 4px; border-top-color: var(--v2-theme-strong); }
+.ddr-v2 .post-form input,
+.ddr-v2 .post-form select,
+.ddr-v2 .post-form textarea {
+  border: 1px solid var(--ec-gray-700);
+  border-radius: var(--v2-radius-card);
+}
+.ddr-v2 .coach-chip { box-shadow: none; }
+
+/* A single page theme replaces the old multicolor process rail. */
+.ddr-v2 .how-path::before { background: var(--v2-theme-strong); }
+.ddr-v2 .how-node,
+.ddr-v2 .how-step:last-child .how-node {
+  background: var(--v2-theme-strong);
+  color: white;
+}
+.ddr-v2 .how-step:last-child .how-step-label { color: var(--v2-theme-text); }
+.ddr-v2 .how-effort { border-top: 2px solid var(--v2-theme-strong); }
+
+/* Commercial patterns use firm rules and one theme accent. */
+.ddr-v2 .pg-rail { border-top: 3px solid var(--ec-navy); }
+.ddr-v2 .pg-rail-item + .pg-rail-item { border-left-color: var(--ec-gray-700); }
+.ddr-v2 .pg-guarantee { background: var(--ec-navy); }
+.ddr-v2 .pg-guarantee-eyebrow,
+.ddr-v2 .pg-promise-label,
+.ddr-v2 .pg-ongoing-label,
+.ddr-v2 .pg-badge-small,
+.ddr-v2 .pg-guarantee-link { color: var(--v2-theme-on-dark); }
+.ddr-v2 .pg-badge { border-color: var(--v2-theme-on-dark); }
+.ddr-v2 .pg-badge::before { border-color: var(--v2-theme-on-dark); }
+.ddr-v2 .pg-ongoing { border-top-color: var(--v2-theme-on-dark); }
+
+/* Proof, FAQ, and authority remain editorial rather than card-heavy. */
+.ddr-v2 .post-results { background: var(--v2-theme-tint); }
+.ddr-v2 .post-proof-grid,
+.ddr-v2 .post-about-grid { border-top: 3px solid var(--ec-navy); }
+.ddr-v2 .post-testimonial + .post-testimonial,
+.ddr-v2 .post-authority-panel + .post-authority-panel,
+.ddr-v2 .post-credentials div + div { border-color: var(--ec-gray-700); }
+.ddr-v2 .post-outcome { color: var(--v2-theme-text); }
+.ddr-v2 .post-faq { border-top: 3px solid var(--ec-navy); }
+.ddr-v2 .post-faq details { border-bottom-color: var(--ec-gray-700); }
+.ddr-v2 .post-faq summary h3 { font-family: var(--font-display); }
+.ddr-v2 .post-faq-icon { border-color: var(--ec-navy); color: var(--v2-theme-text); }
+
+/* Colored closing field follows the hero rule: white type, no highlight box. */
+.ddr-v2 .post-final {
+  border-block: 4px solid var(--ec-navy);
+  background: var(--v2-theme-strong);
+}
+.ddr-v2 .post-final .post-h2 { color: white; }
+.ddr-v2 .post-final .post-h2 .post-final-highlight {
+  padding-inline: 0;
+  background: none;
+  color: white;
+}
+
+@media (max-width: 980px) {
+  .ddr-v2 .hero-grid { padding-top: 92px; }
+}
+
+@media (max-width: 760px) {
+  .ddr-v2 .hero-wrap > header > div,
+  .ddr-v2 .hero-grid { width: min(calc(100% - 36px), 680px); }
+  .ddr-v2 .hero-wrap > header nav,
+  .ddr-v2 .hero-wrap > header > div > div { display: none !important; }
+  .ddr-v2 .hero-grid { padding: 78px 0 94px; }
+  .ddr-v2 .hero-h1 { font-size: clamp(46px, 13vw, 58px); }
+  .ddr-v2 .wynter-h2,
+  .ddr-v2 .post-h2 { font-size: clamp(38px, 11vw, 48px); }
+}

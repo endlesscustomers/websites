@@ -1346,7 +1346,7 @@ function Button({
   variant = "primary",
   size = "md",
   href,
-  withArrow = false,
+  withArrow,
   disabled = false,
   onClick,
   style,
@@ -1354,6 +1354,7 @@ function Button({
 }) {
   const s = SIZES[size] || SIZES.md;
   const isLink = variant === "link";
+  const showArrow = withArrow ?? (variant === "primary" || variant === "dark");
   const base = {
     display: "inline-flex",
     alignItems: "center",
@@ -1374,11 +1375,11 @@ function Button({
   };
   const variants = {
     primary: {
-      background: "var(--color-brand)",
+      background: "var(--color-brand-strong)",
       color: "var(--ec-white)"
     },
     dark: {
-      background: "var(--ec-neutral-700)",
+      background: "var(--ec-navy)",
       color: "var(--ec-white)"
     },
     secondary: {
@@ -1411,17 +1412,19 @@ function Button({
   const [hover, setHover] = React.useState(false);
   if (hover && !disabled) {
     if (variant === "primary") styleObj.background = "var(--color-brand-hover)";else if (variant === "dark") styleObj.background = "#000";else if (variant === "secondary") styleObj.background = "var(--ec-green-500)";else if (variant === "outline") styleObj.background = "rgba(255,255,255,0.12)";else if (variant === "ghost") styleObj.background = "var(--ec-blue-200)";else if (variant === "link") styleObj.textDecoration = "underline";
-    if (!isLink) styleObj.transform = "translateY(-1px)";
+    if (!isLink) styleObj.transform = "translateY(-2px)";
   }
   const Tag = href ? "a" : "button";
   return /*#__PURE__*/React.createElement(Tag, _extends({
     href: href,
+    "data-impact-button": "true",
+    "data-impact-button-variant": variant,
     onClick: disabled ? undefined : onClick,
     disabled: Tag === "button" ? disabled : undefined,
     style: styleObj,
     onMouseEnter: () => setHover(true),
     onMouseLeave: () => setHover(false)
-  }, rest), children, withArrow && /*#__PURE__*/React.createElement(ArrowRight, {
+  }, rest), children, showArrow && /*#__PURE__*/React.createElement(ArrowRight, {
     size: size === "lg" ? 20 : 18
   }));
 }
@@ -3430,6 +3433,7 @@ function Hero({
   }, primaryCta), secondaryCta && /*#__PURE__*/React.createElement(__ds_scope.Button, {
     variant: onDark ? "outline" : "dark",
     size: "lg",
+    withArrow: false,
     href: secondaryHref
   }, secondaryCta)), children, callout && /*#__PURE__*/React.createElement("div", {
     style: {

@@ -1,0 +1,102 @@
+/* ============================================================
+   IMPACT DESIGN SYSTEM V2 — APPROVED FOUNDATION
+
+   Approved by Bob Ruffolo on 2026-07-28.
+
+   Scope V2 work with .impact-v2. This keeps the approved future system
+   isolated from legacy prototypes and, later, from the current HubSpot theme
+   until the coordinated release is approved.
+   ============================================================ */
+.impact-v2 {
+  --v2-theme: #1C78FF;
+  --v2-theme-ui: #0F63E0;
+  --v2-theme-text: #0F63E0;
+  --v2-theme-strong: #0F63E0;
+  --v2-theme-hover: #0B54C4;
+  --v2-theme-tint: #E7F0FF;
+  --v2-theme-on-dark: #8AB8FF;
+  --v2-theme-ink: #0A0F1F;
+
+  --v2-radius-control: 999px;
+  --v2-radius-card: 8px;
+  --v2-border: 2px solid var(--ec-gray-900);
+  --v2-section-space: clamp(84px, 10vw, 128px);
+  --v2-heading-space: clamp(24px, 2.5vw, 34px);
+
+  /* Repoint existing semantic aliases so legacy components inherit V2. */
+  --color-brand: var(--v2-theme-strong);
+  --color-brand-strong: var(--v2-theme-strong);
+  --color-brand-hover: var(--v2-theme-hover);
+  --text-link: var(--v2-theme-text);
+  --text-link-hover: var(--v2-theme-hover);
+  --accent: var(--v2-theme);
+  --accent-ui: var(--v2-theme-ui);
+  --accent-text: var(--v2-theme-text);
+  --accent-strong: var(--v2-theme-strong);
+  --accent-ink: var(--v2-theme-ink);
+  --accent-tint: var(--v2-theme-tint);
+  --surface-muted: var(--v2-theme-tint);
+  --radius-lg: var(--v2-radius-card);
+  --radius-xl: 12px;
+  --section-py: var(--v2-section-space);
+}
+
+.impact-v2[data-v2-theme="magenta"] {
+  --v2-theme: #CD43DC;
+  --v2-theme-ui: #C026D3;
+  --v2-theme-text: #A21DB2;
+  --v2-theme-strong: #A21DB2;
+  --v2-theme-hover: #861494;
+  --v2-theme-tint: #FAE8FD;
+  --v2-theme-on-dark: #F09AF6;
+}
+
+.impact-v2[data-v2-theme="green"] {
+  --v2-theme: #22C55E;
+  --v2-theme-ui: #17914A;
+  --v2-theme-text: #15803D;
+  --v2-theme-strong: #15803D;
+  --v2-theme-hover: #116B34;
+  --v2-theme-tint: #DCFCE7;
+  --v2-theme-on-dark: #66E596;
+}
+
+.impact-v2[data-v2-theme="orange"] {
+  --v2-theme: #FC9639;
+  --v2-theme-ui: #C25E04;
+  --v2-theme-text: #A34D09;
+  --v2-theme-strong: #A34D09;
+  --v2-theme-hover: #843C05;
+  --v2-theme-tint: #FEEFD5;
+  --v2-theme-on-dark: #FFC083;
+}
+
+.impact-v2 ::selection {
+  background: var(--v2-theme-tint);
+  color: var(--ec-navy);
+}
+
+.impact-v2 .hl-box {
+  padding-inline: .045em;
+  background: linear-gradient(
+    to bottom,
+    transparent 7px,
+    var(--v2-theme-strong) 7px,
+    var(--v2-theme-strong) calc(100% - 1px),
+    transparent calc(100% - 1px)
+  );
+  color: white;
+}
+
+.impact-v2 [data-impact-button="true"] {
+  border-radius: var(--v2-radius-control) !important;
+  text-decoration: none !important;
+}
+
+.impact-v2 [data-impact-button="true"]:hover {
+  text-decoration: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .impact-v2 [data-impact-button="true"] { transition: none !important; }
+}
