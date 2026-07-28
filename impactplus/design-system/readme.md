@@ -122,16 +122,18 @@ part of the same typography system.
 **Motion.** V2 motion is quiet, directional, and explanatory. The shared helper
 in `motion/v2-motion.js` activates only explicit `data-v2-reveal` elements,
 uses the governed 180/420/700ms timing scale and an ease-out curve, supports
-70ms stagger steps, and never hides content when JavaScript fails. The process
-timeline may draw and reveal its nodes in sequence because that motion explains
-order. `prefers-reduced-motion` removes all reveal and timeline motion.
+70ms stagger steps, and never hides content when JavaScript fails. It primes the
+first content beat just below the fold and uses an early intersection margin so
+motion starts as the next section enters view instead of halfway through it.
+Hero LCP content is not opacity-hidden. The process timeline may draw and reveal
+its nodes in sequence because that motion explains order. `prefers-reduced-motion`
+removes all reveal and timeline motion.
 
 **Desktop canvas.** V2 pages use a shared 1240px maximum content grid with 24px
-minimum side gutters. Major section grids align to that canvas; text columns
-retain their own narrower reading measures instead of stretching to fill it.
-Dense commercial compositions may use a governed 1120px inner subgrid inside
-the 1240px canvas. The Money-Back Guarantee uses this inner rail so its badge,
-two promises, month-to-month commitment, and closing action read as one unit.
+minimum side gutters. Major section grids—including the Money-Back Guarantee—
+align to that full canvas. Text columns retain their own narrower reading
+measures, and commercial compositions use governed internal gaps and padding so
+full-width sections remain cohesive instead of allowing their copy to stretch.
 
 **Backgrounds.** Mostly flat white and flat livid sections. Heroes are **full-bleed
 photography** (real conference/team photos) with a dark overlay for legibility.
@@ -270,7 +272,10 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 
 **Chrome** (`components/chrome/`)
 - **NavBar** — dark global header (logo + tagline + nav + Login + Schedule Call).
-- **SubNav** — sticky secondary/section nav: product logo/label + in-page links (active underline) + CTA.
+- **SubNav** — floating white pill rail: product label, horizontally scrollable
+  in-page pills with a theme-tinted active state, and a black arrow CTA. The
+  label collapses at tablet widths; mobile keeps a compact circular CTA and
+  automatically centers the active link without wrapping the rail.
 - **HelloBar** — dismissible promo bar.
 - **Footer** — link columns + brand lockup + social + legal.
 - **ChatWidget** — fixed "Ecee" AI chat launcher.

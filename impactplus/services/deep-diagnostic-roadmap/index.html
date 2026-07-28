@@ -929,7 +929,7 @@
   /* .band/.band-sm/.wrap/.wrap-narrow promoted to the design system 2026-07-25. */
   .center { text-align: center; }
 </style>
-<link rel="stylesheet" href="v2.css?v=20260728-17">
+<link rel="stylesheet" href="v2.css?v=20260728-21">
 </head>
 <body>
 <div id="root"></div>
@@ -937,8 +937,8 @@
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
-<script src="../../design-system/_ds_bundle.js"></script>
-<script src="../../design-system/motion/v2-motion.js?v=20260728-17"></script>
+<script src="../../design-system/_ds_bundle.js?v=20260728-20"></script>
+<script src="../../design-system/motion/v2-motion.js?v=20260728-20"></script>
 
 <script type="text/babel">
 const PLACEHOLDER_ROADMAP = "data:image/svg+xml;utf8," + encodeURIComponent(
@@ -1170,7 +1170,6 @@ function Page() {
             activeHref={activeAnchor}
             ctaLabel="Schedule an Explore Call"
             ctaHref="#start"
-            style={{ background: "var(--accent-tint)", boxShadow: "none", borderBottom: "1px solid rgba(10,92,224,0.16)" }}
           />
         </div>
       )}
@@ -1987,7 +1986,7 @@ function setupV2Motion(attempt = 0) {
   }
 
   const singleReveals = [
-    ".wyg-split", ".fit2", ".how-path", ".how-effort", ".pg-grid",
+    ".shift-split", "#what-you-get > .wrap", ".wyg-split", ".fit2", ".how-path", ".how-effort", ".pg-grid",
     ".pg-guarantee-header", ".pg-ongoing", ".post-booking-grid",
     ".post-faq-grid", ".post-about-grid", ".post-final-grid"
   ];

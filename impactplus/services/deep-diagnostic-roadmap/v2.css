@@ -1,4 +1,4 @@
-@import "../../design-system/tokens/v2.css?v=20260728-17";
+@import "../../design-system/tokens/v2.css?v=20260728-21";
 
 /* Deep Diagnostic & Roadmap — first coded-body proof of approved IMPACT V2. */
 
@@ -218,8 +218,25 @@
 .ddr-v2 .pg-rail-item + .pg-rail-item { border-left-color: var(--ec-gray-700); }
 .ddr-v2 .pg-guarantee { background: var(--ec-navy); }
 .ddr-v2 .pg-guarantee .pg-wrap {
-  width: min(1120px, calc(100% - clamp(36px, 5vw, 48px)));
+  width: min(var(--v2-container-max), calc(100% - 48px));
 }
+.ddr-v2 .pg-guarantee-header { gap: clamp(64px, 7vw, 104px); }
+.ddr-v2 .pg-promises { margin-top: 56px; }
+.ddr-v2 .pg-promise { padding: 36px 64px 38px 0; }
+.ddr-v2 .pg-promise + .pg-promise { padding-right: 0; padding-left: 64px; }
+.ddr-v2 .pg-promise-copy { max-width: 500px; }
+.ddr-v2 .pg-ongoing {
+  grid-template-columns: minmax(360px, 440px) minmax(0, 1fr);
+  gap: clamp(64px, 7vw, 96px);
+  margin-top: 56px;
+  padding-block: 48px;
+}
+.ddr-v2 .pg-ongoing-copy {
+  width: 100%;
+  max-width: 680px;
+  justify-self: end;
+}
+.ddr-v2 .pg-guarantee-close { padding: 42px 0 60px; }
 .ddr-v2 .pg-guarantee-eyebrow,
 .ddr-v2 .pg-promise-label,
 .ddr-v2 .pg-ongoing-label,
@@ -291,6 +308,7 @@
   .ddr-v2 .how-effort { margin-top: 58px; }
   .ddr-v2 .how-cta { margin-top: 48px; }
   .ddr-v2 .pg-ongoing { grid-template-columns: 1fr; gap: 22px; }
+  .ddr-v2 .pg-ongoing-copy { max-width: 720px; justify-self: start; }
   .ddr-v2 .post-booking-grid,
   .ddr-v2 .post-faq-grid { gap: 40px; }
 }
@@ -314,6 +332,12 @@
   .ddr-v2 .post-about-lead { margin-top: 20px; }
   .ddr-v2 .post-credentials { margin-top: 40px; }
   .ddr-v2 .post-final-grid { gap: 32px; }
+}
+
+@media (max-width: 880px) {
+  .ddr-v2 .pg-guarantee-header { gap: 42px; }
+  .ddr-v2 .pg-promise { padding-right: 36px; }
+  .ddr-v2 .pg-promise + .pg-promise { padding-right: 0; padding-left: 36px; }
 }
 
 @media (max-width: 900px) {
@@ -341,6 +365,12 @@
     left: 51px;
     transform: rotate(-36deg);
   }
+}
+
+@media (max-width: 600px) {
+  .ddr-v2 .pg-guarantee .pg-wrap { width: min(var(--v2-container-max), calc(100% - 36px)); }
+  .ddr-v2 .pg-promise,
+  .ddr-v2 .pg-promise + .pg-promise { padding: 27px 0 30px; }
 }
 
 @media (max-width: 520px) {

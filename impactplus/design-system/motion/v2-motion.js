@@ -17,9 +17,16 @@
       return;
     }
 
-    const visibleLimit = window.innerHeight * 0.94;
+    /* Prime the first content beat just below the fold, then reveal it after
+       the ready state has painted. Content that is already above the viewport
+       is shown immediately so restored/deep-link scroll positions never replay
+       stale motion. Opacity and transform are paint-only and do not shift layout. */
+    const initialRevealLimit = window.innerHeight * 1.1;
+    const initialItems = [];
     items.forEach((item) => {
-      if (item.getBoundingClientRect().top < visibleLimit) item.classList.add(VISIBLE_CLASS);
+      const bounds = item.getBoundingClientRect();
+      if (bounds.bottom <= 0) item.classList.add(VISIBLE_CLASS);
+      else if (bounds.top < initialRevealLimit) initialItems.push(item);
     });
     scope.classList.add(READY_CLASS);
 
@@ -29,9 +36,15 @@
         entry.target.classList.add(VISIBLE_CLASS);
         observer.unobserve(entry.target);
       });
-    }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0.04, rootMargin: "0px 0px 12% 0px" });
 
     items.filter((item) => !item.classList.contains(VISIBLE_CLASS)).forEach((item) => observer.observe(item));
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        initialItems.forEach((item) => item.classList.add(VISIBLE_CLASS));
+      });
+    });
   }
 
   window.IMPACTV2Motion = { init };

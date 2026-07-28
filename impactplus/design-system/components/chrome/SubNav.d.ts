@@ -1,7 +1,8 @@
 import * as React from "react";
 /**
- * Sticky secondary/section nav — product logo/label + in-page links + a CTA.
- * @startingPoint section="Chrome" subtitle="Sticky section sub-nav" viewport="1200x120"
+ * Responsive floating section rail — product label + scrollable link pills + a
+ * black CTA that compacts on mobile.
+ * @startingPoint section="Chrome" subtitle="Floating section navigation" viewport="1200x120"
  */
 export interface SubNavProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Product logo URL; falls back to `label` as text. */
@@ -9,7 +10,7 @@ export interface SubNavProps extends React.HTMLAttributes<HTMLDivElement> {
   label?: string;
   /** In-page links. */
   links?: { label: string; href: string }[];
-  /** href of the active link (gets the underline + brand color). */
+  /** href of the active link (gets the theme-tinted pill state). */
   activeHref?: string;
   /** @default "Schedule Call" */
   ctaLabel?: string;

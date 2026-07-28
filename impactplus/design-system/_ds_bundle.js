@@ -1698,6 +1698,18 @@ function NavLink({
   active
 }) {
   const [hover, setHover] = React.useState(false);
+  const linkRef = React.useRef(null);
+  React.useEffect(() => {
+    if (!active) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      linkRef.current?.scrollIntoView({
+        block: "nearest",
+        inline: "center",
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [active]);
   const base = {
     fontFamily: "var(--font-body)",
     fontWeight: active ? 700 : 600,
@@ -1719,7 +1731,10 @@ function NavLink({
     color = "var(--text-heading)";
   }
   return /*#__PURE__*/React.createElement("a", {
+    ref: linkRef,
+    className: `impact-subnav__link${active ? " is-active" : ""}`,
     href: href,
+    "aria-current": active ? "location" : undefined,
     onMouseEnter: () => setHover(true),
     onMouseLeave: () => setHover(false),
     style: {
@@ -1731,9 +1746,9 @@ function NavLink({
 }
 
 /** Sticky secondary/section nav (as on the coaching + service pages): a product
- * label (or logo) on the left, in-page anchor links in the middle with the
- * active item shown as a dark rounded pill, and a Schedule Call CTA on the
- * right. */
+ * label (or logo) on the left, horizontally scrollable in-page anchors, and a
+ * black CTA on the right. V2 presents the inner rail as a floating white pill
+ * and uses a brand-tinted active state rather than competing black pills. */
 function SubNav({
   logoSrc,
   label = "",
@@ -1746,16 +1761,18 @@ function SubNav({
   ...rest
 }) {
   return /*#__PURE__*/React.createElement("div", _extends({
+    className: "impact-subnav",
     style: {
       position: sticky ? "sticky" : "static",
       top: 0,
       zIndex: 40,
-      background: "var(--surface-card)",
-      borderBottom: "1px solid var(--border-subtle)",
-      boxShadow: "var(--shadow-xs)",
+      background: "transparent",
+      borderBottom: 0,
+      boxShadow: "none",
       ...style
     }
   }, rest), /*#__PURE__*/React.createElement("div", {
+    className: "impact-subnav__inner",
     style: {
       maxWidth: "var(--container-max)",
       margin: "0 auto",
@@ -1767,6 +1784,7 @@ function SubNav({
       gap: 24
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "impact-subnav__brand",
     style: {
       display: "flex",
       alignItems: "center",
@@ -1787,6 +1805,8 @@ function SubNav({
       color: "var(--text-heading)"
     }
   }, label)), /*#__PURE__*/React.createElement("nav", {
+    className: "impact-subnav__links",
+    "aria-label": `${label || "Page"} sections`,
     style: {
       display: "flex",
       alignItems: "center",
@@ -1801,12 +1821,14 @@ function SubNav({
     href: l.href,
     active: l.href === activeHref
   }))), ctaLabel && /*#__PURE__*/React.createElement("div", {
+    className: "impact-subnav__cta",
     style: {
       flex: "0 0 auto"
     }
   }, /*#__PURE__*/React.createElement(__ds_scope.Button, {
-    variant: "primary",
+    variant: "dark",
     size: "sm",
+    withArrow: true,
     href: ctaHref
   }, ctaLabel))));
 }
