@@ -1,0 +1,266 @@
+{{ require_css( get_asset_url("../Learning Center Blog Listing Topics Hero.css"), { async: true } ) }}
+
+{# Resource Library #}
+{% set all_resources = hubdb_table_rows(130854918) %}
+{% set mapped_resources = hubdb_table_rows(127897189) %}
+
+{% if module.layout_controls.container_alignment == 'center' %}
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--eclc relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  <div class="block relative z-index--10">
+    <div class="section--eclc--heading relative">
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"></div>
+      {{ snippets.background(module.background) }}
+      <div class="grid hard--top relative z-index--10">
+        <div class="section--hero-content grid__item one-whole hard--top {% if module.enable_lightbox_video %}tall--bottom palm-short--bottom{% else %}hard--bottom{% endif %} last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }} {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+          <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}  flex flex-flow--column flex-align--{{ gridAlignmentDesktop }}">
+            {% if module.preheader %}
+            <span class="h6 preheader">{{ module.preheader }}</span>
+            {% endif %}
+            {% if module.header %}
+            <div class="grid__item hard--sides hard--ends margin--short--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-ten-twelfths palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-ten-twelfths palm-one-whole{% endif %} first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              <h1>{{ module.header }}</h1>
+            </div>
+            {% endif %}
+            <div class="grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              {% if module.content %}
+              {{ module.content }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {# SEARCH AND SUBSCRIBE #}
+        <div class="grid__item one-whole hard--ends margin--short--bottom">
+          <div class="section--eclc--search relative width--max">
+            <section class="font--reading flex relative" role="search" data-ss360="true">  
+              <input id="searchBoxEclc" class="section--eclc--searchbox color--midgrey p" type="search" placeholder="Search…">  
+            </section>  
+          </div>
+          <div class="section--eclc--hero-ctas flex flex-justify--center">
+            <div class="section--eclc--subscribe-pop btn btn--small flex flex-align--center z-index--2 border--2 border--mist flex-justify--center">
+              <img src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/subscribe.svg" style="margin-right: 10px;" height="20" alt="Subscribe">
+              <span class="p p--default hard--ends semibold all--color--midgrey line-height--small" tabindex="0" style="text-align: left !important;">Subscribe</span>
+            </div>
+
+            {#<div class="vfChatbot section--eclc--ai-chat relative btn btn--small flex flex-align--center z-index--2 border--2 border--mist flex-justify--center">
+              <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 10px">
+                <path d="M13 0C5.83213 0 0 5.83213 0 13C0 15.4993 0.700375 17.8994 2.028 19.968L0.0585 24.8853C-0.06175 25.1875 0.00812499 25.532 0.238875 25.7628C0.39325 25.9171 0.60125 26 0.8125 26C0.914875 26 1.01562 25.9805 1.11475 25.9415L6.032 23.972C8.10062 25.2996 10.5007 26 13 26C20.1679 26 26 20.1679 26 13C26 5.83213 20.1679 0 13 0ZM13 24.375C10.6827 24.375 8.46462 23.6892 6.58775 22.3909C6.45125 22.295 6.28875 22.2463 6.12625 22.2463C6.02387 22.2463 5.9215 22.2658 5.824 22.3048L2.27175 23.7283L3.69525 20.176C3.796 19.9225 3.7635 19.6349 3.60912 19.4123C2.31075 17.5354 1.625 15.3173 1.625 13C1.625 6.7275 6.7275 1.625 13 1.625C19.2725 1.625 24.375 6.7275 24.375 13C24.375 19.2725 19.2725 24.375 13 24.375Z" fill="#4F5465"></path>
+                <path d="M12.247 6.5C12.2465 6.53449 12.2456 6.56902 12.2456 6.60362C12.2456 10.5525 15.4468 13.7536 19.3956 13.7536C19.4302 13.7536 19.4647 13.7527 19.4992 13.7522V13.7548C19.4647 13.7543 19.4302 13.7536 19.3956 13.7536C15.4814 13.7536 12.3024 16.8989 12.247 20.8H12.2444C12.1894 16.9334 9.06579 13.8098 5.19922 13.7548V13.7522C9.10028 13.6968 12.2456 10.5179 12.2456 6.60362C12.2456 6.56902 12.2447 6.53449 12.2442 6.5H12.247Z" fill="#4F5465"></path>
+                <path d="M16.8636 6.5C16.8634 6.51254 16.8631 6.5251 16.8631 6.53768C16.8631 7.97362 18.0272 9.13768 19.4631 9.13768C18.0397 9.13768 16.8838 10.2814 16.8636 11.7C16.8436 10.294 15.7068 9.1581 14.3008 9.13812C15.7193 9.11797 16.8631 7.96104 16.8631 6.53768C16.8631 6.5251 16.8628 6.51254 16.8626 6.5H16.8636Z" fill="#4F5465"></path>
+              </svg>
+              <span class="p p--default hard--ends semibold all--color--midgrey line-height--small" tabindex="0" style="text-align: left !important;">AI Chat</span>
+              <span class="section--eclc--ai-chat-bg absolute top--0 right--0 left--0 bottom--0 border-radius--pill"></span>
+            </div>#}
+            
+          </div>
+        </div>
+        {# END SEARCH AND SUBSCRIBE #}
+
+        <div class="section--eclc--topics">
+
+          <div class="section--eclc--topics--featured flex relative z-index--4 flex-wrap--wrap">
+
+            {# FEATURED RESOURCE TOPICS #}
+            {% for rows in module.featured_resource_topics %}
+
+            {% set topic_name = rows.featured_resource_topic.columns.resource_topic %}
+
+            {# start empty list #}
+            {% set matchedTotal = [] %}
+
+            {# loop through all resources and append matches #}
+            {% for r in all_resources %}
+            {% set is_match = [] %}
+            {% for t in r.pillar_topic %}
+            {% if t.resource_topic == topic_name %}
+
+            {% do is_match.append(1) %}
+            {% endif %}
+            {% endfor %}
+            {% if is_match|length > 0 %}
+            {% set matched = matched + (r.related_inner_resources|length) %}
+            {% endif %}
+            {% if loop.last %}
+            {% do matchedTotal.append(matched) %}
+
+            {% endif %}
+            {% endfor %}
+
+            {% set cardTitle = rows.featured_resource_header or topic_name %}
+
+            {% set matchedTotal = matchedTotal|join %}
+            {% set matchedTotal = matchedTotal|int %}
+
+            {% if rows.hide_resource %}
+            {% else %}
+            {% if loop.first %}
+            <div class="section--cards-column-large section--cards-column-group relative grid__item eight-twelfths tablet-eight-twelfths palm-one-whole hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--{{ loop.index + 1 }} margin--standard--top relative z-index--30">
+              <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer z-index--1" title="{{ cardTitle }}" href="{{ rows.featured_resource_topic.columns['topic_page_url'] }}"></a>
+              <div class="section--card-content-columns-container flex overflow--hidden border--1 border--mist background--white" style="width: 100%; border-radius: 16px; padding: 20px;">
+                <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative border--1 border--mist border--left--0 border--top--0 border--right--0 border--mist border-radius--12">
+                  <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ cardTitle }}" data-bg="{{ rows.featured_image.src|escape_url }}" style="background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                    <span style="display: block; width: 100%; margin: 0px; padding: 53% 0px 0px;"></span>
+                  </div>
+                </div>
+                <div class="section--card-content-columns-wrapper relative width--max text--left">
+                  <div class="section--card-content-columns-top">
+                    <div class="section--card-content-columns-inner">
+                      <img src="{{ rows.featured_resource_topic.columns.topic_icon.url }}" alt="{{ cardTitle }}" width="38">
+                    </div>
+                    <div class="section--card-content-columns-header h2 margin--petite--top margin--petite--bottom last--hard--bottom relative">
+                      {{ cardTitle }}
+                    </div>
+                    <div class="section--card-content-columns-description p p--sm hard--ends last--hard--bottom color--midgrey">{{ rows.featured_resource_description }}</div>
+                  </div>
+                  {% if matchedTotal > 0 %}
+                  <div class="section--richtext-columns--resource-num p p--small color--midgrey hard--bottom margin--petite--top" style="text--center">
+                    {{ matchedTotal }} Articles
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            {% else %}
+
+            <div class="section--cards-column-group grid__item four-twelfths tablet-four-twelfths palm-one-whole relative hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--{{ loop.index + 1 }} margin--standard--top relative z-index--30 border-radius--12">
+              <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer z-index--1" title="{{ cardTitle }}" href="{{ rows.featured_resource_topic.columns['topic_page_url'] }}"></a>
+              <div class="section--card-content-columns-container flex overflow--hidden border--1 border--mist background--white">
+                <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative border--1 border--mist border--left--0 border--top--0 border--right--0 border--mist border-radius--12">
+                  <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ cardTitle }}" data-bg="{{ rows.featured_image.src|escape_url }}" style="background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                    <span style="display: block; width: 100%; margin: 0px; padding: 53% 0px 0px;"></span>
+                  </div>
+                </div>
+                <div class="section--card-content-columns-wrapper relative width--max text--left">
+                  <div class="section--card-content-columns-top">
+                    <div class="section--card-content-columns-inner margin--short--top">
+                      <img src="{{ rows.featured_resource_topic.columns.topic_icon.url }}" alt="{{ cardTitle }}" style="max-width: 38px;">
+                    </div>
+                    <div class="section--card-content-columns-header h3 margin--petite--top margin--petite--bottom last--hard--bottom relative">
+                      {{ cardTitle }}
+                    </div>
+                    <div class="section--card-content-columns-description p p--sm hard--ends last--hard--bottom color--midgrey">{{ rows.featured_resource_description }}</div>
+                  </div>
+                  {% if matchedTotal > 0 %}
+                  <div class="section--richtext-columns--resource-num p p--small color--midgrey hard--bottom margin--petite--top" style="text--center">
+                    {{ matchedTotal }} Articles
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            {# END FEATURED RESOURCE TOPICS #}
+            {% endfor %}
+          </div>
+
+          {# SECONDARY TOPICS #}
+          <div class="section--eclc--topics--secondary flex flex-wrap--wrap">
+            {% for rows in module.secondary_learning_center_resource_topics %}
+
+            {% set topic_name = rows.featured_resource_topic.columns.resource_topic %}
+
+            {# start empty list #}
+            {% set matchedTotal = [] %}
+
+            {# loop through all resources and append matches #}
+            {% for r in all_resources %}
+            {% set is_match = [] %}
+            {% for t in r.pillar_topic %}
+            {% if t.resource_topic == topic_name %}
+
+            {% do is_match.append(1) %}
+            {% endif %}
+            {% endfor %}
+            {% if is_match|length > 0 %}
+            {% set matched = matched + (r.related_inner_resources|length) %}
+            {% endif %}
+            {% if loop.last %}
+            {% do matchedTotal.append(matched) %}
+
+            {% endif %}
+            {% endfor %}
+
+            {% set cardTitle = rows.featured_resource_header or topic_name %}
+
+            {% set matchedTotal = matchedTotal|join %}
+            {% set matchedTotal = matchedTotal|int %}
+
+            {% if rows.hide_resource %}
+            {% else %}
+            <div class="section--cards-column-group relative grid__item one-fourth tablet-one-half palm-one-whole hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--{{ loop.index + 1 }} margin--standard--top relative z-index--30">
+              <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer z-index--1" title="{{ cardTitle }}" href="{{ rows.featured_resource_topic.columns['topic_page_url'] }}"></a>
+              <div class="section--card-content-columns-container flex overflow--hidden border--1 border--mist background--white">
+                <div class="section--card-content-columns-wrapper relative width--max text--left">
+                  <div class="section--card-content-columns-top">
+                    <div class="section--card-content-columns-inner">
+                      <img src="{{ rows.featured_resource_topic.columns.topic_icon.url }}" alt="{{ cardTitle }}" style="max-width: 38px;">
+                    </div>
+                    <div class="section--card-content-columns-header h5 margin--petite--top margin--petite--bottom last--hard--bottom relative font--reading bold line-height--small">
+                      {{ cardTitle }}
+                    </div>
+                    <div class="section--card-content-columns-description p p--sm hard--ends last--hard--bottom color--midgrey">{{ rows.featured_resource_description }}</div>
+                  </div>
+                  {% if matchedTotal > 0 %}
+                  <div class="section--richtext-columns--resource-num p p--small color--midgrey hard--bottom margin--petite--top" style="text--center">
+                    {{ matchedTotal }} Articles
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {# END SECONDARY TOPICS #}
+
+          {# TERTIARY TOPICS #}      
+          <div class="section--eclc--topics--tertiary">
+            <div class="grid__item one-whole hard--ends">
+              <h5 class="margin--tall--top margin--short--bottom last--hard--bottom relative font--reading bold line-height--small text--left">{{ module.tertiary_topics_section_header }}</h5>
+            </div>
+            <div class="section--eclc--topics--tertiary-flex-wrapper flex flex-wrap--wrap grid__item one-whole hard--ends">
+              {% set count = 1 %}
+              {% for rows in module.tertiary_learning_center_resource_topics %}
+
+              {% if rows.hide_resource %}
+              {% else %}
+              {% set topic_name = rows.featured_resource_topic.columns.resource_topic %}
+              {% set cardTitle = rows.featured_resource_header or topic_name %}
+              <div class="section--cards-column-group grid__item one-fifth tablet-one-third palm-one-whole relative hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--{{ count }} margin--short--top relative z-index--30 border-radius--16">
+                <a class="section--cards--card--link absolute z-index--1 left--0 right--0 top--0 bottom--0 hover--pointer" title="{{ cardTitle }}" href="{{ rows.featured_resource_topic.columns['topic_page_url'] }}"></a>
+                <div class="section--card-content-columns-container flex overflow--hidden border--1 border--mist background--white flex-justify--center">
+                  <div class="section--card-content-columns-wrapper relative width--max text--left">
+                    <div class="section--card-content-columns-top flex flex-align--center">
+                      <img class="section--card-content-columns-inner" src="{{ rows.featured_resource_topic.columns.topic_icon.url }}" alt="{{ cardTitle }}" width="30">
+                      <div class="section--card-content-columns-header p p--sm hard--ends last--hard--bottom relative font--reading bold line-height--small">
+                        {{ cardTitle }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% set count = count + 1 %}
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          {# END SECONDARY TOPICS #}
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}"> </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

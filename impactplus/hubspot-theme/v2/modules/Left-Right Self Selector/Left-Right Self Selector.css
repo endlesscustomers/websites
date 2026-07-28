@@ -1,0 +1,68 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--leftrightselector .selector--group .selector--dropdown {
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+	gap: 10px;
+}
+.section--leftrightselector .selector--group .selector--dropdown select {
+	min-height: 64px;
+	flex: 1;
+}
+.section--leftrightselector .selector--group .selector--dropdown .selector--trigger {
+	min-width: unset !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-bottom: 0 !important;
+	flex: .35;
+}
+
+{% call mediaQuery('palm') %}
+	.section--leftrightselector .selector--group .selector--dropdown {
+		display: block;
+	}
+	.section--leftrightselector .selector--group .selector--dropdown select {
+		margin-bottom: 10px;
+	}
+	.section--leftrightselector .selector--group .selector--dropdown .selector--trigger {
+		display: inline-block;
+		min-width: 200px !important;
+	}
+{% endcall %}
+
+{% call mediaLoop() %}
+	.section--leftrightselector .{{ media }}all--labels--white .selector--group label {
+		color: {{ color('white') }} !important;
+	}
+	.section--leftrightselector .{{ media }}all--color--white a {
+		color: {{ color('white') }} !important;
+	}
+{% endcall %}
+
+
+
+
+
+
+

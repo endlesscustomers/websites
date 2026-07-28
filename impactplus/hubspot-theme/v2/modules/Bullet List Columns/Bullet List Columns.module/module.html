@@ -1,0 +1,497 @@
+{{ require_css( get_asset_url("../Bullet List Columns.css"), { async: true } ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":  1,
+  "one-half":   2,
+  "one-third":  3,
+  "one-fourth": 4,
+  "one-fifth":  5,
+  "one-sixth":  6
+} %}
+
+{% set columnWidths = {
+  "desk":   columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":    columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet": columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":   columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{% set header_container_width  = module.layout_controls.header_container_width %}
+{% set columns_container_width = module.layout_controls.columns_container_width %}
+
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ module.section_controls.anchor_id|trim ~ '"' if module.section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro equalize_classes(column_widths, suffix) %}
+  {% set classes = [] %}
+  {% for key, value in column_widths.items() %}
+    {% if value != 1 %}
+      {% do classes.append(key ~ '-equalize--' ~ suffix) %}
+    {% endif %}
+  {% endfor %}
+  {{ classes|join(' ')|trim }}
+{% endmacro %}
+
+{% macro base_box_classes(layout_controls) -%}
+  {% set classes = [] %}
+  {% if layout_controls.columns_add_drop_shadow_around_boxes %}
+    {% do classes.append('box-shadow') %}
+  {% endif %}
+  {% if layout_controls.columns_add_border_radius_around_boxes %}
+    {% do classes.append('border-radius') %}
+  {% endif %}
+  {% do classes.append('tall') %}
+  {% do classes.append('padding--short') %}
+  {{- classes|join(' ')|trim -}}
+{%- endmacro %}
+
+{% macro mode_box_classes(mode, target_mode, shared_classes, background_class, text_color_class) %}
+  {% if mode == target_mode %}
+    {% set classes = [shared_classes] %}
+    {% if background_class %}
+      {% do classes.append(background_class) %}
+    {% endif %}
+    {% if text_color_class and (target_mode != 'individual') %}
+      {% do classes.append(text_color_class) %}
+    {% endif %}
+    {{ classes|join(' ')|trim }}
+  {% endif %}
+{% endmacro %}
+
+{% macro rich_text_override_header_selector() -%}
+  {{- '.section--bulletlistcolumns .header--content *:not(strong, h2, h3, h4, h5, h6, .text--gradient, .preheader)' -}}
+{%- endmacro %}
+
+{% macro rich_text_override_column_header_selector() -%}
+  {{- '.section--bulletlistcolumns .section--bulletlistcolumns--column--header *:not(strong, h2, h3, h4, h5, h6, .text--gradient, .preheader)' -}}
+{%- endmacro %}
+
+{% macro rich_text_override_row_content_selector() -%}
+  {{- '.section--bulletlistcolumns .section--bulletlistcolumns--row--content *:not(strong, h2, h3, h4, h5, h6, .text--gradient, .preheader)' -}}
+{%- endmacro %}
+
+{% macro build_shared_box_background_class(layout_controls) -%}
+  {% if layout_controls.columns_list_background_color.background_color != 'custom' %}
+    {{- 'background--' ~ layout_controls.columns_list_background_color.background_color -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro build_shared_box_style(layout_controls) -%}
+  {% if layout_controls.columns_list_background_color.background_color == 'custom' %}
+    {{- 'background:rgba('
+      ~ layout_controls.columns_list_background_color.background_custom_color.color|convert_rgb
+      ~ ', '
+      ~ layout_controls.columns_list_background_color.background_custom_color.opacity|int / 100
+      ~ ');'
+    -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro column_mode_card_styles(column, column_index, layout_controls, text_color_overridden_on_all_screen_sizes) -%}
+  {% set background_color_value = column.column_background_color.background_color %}
+  {% if 'custom' == background_color_value %}
+    {% set background_color = 'rgba(' + column.column_background_color.background_custom_color.color|convert_rgb + ', ' + column.column_background_color.background_custom_color.opacity|int / 100 + ')' %}
+  {% else %}
+    {% set background_color = functions.color(background_color_value) %}
+  {% endif %}
+  {% set border_color_value = column.column_border_color.border_color %}
+  {% set border_gradient = '' %}
+  {% if 'custom' == border_color_value %}
+    {% set border_color = 'rgba(' + column.column_border_color.border_custom_color.color|convert_rgb + ', ' + column.column_border_color.border_custom_color.opacity|int / 100 + ')' %}
+  {% elif 'gradient' == border_color_value %}
+    {% set border_color = 'transparent' %}
+    {# Dark-section card (Figma 13641:6876): 90deg gradient, 50% mid stop, 1px stroke. Light card (13641:5955): 135deg, 51%, 2px. #}
+    {% if text_color_overridden_on_all_screen_sizes %}
+      {% set border_gradient = 'linear-gradient(90deg, #60A8FF 0%, #F472C8 50%, #7DD87A 100%)' %}
+      {% set column_gradient_border_width = 1 %}
+    {% else %}
+      {% set border_gradient = 'linear-gradient(135deg, #60A8FF 0%, #F472C8 51%, #7DD87A 100%)' %}
+      {% set column_gradient_border_width = 2 %}
+    {% endif %}
+  {% else %}
+    {% set border_color = functions.color(border_color_value) %}
+  {% endif %}
+
+  {% require_css %}
+    <style>
+      {% scope_css %}
+        .section--bulletlistcolumns--column:nth-child({{ column_index }}) {
+          {% if background_color %}
+            background-color: {{ background_color }};
+          {% endif %}
+          {% if border_gradient %}
+            border: {{ column_gradient_border_width }}px solid transparent;
+            background:
+              linear-gradient({{ background_color if background_color else 'rgba(255,255,255,0)' }},
+              {{ background_color if background_color else 'rgba(255,255,255,0)' }}) padding-box,
+              {{ border_gradient }} border-box;
+          {% elif border_color %}
+            border-style: solid;
+            border-width: 1px;
+            border-color: {{ border_color }};
+          {% endif %}
+          {% if layout_controls.columns_list_border_radius %}
+            border-radius: {{ layout_controls.columns_list_border_radius }}px;
+          {% endif %}
+        }
+      {% end_scope_css %}
+    </style>
+  {% end_require_css %}
+{%- endmacro %}
+
+{% macro row_spacing_classes(is_first, is_last, spacer_style) -%}
+  {% set classes = [] %}
+  {% if not is_first %}
+    {% if spacer_style == 'extraspace' %}
+      {% do classes.append('margin--tall--top') %}
+    {% else %}
+      {% do classes.append('margin--short--top') %}
+    {% endif %}
+  {% endif %}
+  {% if (not is_last) and (spacer_style == 'divider') %}
+    {% do classes.append('margin--short--bottom') %}
+  {% endif %}
+  {{- classes|join(' ')|trim -}}
+{%- endmacro %}
+
+{% macro render_row_divider(is_first, spacer_style) -%}
+  {% if (not is_first) and (spacer_style == 'divider') %}
+    <div class="section--bulletlistcolumns--row--divider"></div>
+  {% endif %}
+{%- endmacro %}
+
+{% macro row_link_attributes(row) -%}
+  {% set href = row.hyperlink_url.url.href %}
+  {% if row.hyperlink_url.url.type is equalto "EMAIL_ADDRESS" %}
+    {% set href = "mailto:" + href %}
+  {% endif %}
+  {% set link_attributes = {
+    "href": href,
+    "class": "no--underline",
+    "title": row.hyperlink_title_attribute,
+    "target": "_blank" if row.hyperlink_url.open_in_new_tab else none,
+    "rel": row.hyperlink_url.rel|default(none)
+  } %}
+  {{- link_attributes|xmlattr -}}
+{%- endmacro %}
+
+{% macro row_icon(column, row, lazy_load_images) -%}
+  {% set icon_vertical_position = 0 %}
+  {% if column.bullet_list_icon_style == "image-individual" %}
+    {% set icon_vertical_position = row.icon_vertical_offset %}
+  {% elif column.bullet_list_icon_style == "image-same" %}
+    {% set icon_vertical_position = column.image_icon.icon_vertical_offset %}
+  {% endif %}
+  {% if column.bullet_list_icon_style != "none" %}
+    <span class="section--bulletlistcolumns--row--icon relative" style="flex: 0 0 {{ column.image_icons_maximum_width.image_icons_maximum_pixel_width + 15 }}px;top:{{ icon_vertical_position }}px;padding-right:15px;">
+      {% if column.bullet_list_icon_style == "image-same" %}
+        <img
+          {% if lazy_load_images %}
+            loading = "lazy"
+          {% endif %}
+          src       = "{{ column.image_icon.image_icon.src }}"
+          alt       = "{{ column.image_icon.image_icon.alt }}"
+          width     = "{{ column.image_icon.image_icon.width }}"
+          height    = "{{ column.image_icon.image_icon.height }}"
+          style     = "height:auto;"
+       />
+      {% elif column.bullet_list_icon_style == "image-individual" %}
+        <img
+          {% if lazy_load_images %}
+            loading = "lazy"
+          {% endif %}
+          src       = "{{ row.image_icon.src }}"
+          alt       = "{{ row.image_icon.alt }}"
+          width     = "{{ row.image_icon.width }}"
+          height    = "{{ row.image_icon.height }}"
+          style     = "height:auto;"
+        />
+      {% endif %}
+    </span>
+  {% endif %}
+{%- endmacro %}
+
+{% macro build_individual_item_box_style(layout_controls) -%}
+  {% if layout_controls.columns_list_background_color.background_color == 'custom' %}
+    {{- 'background:rgba('
+      ~ layout_controls.columns_list_background_color.background_custom_color.color|convert_rgb
+      ~ ', '
+      ~ layout_controls.columns_list_background_color.background_custom_color.opacity|int / 100
+      ~ ');'
+    -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro column_cta_spacing_class(has_list_items, has_list_spacing_context) -%}
+  {% if has_list_items %}
+    {{- 'tall--top' if has_list_spacing_context else 'short--top' -}}
+  {% else %}
+    {{- 'short--top' -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro column_header_classes(layout_controls, has_list_spacing_context, has_list_items) -%}
+  {% set classes = [
+    'grid__item',
+    'one-whole',
+    'short--top',
+    'hard--sides',
+    'text--' ~ layout_controls.column_headers_content_alignment,
+    'palm-text--' ~ layout_controls.column_headers_content_alignment_mobile
+  ] %}
+  {% if has_list_spacing_context and has_list_items %}
+    {% do classes.append('short--bottom') %}
+  {% else %}
+    {% do classes.append('short--bottom') %}
+  {% endif %}
+  {{- classes|join(' ') -}}
+{%- endmacro %}
+
+{% macro column_shell_classes(layout_controls, column_wrapper_box_classes, column_widths, is_first) -%}
+  {% set classes = [
+    'section--bulletlistcolumns--column',
+    'relative',
+    'grid__item',
+    layout_controls.number_of_columns_desktop,
+    layout_controls.number_of_columns_laptop,
+    layout_controls.number_of_columns_tablet,
+    layout_controls.number_of_columns_mobile,
+    'hard--ends',
+    'valign--top',
+    column_wrapper_box_classes
+  ] %}
+  {% if not is_first %}
+    {% for key, value in column_widths.items() %}
+      {% if value == 1 %}
+        {% do classes.append(key ~ '-margin--short--top') %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {{- classes|reject('equalto', '')|join(' ')|trim -}}
+{%- endmacro %}
+
+{% macro bulletlist_scoped_rich_text_color_styles(section_controls) -%}
+  {% set rich_text_color_opacity = section_controls.text_color_override.rich_text_color_opacity|default(100) %}
+  {% set text_color_overridden_on_all_screen_sizes = section_controls.text_color_override.override_on_all_screen_sizes|default(false) %}
+  {% set text_color_overridden_on_desktop          = section_controls.text_color_override.override_on_desktop|default(false) %}
+  {% set text_color_overridden_on_laptop           = section_controls.text_color_override.override_on_laptop|default(false) %}
+  {% set text_color_overridden_on_tablet           = section_controls.text_color_override.override_on_tablet|default(false) %}
+  {% set text_color_overridden_on_mobile           = section_controls.text_color_override.override_on_mobile|default(false) %}
+  {% set rich_text_override_selectors = [
+    rich_text_override_header_selector(),
+    rich_text_override_column_header_selector(),
+    rich_text_override_row_content_selector()
+  ]|join(', ') %}
+  {% require_css %}
+    <style>
+      {% scope_css %}
+        {% if text_color_overridden_on_all_screen_sizes %}
+          {{ rich_text_override_selectors }} {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% elif text_color_overridden_on_desktop %}
+          {% call functions.mediaQuery('desk') %}
+            {{ rich_text_override_selectors }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_laptop %}
+          {% call functions.mediaQuery('lap') %}
+            {{ rich_text_override_selectors }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_tablet %}
+          {% call functions.mediaQuery('tablet') %}
+            {{ rich_text_override_selectors }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% elif text_color_overridden_on_mobile %}
+          {% call functions.mediaQuery('palm') %}
+            {{ rich_text_override_selectors }} {
+              color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+            }
+          {% endcall %}
+        {% endif %}
+      {% end_scope_css %}
+    </style>
+  {% end_require_css %}
+{%- endmacro %}
+
+{% set text_color_overridden_on_all_screen_sizes = module.section_controls.text_color_override.override_on_all_screen_sizes|default(false) %}
+
+{{ bulletlist_scoped_rich_text_color_styles(module.section_controls) }}
+
+{% call render_section_shell('bulletlistcolumns', module) %}
+  {% if module.header or module.content or module.preheader %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+      <div class="header--content grid__item {{ header_container_width }} tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+          <span class="h6 preheader">
+            {{ module.preheader }}
+          </span>
+        {% endif %}
+        {% if module.header %}
+          <h2 class="{{ module.layout_controls.section_header_size }}">
+            {{ module.header }}
+          </h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if module.columns|length > 0 %}
+    <div class="grid relative hard--ends {{ 'hard--sides' if module.layout_controls.columns_width == 'wide' }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+      <div class="grid__item {{ columns_container_width }} tablet-ten-twelfths palm-one-whole hard text--center overflow--visible">
+        <div class="section--bulletlistcolumns--wrapper">
+          {% for column in module.columns %}
+            {% set box_style_mode           = module.layout_controls.columns_list_box_style %}
+            {% set is_column_mode           = box_style_mode == 'column' %}
+            {% set is_individual_mode       = box_style_mode == 'individual' %}
+            {% set has_list_items           = column.bullet_list|length > 0 %}
+            {% set spacer_style             = module.layout_controls.columns_list_spacer_style %}
+            {% set has_list_spacing_context = (spacer_style == 'divider') or (spacer_style == 'extraspace') or (box_style_mode != 'none') %}
+
+            {% set equalize_header_class_string = equalize_classes(columnWidths, '1')|trim %}
+            {% set equalize_list_class_string   = equalize_classes(columnWidths, '2')|trim %}
+            {% set shared_box_class_string      = base_box_classes(module.layout_controls)|trim %}
+            {% set shared_box_background_class  = build_shared_box_background_class(module.layout_controls)|trim %}
+            {% set shared_box_style             = build_shared_box_style(module.layout_controls)|trim %}
+            {% set box_mode_class_sources = {
+              'column': mode_box_classes(box_style_mode, 'column', shared_box_class_string, shared_box_background_class, module.layout_controls.columns_list_text_color_override|trim)|trim,
+              'group': mode_box_classes(box_style_mode, 'group', shared_box_class_string, shared_box_background_class, module.layout_controls.columns_list_text_color_override|trim)|trim,
+              'individual': mode_box_classes(box_style_mode, 'individual', shared_box_class_string, shared_box_background_class, module.layout_controls.columns_list_text_color_override|trim)|trim
+            } %}
+
+            {% set column_wrapper_box_classes       = box_mode_class_sources['column'] %}
+            {% set column_wrapper_box_style         = '' %}
+            {% set group_wrapper_box_classes        = box_mode_class_sources['group'] %}
+            {% set group_wrapper_box_style          = '' %}
+            {% set individual_item_box_classes      = box_mode_class_sources['individual'] %}
+            {% set individual_item_box_style        = '' %}
+            {% set individual_flex_text_color_class = '' %}
+
+            {% if is_column_mode %}
+              {% set column_wrapper_box_classes = mode_box_classes(box_style_mode, 'column', shared_box_class_string, '', module.layout_controls.columns_list_text_color_override|trim)|trim %}
+            {% endif %}
+            {% if box_style_mode == 'group' %}
+              {% set group_wrapper_box_style = shared_box_style %}
+            {% endif %}
+            {% if box_style_mode == 'individual' %}
+              {% set individual_item_box_style = build_individual_item_box_style(module.layout_controls)|trim %}
+              {% set individual_flex_text_color_class = module.layout_controls.columns_list_text_color_override|trim %}
+            {% endif %}
+
+            {% if is_column_mode %}
+              {{ column_mode_card_styles(column, loop.index, module.layout_controls, text_color_overridden_on_all_screen_sizes) }}
+            {% endif %}
+
+            <div class="{{ column_shell_classes(module.layout_controls, column_wrapper_box_classes, columnWidths, loop.first) }}" {% if column_wrapper_box_style %}style="{{ column_wrapper_box_style }}"{% endif %}>
+              {% if (column.column_header) or (column.column_description) %}
+                <div class="{{ column_header_classes(module.layout_controls, has_list_spacing_context, has_list_items) }}">
+                  <div class="section--bulletlistcolumns--column--header first--hard--top last--hard--bottom {{ equalize_header_class_string if module.layout_controls.columns_make_column_headers_the_same_height }}">
+                    {% if (column.column_header) %}
+                      <h3 class="{{ module.layout_controls.columns_header_size }}">
+                        {{ column.column_header }}
+                      </h3>
+                    {% endif %}
+                    {% if (column.column_description) %}
+                      {{ column.column_description }}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if column.bullet_list|length > 0 %}
+                <div class="block {{ 'margin--short--top' if not (column.column_header or column.column_description) }} {{ 'margin--short--bottom' if (column.cta.cta_type == 'none') }} {{ group_wrapper_box_classes }}" {% if group_wrapper_box_style %}style="{{ group_wrapper_box_style }}"{% endif %}>
+                  <div class="grid__item one-whole hard {{ equalize_list_class_string if (not is_individual_mode) and module.layout_controls.columns_make_column_lists_the_same_height }}">
+                    {% for row in column.bullet_list %}
+                      {{ render_row_divider(loop.first, spacer_style) }}
+
+                      <div class="section--bulletlistcolumns--row text--left {{ row_spacing_classes(loop.first, loop.last, spacer_style) }}">
+                        {% if row.add_hyperlink %}
+                          <a{{ row_link_attributes(row) }}>
+                        {% endif %}
+
+                          <span class="section--bulletlistcolumns--row--inner {{ individual_item_box_classes }}" {% if individual_item_box_style %}style="{{ individual_item_box_style }}"{% endif %}>
+                            <span class="flexgrid valign--top align--start no--wrap {{ individual_flex_text_color_class }} {{ equalize_list_class_string if is_individual_mode and module.layout_controls.columns_make_column_list_items_the_same_height }}">
+                              {{ row_icon(column, row, module.layout_controls.lazy_load_images) }}
+                              <span class="section--bulletlistcolumns--row--content first--hard--top last--hard--bottom text--{{ module.layout_controls.columns_list_content_alignment }} palm-text--{{ module.layout_controls.columns_list_content_alignment_mobile }}">
+                                {% if row.header_label %}
+                                  <h4>
+                                    {{ row.header_label }}
+                                  </h4>
+                                {% endif %}
+                                {% if (row.description) %}
+                                  <p>
+                                    {{ row.description }}
+                                  </p>
+                                {% endif %}
+                                {% if row.add_hyperlink and row.hyperlink_text %}
+                                  <p class="btn btn--simple">
+                                    {{ row.hyperlink_text }}
+                                  </p>
+                                {% endif %}
+                              </span>
+                            </span>
+                          </span>
+                        {% if row.add_hyperlink %}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if snippets.button(column.cta) %}
+                <div class="grid__item one-whole {{ column_cta_spacing_class(has_list_items, has_list_spacing_context) }} short--bottom hard--sides last--hard--bottom text--{{ module.layout_controls.column_headers_content_alignment }} palm-text--{{ module.layout_controls.column_headers_content_alignment_mobile }}">
+                  {{ snippets.button(column.cta) }}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if module.content_after_list %}
+          <div class="grid__item one-whole hard--ends all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }} {{ 'last--hard--bottom' if snippets.multiButton(module.cta) }}">
+            {{ module.content_after_list }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item {{ columns_container_width }} tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+  {% endif %}
+{% endcall %}
+
+{% require_js %}
+  {{ snippets.productionEqualize() }}
+{% end_require_js %}

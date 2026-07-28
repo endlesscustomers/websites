@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 213117350039,
+  "label" : "[IM-UI] Team Inner Bio",
+  "icon" : "https://www.impactplus.com/hubfs/impact-logo-highres-black-half.svg",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,19 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 209037221431,
+  "css_assets" : [ {
+    "autoload" : true,
+    "path" : "../../../../Endless Customers Scorecard/_results/hero/Scorecard Half and Half Hero.css",
+    "name" : "Scorecard Half and Half Hero.css"
+  } ],
+  "js_assets" : [ {
+    "autoload" : true,
+    "path" : "../../../../../../../_IMPACT_Production/_js/_libraries/js-cookie.js",
+    "name" : "js-cookie.js"
+  } ],
+  "label" : "[IM-UI] Ads Assessment Results",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : true
+}

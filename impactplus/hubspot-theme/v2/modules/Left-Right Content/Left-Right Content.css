@@ -1,0 +1,179 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--leftright ul ul{
+  margin-top: 2px;
+}
+
+.section--leftright--accordian {
+  display:block;
+  position:relative;
+}
+
+.section--leftright--accordian--dividers .section--leftright--accordian:first-child {
+  border-top: 1px solid {{ color("lightgrey") }};
+}
+
+.section--leftright--accordian--dividers .section--leftright--accordian{
+  border-bottom: 1px solid {{ color("lightgrey") }};
+}
+
+.section--leftright--accordian--dividers .section--leftright--accordian--toggle{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.section--leftright--accordian--background .section--leftright--accordian{
+  border-radius: 10px;
+}
+
+.section--leftright--accordian--background .section--leftright--accordian--toggle{
+  padding: 20px 50px 20px 20px;
+}
+
+.section--leftright--accordian--background .section--leftright--accordian--toggle--icon{
+  right: 20px;
+}
+
+.section--leftright--accordian--background .section--leftright--accordian--content--wrapper{
+  padding: 0px 20px 20px 20px;
+}
+
+.section--leftright--accordian--toggle {
+  display:block;
+  position:relative;
+  padding-right:50px;
+  cursor:pointer;
+}
+.section--leftright--accordian--toggle--icon {
+  width: 26px;
+  height: 26px;
+  border: 2px solid {{ color('secondary') }};
+  border-radius: 50%;
+  background: transparent;
+  position: absolute;
+  right: 0;
+  overflow: visible;
+  top: calc(50% - 13px);
+}
+
+.section--leftright--accordian--toggle--icon .icon--axis {
+  position: absolute;
+  left: 49.5%;
+  top: 49.5%;
+  width: 10px;
+  height: 2px;
+  background: {{ color('secondary') }};
+}
+
+.section--leftright--accordian--toggle--icon .icon--vertical--line {
+  transform-origin: center;
+  transform: translate(-45%, -50%) rotate(90deg) ;
+  {{ transition('all .3s ease-in-out') }}
+}
+.section--leftright--accordian--toggle--icon .icon--horizontal--line {
+  background: {{ color('secondary') }};
+  transform: translate(-45%, -50%);
+}
+.section--leftright--accordian.active .section--leftright--accordian--toggle .section--leftright--accordian--toggle--icon .icon--vertical--line {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.section--leftright--accordian--content {
+  width:100%;
+}
+
+.section--leftright--accordian--content--inner--spacer {
+  display:block;
+  width:100%;
+  height:{{ short }};
+}
+
+.section--leftright .section--leftright--content ul:last-child,
+.section--leftright .section--leftright--content ol:last-child{
+  margin-bottom: 0px;
+}
+
+.section--leftright .section--leftright--content ul li p,
+.section--leftright .section--leftright--content ol li p{
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.section--leftright--mediawlabel.block--video--labelwithin .block--video:before{
+  width: 36px;
+  height: 36px;
+  top: 87%;
+  left: 40px;
+}
+
+{% call mediaQuery("palm") %}
+.section--leftright--mediawlabel.block--video--labelwithin .block--video:before{
+  width: 26px;
+  height: 26px;
+  top: 85%;
+  left: 10%;
+}
+{% endcall %}
+
+.section--leftright--mediawlabel.block--video--labelwithin .block--video:after{
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  left: 68px;
+  position: absolute;
+  top: 83%;
+  z-index: 10;
+}
+
+{% call mediaQuery("palm") %}
+.section--leftright--mediawlabel.block--video--labelwithin .block--video:after{
+  left: 50px;
+  top: 79%;
+  font-size: 14px;
+}
+{% endcall %}
+
+.section--leftright--mediawlabel.block--video--labelwithin > .block:after {
+  content: '';
+  background: linear-gradient(180deg, transparent 68.58%, rgba(0, 0, 0, .53) 80.92%);
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  border-radius: 24px;
+  top: 0;
+}
+
+{% call mediaLoop() %}
+.{{ media }}all--color--white .section--leftright--accordian {
+  border-bottom-color:{{ color("white") }};
+}
+.{{ media }}all--color--white .section--leftright--accordian--toggle--icon .icon--axis,
+.{{ media }}all--color--white .section--leftright--accordian--toggle--icon .icon--horizontal--line {
+  background:{{ color("white") }}!important;
+}
+.{{ media }}all--color--white .section--leftright--accordian--toggle--icon {
+  border-color:{{ color("white") }}!important;
+}
+{% endcall %}

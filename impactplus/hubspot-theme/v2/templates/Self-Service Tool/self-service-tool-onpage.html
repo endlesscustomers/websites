@@ -1,0 +1,46 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Self-Service Tool (On-Page Results) - IMPACT Production Theme
+-->
+
+{% extends "../layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--site') %}
+{% do body_classes_array.append('header--solid') %}
+{% do body_classes_array.append('no--navigation') %}
+{% do body_classes_array.append('header--static') %}
+{% set body_classes = body_classes_array|join(' ') %}
+
+{% block body %}
+  <div class="body-container body-container--flex">
+    <div class="header--anchor"></div>
+
+    {% if is_in_editor %}
+    {# <div class="short background--lightgrey p text--center bold margin--grande--top">
+      THIS IS JUST TEMPORARY WILL BE REMOVED AND QUESTIONS MODULE WILL BE HARDCODED INTO TEMPLATE
+    </div> #}
+    {% endif %}
+    {% dnd_area "dnd_area_top" label="Main section - Top Static Section" %}
+
+    {% end_dnd_area %}
+
+    {% if is_in_editor %}
+    <div class="short background--lightgrey p text--center bold">
+      The following area is to add modules below the self-selection specific modules on the results screen.
+    </div>
+    {% endif %}
+
+    {% set results_container_classes = ['body-container', 'body-container__product-self-selection-tool-results'] %}
+
+    {% if not is_in_editor %}
+      {% do results_container_classes.append('visuallyhidden') %}
+    {% endif %}
+
+    {% dnd_area "results_dnd_area" class={{ results_container_classes|join(' ') }}, label="Result Page Modules" %}
+
+    {% end_dnd_area %}
+
+  </div>
+{% endblock body %}

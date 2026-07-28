@@ -1,0 +1,410 @@
+{{ require_css( get_asset_url("../Testimonial Ratings Slider.css"), { async: true } ) }}
+
+{#####################################################
+  MARK: Map Module Controls -> Variables
+#####################################################}
+{% set grid_alignment_desktop  = module.layout_controls.header_and_content_container_alignment %}
+{% set section_header_size     = module.layout_controls.section_header_size|default('h2') %}
+{% set header_container_width  = module.layout_controls.header_container_width %}
+{% set columns_container_width = module.layout_controls.columns_width %}
+
+{% set columnWidthsKey = {
+  "one-whole":  1,
+  "one-half":   2,
+  "one-third":  3,
+  "one-fourth": 4,
+  "one-fifth":  5,
+  "one-sixth":  6
+} %}
+
+{% set columnWidths = {
+  "desk":   columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":    columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet": columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":   columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{#####################################################
+  MARK: Macros
+#####################################################}
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ module.section_controls.anchor_id|trim ~ '"' if module.section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro render_content_widths(control_value) -%}
+  {% set content_widths = [
+    'palm-one-whole',
+    'tablet-ten-twelfths'
+  ] %}
+  {% if 'narrow' == control_value %}
+    {% do content_widths.append('eight-twelfths') %}
+  {% elif 'default' == control_value %}
+    {% do content_widths.append('one-whole') %}
+  {% else %}
+    {% do content_widths.append(control_value) %}
+  {% endif %}
+  {{ content_widths|reverse|join(' ') }}
+{%- endmacro %}
+
+
+{#####################################################
+  Trying to remove cognitive load by using a wrapping
+  macro that removes all the default section clutter
+#####################################################}
+{% call render_section_shell('testimonialratingsslider', module) %}
+  {% if module.header or module.content or module.preheader %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--{{ module.layout_controls.header_content_alignment }} text--{{ module.layout_controls.header_content_alignment_mobile }} {{ 'hard--sides' if module.layout_controls.header_container_width == 'wide' }} flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}">
+      <div class="section--testimonialratingsslider-header section--testimonialratingsslider-header--nav-anchor grid__item {{ render_content_widths(header_container_width)|trim }} hard--ends first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+          <span class="h6 preheader preheader--{{ module.layout_controls.preheader_color }}">
+            {{ module.preheader }}
+          </span>
+        {% endif %}
+        {% if module.header %}
+          <h2 class="{{ module.layout_controls.section_header_size }} {{ 'hard--bottom' if not module.content }}">
+            {{ module.header }}
+          </h2>
+        {% endif %}
+        {{ module.content }}
+        <div class="section--testimonialratingsslider--nav-slot" data-carousel-nav-slot></div>
+      </div>
+    </div>
+  {% else %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item {{ render_content_widths(header_container_width)|trim }} hard--ends section--testimonialratingsslider--nav-slot--standalone">
+        <div class="section--testimonialratingsslider--nav-slot" data-carousel-nav-slot></div>
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="grid section--testimonialratingsslider--grid relative hard--ends {{ 'hard--sides' if module.layout_controls.columns_width == 'wide' }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+    <div class="grid__item {{ render_content_widths(columns_container_width)|trim }} short--top relativejustify--{{ 'start' if 'left' == module.layout_controls.columns_content_alignment else 'center' }} hard--bottom text--{{ module.layout_controls.columns_content_alignment }} palm-all--text--{{ module.layout_controls.columns_content_alignment_mobile }}">
+      <div class="section--testimonialratingsslider--testimonial-columns--wrapper">
+        {% set animationClasses = '' %}
+        {% if module.layout_controls.enable_animation %}
+          {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}' %}
+        {% endif %}
+
+        {% for item in module.testimonials %}
+          {% if item.testimonial_mobile_sort == 'true' %}
+            <style>
+              @media (max-width: 767px) {
+                .section--testimonial--column.is-priority-{{ item.set_priority_order }}{
+                  order: {{ item.set_priority_order }};
+                  display:block !important;
+                }
+              }
+            </style>
+          {% endif %}
+
+          {% if item.testimonial_layout_option == 'video' %}
+            <div class="f-carousel__slide section--testimonial--column section--video-testimonial--container {% if item.testimonial_mobile_sort == 'true' %}section--testimonial--column--haspriority is-priority-{{ item.set_priority_order }}{% endif %} background--offwhite hard--ends {{ animationClasses }}" style="margin-bottom: 12px; border-radius: 24px;">
+              <div class="section--video-testimonial--article-item hover--pointer relative hard resource-cards-item resource-cards-item--padding overflow--hidden grid__item one-whole" style="padding: 32px 32px 20px 32px !important;" onclick="launchVidInline(this, '{{ item.video_testimonial.video_thumbnail_vidyard_uuid }}');">
+                <div class="section--video-testimonial-slider--results--item--body overflow--hidden relative {% if item.video_testimonial.callout_quote %}section--video-testimonial-slider--results--w-callout{% else %}section--video-testimonial-slider--results--wo-callout{% endif %}" style="border-radius: 18px;">
+                  {% if item.video_testimonial.video_thumbnail %}
+                    <div class="section--video-testimonial-slider--results--image block relative lazy" role="img" aria-label="{{ item.video_testimonial.video_thumbnail.alt|escape_attr }}" data-bg="{{ item.video_testimonial.video_thumbnail.src|escape_url }}" style="background-repeat: no-repeat; background-size: cover; background-position: center;">
+                      <div id="section--video-testimonial-slider--results--inline-video" style="opacity: 0;"></div>
+                      {% if item.video_testimonial.callout_quote %}
+                        <div class="section--video-testimonial-slider--results--callout h4 bold hard--ends font--reading line-height--small absolute right--0 bottom--0 left--0 all--color--white z-index--10">
+                          {{ item.video_testimonial.callout_quote }}
+                        </div>
+                      {% endif %}
+                      <video class="section--video-testimonial--preview-video" muted loop playsinline>
+                        <source src="{{ item.video_testimonial.video_preview }}" type="video/mp4">
+                      </video>
+                      <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding: 177% 0px 0px 0px;"></span>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% if item.video_testimonial.testimonial_name_of_person or item.video_testimonial.testimonial_title_of_person or item.video_testimonial.testimonial_image.src %}
+                <div class="section--testimonialratingsslider--testimonial-column--byline hard--top flexgrid valign--middle align--start justify--start {% if item.video_testimonial.testimonial_image.src %}text--left{% else %}text--center{% endif %} no--wrap" style="padding: 0px 32px 32px 32px;">
+
+                  {% if item.video_testimonial.testimonial_image.src %}
+                    <div class="section--testimonialratingsslider--testimonial-column--image--container">
+                      <div class="section--testimonialratingsslider--testimonial-column--image {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.video_testimonial.testimonial_image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.video_testimonial.testimonial_image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.video_testimonial.testimonial_image.src }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                      </div>
+                    </div>
+                  {% endif %}
+
+                  {% if item.video_testimonial.testimonial_name_of_person || item.video_testimonial.testimonial_title_of_person %}
+                    <div class="section--testimonialratingsslider--testimonial-column--source">
+                      <p class="p--sm hard--ends line-height--small text--left">
+                        {% if item.video_testimonial.testimonial_name_of_person %}
+                          <span class="bold inline-block">
+                            {{ item.video_testimonial.testimonial_name_of_person }}
+                          </span>
+                        {% endif %}
+                        {% if item.video_testimonial.testimonial_title_of_person %}
+                          <span class="block color--midgrey normal">
+                            {{ item.video_testimonial.testimonial_title_of_person }}
+                          </span>
+                        {% endif %}
+                      </p>
+                    </div>
+                  {% endif %}
+
+                </div>
+              {% endif %}
+            </div>
+          {% else %}
+            <div class="f-carousel__slide section--testimonial--column section--testimonialratingsslider--testimonial-column {% if item.testimonial_mobile_sort == 'true' %}section--testimonial--column--haspriority is-priority-{{ item.set_priority_order }}{% endif %} {% if module.layout_controls.columns_background_color %}section--testimonialratingsslider--testimonial-column--body--padding{% else %}hard--sides{% endif %} relative grid__item {{ module.layout_controls.number_of_columns_desktop }} {{ module.layout_controls.number_of_columns_laptop }} {{ module.layout_controls.number_of_columns_tablet }} {{ module.layout_controls.number_of_columns_mobile }} first--hard--top last--hard--bottom hard--ends valign--top {% if module.layout_controls.columns_width == 'wide' %}padding--short{% endif %} {{ animationClasses }}">
+              <div class="section--testimonialratingsslider--testimonial-column--body flexgrid">
+                <div class="section--testimonialratingsslider--testimonial-column--body--wrapper background--{{ module.layout_controls.columns_background_color }} border--1 border--{{ module.layout_controls.columns_border_color }}">
+                  <div class="section--testimonialratingsslider--testimonial-column--body--content block first--hard--top last--hard--bottom">
+                    <svg id="section--testimonialratingsslider--testimonial--stars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236.179 39.72">
+                      <path style="fill:#eebc09;" d="M17.239,6.1c-1.7,3.4-3.1,6.2-3.2,6.3-.1.1-3.1.6-6.8,1.1C3.539,14,.339,14.7.039,15s1.1,2.1,4.6,5.5l5.1,5-1.1,6.9c-.6,3.8-.9,7.1-.7,7.3.2.2,3.2-1.1,6.7-2.9l6.3-3.3,6.3,3.3c3.4,1.8,6.5,3.1,6.7,2.9.2-.2-.2-3.5-.8-7.3l-1.1-7,4.8-4.5c2.8-2.6,4.8-4.9,4.8-5.5,0-.5-.1-.9-.3-.9-.3,0-10.1-1.4-12.1-1.7-1.5-.3-1.8-.6-4.6-6.5C22.739,2.3,21.439.1,20.939.1c-.4-.1-1.7,2.1-3.7,6Z"/>
+                      <path style="fill:#eebc09;" d="M68.839.6c-.3.3-1.8,3.1-3.3,6.2-2.5,5.1-2.9,5.6-4.4,5.9-.9.1-3.9.6-6.6,1-2.7.4-5.2,1-5.5,1.3s1.3,2.2,4.6,5.6l5,5.1-1.2,6.7c-.8,4.5-1,6.8-.7,7.2.3.3,2.5-.5,6.7-2.7l6.2-3.2,6.2,3.2c4,2,6.4,3,6.7,2.7.3-.3.1-2.9-.7-7.2l-1.2-6.7,5.1-5.1c3.6-3.7,4.9-5.3,4.5-5.6-.3-.3-3.5-1-7.2-1.5s-6.7-1.1-6.8-1.3c-1.1-2.7-6-11.8-6.4-12-.3-.1-.8.1-1,.4Z"/>
+                      <path style="fill:#eebc09;" d="M115.039,6.1c-1.7,3.4-3.1,6.2-3.2,6.3-.1.1-3.1.6-6.8,1.1-3.7.5-6.9,1.2-7.2,1.5-.3.3,1.1,2.1,4.6,5.5l5.2,5-1.1,6.9c-.6,3.8-1,7.1-.7,7.3.2.2,3.2-1.1,6.7-2.9l6.3-3.3,6.3,3.3c3.4,1.8,6.5,3.1,6.7,2.9.2-.2-.1-3.5-.8-7.3l-1.1-7,4.8-4.5c2.8-2.6,4.8-4.9,4.8-5.5,0-.5-.1-.9-.3-.9-.3,0-10.1-1.4-12.1-1.7-1.5-.3-1.8-.7-4.6-6.5-1.9-4-3.2-6.2-3.7-6.2-.5-.1-1.9,2.1-3.8,6Z"/>
+                      <path style="fill:#eebc09;" d="M165.239,1.1c-.4.6-1.8,3.4-3.1,6.1s-2.4,5-2.4,5.1c-.1.1-3,.5-6.7,1.1-3.6.5-6.9,1.2-7.2,1.5s.9,1.9,4.5,5.6l5.1,5.1-1.2,6.7c-.8,4.5-1,6.8-.7,7.2.3.3,2.5-.5,6.7-2.7l6.2-3.2,6.2,3.2c4.2,2.1,6.4,3,6.7,2.7s.1-2.7-.7-7.2l-1.2-6.7,5.1-5.1c3.4-3.4,4.9-5.3,4.5-5.6-.3-.3-3.5-.9-7.2-1.5-3.9-.6-6.8-1.3-6.9-1.6-.8-2-5.9-11.6-6.4-11.7-.3-.1-.9.4-1.3,1Z"/>
+                      <path style="fill:#eebc09;" d="M211.239,6.2c-2.8,5.8-3.1,6.2-4.6,6.5-.9.1-3.9.6-6.8,1-2.9.4-5.4,1-5.7,1.3s1.2,2.2,4.7,5.5l5.1,5-1.1,6.9c-.6,3.8-1,7.1-.7,7.3.2.2,3.2-1.1,6.7-2.9l6.3-3.3,6.3,3.3c3.4,1.8,6.5,3.1,6.7,2.9.3-.2-.1-3.5-.7-7.3l-1.1-6.8,5.1-5.1c3.6-3.4,5-5.2,4.7-5.5s-3.5-.9-7.2-1.5c-3.6-.5-6.7-1-6.8-1.1s-1.5-2.9-3.1-6.3c-2-4-3.3-6.1-3.8-6.1-.7,0-2,2.1-4,6.2Z"/>
+                    </svg>
+                    {% if item.text_testimonial.description %}
+                      <div class="margin--short--top first--hard--top last--hard--bottom hard--bottom">
+                        <span class="h4 bold hard--ends font--reading line-height--small">
+                          {{ item.text_testimonial.callout_quote }}
+                        </span>
+                        <span class="section--testimonialratingsslider--testimonial-description p p--default hard--ends">
+                          {{ item.text_testimonial.description }}
+                        </span>
+                      </div>
+                      {% if
+                        item.text_testimonial.testimonial_name_of_person or
+                        item.text_testimonial.testimonial_title_of_person or
+                        item.text_testimonial.testimonial_image.src
+                      %}
+                        <div class="section--testimonialratingsslider--testimonial-column--byline flexgrid valign--middle align--start justify--{{ 'left' if 'left' == module.layout_controls.columns_content_alignment else 'center' }}  {% if item.testimonial_image.src %}text--left{% else %}text--center{% endif %} no--wrap">
+                          {% if item.text_testimonial.testimonial_image.src %}
+                            <div class="section--testimonialratingsslider--testimonial-column--image--container">
+                              <div class="section--testimonialratingsslider--testimonial-column--image {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.text_testimonial.testimonial_image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.text_testimonial.testimonial_image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.text_testimonial.testimonial_image.src }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                              </div>
+                            </div>
+                          {% endif %}
+                          {% if item.text_testimonial.testimonial_name_of_person || item.text_testimonial.testimonial_title_of_person %}
+                            <div class="section--testimonialratingsslider--testimonial-column--source">
+                              {% if item.text_testimonial.testimonial_name_of_person || item.text_testimonial.testimonial_title_of_person %}
+                                <p class="p--sm hard--ends line-height--small text--left">
+                                  {% if item.text_testimonial.testimonial_name_of_person %}
+                                    <span class="bold inline-block">
+                                      {{ item.text_testimonial.testimonial_name_of_person }}
+                                    </span>
+                                  {% endif %}
+                                  {% if item.text_testimonial.testimonial_title_of_person %}
+                                    <span class="block color--midgrey normal">
+                                      {{ item.text_testimonial.testimonial_title_of_person }}
+                                    </span>
+                                  {% endif %}
+                                </p>
+                              {% endif %}
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if snippets.multiButton(module.cta) %}
+      <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+        <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+          {{ snippets.multiButton(module.cta) }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endcall %}
+
+{% require_js %}
+  <script>
+    {# Preview Video #}
+    document.querySelectorAll(".section--video-testimonial--article-item").forEach(container => {
+      const video = container.querySelector(".section--video-testimonial--preview-video");
+
+      container.addEventListener("mouseenter", () => {
+        video.currentTime = 0; // Restart video
+        video.muted = true; // Ensure muted (required for autoplay)
+
+        try {
+          video.play();
+        } catch (err) {
+          console.error("Autoplay failed:", err);
+        }
+      });
+
+      container.addEventListener("mouseleave", () => {
+        video.style.opacity = "0";
+        setTimeout(() => {
+          video.pause();
+          video.currentTime = 0;
+        }, 400);
+      });
+    });
+
+    {# Full Testimonial #}
+    function launchVidInline(triggerEl, uuid, startSecond = 0) {
+      // Destroy existing players
+      if (window.VidyardV4 && VidyardV4.players?.length) {
+        VidyardV4.players.forEach((p) => VidyardV4.api.destroyPlayer(p));
+      }
+
+      const container = triggerEl.querySelector(
+        '#section--video-testimonial-slider--results--inline-video'
+      );
+
+      if (!container) {
+        console.warn('Inline video container not found within trigger element');
+        return;
+      }
+
+      // Grid wrapper for active state
+      const gridItems = triggerEl.querySelector('.section--testimonial--column');
+
+      // Prep hidden state (starts at opacity:0 in CSS)
+      container.style.opacity = '0';
+
+      // Set active immediately (or move into `ready` if you prefer)
+      if (gridItems) gridItems.classList.add('active');
+
+      // Inject inline embed
+      container.innerHTML = `
+        <img
+          class="vidyard-player-embed"
+          src="https://play.vidyard.com/${uuid}.jpg"
+          data-uuid="${uuid}"
+          data-v="4"
+          data-type="inline"
+          data-width="100%"
+          data-height="auto"
+          data-hide_share="1"
+          data-hidden_controls="1"
+          data-viral_sharing="0"
+          data-embed_button="0"
+          ${startSecond ? `data-second="${startSecond}"` : ``}
+        />
+      `;
+
+      vidyardEmbed.api.renderDOMPlayers(container);
+
+      // Wait for Vidyard API
+      new Promise((resolve) => {
+        if (window.VidyardV4) return resolve();
+        window.onVidyardAPI = resolve;
+      }).then(() => {
+        const player = VidyardV4.api.getPlayersByUUID(uuid)?.[0];
+        if (!player) return;
+
+        const teardownUI = () => {
+          // Fade out
+          container.style.opacity = '0';
+
+          // Remove active class
+          if (gridItems) gridItems.classList.remove('active');
+
+          // Optional: clear embed after fade to keep DOM clean
+          window.setTimeout(() => {
+            container.innerHTML = '';
+            container.classList.remove('is-controls-hidden');
+          }, 300); // match your CSS transition duration
+        };
+
+        player.on('ready', function () {
+          // Reveal container
+          container.style.opacity = '1';
+
+          // Hide controls but keep play/pause
+          container.classList.add('is-controls-hidden');
+
+          // Ensure we don’t double-bind if this gets called multiple times
+          // (Vidyard typically drops handlers on destroy, but this is extra-safe.)
+          player.off?.('playerComplete', teardownUI);
+          player.off?.('ended', teardownUI);
+
+          // When video ends, fade out + remove active
+          // Different Vidyard builds emit different end events, so we listen for both.
+          player.on('playerComplete', teardownUI);
+          player.on('ended', teardownUI);
+
+          player.play();
+        });
+      });
+    }
+  </script>
+{% end_require_js %}
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+
+{% require_js %}
+  <script type="module">
+    let cardCarousels = [];
+
+    function triggerCardSlider() {
+      const cardsWrapper = document.querySelectorAll('.section--testimonialratingsslider--testimonial-columns--wrapper');
+
+      cardsWrapper.forEach((wrapper) => {
+        const sectionRoot = wrapper.closest('.section--testimonialratingsslider');
+        const navSlot = sectionRoot ? sectionRoot.querySelector('[data-carousel-nav-slot]') : null;
+        const options = {
+          infinite: false,
+          Dots: true,
+          center: false,
+          Navigation: {
+            nextTpl: '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.9062 7.02433C14.8467 6.87104 14.7574 6.73096 14.6436 6.61217L8.391 0.367312C8.2744 0.25086 8.13594 0.158485 7.98363 0.0954617C7.83127 0.0324381 7.668 0 7.50312 0C7.17011 0 6.85073 0.132126 6.61523 0.367312C6.49863 0.483764 6.40615 0.622015 6.34304 0.774167C6.27998 0.926319 6.2475 1.08939 6.2475 1.25408C6.2475 1.58668 6.37979 1.90566 6.61523 2.14085L10.742 6.24998H1.25052C0.91886 6.24998 0.600785 6.38158 0.366269 6.61581C0.131751 6.84998 0 7.16769 0 7.49896C0 7.83017 0.131751 8.14788 0.366269 8.38212C0.600785 8.61629 0.91886 8.74788 1.25052 8.74788H10.742L6.61523 12.857C6.49806 12.9732 6.405 13.1113 6.34154 13.2635C6.27802 13.4157 6.24537 13.5789 6.24537 13.7438C6.24537 13.9087 6.27802 14.0719 6.34154 14.2241C6.405 14.3763 6.49806 14.5145 6.61523 14.6305C6.73148 14.7476 6.86983 14.8405 7.02219 14.9039C7.17456 14.9673 7.33806 15 7.50312 15C7.66817 15 7.83167 14.9673 7.98404 14.9039C8.1364 14.8405 8.27475 14.7476 8.391 14.6305L14.6436 8.38569C14.7574 8.2669 14.8467 8.12688 14.9062 7.97354C15.0313 7.66944 15.0313 7.32842 14.9062 7.02433Z" fill="currentColor"/></svg>',
+            prevTpl: '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.0938078 7.97567C0.153347 8.12896 0.242596 8.26904 0.356424 8.38783L6.609 14.6327C6.7256 14.7491 6.86406 14.8415 7.01637 14.9045C7.16873 14.9676 7.332 15 7.49688 15C7.82989 15 8.14927 14.8679 8.38477 14.6327C8.50137 14.5162 8.59385 14.378 8.65696 14.2258C8.72002 14.0737 8.7525 13.9106 8.7525 13.7459C8.7525 13.4133 8.62021 13.0943 8.38477 12.8591L4.25804 8.75002L13.7495 8.75002C14.0811 8.75002 14.3992 8.61842 14.6337 8.38419C14.8682 8.15002 15 7.83231 15 7.50104C15 7.16983 14.8682 6.85212 14.6337 6.61788C14.3992 6.38371 14.0811 6.25212 13.7495 6.25212L4.25804 6.25211L8.38477 2.14298C8.50194 2.02685 8.595 1.88873 8.65846 1.73654C8.72198 1.58435 8.75464 1.42108 8.75464 1.25619C8.75464 1.09131 8.72198 0.928096 8.65846 0.775903C8.595 0.623711 8.50194 0.485538 8.38477 0.369461C8.26852 0.252404 8.13017 0.159461 7.97781 0.0960573C7.82544 0.0326532 7.66194 -6.41513e-07 7.49689 -6.55943e-07C7.33183 -6.70373e-07 7.16833 0.0326531 7.01596 0.0960572C6.8636 0.159461 6.72525 0.252403 6.609 0.369461L0.356424 6.61431C0.242596 6.73309 0.153347 6.87311 0.0938079 7.02646C-0.0312684 7.33056 -0.0312684 7.67158 0.0938078 7.97567Z" fill="currentColor"/></svg>',
+          },
+        };
+        const cardCarousel = new Carousel(wrapper, options);
+        function bindNavOutsideCarousel(navRoot) {
+          if (!navRoot) return;
+          navRoot.addEventListener('click', function onDetachedNavClick(ev) {
+            const btn = ev.target.closest('button.f-button');
+            if (!btn || btn.disabled || btn.hasAttribute('disabled')) return;
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (btn.classList.contains('is-next')) {
+              cardCarousel.slideNext();
+            } else if (btn.classList.contains('is-prev')) {
+              cardCarousel.slidePrev();
+            }
+          });
+        }
+        function moveNavToHeaderSlot() {
+          const nav = wrapper.querySelector('.f-carousel__nav');
+          if (!navSlot || !nav) return;
+          navSlot.appendChild(nav);
+          bindNavOutsideCarousel(nav);
+        }
+        cardCarousel.on('ready', moveNavToHeaderSlot);
+        cardCarousels.push(cardCarousel);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      triggerCardSlider();
+    });
+  </script>
+{% end_require_js %}

@@ -1,0 +1,308 @@
+{#####################################################
+  MARK: Map Module Controls -> Variables
+#####################################################}
+{% set section_controls       = module.section_controls %}
+{% set layout_controls        = module.layout_controls %}
+{% set grid_alignment_desktop = layout_controls.container_alignment %}
+{% set feed_type              = module.feed_type|default('filterable_feed') %}
+{% set is_filterable_feed     = feed_type != 'manual_rows' %}
+
+{% if is_filterable_feed %}
+  {% set default_filter      = module.team_filter_options[0].team_filter_label|lower|replace(' ', '-')|replace('&','')|replace('%38','')|replace('--','-') if module.team_filter_options|length else '' %}
+  {% set team_members        = hubdb_table_rows(module.table_selection) %}
+  {% set team_group          = hubdb_table_column(module.table_selection, module.team_filter_column_internal_name).options %}
+{% else %}
+  {% set columns_desktop     = layout_controls.number_of_columns_desktop or 'one-fifth' %}
+  {% set columns_laptop      = layout_controls.number_of_columns_laptop or 'lap-one-fifth' %}
+  {% set columns_tablet      = layout_controls.number_of_columns_tablet or 'tablet-one-third' %}
+  {% set columns_mobile      = layout_controls.number_of_columns_mobile or 'palm-one-whole' %}
+  {% set column_span_classes = columns_desktop ~ ' ' ~ columns_laptop ~ ' ' ~ columns_tablet ~ ' ' ~ columns_mobile %}
+  {% set team_members        = module.team_members %}
+{% endif %}
+
+{#####################################################
+  MARK: Macros
+#####################################################}
+{% macro render_section_header(module) -%}
+  <div class="grid__item one-whole hard--top {{ 'tall--bottom palm-short--bottom' if module.enable_lightbox_video else 'hard--bottom' }} last--hard--bottom all--text--{{ layout_controls.content_alignment }} palm-all--text--{{ layout_controls.content_alignment_mobile }} {{ 'hard--sides' if layout_controls.container_width != 'default' }}">
+    <div class="animate--fade animate--fade-up animate--fade-delay-list--1 first--hard--top last--hard--bottom {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}  flex flex-flow--column flex-align--{{ grid_alignment_desktop }}">
+      {% if module.preheader %}
+        <span class="h6 preheader">
+          {{ module.preheader }}
+        </span>
+      {% endif %}
+      {% if module.header %}
+        <div class="grid__item hard--sides hard--ends margin--short--bottom {{ 'ten-twelfths tablet-ten-twelfths palm-one-whole' if layout_controls.content_width == 'narrow' else layout_controls.content_width ~ 'tablet-ten-twelfths palm-one-whole' }} first--hard--top last--hard--bottom {{ 'hard--sides' if layout_controls.container_width != 'default' }}">
+          <h2>{{ module.header }}</h2>
+        </div>
+      {% endif %}
+      <div class="grid__item hard {{ layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom {% if layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+        {% if module.content %}
+          {{ module.content }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ section_controls.anchor_id|trim ~ '"' if section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        <div class="grid hard--ends">
+          {% set classes = [] %}
+          {% if layout_controls.container_width != 'default' %}
+            {% do classes.append('relative grid__item tall padding--tall ' ~ layout_controls.container_width) %}
+            {% if layout_controls.add_colored_border_to_container_background %}
+              {% do classes.append('border--1 border--mist') %}
+            {% endif %}
+            {% if layout_controls.add_border_radius_to_container_background %}
+              {% do classes.append('border-radius overflow--hidden') %}
+            {% endif %}
+          {% endif %}
+          <div class="{{ classes|join(' ') }}">
+            {{ snippets.background(module.container_background) }}
+            <div class="relative z-index--4">
+              {{ render_section_header(module) }}
+              {{ caller() }}
+            </div>
+          </div>
+        </div>
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro render_team_tabs() -%}
+  <div class="team--tabs animate--fade animate--fade-up animate--fade-delay-list--2">
+    <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole palm-hard--sides hard--ends short text--center">
+      <ul class="background--offwhite hard no--bullets flex-wrap--wrap controls">
+        {% for item in module.team_filter_options %}
+          {% set lower_team_name = item.team_filter_label|lower|replace(' ', '-')|replace('&','')|replace('%38','')|replace('--','-') %}
+          {% if item.team_custom_sort|length %}
+            {% set lower_team_sort = lower_team_name %}
+          {% else %}
+            {% set lower_team_sort = 'data-name' %}
+          {% endif %}
+          {% set random_int1 = '152334532577' %}
+          {% set random_int2 = '152334532578' %}
+        {% endfor %}
+        <li
+          class       = "team-filter p normal--weight hover--pointer team--tab-inactive mixitup-control-active relative"
+          data-filter = "all"
+          data-sort   = "name:asc"
+        >
+          <a class="no--underline absolute top--0 right--0 left--0 bottom--0" href="#everyone"></a>
+          <div>Everyone</div>
+        </li>
+
+        <li
+          class       = "team-filter p normal--weight hover--pointer team--tab-inactive relative"
+          data-filter = ".leadership"
+          data-sort   = "leadership:asc"
+        >
+          <a class="no--underline absolute top--0 right--0 left--0 bottom--0" href="#leadership"></a>
+          <div>Leadership</div>
+        </li>
+
+        <li
+          class       = "team-filter p normal--weight hover--pointer team--tab-inactive relative"
+          data-filter = ".coaches-trainers"
+          data-sort   = "coaches-trainers:asc"
+        >
+          <a class="no--underline absolute top--0 right--0 left--0 bottom--0" href="#coaches-trainers"></a>
+          <div>Coaches &amp; Trainers</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro render_team_member_card(row, is_filterable_feed, default_filter, column_span_classes) -%}
+  {% if not row.hide_from_view %}
+    <div class="team-item team-item--inner border--1 border--mist overflow--hidden grid__item {{ column_span_classes if (not is_filterable_feed) else 'one-fifth portable-one-third palm-one-whole' }} hard--ends palm-hard--sides{% if is_filterable_feed %} {{ default_filter }}{% for filter in row[module.team_filter_column_internal_name] %} {{ filter['name']|lower|replace(' ', '-')|replace('&','')|replace('%38','')|replace('--','-') }}{% endfor %}{% endif %}"{% if is_filterable_feed %} data-name="{{ row.last_name }}"{% for custom_sort in module.team_filter_options %}{% if (row[custom_sort.team_custom_sort]|length) && (custom_sort.team_custom_sort != 'name') %} data-{{ custom_sort.team_filter_label|lower|replace(' ', '-')|replace('&','')|replace('%38','')|replace('--','-') }}='{{ row[custom_sort.team_custom_sort] }}'{% endif %}{% endfor %}{% endif %}>
+      <a class="no--underline block" href="{{ row.bio_page_url }}">
+        <div class="team-item--headshot">
+          <div class="team-item--headshot--border">
+            <img
+              loading = "lazy"
+              src     = "{{ row.square_team_photo.url }}"
+              alt     = "{{ row.name }}"
+              width   = "250"
+              height  = "250"
+              style   = "{{-
+                'object-fit: cover;' ~
+                'object-position: center;' ~
+                'width: 100%;' ~
+                'height: 100%;'
+              -}}"
+            />
+          </div>
+        </div>
+      </a>
+      <div class="team-info text--center grid__item one-whole margin--short--top hard--sides hard--ends all--text--center flex flex-flow--column" style="margin-top:0px; justify-content: space-between;">
+        <div>
+          <a class="h5 font--serif font--hard--ends hard--top color--obsidian bold font--20" href="{{ row.bio_page_url }}" style="margin-bottom:4px !important;">
+            {{ row.Name }}
+          </a>
+          <p class="hard--ends font--16 hard--ends">
+            <a class="no--underline block normal--weight color--black line-height--small" href="{{ row.bio_page_url }}">
+              {{ row.job_title }}
+            </a>
+          </p>
+        </div>
+        <div class="team--icons margin--short--top margin--short--bottom all--valign--middle all--text--center">
+          <div class="light inline-block hard--ends">
+            <a class="team--icons--bio inline-block medium color--blue" href="{{ row.bio_page_url }}">
+              <span class="font--15">Read Bio</span><img class="team--icons--bio--arrow lazy entered svg-icon-pallete--blue" alt="Read {{ row.name }}'s Bio" aria-hidden="true" width="10" height="10" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Navigation%20Icons/navigation%20arrow%20-%20facing%20right-01.svg">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro %}
+
+
+{#####################################################
+  Trying to remove cognitive load by using a wrapping
+  macro that removes all the default section clutter
+#####################################################}
+{% call render_section_shell('team-listing', module) %}
+  <div class="team--members relative z-index--20 {{ 'margin--short--top' if is_filterable_feed }}">
+    {% if is_filterable_feed %}
+      {{ render_team_tabs() }}
+    {% endif %}
+    <div class="team--cards">
+      <div class="grid__item one-whole hard--ends all--text--center hard--sides margin--basic--top animate--fade animate--fade-up animate--fade-delay-list--3">
+        <div class="no--underline flexgrid {{ 'mix-container layout-' ~ columns_desktop if is_filterable_feed }} justify--{{ 'start' if layout_controls.content_alignment == 'left' else 'center' }} palm-justify--{{ 'start' if layout_controls.content_alignment_mobile == 'left' else 'center' }} overflow--hidden">
+          {% if is_filterable_feed %}
+            {% for row in team_members|sort(false,false,'last_name') %}
+              {{ render_team_member_card(row, is_filterable_feed, default_filter, column_span_classes) }}
+            {% endfor %}
+          {% else %}
+            {% for item in team_members %}
+              {% if item.team_member and item.team_member.columns %}
+                {{ render_team_member_card(item.team_member.columns, is_filterable_feed, default_filter, column_span_classes) }}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endcall %}
+
+
+{% if is_filterable_feed %}
+  {{ require_js(get_asset_url('/IMPACT_Publisher_Production/- Plugins -/mixitup/mixitup3.js'), { defer: true } ) }}
+  {{ require_js(get_asset_url('/_IMPACT_Production/_js/_libraries/mixitup/mixitup-multifilter.js'), { defer: true } ) }}
+  {% require_js %}
+    <script>
+      $(function() {
+        // --- Get initial hash and find corresponding button ---
+        var initialHash = window.location.hash.replace(/^#/, '') || 'all';
+        var initialFilterRaw = (initialHash === 'all' ? 'all' : '.' + initialHash);
+
+        // Find the button that matches the initial hash
+        var $initialButton = $('.team-filter').filter('[data-filter="' + initialFilterRaw + '"]');
+        var initialSort = $initialButton.attr('data-sort') || 'name:asc';
+
+        var mixer = mixitup('.mix-container', {
+          selectors: {
+            target: '.team-item',
+            control: '.team-filter'  // Let MixItUp know these are controls
+          },
+          animation: {
+            duration: 600,
+            easing: 'ease',
+            effects: 'fade scale(0.8)'
+          },
+          callbacks: {
+            onMixStart: function(state, futureState) {
+              // Fade out the entire container
+              $('.team--cards').animate({ opacity: 0 }, 250);
+            },
+            onMixEnd: function(state) {
+              // Fade in after mix completes
+              setTimeout(function() {
+                $('.team--cards').animate({ opacity: 1 }, 500);
+              }, 100);
+            }
+          },
+          load: {
+            filter: initialFilterRaw,
+            sort: initialSort
+          }
+        });
+
+        function setActiveControl(hashValue) {
+          $('.team-filter').removeClass('mixitup-control-active');
+          var selectorVal = hashValue === 'all'
+            ? '[data-filter="all"]'
+            : '[data-filter=".' + hashValue + '"]';
+          $('.team-filter').filter(selectorVal).addClass('mixitup-control-active');
+        }
+
+        function adjustWidthClass(filterRaw) {
+          if (filterRaw === 'all') {
+            $('.team-item').removeClass('one-fourth').addClass('one-fifth');
+          } else {
+            $('.team-item').removeClass('one-fifth').addClass('one-fourth');
+          }
+        }
+
+        // --- Initial Setup on Page Load ---
+        setActiveControl(initialHash);
+        adjustWidthClass(initialFilterRaw);
+
+        // --- Click Handler for Filter Buttons ---
+        $('.team-filter').on('click', function(e) {
+          e.preventDefault();
+          var $btn = $(this),
+              filterRaw = $btn.attr('data-filter'),
+              sortRaw = $btn.attr('data-sort'),
+              hashValue = (filterRaw === 'all' ? 'all' : filterRaw.replace(/^\./, ''));
+
+          // Update hash
+          window.location.hash = hashValue;
+
+          // Adjust width classes
+          adjustWidthClass(filterRaw);
+
+          // DON'T call mixer.filter() here - let MixItUp handle it automatically
+          // MixItUp will trigger the callbacks when it processes the click
+        });
+
+        // --- Hashchange Listener (for back/forward button navigation) ---
+        $(window).on('hashchange', function() {
+          var h = window.location.hash.replace(/^#/, '') || 'all',
+              filterRaw = (h === 'all' ? 'all' : '.' + h);
+
+          // Find the corresponding button to get its data-sort attribute
+          var $correspondingButton = $('.team-filter').filter('[data-filter="' + filterRaw + '"]');
+          //var sortRaw = $correspondingButton.attr('data-sort') || 'name:asc';
+
+          setActiveControl(h);
+          adjustWidthClass(filterRaw);
+
+          // Manually trigger filter/sort for browser navigation
+          // This WILL trigger callbacks
+          mixer.filter(filterRaw, sortRaw);
+        });
+      });
+    </script>
+  {% end_require_js %}
+{% endif %}

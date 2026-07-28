@@ -1,0 +1,96 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '/@marketplace/IMPACT/Trust/css/_config.css' as config %}
+{% import '/@marketplace/IMPACT/Trust/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+/* .card--tags {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: auto -7.5px 0;
+	padding: 0 25px 15px 25px;
+}
+
+.card--tags > * {
+  padding-top: 15px;
+	margin: 7.5px;
+}
+
+.card--tag {
+  font-family: {{ theme.fonts.secondary.font ~ ',' ~ theme.fonts.secondary.fallback }};
+  font-size: 14px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+  margin-right: 5px;
+}
+
+.card--tag > * {
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+} */
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{## RESOURCE ICONS ##}
+.card--tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 15px {{ short }} 15px;
+  position:relative;
+}
+
+.card--tags.no--pipe {
+  gap: 15px;
+}
+
+.card--tags:before {
+  background: {{ color('grey') }};
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+}
+
+.card--tag {
+  margin-bottom: 7px;
+  {{ config.p_FontStyles }};
+  font-size: 13px;
+  font-weight: {{ config.bold }};
+  color: {{ config.p_Color }};
+  display:flex;
+}
+
+.card--tags:not(.no--pipe) .card--tag:not(:last-child):after {
+  content: '';
+  margin-left: 7px;
+  border-left: 1px solid {{ color('grey') }};
+  margin-right: 7px;
+}
+
+.card--tag svg {
+  margin-right: 5px;
+  max-height: 13px;
+  fill:{{ config.p_Color }};
+  position:relative;
+  top:0px;
+}

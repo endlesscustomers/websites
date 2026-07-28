@@ -1,0 +1,154 @@
+[ {
+  "id" : "be6e813f-b9db-312d-d6df-5a4cfa5e0e3b",
+  "name" : "article_pillar_inner_ctas",
+  "label" : "Article/Pillar Inner CTAs",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "8d3b8148-cd0c-245c-55c7-503b99d073b4",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "8d3b8148-cd0c-245c-55c7-503b99d073b4",
+    "name" : "select_topic_for_cta",
+    "label" : "Select Topic for CTA",
+    "required" : true,
+    "locked" : false,
+    "table_name_or_id" : "131654582",
+    "display_columns" : [ "resource_topic" ],
+    "type" : "hubdbrow",
+    "display_width" : null,
+    "default" : {
+      "id" : 195618267819
+    }
+  }, {
+    "id" : "320f1569-c4c4-d742-be7f-99d858afa0a7",
+    "name" : "header_size",
+    "label" : "Header Size",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "h2", "h2" ], [ "h3", "h3" ], [ "h4", "h4" ], [ "h5", "h5" ], [ "h6", "h6" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "h6"
+  }, {
+    "id" : "5a6f988b-e164-eb51-de98-62c839fd0aca",
+    "name" : "header",
+    "label" : "Header",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "NEED HELP BUILDING YOUR MARKETING TEAM?"
+  }, {
+    "id" : "0f986d25-ddaf-b292-b248-9c3d34e5f16d",
+    "name" : "content",
+    "label" : "Content",
+    "required" : true,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>If you’re looking to build a marketing team and not sure where to start, IMPACT can help. We’ll guide you on how to structure your right team, hire the right people, and train them to drive real results.</span></p>"
+  }, {
+    "id" : "f481b9b2-5320-0e0d-1df8-f5f38e9c3737",
+    "name" : "primary_button",
+    "label" : "Primary Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "cf089a1e-6d84-7619-9d54-5f904b936bc7",
+      "name" : "primary_button_text",
+      "label" : "Primary Button: Text",
+      "required" : true,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Our Coaching Program"
+    }, {
+      "id" : "d9d7558b-7926-9c74-2d6d-a77c992c103b",
+      "name" : "primary_button_url",
+      "label" : "Primary Button: URL",
+      "required" : true,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : 124635019190,
+        "href" : null,
+        "type" : "CONTENT"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "primary_button_text" : "Our Coaching Program",
+      "primary_button_url" : {
+        "content_id" : 124635019190,
+        "href" : null,
+        "type" : "CONTENT"
+      }
+    }
+  }, {
+    "id" : "219e51f4-28f1-e494-e58b-f4ebadfd9496",
+    "name" : "secondary_button",
+    "label" : "Secondary Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "51294d85-4446-bbd9-cac1-9f87c7111e7a",
+      "name" : "secondary_button_text",
+      "label" : "Secondary Button: Text",
+      "required" : true,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Schedule a Call"
+    }, {
+      "id" : "313f36c7-4385-308f-574f-6b8ed6495b4b",
+      "name" : "secondary_button_url",
+      "label" : "Secondary Button: URL",
+      "required" : true,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : 89001547442,
+        "href" : null,
+        "type" : "CONTENT"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "secondary_button_text" : "Schedule a Call",
+      "secondary_button_url" : {
+        "content_id" : 89001547442,
+        "href" : null,
+        "type" : "CONTENT"
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+} ]

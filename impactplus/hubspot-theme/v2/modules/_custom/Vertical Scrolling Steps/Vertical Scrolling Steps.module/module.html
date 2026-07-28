@@ -1,0 +1,241 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Vertical Scrolling Steps.css"), { async: true} ) }}
+{% require_js %}
+  {{ snippets.productionEqualize() }}
+{% end_require_js %}
+
+{% set columnWidthsKey = {
+  "one-whole":1,
+  "one-half":2,
+  "one-third":3,
+  "one-fourth":4,
+  "one-fifth":5,
+  "one-sixth":6
+} %}
+
+{% set columnWidths = {
+  "desk":columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet":columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ module.section_controls.anchor_id|trim ~ '"' if module.section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% set border_color = module.layout_controls.columns_list_border_color.border_color %}
+{% if border_color == 'custom' %}
+  {% set border_custom_color = module.layout_controls.columns_list_border_color.border_custom_color.color %}
+  {% set border_custom_opacity = module.layout_controls.columns_list_border_color.border_custom_color.opacity %}
+{% endif %}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+      .section--verticalscrollingsteps--column {
+        padding: 20px;
+        border-width: 1px;
+        border-style: solid;
+        {% if 'custom' == border_color %}
+          border-color: rgba({{ border_custom_color|convert_rgb }}, {{ border_custom_opacity|int/100 }}) !important;
+        {% else %}
+          border-color: {{ functions.color(border_color) }} !important;
+        {% endif %}
+        {% if (module.layout_controls.columns_list_background_color.background_color == 'custom') %}
+          background: rgba({{ module.layout_controls.columns_list_background_color.background_custom_color.color|convert_rgb }}, {{ module.layout_controls.columns_list_background_color.background_custom_color.opacity|int / 100 }});
+        {% elif (module.layout_controls.columns_list_background_color.background_color != 'custom') %}
+          background: {{ functions.color(module.layout_controls.columns_list_background_color.background_color) }};
+        {% endif %}
+      }
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{% call render_section_shell('verticalscrollingsteps', module) %}
+  {% if module.preheader or module.header or module.content %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+      <div class="grid__item {{ 'eight-twelfths' if module.layout_controls.columns_width == 'narrow' else module.layout_controls.columns_width }} tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+          <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% if module.header %}
+          <h2>{{ module.header }}</h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if module.columns|length > 0 %}
+    <div class="grid relative hard--ends {{ 'hard--sides' if module.layout_controls.columns_width == 'hard--sides' }}">
+      <div class="grid__item {{ 'eight-twelfths' if module.layout_controls.columns_width == 'narrow' else module.layout_controls.columns_width }} tablet-ten-twelfths palm-one-whole hard text--center overflow--visible">
+        <div class="section--verticalscrollingsteps--wrapper">
+          {% for column in module.columns %}
+            {% set column_classes = [] %}
+            {% if module.layout_controls.columns_add_drop_shadow_around_boxes %}
+              {% do column_classes.append('box-shadow') %}
+            {% endif %}
+            {% if module.layout_controls.columns_add_border_radius_around_boxes %}
+              {% do column_classes.append('border-radius') %}
+            {% endif %}
+            {% if module.layout_controls.columns_list_background_color.background_color != 'custom' %}
+              {% do column_classes.append('background--' ~ module.layout_controls.columns_list_background_color.background_color) %}
+            {% endif %}
+            <div class="section--verticalscrollingsteps--column--item flexgrid valign--top {{ module.layout_controls.columns_list_text_color_override }}">
+              <div class="section--verticalscrollingsteps--column--step relative grid__item one-twelfths palm-one-whole short text--left">
+                <div class="section--verticalscrollingsteps--column--step--number">
+                  <span>{{ '0' ~ loop.index if loop.index < 10 else loop.index }}</span>
+                </div>
+              </div>
+              <div class="section--verticalscrollingsteps--column relative grid__item eleven-twelfths palm-one-whole {{ column_classes|join(' ') }}">
+                {% if column.column_preheader or column.column_header or column.column_description %}
+                  <div class="grid__item one-whole hard text--{{ module.layout_controls.column_headers_content_alignment }} palm-text--{{ module.layout_controls.column_headers_content_alignment_mobile }}">
+                    <div class="block first--hard--top last--hard--bottom">
+                      {% if (column.column_preheader) %}
+                        <span class="h6 column--preheader">
+                          {{ column.column_preheader }}
+                        </span>
+                      {% endif %}
+                      {% if (column.column_header) %}
+                        <h3 class="hard--top">
+                          {{ column.column_header }}
+                        </h3>
+                      {% endif %}
+                      {% if (column.column_description) %}
+                        {{ column.column_description }}
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if column.bullet_list|length > 0 %}
+
+                  {# Start image icon width calculations #}
+                  {% set iconWidth = 60 %}
+                  {% set iconUsedWidth = iconMaxWidth %}
+                  {% if column.bullet_list_icon_style == "image-individual" %}
+                    {% set iconWidths = [] %}
+                    {% for row in column.bullet_list %}
+                      {% set iconWidths2 = iconWidths.append(row.image_icon.width) %}
+                    {% endfor %}
+                    {% set iconWidths = iconWidths|sort(true) %}
+                    {% set iconUsedWidth = iconWidths[0] %}
+                  {% elif column.bullet_list_icon_style == "image-same" %}
+                    {% set iconUsedWidth = column.image_icon.image_icon.width %}
+                  {% endif %}
+                  {% if iconWidths|length > 0 %}
+                    {% set iconWidth = iconUsedWidth %}
+                  {% endif %}
+                  {# End image icon width calculations #}
+
+                  <div class="{{ 'margin--short--top' if column.column_preheader or column.column_header or column.column_description }} {{ 'margin--short--bottom' if column.cta.cta_type == 'none' or column.content_after_bullet_list }}">
+                    {% for row in column.bullet_list %}
+
+                      {% set iconVerticalPosition = 0 %}
+                      {% if (column.bullet_list_icon_style == "image-individual") %}
+                        {% set iconVerticalPosition = row.icon_vertical_offset %}
+                      {% elif column.bullet_list_icon_style == "image-same" %}
+                        {% set iconVerticalPosition = column.image_icon.icon_vertical_offset %}
+                      {% endif %}
+
+                      <div class="section--verticalscrollingsteps--row text--left {% if not loop.first %}{% if module.layout_controls.columns_list_spacer_style == 'extraspace' %}margin--tall--top{% else %}margin--short--top{% endif %}{% endif %} {% if not loop.last %}{% if module.layout_controls.columns_list_spacer_style == 'divider' %}margin--short--bottom{% endif %}{% endif %}">
+                        {% if row.add_hyperlink %}
+
+                          {% set href = row.hyperlink_url.url.href %}
+                          {% if row.hyperlink_url.url.type is equalto "EMAIL_ADDRESS" %}
+                            {% set href = "mailto:" + href %}
+                          {% endif %}
+
+                          <a href="{{ href }}" class="no--underline" title="{{ row.hyperlink_title_attribute }}" {% if row.hyperlink_url.open_in_new_tab %}target="_blank"{% endif %} {% if row.hyperlink_url.rel %}rel="{{ row.hyperlink_url.rel }}"{% endif %}>
+                        {% endif %}
+
+                        <span class="section--verticalscrollingsteps--row--inner">
+
+                          <span class="flexgrid valign--top align--start no--wrap">
+
+                            {% if column.bullet_list_icon_style != "none" %}
+                              <span class="section--verticalscrollingsteps--row--icon relative" style="flex: 0 0 {{ column.image_icons_maximum_width.image_icons_maximum_pixel_width + 15 }}px;top:{{ iconVerticalPosition }}px;padding-right:15px;">
+                                {% if column.bullet_list_icon_style == "image-same" %}
+                                  <img src="{{ column.image_icon.image_icon.src }}" alt="{{ column.image_icon.image_icon.alt }}" width="{{ column.image_icon.image_icon.width }}" style="height:auto;" {% if module.layout_controls.lazy_load_images %}loading="lazy"{% endif %} />
+                                {% elif column.bullet_list_icon_style == "image-individual" %}
+                                  <img src="{{ row.image_icon.src }}" alt="{{ row.image_icon.alt }}" width="{{ row.image_icon.width }}" style="height:auto;" {% if module.layout_controls.lazy_load_images %}loading="lazy"{% endif %} />
+                                {% endif %}
+                              </span>
+                            {% endif %}
+
+                            <span class="section--verticalscrollingsteps--row--content first--hard--top last--hard--bottom text--{{ module.layout_controls.columns_list_content_alignment }} palm-text--{{ module.layout_controls.columns_list_content_alignment_mobile }}">
+                              {% if row.header_label %}
+                                <h4>
+                                  {{ row.header_label }}
+                                </h4>
+                              {% endif %}
+                              {% if (row.description) %}
+                                <p>
+                                  {{ row.description }}
+                                </p>
+                              {% endif %}
+
+                              {% if row.add_hyperlink && row.hyperlink_text %}
+                                <p class="btn btn--simple">
+                                  {{ row.hyperlink_text }}
+                                </p>
+                              {% endif %}
+                            </span>
+
+                          </span>
+
+                        </span>
+                        {% if row.add_hyperlink %}
+                          </a>
+                        {% endif %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% if column.content_after_bullet_list %}
+                  <div class="content--after--bullet--list text--left first--hard--top last--hard--bottom text--{{ module.layout_controls.column_headers_content_alignment }} palm-text--{{ module.layout_controls.column_headers_content_alignment_mobile }}">
+                    {{ column.content_after_bullet_list }}
+                  </div>
+                {% endif %}
+
+                {% if snippets.button(column.cta) %}
+                  <div class="grid__item one-whole hard last--hard--bottom text--{{ module.layout_controls.column_headers_content_alignment }} palm-text--{{ module.layout_controls.column_headers_content_alignment_mobile }}">
+                    {{ snippets.button(column.cta) }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+  {% endif %}
+{% endcall %}

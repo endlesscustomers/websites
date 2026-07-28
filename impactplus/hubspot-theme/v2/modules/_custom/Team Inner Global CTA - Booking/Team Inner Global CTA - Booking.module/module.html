@@ -1,0 +1,54 @@
+{{ require_css( get_asset_url("../Team Inner Global CTA - Booking.css"), { async: true } ) }}
+
+
+{% if module.layout_controls.container_alignment == 'center' %}
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--fullwidth relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends relative border-radius--12 overflow--hidden">
+      <div class="relative z-index--3 grid__item one-whole hard--top {% if module.enable_lightbox_video %}tall--bottom palm-short--bottom{% else %}hard--bottom{% endif %} palm-padding--short last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }}">
+        
+        <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}  flex flex-flow--column flex-align--{{ gridAlignmentDesktop }}">
+          {% if module.preheader %}
+          <span class="h6 preheader">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="grid__item hard--sides hard--ends margin--petite--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-ten-twelfths palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-ten-twelfths palm-one-whole{% endif %} first--hard--top last--hard--bottom">
+            <h2>{{ module.header }}</h2>
+          </div>
+          {% endif %}
+          <div class="grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom">
+            {% if module.content %}
+            {{ module.content }}
+            {% endif %}
+          </div>
+        </div>
+
+        {% if module.cta|length > 0 %}
+        <div class="flex flex-flow--column flex-align--{{ gridAlignmentDesktop }} relative z-index--3">
+          <div class="grid__item one-whole hard--ends {% if module.cta|length > 0 or module.conversion_type == 'form' %}margin--tall--top{% endif %} first--hard--top last--hard--bottom text--{{ module.layout_controls.content_alignment }} palm-text--{{ module.layout_controls.content_alignment_mobile }}">
+            <span class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} inline-block" style="margin-top: -10px !important;">
+              {{ snippets.multiButton(module.cta) }}
+            </span>
+          </div>
+        </div>
+        {% endif %}
+        
+      </div>
+    </div>
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>

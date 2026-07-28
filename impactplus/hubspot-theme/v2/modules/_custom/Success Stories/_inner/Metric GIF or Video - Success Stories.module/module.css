@@ -1,0 +1,10 @@
+.video-metric-container video{
+  width:100%;
+  position: relative;
+}
+
+@media screen and (min-width: 900px){
+  .success-stories--metrics{
+    padding-right: 48px;
+  }
+}

@@ -1,0 +1,457 @@
+<!--
+  templateType: none
+-->
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ html_lang }}" {{ html_lang_dir }}> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ html_lang }}" {{ html_lang_dir }}>        <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="{{ html_lang }}" {{ html_lang_dir }}>               <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="{{ html_lang }}" {{ html_lang_dir }}>
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    {% if meta_author %}
+    <meta name="author" content="{{ meta_author }}">
+    {% endif %}
+
+    {% if page_meta.html_title || pageTitle %}
+    <title>{{ page_meta.html_title || pageTitle }}</title>
+    {% endif %}
+
+    {% if brand_settings.favicon.src %}
+    <link rel="shortcut icon" href="{{ brand_settings.favicon.src }}" />
+    {% endif %}
+
+    <meta name="description" content="{{ page_meta.meta_description }}">
+
+    {# Critical CSS #}
+    {{ require_css( get_asset_url( "../../css/production.css" ), { async: false } ) }}
+
+    {# Preload Critical Fonts #}
+    {# 1. Merriweather 900 - HEADINGS (most critical for LCP) #}
+    <link rel="preload" 
+          as="font" 
+          type="font/woff2"
+          href="https://www.impactplus.com/hubfs/IMPACT_Font_Files/2025/merriweather/merriweather-v31-latin-900.woff2" 
+          crossorigin>
+
+    {# 2. Proxima Nova 500 - BODY PARAGRAPHS (most common) #}
+    <link rel="preload" 
+          as="font" 
+          type="font/woff2"
+          href="https://www.impactplus.com/hubfs/IMPACT_Font_Files/proxima-nova-500.woff2" 
+          crossorigin>
+
+    {# this checks if the "Include jQuery" option in Settings > CMS > Pages is checked #}
+    {% if not site_settings.include_jquery %}
+    {# Disabled - Jquery is currently being manually included in the footer #}
+    {#{{ require_js( "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js", { position: 'head', async: false } ) }}#}
+    {% endif %}
+
+    {# Critical JS #}
+    {{ require_js( get_asset_url( "../../js/production.js" ), { async: false } ) }}
+
+    {# This is intended to be used if a template requires template specific style sheets #}
+    {% if template_css %}
+    {% if blog %}
+    {{ require_css( get_asset_url( template_css ) , { async: false } ) }}
+    {% else %}
+    {{ require_css( get_asset_url( template_css ) , { async: true } ) }}
+    {% endif %}
+    {% endif %}
+
+    {% if template_js %}
+    {{ require_css( get_asset_url( template_js ) , { async: true } ) }}
+    {% endif %}
+
+    {# FUNCTIONS & CONFIG #}
+    {% import '../../css/_config.css' as config %}
+    {% import '../../css/mixins/_functions.css' as functions %}
+    {% import '../../css/mixins/_snippets.css' as snippets %}
+
+    {# Custom Head Items from Site_Head.html found in /_IMPACT_Production/_globals/_includes/... #}
+
+    {# #### NOTE: Not everything has been moved over from that file (such as blog and service pages stylesheets) ##### #}
+
+    {# Custom Styles #}
+    {{ require_css(get_asset_url('_IMPACT_Production/_css/_current_styles/custom-v2.css'), { async: false } ) }}
+
+    {# Legacy Themeing for Services, Used in 'Blog Quote Card - Blog Inner - IMPACT UI Custom' #}
+    {% if template_meta.path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-post.html' %}
+    {% include "/_IMPACT_Production/_globals/_includes/IMPACT UI Color Themes.html" %}
+    {% endif %}
+
+    {# Tertiary Navigation Stylesheet #}
+    {% if (widget_data.controls.secondary_navigation.secondary_navigation_type == 'pillar') || content.absolute_url is string_containing '/blog/' || content.absolute_url is string_containing '/dev-blog/' %}
+    {{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/globals/Navigation/_css/tertiary_navigation_styles.css'), { async: true } ) }}
+    {% endif %}
+
+    {# ------ END CURRENT NAVIGATION STYLESHEETS ------ #}
+    <!-- thisisschemabase -->
+    {% block additional_head_content %}
+    <script type='application/ld+json'>
+    {% if "hs-blog-post" in builtin_body_classes %}
+     {
+    "@context": "https://schema.org",
+    "@graph": [{
+        "@type": "Organization",
+        "legalName": "IMPACT",
+        "description": "IMPACT teaches leaders & their teams how to generate more customers from their website, content, and sales efforts using our Endless Customers System",
+        "name": "IMPACT",
+        "Founder": [{
+            "@type": "Person",
+            "name": "Marcus Sheridan",
+            "sameAs": [
+              "https://www.linkedin.com/in/marcussheridan/",
+              "https://twitter.com/TheSalesLion",
+              "https://g.co/kgs/KqMfFg"
+            ]
+          },
+          {
+            "@type": "Person",
+            "name": "Bob Ruffolo",
+            "sameAs": [
+              "https://www.linkedin.com/in/bobruffolo/",
+              "https://twitter.com/BobRuffolo"
+            ]
+          }
+        ],
+        "foundingDate": "2009",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "ratingCount": "163"
+        },
+        "contactPoint": [{
+          "@type": "ContactPoint",
+          "telephone": "+12032654377",
+          "contactType": "customer service"
+        }],
+        "url": "https://www.impactplus.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.impactplus.com/hubfs/Photography/Icons/Navigation_3_2023/Logos/IMPACT-logo--black.svg"
+        },
+        "sameAs": [
+          "https://www.facebook.com/impactbnd/",
+          "https://twitter.com/Impactbnd",
+          "https://www.linkedin.com/company/impact-branding-&-design-llc",
+          "https://www.instagram.com/impactbnd/",
+          "https://www.youtube.com/@IMPACTbnd"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "name": "IMPACT",
+        "url": "https://www.impactplus.com",
+        "@id": "https://www.impactplus.com/#website",
+        "publisher": {
+          "@id": "https://www.impactplus.com/#Organization"
+        },
+         "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.impactplus.com/ss-results?sitesearch={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Article",
+        "headline": "{{ page_meta.html_title }}",
+        "image": "{{ content.featured_image }}", 
+        "author": {
+          "@type": "Person",
+          "name": "{{ content.blog_post_author.display_name }}" 
+        },
+        "datePublished": "{{ content.published_date|format_date("yyyy-MM-dd'T'HH:mm:ssZ") }}",
+        "dateModified" : "{{ content.updated|format_datetime('yyyy-MM-dd\'T\'HH:mm:ssZ') }}",
+        "publisher": {
+          "@id": "https://www.impactplus.com/#Organization"
+        },
+        "mainEntityOfPage": {
+          "@type": "Webpage",
+          "@id": "https://www.impactplus.com/#Webpage",
+          "url": "{{ content.absolute_url }}",
+          "audience": {
+            "@type": "Audience",
+            "name": "businesses" 
+          },
+          "inLanguage": "en",
+          "keywords": "",
+          "name": "{{ page_meta.html_title }}",
+          "headline": "{{ page_meta.html_title }}",
+          "text": "{{ content.post_body|striptags|replace('"','”') }}",
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["#hs_cos_wrapper_name", "#hs_cos_wrapper_post_body"]
+            },
+            "description": "{{page_meta.meta_description|striptags}}"
+          }
+        }
+      ]
+    }
+    {% else %}
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "legalName": "IMPACT",
+        "description": "IMPACT teaches leaders & their teams how to generate more customers from their website, content, and sales efforts using our Endless Customers System",
+        "name": "IMPACT",
+        "Founder": [
+          {
+            "@type": "Person",
+            "name": "Marcus Sheridan",
+            "sameAs": [
+              "https://www.linkedin.com/in/marcussheridan/",
+              "https://twitter.com/TheSalesLion",
+              "https://g.co/kgs/KqMfFg"
+            ]
+          },
+          {
+            "@type": "Person",
+            "name": "Bob Ruffolo",
+            "sameAs": [
+              "https://www.linkedin.com/in/bobruffolo/",
+              "https://twitter.com/BobRuffolo"
+            ]
+          }
+        ],
+        "foundingDate": "2009",
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+12032654377",
+            "contactType": "customer service"
+          }
+        ],
+        "url": "https://www.impactplus.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.impactplus.com/hubfs/Photography/Icons/Navigation_3_2023/Logos/IMPACT-logo--black.svg"
+        },
+        "sameAs": [
+          "https://www.facebook.com/impactbnd/",
+          "https://twitter.com/Impactbnd",
+          "https://www.linkedin.com/company/impact-branding-&-design-llc",
+          "https://www.instagram.com/impactbnd/",
+          "https://www.youtube.com/@IMPACTbnd"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "ratingCount": "163"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "IMPACT",
+        "url": "https://www.impactplus.com",
+        "@id": "https://www.impactplus.com/#website",
+        "publisher": {
+          "@id": "https://www.impactplus.com/#Organization"
+        },
+        "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.impactplus.com/ss-results?sitesearch={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+    {% endif %}
+    </script>
+    {% endblock %}
+
+    {#
+      To see a full list of what is included via standard_header_includes
+      please reference this article:
+      https://developers.hubspot.com/docs/cms/hubl/variables#required-page-template-variables
+    #}
+    {{ standard_header_includes }}
+
+    {# Used in 'Global Navigation' module file in 'IM-IMPACT-Prod-Theme' #}
+    {% set navBannerCTA = [] %}
+    {% set helloActive = [] %}
+
+    {# For Learning Center Blogs #}
+    {% if blog %}
+    {% set blogPost = true %}
+
+    {% set blogFallback = "https://www.impactplus.com/hubfs/blog-files/Blog-Fallback.jpg" %}
+
+    {% if content.featured_image %}
+    {% set featuredImage = content.featured_image %}
+    {% else %}
+    {% set featuredImage = blogFallback %}
+    {% endif %}
+
+    {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 1200) %}
+    {% set resizedFeaturedImageTablet = resize_image_url(featuredImage, 0, 0, 780) %}
+    {% set resizedFeaturedImageMobile = resize_image_url(featuredImage, 0, 0, 550) %}
+
+    <link rel="preload" as="image" href="{{ resizedFeaturedImage }}"
+          imagesrcset="{{ resizedFeaturedImage }} 1024w,
+                       {{ resizedFeaturedImageTablet }} 750w,
+                       {{ resizedFeaturedImageMobile }} 500w"
+          imagesizes="(min-width: 1024px) 1024px,
+                      (min-width: 750px) 750px,
+                      500px"
+          fetchpriority="high">
+
+    {% else %}
+    {% set blogPost = false %}
+    {% endif %}
+    
+    <!-- bb: new font -->
+    
+    {% if request.query_dict.newfont == "true" %}
+    <!-- aa: new font -->
+    <style>
+      h1.xl, 
+      h1 .xl, 
+      .h1.xl, 
+      .h1 .xl,
+      h1, .h1,
+      h2, .h2,
+      h3, .h3,
+      h4, .h4,
+      h5, .h5,
+      h6, .h6 {
+        font-family: 'General Sans', Arial, sans-serif;
+      }
+    </style>
+    {% endif %}
+
+  </head>
+
+  <body {% if body_id %}id="{{ body_id }}"{% endif %} class="im-impact-prod-theme {{ body_classes }}">
+
+    <div class="body-wrapper {{ builtin_body_classes }}">
+
+      {# Lightbox for all Vidyard videos #}
+      <div id="rtLightbox"></div>
+
+      {% block header %}
+      {% if hide_header != "yes" %}
+
+      {% global_partial path="/IM-IMPACT-Prod-Theme-2025/templates/partials/header.html" %}
+
+      {% endif %}
+      {% endblock header %}
+
+      {#
+        The main-content ID is used for the navigation skipper in the header.html file.
+      #}
+      <main id="maincontent" class="body-container-wrapper {{ main_container_classes }}">
+        {% if widget_data.controls.header_design == "solid" %}
+        <div class="header--anchor"></div>
+        {% endif %}
+        {% block body %}
+        {% endblock body %}
+
+
+      </main>
+
+      {% block footer %}
+      {% module "footerControls" path='/_IMPACT_Production/_globals/_footer/Site Footer Settings - IMPACT UI', label="Footer Controls", export_to_template_context=True %}
+      {% if hide_footer != "yes" %}
+      {% global_partial path="/IM-IMPACT-Prod-Theme-2025/templates/partials/footer.html" %}
+      {% endif %}
+      {% endblock footer %}
+    </div>
+
+    {# Custom JS - To be Migrated #}
+    <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/@vidyard/embed-code@4.3.15/dist/v4.min.js"></script>
+    <script type="text/javascript" src="{{ get_asset_url('_IMPACT_Production/_js/custom_global_functions.js') }}"></script>
+
+    <script>
+      var myLazyLoad = new LazyLoad({
+        elements_selector: ".lazy"
+      });
+
+      {#'click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+        window.addEventListener(e, videosAdded, {
+          once: true
+        });
+      });
+      var injVideos = false;
+
+      function videosAdded() {
+        if (!injVideos) {
+          injVideos = true;
+          if ($(".vidyard-player-embed").length > 0){$("<script>").appendTo(".footer-container").on("load", function(){}).prop("type","text/javascript").prop("src","https://cdn.jsdelivr.net/npm/@vidyard/embed-code@4.3.15/dist/v4.min.js");}
+
+          // Used for video dynamic pages
+          if($('#youtubePlayer').length > 0) { 
+
+            // This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          }
+        }
+      }
+
+      // This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('youtubePlayer', {
+          height: '443',
+          width: '787',
+          videoId: $('#youtubePlayer').data('playerid'),
+          playerVars: {
+            'playsinline': 1
+          }
+        });
+      }#}
+
+      function launchVidLightbox(u, d) {
+        let e = !0;
+        if (VidyardV4.players.length >= 1) {
+          var player = VidyardV4.players[0];
+          VidyardV4.api.destroyPlayer(player);
+        }
+
+        (document.getElementById("rtLightbox").innerHTML = `<img \n class="vidyard-player-embed"\n src="https://play.vidyard.com/${u}.jpg"\n data-width="1400"\n data-height="788"\n data-uuid="${u}";\n data-v="4"\n data-second="${d}"\n data-type="lightbox"\n />`),
+          vidyardEmbed.api.renderDOMPlayers(document.getElementById("rtLightbox")),
+          new Promise((u) => (window.vidyardEmbed ? u(window.vidyardEmbed) : (window.onVidyardAPI = (e) => u(e)))).then((a) => {
+          VidyardV4.api.getPlayersByUUID(u)[0].showLightbox(), (e = !1);
+
+          VidyardV4.api.getPlayersByUUID(u)[0].on('ready', function () {
+            VidyardV4.api.getPlayersByUUID(u)[0].play();
+          });
+
+        });
+      }
+
+    </script>
+
+    {# End Custom JS #}
+
+    {#
+      To see a full list of what is included via standard_footer_includes
+      please reference this article:
+      https://developers.hubspot.com/docs/cms/hubl/variables#required-page-template-variables
+    #}
+    {{ standard_footer_includes }}
+
+    {# FANCYBOX #}
+    {{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js", { position: 'head', defer: true } ) }}
+    {{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css", { async: true } ) }}
+
+  </body>
+</html>

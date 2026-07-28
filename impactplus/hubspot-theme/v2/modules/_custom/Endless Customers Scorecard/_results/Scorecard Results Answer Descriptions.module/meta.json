@@ -1,0 +1,14 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 191774752862,
+  "js_assets" : [ {
+    "autoload" : true,
+    "path" : "../../../../../../_IMPACT_Production/_js/_libraries/js-cookie.js",
+    "name" : "js-cookie.js"
+  } ],
+  "label" : "[IM-UI] Scorecard Results Answer Descriptions",
+  "icon" : "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/Logo/White%20Logo%20-%20Half/impact-logo-IM-white-01.svg",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,213 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Testimonial Columns Slider.css"), { async: true} ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":1,
+  "one-half":2,
+  "one-third":3,
+  "one-fourth":4,
+  "one-fifth":5,
+  "one-sixth":6
+} %}
+
+{% set columnWidths = {
+  "desk":columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet":columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--testimonialcolumns-slider {{ name }} {% if (module.layout_controls.show_border_divider_between_columns) %}section--testimonialcolumns-slider--hasdividers{% endif %} {% if module.layout_controls.columns_horizontally_align_buttons %}section--testimonialcolumns-slider--equalizebuttons{% endif %} relative {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }} z-index--1">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3 section--testimonialcolumns-slider--outer">
+    <div class="section--testimonialcolumns-slider--inner text--center">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+      </div>
+      {% if module.header || module.content || module.preheader %}
+      <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }} {% if module.layout_controls.header_container_width == 'wide' %}hard--sides{% endif %} flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}">
+        <div class="grid__item {{ module.layout_controls.header_container_width }} tablet-one-whole palm-one-whole hard--top hard--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+          {% if module.preheader %}
+          <span class="h6 preheader preheader--{{ module.layout_controls.preheader_color }}">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <h2 class="{% if module.content %}{% else %}hard--bottom last--hard--bottom{% endif %}">{{ module.header }}</h2>
+          {% endif %}
+          {{ module.content }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="grid section--testimonialcolumns-slider--grid relative hard--ends hard--sides {% if module.layout_controls.columns_width == 'wide' %}hard--sides{% endif %} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+        <div class="grid__item {{ module.layout_controls.columns_width }} tablet-one-whole palm-one-whole hard--sides section--testimonialcolumns-slider--testimonial-columns--wrapper hard--ends text--{{ module.layout_controls.columns_content_alignment }} palm-all--text--{{ module.layout_controls.columns_content_alignment_mobile }}">
+          <div class="f-carousel section--testimonialcolumns-slider--wrapper {{ name }} flex">
+            {% set animationClasses = '' %}
+            {% if module.layout_controls.enable_animation %}
+            {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}' %}
+            {% endif %}
+
+            {% for item in module.column_content %}
+            <div class="f-carousel__slide">
+              {# {{ module.layout_controls.number_of_columns_desktop }} {{ module.layout_controls.number_of_columns_laptop }} {{ module.layout_controls.number_of_columns_tablet }} {{ module.layout_controls.number_of_columns_mobile }} #}
+              <div class="section--testimonialcolumns-slider--testimonial-column {% if module.layout_controls.column_background_color %}section--testimonialcolumns-slider--testimonial-column--body--padding{% else %}hard--sides{% endif %} relative grid__item one-whole tall first--hard--top last--hard--bottom valign--top {% if module.layout_controls.columns_width == 'wide' %}padding--short{% endif %} {{ animationClasses }}">
+                {% if (module.layout_controls.show_border_divider_between_columns) %}
+                <span class="section--testimonialcolumns-slider--divider--vertical {% if loop.first %}visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['desk'] == 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['lap'] == 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['tablet'] == 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['palm'] == 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+                {% endif %}
+                {% if (module.layout_controls.show_border_divider_between_columns) %}
+                <span class="section--testimonialcolumns-slider--divider--horizontal {% if (loop.index - (1 + columnWidths['desk'])) < 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['lap'])) < 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['tablet'])) < 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['palm'])) < 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+                {% endif %}
+                <div class="section--testimonialcolumns-slider--testimonial-column--body flexgrid {{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'valign--top justify--start' : 'direction--column justify--start no--wrap' }}" {{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'style="gap:15px;"' : '' }}>
+                  {% if "lottie" == module.layout_controls.columns_image_type %}
+                  <div class="inline-block" {{ 'left' == module.layout_controls.columns_icon_placement ? 'style="flex-basis:' ~ module.layout_controls.columns_image_size_controls.columns_native_image_icon_max_width ~ 'px;margin-top:5px;"' : '' }}>
+                    {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                    <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0">
+                      {% endif %}
+                      <lottie-player
+                                     autoplay
+                                     {% if item.lottie_animation.lottie_embed_loop %}
+                                     loop
+                                     {% endif %}
+                                     id    = "{{ name }}--lottieplayer--{{ loop.index }}"
+                                     class = "inline-block"
+                                     mode  = "normal"
+                                     style = "padding:0; {{ 'width:' ~ item.lottie_animation.lottie_embed_width ~ 'px;' if item.lottie_animation.lottie_embed_width }} {% if 'left' == module.layout_controls.columns_icon_placement %}height:auto;{% else %}{{ 'height:' ~ item.lottie_animation.lottie_embed_height ~ 'px;' if item.lottie_animation.lottie_embed_height }}{% endif %}"
+                                     >
+                      </lottie-player>
+                      {{ require_js( 'https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js', { async: true } ) }}
+                      <script>
+                        const {{ name|replace('-','_') }}LottiePlayer{{ loop.index }} = document.querySelector("#{{ name }}--lottieplayer--{{ loop.index }}");
+                                                                                                               {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.addEventListener("rendered", (e) => {
+                          {% if 'url' == item.lottie_animation.lottie_embed_type %}
+                          {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load("{{ item.lottie_animation.lottie_embed }}");
+                                                                                       {% else %}
+                                                                                       {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load({{ item.lottie_animation.lottie_embed|tojson }});
+                          {% endif %}
+                        });
+                      </script>
+                      {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                    </a>
+                    {% endif %}
+                  </div>
+                  {% elif 'native' == module.layout_controls.columns_image_type %}
+                  <div class="block" {{ 'left' == module.layout_controls.columns_icon_placement ? 'style="flex-basis:' ~ module.layout_controls.columns_image_size_controls.columns_native_image_icon_max_width ~ 'px;margin-top:5px;"' : '' }}>
+                    {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                    <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0">
+                      {% endif %}
+                      <img class="inline-block" src="{{ item.image_native.image.src }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} alt="{{ item.image_native.image.alt }}" width="{{ item.image_native.image.width }}" height="{{ item.image_native.image.width }}" style="width:auto;height:{{ module.layout_controls.columns_image_size_controls.columns_native_image_icon_max_height }}px;" />
+                      {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                    </a>
+                    {% endif %}
+                  </div>
+                  {% elif "logos" == module.layout_controls.columns_image_type %}
+                  {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0 block">
+                    {% endif %}
+                    <span class="block relative">
+                      <img {{ module.section_controls.lazy_load_images == 'true' ? 'loading="lazy"' : '' }} class="block absolute z-index--2" style="object-fit: contain;width:{{ '80%' if (item.image_full.image.width > item.image_full.image.height * 2) else 'auto' }};height:{{ 'auto' if (item.image_full.image.width > item.image_full.image.height * 2) else '80%' }};object-position:{{ item.image_full.image_horizontal_alignment }} {{ item.image_full.image_vertical_alignment }};top:50%;bottom:0%;right:0%;left:0%;margin-left:auto;margin-right:auto;transform:translateY(-50%);" alt="{{ item.image_full.image.alt }}" width="{{ item.image_full.image.width }}" height="{{ item.image_full.image.height }}" src="{{ item.image_full.image.src }}" />
+                      {{ snippets.aspectSpacer('2x1') }}
+                    </span>
+                    {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  </a>
+                  {% endif %}
+                  {% elif module.layout_controls.columns_image_type == "full" %}
+                  {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0 block">
+                    {% endif %}
+                    <span class="block relative border-radius--20 overflow--hidden">
+                      <img {{ module.section_controls.lazy_load_images == 'true' ? 'loading="lazy"' : '' }} class="block absolute z-index--2 object--background-size--cover" style="object-position:{{ item.image_full.image_horizontal_alignment }} {{ item.image_full.image_vertical_alignment }};top:0%;bottom:0%;right:0%;left:0%;" alt="{{ item.image_full.image.alt }}" width="{{ item.image_full.image.width }}" height="{{ item.image_full.image.height }}" src="{{ item.image_full.image.src }}" />
+                      {{ snippets.aspectSpacer(module.layout_controls.columns_image_aspect_ratio) }}
+                    </span>
+                    {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  </a>
+                  {% endif %}
+                  {% endif %}
+                  <div class="section--testimonialcolumns-slider--testimonial-column--body--wrapper {% if module.layout_controls.column_background_color %}background--{{ module.layout_controls.column_background_color }}{% endif %}" style="{{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'flex:1;' : ( 'none' != module.layout_controls.columns_image_type ? 'margin-top:25px;' : '' ) }}">
+                    <div class="section--testimonialcolumns-slider--testimonial-column--body--content block first--hard--top last--hard--bottom {{ 'native' == module.layout_controls.columns_image_type and 'lott' == module.layout_controls.columns_image_type and 'left' == module.layout_controls.columns_icon_placement ? 'padding--short--right hard--left' : '' }}">
+                      {% if item.description %}
+                      {{ item.description }}
+                      {% if item.testimonial_name_of_person || item.testimonial_title_of_person || item.testimonial_image.src %}
+                      {# palm-justify--center palm-direction--column palm-text--center #}
+                      <div class="section--testimonialcolumns-slider--testimonial-column--byline flexgrid valign--middle {% if item.featured_media_type == 'none' %}justify--center{% else %}justify--left{% endif %} {% if item.testimonial_image.src %}text--left{% else %}text--center{% endif %} align--start no--wrap">
+                        {% if item.testimonial_image.src %}
+                        <div class="section--testimonialcolumns-slider--testimonial-column--image--container">
+                          <div class="section--testimonialcolumns-slider--testimonial-column--image {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.testimonial_image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.testimonial_image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.testimonial_image.src }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                          </div>
+                        </div>
+                        {% endif %}
+                        {% if item.testimonial_name_of_person || item.testimonial_title_of_person  %}
+                        <div class="section--testimonialcolumns-slider--testimonial-column--source">
+                          {% if item.testimonial_name_of_person || item.testimonial_title_of_person %}
+                          <p class="hard--ends line-height--small">
+                            {% if item.testimonial_name_of_person %}<span class="bold inline-block">{{ item.testimonial_name_of_person }}</span>{% endif %}
+                            {% if item.testimonial_title_of_person %}<span class="block">{{ item.testimonial_title_of_person }}</span>{% endif %}
+                          </p>
+                          {% endif %}
+                        </div>
+                        {% endif %}
+                      </div>
+                      {% endif %}
+                      {% if ((item.cta.cta_type == "cta")&&(item.cta.cta))||((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text))||((item.cta.cta_type == "anchor")&&(item.cta.cta_section_anchor_id)&&(item.cta.cta_button_text)) %}
+                      <div class="section--testimonialcolumns-slider--testimonial-column--body--cta">
+                        <p class="all--btn all--btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} margin--short--top hard--bottom">
+                          {% if item.cta.cta_type == "cta" %}
+                          {{ cta(item.cta.cta) }}
+                          {% elif (item.cta.cta_type == "link")||(item.cta.cta_type == "anchor") %}
+                          <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" class="btn btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }}" href="{% if item.cta.cta_type == 'anchor' %}#{{ item.cta.cta_section_anchor_id|replace('#','') }}{% else %}{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}{% endif %}" {% if (item.cta.cta_type == "link")&&(item.cta.cta_open_in_new_tab) %}target="_blank"{% endif %}>{{ item.cta.cta_button_text }}</a>
+                          {% endif %}
+                        </p>
+                      </div>
+                      {% endif %}
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% if snippets.multiButton(module.cta) %}
+        <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+            {{ snippets.multiButton(module.cta) }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+</div>
+
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+
+{% require_js %}
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const sliders = document.querySelectorAll('.section--testimonialcolumns-slider.{{ name }}');
+
+                                              sliders.forEach(function (slider) {
+      const thisSliderMain = slider.querySelector('.section--testimonialcolumns-slider--wrapper.{{ name }}');
+
+                                                  const mainCarousel = new Carousel(thisSliderMain, {
+                                                  infinite: true,
+                                                  center: true,
+                                                  Dots: false,
+                                                  slidesPerPage: 1,
+                                                  transition: false,
+                                                  Navigation: {
+                                                  prevTpl:'<svg class="section--testimonialcolumns-slider--next section--testimonialcolumns-slider--arrow" width="15" height="15" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_7434_13431)"><path d="M0.162601 13.8245C0.265801 14.0902 0.420501 14.333 0.617801 14.5389L11.4556 25.3633C11.6577 25.5652 11.8977 25.7253 12.1617 25.8345C12.4258 25.9438 12.7088 26 12.9946 26C13.5718 26 14.1254 25.771 14.5336 25.3633C14.7357 25.1615 14.896 24.9218 15.0054 24.6581C15.1147 24.3944 15.171 24.1117 15.171 23.8263C15.171 23.2497 14.9417 22.6968 14.5336 22.2892L7.3806 15.1667L23.8324 15.1667C24.4073 15.1667 24.9586 14.9386 25.3651 14.5326C25.7716 14.1267 26 13.576 26 13.0018C26 12.4277 25.7716 11.877 25.3651 11.471C24.9586 11.0651 24.4073 10.837 23.8324 10.837L7.3806 10.837L14.5336 3.7145C14.7367 3.5132 14.898 3.2738 15.008 3.01C15.1181 2.7462 15.1747 2.4632 15.1747 2.1774C15.1747 1.8916 15.1181 1.6087 15.008 1.3449C14.898 1.0811 14.7367 0.841599 14.5336 0.640399C14.3321 0.437499 14.0923 0.276399 13.8282 0.166499C13.5641 0.056599 13.2807 -1.11196e-06 12.9946 -1.13697e-06C12.7085 -1.16198e-06 12.4251 0.0565989 12.161 0.166499C11.8969 0.276399 11.6571 0.437499 11.4556 0.640399L0.617801 11.4648C0.420501 11.6707 0.265801 11.9134 0.162601 12.1792C-0.0541993 12.7063 -0.0541993 13.2974 0.162601 13.8245Z" fill="#1D1D1F"/></g><defs><clipPath id="clip0_7434_13431"><rect width="26" height="26" fill="white" transform="translate(26 26) rotate(-180)"/></clipPath></defs></svg>',
+                                                  nextTpl:'<svg class="section--testimonialcolumns-slider--next section--testimonialcolumns-slider--arrow" width="15" height="15" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.8374 12.1755C25.7342 11.9098 25.5795 11.667 25.3822 11.4611L14.5444 0.636674C14.3423 0.434824 14.1023 0.274707 13.8383 0.165467C13.5742 0.0562261 13.2912 0 13.0054 0C12.4282 0 11.8746 0.229019 11.4664 0.636674C11.2643 0.838524 11.104 1.07816 10.9946 1.34189C10.8853 1.60562 10.829 1.88828 10.829 2.17374C10.829 2.75025 11.0583 3.30315 11.4664 3.71081L18.6194 10.8333H2.16757C1.59269 10.8333 1.04136 11.0614 0.634866 11.4674C0.228368 11.8733 0 12.424 0 12.9982C0 13.5723 0.228368 14.123 0.634866 14.529C1.04136 14.9349 1.59269 15.163 2.16757 15.163H18.6194L11.4664 22.2855C11.2633 22.4868 11.102 22.7262 10.992 22.99C10.8819 23.2538 10.8253 23.5368 10.8253 23.8226C10.8253 24.1084 10.8819 24.3913 10.992 24.6551C11.102 24.9189 11.2633 25.1584 11.4664 25.3596C11.6679 25.5625 11.9077 25.7236 12.1718 25.8335C12.4359 25.9434 12.7193 26 13.0054 26C13.2915 26 13.5749 25.9434 13.839 25.8335C14.1031 25.7236 14.3429 25.5625 14.5444 25.3596L25.3822 14.5352C25.5795 14.3293 25.7342 14.0866 25.8374 13.8208C26.0542 13.2937 26.0542 12.7026 25.8374 12.1755Z" fill="#1D1D1F"/></svg>'
+                                                  },
+  });
+  });
+  });
+</script>
+{% end_require_js %}

@@ -1,0 +1,51 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{% call mediaQuery("lap-and-up") %}
+  .section--hero--contentpadding--short{
+    padding-right: 20px;
+  }
+
+  .section--hero--contentpadding--tall{
+    padding-right: 40px;
+  }
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+  .section--hero--contentpadding--short{
+    padding-right: 20px;
+  }
+
+  .section--hero--contentpadding--tall{
+    padding-right: 40px;
+  }
+{% endcall %}
+
+@media screen and (max-width: 679px) {
+  .hs-landing-page .palm--btn-max-width .btn{
+    width: 90%;
+  }
+}
+
+.section--hero .media--type--large_video img {
+  width: 100%;
+  height: auto;
+}

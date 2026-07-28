@@ -1,0 +1,51 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{% set section = 'section--teaminnerfeaturedtalksinsights' %}
+
+.{{ section }} .separator--boxes .featured--item {
+	border: 1px solid {{ color('mist') }};
+	border-radius: 12px;
+  padding: 16px;
+	margin-top: 16px;
+}
+
+.{{ section }} .separator--boxes .featured--item:first-child {
+	margin-top: 40px;
+}
+
+.{{ section }} .separator--dividers .featured--item {
+	padding: 40px 0;
+  border-bottom: 1px solid {{ color('mist') }};
+}
+
+.{{ section }} .separator--dividers .featured--item:last-child {
+	border-bottom: none;
+}
+
+.{{ section }} .featured--item .item--header h2,
+.{{ section }} .featured--item .item--header h3 {
+	font-size: 24px;
+}
+
+.{{ section }} .featured--item .item--header h3 + p {
+	font-size: 18px;
+}

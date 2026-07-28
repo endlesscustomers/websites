@@ -1,0 +1,119 @@
+<div class="success-story--inner-hero relative background--offwhite">
+  {# Title and Metrics #}
+  <div class="success-story--inner-hero--top">
+    <div class="background">
+      {#<div class="background--layer palm-visuallyhidden z-index--1 opacity--100 background-size--cover background-repeat--none" style="background-position: 50% 100%; inset: 0%; background-image: url('https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Success%20Stories/Success%20Stories%20Inner%20Background%20Desktop.svg');"></div>
+      <div class="background--layer lap-and-up-visuallyhidden tablet-visuallyhidden z-index--2 opacity--100 background-size--cover background-repeat--none" style="background-position:50% 100%;top:0%;bottom:0%;right:0%; left:0%; background-image: url('https://www.impactplus.com/hubfs/Success%20Stories%20Hero%20--%20Mobile-01.svg');"></div>#}
+    </div>
+    <div class="grid hard--bottom venti--top tablet-grande--top palm-tall--top relative z-index--20">
+      <div class="success-story--inner-hero--flex flex flex-align--top flex-wrap--wrap text--left">
+        <div class="success-story--inner-hero--title grid__item nine-twelfths palm-one-whole hard--ends animate--fade animate--fade-up  animate--fade-delay--1">
+          <img class="margin--standard--bottom" src="{{ module['case_study_client_data']['columns']['client_logo']['url'] }}" alt="{{ module['case_study_client_data']['columns']['client_name'] }}" style="max-height: {{ module.client_logo_max_height }}px;">
+          <h1 class="hard--top bolder hard--bottom">
+            <span class="post--single--hero--title bolder hard--ends" style="margin-top:0px !important;">{{ module.hero_text }}</span>
+          </h1>
+          <div class="p">{{ module.hero_subheader }}</div>
+        </div>
+        <div class="grid__item three-twelfths palm-one-whole palm-hard--sides hard--ends animate--fade animate--fade-up  animate--fade-delay--2">
+          <div class="post-single--metrics-group">
+            <style>
+              @media screen and (min-width: 769px){
+                .post-single--metrics-group{
+                  margin-top: calc(6px + {{ module.client_logo_max_height }}px);
+                }
+              }
+            </style>
+
+            {% for item in module.metrics %}
+            <div class="post-single--metrics grid__item hard--ends one-whole palm-one-whole palm-text--center lap-and-up-hard--sides tablet-hard--sides palm-margin--tall--bottom">
+              <h2 class="post-single--metrics-line hard--ends margin--petite--bottom hard--top relative line-height--small">{{ item.metric_number }}</h2>
+              <p class="font--16 color--slate-500 block no--underline light hard--ends line-height--small" style="margin-top: 4px !important;">{{ item.metric_information_label }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {# End Title and Metrics #}
+
+  {# Tags and Testimonial Video #}
+  <div class="grid hard--ends relative z-index--20">
+    <div class="success-stories--sidebar post--type-video flex flex-wrap--wrap flex-justify--center palm-flex-align--center margin--grande--top venti--bottom palm-tall--bottom portable-margin--short--bottom palm-margin--short--top relative" style="justify-content: flex-end;">
+      <div class="fixed--spacer grid__item three-twelfths tablet-visuallyhidden palm-eleven-twelfths palm-short--top palm-hard--sides hard--ends animate--fade animate--fade-up animate--fade-delay--3" style="display:none;"></div>
+      <div class="success-stories--typings grid__item three-twelfths portable-one-whole lap-and-up-hard--ends portable-hard--top portable-hard--bottom text--left animate--fade animate--fade-up animate--fade-delay--3">
+        <div class="post-single--topics grid__item one-whole hard--sides palm-one-whole hard--ends">
+
+          {% if module['case_study_client_data']['columns']['company_industry']|length %}
+          <p class="post--type-video--line font--16 color--neutral-700 bold margin--petite--bottom hard--top relative line-height--small">Type of Business:</p>
+          {% for tag in module['case_study_client_data']['columns']['company_industry']['name'] %}
+          <p class="font--16 color--slate-500 block no--underline light hard--ends thisisindustry" style="{% if not loop.first %}margin-top: 4px !heroimportant;{% endif %}">{{ tag }}</p>
+          {% endfor %}
+          {% endif %}
+        </div>
+        {% if module['case_study_client_data']['columns']['company_service_type']|map('name')|length %}
+        <div class="post-single--topics grid__item one-whole hard--sides palm-one-whole hard--ends">
+          <p class="post--type-video--line font--16 color--neutral-700 bold margin--petite--bottom relative lap-and-up-margin--standard--top tablet-margin--standard--top line-height--small">Services:</p>
+          {% for tag in module['case_study_client_data']['columns']['company_service_type']|map('name') %}
+          <p class="font--16 color--slate-500 block no--underline light hard--ends border--1 border-radius--pill border--mist inline-block" style="line-height: 1em; padding: 8px 12px !important;{% if not loop.first %}margin-top: 8px !important;{% endif %}">{{ tag }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="post-single--share">
+          <p class="font--16 color--neutral-700 bold hard--bottom post--type-video--line relative lap-and-up-margin--standard--top tablet-margin--standard--top palm-margin--standard--top">Share:</p>
+          <div class="post--single--share-links all--valign--middle">
+            <a class="inline-block margin--petite--top" href="https://www.linkedin.com/shareArticle?url={{ content.absolute_url }}&title={{ content.html_title|urlencode }}&summary={{ content.meta_description|urlencode }}" title="Share on Linkedin">
+              <img src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="Share on Linkedin" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 18px; position: relative; top: 2px;">
+            </a>
+            <a class="inline-block margin--petite--top" href="https://www.facebook.com/sharer/sharer.php?u={{ content.absolute_url }}" title="Share on Facebook">
+              <img src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/facebook-logo.svg" alt="Share on Facebook" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 18px;">
+            </a>
+            <a class="inline-block margin--petite--top" href="https://twitter.com/intent/tweet?text={{ content.meta_description|urlencode }}&url={{ content.absolute_url }}&via=impactbnd" title="Share on Twitter">
+              <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/x%20corp.svg" alt="Share in X" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 16px;">
+            </a>
+            <a class="inline-block margin--petite--top" href="http://www.facebook.com/dialog/send?app_id=122669230914322&amp;link={{ content.absolute_url }}&amp;redirect_uri=https://www.impactplus.com" title="Share on Messenger">
+              <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Facebook_Messenger_logo_black.svg" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 19px;" alt="Share in Facebook Messenger">
+            </a>
+            <a class="inline-block margin--petite--top" href="https://api.whatsapp.com/send?text={{ content.absolute_url }}" title="Share on WhatsApp">
+              <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/whatsapp%20logo.svg" alt="Share in WhatsApp" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 21px;">
+            </a>
+            <a class="inline-block margin--petite--top" href="mailto:{{ content.absolute_url }}" title="Share through email">
+              <img src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/Email.svg" alt="Share through email" style="filter: invert(74%) sepia(7%) saturate(788%) hue-rotate(184deg) brightness(97%) contrast(89%); height: 15px;">
+            </a>
+          </div>
+        </div>
+        <div class="grid__item hard--ends one-whole palm-one-whole palm-one-whole  hard--sides palm-margin--short--bottom">
+          <p class="post-hero-cta--header bold color--neutral-700" style="margin-bottom: 14px;">Ready to talk?</p>
+          <a href="https://www.impactplus.com/services/schedule-now" class="btn btn--primary btn--small font--16" style="min-width: 130px;">Book a Call<span class="arrow--mono">→</span></a>
+        </div>
+      </div>
+      <div class="grid__item nine-twelfths portable-one-whole hard--ends portable-margin--tall--bottom animate--fade animate--fade-up  animate--fade-delay--4">
+        <div class="video--video-wrapper video--play-pulse-active  relative overflow--hidden border-radius--12" style="box-shadow: 0 13px 27px -5px rgba(50,50,93,0.25), 0 8px 16px -8px rgba(0,0,0,0.3)" onclick="launchVidLightbox('{{ module['case_study_client_data']['columns']['vidyard_video_utm'] }}');">
+          {% if module['case_study_client_data']['columns']['vidyard_video_utm'] %}
+          <div class="video--play--container flex absolute bottom--0 left--0 right--0 top--0 flex-align--center flex-justify--center video--play--hover-transitionLearning Center CTA Options and Setup v2 - Smart Options - IMPACT Publisher">
+            <div class="video--play-pulse--container hover--pointer">
+              <div class="video--play-pulse"></div>
+              <img class="video--play-btn lazy" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Play%20Button%20White%20v2.svg" alt="Video Play" data-ll-status="loaded" src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Play%20Button%20White%20v2.svg">
+            </div>
+          </div>
+          <img alt="Video Placeholder" class="visuallyhidden lazy overflow--hidden border-radius--12" data-bg="//play.vidyard.com/{{ module['case_study_client_data']['columns']['vidyard_video_utm'] }}.jpg" width="760" data-type="lightbox" data-uuid="{{ module['case_study_client_data']['columns']['vidyard_video_utm'] }}" data-v="4">
+          <div class="overflow--hidden border-radius--12">
+            <div class="customVideo--image lazy relative border-radius--10 hover--pointer" data-bg="//play.vidyard.com/{{ module['case_study_client_data']['columns']['vidyard_video_utm'] }}.jpg" style="background-size: cover; background-position: center center; background-repeat: no-repeat; box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);">
+              <span class="aspectspacer-16x9"></span>
+            </div>
+          </div>
+          {% else %}
+          <img alt="Video Placeholder" class="visuallyhidden lazy overflow--hidden border-radius--12" data-bg="{{ module['case_study_client_data']['columns']['client_image']['url'] }}" width="760" data-type="lightbox" data-uuid="{{ module['case_study_client_data']['columns']['client_image']['url'] }}" data-v="4">
+          <div class="overflow--hidden border-radius--12">
+            <div class="customVideo--image lazy relative border-radius--10 hover--pointer" data-bg="{{ module['case_study_client_data']['columns']['client_image']['url'] }}" style="background-size: cover; background-position: center center; background-repeat: no-repeat; box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);">
+              <span class="aspectspacer-16x9"></span>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {# End Tags and Testimonial Video #}
+
+</div>

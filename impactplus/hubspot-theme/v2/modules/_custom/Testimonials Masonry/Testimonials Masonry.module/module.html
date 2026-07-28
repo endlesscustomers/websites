@@ -1,0 +1,428 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Testimonials Masonry.css"), { async: true} ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":1,
+  "one-half":2,
+  "one-third":3,
+  "one-fourth":4,
+  "one-fifth":5,
+  "one-sixth":6
+} %}
+{% set columnWidths = {
+  "desk":columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet":columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--testimonialsmasonry {% if (module.layout_controls.show_border_divider_between_columns) %}section--testimonialsmasonry--hasdividers{% endif %} {% if module.layout_controls.columns_horizontally_align_buttons %}section--testimonialsmasonry--equalizebuttons{% endif %} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3 section--testimonialsmasonry--outer">
+    <div class="section--testimonialsmasonry--inner text--center">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+      </div>
+      {% if module.header || module.content || module.preheader %}
+      <div class="grid relative hard--top tall--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }} {% if module.layout_controls.header_container_width == 'wide' %}hard--sides{% endif %} flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}">
+        <div class="grid__item {{ module.layout_controls.header_container_width }} tablet-one-whole palm-one-whole hard--top {% if module.layout_controls.number_of_columns_desktop == "one-whole" %}short--bottom palm-short--bottom {% else %} {% if module.content %}tall--bottom palm-short--bottom {% else %}hard--bottom palm-hard--bottom{% endif %}{% endif %}first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+
+          {% if module.preheader %}
+          <span class="h6 preheader preheader--{{ module.layout_controls.preheader_color }}">{{ module.preheader }}</span>
+          {% endif %}
+
+          {% if module.header %}
+          <h2>{{ module.header }}</h2>
+          {% endif %}
+          {{ module.content }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="grid section--testimonialsmasonry--grid relative hard--ends {% if module.layout_controls.columns_width == 'wide' %}hard--sides{% endif %} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+        <div class="section--testimonialsmasonry--testimonial-columns--wrapper grid__item {{ module.layout_controls.columns_width }} tablet-one-whole palm-one-whole short--top relativejustify--{{ 'start' if 'left' == module.layout_controls.columns_content_alignment else 'center' }} hard--bottom text--{{ module.layout_controls.columns_content_alignment }} palm-all--text--{{ module.layout_controls.columns_content_alignment_mobile }}">
+
+          {% set animationClasses = '' %}
+          {% if module.layout_controls.enable_animation %}
+          {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}' %}
+          {% endif %}
+
+          {% for x in range(1,4) %}
+
+          {% set fieldName = module['column_content_'+loop.index] %}
+          {% for item in fieldName %}
+          {% if item.testimonial_mobile_sort == 'true' %}
+          <style>
+
+            @media (max-width: 767px) {
+              .section--testimonial-grid-items.is-priority-{{ item.set_priority_order }}{
+                order: {{ item.set_priority_order }};
+                display:block !important;
+              }
+            }
+          </style>
+          {% endif %}
+
+          {% if item.testimonial_layout_option == 'video' %}
+          <div class="section--testimonial-grid-items section--video-testimonial--container {% if item.testimonial_mobile_sort == 'true' %}section--testimonial-grid-items--haspriority is-priority-{{ item.set_priority_order }}{% endif %} background--offwhite hard--ends {{ animationClasses }}" style="margin-bottom: 12px; border-radius: 24px;">
+            <div class="section--video-testimonial--article-item hover--pointer relative hard resource-cards-item resource-cards-item--padding overflow--hidden grid__item one-whole" style="padding: 32px 32px 20px 32px !important;" onclick="launchVidInline(this, '{{ item.video_testimonial.video_thumbnail_vidyard_uuid }}');">
+              <div class="section--video-testimonial-slider--results--item--body overflow--hidden relative {% if item.video_testimonial.callout_quote %}section--video-testimonial-slider--results--w-callout{% else %}section--video-testimonial-slider--results--wo-callout{% endif %}" style="border-radius: 18px;">
+                {% if item.video_testimonial.video_thumbnail %}
+                <div class="section--video-testimonial-slider--results--image block relative lazy" role="img" aria-label="{{ item.video_testimonial.video_thumbnail.alt|escape_attr }}" data-bg="{{ item.video_testimonial.video_thumbnail.src|escape_url }}" style="background-repeat: no-repeat; background-size: cover; background-position: center;">
+                  <div id="section--video-testimonial-slider--results--inline-video" style="opacity: 0;"></div>
+                  {% if item.video_testimonial.callout_quote %}
+                  <div class="section--video-testimonial-slider--results--callout h4 bold hard--ends font--reading line-height--small absolute right--0 bottom--0 left--0 all--color--white z-index--10">
+                    {{ item.video_testimonial.callout_quote }}
+                  </div>
+                  {% endif %}
+                  <video class="section--video-testimonial--preview-video" muted loop playsinline>
+                    <source src="{{ item.video_testimonial.video_preview }}" type="video/mp4">
+                  </video>
+                  <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding: 177% 0px 0px 0px;"></span>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% if item.video_testimonial.testimonial_name_of_person || item.video_testimonial.testimonial_title_of_person || item.video_testimonial.testimonial_image.src %}
+            <div class="section--testimonialsmasonry--testimonial-column--byline hard--top flexgrid valign--middle align--start justify--start {% if item.video_testimonial.testimonial_image.src %}text--left{% else %}text--center{% endif %} no--wrap" style="padding: 0px 32px 32px 32px;">
+
+              {% if item.video_testimonial.testimonial_image.src %}
+              <div class="section--testimonialsmasonry--testimonial-column--image--container">
+                <div class="section--testimonialsmasonry--testimonial-column--image {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.video_testimonial.testimonial_image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.video_testimonial.testimonial_image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.video_testimonial.testimonial_image.src }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                </div>
+              </div>
+              {% endif %}
+
+              {% if item.video_testimonial.testimonial_name_of_person || item.video_testimonial.testimonial_title_of_person %}
+              <div class="section--testimonialsmasonry--testimonial-column--source">
+                <p class="p--sm hard--ends line-height--small text--left">
+                  {% if item.video_testimonial.testimonial_name_of_person %}<span class="bold inline-block">{{ item.video_testimonial.testimonial_name_of_person }}</span>{% endif %}
+                  {% if item.video_testimonial.testimonial_title_of_person %}<span class="block color--midgrey normal">{{ item.video_testimonial.testimonial_title_of_person }}</span>{% endif %}
+                </p>
+              </div>
+              {% endif %}
+
+            </div>
+            {% endif %}
+
+          </div>
+
+          {% else %}
+          <div class="section--testimonial-grid-items section--testimonialsmasonry--testimonial-column {% if item.testimonial_mobile_sort == 'true' %}section--testimonial-grid-items--haspriority is-priority-{{ item.set_priority_order }}{% endif %} {% if module.layout_controls.column_background_color %}section--testimonialsmasonry--testimonial-column--body--padding{% else %}hard--sides{% endif %} relative grid__item first--hard--top last--hard--bottom hard--ends valign--top {% if module.layout_controls.columns_width == 'wide' %}padding--short{% endif %} {{ animationClasses }}">
+            {% if (module.layout_controls.show_border_divider_between_columns) %}
+            <span class="section--testimonialsmasonry--divider--vertical {% if loop.first %}visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['desk'] == 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['lap'] == 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['tablet'] == 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['palm'] == 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+            {% endif %}
+            {% if (module.layout_controls.show_border_divider_between_columns) %}
+            <span class="section--testimonialsmasonry--divider--horizontal {% if (loop.index - (1 + columnWidths['desk'])) < 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['lap'])) < 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['tablet'])) < 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['palm'])) < 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+            {% endif %}
+            <div class="section--testimonialsmasonry--testimonial-column--body flexgrid {{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'valign--top justify--start' : 'direction--column justify--start no--wrap' }}" {{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'style="gap:15px;"' : '' }}>
+
+              <div class="section--testimonialsmasonry--testimonial-column--body--wrapper {% if module.layout_controls.column_background_color %}background--{{ module.layout_controls.column_background_color }}{% endif %}" style="{{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'flex:1;' : ( 'none' != module.layout_controls.columns_image_type ? '' : '' ) }}">
+                <div class="section--testimonialsmasonry--testimonial-column--body--content block first--hard--top last--hard--bottom {{ 'native' == module.layout_controls.columns_image_type and 'lott' == module.layout_controls.columns_image_type and 'left' == module.layout_controls.columns_icon_placement ? 'padding--short--right hard--left' : '' }}">
+                  <svg id="section--testimonialsmasonry--testimonial--stars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236.179 39.72">
+                    <path style="fill:#eebc09;" d="M17.239,6.1c-1.7,3.4-3.1,6.2-3.2,6.3-.1.1-3.1.6-6.8,1.1C3.539,14,.339,14.7.039,15s1.1,2.1,4.6,5.5l5.1,5-1.1,6.9c-.6,3.8-.9,7.1-.7,7.3.2.2,3.2-1.1,6.7-2.9l6.3-3.3,6.3,3.3c3.4,1.8,6.5,3.1,6.7,2.9.2-.2-.2-3.5-.8-7.3l-1.1-7,4.8-4.5c2.8-2.6,4.8-4.9,4.8-5.5,0-.5-.1-.9-.3-.9-.3,0-10.1-1.4-12.1-1.7-1.5-.3-1.8-.6-4.6-6.5C22.739,2.3,21.439.1,20.939.1c-.4-.1-1.7,2.1-3.7,6Z"/>
+                    <path style="fill:#eebc09;" d="M68.839.6c-.3.3-1.8,3.1-3.3,6.2-2.5,5.1-2.9,5.6-4.4,5.9-.9.1-3.9.6-6.6,1-2.7.4-5.2,1-5.5,1.3s1.3,2.2,4.6,5.6l5,5.1-1.2,6.7c-.8,4.5-1,6.8-.7,7.2.3.3,2.5-.5,6.7-2.7l6.2-3.2,6.2,3.2c4,2,6.4,3,6.7,2.7.3-.3.1-2.9-.7-7.2l-1.2-6.7,5.1-5.1c3.6-3.7,4.9-5.3,4.5-5.6-.3-.3-3.5-1-7.2-1.5s-6.7-1.1-6.8-1.3c-1.1-2.7-6-11.8-6.4-12-.3-.1-.8.1-1,.4Z"/>
+                    <path style="fill:#eebc09;" d="M115.039,6.1c-1.7,3.4-3.1,6.2-3.2,6.3-.1.1-3.1.6-6.8,1.1-3.7.5-6.9,1.2-7.2,1.5-.3.3,1.1,2.1,4.6,5.5l5.2,5-1.1,6.9c-.6,3.8-1,7.1-.7,7.3.2.2,3.2-1.1,6.7-2.9l6.3-3.3,6.3,3.3c3.4,1.8,6.5,3.1,6.7,2.9.2-.2-.1-3.5-.8-7.3l-1.1-7,4.8-4.5c2.8-2.6,4.8-4.9,4.8-5.5,0-.5-.1-.9-.3-.9-.3,0-10.1-1.4-12.1-1.7-1.5-.3-1.8-.7-4.6-6.5-1.9-4-3.2-6.2-3.7-6.2-.5-.1-1.9,2.1-3.8,6Z"/>
+                    <path style="fill:#eebc09;" d="M165.239,1.1c-.4.6-1.8,3.4-3.1,6.1s-2.4,5-2.4,5.1c-.1.1-3,.5-6.7,1.1-3.6.5-6.9,1.2-7.2,1.5s.9,1.9,4.5,5.6l5.1,5.1-1.2,6.7c-.8,4.5-1,6.8-.7,7.2.3.3,2.5-.5,6.7-2.7l6.2-3.2,6.2,3.2c4.2,2.1,6.4,3,6.7,2.7s.1-2.7-.7-7.2l-1.2-6.7,5.1-5.1c3.4-3.4,4.9-5.3,4.5-5.6-.3-.3-3.5-.9-7.2-1.5-3.9-.6-6.8-1.3-6.9-1.6-.8-2-5.9-11.6-6.4-11.7-.3-.1-.9.4-1.3,1Z"/>
+                    <path style="fill:#eebc09;" d="M211.239,6.2c-2.8,5.8-3.1,6.2-4.6,6.5-.9.1-3.9.6-6.8,1-2.9.4-5.4,1-5.7,1.3s1.2,2.2,4.7,5.5l5.1,5-1.1,6.9c-.6,3.8-1,7.1-.7,7.3.2.2,3.2-1.1,6.7-2.9l6.3-3.3,6.3,3.3c3.4,1.8,6.5,3.1,6.7,2.9.3-.2-.1-3.5-.7-7.3l-1.1-6.8,5.1-5.1c3.6-3.4,5-5.2,4.7-5.5s-3.5-.9-7.2-1.5c-3.6-.5-6.7-1-6.8-1.1s-1.5-2.9-3.1-6.3c-2-4-3.3-6.1-3.8-6.1-.7,0-2,2.1-4,6.2Z"/>
+                  </svg>
+                  {% if item.text_testimonial.description %}
+                  <div class="margin--short--top first--hard--top last--hard--bottom hard--bottom">
+                    <span class="h4 bold hard--ends font--reading line-height--small">{{ item.text_testimonial.callout_quote }}</span>
+                    <span class="section--testimonialsmasonry--testimonial-description p p--default hard--ends">{{ item.text_testimonial.description }}</span>
+                  </div>
+                  {% if item.text_testimonial.testimonial_name_of_person || item.text_testimonial.testimonial_title_of_person || item.text_testimonial.testimonial_image.src %}
+                  {# palm-justify--center palm-direction--column palm-text--center #}
+                  <div class="section--testimonialsmasonry--testimonial-column--byline flexgrid valign--middle align--start justify--{{ 'left' if 'left' == module.layout_controls.columns_content_alignment else 'center' }}  {% if item.testimonial_image.src %}text--left{% else %}text--center{% endif %} no--wrap">
+                    {% if item.text_testimonial.testimonial_image.src %}
+                    <div class="section--testimonialsmasonry--testimonial-column--image--container">
+                      <div class="section--testimonialsmasonry--testimonial-column--image {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.text_testimonial.testimonial_image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.text_testimonial.testimonial_image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.text_testimonial.testimonial_image.src }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if item.text_testimonial.testimonial_name_of_person || item.text_testimonial.testimonial_title_of_person %}
+                    <div class="section--testimonialsmasonry--testimonial-column--source">
+                      {% if item.text_testimonial.testimonial_name_of_person || item.text_testimonial.testimonial_title_of_person %}
+                      <p class="p--sm hard--ends line-height--small text--left">
+                        {% if item.text_testimonial.testimonial_name_of_person %}<span class="bold inline-block">{{ item.text_testimonial.testimonial_name_of_person }}</span>{% endif %}
+                        {% if item.text_testimonial.testimonial_title_of_person %}<span class="block color--midgrey normal">{{ item.text_testimonial.testimonial_title_of_person }}</span>{% endif %}
+                      </p>
+                      {% endif %}
+                    </div>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                  {% if ((item.cta.cta_type == "cta")&&(item.cta.cta))||((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text))||((item.cta.cta_type == "anchor")&&(item.cta.cta_section_anchor_id)&&(item.cta.cta_button_text)) %}
+                  {#<div class="section--testimonialsmasonry--testimonial-column--body--cta">
+                    <p class="all--btn all--btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} margin--short--top hard--bottom">
+                      {% if item.cta.cta_type == "cta" %}
+                      {{ cta(item.cta.cta) }}
+                      {% elif (item.cta.cta_type == "link")||(item.cta.cta_type == "anchor") %}
+                      <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" class="btn btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }}" href="{% if item.cta.cta_type == 'anchor' %}#{{ item.cta.cta_section_anchor_id|replace('#','') }}{% else %}{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}{% endif %}" {% if (item.cta.cta_type == "link")&&(item.cta.cta_open_in_new_tab) %}target="_blank"{% endif %}>{{ item.cta.cta_button_text }}</a>
+                      {% endif %}
+                    </p>
+                  </div>#}
+                  {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+
+          {% endfor %}
+          <div class="section--testimonialsmasonry--testimonial-column--mobile--more testimonial-show-more lap-and-up-visuallyhidden tablet-visuallyhidden absolute bottom--0 z-index--99 width--max">
+            <button class="btn btn--transparent--darkgrey width--max">
+              Show more
+            </button>
+          </div>
+        </div>
+        {% if snippets.multiButton(module.cta) %}
+        <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+            {{ snippets.multiButton(module.cta) }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+</div>
+
+{% require_js %}
+<script>
+  {# Preview Video #}
+  document.querySelectorAll(".section--video-testimonial--article-item").forEach(container => {
+    const video = container.querySelector(".section--video-testimonial--preview-video");
+
+    container.addEventListener("mouseenter", () => {
+      video.currentTime = 0; // Restart video
+      video.muted = true; // Ensure muted (required for autoplay)
+
+      try {
+        video.play();
+      } catch (err) {
+        console.error("Autoplay failed:", err);
+      }
+    });
+
+    container.addEventListener("mouseleave", () => {
+      video.style.opacity = "0";
+      setTimeout(() => {
+        video.pause();
+        video.currentTime = 0;
+      }, 400);
+    });
+  });
+
+  {# Full Testimonial #}
+  function launchVidInline(triggerEl, uuid, startSecond = 0) {
+    // Destroy existing players
+    if (window.VidyardV4 && VidyardV4.players?.length) {
+      VidyardV4.players.forEach((p) => VidyardV4.api.destroyPlayer(p));
+    }
+
+    const container = triggerEl.querySelector(
+      '#section--video-testimonial-slider--results--inline-video'
+    );
+
+    if (!container) {
+      console.warn('Inline video container not found within trigger element');
+      return;
+    }
+
+    // Grid wrapper for active state
+    const gridItems = triggerEl.querySelector('.section--testimonial-grid-items');
+
+    // Prep hidden state (starts at opacity:0 in CSS)
+    container.style.opacity = '0';
+
+    // Set active immediately (or move into `ready` if you prefer)
+    if (gridItems) gridItems.classList.add('active');
+
+    // Inject inline embed
+    container.innerHTML = `
+    <img
+      class="vidyard-player-embed"
+      src="https://play.vidyard.com/${uuid}.jpg"
+      data-uuid="${uuid}"
+      data-v="4"
+      data-type="inline"
+      data-width="100%"
+      data-height="auto"
+      data-hide_share="1"
+      data-hidden_controls="1"
+      data-viral_sharing="0"
+      data-embed_button="0"
+      ${startSecond ? `data-second="${startSecond}"` : ``}
+    />
+  `;
+
+    vidyardEmbed.api.renderDOMPlayers(container);
+
+    // Wait for Vidyard API
+    new Promise((resolve) => {
+      if (window.VidyardV4) return resolve();
+      window.onVidyardAPI = resolve;
+    }).then(() => {
+      const player = VidyardV4.api.getPlayersByUUID(uuid)?.[0];
+      if (!player) return;
+
+      const teardownUI = () => {
+        // Fade out
+        container.style.opacity = '0';
+
+        // Remove active class
+        if (gridItems) gridItems.classList.remove('active');
+
+        // Optional: clear embed after fade to keep DOM clean
+        window.setTimeout(() => {
+          container.innerHTML = '';
+          container.classList.remove('is-controls-hidden');
+        }, 300); // match your CSS transition duration
+      };
+
+      player.on('ready', function () {
+        // Reveal container
+        container.style.opacity = '1';
+
+        // Hide controls but keep play/pause
+        container.classList.add('is-controls-hidden');
+
+        // Ensure we don’t double-bind if this gets called multiple times
+        // (Vidyard typically drops handlers on destroy, but this is extra-safe.)
+        player.off?.('playerComplete', teardownUI);
+        player.off?.('ended', teardownUI);
+
+        // When video ends, fade out + remove active
+        // Different Vidyard builds emit different end events, so we listen for both.
+        player.on('playerComplete', teardownUI);
+        player.on('ended', teardownUI);
+
+        player.play();
+      });
+    });
+  }
+
+  // Mobile Real Testimonials In Groups of 3
+  $(document).ready(function () {
+    const MOBILE_MAX = 767;
+    const INCREMENT = 4;
+
+    let isMobileActive = false;
+
+    /**
+   * Reveal the next batch of testimonials for a section
+   */
+    function revealNextBatch($section, increment) {
+      const orderedItems = $section.data('orderedItems');
+      let visibleCount = $section.data('visibleCount') || 0;
+
+      const end = Math.min(visibleCount + increment, orderedItems.length);
+
+      for (let i = visibleCount; i < end; i++) {
+        $(orderedItems[i]).addClass('is-visible');
+      }
+
+      $section.data('visibleCount', end);
+    }
+
+    /**
+   * Initialize mobile testimonial behavior
+   */
+    function initMobileTestimonials() {
+      if (window.innerWidth > MOBILE_MAX || isMobileActive) return;
+
+      isMobileActive = true;
+
+      $('.section--testimonialsmasonry--testimonial-columns--wrapper').each(function () {
+        const $section = $(this);
+        const $items = $section.find('.section--testimonial-grid-items');
+        const $button = $section.find('.testimonial-show-more');
+
+        // Reset visual state
+        $items.removeClass('is-visible');
+
+        // Build ordered list ONCE: priority first, then DOM order
+        const priorityItems = [];
+        const normalItems = [];
+
+        $items.each(function () {
+          if ($(this).hasClass('section--testimonial-grid-items--haspriority')) {
+            priorityItems.push(this);
+          } else {
+            normalItems.push(this);
+          }
+        });
+
+        const orderedItems = priorityItems.concat(normalItems);
+
+        // Persist state on the section
+        $section.data('orderedItems', orderedItems);
+        $section.data('visibleCount', 0);
+
+        // Initial reveal
+        revealNextBatch($section, INCREMENT);
+
+        // Button state
+        $button.toggle(orderedItems.length > INCREMENT);
+
+        // Bind click handler (namespaced)
+        $button.off('click.showMore').on('click.showMore', function () {
+          revealNextBatch($section, INCREMENT);
+
+          if ($section.data('visibleCount') >= orderedItems.length) {
+            $button.hide();
+          }
+        });
+      });
+    }
+
+    /**
+   * Tear down mobile behavior when returning to desktop
+   */
+    function teardownMobileTestimonials() {
+      if (!isMobileActive) return;
+
+      isMobileActive = false;
+
+      $('.section--testimonialsmasonry--testimonial-columns--wrapper').each(function () {
+        const $section = $(this);
+        const $items = $section.find('.section--testimonial-grid-items');
+        const $button = $section.find('.testimonial-show-more');
+
+        // Restore desktop state
+        $items.addClass('is-visible');
+        $button.hide().off('click.showMore');
+
+        // Clear stored state
+        $section.removeData('orderedItems visibleCount');
+      });
+    }
+
+    /**
+   * Handle breakpoint changes
+   */
+    function handleResize() {
+      if (window.innerWidth <= MOBILE_MAX) {
+        initMobileTestimonials();
+      } else {
+        teardownMobileTestimonials();
+      }
+    }
+
+    // Initial run
+    handleResize();
+
+    // Re-evaluate on resize
+    $(window).on('resize', handleResize);
+  });
+
+</script>
+{% end_require_js %}

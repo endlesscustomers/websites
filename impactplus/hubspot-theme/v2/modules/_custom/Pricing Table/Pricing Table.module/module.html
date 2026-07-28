@@ -1,0 +1,606 @@
+{{ require_css( get_asset_url("../Pricing Table.css"), { async: false } ) }}
+
+{% set planOptionKey = {
+  "0":"one",
+  "1":"two",
+  "2":"three",
+  "3":"four",
+  "4":"five",
+  "5":"six",
+  "6":"seven",
+  "7":"eight"
+} %}
+
+{% if module.layout_controls.table_border_color.table_border_color == "custom" %}
+{% set borderColor = module.layout_controls.table_border_color.table_border_custom_color.color %}
+{% set borderOpacity = module.layout_controls.table_border_color.table_border_custom_color.opacity|int/100 %}
+{% set borderColorRgba = "rgba("+borderColor|convert_rgb+", "+borderOpacity+")" %}
+{% else %}
+{% set borderColor = functions.color(module.layout_controls.table_border_color.table_border_color) %}
+{% set borderOpacity = 1 %}
+{% set borderColorRgba = "rgba("+borderColor|convert_rgb+", "+borderOpacity+")" %}
+{% endif %}
+
+{% if module.layout_controls.title_text_color.title_text_color == "custom" %}
+{% set titleTextColor = module.layout_controls.title_text_color.title_text_custom_color.color %}
+{% set titleTextOpacity = 1 %}
+{% set titleTextColorRgba = "rgba("+titleTextColor|convert_rgb+", "+titleTextOpacity+")" %}
+{% else %}
+{% set titleTextColor = functions.color(module.layout_controls.title_text_color.title_text_color) %}
+{% set titleTextOpacity = 1 %}
+{% set titleTextColorRgba = "rgba("+titleTextColor|convert_rgb+", "+titleTextOpacity+")" %}
+{% endif %}
+
+{% if module.layout_controls.category_text_color.category_text_color == "custom" %}
+{% set categoryTextColor = module.layout_controls.category_text_color.category_text_custom_color.color %}
+{% set categoryTextOpacity = 1 %}
+{% set categoryTextColorRgba = "rgba("+categoryTextColor|convert_rgb+", "+categoryTextOpacity+")" %}
+{% else %}
+{% set categoryTextColor = functions.color(module.layout_controls.category_text_color.category_text_color) %}
+{% set categoryTextOpacity = 1 %}
+{% set categoryTextColorRgba = "rgba("+categoryTextColor|convert_rgb+", "+categoryTextOpacity+")" %}
+{% endif %}
+
+{% if module.layout_controls.sub_category_text_color.sub_category_text_color == "custom" %}
+{% set subCategoryTextColor = module.layout_controls.sub_category_text_color.sub_category_text_custom_color.color %}
+{% set subCategoryTextOpacity = 1 %}
+{% set subCategoryTextColorRgba = "rgba("+subCategoryTextColor|convert_rgb+", "+subCategoryTextOpacity+")" %}
+{% else %}
+{% set subCategoryTextColor = functions.color(module.layout_controls.sub_category_text_color.sub_category_text_color) %}
+{% set subCategoryTextOpacity = 1 %}
+{% set subCategoryTextColorRgba = "rgba("+subCategoryTextColor|convert_rgb+", "+subCategoryTextOpacity+")" %}
+{% endif %}
+
+{% require_css %}
+<style>
+  .{{ name }}.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--column,
+  .{{ name }}.section--pricing--table .section--pricingtable--attributes--value{
+    border-left: 1px solid {{ borderColorRgba }};
+  }
+
+  /*.{{ name }}.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--table--label {
+  color: {{ titleTextColorRgba }};
+  }
+  .{{ name }}.section--pricing--table .section--pricingtable--attributes--toggle .section--pricingtable--table--label {
+  color: {{ categoryTextColorRgba }};
+  }
+  .{{ name }}.section--pricing--table .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label {
+  color: {{ subCategoryTextColorRgba }};
+  }*/
+  .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+  .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label,
+  .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--label,
+  .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+  .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label,
+  .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--label {
+    width:20%;
+  }
+  @media screen and (max-width:1290px) {
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--header .section--pricingtable--table--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--header .section--pricingtable--table--label {
+      font-size: 13px;
+    }
+  }
+  @media screen and (max-width:1024px) {
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--header .section--pricingtable--table--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--header .section--pricingtable--table--label {
+      font-size: 11px;
+    }
+  }
+  @media screen and (max-width:768px) {
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--7 .section--pricingtable--attributes--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--toggle .section--pricingtable--table--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--subtoggle .section--pricingtable--table--label,
+    .{{ name }}.section--pricing--table .section--pricingtable--plans--8 .section--pricingtable--attributes--label {
+      width:50%!important;
+    }
+    .{{ name }}.section--pricing--table .section--pricingtable--attributes--header .section--pricingtable--attributes--label {
+      width:100%!important;
+    }
+  }
+</style>
+{% end_require_css %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="{{ name }} section section--pricing--table relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility) }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top") }}">
+
+    </div>
+
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override) }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+      <div class="grid__item one-whole hard--top tall--bottom palm-hard--bottom last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }}">
+        <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          {% if module.preheader %}
+          <span class="h6 preheader">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="grid__item hard--sides hard--ends margin--short--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-ten-twelfths palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-ten-twelfths palm-one-whole{% endif %} first--hard--top last--hard--bottom">
+            <h2>{{ module.header }}</h2>
+          </div>
+          {% endif %}
+          <div class="grid__item hard {{ module.layout_controls.content_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom">
+            {% if module.content %}
+            {{ module.content }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="grid hard--ends margin--tall--top palm-margin--short--top {% if snippets.multiButton(module.cta) || module.disclosure %}lap-and-up-margin--tall--bottom tablet-margin--tall--bottom palm-hard--bottom{% endif %} palm-hard--sides">
+
+      <div class="grid__item {{ module.layout_controls.table_width }} portable-one-whole hard--ends section--pricingtable--wrapper section--pricingtable--plans--{{ module.table.number_of_plans|trim }}">
+
+        <div class="section--pricingtable--plans">
+          <div class="section--pricingtable--attributes palm-visuallyhidden">
+            <!-- background--{{ module.layout_controls.title_background_color.title_background_color }} style="background-color:{{ 'custom' == module.layout_controls.title_background_color.title_background_color ? module.layout_controls.title_background_color.title_background_custom_color.color : '' }} -->
+            <div class="section--pricingtable--attributes--header">
+              <div class="section--pricingtable--attributes--row">
+                <div class="section--pricingtable--attributes--label relative">
+                  <span class="section--pricingtable--table--label">
+                    {{ module.table.table_label }}
+                  </span> 
+                </div>
+                {% set number_of_plans = '' %}
+                {% set number_of_plans = module.table.number_of_plans|trim %}
+                {% for i in range( number_of_plans ) %}
+                <div class="section--pricingtable--attributes--column relative" data-colnum="{{ planOptionKey[i] }}" style="{% if module.table["column_" + planOptionKey[i] + ""]["emphasize_plan_column_" + planOptionKey[i] + ""] == true %}background-color: #F6F9FC; border-top: 1px solid #E1E7F4;{% endif %}">
+                  {% if module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_preheader"] %}
+                  <span class="section--pricingtable--table--preheader h5 hard--ends">
+                    {{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_preheader"] }}
+                  </span>
+                  {% endif %}
+                  <span class="section--pricingtable--table--label">
+                    <span class="h5 font--heading hard--top margin--petite--bottom">{{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_name"] }}</span>
+                    <span class="section--pricingtable--table--supporting--text p p--small hard--ends">
+                      {{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_supporting_text"] }}
+                    </span>
+                  </span>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section--pricingtable--attributes--body palm-visuallyhidden">
+
+          <div class="section--pricingtable--attributes--group" style="border-color:{{ borderColorRgba }};">
+
+            {% for item in module.table.items %}
+            <div class="section--pricingtable--attributes--row"  style="border-top-color:{{ borderColorRgba }};">
+              <div class="section--pricingtable--attributes--label">
+                <span class="section--pricingtable--table--label {% if item.feature_tooltip %}section--pricingtable--table--label--underline{% endif %} relative">
+                  <span class="section--pricingtable--table--label--inner relative">{{ item.title_item }}</span>
+                  {% if item.feature_tooltip %}
+                  <span class="section--pricingtable--table--label--tooltip">
+                    <span class="section--pricingtable--table--label--tooltip--inner font--reading">
+                      {{ item.feature_tooltip }}
+                    </span>
+                  </span>
+                  {% endif %}
+                </span>
+                <span class="section--pricingtable--table--byline">{{ item.feature_byline }}</span>
+              </div>
+
+              {% for i in range( number_of_plans ) %}
+              <div class="section--pricingtable--attributes--value" data-colnum="{{ planOptionKey[i] }}" style="{% if module.table["column_" + planOptionKey[i] + ""]["emphasize_plan_column_" + planOptionKey[i] + ""] == true %}background-color: #F6F9FC;{% endif %} justify-content: {{ item.feature_alignment }} !important;">
+                {% if item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] != "none" %}
+                <span class="section--pricingtable--table--icons block relative" {% if (item["option_"+planOptionKey[i]]["heading_option_"+planOptionKey[i]+""]) || (item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""]) %}style="padding: 0px 14px 8px 14px;"{% else %}style="padding: 0px 14px 0px 14px;"{% endif %}>
+                  {% if (item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] == "single-ck") || (item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] == "spacer") %}
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg" {% if item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] == "spacer" %}style="opacity: 0;"{% endif %}>
+                    <g clip-path="url(#clip0_7865_1600)">
+                      <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                      <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_7865_1600">
+                        <rect width="16" height="12" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  {% elif item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] == "double-ck" %}
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_7865_1600)">
+                      <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                      <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_7865_1600">
+                        <rect width="16" height="12" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_7865_1600)">
+                      <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                      <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_7865_1600">
+                        <rect width="16" height="12" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                  {% elif item["option_"+planOptionKey[i]]["icon_option_"+planOptionKey[i]+""] == "single-x" %}
+                  <svg width="13" height="13" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.296 10.898C15.2347 11.8366 15.2347 13.3574 14.296 14.296C13.3573 15.2347 11.8366 15.2347 10.898 14.296L7.5 10.898L4.10198 14.296C3.1632 15.2347 1.64258 15.2347 0.703962 14.296C-0.234654 13.3574 -0.234654 11.8366 0.703962 10.898L4.10198 7.5L0.703962 4.10198C-0.234654 3.16337 -0.234654 1.64258 0.703962 0.703962C1.64258 -0.234654 3.16337 -0.234654 4.10198 0.703962L7.5 4.10198L10.898 0.703962C11.8366 -0.234654 13.3574 -0.234654 14.296 0.703962C15.2347 1.64258 15.2347 3.16337 14.296 4.10198L10.898 7.5L14.296 10.898Z" fill="#DD2D2D"/>
+                  </svg>
+                  {% endif %}
+                </span>
+                {% endif %}
+                {% if (item["option_"+planOptionKey[i]]["heading_option_"+planOptionKey[i]+""]) || (item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""]) %}
+                <span class="section--pricingtable--table--context block p p--small hard--ends">
+                  <span class="bold {% if item["option_"+planOptionKey[i]]["header_line_break_"+planOptionKey[i]+""] %}block{% endif %}">{{ item["option_"+planOptionKey[i]]["heading_option_"+planOptionKey[i]+""] }}</span>
+                  {% if item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""] %}<span class="section--pricingtable--table--byline inline-block">{{ item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""] }}</span>{% endif %}
+                </span>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="section--pricingtable--wrapper section--pricingtable--plans--{{ module.table.number_of_plans|trim }} lap-and-up-visuallyhidden tablet-visuallyhidden">
+
+        {# --- Mobile Table --- #}
+        <div class="section--pricingtable-mobile relative">
+          {# --- Plans --- #}
+          <div class="section--pricingtable-plans--spacer"></div>
+          <div id="pricingCarouselMobile" class="section--pricingtable-plans background--white f-carousel">
+            {% for i in range( number_of_plans ) %}
+            <div class="f-carousel__slide grid__item one-whole section--pricingtable-mobile--wrapper hard" data-plan="{{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_name"]|striptags }}">
+              <div class="section--pricingtable--attributes--header">
+                <div class="section--pricingtable--attributes--row">
+                  <div class="section--pricingtable--attributes--label palm-text--left relative">
+                    {% if module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_preheader"] %}
+                    <span class="section--pricingtable--table--preheader">
+                      {{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_preheader"] }}
+                    </span>
+                    {% endif %}
+                    <span class="section--pricingtable--table--label text--center">
+                      <span class="h5 font--heading hard--top margin--petite--bottom">
+                        {{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_name"] }}
+                      </span>
+                      <span class="section--pricingtable--table--supporting--text p p--small hard--ends">
+                        {{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_supporting_text"] }}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {# --- End Plans --- #}
+          <div id="pricingCarouselColumns" class="f-carousel section--pricingtable-columns grid__item portable-eleven-twelfths hard--ends">
+            {% for i in range( number_of_plans ) %}
+            <div class="f-carousel__slide grid__item one-whole section--pricingtable-mobile--wrapper hard" data-plan="{{ module.table["column_" + planOptionKey[i]+""]["column_" + planOptionKey[i] + "_plan_name"]|striptags }}">
+              <div class="section--pricingtable--attributes--body">
+
+                <div class="section--pricingtable--attributes--contents">
+                  <div class="section--pricingtable--attributes--inner">
+
+                    <div class="section--pricingtable--attributes--group" style="border-color:{{ borderColorRgba }};">
+
+                      <div class="section--pricingtable--attributes--contents">
+                        <div class="section--pricingtable--attributes--inner">
+
+                          <div class="section--pricingtable--attributes--subcontents">
+                            <div class="section--pricingtable--attributes--inner">
+
+                              {% for item in module.table.items %}
+                              <div class="section--pricingtable--attributes--row"  style="border-top-color:{{ borderColorRgba }};">
+                                <div class="section--pricingtable--attributes--label">
+                                  <span class="section--pricingtable--table--label {% if item.feature_tooltip %}section--pricingtable--table--label--underline{% endif %} relative">
+                                    {{ item.title_item }}
+
+                                    {% if item.feature_tooltip %}
+                                    <span class="section--pricingtable--table--label--tooltip">
+                                      <span class="section--pricingtable--table--label--tooltip--inner font--reading">
+                                        {{ item.feature_tooltip }}
+                                      </span>
+                                    </span>
+                                    {% endif %}
+                                  </span>
+                                  <span class="section--pricingtable--table--byline">{{ item.feature_byline }}</span>
+                                </div>
+
+                                <div class="section--pricingtable--attributes--value">
+                                  {% if item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] != "none" %}
+                                  <span class="section--pricingtable--table--label">
+                                    {% if item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] == "single-ck" %}
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g clip-path="url(#clip0_7865_1600)">
+                                        <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                                        <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_7865_1600">
+                                          <rect width="16" height="12" fill="white"/>
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                    {% elif item["option_"+planOptionKey[i]+""]["icon_option_"+planOptionKey[i]+""] == "double-ck" %}
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g clip-path="url(#clip0_7865_1600)">
+                                        <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                                        <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_7865_1600">
+                                          <rect width="16" height="12" fill="white"/>
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g clip-path="url(#clip0_7865_1600)">
+                                        <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="#01C4A2"/>
+                                        <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="#01C4A2"/>
+                                      </g>
+                                      <defs>
+                                        <clipPath id="clip0_7865_1600">
+                                          <rect width="16" height="12" fill="white"/>
+                                        </clipPath>
+                                      </defs>
+                                    </svg>
+                                    {% elif item["option_"+planOptionKey[i]]["icon_option_"+planOptionKey[i]+""] == "single-x" %}
+                                    <svg width="13" height="13" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M14.296 10.898C15.2347 11.8366 15.2347 13.3574 14.296 14.296C13.3573 15.2347 11.8366 15.2347 10.898 14.296L7.5 10.898L4.10198 14.296C3.1632 15.2347 1.64258 15.2347 0.703962 14.296C-0.234654 13.3574 -0.234654 11.8366 0.703962 10.898L4.10198 7.5L0.703962 4.10198C-0.234654 3.16337 -0.234654 1.64258 0.703962 0.703962C1.64258 -0.234654 3.16337 -0.234654 4.10198 0.703962L7.5 4.10198L10.898 0.703962C11.8366 -0.234654 13.3574 -0.234654 14.296 0.703962C15.2347 1.64258 15.2347 3.16337 14.296 4.10198L10.898 7.5L14.296 10.898Z" fill="#DD2D2D"/>
+                                    </svg>
+                                    {% endif %} 
+                                  </span>
+                                  {% endif %}
+                                  {% if (item["option_"+planOptionKey[i]]["heading_option_"+planOptionKey[i]+""]) || (item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""]) %}
+                                  <span class="section--pricingtable--table--context block p p--small hard--ends">
+                                    {% if item["option_"+planOptionKey[i]]["heading_option_"+planOptionKey[i]+""] %}
+                                    <span class="bold line-height--small {% if item["option_"+planOptionKey[i]]["header_line_break_"+planOptionKey[i]+""] %}block{% endif %}">{{ item["option_"+planOptionKey[i]]["heading_option_"+planOptionKey[i]+""] }}</span>
+                                    {% endif %}
+                                    {% if item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""] %}<span class="section--pricingtable--table--byline inline-block">{{ item["option_"+planOptionKey[i]]["content_option_"+planOptionKey[i]+""] }}</span>{% endif %}
+                                  </span>
+                                  {% endif %}
+                                </div>
+                              </div>
+                              {% endfor %}
+
+
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override) }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override) }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if module.disclosure %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override) }}">
+      <div class="grid__item hard--ends {{ module.layout_controls.cta_disclosure_width }} portable-one-whole all--text--center">
+        <span class="p first--hard--top last--hard--bottom">
+          {{ module.disclosure }}
+        </span>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom") }}">
+
+  </div>
+  {{ snippets.swoopSpacerBottom(module.background) }}
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+
+<style>
+  .section--pricingtable-plans{
+    -webkit-transition: top 0.4s ease-in-out;
+    -moz-transition: top 0.4s ease-in-out;
+    -ms-transition: top 0.4s ease-in-out;
+    -o-transition: top 0.4s ease-in-out;
+    transition: top 0.4s ease-in-out;
+  }
+</style>
+
+{% require_js %}
+<script>
+  {# Slider Functionality #}
+  document.addEventListener("DOMContentLoaded", function () {
+    const mobileCarousel = new Carousel("#pricingCarouselMobile", {
+      infinite: false,
+      Dots: true,
+      Navigation: true,
+      Panzoom: {
+        touch: false
+      }
+    });
+
+    const columnCarousel = new Carousel("#pricingCarouselColumns", {
+      infinite: false,
+      Dots: false,
+      Navigation: false,
+      Panzoom: {
+        touch: false
+      }
+    });
+
+    // Optional: Sync both carousels
+    mobileCarousel.on("change", (instance) => {
+      columnCarousel.slideTo(instance.page);
+    });
+  });
+  {# End Slider #}
+
+  $(document).ready(function () {
+    const $plans = $('.section--pricingtable-plans');
+    const $container = $('.section--pricingtable-mobile');
+    const $spacer = $('.section--pricingtable-plans--spacer');
+    const $header = $('.headerIMPlus--secondary');
+
+    let headerLastScrollTop = 0;
+    let headerScrollStart = 0;
+    let ticking = false;
+
+    function updateStickyPosition() {
+      const viewportWidth = $(window).width();
+      if (viewportWidth > 768) {
+        // Remove sticky logic if not on mobile
+        $plans.removeAttr('style');
+        $spacer.css('height', 0);
+        return;
+      }
+
+      const scrollTop = $(window).scrollTop();
+      const containerTop = $container.offset().top;
+      const containerBottom = containerTop + $container.outerHeight();
+      const plansHeight = $plans.outerHeight();
+      const viewportHeight = $(window).height();
+
+      const headerHeight = $header.outerHeight();
+      const containerHeaderTop = $container.offset().top - headerHeight;
+      const currentScroll = $(window).scrollTop();
+
+      const stopPoint = containerBottom - plansHeight - headerHeight;
+
+      if (scrollTop >= containerHeaderTop && scrollTop + plansHeight < containerBottom - headerHeight) {
+        // STICKY — while inside the section
+
+        if (currentScroll > 200) {
+        } else {
+          headerScrollStart = currentScroll; // Reset scroll start
+        }
+
+        if ($header.hasClass('headerIMPlus-secondary--scrolled')) {
+          // Debounce scrolling for smoother behavior
+          if (!ticking) {
+            window.requestAnimationFrame(function () {
+              //const delta = currentScroll - headerLastScrollTop;
+
+              if (Math.abs(currentScroll - headerScrollStart) > 25) {
+                $plans.css({
+                  position: 'fixed',
+                  top: headerHeight,
+                  bottom: '',
+                  left: $container.offset().left,
+                  width: $container.outerWidth(),
+                  filter: 'drop-shadow(0px 0px 30px rgba(88, 88, 88, 0.15))',
+                  zIndex: 999
+                });
+
+                /*if (delta > 0) {
+                  // Scrolling down
+                  $plans.css({
+                    position: 'fixed',
+                    top: 0,
+                    bottom: '',
+                    left: $container.offset().left,
+                    width: $container.outerWidth(),
+                    filter: 'drop-shadow(0px 0px 30px rgba(88, 88, 88, 0.15))',
+                    zIndex: 999
+                  });
+                } else {
+                  // Scrolling up
+                  console.log('up');
+                  $plans.css({
+                    position: 'fixed',
+                    top: headerHeight,
+                    bottom: '',
+                    left: $container.offset().left,
+                    width: $container.outerWidth(),
+                    filter: 'drop-shadow(0px 0px 30px rgba(88, 88, 88, 0.15))',
+                    zIndex: 999
+                  });
+                }*/
+
+                // Set spacer height to avoid layout shift
+                $spacer.css('height', plansHeight);
+
+                //headerScrollStart = currentScroll;
+              }
+
+              //headerLastScrollTop = currentScroll;
+              ticking = false;
+            });
+
+            ticking = true;
+          }
+        }
+
+      } else if (scrollTop + plansHeight >= stopPoint) {
+        console.log(stopPoint);
+        // STUCK AT BOTTOM OF CONTAINER
+        $plans.css({
+          position: 'absolute',
+          top: '',
+          bottom: 0,
+          left: '',
+          width: '100%',
+          filter: '',
+          zIndex: 1
+        });
+      } else {
+        // RESET — before section hits
+        $plans.css({
+          position: '',
+          top: '',
+          bottom: '',
+          left: '',
+          width: '',
+          filter: '',
+          zIndex: ''
+        });
+        $spacer.css('height', 0); // reset spacer
+      }
+    }
+
+    $(window).on('scroll resize', updateStickyPosition);
+    updateStickyPosition();
+  });
+  {# End Sticky Pricing Menu #}
+
+  document.querySelectorAll('.{{ name }}.section--pricing--table .section--pricingtable--table--label--underline').forEach(function(tooltip) {
+                            tooltip.addEventListener('mouseenter', function() {
+    this.classList.add('active');
+  });
+
+  tooltip.addEventListener('mouseleave', function() {
+    this.classList.remove('active');
+  });
+  });
+
+  document.body.addEventListener('touchstart', function(event) {
+    if (event.target.closest('.{{ name }}.section--pricing--table .section--pricingtable--table--label--underline')) {
+                             const tooltip = event.target.closest('.section--pricingtable--table--label--underline');
+        if (tooltip.classList.contains('active')) {
+      tooltip.classList.remove('active');
+    } else {
+      tooltip.classList.add('active');
+    }
+  }
+                                 });
+</script>
+{% end_require_js %}

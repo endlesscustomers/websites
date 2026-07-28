@@ -1,0 +1,182 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Blog or Learning Center Feed.css"), { async: true} ) }}
+
+{#
+ # NOTE FOR DEVELOPERS:
+ # When customizing the appearance of posts in this section,
+ # be sure to make any necessary changes to both the Blog Feed
+ # and Learning Center Feed code since those are separate.
+#}
+
+{% set descriptionCharacterLimit = 150 %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--bloglcfeed relative overflow--hidden">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid hard--ends all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">{{ module.preheader }}</span>
+        {% endif %}
+        {% if module.header %}
+        <h2>{{ module.header }}</h2>
+        {% endif %}
+        {{ module.content }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="grid hard--ends">
+      <div class="block text--center">
+        <div class="grid__item one-whole hard--ends overflow--visible text--center">
+          <div class="section--bloglcfeed--wrapper">
+
+            {% set animationClasses = '' %}
+            {% if module.layout_controls.enable_animation %}
+            {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}' %}
+            {% endif %}
+
+            {% if module.feed_type == "blog" %}
+            {# START: Blog Feed #}
+
+            {% if module.blog_feed.blog_feed_type == "recentauthor" %}
+            {% set blogPosts = blog_recent_author_posts(module.blog_feed.blog, module.blog_feed.blog_author_name_or_slug|replace(' ', '-')|lower, 3) %}
+            {% elif module.blog_feed.blog_feed_type == "recenttopic" %}
+            {% set blogPosts = blog_recent_topic_posts(module.blog_feed.blog, module.blog_feed.blog_topic_name_or_slug|replace(' ', '-')|lower, 3) %}
+            {% elif module.blog_feed.blog_feed_type == "populartopic" %}
+            {% set blogPosts = blog_popular_posts(module.blog_feed.blog, 3, module.blog_feed.blog_topic_name_or_slug|replace(' ', '-')|lower, 'popular_past_month') %}
+            {% elif module.blog_feed.blog_feed_type == "popularall" %}
+            {% set blogPosts = blog_popular_posts(module.blog_feed.blog, 3) %}
+            {% else %}{# Default: Recent #}
+            {% set blogPosts = blog_recent_posts(module.blog_feed.blog, 3) %}
+            {% endif %}
+
+            {% set blogGroupData = blog_by_id(module.blog_feed.blog) %}
+
+            {% for item in blogPosts %}
+            <div class="grid__item {{ animationClasses }} one-third tablet-one-half palm-one-whole hard text--left">
+              <a href="{{ item.absolute_url }}" title="{{ item.name|escape }}" class="block no--underline color--inherit text--{{ module.layout_controls.feed_content_alignment }} palm-text--{{ module.layout_controls.feed_content_alignment_mobile }}" style="height:100%">
+                <span class="section--bloglcfeed--item--inner">
+                  <span class="section--bloglcfeed--item--body overflow--hidden first--hard--top last--hard--bottom text--{{ module.layout_controls.feed_content_alignment }} palm-text--{{ module.layout_controls.feed_content_alignment_mobile }} border-radius box-shadow box--hover default background--white">
+                    <span role="img" aria-label="{{ item.featured_image_alt_text }}" class="block relative {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.featured_image }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.featured_image }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                      {{ snippets.aspectSpacer(module.layout_controls.featured_image_aspect_ratio) }}
+                    </span>
+                    <span class="section--bloglcfeed--item--body--wrapper">
+                      <span class="section--bloglcfeed--item--upper block overflow--visible" style="padding:40px 40px 0;">
+                        <span class="section--bloglcfeed--item--upper--inner first--hard--top last--hard--bottom">
+                          <h3 class="h4">
+                            {{ item.name }}
+                          </h3>
+                          <p class="block">{{ item.post_summary|striptags|truncatehtml(descriptionCharacterLimit, '...' , false) }}</p>
+                        </span>
+                      </span>
+                      <span class="section--bloglcfeed--item--lower" style="padding:40px 40px 20px 40px;">
+                        <span class="btn btn--simple block">
+                          Read More
+                        </span>
+                      </span>
+                    </span>
+                    <span class="card--tags">
+                      {{ snippets.tagWithIcon('article','Article') }}
+                    </span>
+                  </span>
+                </span>
+              </a>
+            </div>
+            {% endfor %}
+
+            {# END: Blog Feed #}
+            {% elif module.feed_type == "learning-center" %}
+            {# START: Learning Center Feed #}
+
+            {% set filterQuery = "" %}
+
+            {% if module.learning_center_feed.filters|length > 0 %}
+              {% set dbData = hubdb_table(module.learning_center_feed.learning_center_hubdb_table) %}
+              {% set dbColumnData = dbData["columns"] %}
+              {% set filterQueryArr = [] %}
+              {% for filterItem in module.learning_center_feed.filters %}
+                {% set columnData = dbColumnData|selectattr("name","equalto",filterItem.column_name|trim) %}
+                {% if columnData %}
+                  {% set columnData = columnData[0] %}
+                  {% set valueIsCommaSeparated = filterItem.filter_option_name_value|split(',') %}
+                  {% set filterQueryArr2 = filterQueryArr.append( filterItem.column_name|trim + ( columnData.type == 'MULTISELECT' ? "__contains" : (valueIsCommaSeparated|length > 1 ? "__in" : '' ) ) + "=" + filterItem.filter_option_name_value|trim|urlencode ) %}
+                {% endif %}
+              {% endfor %}
+              {% if filterQueryArr|length > 0 %}
+                {% set filterQuery = "&"+filterQueryArr|join("&") %}
+              {% endif %}
+            {% endif %}
+
+            {% if module.learning_center_feed.learning_center_feed_type == "recentall" %}
+            {% set dbQuery = "&orderBy=-published_date&limit=3"+filterQuery %}
+            {% set lcData = hubdb_table_rows(module.learning_center_feed.learning_center_hubdb_table, dbQuery) %}
+            {% else %}{# Default: Popular #}
+            {% set dbQuery = "&orderBy=popularity&orderBy=resource_title&limit=3"+filterQuery %}
+            {% set lcData = hubdb_table_rows(module.learning_center_feed.learning_center_hubdb_table, dbQuery) %}
+            {% endif %}
+
+            {% for item in lcData %}
+            <div class="grid__item {{ animationClasses }} one-third tablet-one-half palm-one-whole hard text--left">
+              <a href="{{ item.resource_link }}" title="{{ item.resource_title|escape }}" class="no--underline color--inherit" style="height:100%">
+                <span class="section--bloglcfeed--item--inner">
+                  <span class="section--bloglcfeed--item--body overflow--hidden first--hard--top last--hard--bottom text--{{ module.layout_controls.feed_content_alignment }} palm-text--{{ module.layout_controls.feed_content_alignment_mobile }} border-radius box-shadow box--hover default background--white">
+                    <span role="img" aria-label="{{ item.resource_image_alt_text }}" class="block relative {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.resource_image.url }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? 'background-image:url(\'{{ item.resource_image.url }}\');' : '' }}background-repeat:no-repeat;background-position:center center;background-size:cover;">
+                      {{ snippets.aspectSpacer(module.layout_controls.featured_image_aspect_ratio) }}
+                    </span>
+                    <span class="section--bloglcfeed--item--body--wrapper">
+                      <span class="section--bloglcfeed--item--upper block overflow--visible" style="padding:40px 40px 0;">
+                        <span class="section--bloglcfeed--item--upper--inner first--hard--top last--hard--bottom">
+                          <h3 class="h4">
+                            {{ item.resource_title }}
+                          </h3>
+                          <p class="block">{{ item.description|striptags|truncatehtml(descriptionCharacterLimit, '...', false) }}</p>
+                        </span>
+                      </span>
+                      <span class="section--bloglcfeed--item--lower" style="{% if item.resource_type|length > 0 %}padding:40px 40px 20px 40px{% else %}padding:40px;{% endif %}">
+                        <span class="btn btn--simple block">
+                          {{ item.resource_link_text }}
+                        </span>
+                      </span>
+                    </span>
+                    {% if item.resource_type|length > 0 %}
+                    <span class="card--tags">
+                      {% for type in item.resource_type %}
+                        {% if loop.index < 4 %}
+                        {% set resourceType = type.label|lower|replace(' ','') %}
+                        {{ snippets.tagWithIcon(resourceType, type.label) }}
+                        {% endif %}
+                      {% endfor %}
+                    </span>
+                    {% endif %}
+                  </span>
+                </span>
+              </a>
+            </div>
+            {% endfor %}
+
+            {# END: Learning Center Feed #}
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

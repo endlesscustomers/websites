@@ -1,0 +1,139 @@
+{{ require_css( get_asset_url("../Testimonial Callout.css"), { async: true } ) }}
+
+{#####################################################
+  MARK: Map Module Controls -> Variables
+#####################################################}
+{% set section_controls = module.section_controls %}
+{% set layout_controls  = module.layout_controls %}
+{% set callout_width    = layout_controls.callout_width %}
+{% set callout_position = layout_controls.callout_position %}
+{% set testimonial      = module.testimonial_callout %}
+
+{#####################################################
+  MARK: Macros
+#####################################################}
+{% macro render_section_shell(section_slug, module) -%}
+  <div {{ 'id="' ~ section_controls.anchor_id|trim ~ '"' if section_controls.anchor_id }} class="section section--{{ section_slug }} relative overflow--hidden {{ snippets.deviceVisibility(section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro render_spacer_classes() -%}
+  {% set spacer_map = {
+    'four-twelfths':  'eight-twelfths',
+    'five-twelfths':  'seven-twelfths',
+    'six-twelfths':   'six-twelfths',
+    'seven-twelfths': 'five-twelfths',
+    'eight-twelfths': 'four-twelfths',
+    'nine-twelfths':  'three-twelfths'
+  } %}
+  {{ spacer_map[callout_width]|trim }}
+{%- endmacro %}
+
+{% macro render_testimonial_byline() -%}
+  {% set has_cta = (
+    (testimonial.cta.cta_type == 'cta' and testimonial.cta.cta) or
+    (testimonial.cta.cta_type == 'link' and testimonial.cta.cta_hyperlink.href and testimonial.cta.cta_button_text) or
+    (testimonial.cta.cta_type == 'anchor' and testimonial.cta.cta_section_anchor_id and testimonial.cta.cta_button_text)
+  ) %}
+  {% set has_attribution = testimonial.testimonial_name_of_person or testimonial.testimonial_title_of_person %}
+  {% set has_image = testimonial.testimonial_image.src %}
+  {% set has_source = has_attribution or has_cta %}
+  {% set show_byline = has_image or has_source %}
+
+  {% if show_byline %}
+    <div class="section--testimonialcallout--byline flexgrid valign--middle justify--left {% if has_image %}text--left{% else %}text--center{% endif %} palm-text--center align--start palm-justify--center palm-direction--column">
+      {% if has_image %}
+        <div class="section--testimonialcallout--image--container">
+          <div class="section--testimonialcallout--image">
+            <img
+              loading = "{{ 'lazy' if section_controls.lazy_load_images else 'eager' }}"
+              src     = "{{ testimonial.testimonial_image.src }}"
+              width   = ""
+              height  = ""
+              alt     = "{{ testimonial.testimonial_image.alt }}"
+              style   = "{{-
+                'object-fit:cover;' ~
+                'object-position:center;' ~
+                'width:100%;' ~
+                'height:100%;' ~
+                'aspect-ratio:1/1'
+              -}}"
+            />
+          </div>
+        </div>
+      {% endif %}
+      {% if has_source %}
+        <div class="section--testimonialcallout--source">
+          {% if has_attribution %}
+            <p class="hard--ends">
+              {% if testimonial.testimonial_name_of_person %}
+                <span class="block bold">
+                  {{ testimonial.testimonial_name_of_person }}
+                </span>
+              {% endif %}
+              {% if testimonial.testimonial_title_of_person %}
+                <span>
+                  {{ testimonial.testimonial_title_of_person }}
+                </span>
+              {% endif %}
+            </p>
+          {% endif %}
+          {% if has_cta %}
+            <p style="margin-top:8px!important;" class="hard--ends all--btn all--btn--simple">
+              {% if testimonial.cta.cta_type == "cta" %}
+                {{ cta(testimonial.cta.cta) }}
+              {% elif (testimonial.cta.cta_type == "link") or (testimonial.cta.cta_type == "anchor") %}
+                <a role="button" title="{% if testimonial.cta_title_attribute %}{{ testimonial.cta_title_attribute }}{% else %}{{ testimonial.cta.cta_button_text }}{% endif %}" class="btn btn--simple " href="{% if testimonial.cta.cta_type == 'anchor' %}#{{ testimonial.cta.cta_section_anchor_id|replace('#','') }}{% elif testimonial.cta.cta_type == 'modal' %}{{ testimonial.cta.cta_url_of_iframe_embeddable_file.href }}{% else %}{{ testimonial.cta.cta_hyperlink.href }}{% endif %}" {% if (testimonial.cta.cta_type == "link")&&(testimonial.cta.cta_open_in_new_tab) %}target="_blank"{% endif %} {% if (testimonial.cta.cta_type == "link")&&(testimonial.cta.cta_link_type_no_follow) %}rel="noopener"{% endif %}>
+                  {{ testimonial.cta.cta_button_text }}
+                </a>
+              {% endif %}
+            </p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{%- endmacro %}
+
+
+{#####################################################
+  Trying to remove cognitive load by using a wrapping
+  macro that removes all the default section clutter
+#####################################################}
+{% call render_section_shell('testimonialcallout', module) -%}
+  <div class="grid hard--ends">
+    <div class="grid__item one-whole hard text--center">
+      <div class="flexgrid justify--center portable-justify--center {{ 'row--reverse' if 'right' == callout_position }}">
+
+        <div class="grid__item short {{ callout_width }} tablet-ten-twelfths palm-one-whole">
+          <div class="callout--wrapper first--hard--top last--hard--bottom background--white border-radius tall padding--tall text--left palm-text--center">
+            {{ testimonial.testimonial_quote_content }}
+            {{ render_testimonial_byline() }}
+          </div>
+        </div>
+
+        <div class="grid__item hard--ends {{ render_spacer_classes()|trim }} portable-one-whole">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endcall %}

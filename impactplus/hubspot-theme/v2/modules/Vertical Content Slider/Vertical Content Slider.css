@@ -1,0 +1,54 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{% call mediaQuery(">tablet") %}
+  .section--verticalcontentslider--row h4 {
+    {{ transition("all .25s ease-in-out") }}
+  }
+  {# .section--verticalcontentslider--row.active--list--item h3 {
+    color: {{ color('primary') }};
+  }
+  .section--verticalcontentslider--scrollitem--outer {
+    width: 83.33%; 
+  } #}
+  .section--verticalcontentslider--row.active--list--item .active--state--icon {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+  }
+  {% endcall %}
+  
+  .section--verticalcontentslider--row {
+    display:block;
+    width:100%;
+    border-bottom-color: {{ color('grey') }};
+  }
+  .section--verticalcontentslider--row--inner {
+    display:block;
+    width:100%;
+    text-decoration:none; 
+  }
+  .section--verticalcontentslider--row--content {
+    display:block;
+    flex:1;
+  }
+  .section--verticalcontentslider--row--content h3+p {
+    margin-top:-20px;
+  }

@@ -1,0 +1,394 @@
+[ {
+  "id" : "6dfdd666-d562-6a8f-e62c-b665667ee5fc",
+  "name" : "footer_logo",
+  "label" : "Footer: Logo",
+  "required" : false,
+  "locked" : true,
+  "responsive" : true,
+  "resizable" : true,
+  "show_loading" : false,
+  "type" : "image",
+  "display_width" : null,
+  "default" : {
+    "size_type" : "exact",
+    "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/Black%20Logo%20-%20Full/IMPACT-logo--Black-contained.svg",
+    "alt" : "IMPACT-logo--Black-contained",
+    "loading" : "lazy",
+    "width" : 482,
+    "height" : 150,
+    "max_width" : 479,
+    "max_height" : 149
+  }
+}, {
+  "id" : "40044793-a030-b1b7-3bee-661ea917cba6",
+  "name" : "add_footer_form",
+  "label" : "Add Footer Form?",
+  "required" : false,
+  "locked" : true,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "36d7e8b9-e76c-7327-6eb1-56e9a4d9e282",
+  "name" : "form",
+  "label" : "Footer Form",
+  "required" : false,
+  "locked" : true,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "add_footer_form",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "eb37a245-aff2-3ec1-ffb7-8a2d2ad1ad88",
+    "name" : "form_header",
+    "label" : "Form: Header/Subheader",
+    "required" : true,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h4><span>Never miss an update from the Endless Customers Podcast</span></h4>\n<p><span>Each week have the latest episode delivered directly to your inbox with the latest insights, tactics, and success stories.</span></p>"
+  }, {
+    "id" : "49538c61-9f9c-c744-3f2b-ba189dd52ffc",
+    "name" : "footer_form",
+    "label" : "Footer: Form",
+    "required" : true,
+    "locked" : false,
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "b6937eab-0053-4beb-b0e0-e9478bb2f0fa",
+      "response_type" : "inline",
+      "message" : "<p style=\"text-align: center;\">Thanks! Stay tuned for the latest episodes.</p>",
+      "gotowebinar_webinar_key" : null,
+      "webinar_id" : null,
+      "webinar_source" : null,
+      "form_type" : "HUBSPOT"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "form_header" : "<h4><span>Never miss an update from the Endless Customers Podcast</span></h4>\n<p><span>Each week have the latest episode delivered directly to your inbox with the latest insights, tactics, and success stories.</span></p>",
+    "footer_form" : {
+      "form_id" : "b6937eab-0053-4beb-b0e0-e9478bb2f0fa",
+      "response_type" : "inline",
+      "message" : "<p style=\"text-align: center;\">Thanks! Stay tuned for the latest episodes.</p>",
+      "gotowebinar_webinar_key" : null,
+      "webinar_id" : null,
+      "webinar_source" : null,
+      "form_type" : "HUBSPOT"
+    }
+  }
+}, {
+  "id" : "b1443998-4412-bf9e-d8d9-b766e55a0ac9",
+  "name" : "footer_column_blocks",
+  "label" : "Footer Columns",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "64f27c5d-2535-beb7-36d3-237ce80a2eac",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "64f27c5d-2535-beb7-36d3-237ce80a2eac",
+    "name" : "internal_column_name",
+    "label" : "Internal Column Name",
+    "inline_help_text" : "Internal name for the column group. This is used for labeling convince.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Learning Center and Services Menus"
+  }, {
+    "id" : "6178282c-90f0-3e7d-5d97-4c3573a76064",
+    "name" : "footer_sections",
+    "label" : "Footer Sections",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : "96061ce9-92cc-7824-15da-b1637626a34e",
+      "default" : null
+    },
+    "children" : [ {
+      "id" : "6e992a31-ae11-8dfc-df5b-dba5cef38152",
+      "name" : "menu_item_type",
+      "label" : "Menu Item Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "footer-col", "Footer Column" ], [ "app", "App Buttons" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "footer-col"
+    }, {
+      "id" : "96061ce9-92cc-7824-15da-b1637626a34e",
+      "name" : "menu_header",
+      "label" : "Menu Header",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Learning Center"
+    }, {
+      "id" : "5f58d942-beea-6e7d-9662-b705f0a433ab",
+      "name" : "header_link",
+      "label" : "Header Link",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "6e992a31-ae11-8dfc-df5b-dba5cef38152",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "footer-col",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "11ea4188-1873-314d-5000-d705b753862f",
+        "name" : "add_a_link_to_the_header",
+        "label" : "Add a link to the header?",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "c7142389-ad23-4a6f-8842-f0b58e2ca2a2",
+        "name" : "optional_menu_header_link",
+        "label" : "Menu Header Link",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "11ea4188-1873-314d-5000-d705b753862f",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "add_a_link_to_the_header" : false,
+        "optional_menu_header_link" : {
+          "url" : {
+            "content_id" : null,
+            "type" : "EXTERNAL",
+            "href" : ""
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }
+    }, {
+      "id" : "a40845b7-7e36-5982-2b39-d950ada289ad",
+      "name" : "menu_items",
+      "label" : "Menu Items",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "6e992a31-ae11-8dfc-df5b-dba5cef38152",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "footer-col",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "simplemenu",
+      "display_width" : null,
+      "default" : [ ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+}, {
+  "id" : "b42dc80b-8b1a-c505-3239-85f4e8fbea8c",
+  "name" : "social_profiles_background_circle_size",
+  "label" : "Social Profiles: Background Circle Size",
+  "required" : false,
+  "locked" : true,
+  "display" : "text",
+  "step" : 1,
+  "suffix" : "px",
+  "type" : "number",
+  "display_width" : null,
+  "default" : 32
+}, {
+  "id" : "42b158c0-37e5-ffbb-9935-2114970812b4",
+  "name" : "social_profile",
+  "label" : "Social Profiles",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "1385b640-1294-2f09-f471-790df9bfca6b",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "cb608a70-a20f-131a-f518-e79dd5056385",
+    "name" : "social_custom_icon",
+    "label" : "Social: Icon",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null,
+      "loading" : "lazy"
+    }
+  }, {
+    "id" : "de173118-ff11-fbcf-42ce-5ec3fa2cd7dd",
+    "name" : "social_profile_link",
+    "label" : "Social: URL Link",
+    "required" : true,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.facebook.com",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+}, {
+  "id" : "76896a38-f8dc-1d10-d757-ca417761a58b",
+  "name" : "badges",
+  "label" : "Badges",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "3e41f242-c045-fcc1-76c4-6eb4ae46f360",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "bf7ad536-0369-a619-707f-4c6c3b72c7e2",
+    "name" : "badge_color_choice",
+    "label" : "Badge: Color Choice",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "unset", "Full Color" ], [ "grayscale(100%)", "Greyscale" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "unset"
+  }, {
+    "id" : "3e41f242-c045-fcc1-76c4-6eb4ae46f360",
+    "name" : "badge_custom_icon",
+    "label" : "Badge: Image",
+    "required" : true,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "",
+      "alt" : null,
+      "loading" : "lazy"
+    }
+  }, {
+    "id" : "1ea08599-594c-d9d6-2353-d0d863a75c66",
+    "name" : "badge_profile_link",
+    "label" : "Badge: URL Link [Optional]",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+}, {
+  "id" : "fd7b85ec-d4fc-b0c3-9759-8c158f5d7645",
+  "name" : "privacy_menu",
+  "label" : "Privacy Menu",
+  "required" : false,
+  "locked" : true,
+  "type" : "simplemenu",
+  "display_width" : null,
+  "default" : [ ]
+} ]

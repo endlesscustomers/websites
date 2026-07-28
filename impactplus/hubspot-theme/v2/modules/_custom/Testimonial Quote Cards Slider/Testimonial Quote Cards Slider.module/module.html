@@ -1,0 +1,456 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Testimonial Quote Cards Slider.css"), { async: true } ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":  1,
+  "one-half":   2,
+  "one-third":  3,
+  "one-fourth": 4,
+  "one-fifth":  5,
+  "one-sixth":  6
+} %}
+
+{% set columnWidths = {
+  "desk":   columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":    columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet": columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":   columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{% if module.layout_controls.cards_background_color.cards_background_color == "custom" %}
+  {% set backgroundColor = module.layout_controls.cards_background_color.cards_custom_background_color.color %}
+  {% set backgroundOpacity = module.layout_controls.cards_background_color.cards_custom_background_color.opacity|int/100 %}
+  {% set backgroundColorRgba = "rgba("+backgroundColor|convert_rgb+", "+backgroundOpacity+")" %}
+{% else %}
+  {% set backgroundColor = functions.color(module.layout_controls.cards_background_color.cards_background_color) %}
+  {% set backgroundOpacity = 1 %}
+  {% set backgroundColorRgba = "rgba("+backgroundColor|convert_rgb+", "+backgroundOpacity+")" %}
+{% endif %}
+
+{% if module.layout_controls.cards_border_color.cards_border_color == "custom" %}
+  {% set borderColor = module.layout_controls.cards_border_color.cards_custom_border_color.color %}
+  {% set borderOpacity = module.layout_controls.cards_border_color.cards_custom_border_color.opacity|int/100 %}
+  {% set borderColorRgba = "rgba("+borderColor|convert_rgb+", "+borderOpacity+")" %}
+{% else %}
+  {% set borderColor = functions.color(module.layout_controls.cards_border_color.cards_border_color) %}
+  {% set borderOpacity = 1 %}
+  {% set borderColorRgba = "rgba("+borderColor|convert_rgb+", "+borderOpacity+")" %}
+{% endif %}
+
+{% set borderWidth = module.layout_controls.cards_border_width %}
+{% if module.layout_controls.cards_add_border_radius_around_cards %}
+  {% if module.layout_controls.cards_border_radius.cards_border_radius_type == "custom" %}
+    {% set borderRadius = module.layout_controls.cards_border_radius.cards_custom_border_radius %}
+    {% set borderRadiusClass = "border-radius--"+borderRadius %}
+  {% else %}
+    {% set borderRadiusClass = "border-radius" %}
+  {% endif %}
+{% else %}
+  {% set borderRadiusClass = "" %}
+{% endif %}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+      .section--testimonialquotecardsslider--card.section--testimonialquotecardsslider--card--bullet-custom ul{
+        list-style: none;
+        padding-left: 0px;
+        margin-top: -10px;
+      }
+
+      .section--testimonialquotecardsslider--card.section--testimonialquotecardsslider--card--bullet-custom ul li{
+        padding-left: 28px;
+        position: relative;
+      }
+
+      .section--testimonialquotecardsslider--card.section--testimonialquotecardsslider--card--bullet-custom ul li:before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 8px;
+      }
+
+      .section--testimonialquotecardsslider--card.section--testimonialquotecardsslider--card--bullet-custom ul li > p {
+        margin-bottom: 16px !important;
+        margin-top: 0px;
+      }
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{% set image_type = module.layout_controls.cards_image_type %}
+
+<div {{ 'id="' ~ module.section_controls.anchor_id|trim  ~ '"' if module.section_controls.anchor_id }} class="section section--testimonialquotecardsslider {{ 'section--testimonialquotecardsslider--equalizebuttons' if module.layout_controls.cards_horizontally_align_buttons }} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3 section--testimonialquotecardsslider--outer">
+    <div class="section--testimonialquotecardsslider--inner">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+      </div>
+
+      {% if module.header || module.content || module.preheader %}
+        <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+          <div class="section--testimonialquotecardsslider-header section--testimonialquotecardsslider-header--nav-anchor grid__item {{ module.layout_controls.header_width }} tablet-ten-twelfths palm-one-whole hard--ends {{ module.layout_controls.header_margin_bottom }} first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+            {% if module.preheader %}
+              <span class="h6 preheader">
+                {{ module.preheader }}
+              </span>
+            {% endif %}
+            {% if module.header %}
+              <h2>
+                {{ module.header }}
+              </h2>
+            {% endif %}
+            {{ module.content }}
+            <div class="section--testimonialquotecardsslider--nav-slot" data-carousel-nav-slot></div>
+          </div>
+        </div>
+      {% else %}
+        <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item {{ module.layout_controls.header_width }} tablet-ten-twelfths palm-one-whole hard--ends {{ module.layout_controls.header_margin_bottom }} hard--ends section--testimonialquotecardsslider--nav-slot--standalone">
+            <div class="section--testimonialquotecardsslider--nav-slot" data-carousel-nav-slot></div>
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="grid relative hard--ends {{ 'hard--sides' if module.layout_controls.cards_width == 'wide' }} {{ module.layout_controls.cards_text_color_override }} overflow--visible">
+        <div class="grid__item {{ 'one-whole' if 'wide' == module.layout_controls.cards_width else module.layout_controls.cards_width ~ ' tablet-ten-twelfths palm-one-whole' }} hard--ends text--center overflow--visible">
+          <div class="section--testimonialquotecardsslider--cards--wrapper">
+
+            {% set animationClasses = '' %}
+            {% if module.layout_controls.enable_animation %}
+              {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up animate--fade-delay--{{ loop.index }}' %}
+            {% endif %}
+
+            {% for item in module.cards_content %}
+              {% set card_has_link_cta =
+                ((item.cta.cta_type == "link") and (item.cta.cta_hyperlink.href) and (item.cta.cta_button_text)) or
+                ((item.cta.cta_type == "anchor") and (item.cta.cta_section_anchor_id) and (item.cta.cta_button_text))
+              %}
+              {% set card_has_video_cta =
+                (item.cta.cta_type == "video") and (
+                  ((item.cta.video.video_type == "modal") and (item.cta.video.video_url_of_iframe_embeddable_video_file.href)) or
+                  ((item.cta.video.video_type == "hubspot") and (item.cta.video.video_hubspot_video.player_id)) or
+                  ((item.cta.video.video_type == "vidyard") and (item.cta.video.vidyard_video_uuid))
+                )
+              %}
+              {% set card_has_video_play_icon = ((item.cta.cta_type == "video") and not item.cta.video.hide_video_play_icon) %}
+
+              {% require_css %}
+                <style>
+                  {% scope_css %}
+                    .section--testimonialquotecardsslider--card.section--testimonialquotecardsslider--card--bullet-custom.section--testimonialquotecardsslider--card--{{ loop.index }} ul li:before{
+                      background-image: url({{ item.card_settings.card_bullet_icon.src }});
+                      width:            {{ item.card_settings.card_bullet_icon.width|escape_attr }}px;
+                      height:           {{ item.card_settings.card_bullet_icon.height|escape_attr }}px;
+                      background-size:  {{ item.card_settings.card_bullet_icon.width|escape_attr }}px {{ item.card_settings.card_bullet_icon.height|escape_attr }}px;
+                    }
+                    {% if (not item.quote) and (not (item.attribution_name or item.attribution_title or item.attribution_company_name)) and ('none' != image_type) %}
+                      .section--testimonialquotecardsslider--card--{{ loop.index }} .section--testimonialquotecardsslider--card--body--content {
+                        flex: 1;
+                        display: flex !important;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                      }
+                    {% endif %}
+                  {% end_scope_css %}
+                </style>
+              {% end_require_css %}
+
+              <div class="section--testimonialquotecardsslider--card section--testimonialquotecardsslider--card--{{ name }} section--testimonialquotecardsslider--card--{{ loop.index }} {% if item.card_settings.card_bullet_icon|length > 0 %}section--testimonialquotecardsslider--card--bullet-custom{% endif %} f-carousel__slide {{ animationClasses }} relative grid__item {{ module.layout_controls.number_of_columns_desktop }} {{ module.layout_controls.number_of_columns_laptop }} {{ module.layout_controls.number_of_columns_tablet }} {{ module.layout_controls.number_of_columns_mobile }} hard valign--top relative">
+                {% if card_has_link_cta or card_has_video_cta %}
+                  <a
+                    class  = "section--testimonialquotecardsslider--card--link no--underline border--0 card--hover text--{{ module.layout_controls.cards_content_alignment }} palm-text--{{ module.layout_controls.cards_content_alignment_mobile }}"
+                    title  = "{% if item.cta.cta_type == 'video' %}{% if item.cta.video.video_title_attribute %}{{ item.cta.video.video_title_attribute }}{% else %}{{ item.cta.cta_button_text|default('Watch the Video') }}{% endif %}{% else %}{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}{% endif %}"
+                    {% if item.cta.cta_type == 'video' %}
+                      {% if item.cta.video.video_type == 'modal' %}
+                        data-fancybox
+                        {% if '.mp4' in item.cta.video.video_url_of_iframe_embeddable_video_file.href %}{% else %}data-type="iframe" data-width="936" data-height="636"{% endif %}
+                        href="{{ item.cta.video.video_url_of_iframe_embeddable_video_file.href }}"
+                      {% elif item.cta.video.video_type == 'hubspot' %}
+                        data-src="#{{ name|replace('_','-') }}--embed--{{ loop.index }}"
+                        data-fancybox
+                        href="javascript:;"
+                      {% elif item.cta.video.video_type == 'vidyard' %}
+                        href="javascript:;"
+                        onclick="launchLightbox_{{ name|replace('-','_') }}('{{ item.cta.video.vidyard_video_uuid|trim }}');"
+                      {% endif %}
+                    {% else %}
+                      href="{% if item.cta.cta_type == 'anchor' %}#{{ item.cta.cta_section_anchor_id|replace('#','') }}{% else %}{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}{% endif %}"
+                    {% endif %}
+                    {% if (item.cta.cta_type == "link") and (item.cta.cta_open_in_new_tab) %}
+                      target = "_blank"
+                    {% endif %}
+                  >
+                {% endif %}
+                  <span class="section--testimonialquotecardsslider--card--inner">
+                    <span class="section--testimonialquotecardsslider--card--body overflow--hidden relative first--hard--top last--hard--bottom text--{{ module.layout_controls.cards_content_alignment }} palm-text--{{ module.layout_controls.cards_content_alignment_mobile }} {% if image_type == "native" %}{{ module.layout_controls.cards_inner_padding }}--top{% endif %} {{ borderRadiusClass }} {% if (image_type != 'full') %} border--{{ borderWidth }}{% endif %} {% if module.layout_controls.cards_box_shadow %}box-shadow {% if ((item.cta.cta_type == "cta")&&(item.cta.cta))||((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text))||((item.cta.cta_type == "anchor")&&(item.cta.cta_section_anchor_id)&&(item.cta.cta_button_text)) %}box--hover{% endif %}{% endif %} {{ module.layout_controls.cards_text_color_override }}" style="{% if (image_type != 'full') %}border-color:{{ borderColorRgba }};{% endif %}{% if item.card_settings.card_background_color.background_color == 'default' %}background-color:{{ backgroundColorRgba }};{% endif %}">
+                      {% if item.card_settings.card_background_color.background_color != 'default' %}
+                        <div class="background {{ name }}">
+                          {% set card_background_color_classes = [
+                            'background--layer',
+                            'z-index--' ~ loop.index,
+                          ] %}
+                          {% if item.card_settings.card_background_color.background_color != 'custom' %}
+                            {% do card_background_color_classes.append('background--' ~ item.card_settings.card_background_color.background_color) %}
+                          {% endif %}
+                          {% set card_background_color_styles = [] %}
+                            {% if item.card_settings.card_background_color.background_color == 'custom' %}
+                            {% do card_background_color_styles.append(
+                              'background-color: rgba(' ~
+                                item.card_settings.card_background_color.background_custom_color.color|convert_rgb ~ ',' ~
+                                item.card_settings.card_background_color.background_custom_color.opacity|int / 100 '
+                              )'
+                            ) %}
+                          {% endif %}
+                          <div class="{{ card_background_color_classes|join(' ') }}" style="{{ card_background_color_styles|join(';') }}">
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if 'lottie' == image_type %}
+                        <span class=" z-index--2 inline-block short--top padding--short {{ module.layout_controls.cards_add_drop_shadow_to_native_icons ? 'svg--shadow' : '' }} {{ module.layout_controls.cards_pop_native_image_out_of_cards ? 'negative--tall--top' : '' }} text--{{ module.layout_controls.cards_content_alignment }} palm-text--{{ module.layout_controls.cards_content_alignment_mobile }}">
+                          <lottie-player
+                            autoplay
+                            {% if item.lottie_animation.lottie_embed_loop %}
+                            loop
+                            {% endif %}
+                            id    = "{{ name }}--lottieplayer--{{ loop.index }}"
+                            class = "inline-block"
+                            mode  = "normal"
+                            style = "{{ 'width:' ~ item.lottie_animation.lottie_embed_width ~ 'px;' if item.lottie_animation.lottie_embed_width }} {{ 'height:' ~ item.lottie_animation.lottie_embed_height ~ 'px;' if item.lottie_animation.lottie_embed_height }}"
+                          >
+                          </lottie-player>
+                          {{ require_js( 'https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js', { async: true } ) }}
+                          {% require_js %}
+                            <script>
+                              const {{ name|replace('-','_') }}LottiePlayer{{ loop.index }} = document.querySelector("#{{ name }}--lottieplayer--{{ loop.index }}");
+                              {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.addEventListener("rendered", (e) => {
+                                {% if 'url' == item.lottie_animation.lottie_embed_type %}
+                                  {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load("{{ item.lottie_animation.lottie_embed }}");
+                                {% else %}
+                                  {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load({{ item.lottie_animation.lottie_embed|tojson }});
+                                {% endif %}
+                              });
+                            </script>
+                          {% end_require_js %}
+                        </span>
+                      {% elif 'native' == image_type %}
+                        <span class="block z-index--2 padding--{{ module.layout_controls.cards_inner_padding }}">
+                          <img
+                            {% if module.section_controls.lazy_load_images %}
+                            loading = "lazy"
+                            {% endif %}
+                            class   = "inline-block"
+                            src     = "{{ item.image_native.image.src }}"
+                            alt     = "{{ item.image_native.image.alt }}"
+                            width   = "{% if (item.image_native.image.size_type == 'auto_custom_max') %}{{ item.image_native.image.max_width }}{% elif (item.image_native.image.size_type == 'exact') %}{{ item.image_native.image.width }}{% else %}{{ item.image_native.image.width }}{% endif %}"
+                            height  = "{% if (item.image_native.image.size_type == 'auto_custom_max') %}{{ item.image_native.image.max_height }}{% else %}{{ item.image_native.image.height }}{% endif %}" style = "width:auto;height:{{ module.layout_controls.cards_native_image_icon_max_height }}px;"
+                          />
+                        </span>
+                      {% elif 'logos' == image_type %}
+                        <span class="block z-index--2 {{ module.section_controls.lazy_load_images ? 'lozad' : '' }}" role="img" aria-label="{{ item.image_full.image.alt }}" {{ module.section_controls.lazy_load_images ? 'data-background-image="{{ item.image_full.image.src }}"' : '' }} style="{{ not module.section_controls.lazy_load_images ? "background:url('{{ item.image_full.image.src }}');" : "" }} background-repeat: no-repeat; background-position: center; background-size: {{ '80% auto' if (item.image_full.image.width > item.image_full.image.height * 2) else 'auto 80%' }};">
+                          {{ snippets.aspectSpacer('2x1') }}
+                        </span>
+                      {% elif 'full' == image_type %}
+                        {% set video_aspect_ratio = (module.layout_controls.cards_image_aspect_ratio|default('16x9'))|split('x') %}
+                        <span class="block z-index--2">
+                          <img
+                            loading = "{{ 'lazy' if module.section_controls.lazy_load_images else 'eager' }}"
+                            src     = "{{ item.image_full.image.src }}"
+                            alt     = "{{ item.image_full.image.alt }}"
+                            width   = "{{ item.image_full.image.width }}"
+                            height  = "{{ item.image_full.image.height }}"
+                            style   = "{{-
+                              'object-fit: cover;' ~
+                              'object-position: center;' ~
+                              'aspect-ratio: ' ~ (video_aspect_ratio[0]|default('16')) ~ '/' ~ (video_aspect_ratio[1]|default('9')) ~ ';' ~
+                              'width: 100%;' ~
+                              'height: 100%;'
+                            -}}"
+                          />
+                        </span>
+                      {% endif %}
+
+                      <span class="section--testimonialquotecardsslider--card--body--wrapper relative z-index--3 overflow--visible z-index--2 padding--{{ module.layout_controls.cards_inner_padding }} {% if image_type == "native" %}short--top{% else %}hard--top{% endif %} tall--bottom {% if card_has_video_play_icon %}section--testimonialquotecardsslider--card--body--wrapper--video{% endif %} {% if (image_type == 'full') %}border-radius--{{ borderRadius }} border--{{ borderWidth }}{% endif %}" {% if (image_type == 'full') %}style="border-color:{{ borderColorRgba }};border-top:0px;-webkit-border-top-left-radius: 0px;-webkit-border-top-right-radius: 0px;-moz-border-radius-topleft: 0px;-moz-border-radius-topright: 0px;border-top-left-radius: 0px;border-top-right-radius: 0px;"{% endif %}>
+                        {% if card_has_video_play_icon %}
+                          <span class="inline-block section--testimonialquotecardsslider--card--video-play-icon">
+                            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M16.25 16.25H35.75V39H16.25V16.25Z" fill="white"/>
+                              <path d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9863 27.3782L21.9863 35.5032C21.7232 35.6674 21.4241 35.75 21.125 35.75C20.854 35.75 20.5827 35.6826 20.3371 35.5461C19.8205 35.2597 19.5 34.7161 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.8536 16.1659 21.4852 16.1834 21.9863 16.4968L34.9863 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9863 27.3782Z" fill="#0A6CFF"/>
+                            </svg>
+                          </span>
+                        {% endif %}
+                        <span class="section--testimonialquotecardsslider--card--body--content block first--hard--top last--hard--bottom {{ 'section--testimonialquotecardsslider--card--body--content-panel border-radius background--white tall--top padding--petite' if image_type == 'full' }} {{ 'section--testimonialquotecardsslider--card--body--content-panel--video' if card_has_video_play_icon and image_type == 'full' }}">
+                          {% if item.testimonial_logo.src %}
+                            <span class="block margin--short--bottom">
+                              <img
+                                loading = "{{ 'lazy' if module.section_controls.lazy_load_images else 'eager' }}"
+                                src     = "{{ item.testimonial_logo.src }}"
+                                alt     = "{{ item.testimonial_logo.alt }}"
+                                width   = "{{ item.testimonial_logo.width }}"
+                                height  = "{{ item.testimonial_logo.height }}"
+                                style   = "max-width:100%;height:auto;"
+                              />
+                            </span>
+                          {% endif %}
+                          {% if item.quote %}
+                            <{{ 'h3' if module.header else 'h2' }} class="{{ module.layout_controls.cards_inner_header_size }} {{ 'bold' if module.layout_controls.cards_inner_header_size == 'p' }}">
+                              {{ item.quote }}
+                            </{{ 'h3' if module.header else 'h2' }}>
+                          {% endif %}
+                          {% if item.attribution_name or item.attribution_title %}
+                            <p class="hard--ends font--16" style="color:#4F5465;margin-top:-20px !important;">
+                              <strong>{{ item.attribution_name }}{{ ', ' if item.attribution_title and item.attribution_company_name else '' }}</strong>{{ item.attribution_title }}
+                              {% if item.attribution_company_name %}
+                                <br/>{{ item.attribution_company_name }}
+                              {% endif %}
+                            </p>
+                          {% endif %}
+                        </span>
+                        {% if
+                          (item.cta.cta_type != 'video') and
+                          (
+                            ((item.cta.cta_type == "cta") and (item.cta.cta)) or
+                            ((item.cta.cta_type == "link") and (item.cta.cta_hyperlink.href) and (item.cta.cta_button_text)) or
+                            ((item.cta.cta_type == "anchor") and (item.cta.cta_section_anchor_id) and (item.cta.cta_button_text))
+                          )
+                        %}
+                          <span class="section--testimonialquotecardsslider--card--body--cta">
+                            <span class="p all--btn all--btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} margin--short--top hard--bottom">
+                              {% if item.cta.cta_type == "cta" %}
+                                {{ cta(item.cta.cta) }}
+                              {% elif (item.cta.cta_type == "link") or (item.cta.cta_type == "anchor") %}
+                                <span class="btn btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }}">
+                                  {{ item.cta.cta_button_text }}
+                                </span>
+                              {% endif %}
+                            </span>
+                          </span>
+                        {% endif %}
+                      </span>
+                    </span>
+                  </span>
+                {% if card_has_link_cta or card_has_video_cta %}
+                  </a>
+                {% endif %}
+                {% if (item.cta.cta_type == "video") and (item.cta.video.video_type == "hubspot") %}
+                  {% if item.cta.video.video_hubspot_video.player_id %}
+                    <div id="{{ name|replace('_','-') }}--embed--{{ loop.index }}" class="video--popover all--aspectratio" style="display:none;">
+                      {% set max_width  = item.cta.video.video_hubspot_video.size_type == 'auto_custom_max' ? item.cta.video.video_hubspot_video.max_width : item.cta.video.video_hubspot_video.width %}
+                      {% set max_height = item.cta.video.video_hubspot_video.size_type == 'auto_custom_max' ? item.cta.video.video_hubspot_video.max_height : item.cta.video.video_hubspot_video.height %}
+                      {% set playColor  = item.cta.video.video_hubspot_play_button_color.color %}
+                      {% video_player "embed_player"
+                        placeholder_alt_text = {{ item.cta.video.video_image_alt_tag }}
+                        play_button_color    = {{ playColor }}
+                        player_id            = {{ item.cta.video.video_hubspot_video.player_id }}
+                        type                 = {{ item.cta.video.video_hubspot_video.player_type || 'scriptV4' }}
+                        full_width           = {{ item.cta.video.video_hubspot_video.size_type == 'auto_full_width' }},
+                        conversion_asset     = {{ item.cta.video.video_hubspot_video.conversion_asset|tojson|safe }},
+                        autoplay             = true
+                      %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% if snippets.multiButton(module.cta) %}
+        <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--center">
+            {{ snippets.multiButton(module.cta) }}
+          </div>
+        </div>
+      {% endif %}
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+{{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+<div class="visuallyhidden">
+  {% for item in module.cards_content %}
+    {% if (item.cta.cta_type == "video") and (item.cta.video.video_type == "vidyard") and (item.cta.video.vidyard_video_uuid) %}
+      <img class="vidyard-player-embed" alt="{{ item.cta.video.video_image_alt_tag }}" data-uuid="{{ item.cta.video.vidyard_video_uuid|trim }}" data-type="lightbox" data-v="4">
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% require_js %}
+  <script>
+    function launchLightbox_{{ name|replace('-','_') }}(uuid) {
+      const players = VidyardV4.api.getPlayersByUUID(uuid);
+      if (!players || players.length === 0) return;
+      const player = players[0];
+      player.showLightbox();
+      VidyardV4.api.addReadyListener((data, readyPlayer) => {
+        if (readyPlayer === player) {
+          readyPlayer.play();
+        }
+      }, uuid);
+    }
+  </script>
+{% end_require_js %}
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+
+{% require_js %}
+  <script type="module">
+    let cardCarousels = [];
+
+    function triggerCardSlider() {
+      const cardsWrapper = document.querySelectorAll('.section--testimonialquotecardsslider--cards--wrapper');
+
+      // Initialize new carousels if the window width is less than 768px
+      cardsWrapper.forEach((wrapper) => {
+        const sectionRoot = wrapper.closest('.section--testimonialquotecardsslider');
+        const navSlot = sectionRoot ? sectionRoot.querySelector('[data-carousel-nav-slot]') : null;
+        const options = {
+          infinite: false,
+          Dots: true,
+          center: false,
+          Navigation: {
+            nextTpl: '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.9062 7.02433C14.8467 6.87104 14.7574 6.73096 14.6436 6.61217L8.391 0.367312C8.2744 0.25086 8.13594 0.158485 7.98363 0.0954617C7.83127 0.0324381 7.668 0 7.50312 0C7.17011 0 6.85073 0.132126 6.61523 0.367312C6.49863 0.483764 6.40615 0.622015 6.34304 0.774167C6.27998 0.926319 6.2475 1.08939 6.2475 1.25408C6.2475 1.58668 6.37979 1.90566 6.61523 2.14085L10.742 6.24998H1.25052C0.91886 6.24998 0.600785 6.38158 0.366269 6.61581C0.131751 6.84998 0 7.16769 0 7.49896C0 7.83017 0.131751 8.14788 0.366269 8.38212C0.600785 8.61629 0.91886 8.74788 1.25052 8.74788H10.742L6.61523 12.857C6.49806 12.9732 6.405 13.1113 6.34154 13.2635C6.27802 13.4157 6.24537 13.5789 6.24537 13.7438C6.24537 13.9087 6.27802 14.0719 6.34154 14.2241C6.405 14.3763 6.49806 14.5145 6.61523 14.6305C6.73148 14.7476 6.86983 14.8405 7.02219 14.9039C7.17456 14.9673 7.33806 15 7.50312 15C7.66817 15 7.83167 14.9673 7.98404 14.9039C8.1364 14.8405 8.27475 14.7476 8.391 14.6305L14.6436 8.38569C14.7574 8.2669 14.8467 8.12688 14.9062 7.97354C15.0313 7.66944 15.0313 7.32842 14.9062 7.02433Z" fill="currentColor"/></svg>',
+            prevTpl: '<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.0938078 7.97567C0.153347 8.12896 0.242596 8.26904 0.356424 8.38783L6.609 14.6327C6.7256 14.7491 6.86406 14.8415 7.01637 14.9045C7.16873 14.9676 7.332 15 7.49688 15C7.82989 15 8.14927 14.8679 8.38477 14.6327C8.50137 14.5162 8.59385 14.378 8.65696 14.2258C8.72002 14.0737 8.7525 13.9106 8.7525 13.7459C8.7525 13.4133 8.62021 13.0943 8.38477 12.8591L4.25804 8.75002L13.7495 8.75002C14.0811 8.75002 14.3992 8.61842 14.6337 8.38419C14.8682 8.15002 15 7.83231 15 7.50104C15 7.16983 14.8682 6.85212 14.6337 6.61788C14.3992 6.38371 14.0811 6.25212 13.7495 6.25212L4.25804 6.25211L8.38477 2.14298C8.50194 2.02685 8.595 1.88873 8.65846 1.73654C8.72198 1.58435 8.75464 1.42108 8.75464 1.25619C8.75464 1.09131 8.72198 0.928096 8.65846 0.775903C8.595 0.623711 8.50194 0.485538 8.38477 0.369461C8.26852 0.252404 8.13017 0.159461 7.97781 0.0960573C7.82544 0.0326532 7.66194 -6.41513e-07 7.49689 -6.55943e-07C7.33183 -6.70373e-07 7.16833 0.0326531 7.01596 0.0960572C6.8636 0.159461 6.72525 0.252403 6.609 0.369461L0.356424 6.61431C0.242596 6.73309 0.153347 6.87311 0.0938079 7.02646C-0.0312684 7.33056 -0.0312684 7.67158 0.0938078 7.97567Z" fill="currentColor"/></svg>',
+          },
+        };
+        const cardCarousel = new Carousel(wrapper, options);
+        function bindNavOutsideCarousel(navRoot) {
+          if (!navRoot) return;
+          navRoot.addEventListener('click', function onDetachedNavClick(ev) {
+            const btn = ev.target.closest('button.f-button');
+            if (!btn || btn.disabled || btn.hasAttribute('disabled')) return;
+            ev.preventDefault();
+            ev.stopPropagation();
+            if (btn.classList.contains('is-next')) {
+              cardCarousel.slideNext();
+            } else if (btn.classList.contains('is-prev')) {
+              cardCarousel.slidePrev();
+            }
+          });
+        }
+        function moveNavToHeaderSlot() {
+          const nav = wrapper.querySelector('.f-carousel__nav');
+          if (!navSlot || !nav) return;
+          navSlot.appendChild(nav);
+          bindNavOutsideCarousel(nav);
+        }
+        cardCarousel.on('ready', moveNavToHeaderSlot);
+        cardCarousels.push(cardCarousel);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      triggerCardSlider();
+    });
+  </script>
+{% end_require_js %}

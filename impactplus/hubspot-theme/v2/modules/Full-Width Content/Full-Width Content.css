@@ -1,0 +1,49 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{% set section = 'section--fullwidth' %}
+
+.{{ section }} h2 + .{{ section }}-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.{{ section }} .{{ section }}-content h2,
+.{{ section }} .{{ section }}-content h3,
+.{{ section }} .{{ section }}-content h4,
+.{{ section }} .{{ section }}-content h5,
+.{{ section }} .{{ section }}-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+.{{ section }} .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+@media (max-width: 768px) {
+  .hs-landing-page .gridspacer--top + .{{ section }}--video-true{
+    width: 100%;
+    max-width: 100% !important;
+  }
+
+  .hs-landing-page img.border-radius{
+    border-radius: 0px !important;
+  }
+}

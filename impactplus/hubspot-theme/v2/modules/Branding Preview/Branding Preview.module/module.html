@@ -1,0 +1,154 @@
+<div class="section section--brandingpreview relative overflow--hidden">
+  <div class="grid relative all--text--center hard">
+    <div class="grid__item one-half portable-one-whole hard--sides tall padding--tall relative">
+      <div class="background">
+        <div class="background--layer default z-index--1 opacity--100 background--white" style="top:0%;bottom:0%;right:0%;left:0%;">
+
+        </div>
+      </div>
+      <div class="block relative z-index--4">
+        <div class="block first--hard-top last--hard--bottom">
+          <h1 class="h1xl">Sample H1xl Text</h1>
+          <h1>Sample H1 Text</h1>
+          <h2>Sample H2 Text</h2>
+          <h3>Sample H3 Text</h3>
+          <h4>Sample H4 Text</h4>
+          <h5>Sample H5 Text</h5>
+          <h6>Sample H6 Text</h6>
+          <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. In at arcu dolor. Quisque pulvinar pellentesque laoreet. Nunc vitae consectetur neque. Sed et enim varius, imperdiet felis eu, blandit velit. Cras egestas convallis tellus a sollicitudin. Vivamus pulvinar sem eu nisl molestie, pretium feugiat felis egestas. Donec eget leo at lorem pulvinar maximus.</p>
+          <p>Duis purus lectus, dignissim a tincidunt nec, <a href="#">bibendum</a> at ipsum. Curabitur luctus blandit dapibus. Cras sit amet augue tellus.</p>
+          <ul>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+          </ul>
+          {% for key,value in config.btnColor_List.items() %}
+          <div class="grid__item one-whole hard margin--short--top">
+            <div class="grid__item one-half palm-one-whole hard--ends text--right palm-text--center">
+              <a class="btn btn--{{ key }}">Sample Button</a>
+              <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#000000;" class="text--right palm-text--center">
+                .btn .btn--{{ key }}
+                {% if key == config.color_Secondary %}
+                <br />
+                .btn .btn--secondary
+                {% elif key == config.color_Primary %}
+                <br />
+                .btn .btn--primary
+                {% endif %}
+              </span>
+            </div>
+            <div class="grid__item one-half palm-one-whole hard--ends text--left palm-text--center">
+              <a class="btn btn--transparent--{{ key }}">Sample Button</a>
+              <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#000000;" class="text--left palm-text--center">
+                .btn .btn--transparent--{{ key }}
+                {% if key == config.color_Secondary %}
+                <br />
+                .btn .btn--transparent--secondary
+                {% elif key == config.color_Primary %}
+                <br />
+                .btn .btn--transparent--primary
+                {% endif %}
+              </span>
+            </div>
+          </div>
+          {% endfor %}
+          <p>
+            <a class="btn btn--simple" href="#">Learn More</a>
+            <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#000000;">
+              .btn .btn--simple
+            </span>
+          </p>
+          <p class="margin--short--top" style="font-size:0px;">
+            {% for key,value in config.color_List.items() %}
+            <span class="grid__item two-twelfths palm-one-half hard valign--top">
+              <span class="block background--{{ key }}">
+                {{ snippets.aspectSpacer("1:1") }}
+              </span>
+              <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#000000;text-align:center!important;">
+                {{ key }} {% if key == config.color_Secondary %}/ secondary{% elif key == config.color_Primary %}/ primary{% endif %} ({{ value }})
+              </span>
+            </span>
+            {% endfor %}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="grid__item one-half portable-one-whole hard--sides tall padding--tall relative">
+      <div class="background">
+        <div class="background--layer default z-index--1 opacity--100" style="background-color:#000;top:0%;bottom:0%;right:0%;left:0%;">
+
+        </div>
+      </div>
+      <div class="block relative z-index--4 all--color--white">
+        <div class="block first--hard-top last--hard--bottom">
+          <h1 class="h1xl">Sample H1xl Text</h1>
+          <h1>Sample H1 Text</h1>
+          <h2>Sample H2 Text</h2>
+          <h3>Sample H3 Text</h3>
+          <h4>Sample H4 Text</h4>
+          <h5>Sample H5 Text</h5>
+          <h6>Sample H6 Text</h6>
+          <p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. In at arcu dolor. Quisque pulvinar pellentesque laoreet. Nunc vitae consectetur neque. Sed et enim varius, imperdiet felis eu, blandit velit. Cras egestas convallis tellus a sollicitudin. Vivamus pulvinar sem eu nisl molestie, pretium feugiat felis egestas. Donec eget leo at lorem pulvinar maximus.</p>
+          <p>Duis purus lectus, dignissim a tincidunt nec, <a href="#">bibendum</a> at ipsum. Curabitur luctus blandit dapibus. Cras sit amet augue tellus.</p>
+          <ul>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+            <li>Sample list item</li>
+          </ul>
+          {% for key,value in config.btnColor_List.items() %}
+          <div class="grid__item one-whole hard margin--short--top">
+            <div class="grid__item one-half palm-one-whole hard--ends text--right palm-text--center">
+              <a class="btn btn--{{ key }}">Sample Button</a>
+              <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#ffffff;" class="text--right palm-text--center">
+                .btn .btn--{{ key }}
+                {% if key == config.color_Secondary %}
+                <br />
+                .btn .btn--secondary
+                {% elif key == config.color_Primary %}
+                <br />
+                .btn .btn--primary
+                {% endif %}
+              </span>
+            </div>
+            <div class="grid__item one-half palm-one-whole hard--ends text--left palm-text--center">
+              <a class="btn btn--transparent--{{ key }}">Sample Button</a>
+              <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#ffffff;" class="text--left palm-text--center">
+                .btn .btn--transparent--{{ key }}
+                {% if key == config.color_Secondary %}
+                <br />
+                .btn .btn--transparent--secondary
+                {% elif key == config.color_Primary %}
+                <br />
+                .btn .btn--transparent--primary
+                {% endif %}
+              </span>
+            </div>
+          </div>
+          {% endfor %}
+          <p>
+            <a class="btn btn--simple" href="#">Learn More</a>
+            <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#ffffff;">
+              .btn .btn--simple
+            </span>
+          </p>
+          <p class="margin--short--top" style="font-size:0px;">
+            {% for key,value in config.color_List.items() %}
+            <span class="grid__item two-twelfths palm-one-half hard valign--top">
+              <span class="block background--{{ key }}">
+                {{ snippets.aspectSpacer("1:1") }}
+              </span>
+              <span style="display:block;padding:2px 3px 5px;font-size:10px;color:#ffffff;text-align:center!important;">
+                {{ key }} {% if key == config.color_Secondary %}/ secondary{% elif key == config.color_Primary %}/ primary{% endif %} ({{ value }})
+              </span>
+            </span>
+            {% endfor %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1420 @@
+[ {
+  "id" : "a1b1b064-9903-c5bd-6a95-6ec3e4bbc698",
+  "name" : "hide_section",
+  "label" : "Hide Section?",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "010f968e-9b16-b03a-0d59-d5d913fe96d5",
+  "name" : "section_controls",
+  "label" : "Section Controls",
+  "help_text" : "This group contains modules which affect various parts of this section, such as layout, spacing, or miscellaneous settings specific to this section.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "06b3428d-0244-3077-686b-8ceb97544fcc",
+    "name" : "anchor_id",
+    "label" : "Anchor ID",
+    "help_text" : "Add a unique ID to allow anchor links to this section. Only alphanumeric characters, hyphens, and underscores are permitted. (Example: section-name) When linking to this section in an inline hyperlink, place a hashtag before the anchor ID.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "a8c57824-54f3-9b41-7357-78fbff5fde01",
+    "name" : "device_visibility",
+    "label" : "Device Visibility",
+    "help_text" : "Use this dropdown to determine when to show/hide this section. When only showing this section on certain screen sizes, ensure this section does not contain necessary features like an anchor or design elements that are necessary for the page's appearance such as angles or background gradients. Also ensure any related sections such as dividers are also appropriately configured to only show when needed.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Show at all screen sizes" ], [ "lap-and-up-visuallyhidden", "Hide on Desktop" ], [ "lap-and-up-visuallyhidden tablet-visuallyhidden", "Hide on Desktop and Tablet" ], [ "portable-visuallyhidden", "Hide on Tablet and Mobile" ], [ "palm-visuallyhidden", "Hide on Mobile" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "d5f24b76-559a-5df9-0d22-92880c27c71d",
+    "name" : "text_color_override",
+    "label" : "Text Color Override",
+    "help_text" : "This module will override any text which appears directly on your background. Use this module to make all text white when using a darker background color to ensure the text is legible.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Default" ], [ "all--color--white", "White" ], [ "lap-and-up-all--color--white", "White (Desktop only)" ], [ "lap-and-up-all--color--white tablet-all--color--white", "White (Desktop and Tablet only)" ], [ "portable-all--color--white", "White (Tablet and Mobile only)" ], [ "palm-all--color--white", "White (Mobile only)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "9365dd29-831a-860c-729d-42e199553050",
+    "name" : "content_alignment_desktop",
+    "label" : "Content Alignment (Desktop)",
+    "help_text" : "If using a Video with a Video Label for the Featured Media in this section, please note that the Center alignment option for this input includes the height of the video label which will cause your alignment not to appear centered.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center (Default)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "90848c99-d53e-fcb9-384f-055de7c5506b",
+    "name" : "content_alignment_mobile",
+    "label" : "Content Alignment (Mobile)",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center (Default)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "a8bccb33-84d0-a7ae-e161-fe812b78e8de",
+    "name" : "column_alignment",
+    "label" : "Column Alignment",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "device_visibility" : "default",
+    "text_color_override" : "default",
+    "content_alignment_desktop" : "center",
+    "content_alignment_mobile" : "center",
+    "column_alignment" : "center"
+  }
+}, {
+  "id" : "6bda5543-1d75-2780-3fda-ea2c659ed181",
+  "name" : "spacing",
+  "label" : "Spacing",
+  "help_text" : "Use these modules to control the spacing at the top and bottom of this section. This is especially useful for reducing white space between sections which share the same background color.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+    "name" : "top_padding",
+    "label" : "Top Padding",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "lap-and-up-hard--top tablet-hard--top", "None" ], [ "short--top", "Extra Small" ], [ "tall--top", "Small" ], [ "grande--top", "Medium" ], [ "venti--top", "Large (Default)" ], [ "trenta--top", "Extra Large" ], [ "custom", "Custom" ], [ "x_large", "2x Large" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "trenta--top"
+  }, {
+    "id" : "69afd11f-7070-505e-cc0a-69a6c2276421",
+    "name" : "top_padding_custom",
+    "label" : "Top Padding: Custom Padding Amount",
+    "help_text" : "The significance of this number is determined by the Top Padding: Custom Padding Measurement Unit input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "94c9024f-3f0a-fc38-6aba-6e64bc1b0935",
+    "name" : "top_padding_custom_measurement_unit",
+    "label" : "Top Padding: Custom Padding Measurement Unit",
+    "help_text" : "This input determines the significance of the Top Padding: Custom Padding Amount input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "vw"
+  }, {
+    "id" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+    "name" : "top_padding_mobile",
+    "label" : "Top Padding (Mobile)",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "palm-hard--top", "None" ], [ "palm-short--top", "Extra Small" ], [ "palm-tall--top", "Small (Default)" ], [ "palm-grande--top", "Medium" ], [ "palm-venti--top", "Large" ], [ "palm-trenta--top", "Extra Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "palm-grande--top"
+  }, {
+    "id" : "04f69a1d-5825-e743-42cc-fc33f3d6fbcc",
+    "name" : "top_padding_mobile_custom",
+    "label" : "Top Padding: Custom Padding Amount (Mobile)",
+    "help_text" : "The significance of this number is determined by the Top Padding: Custom Padding Measurement Unit (Mobile) input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "690ee351-05f4-58d3-0b97-d517499251c5",
+    "name" : "top_padding_mobile_custom_measurement_unit",
+    "label" : "Top Padding: Custom Padding Measurement Unit (Mobile)",
+    "help_text" : "This input determines the significance of the Top Padding: Custom Padding Amount (Mobile) input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "px"
+  }, {
+    "id" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+    "name" : "bottom_padding",
+    "label" : "Bottom Padding",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "lap-and-up-hard--bottom tablet-hard--bottom", "None" ], [ "short--bottom", "Extra Small" ], [ "tall--bottom", "Small" ], [ "grande--bottom", "Medium" ], [ "venti--bottom", "Large (Default)" ], [ "trenta--bottom", "Extra Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "venti--bottom"
+  }, {
+    "id" : "0fcbfc06-166f-4ef4-35e8-da4761fe0543",
+    "name" : "bottom_padding_custom",
+    "label" : "Bottom Padding: Custom Padding Amount",
+    "help_text" : "The significance of this number is determined by the Bottom Padding: Custom Padding Measurement Unit input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "e9173a48-901a-b720-d9f0-421f4eae5282",
+    "name" : "bottom_padding_custom_measurement_unit",
+    "label" : "Bottom Padding: Custom Padding Measurement Unit",
+    "help_text" : "This input determines the significance of the Bottom Padding: Custom Padding Amount input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "px"
+  }, {
+    "id" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+    "name" : "bottom_padding_mobile",
+    "label" : "Bottom Padding (Mobile)",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "palm-hard--bottom", "None" ], [ "palm-short--bottom", "Extra Small" ], [ "palm-tall--bottom", "Small" ], [ "palm-grande--bottom", "Medium" ], [ "palm-venti--bottom", "Large (Default)" ], [ "palm-trenta--bottom", "Extra Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "palm-tall--bottom"
+  }, {
+    "id" : "bc95e219-3a18-83ee-16c2-75b6e6bdcfd6",
+    "name" : "bottom_padding_mobile_custom",
+    "label" : "Bottom Padding: Custom Padding Amount (Mobile)",
+    "help_text" : "The significance of this number is determined by the Bottom Padding: Custom Padding Measurement Unit (Mobile) input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "6f103824-1239-6af5-0521-228bc8a8770b",
+    "name" : "bottom_padding_mobile_custom_measurement_unit",
+    "label" : "Bottom Padding: Custom Padding Measurement Unit (Mobile)",
+    "help_text" : "This input determines the significance of the Bottom Padding: Custom Padding Amount (Mobile) input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "vw"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "top_padding" : "trenta--top",
+    "top_padding_custom" : 26,
+    "top_padding_custom_measurement_unit" : "vw",
+    "top_padding_mobile" : "palm-grande--top",
+    "top_padding_mobile_custom" : 26,
+    "top_padding_mobile_custom_measurement_unit" : "px",
+    "bottom_padding" : "venti--bottom",
+    "bottom_padding_custom" : 26,
+    "bottom_padding_custom_measurement_unit" : "px",
+    "bottom_padding_mobile" : "palm-tall--bottom",
+    "bottom_padding_mobile_custom" : 26,
+    "bottom_padding_mobile_custom_measurement_unit" : "vw"
+  }
+}, {
+  "id" : "78f85a3d-876c-71bb-0205-aa71c135f90e",
+  "name" : "background",
+  "label" : "Background Layers",
+  "help_text" : "Add one or more background layers here. Layers are overlaid on top of each other with the first layer in your list being the back and the last layer in your list being the front. Using multiple layers allows you to stack multiple levels of imagery on top of each other such as a background image with an overlay or texture. After changing settings in this module group, click Apply to preview your changes.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+    "name" : "background_type",
+    "label" : "Background: Type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "image", "Image" ], [ "color", "Color" ], [ "gradient", "Gradient" ], [ "video", "Video" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "color"
+  }, {
+    "id" : "ab149ea9-e69b-fa57-06af-91f8e497a1b0",
+    "name" : "device_visibility",
+    "label" : "Device Visibility",
+    "help_text" : "Use this dropdown to determine when to show/hide this background layer. When only showing this layer on certain screen sizes, ensure this layer is not necessary for your content to be legible.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Show at all screen sizes" ], [ "lap-and-up-visuallyhidden", "Hide on Desktop" ], [ "lap-and-up-visuallyhidden tablet-visuallyhidden", "Hide on Desktop and Tablet" ], [ "portable-visuallyhidden", "Hide on Tablet and Mobile" ], [ "palm-visuallyhidden", "Hide on Mobile" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "c0fed185-874a-18e5-7c95-9415b39cb1ad",
+    "name" : "background_accent",
+    "label" : "Background: Accent",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f0382e43-fb9a-5d7c-83d0-1ccfc3054ef1",
+      "name" : "background_accent_pattern",
+      "label" : "Background: Accent Design",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "dotted-square-top-left", "Dotted Square Top Left" ], [ "dotted-square-top-right", "Dotted Square Top Right" ], [ "dotted-pattern-left", "Dotted Pattern Left Side" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "none"
+    }, {
+      "id" : "b17fb012-0f4c-679a-c832-f0dbef6f86d2",
+      "name" : "background_dotted_color_choice",
+      "label" : "Background: Accent Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "off-white", "Off White" ], [ "neutral-500", "Light Grey" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_accent_pattern" : "none"
+    }
+  }, {
+    "id" : "060ae3ea-cde5-bed3-5df7-1584b2450f9b",
+    "name" : "background_opacity",
+    "label" : "Background: Opacity",
+    "help_text" : "Use this module to adjust this background layer's opacity (transparency). 100 is solid and 0 is completely transparent.",
+    "required" : true,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 100
+  }, {
+    "id" : "c2718646-ce77-7c3c-7e8e-d39d8c211ebd",
+    "name" : "background_color",
+    "label" : "Background: Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "color",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+      "name" : "background_color",
+      "label" : "Background: Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "white", "White" ], [ "livid-100", "Off White (Light)" ], [ "neutral-200", "Off White (Dark)" ], [ "neutral-500", "Light Grey" ], [ "neutral-600", "Medium Grey" ], [ "neutral-700", "Dark Grey" ], [ "black", "Black" ], [ "blue", "Blue" ], [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "fa3f8f10-ba2d-a90c-9c54-949a4e2b2728",
+      "name" : "background_custom_color",
+      "label" : "Background: Custom Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "c19118ac-f02d-b44d-0515-f5d0601b35f6",
+    "name" : "background_slant_top_and_bottom",
+    "label" : "Background: Slant Top and Bottom",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "90216235-1b15-56c3-5d4f-6c1944438b92",
+    "name" : "background_gradient",
+    "label" : "Background: Gradient",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "gradient",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+      "name" : "background_gradient_type",
+      "label" : "Background: Gradient Type",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "linear", "Linear" ], [ "radial", "Radial (Inside to Outside)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "linear"
+    }, {
+      "id" : "aecd7c17-ac43-9a98-6cfe-c8e4e938d38e",
+      "name" : "background_linear_gradient_direction",
+      "label" : "Background: Linear Gradient Direction",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "linear",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "180", "Top to Bottom" ], [ "135", "Top-Left to Bottom-Right" ], [ "90", "Left to Right" ], [ "45", "Bottom-Left to Top-Right" ], [ "0", "Bottom to Top" ], [ "315", "Bottom-Right to Top-Left" ], [ "270", "Right to Left" ], [ "225", "Top-Right to Bottom-Left" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "90"
+    }, {
+      "id" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+      "name" : "background_gradient_start_color",
+      "label" : "Background: Gradient Start Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "d234f0ed-247b-24f9-1952-79e98864d481",
+      "name" : "background_gradient_start_color_opacity",
+      "label" : "Background Gradient: Start Color Opacity",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "3ccb88cd-ce15-528b-e3dd-8498590d4df5",
+      "name" : "background_gradient_custom_start_color",
+      "label" : "Background: Gradient Custom Start Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#084975",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "83ced365-4e17-b79b-9fcb-7614f35398e2",
+      "name" : "background_gradient_start_color_position",
+      "label" : "Background Gradient: Start Color Position",
+      "help_text" : "This number determines where the start color will be positioned in the gradient. This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 0 will use your gradient start color settings, whereas anything between this number and the end color will be the transition area between the two colors.  This number must be less than the value of your gradient end color, otherwise it may cause issues with the direction of your gradient. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+      "name" : "background_gradient_end_color",
+      "label" : "Background: Gradient End Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "6ca80323-4a65-5113-0e30-d5ec6bc76c2a",
+      "name" : "background_gradient_end_color_opacity",
+      "label" : "Background Gradient: End Color Opacity",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "e0ad6c5f-f395-4b3d-ba23-b4071d680930",
+      "name" : "background_gradient_custom_end_color",
+      "label" : "Background: Gradient Custom End Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "42fd95d0-1b0d-8086-b6e9-3c7a7ce6ecb0",
+      "name" : "background_gradient_end_color_position",
+      "label" : "Background Gradient: End Color Position",
+      "help_text" : "This number determines where the end color will be positioned in the gradient. This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 100 will use your gradient end color settings, whereas anything between this number and the start color will be the transition area between the two colors.  This number must be greater than the value of your gradient start color, otherwise it may cause issues with the direction of your gradient. (Default: 100)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_gradient_type" : "linear",
+      "background_linear_gradient_direction" : "90",
+      "background_gradient_start_color" : "white",
+      "background_gradient_start_color_opacity" : 100,
+      "background_gradient_custom_start_color" : {
+        "color" : "#084975",
+        "opacity" : 100
+      },
+      "background_gradient_start_color_position" : 0,
+      "background_gradient_end_color" : "white",
+      "background_gradient_end_color_opacity" : 100,
+      "background_gradient_custom_end_color" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      },
+      "background_gradient_end_color_position" : 100
+    }
+  }, {
+    "id" : "01110ebb-d579-d812-ff29-0966ea7c18d2",
+    "name" : "background_image",
+    "label" : "Background: Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "33403847-1e61-ec0a-510a-60f40e191b3c",
+      "name" : "background_image",
+      "label" : "Background: Image",
+      "required" : true,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      }
+    }, {
+      "id" : "5b90124c-5f9a-bb90-d2a0-b9b4a932ddf2",
+      "name" : "background_image_size",
+      "label" : "Background: Image Size",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "background-size--cover", "Scale to Fill" ], [ "background-size--contain", "Scale to Fit" ], [ "background-size--contain--y", "Scale to Fit Height" ], [ "background-size--contain--x", "Scale to Fit Width" ], [ "background-size--stretch", "Stretch to Fill" ], [ "background-size--auto", "Native Size (use image's native height and width)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "background-size--cover"
+    }, {
+      "id" : "3d70cb26-5d51-3e97-deaf-d9037bd23f34",
+      "name" : "background_image_repeat",
+      "label" : "Background: Image Repeat",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "background-repeat", "Repeat" ], [ "background-repeat--y", "Repeat Vertical" ], [ "background-repeat--x", "Repeat Horizontal" ], [ "background-repeat--none", "No Repeat" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "background-repeat--none"
+    }, {
+      "id" : "0940bcef-9bc6-e689-319c-399244d45c71",
+      "name" : "background_image_horizontal_alignment",
+      "label" : "Background: Image Horizontal Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "0%", "Left" ], [ "25%", "Left-Center" ], [ "50%", "Center" ], [ "75%", "Right-Center" ], [ "100%", "Right" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "50%"
+    }, {
+      "id" : "22dc7bb4-74d7-ff27-fad6-430b0820e61d",
+      "name" : "background_image_vertical_alignment",
+      "label" : "Background: Image Vertical Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "0%", "Top" ], [ "25%", "Top-Center" ], [ "50%", "Center" ], [ "75%", "Bottom-Center" ], [ "100%", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "50%"
+    }, {
+      "id" : "8f363a0e-3f3a-6659-b6bd-5103add6620e",
+      "name" : "background_image_parallax_fixed_when_scrolling",
+      "label" : "Background: Image Parallax / Fixed When Scrolling",
+      "help_text" : "Enable this to make your image fixed so it does not scroll with the rest of the page. The image will remain still regardless of where the user is scrolled. This is similar to a parallax effect but unlike a parallax the image will not move at all. This feature is useful when you need to use the same background image in consecutive sections since it will cause the images to line up with each other when they otherwise wouldn’t. When using this effect, pick your image carefully or use an overlay when needed since since the positioning of the image in relation to your content will be highly dependent on screen size and scroll distance.",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      },
+      "background_image_size" : "background-size--cover",
+      "background_image_repeat" : "background-repeat--none",
+      "background_image_horizontal_alignment" : "50%",
+      "background_image_vertical_alignment" : "50%",
+      "background_image_parallax_fixed_when_scrolling" : false
+    }
+  }, {
+    "id" : "7f1e64f9-0ab1-5f1d-4def-7b316d5dc7e4",
+    "name" : "background_video",
+    "label" : "Background: Video",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "video",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "7dc31c6e-af9a-c7db-7184-e06bd7d105f7",
+      "name" : "background_url_of_video_file_mp4",
+      "label" : "Background: URL of Video File (MP4)",
+      "required" : true,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      }
+    }, {
+      "id" : "231d7d69-8c72-3d50-dc8f-bc20088e0d9c",
+      "name" : "background_fallback_background_image",
+      "label" : "Background: Fallback Background Image",
+      "help_text" : "This image will show while the video is still loading or on devices which cannot display the video. For best appearance, this image should be identical to the first frame of your video so it seamlessly transitions once the video begins playing. Set the height and width attributes of this input to the height and width of your video file.",
+      "required" : true,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_url_of_video_file_mp4" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      },
+      "background_fallback_background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      }
+    }
+  }, {
+    "id" : "e2fcaf25-c813-922f-82b8-6d345953c77d",
+    "name" : "background_offset",
+    "label" : "Background: Offset",
+    "help_text" : "These inputs determine how much of the height and width of the section this background should cover. This is useful for when you only want a background layer to cover a certain percentage of the section. If your layer should cover the entire height and width of the section, the value of each of these inputs should be 0.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "27b6bc9c-f3ab-4df3-4adf-a63e55034515",
+      "name" : "background_left_offset_percentage",
+      "label" : "Background: Left Offset Percentage",
+      "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the left edge and 100 being the right edge. Use this input to control the offset from the left edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Right Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "e5083a38-5e2a-ee83-7f40-d8054e8c072d",
+      "name" : "background_right_offset_percentage",
+      "label" : "Background: Right Offset Percentage",
+      "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the right edge and 100 being the left edge. Use this input to control the offset from the right edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Left Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "c9c38c1c-b844-3923-e204-6792d23d4174",
+      "name" : "background_top_offset_percentage",
+      "label" : "Background: Top Offset Percentage",
+      "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the top edge and 100 being the bottom edge. Use this input to control the offset from the top edge of the section or set it to 0 if the background should go all the way to the top edge. This number must be less than 100 minus the value of your Bottom Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "fe177880-4a33-33b7-5ecc-1c9aa4de61d5",
+      "name" : "background_bottom_offset_percentage",
+      "label" : "Background: Bottom Offset Percentage",
+      "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the bottom edge and 100 being the top edge. Use this input to control the offset from the bottom edge of the section or set it to 0 if the background should go all the way to the bottom edge. This number must be less than 100 minus the value of your Top Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_left_offset_percentage" : 0,
+      "background_right_offset_percentage" : 0,
+      "background_top_offset_percentage" : 0,
+      "background_bottom_offset_percentage" : 0
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "background_type" : "color",
+    "device_visibility" : "default",
+    "background_accent" : {
+      "background_accent_pattern" : "none"
+    },
+    "background_opacity" : 100,
+    "background_color" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    },
+    "background_slant_top_and_bottom" : false,
+    "background_gradient" : {
+      "background_gradient_start_color_position" : 0,
+      "background_linear_gradient_direction" : "90",
+      "background_gradient_end_color_position" : 100,
+      "background_gradient_custom_start_color" : {
+        "color" : "#084975",
+        "opacity" : 100
+      },
+      "background_gradient_end_color_opacity" : 100,
+      "background_gradient_type" : "linear",
+      "background_gradient_end_color" : "white",
+      "background_gradient_start_color" : "white",
+      "background_gradient_custom_end_color" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      },
+      "background_gradient_start_color_opacity" : 100
+    },
+    "background_image" : {
+      "background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      },
+      "background_image_vertical_alignment" : "50%",
+      "background_fixed_background_image" : false,
+      "background_image_horizontal_alignment" : "50%",
+      "background_image_size" : "background-size--cover",
+      "background_image_repeat" : "background-repeat--none"
+    },
+    "background_video" : {
+      "background_fixed_background_image" : false,
+      "background_fallback_background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      },
+      "background_url_of_video_file_mp4" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      }
+    },
+    "background_offset" : {
+      "background_left_offset_percentage" : 0,
+      "background_bottom_offset_percentage" : 0,
+      "background_top_offset_percentage" : 0,
+      "background_right_offset_percentage" : 0
+    }
+  } ]
+}, {
+  "id" : "2ac5799a-da5d-4727-fc1f-dfd6ee628670",
+  "name" : "preheader",
+  "label" : "Preheader",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "1f0b3fad-11fd-9ab4-4b4f-9b2b3caac33d",
+  "name" : "header",
+  "label" : "Header & Subheader",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<h1>This is the Header for this Section</h1>\n<p>Every six months, you'll be able to stay up to date on the latest tactics, brush up on the core principles, and connect with other They Ask, You Answer professionals. Don't miss out on the chance to be inspired by what's possible with They Ask, You Answer in your business.</p>"
+}, {
+  "id" : "9eaecaea-e5f9-6c0b-4f1f-92d2e7552ba2",
+  "name" : "section_heading_width",
+  "label" : "Heading Width (Desktop)",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "seven-twelfths", "55%" ], [ "eight-twelfths", "63%" ], [ "nine-twelfths", "72%" ], [ "ten-twelfths", "80%" ], [ "eleven-twelfths", "91%" ], [ "one-whole", "100%" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "eight-twelfths"
+}, {
+  "id" : "35f6c897-4ff3-9153-bdb5-84fa96a8794d",
+  "name" : "scorecard_results_group",
+  "label" : "Scorecard Results Group",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 0,
+    "max" : null,
+    "sorting_label_field" : "90031038-aeba-3986-ad71-ba81b48c79bd",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "90031038-aeba-3986-ad71-ba81b48c79bd",
+    "name" : "score_range_label",
+    "label" : "Score Range: Label",
+    "inline_help_text" : "Used only as a descriptive label for this module",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "0-20"
+  }, {
+    "id" : "84b7025c-2b84-6d1c-cf87-bca8e81b9e62",
+    "name" : "score_min",
+    "label" : "Score Min",
+    "required" : true,
+    "locked" : false,
+    "display" : "text",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 0
+  }, {
+    "id" : "abd50d3f-1c81-cf03-9777-610e9cf41c26",
+    "name" : "score_max",
+    "label" : "Score Max",
+    "required" : true,
+    "locked" : false,
+    "display" : "text",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 10
+  }, {
+    "id" : "dc70a791-2a70-ca93-018d-b08928fe7fa8",
+    "name" : "score_card_ranges",
+    "label" : "Score Card Ranges",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "bucket-1", "0 - 20" ], [ "bucket-2", "21- 40" ], [ "bucket-3", "41- 60" ], [ "bucket-4", "61 - 80" ], [ "bucket-5", "81 - 100" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null
+  }, {
+    "id" : "34ea4920-fb76-8e29-9a10-72661bff5f56",
+    "name" : "score_meaning_content",
+    "label" : "Score Meaning: Content",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><em>Why is this so important? </em>Talking about cost/price builds trust. Many businesses are afraid to say how much working with them costs, fearing it will scare sales away, but frankly, hiding your cost is worse. You could end up wasting valuable time on prospects who can’t afford you, or even lose qualified buyers who can because they didn’t want to have to get on the phone to find out.&nbsp;</p>\n<p>When we write blog articles explaining cost and put pricing pages on our websites, we give serious prospects the honesty and transparency they need to feel comfortable buying. They see we’re not trying to trick anyone into a purchase that isn’t right for them. Not only does this build more trust with potential customers, but talking about cost/price on your website has been proven to drive more qualified traffic and leads. <em>So why wait?</em></p>\n<p><strong>What should you do next?</strong></p>\n<ul>\n<li aria-level=\"1\">Read: <a href=\"https://www.impactplus.com/blog/how-to-write-a-cost-article\"><span>How to write a cost/price article</span></a></li>\n<li aria-level=\"1\">Read: <a href=\"https://www.impactplus.com/blog/why-trust-is-the-true-currency-for-any-business\"><span>Why trust is the true currency for any business</span></a></li>\n<li aria-level=\"1\">Take the Course: <a href=\"https://app.impactplus.com/courses/fundamentals-of-content-management-part-1-how-to-write-the-big-5/introduction-5/31\"><span>How to write the Big 5&nbsp;</span></a></li>\n<li aria-level=\"1\"><a href=\"https://www.impactplus.com/services/schedule-now\"><span>Talk to an advisor</span></a></li>\n</ul>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "score_min" : 0,
+    "score_max" : 10,
+    "score_meaning_content" : "<p><em>Why is this so important? </em>Talking about cost/price builds trust. Many businesses are afraid to say how much working with them costs, fearing it will scare sales away, but frankly, hiding your cost is worse. You could end up wasting valuable time on prospects who can’t afford you, or even lose qualified buyers who can because they didn’t want to have to get on the phone to find out.&nbsp;</p>\n<p>When we write blog articles explaining cost and put pricing pages on our websites, we give serious prospects the honesty and transparency they need to feel comfortable buying. They see we’re not trying to trick anyone into a purchase that isn’t right for them. Not only does this build more trust with potential customers, but talking about cost/price on your website has been proven to drive more qualified traffic and leads. <em>So why wait?</em></p>\n<p><strong>What should you do next?</strong></p>\n<ul>\n<li aria-level=\"1\">Read: <a href=\"https://www.impactplus.com/blog/how-to-write-a-cost-article\"><span>How to write a cost/price article</span></a></li>\n<li aria-level=\"1\">Read: <a href=\"https://www.impactplus.com/blog/why-trust-is-the-true-currency-for-any-business\"><span>Why trust is the true currency for any business</span></a></li>\n<li aria-level=\"1\">Take the Course: <a href=\"https://app.impactplus.com/courses/fundamentals-of-content-management-part-1-how-to-write-the-big-5/introduction-5/31\"><span>How to write the Big 5&nbsp;</span></a></li>\n<li aria-level=\"1\"><a href=\"https://www.impactplus.com/services/schedule-now\"><span>Talk to an advisor</span></a></li>\n</ul>",
+    "score_range_label" : "0-20"
+  } ]
+}, {
+  "id" : "780369fc-b253-7ceb-bb9b-a15c793eb8a7",
+  "name" : "cta",
+  "label" : "CTA ",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : 2,
+    "sorting_label_field" : "d791c5fc-915e-f22b-21ee-00f24ad849f9",
+    "default" : 0
+  },
+  "children" : [ {
+    "id" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+    "name" : "cta_type",
+    "label" : "CTA: Type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ], [ "inline link", "Inline Link" ], [ "anchor", "Scroll to Section" ], [ "popup", "Popup" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "link"
+  }, {
+    "id" : "616999ca-e012-bf99-a71a-0237ee15c7cb",
+    "name" : "cta_button_size",
+    "label" : "CTA Button Size",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Default" ], [ "small", "Small" ], [ "large", "Large" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "large"
+  }, {
+    "id" : "4882e003-4208-0c01-87e0-47db095f4b32",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "orange", "Orange" ], [ "blue-600", "Blue" ], [ "blue-300", "Lightest Grey" ], [ "neutral-300", "Light Grey" ], [ "slate-500", "Dark Grey" ], [ "neutral-700", "Black" ], [ "white", "White" ], [ "gradient", "Gradient" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "blue-600"
+  }, {
+    "id" : "c47ee612-5ad0-6f29-5d38-51e72d9e9092",
+    "name" : "cta_mobile_width",
+    "label" : "CTA: Mobile Width",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "palm--btn-default", "Default" ], [ "palm--btn-max-width", "Full Width" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "palm--btn-default"
+  }, {
+    "id" : "c215c1ac-36c6-a62f-0a8a-f0976f4cb3bf",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "help_text" : "Enable this to use a transparent “ghost” style for your button.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "4882e003-4208-0c01-87e0-47db095f4b32",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "simple",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "d791c5fc-915e-f22b-21ee-00f24ad849f9",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|anchor|popup",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Learn More"
+  }, {
+    "id" : "f7a1f16d-3e85-7c2f-2875-8990a679a24a",
+    "name" : "cta_hyperlink",
+    "label" : "CTA: Hyperlink",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|inline link",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : null,
+      "href" : "https://www.impactbnd.com/",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "e8f6dfd2-097f-9886-bea4-43bbebbf3b57",
+    "name" : "cta_open_in_new_tab",
+    "label" : "CTA: Open in new tab?",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "7342f1c0-b12b-0d62-6fb7-d42e44a5d94e",
+    "name" : "include_arrow",
+    "label" : "CTA: Include Arrow?",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "link|inline link|anchor|popup",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "942efa41-be10-d895-c9c1-b45012ee6e13",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null,
+    "default" : "2ee9c9ce-988e-460e-bce4-b6272251c65b"
+  }, {
+    "id" : "5d675580-daa9-c3a0-8442-a986093311aa",
+    "name" : "cta_section_anchor_id",
+    "label" : "CTA: Section Anchor ID",
+    "help_text" : "Add the anchor ID of a section on this page to link to it. To link to a section on a different page, use the Custom Link option and add the section ID to the end of the URL preceded by a hashtag.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "anchor",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "section-id"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+} ]

@@ -1,0 +1,174 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Scrolling Image Rows.css"), { async: true} ) }}
+
+<style>
+  @media (min-width: 769px){ 
+    .{{ name }}.section--imagescroll .section--imagescroll--slide--img img{
+      max-height: {{ module.layout_controls.max_height_for_slider_desktop }}px;
+    } 
+  }
+  
+  @media (max-width: 768px){
+   .{{ name }}.section--imagescroll .section--imagescroll--slide--img img{
+      max-height: {{ module.layout_controls.max_height_for_slider_mobile }}px;
+    } 
+  }
+</style>
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="{{ name }} section section--imagescroll relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    {% if module.header || module.content || module.preheader %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item one-whole hard--top hard--bottom last--hard--bottom">
+        <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          {% if module.preheader %}
+          <span class="h6 preheader">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="grid__item hard--sides hard--ends hard--bottom margin--petite--bottom {% if module.layout_controls.header_width == 'narrow' %}ten-twelfths tablet-ten-twelfths palm-one-whole{% else %}{{ module.layout_controls.header_width }} tablet-ten-twelfths palm-one-whole{% endif %} first--hard--top last--hard--bottom">
+            <h2>{{ module.header }}</h2>
+          </div>
+          {% endif %}
+          <div class="grid__item hard {{ module.layout_controls.content_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom">
+            {% if module.content %}
+            {{ module.content }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <div class="flexgrid justify--center grid hard--sides hard--ends tall--top {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      {% for slider in module.image_slider %}
+      <div class="topSection--imagescroll--slider section--imagescroll--slider relative">
+        <span class="f-carousel__slide" style="width:100%; {% if loop.length > 1 %}margin-bottom: 10px;{% endif %}" data-direction="{{ slider.scroll_direction }}">
+          {% for sliderImg in slider.image_group %}
+          <div class="section--imagescroll--slide--img">
+            <img class="inline-block" alt="{{ sliderImg.slider_image.alt }}" src="{{ sliderImg.slider_image.src }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} />
+          </div>
+          {% endfor %}
+        </span>
+      </div>
+      {% endfor %}
+
+    </div>
+    {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+      <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+{% require_js %}
+<script>
+  (function () {
+
+    const sliders = document.querySelectorAll('.section--imagescroll--slider');
+    if (!sliders.length) return;
+
+    sliders.forEach(slider => {
+      const track = slider.querySelector('.f-carousel__slide');
+      if (!track) return;
+
+      const directionAttr = (track.dataset.direction || 'left').toLowerCase();
+      const direction = directionAttr === 'right' ? 1 : -1; 
+      // left = -1 (default), right = 1
+
+      let speed = 0.7;
+      let offset = 0;
+      let rafId = null;
+      let isRunning = false;
+
+      function getFirstLogoWidth() {
+        const first = track.firstElementChild;
+        return first ? Math.round(first.getBoundingClientRect().width) : 0;
+      }
+
+      function getLastLogoWidth() {
+        const last = track.lastElementChild;
+        return last ? Math.round(last.getBoundingClientRect().width) : 0;
+      }
+
+      let firstLogoWidth = getFirstLogoWidth();
+      let lastLogoWidth = getLastLogoWidth();
+
+      function tick() {
+
+        offset += speed;
+
+        if (direction === -1) {
+          // LEFT (unchanged logic)
+          if (offset >= firstLogoWidth && firstLogoWidth > 0) {
+            const first = track.firstElementChild;
+            track.appendChild(first);
+            offset -= firstLogoWidth;
+            firstLogoWidth = getFirstLogoWidth();
+          }
+
+        } else {
+          // RIGHT (FIXED LOGIC)
+
+          // If movement would expose empty space on left
+          if (offset >= 0) {
+            const last = track.lastElementChild;
+            const width = getLastLogoWidth();
+
+            // Move BEFORE gap appears
+            track.insertBefore(last, track.firstElementChild);
+
+            // Pull track back by its width instantly
+            offset -= width;
+            lastLogoWidth = getLastLogoWidth();
+          }
+        }
+
+        const translateX = direction === -1
+        ? -Math.round(offset)
+        : Math.round(offset);
+
+        track.style.transform = `translate3d(${translateX}px,0,0)`;
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+
+      function start() {
+        if (isRunning) return;
+        isRunning = true;
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function stop() {
+        isRunning = false;
+        cancelAnimationFrame(rafId);
+      }
+
+      window.addEventListener('resize', () => {
+        stop();
+        offset = 0;
+        track.style.transform = 'translate3d(0,0,0)';
+        firstLogoWidth = getFirstLogoWidth();
+        lastLogoWidth = getLastLogoWidth();
+        start();
+      }, { passive: true });
+
+      start();
+    });
+
+  })();
+</script>
+{% end_require_js %}

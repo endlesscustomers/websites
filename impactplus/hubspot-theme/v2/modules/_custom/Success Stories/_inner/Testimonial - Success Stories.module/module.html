@@ -1,0 +1,89 @@
+<!--
+templateType: section
+label: Testimonial 01 - Sidebar
+isAvailableForNewContent: true
+-->
+
+{% if module.testimonial.testimonial_video_option == "custom" %}
+{% set testmlVideo = module.testimonial.testimonial_vidyard_video_uuid %}
+{% elif item.testimonial_video_option == "hubdb" %}
+{% set testmlVideo = caseStudyOp[0]['vidyard_video_utm'] %}
+{% else %}
+{% set testmlVideo = caseStudyOp[0]['vidyard_video_utm'] %}
+{% endif %}
+
+{% set testimonialItems = [] %}
+
+{% set testimonialItems2 = testimonialItems.append({
+  "quote":module.testimonial.testimonial_quote,
+  "name":module.testimonial.testimonial_name,
+  "company":module.testimonial.testimonial_job_company,
+  "quoterImg": module.testimonial.testimonial_quoter_image,
+  "vidThumb": module.testimonial.testimonial_image,
+  "imgPosition": module.testimonial.testimonial_image_horizontal_position,
+  "vidType":  module.testimonial.testimonial_video_option,
+  "vidUUID":testmlVideo,
+  "videoTimestamp":module.testimonial.video_timestamp
+}) %}
+
+{# ***** Global Macro Snippets ***** #}
+{% import '/impact-agency-services-v3/Global_Snippets_Marcos.html' as snippets %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--ss-sidebar--01 relative agency---lazy--default {{ module.section_controls.device_visibility }}">
+  {% if content.absolute_url is string_containing "https://www.impactplus.com/services/master-module-examples" %}
+  <div class="module-name absolute z-index--10">
+    <p class="hard--ends color--white">Testimonial Single or Slider - Success Stories - IMPACT Grid</p>
+  </div>
+  {% endif %}
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--10">
+    <div class="grid flex flex-justify--center {{ module.spacing.top_padding }} {{ module.spacing.bottom_padding }} {{ module.spacing.top_padding_mobile }} {{ module.spacing.bottom_padding_mobile }} lap-and-up-text--{{ module.section_controls.content_alignment_desktop }} portable-text--{{ module.section_controls.content_alignment_mobile }}">
+      <div class="grid__item one-fourth portable-visuallyhidden"></div>
+      <div class="section--testimonial-sidebar-content-column grid__item nine-twelfths tablet-one-whole portable-one-whole hard--ends relative border-radius--10">
+        <div class="section--testimonial-sidebar-content-column-container overflow--hidden relative flex border-radius--10 all--text--{{ module.block_controls.content_alignment }}">
+
+          {% for item in testimonialItems %}
+
+          <div class="section--testimonial-sidebar-flex flex valign--flex--center background--white overflow--hidden relative width--max" style="min-height: 100%; justify-content: space-between;">
+            <div class="section--testimonial-sidebar-quote-content grid__item eight-twelfths palm-one-whole basic palm-tall padding--short first--hard--top last--hard--bottom palm-hard--sides" style="flex-grow: 1;">
+              <div class="block">
+                <div class="first--hard--top last--hard--bottom all--light">{{ item.quote }}</div>
+                <div class="flex flex-align--center margin--short--top">
+                  {% if module.block_controls.convert_section_to_slider %}
+                  {% else %}
+                  {% if item.quoterImg %}
+                  <img class="section--testimonial-stat-image border-radius--circle lazy" data-src="{{ item.quoterImg['src'] }}" alt="{{ item.name }}" style="height: 48px; width: 48px; border: 1px solid #ADDCFF; padding: 3px; margin-right: 8px;">
+                  {% endif %}
+                  {% endif %}
+                  <div class="section--testimonial-sidebar-quoter-info p p--small hard--ends line-height--small">
+                    <strong class="color--black">{{ item.name }}</strong>, <span class="color--black light">{{ item.company }}</span>
+                  </div>
+                </div>          
+              </div>
+            </div>
+            <div class="section--testimonial-sidebar-image grid__item five-twelfths palm-one-whole hard palm-relative">
+              <div class="section--testimonial-sidebar-image-clip lazy {% if item.vidType == "custom" || item.vidType == "hubdb" %}hover--pointer{% endif %}" data-bg='{{ item.vidThumb['src'] }}' style="background-position: {% if item.imgPosition %}{{ item.imgPosition }}%{% else %}50%{% endif %} 50%; background-repeat: no-repeat; background-size: cover;" {% if item.vidType == "custom" || item.vidType == "hubdb" %}onclick="launchVidLightbox('{{ item.vidUUID }}', '{{ item.videoTimestamp }}');"{% endif %}>
+                {% if item.vidType == "custom" || item.vidType == "hubdb" %}
+                <div class="customVideo--overlay video-standard--wrapper hover--pointer absolute top--0 left--0 right--0 bottom--0 border-radius--10 video--play-pulse-active">
+                  <div class="customVideo--overlay-gradient"></div>
+                  <div class="video--play-caption flex absolute bottom--0 left--0 right--0">
+                    <div class="video--play-pulse--container">
+                      <div class="video--play-pulse"></div>
+                      <img class="video--play-btn--small lazy entered loaded" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Play%20Button%20White%20v2.svg" alt="Video Play">
+                    </div>
+                  </div>
+                </div>
+                {% endif %}
+                <img style="visibility:hidden;" src="{{ item.vidThumb['src'] }}" alt="{{ item.vidThumb['alt'] }}" loading="{{ item.vidThumb['loading'] }}">
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+      </div>
+
+      {{ snippets.gridCustomSpacingNum(name,module.spacing,".grid",".grid") }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1614 @@
+{{ require_css( get_asset_url("../Comparison Table.css"), { async: false } ) }}
+
+{#####################################################
+  MARK: Map Module Controls -> Variables
+#####################################################}
+{% set section_controls       = module.section_controls %}
+{% set layout_controls        = module.layout_controls %}
+{% set header_container_width = layout_controls.header_container_width %}
+{% set table_width            = layout_controls.table.table_width %}
+{% set number_of_columns      = module.table.number_of_columns|trim %}
+
+{% set plan_option_key = {
+  "0":"one",
+  "1":"two",
+  "2":"three",
+  "3":"four",
+  "4":"five",
+  "5":"six",
+  "6":"seven",
+  "7":"eight"
+} %}
+
+{#####################################################
+  MARK: Macros
+#####################################################}
+{% macro render_section_shell(section_slug, additional_section_classes, module) -%}
+  <div {{ 'id="' ~ section_controls.anchor_id|trim ~ '"' if section_controls.anchor_id }} class="section section--{{ section_slug }} {{ name }} {{ additional_section_classes|trim }} relative overflow--hidden {{ snippets.deviceVisibility(section_controls.device_visibility)|trim }}">
+    {{ snippets.background(module.background) }}
+    <div class="block relative z-index--3  section--{{ section_slug }}--outer">
+      <div class="section--{{ section_slug }}--inner">
+        {{ snippets.swoopSpacerTop(module.background) }}
+        <div class="block gridspacer--top {{ snippets.sectionPadding(section_controls.spacing,"top")|trim }}">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+{%- endmacro %}
+
+{% macro render_additional_section_classes(module) -%}
+  {% set section_classes = [] %}
+  {% if (module.table.enable_category_accordion) %}
+    {% do section_classes.append('section--comparisontable--accordions') %}
+  {% endif %}
+  {{ section_classes|join(' ')|trim }}
+{%- endmacro %}
+
+{% macro render_content_widths(control_value) -%}
+  {% set content_widths = [
+    'palm-one-whole',
+    'tablet-ten-twelfths'
+  ] %}
+  {% if 'narrow' == control_value %}
+    {% do content_widths.append('eight-twelfths') %}
+  {% elif 'default' == control_value %}
+    {% do content_widths.append('one-whole') %}
+  {% else %}
+    {% do content_widths.append(control_value) %}
+  {% endif %}
+  {{ content_widths|reverse|join(' ') }}
+{%- endmacro %}
+
+{% macro column_header() -%}
+  {% if column_data.highlight_this_column && column_data.highlight_label_text %}
+    <span class="section--comparisontable--table--highlightlabel border-radius overflow--hidden">
+      <p class="bold hard--ends">
+        {{ column_data.highlight_label_text }}
+      </p>
+    </span>
+  {% endif %}
+  <span class="section--comparisontable--table--label">
+    <h3 class="hard--ends h4"> {{ column_data.column_name }}</h3>
+    <p class="section--comparisontable--table--supporting--text hard--ends">
+      {{ column_data.column_supporting_text }}
+    </p>
+
+    {% set cta_enabled = false %}
+    {% if column_data.cta.cta_type == "cta" and column_data.cta.cta %}
+      {% set cta_enabled = true %}
+    {% elif column_data.cta.cta_type == "link" %}
+      {% set cta_enabled = true %}
+    {% elif column_data.cta.cta_type == "anchor" and column_data.cta.cta_section_anchor_id and column_data.cta.cta_button_text %}
+      {% set cta_enabled = true %}
+    {% endif %}
+
+    {% if cta_enabled %}
+      <span class="section--comparisontable--table--button p all--btn all--btn--{% if column_data.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ column_data.cta.cta_button_color }} hard--ends">
+        {% if  column_data.cta.cta_type == "cta" %}
+          {{ cta(column_data.cta.cta) }}
+        {% elif ( column_data.cta.cta_type == "link")||( column_data.cta.cta_type == "anchor") %}
+          <a title="{% if column_data.cta.cta_title_attribute %}{{ column_data.cta.cta_title_attribute }}{% else %}{{ column_data.cta.cta_button_text }}{% endif %}" class="btn btn--{% if column_data.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ column_data.cta.cta_button_color }}" href="{% if column_data.cta.cta_type == 'anchor' %}#{{ column_data.cta.cta_section_anchor_id|replace('#','') }}{% else %}{% if column_data.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ column_data.cta.cta_hyperlink.href }}{% endif %}" {% if (column_data.cta.cta_type == "link")&&(column_data.cta.cta_open_in_new_tab) %}target="_blank"{% endif %}>
+            {{ column_data.cta.cta_button_text }}
+          </a>
+        {% endif %}
+      </span>
+    {% endif %}
+  </span>
+{%- endmacro %}
+
+{% macro feature_column_icon() -%}
+  {% if column_feature_data.icon_option != "none" %}
+    <span class="section--comparisontable--table--icons block relative" {% if (column_feature_data.heading_option) || (column_feature_data.content_option) %}style="padding: 0px 14px 8px 14px;"{% else %}style="padding: 0px 14px 0px 14px;"{% endif %}>
+      {% if column_feature_data.icon_option == "single-ck" %}
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.4142 0.585745C16.1952 1.36674 16.1952 2.63298 15.4142 3.41397L7.44058 11.3875C6.65958 12.1685 5.39334 12.1685 4.61235 11.3875C3.83136 10.6065 3.83136 9.34029 4.61235 8.5593L12.5859 0.585744C13.3669 -0.195249 14.6332 -0.195248 15.4142 0.585745Z" fill="white"/>
+          <path d="M7.40075 11.3815C6.61976 12.1625 5.35352 12.1625 4.57253 11.3815L0.585745 7.39481C-0.195248 6.61382 -0.195248 5.34757 0.585745 4.56658C1.36674 3.78559 2.63298 3.78559 3.41397 4.56658L7.40075 8.55336C8.18174 9.33436 8.18175 10.6005 7.40075 11.3815Z" fill="white"/>
+        </svg>
+      {% elif column_feature_data.icon_option == "spacer" %}
+        <span class="icon--spacer"></span>
+      {% elif column_feature_data.icon_option == "single-x" %}
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.70416 0.294559C1.31455 -0.0940417 0.681818 -0.0940417 0.292208 0.294559C-0.0974026 0.68316 -0.0974026 1.31425 0.292208 1.70285L4.57481 5.97124L0.295324 10.2427C-0.094286 10.6313 -0.094286 11.2624 0.295324 11.651C0.684935 12.0396 1.31766 12.0396 1.70727 11.651L5.98675 7.37953L10.2693 11.6479C10.659 12.0365 11.2917 12.0365 11.6813 11.6479C12.0709 11.2593 12.0709 10.6282 11.6813 10.2396L7.3987 5.97124L11.6782 1.69974C12.0678 1.31114 12.0678 0.680052 11.6782 0.291451C11.2886 -0.0971503 10.6558 -0.0971503 10.2662 0.291451L5.98675 4.56295L1.70416 0.294559Z" fill="#DD2D2D"/>
+        </svg>
+      {% endif %}
+    </span>
+  {% endif %}
+{%- endmacro%}
+
+{% macro feature_column_content() -%}
+  <span class="section--comparisontable--table--context block hard--ends" {% if item.monthly_annual_inputs_control %}data-monthly-header="{{ column_feature_data.heading_option_monthly }}" data-monthly-content="{{ column_feature_data.content_option_monthly }}" data-annual-header="{{ column_feature_data.heading_option_annual }}" data-annual-content="{{ column_feature_data.content_option_annual }}"{% endif %}>
+    {% if item.monthly_annual_inputs_control %}
+      {% if module.table.monthly_annually_controls.default_toggle_view == 'monthly' %}
+        {% if column_feature_data.header_line_break %}
+          {% if column_feature_data.heading_option_monthly %}
+            <p class="bold hard--ends header--option">{{ column_feature_data.heading_option_monthly }}</p>
+          {% endif %}
+          {% if column_feature_data.content_option_monthly %}
+            <p class="section--comparisontable--table--byline hard--ends content--option">{{ column_feature_data.content_option_monthly }}</p>
+          {% endif %}
+        {% else %}
+          {% if column_feature_data.heading_option_monthly || column_feature_data.content_option_monthly %}
+            <p class="hard--ends">
+          {% endif %}
+          {% if column_feature_data.heading_option_monthly %}
+            <span class="bold header--option">{{ column_feature_data.heading_option_monthly }}</span>
+          {% endif %}
+          {% if column_feature_data.content_option_monthly %}
+            <span class="section--comparisontable--table--byline content--option">{{ column_feature_data.content_option_monthly }}</span>
+          {% endif %}
+          {% if column_feature_data.heading_option_monthly || column_feature_data.content_option_monthly %}
+            </p>
+          {% endif %}
+        {% endif %}
+      {% else %}
+        {% if column_feature_data.header_line_break %}
+          {% if column_feature_data.heading_option_annual %}
+            <p class="bold hard--ends header--option">{{ column_feature_data.heading_option_annual }}</p>
+          {% endif %}
+          {% if column_feature_data.content_option_annual %}
+            <p class="section--comparisontable--table--byline hard--ends content--option">{{ column_feature_data.content_option_annual }}</p>
+          {% endif %}
+        {% else %}
+          {% if column_feature_data.heading_option_annual || column_feature_data.content_option_annual %}
+            <p class="hard--ends">
+          {% endif %}
+          {% if column_feature_data.heading_option_annual %}
+            <span class="bold header--option">{{ column_feature_data.heading_option_annual }}</span>
+          {% endif %}
+          {% if column_feature_data.content_option_annual %}
+            <span class="section--comparisontable--table--byline content--option">{{ column_feature_data.content_option_annual }}</span>
+          {% endif %}
+          {% if column_feature_data.heading_option_annual || column_feature_data.content_option_annual %}
+            </p>
+          {% endif %}
+        {% endif %}
+
+      {% endif %}
+    {% else %}
+      {% if column_feature_data.header_line_break %}
+        {% if column_feature_data.heading_option %}
+          <p class="bold hard--ends">{{ column_feature_data.heading_option }}</p>
+        {% endif %}
+        {% if column_feature_data.content_option %}
+          <p class="section--comparisontable--table--byline hard--ends">{{ column_feature_data.content_option }}</p>
+        {% endif %}
+      {% else %}
+        {% if column_feature_data.heading_option || column_feature_data.content_option %}
+          <p class="hard--ends">
+        {% endif %}
+        {% if column_feature_data.heading_option %}
+          <span class="bold">{{ column_feature_data.heading_option }}</span>
+        {% endif %}
+        {% if column_feature_data.content_option %}
+          <span class="section--comparisontable--table--byline">{{ column_feature_data.content_option }}</span>
+        {% endif %}
+        {% if column_feature_data.heading_option || column_feature_data.content_option %}
+          </p>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  </span>
+{%- endmacro %}
+
+{% macro feature_column_row_label() -%}
+  <div class="section--comparisontable--features--label">
+    <span class="section--comparisontable--table--label {% if item.feature_tooltip %}section--comparisontable--table--label--tooltip flexgrid{% endif %} relative">
+      <span class="section--comparisontable--table--label--inner relative"><p class="hard--ends">{{ item.title_item }} {% if item.feature_tooltip %}<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 25 25"><path d="M22.66,12.5c0-5.61-4.55-10.16-10.16-10.16S2.34,6.89,2.34,12.5s4.55,10.16,10.16,10.16,10.16-4.55,10.16-10.16ZM0,12.5C0,5.6,5.6,0,12.5,0s12.5,5.6,12.5,12.5-5.6,12.5-12.5,12.5S0,19.4,0,12.5ZM12.5,8.59c-.86,0-1.56.7-1.56,1.56,0,.65-.52,1.17-1.17,1.17s-1.17-.52-1.17-1.17c0-2.16,1.75-3.91,3.91-3.91s3.91,1.75,3.91,3.91c0,2.3-1.76,3.28-2.73,3.64v.19c0,.65-.52,1.17-1.17,1.17s-1.17-.52-1.17-1.17v-.4c0-1,.72-1.72,1.47-1.96.31-.1.64-.27.89-.5.21-.21.38-.49.38-.96,0-.86-.7-1.56-1.56-1.56h0ZM10.94,17.97c0-.86.7-1.56,1.56-1.56s1.56.7,1.56,1.56-.7,1.56-1.56,1.56-1.56-.7-1.56-1.56Z"/></svg>{% endif %}</p></span>
+      {% if item.feature_tooltip %}
+        <span class="section--comparisontable--table--label--tooltip">
+          <span class="section--comparisontable--table--label--tooltip--inner font--reading">
+            {{ item.feature_tooltip }}
+          </span>
+        </span>
+      {% endif %}
+    </span>
+    <p class="section--comparisontable--table--byline hard--ends">{{ item.feature_byline }}</p>
+  </div>
+{%- endmacro %}
+
+{% macro feature_row() -%}
+  <div class="section--comparisontable--features--row {% if loop.last %}last--item{% endif %}">
+    {{ feature_column_row_label() }}
+    {% for column in range(number_of_columns) %}
+      {% set dynamic_feature_column_key = "column_" ~ plan_option_key[column] %}
+      {% set column_feature_data = item.get(dynamic_feature_column_key) %}
+      <div class="section--comparisontable--features--value" data-column="{{ plan_option_key[column] }}" style="justify-content: {{ item.feature_alignment }} !important;">
+        {% if column_feature_data.icon_option != "none" %}
+          {{ feature_column_icon() }}
+        {% endif %}
+        {% if (column_feature_data.heading_option) || (column_feature_data.content_option) %}
+          {{ feature_column_content() }}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro palm_feature_row() -%}
+  <div class="section--comparisontable--features--row {% if loop.last %}last--item{% endif %}">
+    {{ feature_column_row_label() }}
+
+    {% set dynamic_feature_column_key = "column_" ~ plan_option_key[column] %}
+    {% set column_feature_data        = item.get(dynamic_feature_column_key) %}
+    <div class="section--comparisontable--features--value" data-column="{{ plan_option_key[column] }}" style="justify-content: {{ item.feature_alignment }} !important;">
+      {% if column_feature_data.icon_option != "none" %}
+        {{ feature_column_icon() }}
+      {% endif %}
+      {% if (column_feature_data.heading_option) || (column_feature_data.content_option) %}
+        {{ feature_column_content() }}
+      {% endif %}
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro category_feature_row() -%}
+  <div class="section--comparisontable--features--categoryrowheader text--left flexgrid {% if is_open and enable_accordion %}active{% endif %}"
+    {% if enable_accordion %}
+      tabindex="0"
+      role="button"
+      aria-expanded="{{ is_open ? 'true' : 'false' }}"
+      data-accordion-key="{{ accordion_key }}"
+    {% endif %}
+  >
+    <span class="section--comparisontable--table--label">
+      <h4 class="h5 hard--ends">
+        {{ cat.grouper }}
+      </h4>
+    </span>
+
+    {% if enable_accordion %}
+      <div class="section--comparisontable--features--categoryrowheader--icon">
+        <svg class="section--comparisontable--features--categoryrowheader--icon-svg" width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.375 0.28125L0.28125 6.34375C0 6.65625 0 7.125 0.28125 7.40625L1 8.125C1.28125 8.40625 1.75 8.40625 2.0625 8.125L6.90625 3.3125L11.7188 8.125C12.0312 8.40625 12.5 8.40625 12.7812 8.125L13.5 7.40625C13.7812 7.125 13.7812 6.65625 13.5 6.34375L7.40625 0.28125C7.125 0 6.65625 0 6.375 0.28125Z" fill="white"/>
+        </svg>
+      </div>
+    {% endif %}
+  </div>
+{%- endmacro %}
+
+{% macro comparison_rgba_divide100(choice, custom_obj) -%}
+  {% if 'none' == choice %}
+    {{- 'none' -}}
+  {% elif choice == 'custom' and custom_obj.color %}
+    {{- 'rgba(' ~ custom_obj.color|convert_rgb ~ ', ' ~ (custom_obj.opacity|int/100) ~ ')' -}}
+  {% elif choice %}
+    {{- 'rgba(' ~ functions.color(choice)|convert_rgb ~ ', 1)' -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro comparison_brand_border_gradient() -%}
+  {# Horizontal stroke: blue left, pink mid, green right (Columns v2 dark-section card) #}
+  {{- 'linear-gradient(to right, #60A8FF 0%, #F472C8 50%, #7DD87A 100%)' -}}
+{%- endmacro %}
+
+{% macro comparison_rgba_raw_opacity(choice, custom_obj) -%}
+  {% if 'none' == choice %}
+    {{- 'none' -}}
+  {% elif choice == 'gradient' %}
+    {{- comparison_brand_border_gradient() -}}
+  {% elif choice == 'custom' and custom_obj.color %}
+    {{- 'rgba(' ~ custom_obj.color|convert_rgb ~ ', ' ~ custom_obj.opacity ~ ')' -}}
+  {% elif choice %}
+    {{- 'rgba(' ~ functions.color(choice)|convert_rgb ~ ', 1)' -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro comparison_rgba_opacity1_always(choice, custom_obj) -%}
+  {% if 'none' == choice %}
+    {{- 'none' -}}
+  {% elif choice == 'custom' and custom_obj.color %}
+    {{- 'rgba(' ~ custom_obj.color|convert_rgb ~ ', 1)' -}}
+  {% elif choice %}
+    {{- 'rgba(' ~ functions.color(choice)|convert_rgb ~ ', 1)' -}}
+  {% endif %}
+{%- endmacro %}
+
+{% macro comparison_emphasize_column_inner_fill(bg_rgba) -%}
+  {% if bg_rgba and bg_rgba != 'none' -%}
+    {{- bg_rgba -}}
+  {%- else -%}
+    {{- functions.color('white') -}}
+  {%- endif %}
+{%- endmacro %}
+
+{% macro comparison_table_last_row_selectors(descendant_selector) -%}
+  {% set feature_row_selector = '.section--comparisontable--features--row' %}
+  {% set descendant_suffix = descendant_selector ? ' ' ~ descendant_selector : '' %}
+  {{- '.section--comparisontable .section--comparisontable--features--group > ' ~ feature_row_selector ~ ':last-child' ~ descendant_suffix
+    ~ ', .section--comparisontable .section--comparisontable--features--group > div:last-child ' ~ feature_row_selector ~ ':last-child' ~ descendant_suffix
+    ~ ', .section--comparisontable .section--comparisontable--features--category.category--last--item ' ~ feature_row_selector ~ '.last--item' ~ descendant_suffix
+    ~ ', .section--comparisontable .no--category--subcategory ' ~ feature_row_selector ~ '.last--item' ~ descendant_suffix -}}
+{%- endmacro %}
+
+{% macro comparison_emphasize_column_styles(column_key, border_is_gradient, bg_rgba, border_rgba, inner_fill) -%}
+  {% set column_cell_selector = '.section--comparisontable--features--column[data-column="' ~ column_key ~ '"]' %}
+  {% set value_cell_selector = '.section--comparisontable--features--value[data-column="' ~ column_key ~ '"]' %}
+  {% set scoped_column_selector = '.section--comparisontable ' ~ column_cell_selector %}
+  {% set scoped_value_selector = '.section--comparisontable ' ~ value_cell_selector %}
+  {% set header_and_body_cells_selector = scoped_column_selector ~ ', ' ~ scoped_value_selector %}
+  {% set last_row_value_cells_selector = comparison_table_last_row_selectors(value_cell_selector) %}
+
+  {{ header_and_body_cells_selector }} {
+    {% if border_is_gradient %}
+      background-color: transparent;
+      background-image:
+        linear-gradient({{ inner_fill }}, {{ inner_fill }}),
+        {{ border_rgba }};
+      background-origin: padding-box, border-box;
+      background-clip: padding-box, border-box;
+      border-style: solid;
+      border-color: transparent;
+    {% else %}
+      background-color: {{ bg_rgba }};
+    {% endif %}
+  }
+
+  {{ scoped_column_selector }} {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-style: solid;
+    {% if border_is_gradient %}
+      border-width: 2px 2px 0;
+      border-color: transparent;
+    {% else %}
+      border-width: 2px;
+      border-color: {{ border_rgba }};
+    {% endif %}
+  }
+
+  {{ scoped_value_selector }} {
+    {% if border_is_gradient %}
+      border-width: 0 2px;
+      border-style: solid;
+      border-color: transparent;
+    {% else %}
+      border-left-width: 2px;
+      border-left-color: {{ border_rgba }};
+      border-left-style: solid;
+      border-right-width: 2px;
+      border-right-color: {{ border_rgba }};
+      border-right-style: solid;
+    {% endif %}
+  }
+
+  {{ last_row_value_cells_selector }} {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-style: solid;
+    {% if border_is_gradient %}
+      border-width: 0 2px 2px;
+      border-color: transparent;
+    {% else %}
+      border-width: 2px;
+      border-color: {{ border_rgba }};
+    {% endif %}
+  }
+{%- endmacro %}
+
+{% macro comparison_emphasize_column_mobile_styles(column_key, border_is_gradient, bg_rgba, border_rgba, inner_fill) -%}
+  {# Mobile: plan header carousel is separate — top border/radius goes on the first feature row #}
+  {% set mobile_features_slide = '.section--comparisontable .pricingCarouselFeatures [data-column="' ~ column_key ~ '"]' %}
+  {% set mobile_features_group = mobile_features_slide ~ ' .section--comparisontable--features--group' %}
+  {% set mobile_value_cell = mobile_features_slide ~ ' .section--comparisontable--features--value' %}
+  {% set mobile_first_row = mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--row:first-child:not(:only-child), '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--subcategoryrowheader + .section--comparisontable--features--row:not(:only-child), '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--category .section--comparisontable--features--categoryrowcontent .section--comparisontable--features--row:first-child:not(:only-child), '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--row:only-child' %}
+  {% set mobile_first_row_value = mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--row:first-child:not(:only-child) .section--comparisontable--features--value, '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--subcategoryrowheader + .section--comparisontable--features--row:not(:only-child) .section--comparisontable--features--value, '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--category .section--comparisontable--features--categoryrowcontent .section--comparisontable--features--row:first-child:not(:only-child) .section--comparisontable--features--value' %}
+  {% set mobile_only_row_value = mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--row:only-child .section--comparisontable--features--value' %}
+  {% set mobile_last_row_value = mobile_features_slide ~ ' .section--comparisontable--features--group > .section--comparisontable--features--row:last-child:not(:only-child) .section--comparisontable--features--value, '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--group > div:last-child .section--comparisontable--features--row:last-child:not(:only-child) .section--comparisontable--features--value, '
+    ~ mobile_features_slide ~ ' .section--comparisontable--features--category.category--last--item .section--comparisontable--features--row.last--item:not(:only-child) .section--comparisontable--features--value, '
+    ~ mobile_features_slide ~ ' .no--category--subcategory .section--comparisontable--features--row.last--item:not(:only-child) .section--comparisontable--features--value' %}
+
+  {{ mobile_value_cell }} {
+    {% if border_is_gradient %}
+      background-color: transparent;
+      background-image:
+        linear-gradient({{ inner_fill }}, {{ inner_fill }}),
+        {{ border_rgba }};
+      background-origin: padding-box, border-box;
+      background-clip: padding-box, border-box;
+      border-style: solid;
+      border-color: transparent;
+    {% else %}
+      background-color: {{ bg_rgba }};
+    {% endif %}
+  }
+
+  {{ mobile_value_cell }} {
+    {% if border_is_gradient %}
+      border-width: 0 2px;
+    {% else %}
+      border-left-width: 2px;
+      border-left-color: {{ border_rgba }};
+      border-left-style: solid;
+      border-right-width: 2px;
+      border-right-color: {{ border_rgba }};
+      border-right-style: solid;
+    {% endif %}
+  }
+
+  {# Drop default table borders where the emphasize card starts #}
+  {{ mobile_features_group }} {
+    border-top: none;
+  }
+
+  {{ mobile_first_row }} {
+    border-bottom: none;
+  }
+
+  {{ mobile_first_row }} .section--comparisontable--features--value {
+    border-left: none;
+  }
+
+  {{ mobile_first_row_value }} {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-style: solid;
+    {% if border_is_gradient %}
+      border-width: 2px 2px 0;
+      border-color: transparent;
+    {% else %}
+      border-width: 2px 2px 0;
+      border-color: {{ border_rgba }};
+    {% endif %}
+  }
+
+  {{ mobile_only_row_value }} {
+    border-radius: 20px;
+    border-style: solid;
+    {% if border_is_gradient %}
+      border-width: 2px;
+      border-color: transparent;
+    {% else %}
+      border-width: 2px;
+      border-color: {{ border_rgba }};
+    {% endif %}
+  }
+
+  {{ mobile_last_row_value }} {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-style: solid;
+    {% if border_is_gradient %}
+      border-width: 0 2px 2px;
+      border-color: transparent;
+    {% else %}
+      border-width: 0 2px 2px;
+      border-color: {{ border_rgba }};
+    {% endif %}
+  }
+{%- endmacro %}
+
+{% macro comparison_emphasize_last_row_border_reset(non_emphasized_value_selector) -%}
+  {# Row-level bottom rule; emphasized column keeps its own cell border #}
+  {{ comparison_table_last_row_selectors('') }} {
+    border-bottom: none;
+  }
+
+  {{ comparison_table_last_row_selectors('.section--comparisontable--features--label') }},
+  {{ comparison_table_last_row_selectors(non_emphasized_value_selector) }} {
+    border-bottom: none;
+  }
+{%- endmacro %}
+
+
+
+{#####################################################
+  Trying to remove cognitive load by using a wrapping
+  macro that removes all the default section clutter
+#####################################################}
+{% call render_section_shell('comparisontable', render_additional_section_classes(module), module) %}
+  {% if module.header or module.content or module.preheader or module.table.enable_monthly_annually_controls %}
+    <div class="grid relative hard--ends text--{{ layout_controls.container_alignment }}">
+      <div class="grid__item {{ render_content_widths(header_container_width)|trim }} hard--top tall--bottom first--hard--top last--hard--bottom all--text--{{ layout_controls.header_content_alignment }} palm-all--text--{{ layout_controls.header_content_alignment_mobile }} {{ snippets.textColorOverride(section_controls.text_color_override)|trim }}">
+        {% if module.preheader %}
+          <span class="h6 preheader">
+            {{ module.preheader }}
+          </span>
+        {% if not config.header_rule_disabled %}
+          <div class="header--rule"></div>
+        {% endif %}
+        {% endif %}
+        {% if module.header %}
+          <h2 class="{{ layout_controls.section_header_size }}">
+            {{ module.header }}
+          </h2>
+        {% endif %}
+        {{ module.content }}
+
+        {% if module.table.enable_monthly_annually_controls %}
+          <div class="section--comparisontable--toggle">
+            <span class="section--comparisontable--toggle-label section--comparisontable--toggle-label--left {% if module.table.monthly_annually_controls.default_toggle_view == 'monthly' %}is-active{% endif %}">
+              {{ module.table.monthly_annually_controls.monthly_label ? module.table.monthly_annually_controls.monthly_label : "Monthly" }}
+            </span>
+
+            <button
+              type         = "button"
+              class        = "toggle"
+              role         = "switch"
+              aria-checked = "{% if module.table.monthly_annually_controls.default_toggle_view == 'annually' %}true{% else %}false{% endif %}"
+              aria-label   = "Toggle billing period"
+              id           = "billing-toggle-{{ name }}"
+            >
+              <span class="section--comparisontable--toggle-thumb" aria-hidden="true"></span>
+            </button>
+
+            <span class="section--comparisontable--toggle-label section--comparisontable--toggle-label--right {% if module.table.monthly_annually_controls.default_toggle_view == 'annually' %}is-active{% endif %}">
+              {{ module.table.monthly_annually_controls.annually_label ? module.table.monthly_annually_controls.annually_label : "Annually" }}
+            </span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="section--comparisontable--wrapper grid hard--ends palm-hard--sides">
+
+    <div class="grid__item {{ render_content_widths(table_width)|trim }} portable-one-whole hard--ends section--comparisontable--wrapper {% if layout_controls.table.table_add_box_shadow %}box-shadow{% endif %} section--comparisontable--plans--{{ module.table.number_of_columns|trim }}">
+      <div class="section--comparisontable--plans">
+        <div class="section--comparisontable--features palm-visuallyhidden">
+          <div class="section--comparisontable--features--header">
+            <div class="section--comparisontable--features--row">
+              <div class="section--comparisontable--features--label relative">
+                <span class="section--comparisontable--table--label">
+                  <p class="h4 hard--ends">
+                    {{ module.table.table_label }}
+                  </p>
+                </span>
+              </div>
+              {% for column in range( number_of_columns ) %}
+                {% set dynamic_column_key = "column_" ~ plan_option_key[column] %}
+                {% set column_data = module.table.get(dynamic_column_key) %}
+                <div class="section--comparisontable--features--column relative" data-column="{{ plan_option_key[column] }}">
+                  {{ column_header() }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section--comparisontable--features--body palm-visuallyhidden">
+
+        {% set all_items = [] %}
+        {% for item in module.table.items %}
+          {% do all_items.append(item) %}
+        {% endfor %}
+
+        {# ---------------- TOP-LEVEL: split by category_title ---------------- #}
+        {% set categorized = [] %}
+        {% set no_category_items = [] %}
+        {% for item in all_items %}
+          {% if item.category_title and item.category_title != '' %}
+            {% do categorized.append(item) %}
+          {% else %}
+            {% do no_category_items.append(item) %}
+          {% endif %}
+        {% endfor %}
+
+        {# --- 1) Items with NO category_title --- #}
+
+        {# 1a. Split these by sub_category_title #}
+        {% set no_cat_with_sub = [] %}
+        {% set no_cat_no_sub = [] %}
+        {% for item in no_category_items %}
+          {% if item.sub_category_title and item.sub_category_title != '' %}
+            {% do no_cat_with_sub.append(item) %}
+          {% else %}
+            {% do no_cat_no_sub.append(item) %}
+          {% endif %}
+        {% endfor %}
+
+        <div class="section--comparisontable--features--group {% if not categorized and not no_cat_with_sub %}no--category--subcategory{% endif %} section--comparisontable--features--state--{{ module.table.category_toggle_controls.category_toggle|escape }}">
+
+          {# 1b. Items with no category_title AND no sub_category_title: plain list items #}
+          {% for item in no_cat_no_sub %}
+              {{ feature_row() }}
+          {% endfor %}
+
+          {# 1c. Items with no category_title BUT with sub_category_title: group by sub_category_title #}
+          {% if no_cat_with_sub|length > 0 %}
+            {% set top_sub_grouped = no_cat_with_sub|groupby('sub_category_title') %}
+            {% for sub in top_sub_grouped %}
+              <div class="section--comparisontable--features--subcategoryrowheader text--left {% if loop.last %}subcategory--last--item{% endif %}">
+                <span class="section--comparisontable--table--label">
+                  <p class="bold hard--ends">
+                    {{ sub.grouper }}
+                  </p>
+                </span>
+              </div>
+              {% for item in sub.list %}
+                {{ feature_row() }}
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+
+          {# --- 2) Items WITH category_title (same logic as before) --- #}
+
+          {% set grouped_items = categorized|groupby('category_title') %}
+
+          {% set enable_accordion = module.table.enable_category_accordion %}
+          {% set open_count = module.table.category_accordion_controls.no_of_categories_open|int %}
+
+          {% for cat in grouped_items %}
+
+            {# is this category open on load? #}
+            {% set is_open = module.table.category_accordion_controls.category_accordion == 'open' or (module.table.category_accordion_controls.category_accordion == 'custom' and loop.index <= open_count)%}
+
+            {# shared key; same value for desktop and mobile versions of this loop #}
+            {% set accordion_key = 'cat-' ~ loop.index %}
+
+            <div class="section--comparisontable--features--category {% if loop.last %}category--last--item{% endif %} {% if is_open and enable_accordion %}is-open{% endif %}">
+              {# header row macro should output the header with this key (see below) #}
+              {{ category_feature_row(cat=cat, is_open=is_open, enable_accordion=enable_accordion, accordion_key=accordion_key) }}
+
+              <div
+                class="section--comparisontable--features--categoryrowcontent text--left {% if is_open and enable_accordion %}is-open{% endif %}"
+                data-accordion-key="{{ accordion_key }}"
+                {% if enable_accordion and not is_open %}style="display:none;"{% endif %}
+              >
+                <div class="section--comparisontable--features--categoryrowcontent--inner">
+                  {% set with_sub = [] %}
+                  {% set no_sub = [] %}
+                  {% for item in cat.list %}
+                    {% if item.sub_category_title and item.sub_category_title != '' %}
+                      {% do with_sub.append(item) %}
+                    {% else %}
+                      {% do no_sub.append(item) %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% for item in no_sub %}
+                    {{ feature_row() }}
+                  {% endfor %}
+
+                  {% if with_sub|length > 0 %}
+                    {% set sub_grouped = with_sub|groupby('sub_category_title') %}
+                    {% for sub in sub_grouped %}
+                      <div class="section--comparisontable--features--subcategoryrowheader text--left">
+                        <span class="section--comparisontable--table--label">
+                          <p class="bold hard--ends">
+                            {{ sub.grouper }}
+                          </p>
+                        </span>
+                      </div>
+                      {% for item in sub.list %}
+                        {{ feature_row() }}
+                      {% endfor %}
+                    {% endfor %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="section--comparisontable--mobile--wrapper lap-and-up-visuallyhidden tablet-visuallyhidden">
+      <div class="section--comparisontable-mobile--inner relative {% if not layout_controls.mobile_disable_sticky_column_header %}sticky--plan--header{% endif %}">
+
+        <div class="section--comparisontable--plans--spacer"></div>
+
+        <div class="pricingCarouselColumns section--comparisontable--plans all--color--{{ layout_controls.column_header.mobile_slider_controls_color }} {{ request.query_dict.fancyboxold == "true" ? "carousel" : "f-carousel" }}">
+          {% for column in range( number_of_columns ) %}
+            {% set dynamic_column_key = "column_" ~ plan_option_key[column] %}
+            {% set column_data = module.table.get(dynamic_column_key) %}
+            <div class="section--comparisontable--features {{ request.query_dict.fancyboxold == "true" ? "carousel__slide" : "f-carousel__slide" }} grid__item one-whole hard">
+              <div class="section--comparisontable--features--header">
+                <div class="section--comparisontable--features--row">
+                  <div class="section--comparisontable--features--column relative" data-column="{{ plan_option_key[column] }}">
+                  {{ column_header() }}
+                </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="pricingCarouselFeatures {{ request.query_dict.fancyboxold == "true" ? "carousel" : "f-carousel" }} section--comparisontable-features grid__item portable-eleven-twelfths hard--ends">
+          {% for column in range( number_of_columns ) %}
+            <div class="{{ request.query_dict.fancyboxold == "true" ? "carousel__slide" : "f-carousel__slide" }} grid__item one-whole section--comparisontable-mobile--wrapper hard" data-column="{{ plan_option_key[column] }}">
+              <div class="section--comparisontable--features--body">
+                <div class="section--comparisontable--features--group">
+
+                    {% set all_items = [] %}
+                    {% for item in module.table.items %}
+                      {% do all_items.append(item) %}
+                    {% endfor %}
+
+                    {# ---------------- TOP-LEVEL: split by category_title ---------------- #}
+                    {% set categorized = [] %}
+                    {% set no_category_items = [] %}
+                    {% for item in all_items %}
+                      {% if item.category_title and item.category_title != '' %}
+                        {% do categorized.append(item) %}
+                      {% else %}
+                        {% do no_category_items.append(item) %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {# --- 1) Items with NO category_title --- #}
+
+                    {# 1a. Split these by sub_category_title #}
+                    {% set no_cat_with_sub = [] %}
+                    {% set no_cat_no_sub = [] %}
+                    {% for item in no_category_items %}
+                      {% if item.sub_category_title and item.sub_category_title != '' %}
+                        {% do no_cat_with_sub.append(item) %}
+                      {% else %}
+                        {% do no_cat_no_sub.append(item) %}
+                      {% endif %}
+                    {% endfor %}
+
+                    {# 1b. Items with no category_title AND no sub_category_title: plain list items #}
+                    {% for item in no_cat_no_sub %}
+                        {{ palm_feature_row() }}
+                    {% endfor %}
+
+                    {# 1c. Items with no category_title BUT with sub_category_title: group by sub_category_title #}
+                    {% if no_cat_with_sub|length > 0 %}
+                      {% set top_sub_grouped = no_cat_with_sub|groupby('sub_category_title') %}
+                      {% for sub in top_sub_grouped %}
+                        <div class="section--comparisontable--features--subcategoryrowheader text--left">
+                          <span class="section--comparisontable--table--label">
+                            <p class="bold hard--ends">
+                              {{ sub.grouper }}
+                            </p>
+                          </span>
+                        </div>
+                        {% for item in sub.list %}
+                          {{ palm_feature_row() }}
+                        {% endfor %}
+                      {% endfor %}
+                    {% endif %}
+
+                    {# --- 2) Items WITH category_title (same logic as before) --- #}
+
+                    {% set grouped_items = categorized|groupby('category_title') %}
+
+                    {% set enable_accordion = module.table.enable_category_accordion %}
+                    {% set open_count = module.table.category_accordion_controls.no_of_categories_open|int %}
+
+                    {% for cat in grouped_items %}
+
+                      {# is this category open on load? #}
+                      {% set is_open =
+                        module.table.category_accordion_controls.category_accordion == 'open'
+                        or (module.table.category_accordion_controls.category_accordion == 'custom'
+                            and loop.index <= open_count)
+                      %}
+
+                      {# shared key; same value for desktop and mobile versions of this loop #}
+                      {% set accordion_key = 'cat-' ~ loop.index %}
+
+                      <div class="section--comparisontable--features--category {% if loop.last %}category--last--item{% endif %} {% if is_open and enable_accordion %}is-open{% endif %}">
+                        {# header row macro should output the header with this key (see below) #}
+                        {{ category_feature_row(cat=cat, is_open=is_open, enable_accordion=enable_accordion, accordion_key=accordion_key) }}
+
+                        <div
+                          class="section--comparisontable--features--categoryrowcontent text--left {% if is_open and enable_accordion %}is-open{% endif %}"
+                          data-accordion-key="{{ accordion_key }}"
+                          {% if enable_accordion and not is_open %}style="display:none;"{% endif %}
+                        >
+                          <div class="section--comparisontable--features--categoryrowcontent--inner">
+                            {% set with_sub = [] %}
+                            {% set no_sub = [] %}
+                            {% for item in cat.list %}
+                              {% if item.sub_category_title and item.sub_category_title != '' %}
+                                {% do with_sub.append(item) %}
+                              {% else %}
+                                {% do no_sub.append(item) %}
+                              {% endif %}
+                            {% endfor %}
+
+                            {% for item in no_sub %}
+                              {{ palm_feature_row() }}
+                            {% endfor %}
+
+                            {% if with_sub|length > 0 %}
+                              {% set sub_grouped = with_sub|groupby('sub_category_title') %}
+                              {% for sub in sub_grouped %}
+                                <div class="section--comparisontable--features--subcategoryrowheader text--left">
+                                  <span class="section--comparisontable--table--label">
+                                    <p class="bold hard--ends">
+                                      {{ sub.grouper }}
+                                    </p>
+                                  </span>
+                                </div>
+                                {% for item in sub.list %}
+                                  {{ palm_feature_row() }}
+                                {% endfor %}
+                              {% endfor %}
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+
+                    {% endfor %}
+
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  {% if module.disclosure %}
+    <div class="grid hard--ends {{ snippets.textColorOverride(section_controls.text_color_override) }}">
+      <div class="grid__item {{ layout_controls.disclosure_width }} portable-one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom all--text--{{ layout_controls.disclosure_content_alignment }} palm-all--text--{{ layout_controls.disclosure_content_alignment_mobile }}">
+        {{ module.disclosure }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if snippets.multiButton(module.cta) %}
+    <div class="grid hard--ends">
+      <div class="grid__item {{ render_content_widths(header_container_width)|trim }} tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom all--text--{{ layout_controls.cta_content_alignment }}">
+        {{ snippets.multiButton(module.cta) }}
+      </div>
+    </div>
+  {% endif %}
+{% endcall %}
+
+{{ require_css( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.css", { async: true } ) }}
+{{ require_js( "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/carousel/carousel.umd.js", { position: 'head', defer: true } ) }}
+
+{% require_js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof Carousel === 'undefined') return;
+
+      const sections = document.querySelectorAll('.section--comparisontable.{{ name }}');
+
+      sections.forEach(function (section) {
+        const mobileEl = section.querySelector('.pricingCarouselColumns');
+        const columnEl = section.querySelector('.pricingCarouselFeatures');
+
+        if (!mobileEl || !columnEl) return;
+
+        const mobileCarousel = new Carousel(mobileEl, {
+          infinite: false,
+          Dots: true,
+          Navigation: true,
+          Panzoom: { touch: false },
+        });
+
+        const columnCarousel = new Carousel(columnEl, {
+          infinite: false,
+          Dots: false,
+          Navigation: false,
+          Panzoom: { touch: false },
+        });
+
+        mobileCarousel.on('change', (instance) => {
+          columnCarousel.slideTo(instance.page);
+        });
+      });
+    });
+
+    document.querySelectorAll('.{{ name }}.section--comparisontable .section--comparisontable--table--label--tooltip').forEach(function (tooltip) {
+      tooltip.addEventListener('mouseenter', function () {
+        this.classList.add('active');
+      });
+
+      tooltip.addEventListener('mouseleave', function () {
+        this.classList.remove('active');
+      });
+    });
+
+    document.body.addEventListener('touchstart', function (event) {
+      const tooltip = event.target.closest(
+        '.{{ name }}.section--comparisontable .section--comparisontable--table--label--tooltip'
+      );
+      if (!tooltip) return;
+
+      tooltip.classList.toggle('active');
+    });
+
+    {% if not layout_controls.mobile_disable_sticky_column_header %}
+      document.addEventListener('DOMContentLoaded', function () {
+        ////console.log('Sticky init: DOMContentLoaded');
+
+        const containers = document.querySelectorAll('.section--comparisontable-mobile--inner.sticky--plan--header');
+        ////console.log('containers found:', containers.length, containers);
+        if (!containers.length) return;
+
+        const header = document.querySelector('.header--body'); // your header element
+        ////console.log('header found:', !!header, header);
+
+        containers.forEach(function (container, idx) {
+          ////console.log('--- container', idx, '---', container);
+
+          const plans  = container.querySelector('.section--comparisontable--plans');
+          const spacer = container.querySelector('.section--comparisontable--plans--spacer');
+
+          //console.log('plans found:', !!plans, 'spacer found:', !!spacer);
+          if (!plans || !spacer) return;
+
+          let headerScrollStart = 0;
+          let ticking           = false;
+
+          function updateStickyPosition() {
+            const viewportWidth = window.innerWidth;
+
+            if (viewportWidth > 768) {
+              // Remove sticky logic if not on mobile
+              plans.removeAttribute('style');
+              spacer.style.height = '0px';
+              return;
+            }
+
+            const scrollTop       = window.pageYOffset || document.documentElement.scrollTop;
+            const containerRect   = container.getBoundingClientRect();
+            const containerTop    = containerRect.top + scrollTop;
+            const containerBottom = containerTop + container.offsetHeight;
+            const plansHeight     = plans.offsetHeight;
+
+            // header offset: only when body has header--visible
+            const headerVisible   = document.body.classList.contains('header--visible');
+            const headerHeightRaw = header ? header.offsetHeight : 0;
+            const headerHeight    = headerVisible ? headerHeightRaw : 0;
+
+            const containerHeaderTop = containerTop - headerHeight;
+            const currentScroll      = scrollTop;
+            const stopPoint          = containerBottom - plansHeight - headerHeight;
+
+            if (
+              scrollTop >= containerHeaderTop &&
+              scrollTop + plansHeight < containerBottom - headerHeight
+            ) {
+              // STICKY — while inside the section
+              if (currentScroll <= 200) {
+                headerScrollStart = currentScroll; // reset scroll start
+              }
+
+              if (!ticking) {
+                ticking = true;
+                window.requestAnimationFrame(function () {
+                  if (Math.abs(currentScroll - headerScrollStart) > 25) {
+                    const containerLeft =
+                      container.getBoundingClientRect().left + window.pageXOffset;
+
+                    const topOffset = headerHeight; // 0 when header not visible
+
+                    plans.style.position = 'fixed';
+                    plans.style.top      = topOffset + 'px';
+                    plans.style.bottom   = '';
+                    plans.style.left     = containerLeft + 'px';
+                    plans.style.width    = container.offsetWidth + 'px';
+                    plans.style.filter   =
+                      'drop-shadow(0px 0px 30px rgba(88, 88, 88, 0.15))';
+                    plans.style.zIndex   = '999';
+
+                    spacer.style.height  = plansHeight + 'px';
+                  }
+
+                  ticking = false;
+                });
+              }
+            } else if (scrollTop + plansHeight >= stopPoint) {
+              // STUCK AT BOTTOM OF CONTAINER
+              plans.style.position = 'absolute';
+              plans.style.top      = '';
+              plans.style.bottom   = '0';
+              plans.style.left     = '';
+              plans.style.width    = '100%';
+              plans.style.filter   = '';
+              plans.style.zIndex   = '1';
+            } else {
+              // RESET — before/after section
+              plans.style.position = '';
+              plans.style.top      = '';
+              plans.style.bottom   = '';
+              plans.style.left     = '';
+              plans.style.width    = '';
+              plans.style.filter   = '';
+              plans.style.zIndex   = '';
+              spacer.style.height  = '0px';
+            }
+          }
+
+          window.addEventListener('scroll', updateStickyPosition, { passive: true });
+          window.addEventListener('resize', updateStickyPosition);
+
+          ////console.log('Initial call to updateStickyPosition for container', idx);
+          updateStickyPosition();
+        });
+      });
+    {% endif %}
+  </script>
+{% end_require_js %}
+
+{#####################################################
+  MARK: Accordion JS
+#####################################################}
+{% if module.table.enable_category_accordion %}
+  {% require_js %}
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const catToggles = document.querySelectorAll(
+          '.section--comparisontable--features--categoryrowheader[data-accordion-key]'
+        );
+
+        catToggles.forEach(function (toggle) {
+          toggle.addEventListener('click', function () {
+            toggleCategory(toggle);
+          });
+
+          toggle.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              toggleCategory(toggle);
+            }
+          });
+        });
+
+        function toggleCategory(toggle) {
+          const key = toggle.getAttribute('data-accordion-key');
+          if (!key) return;
+
+          // use your existing section wrapper as the scope
+          const section = toggle.closest('.section--comparisontable');
+          const scope = section || document;
+
+          const headers = scope.querySelectorAll(
+            '.section--comparisontable--features--categoryrowheader[data-accordion-key="' + key + '"]'
+          );
+
+          const contents = scope.querySelectorAll(
+            '.section--comparisontable--features--categoryrowcontent[data-accordion-key="' + key + '"]'
+          );
+
+          if (!headers.length || !contents.length) return;
+
+          const opening = headers[0].getAttribute('aria-expanded') !== 'true';
+
+          headers.forEach(function (header) {
+            const category = header.closest('.section--comparisontable--features--category');
+            if (!category) return;
+
+            if (opening) {
+              category.classList.add('is-open');
+              header.setAttribute('aria-expanded', 'true');
+              header.classList.add('active');
+            } else {
+              category.classList.remove('is-open');
+              header.setAttribute('aria-expanded', 'false');
+              header.classList.remove('active');
+            }
+          });
+
+          contents.forEach(function (content) {
+            if (opening) {
+              slideDown(content);
+            } else {
+              slideUp(content);
+            }
+          });
+        }
+      });
+    </script>
+  {% end_require_js %}
+{% endif %}
+
+{#####################################################
+  MARK: Toggle JS
+#####################################################}
+{% if module.table.enable_monthly_annually_controls %}
+  {% require_js %}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // For each module on the page
+        document.querySelectorAll(".section.{{ name }}").forEach(function (moduleEl) {
+          const toggle = moduleEl.querySelector(".section--comparisontable--toggle .toggle");
+          if (!toggle) return;
+          //console.log("[debug] Found toggle for module", moduleEl);
+
+          const labelLeft  = moduleEl.querySelector(".section--comparisontable--toggle-label--left");
+          const labelRight = moduleEl.querySelector(".section--comparisontable--toggle-label--right");
+
+          function applyLabelState(isOn) {
+            if (labelLeft && labelRight) {
+              if (isOn) {
+                labelLeft.classList.remove("is-active");
+                labelRight.classList.add("is-active");
+              } else {
+                labelLeft.classList.add("is-active");
+                labelRight.classList.remove("is-active");
+              }
+              //console.log("[debug] applyLabelState:", isOn);
+            }
+          }
+
+          function swapContextContent(isYearly) {
+            const contexts = moduleEl.querySelectorAll(".section--comparisontable--table--context");
+            contexts.forEach(function (ctx) {
+              const headerEl  = ctx.querySelector(".header--option");
+              const contentEl = ctx.querySelector(".content--option");
+              //console.log("[debug]", ctx, "headerEl:", !!headerEl, "contentEl:", !!contentEl);
+
+              if (headerEl) {
+                const header = isYearly ? ctx.dataset.annualHeader : ctx.dataset.monthlyHeader;
+                if (header) {
+                  headerEl.textContent = header;
+                  //console.log("[debug] Updated header:", header);
+                }
+              }
+
+              if (contentEl) {
+                const content = isYearly ? ctx.dataset.annualContent : ctx.dataset.monthlyContent;
+                if (content) {
+                  contentEl.textContent = content;
+                  //console.log("[debug] Updated content:", content);
+                }
+              }
+            });
+          }
+
+          function toggleState() {
+            const isOn = toggle.getAttribute("aria-checked") === "true";
+            const newState = !isOn;
+
+            toggle.setAttribute("aria-checked", String(newState));
+            moduleEl.dataset.billing = newState ? "yearly" : "monthly";
+
+            applyLabelState(newState);
+            swapContextContent(newState);
+            //console.log("[debug] toggled:", { isOn, newState });
+          }
+
+          // Initialize state based on aria-checked attribute
+          const initialIsOn = toggle.getAttribute("aria-checked") === "true";
+          applyLabelState(initialIsOn);
+          swapContextContent(initialIsOn);
+          //console.log("[debug] initial state:", initialIsOn);
+
+          toggle.addEventListener("click", toggleState);
+          toggle.addEventListener("keydown", function (event) {
+            if (event.key === " " || event.key === "Enter") {
+              event.preventDefault();
+              toggleState();
+            }
+          });
+        });
+      });
+
+
+    </script>
+  {% end_require_js %}
+{% endif %}
+
+{#####################################################
+  MARK: Table Styles - CSS
+#####################################################}
+{% set background_color_rgba = comparison_rgba_divide100(
+  layout_controls.table.table_background_color,
+  layout_controls.table.table_background_custom_color
+) %}
+
+{% set border_color_rgba = comparison_rgba_divide100(
+  layout_controls.table.table_border_color,
+  layout_controls.table.table_border_custom_color
+) %}
+
+{#####################################################
+  MARK: Table Title
+#####################################################}
+{% set column_header_bg_color_rgba = comparison_rgba_raw_opacity(
+  layout_controls.column_header.column_header_background_color,
+  layout_controls.column_header.column_header_background_custom_color
+) %}
+
+{% set column_header_text_color_rgba = comparison_rgba_opacity1_always(
+  layout_controls.column_header.column_header_text_color,
+  layout_controls.column_header.column_header_text_custom_color
+) %}
+
+{#####################################################
+  MARK: Table Category
+#####################################################}
+{% set category_bg_color_rgba = comparison_rgba_raw_opacity(
+  layout_controls.category.category_background_color,
+  layout_controls.category.category_background_custom_color
+) %}
+
+{% set category_text_color_rgba = comparison_rgba_opacity1_always(
+  layout_controls.category.category_text_color,
+  layout_controls.category.category_text_custom_color
+) %}
+
+{#####################################################
+  MARK: Table Sub Category
+#####################################################}
+{% set subcategory_bg_color_rgba = comparison_rgba_raw_opacity(
+  layout_controls.sub_category.sub_category_background_color,
+  layout_controls.sub_category.sub_category_background_custom_color
+) %}
+
+{% set sub_category_text_color_rgba = comparison_rgba_opacity1_always(
+  layout_controls.sub_category.sub_category_text_color,
+  layout_controls.sub_category.sub_category_text_custom_color
+) %}
+
+{#####################################################
+  MARK: Table Check Icon
+#####################################################}
+{% set check_icon_color_rgba = comparison_rgba_opacity1_always(
+  layout_controls.table.table_check_icon_color,
+  layout_controls.table.table_check_icon_custom_color
+) %}
+
+{#####################################################
+  MARK: Table X Icon
+#####################################################}
+{% set x_icon_color_rgba = comparison_rgba_opacity1_always(
+  layout_controls.table.table_x_icon_color,
+  layout_controls.table.table_x_icon_custom_color
+) %}
+
+{#####################################################
+  MARK: Table Tooltip Icon
+#####################################################}
+{% set tooltip_icon_color_rgba = comparison_rgba_opacity1_always(
+  layout_controls.table.table_tooltip_icon_color,
+  layout_controls.table.table_tooltip_icon_custom_color
+) %}
+
+{% if layout_controls.table.table_add_border_radius %}
+  {% if layout_controls.table.table_border_radius.table_border_radius_type == "custom" %}
+    {% set border_radius = layout_controls.table.table_border_radius.table_border_radius_custom %}
+  {% else %}
+    {% set border_radius = snippets.default_BorderRadius|replace("px","")|replace("em","")|int %}
+  {% endif %}
+{% endif %}
+
+{#####################################################
+  MARK: Table General - CSS
+#####################################################}
+{% require_css %}
+  <style>
+    {% scope_css %}
+      .section--comparisontable .section--comparisontable--features--group {
+        background-color: {{ background_color_rgba }};
+      }
+
+      {% if 'white' == layout_controls.table.table_text_color %}
+        .section--comparisontable .section--comparisontable--table--label--inner *,
+        .section--comparisontable .section--comparisontable--table--context * {
+          color: {{ functions.color('white') }} !important;
+          font-size: 16px !important;
+          font-weight: {{ config.bold }};
+        }
+      {% endif %}
+
+      .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column,
+      .section--comparisontable .section--comparisontable--features--value {
+        border-left: 1px solid {{ border_color_rgba }};
+      }
+
+      .section--comparisontable .section--comparisontable--features--row:not(.last--item),
+      .section--comparisontable .section--comparisontable--features--category.category--last--item .section--comparisontable--features--row.last--item,
+      .section--comparisontable .no--category--subcategory .section--comparisontable--features--row.last--item {
+        border-bottom: 1px solid {{ border_color_rgba }};
+      }
+
+      .section--comparisontable  .pricingCarouselFeatures .section--comparisontable--features--group {
+        border-top: 1px solid {{ border_color_rgba }};
+      }
+
+      {% if layout_controls.table.table_add_border_around_table %}
+        {% call functions.mediaQuery('>tablet') %}
+          .section--comparisontable .section--comparisontable--features--row {
+            border-left: 1px solid {{ border_color_rgba }};
+            border-right: 1px solid {{ border_color_rgba }};
+          }
+          .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--row {
+            border-top: 1px solid {{ border_color_rgba }};
+          }
+        {% endcall %}
+      {% endif %}
+
+      .section--comparisontable--plans .section--comparisontable--features--row {
+        background-color: {{ column_header_bg_color_rgba }};
+      }
+
+      {% if layout_controls.column_header.remove_border %}
+        .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column {
+          border-left: 0px;
+        }
+        .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--row {
+          border-left: 0px;
+          border-right: 0px;
+        }
+      {% endif %}
+
+      {% if layout_controls.column_header.remove_border and layout_controls.table.table_add_border_around_table %}
+        .section--comparisontable .section--comparisontable--features--header {
+          border-top: 0px;
+        }
+      {% endif %}
+
+      .section--comparisontable .section--comparisontable--features--header .section--comparisontable--table--label *,
+      .section--comparisontable--plans .section--comparisontable--features--row .section--comparisontable--table--label * {
+        color: {{ column_header_text_color_rgba }};
+      }
+
+      {% call functions.mediaQuery('palm') %}
+        .section--comparisontable--plans,
+        .section--comparisontable .carousel__dots,
+        .section--comparisontable .f-carousel__dots {
+          background-color: {{ column_header_bg_color_rgba }};
+        }
+        .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--column {
+          border-left:0px;
+        }
+      {% endcall %}
+
+      .section--comparisontable .section--comparisontable--features--categoryrowheader {
+        background-color: {{ category_bg_color_rgba }};
+      }
+      .section--comparisontable .section--comparisontable--features--categoryrowheader .section--comparisontable--table--label * {
+        color: {{ category_text_color_rgba }};
+      }
+      .section--comparisontable .section--comparisontable--features--categoryrowheader .section--comparisontable--features--categoryrowheader--icon .section--comparisontable--features--categoryrowheader--icon-svg path {
+        fill: {{ category_text_color_rgba }}!important;
+      }
+
+      .section--comparisontable .section--comparisontable--features--subcategoryrowheader {
+        background-color: {{ subcategory_bg_color_rgba }};
+      }
+      .section--comparisontable .section--comparisontable--features--subcategoryrowheader .section--comparisontable--table--label * {
+        color: {{ sub_category_text_color_rgba }};
+      }
+
+      .section--comparisontable svg.single-ck path {
+        fill: {{ check_icon_color_rgba }};
+      }
+      .section--comparisontable svg.single-x path {
+        fill: {{ x_icon_color_rgba }};
+      }
+      .section--comparisontable .section--comparisontable--table--label--tooltip svg {
+        fill: {{ tooltip_icon_color_rgba }};
+      }
+
+      {% if layout_controls.table.table_add_border_radius %}
+        {% call functions.mediaQuery('>tablet') %}
+          .section--comparisontable .section--comparisontable--features--header .section--comparisontable--features--row {
+            border-top-left-radius: {{ border_radius }}px;
+            border-top-right-radius: {{ border_radius }}px;
+          }
+
+          .section--comparisontable .section--comparisontable--features--group > .section--comparisontable--features--row:last-child,
+          .section--comparisontable .section--comparisontable--features--body .section--comparisontable--features--group:last-child,
+          .section--comparisontable .section--comparisontable--features--group > div:last-child > .section--comparisontable--features--categoryrowheader,
+          .section--comparisontable .section--comparisontable--features--group > div:last-child .section--comparisontable--features--row:last-child {
+            border-bottom-left-radius: {{ border_radius }}px;
+            border-bottom-right-radius: {{ border_radius }}px;
+            overflow:hidden;
+          }
+
+          .section--comparisontable .section--comparisontable--wrapper {
+            border-radius: {{ border_radius }}px;
+          }
+
+          .section--comparisontable .section--comparisontable--features--group > div.is-open > .section--comparisontable--features--categoryrowheader {
+            border-radius: 0px;
+          }
+
+          {# EXPAND IN EDITOR #}
+          .hs-inline-edit .section--comparisontable .section--comparisontable--features--body .section--comparisontable--features--group:last-child,
+          .hs-inline-edit .section--comparisontable .section--comparisontable--features--group > div:last-child > .section--comparisontable--features--categoryrowheader {
+            border-bottom-left-radius: 0px!important;
+            border-bottom-right-radius: 0px!important;
+          }
+        {% endcall %}
+      {% endif %}
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{#####################################################
+  MARK: Table Emphasize column feature - CSS
+#####################################################}
+{% if number_of_columns %}
+  {% set emphasized_column_keys = [] %}
+  {% for column in range( number_of_columns ) %}
+    {% set column_data = module.table.get('column_' ~ plan_option_key[column]) %}
+    {% if column_data.emphasize_column %}
+      {% do emphasized_column_keys.append(plan_option_key[column]) %}
+    {% endif %}
+  {% endfor %}
+
+  {% if emphasized_column_keys|length > 0 %}
+    {% set last_row_non_emphasized_value_sel = '.section--comparisontable--features--value' %}
+    {% for emphasized_key in emphasized_column_keys %}
+      {% set last_row_non_emphasized_value_sel = last_row_non_emphasized_value_sel ~ ':not([data-column="' ~ emphasized_key ~ '"])' %}
+    {% endfor %}
+
+    {% require_css %}
+      <style>
+        {% scope_css %}
+          {% call functions.mediaQuery('>tablet') %}
+            {{ comparison_emphasize_last_row_border_reset(last_row_non_emphasized_value_sel) }}
+          {% endcall %}
+
+          {% call functions.mediaQuery('palm') %}
+            {{ comparison_emphasize_last_row_border_reset(last_row_non_emphasized_value_sel) }}
+          {% endcall %}
+        {% end_scope_css %}
+      </style>
+    {% end_require_css %}
+  {% endif %}
+
+  {% for column in range( number_of_columns ) %}
+    {% set dynamic_column_key = 'column_' ~ plan_option_key[column] %}
+    {% set column_data        = module.table.get(dynamic_column_key) %}
+
+    {% if column_data.emphasize_column %}
+      {% set emphasize_border_color_choice = column_data.emphasize_column_border.column_emphasize_border_color %}
+      {% set emphasize_border_is_gradient = emphasize_border_color_choice == 'gradient' %}
+
+      {% set emphasize_bg_color_rgba = comparison_rgba_raw_opacity(
+        column_data.emphasize_column_background.column_emphasize_background_color,
+        column_data.emphasize_column_background.column_emphasize_background_custom_color
+      ) %}
+
+      {% set emphasize_border_color_rgba = comparison_rgba_raw_opacity(
+        emphasize_border_color_choice,
+        column_data.emphasize_column_border.column_emphasize_border_custom_color
+      ) %}
+
+      {% set emphasize_column_inner_fill = comparison_emphasize_column_inner_fill(emphasize_bg_color_rgba) %}
+
+      {% set check_icon_color_rgba = comparison_rgba_opacity1_always(
+        column_data.emphasize_column_icons.column_emphasize_check_icon_color,
+        column_data.emphasize_column_icons.column_emphasize_check_icon_custom_color
+      ) %}
+
+      {% set x_icon_color_rgba = comparison_rgba_opacity1_always(
+        column_data.emphasize_column_icons.column_emphasize_x_icon_color,
+        column_data.emphasize_column_icons.column_emphasize_x_icon_custom_color
+      ) %}
+
+      {% require_css %}
+        <style>
+          {% scope_css %}
+            {% call functions.mediaQuery('>tablet') %}
+              {{ comparison_emphasize_column_styles(
+                plan_option_key[column],
+                emphasize_border_is_gradient,
+                emphasize_bg_color_rgba,
+                emphasize_border_color_rgba,
+                emphasize_column_inner_fill
+              ) }}
+            {% endcall %}
+
+            {% call functions.mediaQuery('palm') %}
+              {{ comparison_emphasize_column_mobile_styles(
+                plan_option_key[column],
+                emphasize_border_is_gradient,
+                emphasize_bg_color_rgba,
+                emphasize_border_color_rgba,
+                emphasize_column_inner_fill
+              ) }}
+            {% endcall %}
+
+            {% if column_data.emphasize_column_text_color == "white" %}
+              {% call functions.mediaQuery('>tablet') %}
+                .section--comparisontable .section--comparisontable--features--column[data-column="{{ plan_option_key[column] }}"] .section--comparisontable--table--label *,
+                .section--comparisontable .section--comparisontable--features--value[data-column="{{ plan_option_key[column] }}"] * {
+                  color: {{ functions.color('white') }} !important;
+                }
+              {% endcall %}
+
+              {% call functions.mediaQuery('palm') %}
+                .section--comparisontable .pricingCarouselFeatures [data-column="{{ plan_option_key[column] }}"] .section--comparisontable--features--row .section--comparisontable--table--label *,
+                .section--comparisontable .pricingCarouselFeatures [data-column="{{ plan_option_key[column] }}"] .section--comparisontable--features--value * {
+                  color: {{ functions.color('white') }} !important;
+                }
+              {% endcall %}
+            {% endif %}
+
+            {% call functions.mediaQuery('>tablet') %}
+              .section--comparisontable .section--comparisontable--features--value[data-column="{{ plan_option_key[column] }}"] svg.single-ck path {
+                fill: {{ check_icon_color_rgba }};
+              }
+              .section--comparisontable .section--comparisontable--features--value[data-column="{{ plan_option_key[column] }}"] svg.single-x path {
+                fill: {{ x_icon_color_rgba }};
+              }
+            {% endcall %}
+
+            {% call functions.mediaQuery('palm') %}
+              .section--comparisontable .pricingCarouselFeatures [data-column="{{ plan_option_key[column] }}"] svg.single-ck path {
+                fill: {{ check_icon_color_rgba }};
+              }
+              .section--comparisontable .pricingCarouselFeatures [data-column="{{ plan_option_key[column] }}"] svg.single-x path {
+                fill: {{ x_icon_color_rgba }};
+              }
+            {% endcall %}
+          {% end_scope_css %}
+        </style>
+      {% end_require_css %}
+    {% endif %}
+
+    {## THIS IS CSS FOR THE HIGHLIGHT LABEL FEATURE ##}
+
+    {% if column_data.highlight_this_column %}
+
+      {% set label_bg_color_rgba = comparison_rgba_raw_opacity(
+        column_data.highlight_column_background.column_highlight_background_color,
+        column_data.highlight_column_background.column_highlight_background_custom_color
+      ) %}
+
+      {% set label_text_color_rgba = comparison_rgba_opacity1_always(
+        column_data.highlight_column_text.column_highlight_text_color,
+        column_data.highlight_column_text.column_highlight_text_custom_color
+      ) %}
+
+      {% require_css %}
+      <style>
+        {% scope_css %}
+          .section--comparisontable .section--comparisontable-mobile--column[data-column="{{ plan_option_key[column] }}"] .section--comparisontable--table--highlightlabel,
+          .section--comparisontable .section--comparisontable--features--column[data-column="{{ plan_option_key[column] }}"] .section--comparisontable--table--highlightlabel {
+            background-color: {{ label_bg_color_rgba }};
+          }
+
+          .section--comparisontable .section--comparisontable-mobile--column[data-column="{{ plan_option_key[column] }}"] .section--comparisontable--table--highlightlabel p,
+          .section--comparisontable .section--comparisontable--features--column[data-column="{{ plan_option_key[column] }}"] .section--comparisontable--table--highlightlabel p {
+            color: {{ label_text_color_rgba }};
+          }
+        {% end_scope_css %}
+      </style>
+      {% end_require_css %}
+
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{#####################################################
+  MARK: Table Monthly/Annual Feature - CSS
+#####################################################}
+{% if module.table.enable_monthly_annually_controls %}
+
+  {% set toggle_bg_color_rgba = comparison_rgba_opacity1_always(
+    layout_controls.monthly_annually_toggle.monthly_annually_toggle_background_color,
+    layout_controls.monthly_annually_toggle.monthly_annually_toggle_background_custom_color
+  ) %}
+
+  {% set toggle_active_color_rgba = comparison_rgba_opacity1_always(
+    layout_controls.monthly_annually_toggle.monthly_annually_toggle_active_text_color,
+    layout_controls.monthly_annually_toggle.monthly_annually_toggle_active_text_custom_color
+  ) %}
+
+  {% require_css %}
+    <style>
+      {% scope_css %}
+      .section--comparisontable--toggle-label.is-active {
+        color: {{ toggle_active_color_rgba }};
+      }
+
+      .section--comparisontable--toggle .toggle {
+        background-color: {{ toggle_bg_color_rgba }};
+      }
+      {% end_scope_css %}
+    </style>
+  {% end_require_css %}
+{% endif %}

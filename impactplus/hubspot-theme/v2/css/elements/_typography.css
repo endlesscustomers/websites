@@ -1,0 +1,298 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{# FONT FAMILIES #}
+{% for key,value in config.font_List.items() %}.font--{{ key }}, .font--{{ key }} * {font-family: {{ value }} !important;}
+{% endfor %}
+
+{# HEADINGS #}
+h1.xl, 
+h1 .xl, 
+.h1.xl, 
+.h1 .xl{
+  font-family: {{ config.h1Xl_FontFamily }};
+  font-size: {{ config.h1Xl_FontSize }};
+  line-height: {{ config.h1Xl_LineHeight }};
+  font-style: {{ config.h1Xl_FontStyle }};
+  font-weight: {{ config.h1Xl_FontWeight }};
+  text-transform: {{ config.h1Xl_TextTransform }};
+  text-decoration: {{ config.h1Xl_TextDecoration }};
+  letter-spacing: {{ config.h1Xl_LetterSpacing }};
+  word-spacing: {{ config.h1Xl_WordSpacing }};
+  color:{{ config.h1Xl_Color }};
+}
+
+h1, .h1 {
+  font-family: {{ config.h1_FontFamily }};
+  font-size: {{ config.h1_FontSize }};
+  line-height: {{ config.h1_LineHeight }};
+  font-style: {{ config.h1_FontStyle }};
+  font-weight: {{ config.h1_FontWeight }};
+  text-transform: {{ config.h1_TextTransform }};
+  text-decoration: {{ config.h1_TextDecoration }};
+  letter-spacing: {{ config.h1_LetterSpacing }};
+  word-spacing: {{ config.h1_WordSpacing }};
+  color:{{ config.h1_Color }};
+}
+h2, .h2 {
+  font-family: {{ config.h2_FontFamily }};
+  font-size: {{ config.h2_FontSize }};
+  line-height: {{ config.h2_LineHeight }};
+  font-style: {{ config.h2_FontStyle }};
+  font-weight: {{ config.h2_FontWeight }};
+  text-transform: {{ config.h2_TextTransform }};
+  text-decoration: {{ config.h2_TextDecoration }};
+  letter-spacing: {{ config.h2_LetterSpacing }};
+  word-spacing: {{ config.h2_WordSpacing }};
+  color:{{ config.h2_Color }};
+}
+h3, .h3 {
+  font-family: {{ config.h3_FontFamily }};
+  font-size: {{ config.h3_FontSize }};
+  line-height: {{ config.h3_LineHeight }};
+  font-style: {{ config.h3_FontStyle }};
+  font-weight: {{ config.h3_FontWeight }};
+  text-transform: {{ config.h3_TextTransform }};
+  text-decoration: {{ config.h3_TextDecoration }};
+  letter-spacing: {{ config.h3_LetterSpacing }};
+  word-spacing: {{ config.h3_WordSpacing }};
+  color:{{ config.h3_Color }};
+}
+h4, .h4 {
+  font-family: {{ config.h4_FontFamily }};
+  font-size: {{ config.h4_FontSize }};
+  line-height: {{ config.h4_LineHeight }};
+  font-style: {{ config.h4_FontStyle }};
+  font-weight: {{ config.h4_FontWeight }};
+  text-transform: {{ config.h4_TextTransform }};
+  text-decoration: {{ config.h4_TextDecoration }};
+  letter-spacing: {{ config.h4_LetterSpacing }};
+  word-spacing: {{ config.h4_WordSpacing }};
+  color:{{ config.h4_Color }};
+}
+h5, .h5 {
+  font-family: {{ config.h5_FontFamily }};
+  font-size: {{ config.h5_FontSize }};
+  line-height: {{ config.h5_LineHeight }};
+  font-style: {{ config.h5_FontStyle }};
+  font-weight: {{ config.h5_FontWeight }};
+  text-transform: {{ config.h5_TextTransform }};
+  text-decoration: {{ config.h5_TextDecoration }};
+  letter-spacing: {{ config.h5_LetterSpacing }};
+  word-spacing: {{ config.h5_WordSpacing }};
+  color:{{ config.h5_Color }};
+}
+h6, .h6 {
+  font-family: {{ config.h6_FontFamily }};
+  font-size: {{ config.h6_FontSize }};
+  line-height: {{ config.h6_LineHeight }};
+  font-style: {{ config.h6_FontStyle }};
+  font-weight: {{ config.h6_FontWeight }};
+  text-transform: {{ config.h6_TextTransform }};
+  text-decoration: {{ config.h6_TextDecoration }};
+  letter-spacing: {{ config.h6_LetterSpacing }};
+  word-spacing: {{ config.h6_WordSpacing }};
+  color:{{ config.h6_Color }};
+}
+{% set headings_List = ["h1","h2","h3","h4","h5","h6","p"] %}
+{% for item in headings_List %}{{ item }}{% if not loop.last %}, {% endif %}{% endfor %}, ul, ol, {% for item in headings_List %}.{{ item }}{% if not loop.last %}, {% endif %}{% endfor %} {
+  display:block;
+  margin-top:{{ config.textSpacing }};
+  margin-bottom:{{ config.textSpacing }};
+}
+{% for item in headings_List %}
+{% if loop.last %}
+{% set outerLoopLast = true %}
+{% else %}
+{% set outerLoopLast = false %}
+{% endif %}
+
+{% for itemm in headings_List %}
+.pagetype--site {{ item }} + {{ itemm }},
+.pagetype--site {{ item }} + .{{ itemm }}
+
+{% if (outerLoopLast == false)||(not loop.last) %}, {% endif %}
+{% endfor %}
+{% endfor %},
+
+{% for item in headings_List %}
+.pagetype--site {{ item }} + ul,
+.pagetype--site {{ item }} + ol,
+.pagetype--site ul + {{ item }},
+.pagetype--site ol + {{ item }}
+{% if not loop.last %}, {% endif %}
+{% endfor %} {
+  margin-top:{{ config.textSpacing_Top }};
+}
+
+{# PARAGRAPH AND BODY TEXT #}
+p, li, .p {
+  font-family: {{ config.p_FontFamily }};
+  font-size: {{ config.p_FontSize }};
+  line-height: {{ config.p_LineHeight }};
+  font-style: {{ config.p_FontStyle }};
+  font-weight: {{ config.p_FontWeight }};
+  letter-spacing: {{ config.p_LetterSpacing }};
+  word-spacing: {{ config.p_WordSpacing }};
+  color: {{ config.p_Color }};
+}
+p span[style*="font-size"]:not([style*="line-height"]) {
+  line-height:{{ config.p_LineHeight }};
+}
+
+{# TABLET TYPOGRAPHY #}
+{% call mediaQuery('tablet') %}
+
+h1.xl, 
+h1 .xl, 
+.h1.xl, 
+.h1 .xl{
+  font-size: {{ config.h1Xl_TabletFontSize }};
+  line-height: {{ config.h1Xl_TabletLineHeight }}; 
+}
+
+h1, .h1 {
+  font-size: {{ config.h1_TabletFontSize }} !important;
+  line-height: {{ config.h1_TabletLineHeight }} !important;
+}
+h2, .h2 {
+  font-size: {{ config.h2_TabletFontSize }} !important;
+  line-height: {{ config.h2_TabletLineHeight }} !important;
+}
+h3, .h3 {
+  font-size: {{ config.h3_TabletFontSize }} !important;
+  line-height: {{ config.h3_TabletLineHeight }} !important;
+}
+h4, .h4 {
+  font-size: {{ config.h4_TabletFontSize }} !important;
+  line-height: {{ config.h4_TabletLineHeight }} !important;
+}
+h5, .h5 {
+  font-size: {{ config.h5_TabletFontSize }} !important;
+  line-height: {{ config.h5_TabletLineHeight }} !important;
+}
+h6, .h6 {
+  font-size: {{ config.h6_TabletFontSize }} !important;
+  line-height: {{ config.h6_TabletLineHeight }} !important;
+}
+p, li, .p {
+  font-size: {{ config.p_TabletFontSize }} !important;
+  line-height: {{ config.p_TabletLineHeight }} !important;
+}
+{% endCall %}
+
+{# PALM TYPOGRAPHY #}
+{% call mediaQuery('palm') %}
+h1.xl, 
+h1 .xl, 
+.h1.xl, 
+.h1 .xl{
+  font-size: {{ config.h1Xl_MobileFontSize }};
+  line-height: {{ config.h1Xl_MobileLineHeight }};
+}
+
+h1, .h1 {
+  font-size: {{ config.h1_MobileFontSize }} !important;
+  line-height: {{ config.h1_MobileLineHeight }} !important;
+}
+h2, .h2 {
+  font-size: {{ config.h2_MobileFontSize }} !important;
+  line-height: {{ config.h2_MobileLineHeight }} !important;
+}
+h3, .h3 {
+  font-size: {{ config.h3_MobileFontSize }} !important;
+  line-height: {{ config.h3_MobileLineHeight }} !important;
+}
+h4, .h4 {
+  font-size: {{ config.h4_MobileFontSize }} !important;
+  line-height: {{ config.h4_MobileLineHeight }} !important;
+}
+h5, .h5 {
+  font-size: {{ config.h5_MobileFontSize }} !important;
+  line-height: {{ config.h5_MobileLineHeight }} !important;
+}
+h6, .h6 {
+  font-size: {{ config.h6_MobileFontSize }} !important;
+  line-height: {{ config.h6_MobileLineHeight }} !important;
+}
+p, li, .p {
+  font-size: {{ config.p_MobileFontSize }} !important;
+  line-height: {{ config.p_MobileLineHeight }} !important;
+}
+{% endCall %}
+
+{# HYPERLINKS #}
+a {
+  font-family: {{ config.a_FontFamily }};
+  font-size: {{ config.a_FontSize }};
+  line-height: {{ config.a_LineHeight }};
+  font-style: {{ config.a_FontStyle }};
+  font-weight: {{ config.a_FontWeight }};
+  text-transform: {{ config.a_TextTransform }};
+  text-decoration: {{ config.a_TextDecoration }};
+  letter-spacing: {{ config.a_LetterSpacing }};
+  word-spacing: {{ config.a_WordSpacing }};
+  color: {{ config.a_Color }};
+}
+
+h1 a, span.h1 a,
+h2 a, span.h2 a,
+h3 a, span.h3 a,
+h4 a, span.h4 a,
+h5 a, span.h5 a,
+h6 a, span.h6 a {
+  text-decoration:inherit!important;
+  font-family:inherit!important;
+  line-height:inherit!important;
+  text-transform:inherit!important;
+  word-spacing:inherit!important;
+  letter-spacing:inherit!important;
+  font-weight:inherit !important;
+  color:inherit !important;
+}
+
+.body-container-wrapper .p a,
+.body-container-wrapper p a,
+.body-container-wrapper li a {
+  {{ transition('all .3s ease-in-out') }};
+}
+
+.body-container-wrapper .p a:hover,
+.body-container-wrapper p a:hover,
+.body-container-wrapper li a:hover {
+  color: {{ config.a_HoverColor }};
+}
+
+{% call mediaLoop() %}
+  .body-container-wrapper .{{ media }}all--color--white p a:not(.btn),
+  .body-container-wrapper .{{ media }}all--color--white .p a:not(.btn),
+  .body-container-wrapper .{{ media }}all--color--white li a:not(.btn) {
+    color: {{ color('white') }};
+  }
+  .body-container-wrapper .{{ media }}all--color--white p a:not(.btn):hover,
+  .body-container-wrapper .{{ media }}all--color--white .p a:not(.btn):hover,
+  .body-container-wrapper .{{ media }}all--color--white li a:not(.btn):hover {
+    color: {{ color('white') }};
+    text-decoration: none;
+  }
+{% endcall %}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

@@ -1,0 +1,387 @@
+{% if widget_data.footerControls.footer_visibility == "none" %}
+{% elif widget_data.footerControls.footer_visibility == "default" || widget_data.footerControls.footer_visibility is undefined || widget_data.footerControls.footer_visibility == "logo_quote_social_only" %}
+<footer id="footerGroup" class="background--off-white--light background--offwhite z-index--3 relative palm-grande--bottom">
+  {% if widget_data.footerControls.footer_visibility == "logo_quote_social_only" %}
+  {% else %}
+  <div class="footer-container--top">
+    {% if widget_data.controls.page_settings_options.disable_footer_form %}
+    {% else %}
+    {% if module.add_footer_form %}
+    <div class="footer--form">
+      <div class="grid tall--top hard--bottom palm-hard--bottom text--left">
+        <div class="footer--form-container grid__item one-whole hard--top hard--bottom padding--grande portable-tall tablet-padding--tall palm-padding--short border--1 border--mist border--left--0 border--right--0 border--top--0" style="padding-bottom: 24px !important;">
+          <div class="footer-form-wrapper text--center">
+            <div class="grid__item eight-twelfths portable-one-whole palm-one-whole hard--ends text--center">
+              <div class="footer-form-header bolder first--hard--top last--hard--bottom margin--short--bottom p--small">
+                {{ module.form.form_header }}
+              </div>
+            </div>
+            <div class="footer-form-btn all--btn all--btn--blue">
+              <div id="footer-form-target" data-subId="{{ module.form.footer_form.form_id }}"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    <div class="grid tall--top short--bottom palm-hard--bottom text--left">
+      {# Logo and Social #}
+      <div class="{% if content.template_path != 'IM-IMPACT-Prod-Theme-2025/templates/flex.html' || content.template_path != 'IM-IMPACT-Prod-Theme-2025/templates/webinar-lp.html' %}flex flex-align--center flex-flow--column{% endif %}">
+        <div class="footer-container--logo-social-wrapper grid__item {% if content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/flex.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/webinar-lp.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-listing.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-post.html' %}one-whole{% else %}one-whole palm-eleven-twelfths palm-hard--sides{% endif %} desk-hard--sides lap-and-up-hard--sides tablet-hard--sides hard--ends width--max">
+          <div class="footer-flex margin--petite--bottom">
+            {% for levelOneFooter in module.footer_column_blocks %}
+            <div class="footer-main{% if levelOneFooter.include_app_buttons == 'true' %} footer-main--app-btns{% endif %}">
+              {% for levelTwoFooter in levelOneFooter.footer_sections %}
+              <ul class="color--white hard footer-main--ul-level-1 {% if not loop.first %}footer-main--menu-spacing{% endif %}">
+                <li class="no--bullets footer-main--li-level-1 {% if levelTwoFooter.menu_items|length %}footer-main--li-has-children{% else %}footer-main--li-no-children{% endif %}">
+                  {% set href = levelTwoFooter.optional_menu_header_link.url.href %}
+                  {% set rel = [] %}
+                  {% if levelTwoFooter.optional_menu_header_link.no_follow %}
+                  {% do rel.append("nofollow") %}
+                  {% endif %}
+                  {% if levelTwoFooter.optional_menu_header_link.open_in_new_tab %}
+                  {% do rel.append("noopener") %}
+                  {% endif %}
+                  <a aria-label="{{ levelTwoFooter.menu_header }} {% if levelTwoFooter.optional_menu_header_link.open_in_new_tab %}(Opens in new tab){% endif %}" role="button" class="font--16 bold inline-block color--obsidian no--underline {% if levelTwoFooter.optional_menu_header_link.url.href %}{% else %}lap-and-up--pointer{% endif %}" href="{% if levelTwoFooter.optional_menu_header_link.url.href %}{{ href }}{% else %}javascript:;{% endif %}" {% if levelTwoFooter.optional_menu_header_link.url.href %}{% if levelTwoFooter.optional_menu_header_link.open_in_new_tab %}target="_blank"{% endif %} {% if rel %}rel="{{ rel|join(" ") }}"{% endif %}{% endif %}>
+                    {{ levelTwoFooter.menu_header }}
+                  </a>
+                </li>
+                <ul class="footer-main--ul-level-2 hard--sides hard--ends newclasshere" role="menu"> 
+                  {% for item in levelTwoFooter.menu_items %}
+
+                  {% if item.url is string_containing 'sandbox' %}
+                  {% else %}
+                  <li class="no--bullets footer-main--li-level-2 hs-menu-item hs-menu-depth-1" role="none">
+                    <a class="relative" href="{{ item.url }}" aria-label="{{ item.linkLabel }} {% if item.linkTarget %}(Opens in new tab){% endif %}" role="button" role="menuitem" {% if item.linkTarget %}target="_blank"{% endif %}>{{ item.linkLabel }}
+                      {% if item.linkTarget %}
+                      <img class="footer--menu-new-tab" alt="{{ item.linkLabel }}" src="https://www.impactplus.com/hubfs/new%20tab.svg" width="10" height="10">
+                      {% else %}
+                      <img class="footer--menu-arrow" alt="{{ item.linkLabel }}" src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Navigation%20Icons/navigation%20arrow%20-%20facing%20right-01.svg" width="10" height="10">
+                      {% endif %}
+                    </a>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+              </ul>
+              {% endfor %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="footer-container--top-wrapper grid__item hard--sides hard--bottom margin--short--top tall--top margin--short--bottom {% if content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/flex.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-listing.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-post.html' %}one-whole{% else %}one-whole palm-eleven-twelfths palm-hard--sides{% endif %} margin--standard--bottom flex flex-align--center" style="border-top: 1px solid #e1e7f4;">
+          <div class="footer--social--logo grid__item five-twelfths tablet-six-twelfths palm-one-whole hard--ends lap-and-up-text--left tablet-text--left palm-hard--sides">
+            <div class="footer--social--logo-flex">
+              <a class="footer--social--logo-link block relative" href="https://www.impactplus.com">
+                {% if module.footer_logo.src %}
+                {% set sizeAttrs = 'width="{{ module.footer_logo.width|escape_attr }}" height="{{ module.footer_logo.height|escape_attr }}"' %}
+                {% if module.footer_logo.size_type == 'auto' %}
+                {% set sizeAttrs = 'width="{{ module.footer_logo.width|escape_attr }}" height="{{ module.footer_logo.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                {% elif module.footer_logo.size_type == 'auto_custom_max' %}
+                {% set sizeAttrs = 'width="{{ module.footer_logo.max_width|escape_attr }}" height="{{ module.footer_logo.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                {% endif %}
+                {% set loadingAttr = module.footer_logo.loading != 'disabled' ? 'loading="{{ module.footer_logo.loading|escape_attr }}"' : '' %}
+                <img src="{{ module.footer_logo.src|escape_url }}" alt="{{ module.footer_logo.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                {% endif %}
+              </a>
+              <p class="font--14 hard--ends palm-margin--short--top" style="color:#4F5465;">
+                <span class="block">
+                  <span class='block' style="line-height: 1.35em;">{{ site_settings.company_street_address_1 }}, {{ site_settings.company_street_address_2 }}</span>
+                  <span class='block'>{{ site_settings.company_city }}, {{ site_settings.company_state }}, 06410</span>
+                  <span class='block'>(203) 265-4377</span> 
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="footer--social--grid grid__item seven-twelfths tablet-six-twelfths palm-one-whole hard--ends relative palm-hard--sides">
+            <div class="footer--social desk-text--right lap-and-up-text--right tablet-text--right all--valign--middle">
+              <div class="footer--social-background relative flex flex-justify--end flex-align--center">
+                <div class="footer--social-group inline-block palm-flex">
+                  {% for item in module.social_profile %}
+                  <a class="inline-block z-index--5 relative palm-margin--short--top" href="{{ item.social_profile_link.url.href }}" {% if item.social_profile_link.open_in_new_tab %}target="_blank"{% endif %} aria-label="Follow us on {{ item.social_app_icon }} {% if item.social_profile_link.open_in_new_tab %}(Opens in new tab){% endif %}" {% if item.social_profile_link.rel %}rel="{{ item.social_profile_link.rel }}"{% endif %}>
+                    {% set sizeAttrs = 'width="{{ item.social_custom_icon.width }}" height="{{ item.social_custom_icon.height }}"' %}
+                    {% if item.social_custom_icon.size_type == 'auto' %}
+                    {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+                    {% elif item.social_custom_icon.size_type == 'auto_custom_max' %}
+                    {% set sizeAttrs = 'width="{{ item.social_custom_icon.max_width }}" height="{{ item.social_custom_icon.max_height }}" style="max-width: 100%; height: auto;"' %}
+                    {% endif %}
+                    {% set loadingAttr = item.social_custom_icon.loading != 'disabled' ? 'loading="{{ item.social_custom_icon.loading }}"' : '' %}
+                    <span class="footer--social-size footer--social-size--icon flex" style="filter: {{ item.badge_and_social_color_choice }}; width: {{ module.social_profiles_background_circle_size }}px; height: {{ module.social_profiles_background_circle_size }}px">
+                      <img class="footer-social-color footer-social--custom-icon lazy" data-src="{{ item.social_custom_icon.src }}" alt="{{ item.social_custom_icon.alt }}" {{ loadingAttr }} {{ sizeAttrs }}></span>
+                  </a>
+                  {% endfor %}
+                </div>
+                <div class="desk-inline-block lap-and-up-inline-block tablet-block palm-block">
+                  {% for item in module.badges %}
+                  <{% if item.badge_profile_link.url.href %}a{% else %}div{% endif %} class="inline-block z-index--5 relative portable-margin--short--top" {% if item.badge_profile_link.url.href %}href="{{ item.badge_profile_link.url.href }}" {% if item.badge_profile_link.open_in_new_tab %}target="_blank"{% endif %} aria-label=" {% if item.badge_profile_link.open_in_new_tab %}(Opens in new tab){% endif %}" {% if item.badge_profile_link.rel %}rel="{{ item.badge_profile_link.rel }}"{% endif %}{% endif %}>
+                    {% set sizeAttrs = 'width="{{ item.badge_custom_icon.width }}" height="{{ item.badge_custom_icon.height }}"' %}
+                    {% if item.badge_custom_icon.size_type == 'auto' %}
+                    {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+                    {% elif item.badge_custom_icon.size_type == 'auto_custom_max' %}
+                    {% set sizeAttrs = 'width="{{ item.badge_custom_icon.max_width }}" height="{{ item.badge_custom_icon.max_height }}" style="max-width: 100%; height: auto;"' %}
+                    {% endif %}
+                    {% set loadingAttr = item.badge_custom_icon.loading != 'disabled' ? 'loading="{{ item.badge_custom_icon.loading }}"' : '' %}
+                    <span class="footer--social-size {% if item.badge_profile_image == 'icon' %}footer--social-size--icon{% endif %} flex" style="filter: {{ item.badge_and_badge_color_choice }};"><img class="{% if item.badge_profile_image == 'icon' %}footer-social-color{% endif %} footer-social--custom-icon lazy" data-src="{{ item.badge_custom_icon.src }}" alt="{{ item.badge_custom_icon.alt }}" {{ loadingAttr }} {{ sizeAttrs }}></span>
+                    </{% if item.badge_profile_link.url.href %}a{% else %}div{% endif %}>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="footer--social-privacy">
+    <div class="grid hard--ends">
+      <div class="{% if content.template_path != 'IM-IMPACT-Prod-Theme-2025/templates/flex.html' || content.template_path != 'IM-IMPACT-Prod-Theme-2025/templates/webinar-lp.html' %}flex flex-align--center flex-flow--column{% endif %}">
+        <div class="footer--social-privacy--wrapper flex palm-block flex-align--center {% if widget_data.footerControls.footer_visibility == "logo_quote_social_only" %}footer--logo-social{% endif %} grid__item {% if content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/flex.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/webinar-lp.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-listing.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/learning-center-blog-post.html' %}one-whole palm-one-whole{% else %}one-whole palm-eleven-twelfths palm-hard--sides{% endif %} short--top tall--bottom palm-hard--sides">
+          <div class="grid__item one-half palm-one-whole hard--ends lap-and-up-text--left tablet-text--left palm-text--left hard--sides portable-one-whole palm-hard--sides">
+            <ul class="hard no--bullets">
+              {% for privacyFooter in module.privacy_menu %}
+              <li class="no--bullets inline-block palm-block" style="line-height:22.75px;">
+                {# blue-600 is used for older pages on the previous framework #}
+                <a class="footer--social-privacy--links font--13 inline-block no--underline" href="{{ privacyFooter.url }}" style="margin-bottom:0px !important; line-height:1em;">{{ privacyFooter.linkLabel }}</a>{% if not loop.last %}<span class="palm-visuallyhidden">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="grid__item one-half palm-one-whole hard--ends text--right palm-text--left hard--sides palm-one-whole">
+            <p class="font--13 line-height--basic hard--ends palm-margin--short--top" style="color:#4F5465;">
+              © {{ year }} IMPACT, All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% elif widget_data.footerControls.footer_visibility == "social address" %}
+<footer class="footer--publisher z-index--10 relative">
+  <div class="background--off-white--light">
+    <div class="grid short--top lap-and-up-short--bottom tablet-short--bottom palm-short--bottom">
+      <div class="lap-and-up-width--98 grid__item one-whole lap-and-up-hard portable-hard--ends all--text--center">
+        <div class="footer--publisher-top grid__item hard--ends ten-twelfths palm-one-whole text--left normal--weight" style="line-height: 1.4em; margin-top:12px;">
+          <div class="p footer--with-social block hard--ends font--heading all--normal--weight line-height--basic font--15" style="margin-top: 3px !important;">
+            © {{ year }} IMPACT, All Rights Reserved, <a class="inline-block color--middle-grey" aria-label="Privacy Policy (Opens in new tab)" href="https://www.impactplus.com/privacy-policy">Privacy Policy</a> | <a class="inline-block color--middle-grey" href="https://www.impactplus.com/trademarks">Trademarks</a><span class="lap-and-up-visuallyhidden">. {{site_settings.company_street_address_1}}, {{site_settings.company_city }}, {{site_settings.company_state}}, {{site_settings.company_zip}}, (203) 265-4377</span>
+            <div class="block portable-visuallyhidden p hard--bottom hard--top">
+              {{site_settings.company_street_address_1}}, {{site_settings.company_city }}, {{site_settings.company_state}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% else %}
+{% endif %}
+
+
+{% if 'hs-blog-id-393687754' in builtin_body_classes || isblog == true %}
+{# These scripts are only in the Footer for the impactplus.com/blog #}
+
+{# ***** JQUERY INCLUDE FOR THE IMPACT BLOG ONLY ***** #}
+<script src="https://code.jquery.com/jquery-1.12.0.js"></script>
+{# ***** END JQUERY INCLUDE FOR THE IMPACT BLOG ONLY ***** #}
+
+<script async src="{{ get_asset_url('/_IMPACT_Production/_modules/_IMPACT_UI/_templates/blog/js/impact_blog_scripts.js') }}" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.3.1/lazyload.min.js" type="text/javascript"></script>
+{# End These scripts are only in the Footer for the impactplus.com/blog #}
+
+
+{# Sidebar Services Template #}
+{% elif content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/flex.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/team-inner.html' || content.template_path == 'IM-IMPACT-Prod-Theme-2025/templates/webinar-lp.html' || 'hs-blog-id-194889627688' in builtin_body_classes || 'hs-blog-id-194887237743' in builtin_body_classes || content.template_path == 'IMPACT_Grid/- Templates -/IMPACT_Flex_dnd.html' || content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_flex_sidebar/_templates/IMPACT_Flex_w_Sidebar.html' || content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_templates/IMPACT_Flex_v2.html' || content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_templates/IMPACT_Flex_Pricing_Page.html' || content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_templates/IMPACT_Team_Inner.html' %}
+
+{% if content.absolute_url == "https://www.impactplus.com/success-stories" %}
+{% else %}
+<script src="https://code.jquery.com/jquery-1.12.0.js"></script>
+{% endif %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/17.3.1/lazyload.min.js" type="text/javascript"></script>
+
+{% else %}
+
+<script>
+  var myLazyLoad = new LazyLoad({
+    elements_selector: ".lazy"
+  });
+</script>
+
+{# Flexsider Script for non-new page templates. #}
+<script src="{{ get_asset_url('/_IMPACT_Production/_js/_libraries/Production Flexslider.js') }}" type="text/javascript"></script>
+
+{% endif %}
+{# End Scripts #}
+
+{# Module is included in production site_head #}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js' type="text/javascript"></script>
+
+{% include "/_IMPACT_Production/_js/header_footer_scripts.html" %}
+
+{% if (widget_data.controls.page_settings_options.disable_footer_form) || (widget_data.footerControls.footer_visibility == "none" ) %}
+{% else %}
+{% if module.add_footer_form %}
+<script>
+  var formScript = 'https://js.hsforms.net/forms/v2.js';
+  const footerFormsLoaded = document.querySelector("script[src$='"+formScript+"']");
+
+  function footerScript(src) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.addEventListener('load', resolve);
+      script.addEventListener('error', e => reject(e.error));
+      document.head.appendChild(script);
+
+      if (!footerFormsLoaded) {
+        document.head.appendChild(script);
+      }
+    });
+  } 
+
+  function footerFormInj(){
+    if (!$(".footer-form-target form").length){
+
+      // Script has been added, load our hubspot form
+      hbspt.forms.create({
+        region: "na1",
+        portalId: "145335",
+        target: '#footer-form-target',
+        formId: $('#footer-form-target').attr('data-subId')
+      });
+    } 
+  }
+</script>
+{% endif %}
+{% endif %}
+
+<script>
+
+  {# AI Chatbot - Staging #}
+document.querySelectorAll('.vfChatbot').forEach(btn => {
+
+  btn.addEventListener('click', function () {
+
+    if (!window.voiceflowLoaded) {
+
+      window.voiceflowLoaded = true;
+
+      var script = document.createElement("script");
+      script.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs";
+      script.type = "text/javascript";
+
+      script.onload = function() {
+
+        window.voiceflow.chat.load({
+          verify: { projectID: '6889f2f7b9defd1bdab22120' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production',
+          assistant: {
+            stylesheet: "{{ get_asset_url('/IM-IMPACT-Prod-Theme-2025/css/custom/Voiceflow.css') }}"
+          },
+          voice: {
+            url: "https://runtime-api.voiceflow.com"
+          }
+        }).then(() => {
+          window.voiceflow.chat.open();
+        });
+
+      };
+
+      document.body.appendChild(script);
+
+    } else {
+      window.voiceflow.chat.open();
+    }
+
+  });
+
+});
+
+  function initBannerFadeIn() {
+
+    const $banner = $('#hs-eu-cookie-confirmation');
+    if (!$banner.length) return;
+
+    // Fade in banner
+    $banner.addClass('is-visible');
+
+    // Create overlay if needed
+    let $overlay = $('#hs-cookie-overlay');
+    if (!$overlay.length) {
+      $overlay = $('<div id="hs-cookie-overlay"></div>').appendTo('body');
+    }
+
+    // Toggle overlay for mobile only
+    function toggleOverlay() {
+      var $banner = $('#hs-eu-cookie-confirmation');
+      var bannerVisible = $banner.length && !$banner.hasClass('hs-hidden'); // check presence + not hidden
+      if ($(window).width() < 767 && bannerVisible) {
+        $overlay.addClass('is-visible');
+      } else {
+        $overlay.removeClass('is-visible');
+      }
+    }
+
+    toggleOverlay();
+    $(window).on('resize', toggleOverlay);
+
+    // Hide overlay when cookie banner is dismissed
+    $banner.on('click', '#hs-eu-confirmation-button, #hs-eu-decline-button, #hs-eu-header-container', function () {
+      $overlay.removeClass('is-visible');
+    });
+
+  }
+
+  ['click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+    window.addEventListener(e, footerFunctions, {
+      once: true
+    });
+  });
+
+  var footerInteracted = false;
+
+  function footerFunctions() {
+    if (!footerInteracted) {
+      footerInteracted = true;
+      /*$('div#hs-eu-cookie-confirmation').addClass('hs-cookie--slidein');*/
+
+      setTimeout(function() { 
+        initBannerFadeIn();
+      }, 2000);
+
+
+      {% if (widget_data.controls.page_settings_options.disable_footer_form) || (widget_data.footerControls.footer_visibility == "none" ) %}
+      {% else %}
+      {% if module.add_footer_form %}
+      {# Footer Form #}
+      if (footerFormsLoaded) {
+        footerFormInj();
+      }
+      footerScript('https://js.hsforms.net/forms/v2.js')
+        .then(() => {
+        footerFormInj()
+      }).catch(error => {
+        console.error(error);
+      });
+      {% endif %}
+      {% endif %}
+
+    }
+  }
+
+  {# Adding accecibility skip dynamically to prepend before cookie banner #}
+  $(window).ready(function() {
+    var accessBanner = $('<a href="#sectionBody" style="display:none;">Skip to main content</a>');
+    setTimeout(function() { 
+      $("body").prepend(accessBanner);
+    }, 2000);
+  });
+</script>
+

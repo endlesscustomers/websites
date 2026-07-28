@@ -1,0 +1,106 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.background {
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  z-index:0;
+}
+.background--layer {
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+}
+.background--video {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  opacity:0;
+  filter:alpha(opacity=0);
+  {{ transition("opacity .2s ease-in-out") }};
+  width:100%;
+}
+.background--video.background--video--active {
+	object-fit:cover;
+  width:100%;
+  opacity:1;
+  filter:alpha(opacity=100);
+}
+.background--video[poster] {
+  object-fit:cover;
+}
+
+{# BACKGROUND SIZE #}
+.background-size--cover {background-size:cover!important;}
+.background-size--contain {background-size:contain!important;}
+.background-size--contain--y {background-size:auto 100%!important;}
+.background-size--contain--x {background-size:100% auto!important;}
+.background-size--stretch {background-size:100% 100%!important;}
+.background-size--auto {background-size:auto;}
+
+{# BACKGROUND REPEAT #}
+.background-repeat {background-repeat:repeat!important;}
+.background-repeat--y {background-repeat:repeat-y!important;}
+.background-repeat--x {background-repeat:repeat-x!important;}
+.background-repeat--none {background-repeat:no-repeat!important;}
+
+
+{# OBJECT FIT BACKGROUND SIZE #}
+.object--background-size--cover {
+  object-fit: cover!important;
+  height: 100% !important;
+  width: 100% !important;
+}
+.object--background-size--contain {
+  object-fit: contain!important;
+  height: 100% !important;
+  width: 100% !important;
+}
+{# HEIGHT #}
+.object--background-size--contain--y {
+  object-fit: contain!important;
+  height: 100% !important;
+  width: auto !important;
+}
+{# WIDTH #}
+.object--background-size--contain--x {
+  object-fit: contain!important;
+  height: auto !important;
+  width: 100% !important;
+}
+.object--background-size--stretch {
+  object-fit: fill!important;
+  height: 100% !important;
+  width: 100% !important;
+}
+.object--background-size--auto {
+  object-fit: none;
+}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

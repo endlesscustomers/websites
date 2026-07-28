@@ -1,0 +1,36 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Membership Logout - IMPACT Production Theme
+-->
+
+{% set template_css = "../../css/templates/system.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Membership | Logout" %}
+{% set body_classes = 'pagetype--site header--static' %}
+
+{% block body %}
+<div class="header--anchor"></div>
+<section class="content-wrapper">
+	<div class="systems-page grid hard--ends">
+		<div class="grid__item eight-twelfths palm-one-whole text--left">
+			{% module "content"
+				path="@hubspot/rich_text",
+				html="<h1>You're signed out.</h1><p><a href='//{{ request.domain }}/_hcms/mem/login' title='Login'>Login</a></p>"
+			%}
+			<div>
+				{% module_block module "membership_admin_content"
+					label="Contact admin",
+					path="@hubspot/rich_text"
+				%}
+					{% module_attribute "html" %}
+						<p>Having trouble? <a href="{{"mailto:" ~ site_settings.membershipWebsiteAdmin}}">Contact the admin</a>.</p>
+					{% end_module_attribute %}
+				{% end_module_block %}
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

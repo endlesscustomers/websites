@@ -1,0 +1,140 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--lptestimonialcolumns--divider--vertical {
+  display:inline;
+  position:absolute;
+  /* left:{{ ( -1 * (grid_ColumnSpacing)|float()|string|replace(".0","") ) + '%!important' }}; */
+  left: 0 !important;
+  top:auto;
+  width:1px;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:0px;
+}
+.section--lptestimonialcolumns--divider--horizontal {
+  display:block;
+  position:absolute;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:1px;
+  top:0px;
+  left:{{ (config.grid_ColumnSpacing) }} !important;
+  right:{{ (config.grid_ColumnSpacing) }} !important;
+  /* left:0%; */
+  /* right:0px; */
+}
+.section--lptestimonialcolumns--grid > .grid__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+.section--lptestimonialcolumns--grid .section--lptestimonialcolumns--testimonial-columns--wrapper.justify--start {
+  justify-content: flex-start;
+}
+.section--lptestimonialcolumns .section--lptestimonialcolumns--testimonial-column {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+}
+
+.section--lptestimonialcolumns .section--lptestimonialcolumns--testimonial-column:not(.section--lptestimonialcolumns--testimonial-column--body--padding){
+  margin: 0 !important;
+}
+
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid:not([data-columns--desk="1"]) .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid:not([data-columns--lap="1"]) .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid:not([data-columns--lap="1"]) .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid:not([data-columns--tablet="1"]) .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid:not([data-columns--palm="1"]) .section--lptestimonialcolumns--testimonial-column{
+  padding: {{ config.tall }} {{ ( 3 / 2 ) }}% !important;
+}
+
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid[data-columns--desk="1"] .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid[data-columns--lap="1"] .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid[data-columns--lap="1"] .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid[data-columns--tablet="1"] .section--lptestimonialcolumns--testimonial-column,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid[data-columns--palm="1"] .section--lptestimonialcolumns--testimonial-column{
+  padding: 14px 0 !important;
+}
+
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid .p+.p,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid .p+ol,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid .p+ul,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid h6+ol,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid h6+ul,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid ol+.p,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid ol+h6,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid ol+p,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid p+ol,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid p+p,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid p+ul,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid ul+h6,
+.section--lptestimonialcolumns .section--lptestimonialcolumns--grid ul+p{
+  margin-top: -16px;
+}
+
+.section--lptestimonialcolumns .section--lptestimonialcolumns--testimonial-column--body{
+  height: 100%;
+}
+.section--lptestimonialcolumns .section--lptestimonialcolumns--testimonial-column--body--wrapper {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+.section--lptestimonialcolumns.section--lptestimonialcolumns--equalizebuttons .section--lptestimonialcolumns--testimonial-column--body--cta {
+  margin-top: auto;
+}
+.section--lptestimonialcolumns .grid.hard .section--lptestimonialcolumns--divider--horizontal,
+.section--lptestimonialcolumns .grid.hard--sides .section--lptestimonialcolumns--divider--horizontal {
+  left:{{ config.short }};
+  right:{{ config.short }};
+}
+{% call mediaQuery("palm") %}
+/*.section--lptestimonialcolumns .section--lptestimonialcolumns--testimonial-column {
+max-width:450px;
+}*/
+{% endcall %}
+
+.section--lptestimonialcolumns--testimonial-column--body--padding .section--lptestimonialcolumns--testimonial-column--body--wrapper{
+  padding: 32px;
+  border-radius: {{ config.default_BorderRadius }};
+}
+
+.section--lptestimonialcolumns--testimonial-column--byline .section--lptestimonialcolumns--testimonial-column--image--container{
+  flex: 0 0 auto;
+  max-width: 82px;
+  padding-right: 20px;
+}
+
+.section--lptestimonialcolumns--testimonial-column .section--lptestimonialcolumns--testimonial-column--image {
+  border-radius: 50%;
+  display: block;
+  height: 67px;
+  width: 67px;
+}
+
+.section--lptestimonialcolumns--testimonial-column--source p span:first-child{
+  margin-bottom: 5px;
+}

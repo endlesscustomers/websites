@@ -1,0 +1,22 @@
+.headerIMPlus--navigation-center {
+  visibility: hidden;  
+  opacity: 0;           
+  transition: opacity 250ms ease; 
+}
+
+.headerIMPlus--navigation-center.ready {
+  visibility: visible;
+  opacity: 1;         
+}
+
+@media (max-width: 768px) {
+  .headerIMPlus--secondary--inner-palm-flex-row .headerIMPlus--navigation-center {
+    text-align: left !important;
+    margin-right: unset !important;
+    overflow: scroll !important;
+    padding-left: 0 !important;
+    padding-right: 5.35% !important;
+    scrollbar-width: none !important;
+    width: auto !important;
+  }
+}

@@ -1,0 +1,122 @@
+<!--
+templateType: section
+label: Inbound Assessment Explainations
+isAvailableForNewContent: true
+-->
+
+{# ***** Global Macro Snippets ***** #}
+{% import '/impact-agency-services-v3/Global_Snippets_Marcos.html' as snippets %}
+
+{% set questionContactProperties = module.quiz_question_results_section|map('quiz_question_internal_contact_property_value') %} 
+{% if questionContactProperties|length > 0 %}
+<style>
+  {% for item in questionContactProperties %}.successForm .hs_{{ item }}{% if not loop.last %}, {% endif %}{% endfor %} {display:none;}
+  {% for item in module.quiz_question_results_section %}.successForm .hs_{{ item.quiz_question_internal_contact_property_value }}{% if not loop.last %}, {% endif %}{% endfor %} {display:none;}
+</style>
+{% endif %}
+
+{% if module.hide_section %}
+{% else %}
+<div class="section section--assessment-results relative agency---lazy--default {{ module.section_controls.device_visibility }}">
+  {% if content.absolute_url is string_containing "https://www.impactplus.com/services/master-module-examples" %}
+  <div class="module-name absolute z-index--10">
+    <p class="hard--ends color--white">Inbound Assessment Explainations - IMPACT UI</p>
+  </div>
+  {% endif %}
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--20">
+    <div class="grid {{ module.spacing.top_padding }} {{ module.spacing.bottom_padding }} {{ module.spacing.top_padding_mobile }} {{ module.spacing.bottom_padding_mobile }} lap-and-up-text--{{ module.section_controls.content_alignment_desktop }} portable-text--{{ module.section_controls.content_alignment_mobile }}">
+      {% if module.header %}
+      <div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="grid__item one-whole palm-one-whole short--top margin--{{ headerSpace }} hard--sides hard--ends">
+        <div class="block text--{% if module.section_controls.column_alignment %}{{ module.section_controls.column_alignment }}{% else %}left{% endif %}">
+          {% if module.preheader %}
+          <span class="h3 font--script hard--top margin--petite--bottom color--blue animate--fade animate--fade-up animate--fade-delay--1 light">{{ module.preheader }}</span>
+          {% endif %}
+          {% if module.header %}
+          <div class="grid__item lap-and-up-all--text--{{  module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }} {{ module.section_heading_width }} tablet-ten-twelfths palm-one-whole hard--ends {{ module.section_controls.text_color_override }} first--hard--top animate--fade animate--fade-up animate--fade-delay--1 {% if not module.subheader %}last--hard--bottom{% endif %}"> 
+            {{ module.header|replace(';"',' !important;"')|replace('<h1>','<span class="h1">')|replace('</h1>','</span>') }}
+          </div>
+          {% endif %}
+        </div>  
+      </div>
+      {% endif %} 
+
+      {# Questions #}
+      <div class='faq-accordian grid__item nine-twelfths tablet-one-whole palm-one-whole palm-hard--sides tall--top hard--bottom animate--fade animate--fade-up'>
+        <div class='faq-accordian--container overflow--hidden text--left'>
+          {% for item in module.quiz_question_results_section %}
+          <div class="scorecardResults--question faq-accordian--single hover--pointer relative border-radius--10 background--white" rel="{{ item.quiz_question_internal_contact_property_value }}">
+            <div class="faq-accordian--title bold hard--ends relative">
+              <span class="faq-accordian--title-spacing bold">
+                <div class="flex" style="align-items: start;">
+
+                  {% if item.answer_icon.src %}
+                  {% set sizeAttrs = 'width="{{ item.answer_icon.width|escape_attr }}" height="{{ item.answer_icon.height|escape_attr }}"' %}
+                  {% if item.answer_icon.size_type == 'auto' %}
+                  {% set sizeAttrs = 'width="{{ item.answer_icon.width|escape_attr }}" height="{{ item.answer_icon.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                  {% elif item.answer_icon.size_type == 'auto_custom_max' %}
+                  {% set sizeAttrs = 'width="{{ item.answer_icon.max_width|escape_attr }}" height="{{ item.answer_icon.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                  {% endif %}
+                  {% endif %}
+                  {% set loadingAttr = item.answer_icon.loading != 'disabled' ? 'loading="{{ item.answer_icon.loading|escape_attr }}"' : '' %}
+                  <img src="{{ item.answer_icon.src|escape_url }}" alt="{{ item.answer_icon.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+
+                  <div class="questionContent">
+                    <h3 class="normal--weight color--neutral-700 line-height--small hard--top" style="margin-bottom: 8px;">{{ item.quiz_question }}</h3>
+                    <div class="p--default line-height--medium hard--ends first--hard--top color--middle-grey" style="display:block; word-break: break-word;">
+                      {{ item.quiz_question_explaination }}
+                    </div>
+                  </div>
+                </div>
+              </span>
+              <div class="faq-accordian--item-score h3 hard--ends">
+                <div class="faq-accordian--item-score-inner">
+                  1%
+                </div>
+              </div>
+            </div>
+            {% for item2 in item.results_scorecard_questions %}
+            <div class="section--faqs--faq--content relative" data-question="{{ item2.quiz_question_internal_contact_property_value }}">
+              <div class="section--faqs--faq--content--wrapper">
+                <span class="section--faqs--faq--content--icon-title flex">
+                  <span class="section--faqs--faq--content--icon" style="margin-top: 4px;">
+                    <img class="accoridan--correct" style="display:none; max-width: unset;" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/hand_drawn/correct.svg" width="34" height="34">
+                    <img class="accoridan--incorrect" style="max-width: unset;" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/hand_drawn/incorrect.svg" width="34" height="32">
+                  </span>
+                  <span class="faq-accordian--single-question p bold hard--ends line-height--medium">
+                    {{ item2.quiz_question }}
+                    <div class="section--faqs-leftright--faq--toggle--icon">
+                      <div class="icon--axis icon--vertical--line"></div>
+                      <div class="icon--axis icon--horizontal--line"></div>
+                    </div>
+                  </span>
+                </span>
+                <div class="faq-accordian--single-main background--white p--sm last--hard--bottom hard--bottom" style="display:none; word-break: break-word;">
+                  {{ item2.quiz_question_explaination }}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="scorecardResults--next-steps margin--standard--top p--default line-height--small color--middle-grey last--hard--bottom flex">
+              <span class="scorecardResults--next-steps--icon"><img style="max-width: unset;" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/hand_drawn/light_bulb.svg" width="34"></span>
+              <span class="scorecardResults--next-steps--content first--hard--top" style="margin-top: 6px;">{{ item.score_group_next_steps }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {# End Questions #}
+
+      {% for sectionBlockCTA in module.cta %}
+      {% set fadeInNum = loop.index + module.columns|length %}
+      <div class="grid__item one-whole palm-one-whole hard--bottom short--top palm-short--top text--center palm-block {{ sectionBlockCTA.cta_mobile_width }} {% if module.section_controls.cta_settings.cta_button_size == "btn--equalize-width" %}{{ module.section_controls.cta_settings.cta_button_size }} {{ module.section_controls.cta_settings.button_width_size }}{% else %}{% endif %}">
+        <div class="{% if module.section_controls.cta_settings.cta_button_size == "btn--equalize-width" %}btn--equalize-width--cta{% else %}inline-block{% endif %} animate--fade animate--fade-up animate--fade-delay-list--{{ fadeInNum }} " style="padding-top: 10px !important; margin: 0px 10px !important;">
+          {{ snippets.button(sectionBlockCTA) }}
+        </div>
+      </div>
+      {% endfor %}
+      {{ snippets.gridCustomSpacingNum(name,module.spacing,".grid",".grid") }}
+    </div>
+  </div>
+</div>
+{% endif %}

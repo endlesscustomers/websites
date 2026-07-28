@@ -1,0 +1,66 @@
+[ {
+  "id" : "386be03d-4474-c091-9d75-204bff84c35c",
+  "name" : "hero_section",
+  "label" : "Hero Section",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "d1ffcb3f-4f1a-de54-bbab-f499d720a4b6",
+    "name" : "article_subheader",
+    "label" : "Article Subheader",
+    "inline_help_text" : "If you wish to add a subheader under the title of the post, enter text here.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "ccf24254-f82a-9d5c-f0da-bea05188df75",
+    "name" : "updated_blog_article_date",
+    "label" : "Updated Blog Article Date",
+    "inline_help_text" : "When you make a big update to your article and you want to show the Updated Date, select it here, and it will display next to the publish date.",
+    "required" : false,
+    "locked" : false,
+    "type" : "date",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : { }
+}, {
+  "id" : "8953bef8-7618-3dad-3e16-8877d1f32d85",
+  "name" : "post_body_section",
+  "label" : "Post Body Section",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "9d529ab3-89ca-c1f7-da97-e59da812df00",
+    "name" : "narration_caption",
+    "label" : "Narration Caption",
+    "inline_help_text" : "Enter text here to show a little description under the post narration player.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "79e7e746-23db-1600-4488-c444656aaa7b",
+    "name" : "related_resources_topic_slug",
+    "label" : "Related Resources Topic Slug",
+    "inline_help_text" : "If you wish to overwrite the default related articles slug, select one here.",
+    "required" : false,
+    "locked" : false,
+    "tag_value" : "SLUG",
+    "type" : "tag",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : { }
+} ]

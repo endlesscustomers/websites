@@ -1,0 +1,147 @@
+{{ require_css( get_asset_url("../Popup with Reminder Form.css"), { async: true } ) }}
+
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js" async></script>
+
+{% if contact.assessment_results__is_your_marketing_ready_for_the_next_5_years %}
+{% else %}
+<div class="eclc-popup" aria-hidden="true" data-hs-form-id="{{ module.popup_form.form_id }}" data-hs-response-type="{{ module.popup_form.response_type }}" data-hs-message="{{ module.popup_form.message }}" data-hs-redirect-id="{{ module.popup_form.redirect_id }}"  data-hs-redirect-url="{{ module.popup_form.redirect_url }}">
+  <div class="eclc-popup__overlay"></div>
+
+  <div class="eclc-popup__dialog">
+
+    <div class="eclc-popup__steps relative">
+      <button class="eclc-popup__close" aria-label="Close">×</button>
+      <div class="eclc-popup__image" role="dialog" aria-modal="true">
+        <img data-src="{{ module.popup_image.src }}" alt="{{ module.popup_image.alt|escape_attr }}" class="eclc-popup__img lazy">
+      </div>
+      <div class="eclc-popup__step1 eclc-popup__content text--center" aria-labelledby="eclcPopupTitle">
+        <div class="lap-and-up-text--left tablet-text--left palm-text--center">
+          <h2 id="eclcPopupTitle" class="hard--ends">{{ module.primary_popup_header }}</h2>
+          <div class="eclc-popup__subhead p--default margin--short--top first--hard--top">{{ module.primary_popup_subheader }}</div>
+          <div class="eclc-popup__btns" style="margin-top:30px;">
+            <span class="eclc-popup__primary">{{ snippets.button(module.cta_primary) }}</span>
+            <span class="eclc-popup__secondary">{{ snippets.button(module.cta_secondary) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="eclc-popup__step2 eclc-popup__content" style="display:none;">
+        <div class="lap-and-up-text--left tablet-text--left palm-text--center">
+          <h2 id="eclcPopupTitle" class="hard--ends">{{ module.secondary_cta_content_and_form_settings.header }}</h2>
+          <div class="eclc-popup__subhead p p--default margin--short--top first--hard--top">{{ module.secondary_cta_content_and_form_settings.subheader }}</div>
+          <div class="eclc-popup__form">
+            <div id="hs-form-placeholder"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+{% require_js %}
+<script>
+  jQuery(function($) {
+    // Configuration
+    var popup        = $('.eclc-popup');
+    if (!popup.length) return;
+
+    var step1        = popup.find('.eclc-popup__step1');
+    var step2        = popup.find('.eclc-popup__step2');
+    var closeBtn     = popup.find('.eclc-popup__close');
+    var primaryBtn   = popup.find('.eclc-popup__primary a, .eclc-popup__primary button');
+    var secondaryBtn = popup.find('.eclc-popup__secondary a, .eclc-popup__secondary button');
+
+    var cookieName   = 'exitPopupShown';
+    var expireDays   = 7;
+
+    // Helper: can we show the popup?
+    function canShowPopup() {
+      return !$.cookie(cookieName);
+    }
+
+    // Helper: mark as shown (or clicked/closed)
+    function markPopupShown() {
+      $.cookie(cookieName, '1', { expires: expireDays, path: '/' });
+    }
+
+    // Show the exit-intent popup
+    function showPopup() {
+      popup.addClass('is-open');
+      markPopupShown();
+    }
+
+    // Transition from step1 to step2 and inject the HubSpot form
+    function goToStep2() {
+      if (step1.length && step2.length) {
+        step1.css({ 'transition': 'opacity 0.4s', 'opacity': 0 });
+        setTimeout(function(){
+          step1.hide();
+          step2.show().css({ 'opacity': 0, 'transition': 'opacity 0.4s' });
+          setTimeout(function(){
+            step2.css('opacity', 1);
+          }, 50);
+        }, 400);
+      }
+      injectHubSpotForm();
+    }
+
+    // Function to inject HubSpot form
+    function injectHubSpotForm() {
+      var placeholder = $('#hs-form-placeholder');
+      if (!placeholder.length) return;
+
+      placeholder.empty();
+
+      hbspt.forms.create({
+        portalId: '145335',
+        formId:   '{{ module.secondary_cta_content_and_form_settings.popup_form.form_id }}',
+        target:   '#hs-form-placeholder',
+        onFormReady: function($form) {
+        // optional: custom logic on form ready
+      },
+        onFormSubmit: function($form) {
+          // optional: custom logic on form submit
+        }
+    });
+  }
+
+         // Exit-intent detection (desktop) with width check
+         $(document).on('mouseout.exitIntent', function(e) {
+    // Check viewport width first
+    if ($(window).width() < 1024) {
+      return; // Do nothing if width is below 1024px
+    }
+    // Then do exit-intent logic
+    if (!e.relatedTarget && e.clientY <= 10) {
+      if (canShowPopup()) {
+        showPopup();
+      }
+      $(document).off('mouseout.exitIntent');
+    }
+  });
+
+  // Close button handler
+  closeBtn.on('click', function(){
+    popup.removeClass('is-open');
+    markPopupShown();
+  });
+
+  // Primary button handler
+  primaryBtn.on('click', function(){
+    popup.removeClass('is-open');
+    markPopupShown();
+  });
+
+  // Secondary button handler → transition
+  secondaryBtn.on('click', function(event){
+    event.preventDefault();
+    goToStep2();
+  });
+  });
+
+</script>
+{% end_require_js %}
+{% endif %}

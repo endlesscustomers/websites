@@ -1,0 +1,268 @@
+{{ require_css( get_asset_url("../Left-Right Case Study.css"), { async: true } ) }}
+
+{% set content_width = module.layout_controls.content_widths|default('eight-twelfths') %}
+{% set stats_width   = 'four-twelfths' %}
+
+{% if content_width == 'four-twelfths' %}
+  {% set stats_width = 'eight-twelfths' %}
+{% elif content_width == 'five-twelfths' %}
+  {% set stats_width = 'seven-twelfths' %}
+{% elif content_width == 'six-twelfths' %}
+  {% set stats_width = 'six-twelfths' %}
+{% elif content_width == 'seven-twelfths' %}
+  {% set stats_width = 'five-twelfths' %}
+{% elif content_width == 'eight-twelfths' %}
+  {% set stats_width = 'four-twelfths' %}
+{% endif %}
+
+{% set header_size                               = module.layout_controls.header_size|default('h2') %}
+{% set preheader_border_color                    = module.layout_controls.preheader_border_color.border_color|default('black') %}
+{% set preheader_background_color                = module.layout_controls.preheader_background_color.background_color|default('black') %}
+{% set rich_text_color_opacity                   = module.section_controls.text_color_override.rich_text_color_opacity|default(100) %}
+{% set text_color_overridden_on_all_screen_sizes = module.section_controls.text_color_override.override_on_all_screen_sizes|default(false) %}
+{% set text_color_overridden_on_desktop          = module.section_controls.text_color_override.override_on_desktop|default(false) %}
+{% set text_color_overridden_on_laptop           = module.section_controls.text_color_override.override_on_laptop|default(false) %}
+{% set text_color_overridden_on_tablet           = module.section_controls.text_color_override.override_on_tablet|default(false) %}
+{% set text_color_overridden_on_mobile           = module.section_controls.text_color_override.override_on_mobile|default(false) %}
+
+{% if preheader_background_color != 'custom' %}
+  {% set preheader_background_fill_color = functions.color(preheader_background_color) %}
+{% elif module.layout_controls.preheader_background_color.background_custom_color.color %}
+  {% set preheader_background_fill_color = "rgba(" + module.layout_controls.preheader_background_color.background_custom_color.color|convert_rgb + ", " + module.layout_controls.preheader_background_color.background_custom_color.opacity|int/100 + ")" %}
+{% endif %}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+      {% if text_color_overridden_on_all_screen_sizes %}
+        .section--leftrightcasestudy .section--leftrightcasestudy--content-container p,
+        .section--leftrightcasestudy .section--leftrightcasestudy--content-container li {
+          color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+        }
+      {% elif text_color_overridden_on_desktop %}
+        {% call functions.mediaQuery('desk') %}
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container p,
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container li {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% elif text_color_overridden_on_laptop %}
+        {% call functions.mediaQuery('lap') %}
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container p,
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container li {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% elif text_color_overridden_on_tablet %}
+        {% call functions.mediaQuery('tablet') %}
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container p,
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container li {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% elif text_color_overridden_on_mobile %}
+        {% call functions.mediaQuery('palm') %}
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container p,
+          .section--leftrightcasestudy .section--leftrightcasestudy--content-container li {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% endif %}
+
+      .section--leftrightcasestudy .preheader {
+        border-color: transparent;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 999px;
+        padding: 0.5rem 1.25rem;
+        white-space: nowrap;
+        color: {{ functions.color('white') }};
+        position: relative;
+        overflow: visible;
+        display: inline-block;
+        width: fit-content;
+        max-width: 100%;
+        flex: 0 0 auto;
+        {% if module.layout_controls.content_alignment == 'center' %}
+          align-self: center;
+        {% elif module.layout_controls.content_alignment == 'right' %}
+          align-self: flex-end;
+        {% else %}
+          align-self: flex-start;
+        {% endif %}
+
+        background-color: {{ preheader_background_fill_color }};
+
+        {% if preheader_border_color == 'gradient' %}
+          border-color: transparent;
+          background-image:
+            linear-gradient({{ preheader_background_fill_color }}, {{ preheader_background_fill_color }}),
+            linear-gradient(90deg, rgb(96, 168, 255) 0%, rgb(244, 114, 200) 50%, rgb(125, 216, 122) 100%);
+          background-origin: border-box;
+          background-clip: padding-box, border-box;
+        {% elif preheader_border_color != 'custom' %}
+          border-color: {{ functions.color(preheader_border_color) }};
+        {% elif module.preheader_border_color.border_color == 'custom' and module.preheader_border_color.border_custom_color.color %}
+          border-color: {{ module.preheader_border_color.border_custom_color.color }};
+        {% endif %}
+      }
+
+      .section--leftrightcasestudy .preheader::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 100vw;
+        height: 1px;
+        transform: translateY(-50%);
+        {% if preheader_border_color == 'gradient' %}
+          background: linear-gradient(90deg, rgb(96, 168, 255) 0%, rgb(244, 114, 200) 50%, rgb(125, 216, 122) 100%);
+        {% elif preheader_border_color == 'custom' and module.preheader_border_color.border_custom_color.color %}
+          background-color: {{ module.preheader_border_color.border_custom_color.color }};
+        {% else %}
+          background-color: {{ functions.color(preheader_border_color) }};
+        {% endif %}
+      }
+
+      {% if module.stats %}
+        .section--leftrightcasestudy--stats-container {
+          border-top: 1px solid #36324e;
+          padding-top: 20px;
+          margin-top: 20px !important;
+        }
+        {% call functions.mediaQuery('lap-and-up') %}
+          .section--leftrightcasestudy--content-container {
+            padding-right: 25px;
+            border-right: 1px solid #36324e;
+          }
+          .section--leftrightcasestudy--stats-container {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            border-top: none;
+          }
+        {% endcall %}
+
+      {% endif %}
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{% if 'narrow' == module.layout_controls.container_width %}
+  {% set container_width = 'eight-twelfths' %}
+{% else %}
+  {% set container_width = module.layout_controls.container_width %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--leftrightcasestudy relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends relative flex-align--center">
+      <div class="grid__item {{ container_width }} portable-one-whole section--leftrightcasestudy--card {{ module.container_background|length ? 'short padding--short border-radius overflow--hidden' : '' }} relative">
+        {{ snippets.background(module.container_background) }}
+        <div class="section--leftrightcasestudy--card-inner flexgrid direction--column relative z-index--2 all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }}">
+          {% if module.preheader %}
+            <span class="h6 preheader hard--ends">
+              {{ module.preheader }}
+            </span>
+          {% endif %}
+          <div class="flexgrid portable-direction--column relative flex-align--stretch section--leftrightcasestudy--columns-row">
+            {% if module.header or module.content or module.testimonial.testimonial_quote_content %}
+              <div class="grid__item {{ content_width }} hard portable-one-whole first--hard--top last--hard--bottom section--leftrightcasestudy--content-column">
+                <div class="section--leftrightcasestudy--content-container relative overflow--hidden first--hard--top last--hard--bottom flex flex-flow--column flex-align--start {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+                  {% if module.header %}
+                    <h2 class="{{ header_size }}">
+                      {{ module.header }}
+                    </h2>
+                  {% endif %}
+                  {{ module.content }}
+                  {% if module.testimonial.testimonial_quote_content %}
+                    <div class="section--leftrightcasestudy--testimonial--container">
+
+                      {{ module.testimonial.testimonial_quote_content }}
+
+                      {% if module.testimonial.testimonial_name_of_person or module.testimonial.testimonial_title_of_person or module.testimonial.testimonial_image.src %}
+                        <div class="section--leftrightcasestudy--testimonial--footer flex flex-flow--row flex-align--middle">
+                          {% if module.testimonial.testimonial_image.src %}
+                            <div class="section--leftrightcasestudy--testimonial--footer-image">
+                              <img
+                                loading = "lazy"
+                                src     = "{{ module.testimonial.testimonial_image.src }}"
+                                alt     = "{{ module.testimonial.testimonial_image.alt }}"
+                                width   = "{{ module.testimonial.testimonial_image.width }}"
+                                height  = "{{ module.testimonial.testimonial_image.height }}"
+                              />
+                            </div>
+                          {% endif %}
+                          <div class="section--leftrightcasestudy--testimonial--footer-content">
+                            <span class="section--leftrightcasestudy--testimonial--footer-name">
+                              {{ module.testimonial.testimonial_name_of_person }}
+                            </span>
+                            <span class="section--leftrightcasestudy--testimonial--footer-title">
+                              {{ module.testimonial.testimonial_title_of_person }}
+                            </span>
+                          </div>
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  {% if module.case_study_image.src %}
+                    {% set image = module.case_study_image %}
+                    <img
+                      loading = "{{ module.section_controls.lazy_load_images ? 'lazy' : 'eager' }}"
+                      class   = "section--leftrightcasestudy--image inline-block overflow--hidden border-radius"
+                      src     = "{{ image.src }}"
+                      alt     = "{{ image.alt }}"
+                      width   = "{{ image.width }}"
+                      height  = "{{ image.height }}"
+                      style   = "width: 100%; height: auto; margin-bottom: 30px;"
+                    />
+                  {% endif %}
+                  {% if module.case_study_cta|length > 0 %}
+                    <div class="section--leftrightcasestudy--ctas">
+                      {{ snippets.multiButton(module.case_study_cta) }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% if module.stats %}
+              <div class="grid__item {{ stats_width }} tablet-ten-twelfths palm-one-whole hard first--hard--top last--hard--bottom section--leftrightcasestudy--stats-column {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+                <div class="section--leftrightcasestudy--stats-container">
+                  {% if module.stats_header %}
+                    <p class="section--leftrightcasestudy--stats-header">
+                      {{ module.stats_header }}
+                    </p>
+                  {% endif %}
+                  {% for stat in module.stats %}
+                    <div class="stat">
+                      {% if stat.stat_text %}
+                        <span class="stat-text">
+                          {{ stat.stat_text }}
+                        </span>
+                      {% endif %}
+                      {% if stat.stat_supporting_statement %}
+                        <span class="stat-supporting-statement p hard--ends">
+                          {{ stat.stat_supporting_statement }}
+                        </span>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

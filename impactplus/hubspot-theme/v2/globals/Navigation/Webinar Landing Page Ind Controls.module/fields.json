@@ -1,0 +1,69 @@
+[ {
+  "id" : "97b56bd3-c966-71c3-e9e3-8b2fcddcaa58",
+  "name" : "template_type",
+  "label" : "Template Type",
+  "inline_help_text" : "Video overview on editing this template: https://share.vidyard.com/watch/ftxzMYP1y6KhwZBNaDf7vK",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "upcoming_lp", "Upcoming Landing Page" ], [ "upcoming_typ", "Upcoming TYP" ], [ "ondemand_lp", "On-Demand Landing Page" ], [ "ondemand_typ", "On-Demand TYP" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "upcoming_lp"
+}, {
+  "id" : "e5207ee8-fe45-cc0d-29c9-d586ce007c5b",
+  "name" : "webinar_date_and_time",
+  "label" : "Webinar Date and Time",
+  "required" : false,
+  "locked" : false,
+  "step" : 30,
+  "type" : "datetime",
+  "display_width" : null,
+  "default" : 1809190800000
+}, {
+  "id" : "cbdac21f-4957-8956-2b09-396e8b9908ed",
+  "name" : "webinar_length",
+  "label" : "Webinar Length",
+  "required" : true,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "6749f9e9-914a-347d-7826-9c03cb49e92d",
+  "name" : "webinar_title",
+  "label" : "Webinar Title",
+  "required" : true,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "a71aa36b-4c2c-8bc3-6d2c-b78948340fb5",
+  "name" : "webinar_meta_description",
+  "label" : "Webinar Meta Description",
+  "inline_help_text" : "Used in the share link summary text.",
+  "required" : true,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "00eae56d-583a-bb22-73a3-24a43e479fd1",
+  "name" : "webinar_landing_page_url",
+  "label" : "Webinar Landing Page URL",
+  "inline_help_text" : "Used to share the primary landing page by clicking the social share links on the thank you page.",
+  "required" : true,
+  "locked" : false,
+  "supported_types" : [ "EXTERNAL", "CONTENT" ],
+  "type" : "url",
+  "display_width" : null,
+  "default" : {
+    "content_id" : null,
+    "href" : "",
+    "type" : "EXTERNAL"
+  }
+} ]

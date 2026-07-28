@@ -1,0 +1,31 @@
+<!--
+templateType: page
+isAvailableForNewContent: true
+label: Membership Access Denied - IMPACT Production Theme
+-->
+
+{% set template_css = "../../css/templates/system.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Membership | Access Denied" %}
+{% set body_classes = 'pagetype--site header--static' %}
+
+{% block body %}
+<div class="header--anchor"></div>
+<section class="content-wrapper">
+  <div class="systems-page grid hard--ends">
+    <div class="grid__item eight-twelfths palm-one-whole text--left">
+      {% module_block module 'membership_admin_content'
+         label='Contact admin',
+         path='@hubspot/rich_text'
+      %}
+        {% module_attribute 'html' %}
+          <h1>You do not have access to this page</h1>
+          <p>If you have any questions, please <a href="{{'mailto:' ~ site_settings.membershipWebsiteAdmin}}">contact the admin</a>.</p>
+        {% end_module_attribute %}
+      {% end_module_block %}
+    </div>
+  </div>
+</section>
+{% endblock %}

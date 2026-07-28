@@ -1,0 +1,113 @@
+{% if module.layout_controls.container_alignment == 'center' %}
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--fullwidth relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends">
+      <div class="resource-webinar-cards--wrapper grid__item one-whole hard--ends">
+        <div class="all--valign--bottom text--left hard--ends flex flex-justify--space-between flex-align--center flex-wrap--wrap">
+          <div class="resource-webinar-cards--header grid__item ten-twelfths palm-one-whole hard--ends hard--sides relative z-index--10 first--hard--top last--hard--bottom hard--top">
+            <h4><span>{{ module.header }}</span></h4>
+          </div>
+          <div class="grid__item two-twelfths palm-one-whole hard--sides hard--ends palm-margin--short--top relative z-index--10 lap-and-up-text--right portable-text--right palm-text--left">
+            <div class="section--richtext-columns--button-container">
+              <span class="section--webinar-cards--card--body--cta">
+                <span class="p all--btn all--btn--simple hard--ends line-height--small">
+                  <a class="section--webinar-cards--card--link no--underline border--0 card--hover" 
+                     title="{{ module.section_link.section_link_text }}"
+                     href="{{ module.section_link.section_link_field.url.href|escape_url }}"
+                     {% if module.section_link.section_link_field.open_in_new_tab %}
+                     target="_blank"
+                     {% endif %}
+                     {% if module.section_link.section_link_field.rel %}
+                     rel="{{ module.section_link.section_link_field.rel|escape_attr }}"
+                     {% endif %}>
+                    <span class="btn btn--simple font--15" style="padding-right: 0px !important;">
+                      {{ module.section_link.section_link_text }}
+                    </span>
+                  </a>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Webinar Cards #}
+      <div class="section--card-content-columns-headings--content-columns">
+        <div class="section--card-content-columns--grid">
+          <div class="section--card-content-columns--center flex flex-justify--left flex-wrap--wrap all--text--left">
+
+            {% set dbTableId = module.resource_table %}
+            {% set dbColumns = hubdb_table_rows(dbTableId, "resource_type__contains=Webinar&orderBy=-webinars_event_date&limit=2") %}
+
+            {% for item in dbColumns %}
+            {% set webinarDateTime =  item.webinars_event_date|unixtimestamp() %} 
+
+            <div class="section--webinar-cards-column-group section--cards-column-group grid__item one-half tablet-one-half palm-one-whole hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--{{ loop.index + 1 }} margin--standard--top relative z-index--30 border-radius--16">
+              <div class="section--webinar-card-content-columns-container flex overflow--hidden border--1 border--mist" style="width: 100%; flex-direction: column; border-radius: 16px;">
+                <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative border--1 border--mist border--left--0 border--top--0 border--right--0 border--mist">
+                  <a class="section--webinar-cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer" title="{% if local_dt|unixtimestamp() <= webinarDateTime|unixtimestamp() %}Sign up for {{ item.resource_title }}{% else %}Watch {{ item.resource_title }} On-Demand{% endif %}" href="{{ item.resource_link }}"></a>
+                  <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ item.resource_title }}" data-bg="{{ item.resource_image.url }}" style="background-size: cover; background-position:top center; background-repeat:no-repeat;">
+                    <span style="display: block; width: 100%; margin: 0px; padding: 43% 0px 0px;"></span>
+                  </div>
+                </div>
+                <div class="section--card-content-columns-wrapper relative width--max short padding--short">
+                  <div class="section--card-content-columns-top">
+                    <div class="section--card-content-columns-inner text--center p p--sm bold hard--ends color--darkgrey uppercase">
+                      {% if local_dt|unixtimestamp() <= webinarDateTime|unixtimestamp() %}
+                      {{ item.webinars_event_date|datetimeformat("%B %e, %Y @ %l:%M %p") }} ET
+                      {% else %}
+                      On-Demand
+                      {% endif %}
+                    </div>
+                    <div class="section--card-content-columns-header h5 margin--petite--top margin--petite--bottom last--hard--bottom relative">
+                      <a class="section--webinar-cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer" title="{% if local_dt|unixtimestamp() <= webinarDateTime|unixtimestamp() %}Sign up for {{ item.resource_title }}{% else %}Watch {{ item.resource_title }} On-Demand{% endif %}" href="{{ item.resource_link }}"></a>
+                      {{ item.resource_title }}
+                    </div>
+                    <div class="section--card-content-columns-description p p--sm hard--ends last--hard--bottom color--midgrey">{{ item.resource_description }}</div>
+                  </div>
+                  <div class="section--richtext-columns--button-container" style="text--center">
+                    <span class="section--webinar-cards--card--body--cta">
+                      <span class="p all--btn all--btn--simple margin--petite--top hard--bottom">
+                        <a class="section--webinar-cards--card--link no--underline border--0 hover--pointer" title=" " href="{{ item.resource_link }}">
+                          <span class="btn btn--simple" style="padding-right: 0px !important;">
+                            {% if local_dt|unixtimestamp() <= webinarDateTime|unixtimestamp() %}
+                            Register for the Event
+                            {% else %}
+                            Watch Now
+                            {% endif %}
+                          </span>
+                        </a>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+
+      {# End Webinar Cards #}
+    </div>
+
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

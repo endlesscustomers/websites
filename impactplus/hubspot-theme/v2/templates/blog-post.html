@@ -1,0 +1,482 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Blog Post - IMPACT Production Theme
+-->
+{% module
+	"bop"
+	path="../modules/_blog/Global Blog - Post Controls",
+	label="Global Blog Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% module
+	"indpost"
+	path="../modules/_blog/Blog - Ind Post Controls",
+	label="Individual Blog Post Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--blog') %}
+{% do body_classes_array.append('header--static') %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+{% set template_css = "../../css/templates/blog.css" %}
+
+
+
+{% block additional_head_content %}
+<!-- Start Additional Head -->
+{% if not is_listing_view %}
+<meta content="{{ content.publish_date_local_time }}" itemprop="datePublished">
+<meta content="{{ widget_data.indpost.hero_section.updated_blog_article_date|format_date('YYYY-MM-dd HH:mm:ss') }}" itemprop="dateModified">
+<meta content="{{ content.blog_author.display_name|replace("'","’")|replace('%27','’')|replace('%22','”') }}" name="author">
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+{% set videoArticle = [] %}
+{% for topic in content.topic_list %}
+{% if (topic.name|lower == 'videos') || (topic.name|lower == 'video') || (topic.name|lower == 'podcasts') || (topic.name|lower == 'podcast') %}
+{% do videoArticle.append('true') %}
+{% endif %}
+{% endfor %}
+
+{% set videoArticle = videoArticle|join %}
+
+{# HIDE FEATURED IMAGE IN BLOG POST #}
+
+{% set hideFeatured = [] %}
+{% for controls in widget_data.bop.blog_controls %}
+
+{% if controls.select_blog == content.parent_blog.id %}
+
+{% if controls.additional_controls.hide_featured_image_from_post_content %}
+{% do hideFeatured.append('true') %}
+{% endif %}
+
+{% endif %}
+
+{% endfor %}
+
+{% set hideFeatured = hideFeatured|join %}
+
+{% if (content.post_list_summary_featured_image)&&(hideFeatured == 'true') %}
+
+{% set featuredImageSlug = content.post_list_summary_featured_image|split('//') %}
+{% set featuredImageSlug = featuredImageSlug[1] %}
+{% set featuredImageSlug = featuredImageSlug|join("/") %}
+{% set featuredImageSlug = featuredImageSlug|split('/') %}
+{% set featuredImageDomain = featuredImageSlug[0] %}
+{% set featuredImageSlug = featuredImageSlug|join("/") %}
+{% set featuredImageSlug = featuredImageSlug|replace(featuredImageDomain,"") %}
+{% set hubID = hub_id %}
+{% set featuredImageSlug = featuredImageSlug|replace(hub_id,"") %}
+
+<style>
+  {% if request.postDict.inpageEditorUI %}
+  body .bop--single--body img[src*="{{ featuredImageSlug|replace("//","/") }}"] {display:block!important;}
+  {% else %}
+  body .bop--single--body img[src*="{{ featuredImageSlug|replace("//","/") }}"] {display:none!important;}
+  {% endif %}
+</style>
+{% else %}
+{% endif %}
+
+<div class="header--anchor"></div>
+<div class="body-container body-container--blog-post">
+  {# Blog post #}
+
+  <div class="content-wrapper">
+
+    {% if (not is_listing_view) and (request.query_dict.featuredonly == "true") %}
+    {% if widget_data.indpost.hero_section.article_subheader %}
+    <div id="postSubheader">
+      {{ widget_data.indpost.hero_section.article_subheader }}
+    </div>
+    {% endif %}
+    {% endif %}
+
+    <div class="post--single--scroll-bar--container top--0 left--0 z-index--10" style="position:fixed;width:100%;">
+      <div class="post--single--scroll-bar"></div>
+    </div>
+
+    <article class="post--single">
+      <div class="grid grande portable-tall--top short--bottom">
+        <div class="grid__item {{ 'one-whole' if videoArticle != 'true' else 'eight-twelfths tablet-nine-twelfths palm-eleven-twelfths' }} hard--ends margin--tall--bottom palm-margin--short--bottom">
+          <div class="post--single--featured-title-wrapper grid__item {{ 'six-twelfths tablet-one-half palm-eleven-twelfths' if videoArticle != 'true' else 'one-whole' }} hard--sides palm-eleven-twelfths hard--top palm-short--bottom lap-and-up-hard--bottom portable-hard--bottom valign--middle palm-hard--sides text--left">
+            {% for controls in widget_data.bop.blog_controls %}
+            {% if controls.select_blog == content.parent_blog.id %}
+
+            {% set showBackButton       = controls.back_button_controls.show_back_button %}
+            {% set backButtonURL        = controls.back_button_controls.back_button_hyperlink_url.url.href %}
+            {% set backButtonText       = controls.back_button_controls.back_button_text %}
+
+            {% if showBackButton %}
+            <div class="post--single--all-topic-tags margin--short--bottom">
+              <p class="inline-block hard--ends text--left font--16" style="margin-bottom:8px;">
+                <a href="{% if backButtonURL %}{{ backButtonURL }}{% else %}{{ group.absolute_url }}{% endif %}" class="no--underline">«&nbsp; {{backButtonText }}</a>
+              </p>
+            </div>
+            {% endif %}
+
+            {% endif %}
+            {% endfor %}
+
+            <h1 class="hard--ends">
+              {{ content.name }}
+            </h1>
+
+            {% if widget_data.indpost.hero_section.article_subheader %}
+            <div class="post--single--hero--article-subheader p last--hard--bottom hard--bottom">
+              {{ widget_data.indpost.hero_section.article_subheader }}
+            </div>
+            {% endif %}
+
+            {% if not widget_data.indpost.hero_section.article_subheader %}
+            <span class="block"></span>
+            {% endif %}
+
+            <p class="hard--bottom font--15">
+              {% set updatedDateSet = 'false' %}
+              {% if widget_data.indpost.hero_section.updated_blog_article_date  %}
+              {% set updatedDateSet = 'true' %}
+              {% set updatedDate = widget_data.indpost.hero_section.updated_blog_article_date|format_date('YYYY-MM-dd') %}
+              {% endif %}
+
+              {% set publishedDate = content.publish_date_local_time|format_date('YYYY-MM-dd') %}
+
+
+
+              {% set daySuffix = {"01":"1st","02":"2nd","03":"3rd","04":"4th","05":"5th","06":"6th","07":"7th","08":"8th","09":"9th","10":"10th","11":"11th","12":"12th","13":"13th","14":"14th","15":"15th","16":"16th","17":"17th","18":"18th","19":"19th","20":"20th","21":"21st","22":"22nd","23":"23rd","24":"24th","25":"25th","26":"26th","27":"27th","28":"28th","29":"29th","30":"30th","31":"31st"} %}
+
+              {% if (updatedDate != publishedDate) && (updatedDateSet == 'true') %}Updated: {{ widget_data.indpost.hero_section.updated_blog_article_date|format_date('MMMM') }} {{ daySuffix[widget_data.indpost.hero_section.updated_blog_article_date|format_date('dd')] }}, {{ widget_data.indpost.hero_section.updated_blog_article_date|format_date('YYYY') }} | Published: {% endif %}{{ content.publish_date_local_time.strftime('%B') }} {{ daySuffix[content.publish_date_local_time.strftime('%d')] }}, {{ content.publish_date_local_time.strftime('%Y') }}
+
+            </p>
+
+
+            <p class="hard font--15">
+              {{ content.post_body|striptags|wordcount|divide(300) }} min. read
+            </p>
+
+            <p class="hard--ends font--15">By <a class="bop--single--meta--author no--underline" href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}" title="{{ content.blog_post_author.display_name }}">{{ content.blog_post_author.display_name }}</a></p>
+
+          </div>
+          <div class="grid__item {{ 'six-twelfths' if videoArticle != 'true' else 'visuallyhidden' }} hard--ends palm-margin--tall--top palm-hard--sides palm-eleven-twelfths valign--middle hard--sides">
+            {% if content.featured_image %}
+            {% set featuredImage              = content.featured_image %}
+            {% set resizedFeaturedImage       = resize_image_url(featuredImage, 0, 0, 1200) %}
+            {% set resizedFeaturedImageTablet = resize_image_url(featuredImage, 0, 0, 780) %}
+            {% set resizedFeaturedImageMobile = resize_image_url(featuredImage, 0, 0, 550) %}
+            {% require_head %}
+            <link rel="preload" as="image" fetchpriority="high" href="{{ resizedFeaturedImage }}">
+            <link rel="preload" as="image" fetchpriority="high" href="{{ resizedFeaturedImageTablet }}">
+            <link rel="preload" as="image" fetchpriority="high" href="{{ resizedFeaturedImageMobile }}">
+            {% end_require_head %}
+            <figure class="block relative border-radius--20 overflow--hidden hard max--width">
+              <img
+                   fetchpriority = "high"
+                   alt           = "{{ content.featured_image_alt_text }}"
+                   class         = "block absolute z-index--2 object--background-size--cover hard--ends"
+                   width         = "{{ content.featured_image_width || 600 }}"
+                   height        = "{{ content.featured_image_height }}"
+                   src           = "{{ resizedFeaturedImage }}"
+                   style         = "object-position:50% 50%;top:0%;bottom:0%;right:0%;left:0%;"
+                   />
+              <source
+                      media="(min-width: 750px)"
+                      srcset="{{ resizedFeaturedImage }} 2x, {{ resizedFeaturedImage }}"
+                      />
+              <source
+                      media="(min-width: 300px)"
+                      srcset="{{ resizedFeaturedImageMobile }}"
+                      />
+              {{ snippets.aspectSpacer("1200x600") }}
+            </figure>
+            {% endif %}
+          </div>
+        </div>
+        <div class="grid__item eight-twelfths tablet-nine-twelfths palm-eleven-twelfths short text--left">
+          <div class="post--single--body bop--single--body">
+
+            {% set blogPostBody = content.post_body %}
+
+            {% module "blog_post_audio" path="@hubspot/blog_audio", overrideable=False %}
+            {% if widget_data.indpost.post_body_section.narration_caption %}
+            <div class="post--single--audio-caption text--center margin--tall--bottom">
+              <p>
+                {{ widget_data.indpost.post_body_section.narration_caption }}
+              </p>
+            </div>
+            {% endif %}
+
+            {{ blogPostBody }}
+
+            {% if content.blog_post_author.avatar || content.blog_post_author.bio %}
+            <div class="post--single--author flexgrid space--between valign--top text--left padding--tall tall margin--tall--top palm-direction--column border-radius">
+              {% if content.blog_post_author.avatar %}
+              <div class="post--single--author--avatar" style="flex-basis:205px;width:205px;padding-right:30px;">
+                <a href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}" title="{{ content.blog_post_author.display_name }}" >
+                  <span class="post--single--author--avatar-img block background-size--cover background-repeat--none border-radius--circle lozad" role="img" aria-label="{{ content.blog_post_author.display_name }}" data-background-image="{{ content.blog_post_author.avatar }}" style="background-position:center;">
+                  </span>
+                </a>
+              </div>
+              {% endif %}
+              <div class="post--single--author--author-details first--hard--top" style="flex:1;">
+                <p class="h4" data-hubspot-form-id="author_data" data-hubspot-name="Blog Author" style="margin-bottom:10px;">
+                  <a class="post--single--author--author no--underline" href="{{ group.absolute_url }}/author/{{ content.blog_post_author.slug }}">
+                    {{ content.blog_post_author.display_name }}
+                  </a>
+                </p>
+                {% if content.blog_post_author.bio %}
+                <p class="post--single--author-bio hard--ends">{{ content.blog_post_author.bio }}</p>
+                {% endif %}
+                {% if content.blog_post_author.has_social_profiles %}
+                <div class="post--single--author--social">
+                  <p class="bold">
+                    Connect:
+                  </p>
+                  {% if content.blog_post_author.facebook %}
+                  <a class="inline-block" href="{{ content.blog_post_author.facebook }}" target="_blank" rel="noopener" title="Connect with {{ content.blog_post_author.display_name|encode }} on Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+                  </a>
+                  {% endif %}
+                  {% if content.blog_post_author.linkedin %}
+                  <a class="inline-block" href="{{ content.blog_post_author.linkedin }}" target="_blank" rel="noopener" title="Connect with {{ content.blog_post_author.display_name|encode }} on LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+                  </a>
+                  {% endif %}
+                  {% if content.blog_post_author.twitter %}
+                  <a class="inline-block" href="{{ content.blog_post_author.twitter }}" target="_blank" rel="noopener" title="Connect with {{ content.blog_post_author.display_name|encode }} on Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                  </a>
+                  {% endif %}
+                  {% if content.blog_post_author.email %}
+                  <a class="inline-block" href="mailto:{{ content.blog_post_author.email }}" target="_blank" rel="noopener" title="Connect with {{ content.blog_post_author.display_name|encode }} via Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M464 64C490.5 64 512 85.49 512 112C512 127.1 504.9 141.3 492.8 150.4L275.2 313.6C263.8 322.1 248.2 322.1 236.8 313.6L19.2 150.4C7.113 141.3 0 127.1 0 112C0 85.49 21.49 64 48 64H464zM217.6 339.2C240.4 356.3 271.6 356.3 294.4 339.2L512 176V384C512 419.3 483.3 448 448 448H64C28.65 448 0 419.3 0 384V176L217.6 339.2z"/></svg>
+                  </a>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% if content.topic_list %}
+        <div class="grid__item eight-twelfths tablet-nine-twelfths palm-eleven-twelfths tall--top short--bottom text--center">
+          <p class="h5">
+            Topics:
+          </p>
+          <div class="post--single--all-topic-tag-container inline-block">
+            {% for topic in content.topic_list %}
+            <div class="post--single--all-topic-tag-bg inline-block">
+              <a class="font--16 font--reading post-item--topic-link no--underline inline-block" href="{{ group.absolute_url }}/topic/{{ topic.slug }}" title="{{ topic.name|escape }}">
+                {{ topic.name }}
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+        <div class="grid__item eight-twelfths tablet-nine-twelfths palm-eleven-twelfths tall--top short--bottom text--left">
+          <div class="post--single--share-links all--text--center first--hard--top">
+            <p class="h5">
+              Don't forget to share this post:
+            </p>
+            <div class="post--single--share-links all--valign--middle">
+              <a class="inline-block" href="https://www.facebook.com/sharer/sharer.php?u={{ content.absolute_url }}" title="Share on Facebook" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+              </a>
+              <a class="inline-block" href="https://www.linkedin.com/shareArticle?url={{ content.absolute_url }}&title={{ content.html_title|urlencode }}&summary={{ content.meta_description|urlencode }}" title="Share on Linkedin" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+              </a>
+              <a class="inline-block" href="https://twitter.com/intent/tweet?text={{ content.html_title|urlencode }}&url={{ content.absolute_url }}" title="Share on Twitter" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+              </a>
+              <a class="inline-block" href="https://pinterest.com/pin/create/button/?url={{ content.absolute_url }}&media={{ content.post_list_summary_featured_image }}&description={{ content.meta_description|urlencode }}" title="Share on Pinterest" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M204 6.5C101.4 6.5 0 74.9 0 185.6 0 256 39.6 296 63.6 296c9.9 0 15.6-27.6 15.6-35.4 0-9.3-23.7-29.1-23.7-67.8 0-80.4 61.2-137.4 140.4-137.4 68.1 0 118.5 38.7 118.5 109.8 0 53.1-21.3 152.7-90.3 152.7-24.9 0-46.2-18-46.2-43.8 0-37.8 26.4-74.4 26.4-113.4 0-66.2-93.9-54.2-93.9 25.8 0 16.8 2.1 35.4 9.6 50.7-13.8 59.4-42 147.9-42 209.1 0 18.9 2.7 37.5 4.5 56.4 3.4 3.8 1.7 3.4 6.9 1.5 50.4-69 48.6-82.5 71.4-172.8 12.3 23.4 44.1 36 69.3 36 106.2 0 153.9-103.5 153.9-196.8C384 71.3 298.2 6.5 204 6.5z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    {# RELATED ARTICLES #}
+    {% macro blogRelatedSlider() %}
+    <div class="section--related-articles-slider--item blog--listing--cards--article-item section--resource--card-item palm-margin--tall--bottom hard--sides hard--ends relative text--left">
+      <div class="section--resource--card--inner">
+        <a class="no--underline block background--white overflow--hidden" style="height:100%" title="{{ blogContent.name|escape }}" href="{{ blogContent.absolute_url }}">
+          <span class="overflow--hidden section--related-articles-slider--featured-image-wrapper relative block">
+            <span class="section--related-articles-slider--featured-image grid__item one-whole hard">
+              <span class="block lozad" role="img" aria-label="{% if blogContent.featured_image %}{{ blogContent.featured_image_alt_text }}{% else %}{{ widget_data.bop.featured_image_controls.default_featured_image.alt }}{% endif %}" data-background-image="{% if blogContent.featured_image %}{{ blogContent.featured_image }}{% else %}{{ widget_data.bop.featured_image_controls.default_featured_image.src }}{% endif %}"  style="background-size: cover; background-position:center center; background-repeat:no-repeat;">
+                {{ snippets.aspectSpacer("1200x600") }}
+              </span>
+            </span>
+          </span>
+          <span class="section--resource--card--content short padding--short">
+            <span class="block overflow--visible first--hard--top last--hard--bottom">
+              <h3 class="h5">
+                {{ blogContent.name }}
+              </h3>
+              <p class="font--14">
+                {{ blogContent.publish_date_local_time.strftime('%B') }} {{ daySuffix[blogContent.publish_date_local_time.strftime('%d')] }}, {{ blogContent.publish_date_local_time.strftime('%Y') }}<span class="section--resource--card--spacer">|</span>{{ blogContent.post_body|striptags|wordcount|divide(300) }} min. read
+              </p>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+    {% endmacro %}
+
+    {% if content.topic_list or widget_data.indpost.post_body_section.related_resources_topic_slug %}
+    {% if widget_data.indpost.post_body_section.related_resources_topic_slug %}
+    {% set recent_posts = blog_recent_tag_posts(content.parent_blog.id, widget_data.indpost.post_body_section.related_resources_topic_slug, 25) %}
+    {% else %}
+    {% set recent_posts = blog_recent_tag_posts(content.parent_blog.id, (content.topic_list|first)['slug'], 25) %}
+    {% endif %}
+
+    {% if recent_posts|length > 1 %}
+    <div class="section section--related-articles-slider {% if not group.allow_comments %}tall--top grande--bottom{% endif %}">
+      <div class="block relative z-index--3">
+        <div class="grid hard--ends text--center ">
+          <div class="grid__item eight-twelfths tablet-ten-twelths palm-one-whole tall palm-short--bottom first--hard--top last--hard--bottom">
+            {% for controls in widget_data.bop.blog_controls %}
+            {% if controls.select_blog == content.parent_blog.id %}
+
+            {% set relatedArticleHeader = controls.related_articles_controls.related_articles_header %}
+
+            <h2>
+              {{ relatedArticleHeader }}
+            </h2>
+
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {# Start Slider #}
+        <div class="section--related-articles-slider--slide relative animate--fade animate--fade--load">
+          <div class="section--related-articles-slider--slider-grid grid hard--ends relative">
+            <div class="section--recent-article-slider--container section--resource--card blog-card---row-margin blog-card---mobile-flex-wrap">
+              {% for blogContent in recent_posts %}
+              {% if blogContent.post_list_summary_featured_image %}
+              {% set featuredImage = blogContent.post_list_summary_featured_image %}
+              {% else %}
+              {% set featuredImage = blogFallback %}
+              {% endif %}
+              {% set resizedFeaturedImage = resize_image_url(featuredImage, 0, 0, 300) %}
+              {% unless content.absolute_url == blogContent.absolute_url %}
+              {{ blogRelatedSlider() }}
+              {% endunless %}
+              {% endfor %}
+            </div>
+            <div class="section--related-articles-slider--arrow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+   
+    <script>
+      function recentArticlesSlick() {
+        $('.section--recent-article-slider--container:not(.slick-initialized)').each(function(key, item) {
+          var slider$dName    = 'slider' + key;
+          var sliderNav$dName = 'sliderNav' + key;
+
+          var thisSlider = $(this);
+
+          this.id = slider$dName;
+
+          var slider$d = '#' + slider$dName;
+
+          $(slider$d+'.section--recent-article-slider--container:not(.slick-initialized)').slick({
+            prevArrow:'<a class="carousel-control-prev report-ga slick-arrow '+sliderNav$dName+'" href="#'+sliderNav$dName+'" role="button" data-slide="prev" data-ga="Carousel - Previous" data-ga-category="Action" style="display: flex;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="#12367B" d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/></svg></a>',
+            nextArrow:'<a class="carousel-control-next report-ga slick-arrow '+sliderNav$dName+'" href="#'+sliderNav$dName+'" role="button" data-slide="next" data-ga="Carousel - Next" data-ga-category="Action" style="display: flex;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="#12367B" d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg></a>',
+            infinite: false,
+            speed: 300,
+            autoplay: !1,
+            autoplaySpeed: 5e3,
+            slidesToScroll: 4,
+            slidesToShow: 4,
+            variableWidth: false,
+            appendArrows: thisSlider.closest('.section--related-articles-slider--slider-grid').find('.section--related-articles-slider--arrow'),
+            responsive: [
+              {
+                breakpoint: 1211,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                }
+              },
+              {
+                breakpoint: 1023,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                }
+              },
+              {
+                breakpoint: 700,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                }
+              },
+            ]
+          });
+        });
+      }
+
+      $(window).on('load',function () {
+        if (!editor()) {
+          recentArticlesSlick();
+        }
+      });
+    </script>
+    {% endif %}
+
+    {# COMMENTS #}
+    {% if group.allow_comments %}
+    <div class="grid tall--top grande--bottom post--single--comments">
+      <div class="grid__item eight-twelfths tablet-nine-twelfths palm-eleven-twelfths hard--ends all--btn--secondary all--btn--left">
+        {% blog_comments "blog_comments" overrideable=False, label='Blog Comments', title='', no_title=True %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% require_js %}
+    <script>
+      document.addEventListener("scroll", function() {
+        // Get the number of pixels scrolled
+        var pixels = window.scrollY;
+
+        // Get the height of the post body
+        var postBody = document.querySelector('.post--single--body');
+        var pageHeight = postBody ? postBody.offsetHeight : 0;
+
+        // Calculate the progress as a percentage
+        var progress = (pageHeight > 0) ? (100 * pixels / pageHeight) : 0;
+
+        // Update the width of the scroll bar
+        var scrollBar = document.querySelector(".post--single--scroll-bar");
+        if (scrollBar) {
+          scrollBar.style.width = progress + "%";
+        }
+      });
+    </script>
+    {% end_require_js %}
+
+  </div>
+</div>
+{% endblock body %}

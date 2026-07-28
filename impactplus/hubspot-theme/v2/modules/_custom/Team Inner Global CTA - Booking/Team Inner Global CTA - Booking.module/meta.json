@@ -1,0 +1,10 @@
+{
+  "global" : true,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING" ],
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 213135355451,
+  "label" : "[IM-UI] Team Inner Global CTA - Booking",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : true
+}

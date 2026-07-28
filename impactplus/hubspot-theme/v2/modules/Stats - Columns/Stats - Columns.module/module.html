@@ -1,0 +1,193 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Stats - Columns.css"), { async: true } ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":1,
+  "one-half":2,
+  "one-third":3,
+  "one-fourth":4,
+  "one-fifth":5,
+  "one-sixth":6
+} %}
+{% set columnWidths = {
+  "desk":columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet":columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="{{ name }} section section--statscolumns {% if (module.layout_controls.show_border_divider_between_columns) %}section--statscolumns--hasdividers{% endif %} {% if module.layout_controls.columns_horizontally_align_buttons %}section--statscolumns--equalizebuttons{% endif %} relative overflow--hidden">
+  {{ snippets.background(module.background, module.section_controls.lazy_load_images) }}
+  <div class="block relative z-index--3 section--statscolumns--outer">
+    <div class="section--statscolumns--inner text--center">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+      </div>
+      {% if module.header || module.content || module.preheader %}
+      <div class="grid relative hard--ends {{ snippets.textColorOverride(module.layout_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+          {% if module.preheader %}
+          <span class="h6 preheader">{{ module.preheader }}</span>
+          {% endif %}
+          
+          {% if module.header %}
+            <h2>
+              {{ module.header }}
+            </h2>
+          {% endif %}
+          {{ module.content }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="grid section--statscolumns--grid relative hard--ends counterticker--parent {% if module.layout_controls.columns_width == 'wide' %}hard--sides{% endif %} {{ snippets.textColorOverride(module.layout_controls.text_color_override)|trim }} text--center" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+        <div class="grid__item one-whole section--statscolumns--columns--wrapper  flexgrid justify--{{ 'start' if 'left' == module.layout_controls.columns_content_alignment else 'center' }} hard--ends text--{{ module.layout_controls.columns_content_alignment }} palm-all--text--{{ module.layout_controls.columns_content_alignment_mobile }}">
+          {% for item in module.statistics %}
+            <div class="section--statscolumns--column relative hard--sides grid__item {{ module.layout_controls.number_of_columns_desktop }} {{ module.layout_controls.number_of_columns_laptop }} {{ module.layout_controls.number_of_columns_tablet }} {{ module.layout_controls.number_of_columns_mobile }} first--hard--top last--hard--bottom valign--top {% if module.layout_controls.columns_width == 'wide' %}padding--short{% endif %}">
+              {% if (module.layout_controls.show_border_divider_between_columns) %}
+                <span class="section--statscolumns--divider--vertical {% if loop.first %}visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['desk'] == 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['lap'] == 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['tablet'] == 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['palm'] == 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+              {% endif %}
+              {% if (module.layout_controls.show_border_divider_between_columns) %}
+                <span class="section--statscolumns--divider--horizontal {% if (loop.index - (1 + columnWidths['desk'])) < 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['lap'])) < 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['tablet'])) < 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['palm'])) < 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+              {% endif %}
+                <div class="section--statscolumns--column--body flexgrid direction--column justify--start no--wrap">
+                  <div class="section--statscolumns--column--body--wrapper">
+                    <div class="section--statscolumns--column--body--content block first--hard--top last--hard--bottom">
+                    {% if item.statistic_type == "countup" %}
+                      <span class="counterticker" data-counterticker--to="{{ item.statistic_number }}" data-counterticker--duration="{{ item.statistic_count_up_duration|float * 1000 }}" style="height:0px!important;width:0px!important;opacity:0;filter:alpha(opacity=0);"></span>
+                      {% endif %}
+                      
+                      <div class="section--statscolumns--number">
+                        {% if item.statistic_number_prefix_symbol %}<span class="section--statscolumns--prefix {% if item.statistic_superscript_the_prefix_symbols %}section--statscolumns--prefix--super{% endif %}">{{ item.statistic_number_prefix_symbol }}</span>{% endif %}<span class="section--statscolumns--number--inner {% if (item.statistic_type == 'countup')&&(item.statistic_count_up_duration|float > 0) %}counterticker{% endif %}" data-counterticker--to="{{ item.statistic_number }}" data-counterticker--duration="{{ item.statistic_count_up_duration|float * 1000 }}" data-counterticker--commas="{% if item.statistic_add_commas_every_thousand %}true{% else %}false{% endif %}">{% if (item.statistic_type == 'countup')&&(item.statistic_count_up_duration|float > 0) %}{{ item.statistic_count_up_start_number }}{% else %}{% if item.statistic_add_commas_every_thousand %}{{ item.statistic_number|string|format_currency("en-US")|replace("$","") }}{% else %}{{ item.statistic_number }}{% endif %}{% endif %}</span>{% if item.statistic_number_suffix_symbol %}<span class="section--statscolumns--suffix {% if item.statistic_superscript_the_suffix_symbols %}section--statscolumns--suffix--super{% endif %}">{{ item.statistic_number_suffix_symbol }}</span>{% endif %}
+                      </div>
+                      
+                      <{{ 'h3' if item.statistic_label else 'h2' }} class="h4">
+                        {{ item.statistic_label }}
+                      </{{ 'h3' if item.statistic_label else 'h2' }}>
+
+                      {{ item.statistic_description }}
+                    </div>
+                  </div>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% if snippets.multiButton(module.cta) %}
+        <div class="grid hard--ends {{ snippets.textColorOverride(module.layout_controls.text_color_override)|trim }}">
+          <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.layout_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+            {{ snippets.multiButton(module.cta) }}
+          </div>
+        </div>
+      {% endif %}
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+  {% require_css %}
+  {% set sectionName = name %}
+  <style>
+    .{{ sectionName }}.section--statscolumns .section--statscolumns--number {
+      {{ module.layout_controls.statistics_font.style }};
+      font-size: {{ module.layout_controls.statistics_font.size ~ module.layout_controls.statistics_font.size_unit }};
+      color:{{ module.layout_controls.statistics_font.color }};
+    }
+    {% call functions.mediaQuery("tablet") %}
+    .{{ sectionName }}.section--statscolumns .section--statscolumns--number {
+      font-size: {{ module.layout_controls.statistics_font_tablet.size ~ module.layout_controls.statistics_font_tablet.size_unit }};
+    }
+    {% endcall %}
+    {% call functions.mediaQuery("palm") %}
+    .{{ sectionName }}.section--statscolumns .section--statscolumns--number {
+      font-size: {{ module.layout_controls.statistics_font_mobile.size ~ module.layout_controls.statistics_font_mobile.size_unit }};
+    }
+    {% endcall %}
+  </style>
+  {% end_require_css %}
+  
+  {% require_js %}
+  <script>  
+    function addCommasToNumber(strNumInput) {
+      var n = strNumInput.toString().split(".");
+      n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return n.join(".");
+    }
+
+    function animateCounter(element, duration, targetValue, useCommas) {
+      let startValue = parseInt(element.textContent || 0);
+      let startTime = null;
+
+      function animation(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1); // Ensure progress does not exceed 1
+
+        const currentValue = Math.ceil(startValue + (targetValue - startValue) * progress);
+        element.textContent = useCommas ? addCommasToNumber(currentValue) : currentValue;
+
+        if (progress < 1) {
+          requestAnimationFrame(animation);
+        }
+      }
+
+      requestAnimationFrame(animation);
+    }
+
+    function productionCounterticker() {
+      const counters = document.querySelectorAll('.counterticker:not(.counterticked)');
+
+      counters.forEach(function (counter) {
+        let thisEl = counter.closest(".counterticker--parent") || counter;
+
+        const triggerPercent = parseFloat('{{ config.counterticker_TriggerPercent|replace("%","")|float/100 }}'); // Replace with actual value
+                                          const scrollTop = window.scrollY + window.innerHeight;
+
+                                          if (thisEl.getBoundingClientRect().top + (window.innerHeight * triggerPercent) <= scrollTop) {
+          const targetValue = parseFloat(counter.getAttribute('data-counterticker--to')) || 0;
+          const duration = parseInt(counter.getAttribute('data-counterticker--duration') || 2000);
+          const useCommas = (counter.getAttribute('data-counterticker--commas') || "true").toLowerCase() !== "false";
+
+          animateCounter(counter, duration, targetValue, useCommas);
+          counter.classList.add('counterticked');
+
+          if (thisEl.closest(".counterticker--parent")) {
+            thisEl.closest(".counterticker--parent").classList.add("counterticker--parent--counterticked");
+          }
+        }
+      });
+    }
+
+    // Fallback for slow loads
+    setTimeout(function () {
+      productionCounterticker();
+    }, 3000);
+
+    window.addEventListener('load', function () {
+      productionCounterticker();
+
+      window.addEventListener('scroll', function () {
+        productionCounterticker();
+      });
+
+      window.addEventListener('resize', function () {
+        productionCounterticker();
+      });
+
+      const loadCounters = document.querySelectorAll('.counterticker--load');
+
+      loadCounters.forEach(function (loadCounter) {
+        const targetValue = parseFloat(loadCounter.getAttribute('data-counterticker--to')) || 0;
+        const duration = parseInt(loadCounter.getAttribute('data-counterticker--duration') || 2000);
+        const useCommas = (loadCounter.getAttribute('data-counterticker--commas') || "true").toLowerCase() !== "false";
+
+        animateCounter(loadCounter, duration, targetValue, useCommas);
+        loadCounter.classList.add('counterticked');
+      });
+    });
+  </script>
+  {% end_require_js %}

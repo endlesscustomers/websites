@@ -1,0 +1,206 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{% set section = 'section--teaminnerhero' %}
+
+{######################################
+  MARK: Breadcrumbs
+######################################}
+.{{ section }}--breadcrumbs {
+  margin-top: 20px;
+}
+
+.{{ section }}--breadcrumbs .hs-breadcrumb-menu-wrapper {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: {{ color('black') }};
+  color: {{ color('white') }};
+}
+
+.{{ section }}--breadcrumbs .hs-breadcrumb-menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.{{ section }}--breadcrumbs .hs-breadcrumb-menu-item {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.{{ section }}--breadcrumbs .section--breadcrumbs--customlink,
+.{{ section }}--breadcrumbs .hs-breadcrumb-label {
+  font-size: 14px;
+  line-height: 14px;
+  letter-spacing: -0.15px;
+  color: {{ color('white') }};
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.{{ section }}--breadcrumbs a.section--breadcrumbs--customlink:hover {
+  opacity: 0.85;
+}
+
+.{{ section }}--breadcrumbs .customlink-first .section--breadcrumbs--customlink,
+.{{ section }}--breadcrumbs .customlink-first .hs-breadcrumb-label {
+  font-weight: {{ bold }};
+}
+
+.{{ section }}--breadcrumbs .customlink-last .section--breadcrumbs--customlink,
+.{{ section }}--breadcrumbs .customlink-last .hs-breadcrumb-label {
+  font-weight: {{ medium }};
+}
+
+.{{ section }}--breadcrumbs .hs-breadcrumb-menu-divider:before {
+  content: none;
+  display: none;
+}
+
+.{{ section }}--breadcrumbs .section--teaminnerhero--breadcrumb-divider {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  color: {{ color('white') }};
+}
+
+.{{ section }}--breadcrumbs .section--teaminnerhero--breadcrumb-divider svg {
+  display: block;
+  width: 5px;
+  height: 8px;
+}
+
+{######################################
+  MARK: Spacing
+######################################}
+{% call mediaQuery('lap-and-up') %}
+  {#############################################
+    300 == designed space above the content box
+    58 == breadcrumb height + 20px margin
+  ##############################################}
+  .{{ section }} .gridspacer--top {
+    padding-top: {{ 300 - 58 }}px !important;
+  }
+{% endcall %}
+
+.{{ section }} .gridspacer--bottom {
+  padding-bottom: 0 !important;
+}
+
+{######################################
+  MARK: Section
+######################################}
+.{{ section }} h1 {
+  margin-bottom: 20px;
+}
+
+.{{ section }} blockquote {
+  background: transparent;
+  border-left-color: {{ color('primary') }};
+  box-shadow: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
+  padding-left: 22px;
+  margin-top: 32px;
+}
+
+.{{ section }} blockquote:after {
+  content: none;
+}
+
+.{{ section }}--social {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.{{ section }}--social--mediums {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+}
+
+.{{ section }}--social--mediums a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.{{ section }}--social--mediums a svg circle {
+  transition: fill 0.2s ease;
+}
+
+.{{ section }}--social--mediums a:hover svg circle,
+.{{ section }}--social--mediums a:focus-visible svg circle {
+  fill: {{ color('primary') }};
+}
+
+.{{ section }} .image--overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 54.867%, rgba(0, 0, 0, 0.7) 85.203%);
+}
+
+.{{ section }}--bio-video-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+}
+
+.{{ section }}--bio-video-link--icon {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.{{ section }}--bio-video-link--icon svg {
+  display: block;
+  width: 52px;
+  height: 52px;
+}
+
+.{{ section }}--bio-video-link--label {
+  font-size: 18px;
+  line-height: 22px;
+  white-space: nowrap;
+}

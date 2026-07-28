@@ -1,0 +1,450 @@
+[ {
+  "id" : "91b0502a-b6f4-4bc4-5613-c8b83c6d5a9e",
+  "name" : "breadcrumb_controls",
+  "label" : "Breadcrumb Controls",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "1a1c3ae6-a958-6e73-05ae-9c641ff49724",
+    "name" : "learning_center_text",
+    "label" : "Learning Center: Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Learning Center"
+  }, {
+    "id" : "be6fc3ef-0dd5-317b-bcc8-7d0fcdb31c35",
+    "name" : "learning_center_link",
+    "label" : "Learning Center: Link",
+    "required" : true,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "/learning-center",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "learning_center_text" : "Learning Center",
+    "learning_center_link" : {
+      "url" : {
+        "type" : "EXTERNAL",
+        "href" : "/learning-center",
+        "content_id" : null
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }
+}, {
+  "id" : "c3ffa6db-4bf1-7ff9-a8c1-6ba1271967a7",
+  "name" : "inline_cta_controls",
+  "label" : "Listing: Inline CTA Controls",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "a27694fc-dddd-b070-d968-141e33f77f36",
+    "name" : "override_text_to_white",
+    "label" : "Inline CTA: Override Text To White",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "c2718646-ce77-7c3c-7e8e-d39d8c211ebd",
+    "name" : "background_color",
+    "label" : "Background: Color",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+      "name" : "background_color",
+      "label" : "Background: Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "fa3f8f10-ba2d-a90c-9c54-949a4e2b2728",
+      "name" : "background_custom_color",
+      "label" : "Background: Custom Color",
+      "help_text" : "",
+      "inline_help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "307e472d-4c3b-b8af-f73d-f5ef792b0af5",
+    "name" : "inline_cta_header",
+    "label" : "Inline CTA: Header",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Need Help?"
+  }, {
+    "id" : "9102e5d8-abc8-2254-c4c3-b2ac847f5eb2",
+    "name" : "inline_cta_body",
+    "label" : "Inline CTA: Body",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at urna et ex."
+  }, {
+    "id" : "ff798e0d-7a18-93ba-e3dc-e77705058cd4",
+    "name" : "inline_cta_button_color",
+    "label" : "Inline CTA: Button Color",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "white", "White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "primary"
+  }, {
+    "id" : "a27694fc-8e24-b070-d968-141e33f77f36",
+    "name" : "inline_cta_ghost_transparent_button",
+    "label" : "Inline CTA: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "a1ce08dd-2c14-8a10-2f4e-b35114fcc9e7",
+    "name" : "inline_cta_button_link",
+    "label" : "Inline CTA: Button Link",
+    "required" : true,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : "https://www.impactplus.com/"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "1c5671a2-b753-ee13-774b-df0edd4338b2",
+    "name" : "inline_cta_title_attribute",
+    "label" : "Inline CTA: Title Attribute",
+    "inline_help_text" : "CTA title attribute gives additional information about the page being linked to. Leave this blank to use your button text.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "65f8c5c5-2405-672b-82a0-0157b874cd95",
+    "name" : "inline_cta_button_text",
+    "label" : "Inline CTA: Button Text",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Get Started"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "override_text_to_white" : false,
+    "background_color" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    },
+    "inline_cta_header" : "Need Help?",
+    "inline_cta_body" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at urna et ex.",
+    "inline_cta_button_color" : "primary",
+    "inline_cta_ghost_transparent_button" : false,
+    "inline_cta_button_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : "https://www.impactplus.com/"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "inline_cta_title_attribute" : "",
+    "inline_cta_button_text" : "Get Started"
+  }
+}, {
+  "id" : "d1bda5ae-cd3b-ad35-c8d7-44e0cc673501",
+  "name" : "subscribe_controls",
+  "label" : "Subscribe Controls",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "5fb82626-3ac4-4891-b04a-2c9f8619b243",
+    "name" : "enable_subscribe_box",
+    "label" : "Enable Subscribe Box",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "a27694fc-ssss-b070-d968-141e33f77f36",
+    "name" : "override_text_to_white",
+    "label" : "Subscribe Box: Override Text To White",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5fb82626-3ac4-4891-b04a-2c9f8619b243",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "c2718646-ssss-7c3c-7e8e-d39d8c211ebd",
+    "name" : "background_color",
+    "label" : "Subscribe Box: Background: Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5fb82626-3ac4-4891-b04a-2c9f8619b243",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "e091a658-ssss-2c3f-85d1-65a4994db6ad",
+      "name" : "background_color",
+      "label" : "Background: Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "e091a658-sdfg-2c3f-85d1-65a4994db6ad",
+      "name" : "background_custom_color",
+      "label" : "Background: Custom Color",
+      "help_text" : "",
+      "inline_help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "e091a658-ssss-2c3f-85d1-65a4994db6ad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "56547d52-b947-d960-748d-cb9389e8c725",
+    "name" : "subscribe_header",
+    "label" : "Subscribe: Header",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5fb82626-3ac4-4891-b04a-2c9f8619b243",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Vestibulum efficitur urna id turpis molestie, sit amet pulvinar felis blandit."
+  }, {
+    "id" : "35fcf0c6-c263-a503-ae8e-a1b97b59f66d",
+    "name" : "subscribe_form",
+    "label" : "Subscribe: Form",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5fb82626-3ac4-4891-b04a-2c9f8619b243",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "c2986d63-ff29-46a2-8ad2-ea762de29fad",
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form.",
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  }, {
+    "id" : "c053bf4a-0b2e-2fca-0838-6ad3930fb96a",
+    "name" : "subscribe_button_color",
+    "label" : "Subscribe: Button Color",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "white", "White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "primary"
+  }, {
+    "id" : "598da941-a8bd-7145-3e62-3bd37c78f6f4",
+    "name" : "subscribe_ghost_transparent_button",
+    "label" : "Subscribe: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "2b0e6ca7-9c5f-df98-cc01-17a24db4f4e0",
+    "name" : "subscribe_subscriber_list_id",
+    "label" : "Subscribe: Subscriber List ID",
+    "help_text" : "",
+    "inline_help_text" : "Enter the internal ID of the list. This is a number which can be found at the end of the page URL when editing the list.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5fb82626-3ac4-4891-b04a-2c9f8619b243",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "1"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "enable_subscribe_box" : true,
+    "override_text_to_white" : false,
+    "background_color" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    },
+    "subscribe_header" : "Vestibulum efficitur urna id turpis molestie, sit amet pulvinar felis blandit.",
+    "subscribe_form" : {
+      "form_id" : "c2986d63-ff29-46a2-8ad2-ea762de29fad",
+      "response_type" : "inline",
+      "message" : "Thanks for submitting the form.",
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    },
+    "subscribe_button_color" : "primary",
+    "subscribe_ghost_transparent_button" : false,
+    "subscribe_subscriber_list_id" : "1"
+  }
+} ]

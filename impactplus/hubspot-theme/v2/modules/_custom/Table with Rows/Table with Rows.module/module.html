@@ -1,0 +1,267 @@
+{{ require_css( get_asset_url("../Table with Rows.css"), { async: true } ) }}
+
+{% set rich_text_color_opacity    = module.section_controls.text_color_override.rich_text_color_opacity|default(100) %}
+{% set preheader_border_color     = module.layout_controls.preheader_border_color.border_color|default('black') %}
+{% set preheader_background_color = module.layout_controls.preheader_background_color.background_color|default('black') %}
+{% set grid_alignment_desktop     = module.layout_controls.container_alignment %}
+{% set container_border_color     = module.layout_controls.container_border_color.border_color|default('custom') %}
+
+{% set text_color_overridden_on_all_screen_sizes = module.section_controls.text_color_override.override_on_all_screen_sizes|default(false) %}
+{% set text_color_overridden_on_desktop          = module.section_controls.text_color_override.override_on_desktop|default(false) %}
+{% set text_color_overridden_on_laptop           = module.section_controls.text_color_override.override_on_laptop|default(false) %}
+{% set text_color_overridden_on_tablet           = module.section_controls.text_color_override.override_on_tablet|default(false) %}
+{% set text_color_overridden_on_mobile           = module.section_controls.text_color_override.override_on_mobile|default(false) %}
+
+{% if preheader_background_color != 'custom' %}
+  {% set preheader_background_fill_color = functions.color(preheader_background_color) %}
+{% elif module.layout_controls.preheader_background_color.background_custom_color.color %}
+  {% set preheader_background_fill_color = "rgba(" + module.layout_controls.preheader_background_color.background_custom_color.color|convert_rgb + ", " + module.layout_controls.preheader_background_color.background_custom_color.opacity|int/100 + ")" %}
+{% endif %}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+      {% if text_color_overridden_on_all_screen_sizes %}
+        .section--tablewithrows .section--tablewithrows--contents * {
+          color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+        }
+      {% elif text_color_overridden_on_desktop %}
+        {% call functions.mediaQuery('desk') %}
+          .section--tablewithrows .section--tablewithrows--contents * {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% elif text_color_overridden_on_laptop %}
+        {% call functions.mediaQuery('lap') %}
+          .section--tablewithrows .section--tablewithrows--contents * {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% elif text_color_overridden_on_tablet %}
+        {% call functions.mediaQuery('tablet') %}
+          .section--tablewithrows .section--tablewithrows--contents * {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% elif text_color_overridden_on_mobile %}
+        {% call functions.mediaQuery('palm') %}
+          .section--tablewithrows .section--tablewithrows--contents * {
+            color: rgba({{ functions.color('white')|convert_rgb }}, {{ rich_text_color_opacity|int/100 }}) !important;
+          }
+        {% endcall %}
+      {% endif %}
+
+      .section--tablewithrows .preheader {
+        border-color: transparent;
+        border-width: 2px;
+        border-style: solid;
+        border-radius: 999px;
+        padding: 0.5rem 1.25rem;
+        white-space: nowrap;
+        color: {{ functions.color('white') }};
+        position: relative;
+        overflow: visible;
+        display: inline-block;
+        width: fit-content;
+        max-width: 100%;
+        flex: 0 0 auto;
+        {% if module.layout_controls.content_alignment == 'center' %}
+          align-self: center;
+        {% elif module.layout_controls.content_alignment == 'right' %}
+          align-self: flex-end;
+        {% else %}
+          align-self: flex-start;
+        {% endif %}
+
+        background-color: {{ preheader_background_fill_color }};
+
+        {% if preheader_border_color == 'gradient' %}
+          border-color: transparent;
+          background-image:
+            linear-gradient({{ preheader_background_fill_color }}, {{ preheader_background_fill_color }}),
+            linear-gradient(90deg, #7B2FFF 0%, #FF2D9B 100%);
+          background-origin: border-box;
+          background-clip: padding-box, border-box;
+        {% elif preheader_border_color != 'custom' %}
+          border-color: {{ functions.color(preheader_border_color) }};
+        {% elif module.preheader_border_color.border_color == 'custom' and module.preheader_border_color.border_custom_color.color %}
+          border-color: {{ module.preheader_border_color.border_custom_color.color }};
+        {% endif %}
+      }
+
+      .section--tablewithrows .preheader::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 100vw;
+        height: 1px;
+        transform: translateY(-50%);
+        {% if preheader_border_color == 'gradient' %}
+          background: #FF2D9B;
+        {% elif preheader_border_color == 'custom' and module.preheader_border_color.border_custom_color.color %}
+          background-color: {{ module.preheader_border_color.border_custom_color.color }};
+        {% else %}
+          background-color: {{ functions.color(preheader_border_color) }};
+        {% endif %}
+      }
+
+      .section--tablewithrows .section--tablewithrows--table {
+        {% if container_border_color == 'custom' and module.layout_controls.container_border_color.border_custom_color.color %}
+          {% set table_border_rgba = "rgba(" + module.layout_controls.container_border_color.border_custom_color.color|convert_rgb + ", " + module.layout_controls.container_border_color.border_custom_color.opacity|int/100 + ")" %}
+          border-color: {{ table_border_rgba }};
+          --tablewithrows-row-divider: {{ table_border_rgba }};
+        {% else %}
+          {% set table_border_solid = functions.color(container_border_color) %}
+          border-color: {{ table_border_solid }};
+          --tablewithrows-row-divider: {{ table_border_solid }};
+        {% endif %}
+      }
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{% if 'narrow' == module.layout_controls.container_width %}
+  {% set container_width = 'eight-twelfths' %}
+{% else %}
+  {% set container_width = module.layout_controls.container_width %}
+{% endif %}
+
+{% if 'narrow' == module.layout_controls.header_width %}
+  {% set header_width = 'eight-twelfths' %}
+{% else %}
+  {% set header_width = module.layout_controls.header_width %}
+{% endif %}
+
+{% if 'narrow' == module.layout_controls.content_width %}
+  {% set content_width = 'eight-twelfths' %}
+{% else %}
+  {% set content_width = module.layout_controls.content_width %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--tablewithrows relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends relative {% if module.layout_controls.container_alignment == 'center' %}flex-align--center{% elif module.layout_controls.container_alignment == 'right' %}flex-align--end{% else %}flex-align--start{% endif %}">
+      {% if
+        module.preheader or
+        module.header or
+        module.content or
+        module.tables|length > 0
+      %}
+        <div class="relative z-index--3 grid__item {{ container_width }} tablet-ten-twelfths palm-one-whole hard--ends last--hard--bottom">
+          {% set container_classes = [
+            'first--hard--top',
+            'last--hard--bottom',
+            'flex',
+            'flex-flow--column',
+            'flex-align--' ~ grid_alignment_desktop,
+            'all--text--' ~ module.layout_controls.content_alignment,
+            'palm-all--text--' ~ module.layout_controls.content_alignment_mobile
+          ] %}
+          <div class="section--tablewithrows--content-container {{ container_classes|join(' ') }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+            {% if module.preheader %}
+              <span class="h6 preheader">
+                {{ module.preheader }}
+              </span>
+            {% endif %}
+            {% if module.header %}
+              {% set header_classes = [
+                'grid__item',
+                'hard',
+                'portable-one-whole',
+                'margin--petite--bottom',
+                'first--hard--top',
+                'last--hard--bottom',
+                header_width
+              ] %}
+              <div class="section--tablewithrows--header {{ header_classes|join(' ') }}">
+                <h2>{{ module.header }}</h2>
+              </div>
+            {% endif %}
+            {% if module.content %}
+              {% set contents_classes = [
+                'grid__item',
+                content_width,
+                'portable-one-whole',
+                'hard',
+                'first--hard--top',
+                'last--hard--bottom'
+              ] %}
+              <div class="section--tablewithrows--contents {{ contents_classes|join(' ') }}">
+                {{ module.content }}
+              </div>
+            {% endif %}
+            {% if module.tables %}
+              <div class="section--tablewithrows--tables">
+                {% for table in module.tables %}
+                  {% set tables_classes = [
+                    'relative',
+                    'first--hard--top',
+                    'last--hard--bottom'
+                  ] %}
+                  {% if module.layout_controls.container_background %}
+                    {% do tables_classes.append('short padding--short') %}
+                  {% else %}
+                    {% do tables_classes.append('hard') %}
+                  {% endif %}
+                  <div class="section--tablewithrows--table {{ tables_classes|join(' ') }}">
+                    {{ snippets.background(module.layout_controls.container_background) }}
+                    <div class="section--tablewithrows--table--content relative z-index--3 first--hard--top last--hard--bottom">
+                      <h3>
+                        {{ table.table_header }}
+                      </h3>
+                      {% if table.table_content %}
+                        <div class="section--tablewithrows--table--intro first--hard--top last--hard--bottom">
+                          {{ table.table_content }}
+                        </div>
+                      {% endif %}
+                      <div class="section--tablewithrows--table--rows">
+                        {% for row in table.table_rows %}
+                          <div class="section--tablewithrows--table--row flexgrid space--between valign--middle no--wrap">
+                            <div class="section--tablewithrows--table--row--label">
+                              <span class="p bold hard--ends text--left">
+                                {{ row.row_label }}
+                              </span>
+                              {% if row.row_label_supporting_text %}
+                                <span class="p hard--ends supporting-text text--left">
+                                  {{ row.row_label_supporting_text }}
+                                </span>
+                              {% endif %}
+                            </div>
+                            <div class="section--tablewithrows--table--row--value text--right">
+                              <span class="p hard--ends">{{ row.row_value }}</span>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            {% if module.content_after_tables %}
+              <div class="section--tablewithrows--content-after-tables first--hard--top last--hard--bottom margin--tall palm-margin--short">
+                {{ module.content_after_tables }}
+              </div>
+            {% endif %}
+            {% if module.cta %}
+              <div class="section--tablewithrows--cta first--hard--top last--hard--bottom {{ 'margin--short--top' if not module.content_after_tables }}">
+                {{ snippets.multiButton(module.cta) }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <div class="gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

@@ -1,0 +1,308 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+/*
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 abbr,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 acronym,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 address,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 applet,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 article,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 aside,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 audio,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 b,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 big,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 body,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 canvas,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 caption,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 center,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 cite,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 code,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 dd,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 del,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 details,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 dfn,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 div,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 dl,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 dt,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 em,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 embed,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 fieldset,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 figcaption,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 figure,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 hgroup,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 html,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 i,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 iframe,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 img,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 ins,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 kbd,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 legend,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 mark,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 menu,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 nav,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 object,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 output,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 q,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 ruby,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 s,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 samp,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 section,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 small,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 span,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 strike,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 sub,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 summary,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 sup,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 tbody,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 td,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 tfoot,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 th,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 thead,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 time,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 tr,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 tt,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 u,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 var,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 video
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 footer,
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 header,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 h1,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 h2,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 h3,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 h4,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 h5,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 h6
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 strong,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 ul,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 p,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 pre,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 ol,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 a,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 form,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 label,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 li,
+#privacyPolicy #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 blockquote{
+font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+}*/
+
+#privacyPolicy h1.tpt-section-heading,
+#privacyPolicy article{
+  margin-top: 0px;
+  font-size: 37px;
+}
+
+#privacyPolicy .hs-embed-wrapper{
+  max-width: unset !important;
+}
+
+#privacyPolicy .p, 
+#privacyPolicy p,
+#privacyPolicy li,
+#privacyPolicy p a,
+#privacyPolicy article{
+  font-weight: 500;
+  letter-spacing: -1.8%;
+  line-height: 1.6em;
+  font-size: 20px;
+  font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+}
+
+#privacyPolicy .p, 
+#privacyPolicy p,
+#privacyPolicy li,
+#privacyPolicy article{
+  color: #1d1d1f;
+}
+
+#privacyPolicy .p, 
+#privacyPolicy p{
+  margin: 25px 0;
+}
+
+
+#privacyPolicy h2{
+  margin-bottom: 10px;
+  margin-top: 40px !important;
+}
+
+@media screen and (max-width: 679px) {
+  .section--quote-bubble-columns .grid{
+    text-align: center;
+  }
+
+  #privacyPolicy h2{
+    font-size: 28px !important;
+  }
+}
+
+#privacyPolicy h2+p{
+  margin-top: 0px !important;
+}
+
+#privacyPolicy .accordion-content .accordion-section:first-child h4{
+  margin-top: 0px !important;
+}
+
+#privacyPolicy h4{
+  font-family: Merriweather, serif;
+  font-size: 18px !important;
+  font-weight: 700;
+  color: #1d1d1f !important;
+  margin-top: 24px !important;
+  margin-bottom: 4px !important;
+}
+
+#privacyPolicy h4 + .accordion-section-content ul{
+  margin-top: 8px;
+}
+
+#privacyPolicy .accordion-heading{
+  font-family: 'Merriweather',serif;
+  color: #1d1d1f;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -.15px;
+  line-height: 1.5em;
+}
+
+@media screen and (max-width: 1023px) {
+  #privacyPolicy .accordion-heading{
+    font-size: 20px !important;
+  }
+}
+
+#privacyPolicy .accordion .accordion-summary{
+  padding: 20px 68px 20px 20px;
+}
+
+#privacyPolicy .accordion .accordion-summary{
+  list-style: none;
+  position: relative;
+}
+
+#privacyPolicy .accordion .accordion-summary::after {
+  content: '';
+  position: absolute;
+  right: 30px;
+  top: calc(50% - 12px);
+  width: 24px;
+  height: 24px;
+  background-image: url(https://www.impactplus.com/hubfs/Photography/Icons/plus%20accordian%20faq%20symbol%20--%20black%20icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(0deg);
+  transform-origin: center;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#privacyPolicy .accordion[open] .accordion-summary::after{
+  transform: rotate(45deg);
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table {
+  line-height: 1.4;
+  font-size: .75em;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1em;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .table-bordered {
+  border: 0;
+
+  word-break: normal;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 th, #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 td {
+  padding: 1em;
+  min-width: 15em;
+  text-align: left;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 th {
+  font-weight: bold;
+  text-align: left;
+  vertical-align: bottom;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 td {
+  vertical-align: top;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table ul, #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table ol, #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table li {
+  font-size: 1em;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table ul, #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 table ol {
+  margin-left: 0;
+  padding-left: 1em;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordions {
+  margin: 16px 0;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #F6F9FC;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion:last-child {
+  border-bottom: 0px;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion-summary {
+  cursor: pointer;
+  padding: .5em .5em;
+  /* display: unset !important; */
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion-heading {
+  display: inline;
+  margin: 0;
+
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion .accordion-heading h3:after, #V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion h3:after {
+  border:0!important;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion-content {
+  margin: 0;
+  padding: 10px 20px 20px 20px;
+  display: block;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion-section {
+
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion-section + * {
+  margin-top: 1em;
+}
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .accordion-section-heading {
+  margin: 0;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .text-center {
+  text-align: center !important;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .text-uppercase {
+  text-transform: uppercase !important;
+}
+
+#V1dsMWRFWm9Wa3cyYTNCM1MwRTlQUT09 .text-lowercase {
+  text-transform: lowercase !important;
+}
+
+

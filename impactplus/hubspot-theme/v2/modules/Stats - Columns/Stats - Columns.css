@@ -1,0 +1,134 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/HubUI/assets/Config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/HubUI/assets/Functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{#############################################################
+  VARIABLES
+#############################################################}
+
+{% set number_FontFamily    = "{{ font('heading') }}" %}
+{% set number_FontWeight    = "{{ bold }}" %}
+{% set number_FontSize      = "50px" %}
+{% set number_Color         = "{{ color('primary') }}" %}
+
+{# TABLE #}
+{% set number_TabletFontSize      = "40px" %}
+
+{# PALM #}
+{% set number_MobileFontSize      = "40px" %}
+
+{#############################################################
+  CSS
+#############################################################}
+
+.section--statscolumns--divider--vertical {
+  display:inline;
+  position:absolute;
+  left: 0 !important;
+  top:auto;
+  width:1px;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:0px;
+}
+.section--statscolumns--divider--horizontal {
+  display:block;
+  position:absolute;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:1px;
+  top:0px;
+  left:{{ (config.grid_ColumnSpacing) }} !important;
+  right:{{ (config.grid_ColumnSpacing) }} !important;
+}
+.section--statscolumns--grid > .grid__item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+.section--statscolumns--grid > .grid__item.justify--start {
+  justify-content: flex-start;
+}
+.section--statscolumns .section--statscolumns--column {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+	margin: 0 !important;
+	padding: {{ config.tall }} {{ ( 3 / 2 ) }}% !important;
+}
+.section--statscolumns .section--statscolumns--column--body {
+  height: 100%;
+}
+.section--statscolumns .section--statscolumns--column--body--wrapper {
+  display: flex;
+  flex-flow: column;
+}
+
+.section--statscolumns .grid.hard .section--statscolumns--divider--horizontal,
+.section--statscolumns .grid.hard--sides .section--statscolumns--divider--horizontal {
+  left:{{ config.short }};
+  right:{{ config.short }};
+}
+
+.section--statscolumns--number {
+  font-family: {{ number_FontFamily }};
+  font-weight: {{ number_FontWeight }};
+  font-size: {{ number_FontSize }};
+  color: {{ number_Color }};
+  display:block;
+  min-height:1em;
+  line-height:1em;
+  word-break: break-all;
+}
+.section--statscolumns--prefix.section--statscolumns--prefix--super {
+  font-size: .5em;
+  line-height:1em;
+  vertical-align: super;
+}
+.section--statscolumns--number--inner {
+  line-height:inherit;
+}
+.section--statscolumns--suffix.section--statscolumns--suffix--super {
+  font-size: .5em;
+  line-height:1em;
+  vertical-align: super;
+}
+
+{% call mediaQuery("tablet") %}
+.section--statscards .section--statscolumns--number {
+  font-size: {{ number_TabletFontSize }};
+}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+  .section--statscards .section--statscolumns--number {
+    font-size: {{ number_PalmFontSize }};
+  }
+  .section--statscolumns .section--statscolumns--column {
+    max-width:450px;
+  }
+  .section--statscolumns .section--statscolumns--columns--wrapper.justify--start {
+    justify-content:center;
+  }
+{% endcall %}
+

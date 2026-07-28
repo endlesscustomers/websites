@@ -1,0 +1,13 @@
+.richtext--case-study-body > :first-child{
+  margin-top: 0px !important;
+}
+
+.richtext--case-study h2, .richtext--case-study h3, .richtext--case-study h4{
+  margin-top: 40px !important;
+}
+
+.richtext--case-study p,
+.richtext--case-study a,
+.richtext--case-study li{
+ font-weight: 400; 
+}

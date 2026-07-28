@@ -1,0 +1,206 @@
+{# ***** Global Macro Snippets ***** #}
+{% import '/impact-agency-services-v3/Global_Snippets_Marcos.html' as snippets %}
+
+{% set contentClasses = "ten-twelfths portable-one-whole" %}    
+{% set mediaClasses = "one-half tablet-ten-twelfths palm-one-whole" %}
+{% if module.featured_media_type != "none" %}
+{% if "lap-and-up-visuallyhidden" in module.featured_media.featured_media_device_visibility %}
+{% set contentClasses = "ten-twelfths portable-one-whole block" %}   
+<!-- If Center -->
+{% elif module.featured_media_position_desktop == "below" %}
+{% set contentClasses = "nine-twelfths tablet-ten-twelfths portable-one-whole block" %}
+{% set mediaClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole block" %}
+{% if module.column_widths == "four-twelfths" %}
+{% set contentClasses = "four-twelfths tablet-ten-twelfths portable-one-whole block" %}
+{% set mediaClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole block" %}
+{% elif module.column_widths == "five-twelfths" %}
+{% set contentClasses = "five-twelfths tablet-ten-twelfths palm-one-whole block" %}
+{% set mediaClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "seven-twelfths" %}
+{% set contentClasses = "seven-twelfths portable-one-whole block" %}
+{% set mediaClasses = "seven-twelfths tablet-eight-twelfths palm-one-whole" %}
+{% elif module.column_widths == "eight-twelfths" %}
+{% set contentClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole block" %}
+{% set mediaClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+<!-- If Left -->
+{% elif module.featured_media_position_desktop == "left" %}
+{% set contentClasses = "one-half tablet-ten-twelfths portable-one-whole" %}
+{% set mediaClasses = "one-half tablet-ten-twelfths palm-one-whole" %}
+{% if module.column_widths == "four-twelfths" %}
+{% set contentClasses = "four-twelfths tablet-ten-twelfths portable-one-whole" %}
+{% set mediaClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "eight-twelfths" %}
+{% set contentClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% set mediaClasses = "four-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "five-twelfths" %}
+{% set contentClasses = "five-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% set mediaClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "seven-twelfths" %}
+{% set contentClasses = "seven-twelfths portable-one-whole" %}
+{% set mediaClasses = "five-twelfths tablet-eight-twelfths palm-one-whole" %}
+{% endif %}
+<!-- If right -->
+{% elif module.featured_media_position_desktop == "right" %}
+{% set mediaClasses = "one-half tablet-ten-twelfths portable-one-whole" %}
+{% set contentClasses = "one-half tablet-ten-twelfths palm-one-whole" %}
+{% if module.column_widths == "four-twelfths" %}
+{% set mediaClasses = "four-twelfths tablet-ten-twelfths portable-one-whole" %}
+{% set contentClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "eight-twelfths" %}
+{% set mediaClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% set contentClasses = "four-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "five-twelfths" %}
+{% set mediaClasses = "five-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% set contentClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.column_widths == "seven-twelfths" %}
+{% set mediaClasses = "seven-twelfths portable-one-whole" %}
+{% set contentClasses = "five-twelfths tablet-eight-twelfths palm-one-whole" %}
+{% endif %}
+{% endif %}
+
+{% elif module.featured_media_type == "none" %}
+{% set contentClasses = "one-whole portable-ten-twelfths palm-one-whole" %}
+{% set mediaClasses = "visuallyhidden" %} 
+{% endif %}
+
+<style>
+  @media screen and (min-width: 1024px) {
+    .grid__item.grid-position--outside .section--testimonialslider--slide-placeholder{
+      height: {{ module.featured_media.video.featured_media_height }}px !important;
+    }
+  }
+
+  {% if module.featured_media.featured_media_vertical_alignment == 'valign--middle' %}
+  .grid__item.grid-position--outside .lap-and-up-absolute{
+    top: calc(50% - ({{ module.featured_media.video.featured_media_height }}px/2)) !important;
+  }
+  {% endif %}
+
+</style>
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--halfs section--bofu-half relative {{ module.section_controls.device_visibility }}">
+  {% if content.absolute_url is string_containing "https://www.impactplus.com/services/master-module-examples" %}
+  <div class="module-name absolute z-index--10">
+    <p class="hard--ends color--white">BOFU CTA Half and Half - IMPACT UI</p>
+  </div>
+  {% endif %}
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--5">
+    <div class="section--half-and-half-w-testimonials-grid grid {{ module.spacing.top_padding }} {{ module.spacing.bottom_padding }} {{ module.spacing.top_padding_mobile }} {{ module.spacing.bottom_padding_mobile }} relative">
+      <div class="grid__item one-whole palm-one-whole hard--ends background--black border-radius--10 text--center {% if module.featured_media.featured_media_grid_position == 'outside' %}lap-and-up-flex{% endif %} {{ module.section_controls.text_color_override }} {% if module.featured_media.featured_media_grid_position == 'outside' %}{% else %}{{ module.featured_media.featured_media_vertical_alignment }}{% endif %}">
+
+        {% if module.featured_media_position_desktop == "right" || module.featured_media_position_mobile_only == "below" %}
+        <div class="{{ module.featured_media_position_mobile_only }} media-desktop-position--{{ module.featured_media_position_desktop }} media-mobile-position--{{ module.featured_media_position_mobile_only }} grid__item {{ contentClasses }} palm-hard--sides lap-and-up-padding--tall portable-padding--short tall lap-and-up-hard--right {% if module.featured_media_position_desktop == "left" && module.featured_media_position_mobile_only == "below" %}lap-and-up-visuallyhidden{% elif module.featured_media_position_desktop == "right" && module.featured_media_position_mobile_only == "top" %}portable-visuallyhidden{% endif %} lap-and-up-all--text--{{ module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }} {% if module.featured_media.featured_media_grid_position == 'outside' %}{% else %}{{ module.featured_media.featured_media_vertical_alignment }}{% endif %} relative z-index--10" style="{% if module.section_controls.content_alignment_desktop == "center" %}margin-left: auto !important; margin-right: auto !important;{% endif %}">
+
+          {% if module.featured_media_type == "none" %}
+          <div class="grid__item {{ module.header_width }} tablet-one-whole palm-{{ module.header_width_mobile }} hard lap-and-up-all--text--{{ module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }}">
+            {% endif %}
+            {% if module.header %}
+            <div class="first--hard--top last--hard--bottom hard--bottom {% if module.section_controls.fade_controls.fade_animation != 'none' %}animate--fade animate--fade-{{ module.section_controls.fade_controls.fade_animation }} {% if module.section_controls.fade_controls.fade_delay != 'none' %}animate--fade-delay--2{% endif %}{% endif %} margin--short--bottom margin--petite--top" style="{% if module.section_controls.fade_controls.fade_delay == 'custom' %}-webkit-transition-delay: {{ module.section_controls.fade_controls.custom_fade_delay }}s; transition-delay: {{ module.section_controls.fade_controls.custom_fade_delay }}s;{% endif %}">
+              {# Custom Image Above Header #}
+              {% if module.image_above_content.src %}
+              <img class="lazy absolute" data-src="{{ module.image_above_content.src }}" alt="{{ module.image_above_content.alt }}" width="{{ module.image_above_content.width }}" height="{{ module.image_above_content.height }}" style="top: calc(-{{ module.image_above_content.height }}px - 5px); left: calc(50% / 2);">
+              {% endif %}
+              {{ module.header|replace('<h1','<div class="h1"')|replace('</h1>','</div>') }}
+            </div>
+            {% endif %}
+            {% if module.featured_media_type == "none" %}
+          </div>
+          {% endif %}
+          {% if module.cta|length > 0 %}
+          <div class="{% if (module.cta|length > 1) && (module.cta_layout_settings.cta_width_style == "equalize") %}btn-cta-position--{{ module.cta_layout_settings.cta_button_position }}{% else %}lap-and-up-flex tablet-flex portable-flex-justify--center palm--btn-max-width{% endif %} margin--petite--top">            
+            {% for sectionBlockCTA in module.cta %}
+            {% if sectionBlockCTA.cta_type == "none" || sectionBlockCTA.cta_type is undefined %}
+            {% else %}
+            <div class="btn-cta-inner animate--fade animate--fade-up btn-text--{{ module.cta_layout_settings.cta_button_size }} animate--fade-delay--{{ loop.index }} {% if loop.first %}btn--margin-right{% elif loop.last %}btn--margin-left{% else %}btn--margin-ends{% endif %}">
+              {{ snippets.button(sectionBlockCTA) }}
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% if module.cta_below_button_cta_text %}<div class="block"><div class="p margin--standard--top hard--bottom animate--fade animate--fade-up animate--fade-delay--6">{{ module.cta_below_button_cta_text }}</div></div>{% endif %}
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if module.featured_media_type != "none" || module.featured_media_type != "empty" %}
+        <div class="lap-and-up-hard--ends portable-short--top portable-hard--bottom relative grid__item valign--bottom grid-position--{{ module.featured_media.featured_media_grid_position }} {{ mediaClasses }} text--center {{ module.featured_media.featured_media_device_visibility }} {% if module.featured_media.featured_media_grid_position == 'outside' %}{% else %}{% endif %}">
+          {% if module.featured_media_type == "image" %}
+          <div class="lap-and-up-absolute left--0 right--0 bottom--0 block all--text--center {% if module.featured_media.featured_media_additional_bottom_margin %} {{ module.featured_media.featured_media_additional_bottom_margin }} {% endif %}">
+            <img class="section--hero--image lazy" data-src="{{ module.image.image.src }}" style="{% if module.featured_media.featured_media_add_media_shadow %}{% else %}box-shadow:none !important;{% endif %}" alt="{{ module.image.image.alt }}" width="{{ module.image.image.width }}" height="auto" />
+          </div>
+
+          {% elif module.featured_media_type == "video" %}
+          <div class="block {% if module.featured_media.featured_media_grid_position == 'outside' %}lap-and-up-absolute{% else %}relative{% endif %}">
+            <div class="block {% if module.featured_media.featured_media_grid_position == 'outside' %}relative{% endif %} all--text--center">
+              {# Playbutton #}
+              <div class="{% if module.video.video_featured_media_placeholder_type == "default" %}video--video-wrapper{% endif %} relative" onclick="launchVidLightbox('{{ module.video.video_embed_code }}');">
+                {% if module.video.video_background_graphic_optional.src %}
+                <div class="video--svg-bg">
+                  <img class="lazy" alt="{{ module.video.video_background_graphic_optional.alt }}" data-src="{{ module.video.video_background_graphic_optional.src }}" alt="Video Background">
+                </div>
+                {% endif %}
+
+                {% if module.video.video_caption_overlay_text %}
+                <div class="customVideo--overlay video-standard--wrapper hover--pointer absolute top--0 left--0 right--0 bottom--0 border-radius--10 video--play-pulse-active">
+                  <div class="customVideo--overlay-gradient"></div>
+                  <div class="video--play-caption flex absolute bottom--0 left--0 right--0">
+                    <div class="video--play-pulse--container">
+                      <div class="video--play-pulse"></div>
+                      <img class="video--play-btn--small lazy" alt="Play Video" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Play%20Button%20White%20v2.svg" alt="Video Play">
+                    </div>
+                    <div class="video-caption--text-small p color--white hard--ends line-height--basic">{{ module.video.video_caption_overlay_text }}</div>
+                  </div>
+                </div>
+                {% endif %}
+
+                <img alt="Video Placeholder" class="visuallyhidden lazy" data-bg="//play.vidyard.com/{{ module.video.video_embed_code }}.jpg" width="760" data-type="lightbox" data-uuid="{{ module.video.video_embed_code }}" data-v="4">
+                <div class="overflow--hidden border-radius--10">
+                  <div class="customVideo--image lazy relative border-radius--10 hover--pointer" data-bg="{% if module.video.video_featured_media_placeholder_type == "default" %}//play.vidyard.com/{{ module.video.video_embed_code }}.jpg{% else %}{{ module.video.custom_thumbnail.src }}{% endif %}" style="background-size: cover; background-position: center center; background-repeat: no-repeat; box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);">
+                    {% if module.video.video_featured_media_placeholder_type == "default" %}
+                    <span class="aspectspacer" style="display:block;width:100%;margin:0px;padding:56.5% 0px 0px 0px;"></span>
+                    {% else %}
+                    <img alt="Video Placeholder" class="section--testimonialslider--slide-placeholder lazy" style="visibility: hidden; opacity: 1; width: auto; height: auto;" data-src="{{ module.video.custom_thumbnail.src }}">
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        {% if module.featured_media_position_desktop == "left" || module.featured_media_position_mobile_only == "top" %}
+        <div class="grid__item {{ contentClasses }} palm-hard--sides {% if module.featured_media_position_desktop == "left" && module.featured_media_position_mobile_only == "below" %}portable-visuallyhidden{% elif module.featured_media_position_desktop == "right" && module.featured_media_position_mobile_only == "top" %}lap-and-up-visuallyhidden{% endif %} lap-and-up-all--text--{{ module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }} {% if module.featured_media_type == "none" %} hard--ends {% else %} short--top hard--bottom {% endif %}  {% if module.featured_media.featured_media_grid_position == 'outside' %}{% else %}{{ module.featured_media.featured_media_vertical_alignment }}{% endif %}" style="{% if module.section_controls.content_alignment_desktop == "center" %}margin-left: auto !important; margin-right: auto !important;{% endif %}">
+
+          {% if module.header %}
+          <div class="first--hard--top last--hard--bottom hard--bottom lap-and-up-all--text--{{ module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }} {% if module.section_controls.fade_controls.fade_animation != 'none' %}animate--fade animate--fade-{{ module.section_controls.fade_controls.fade_animation }} {% if module.section_controls.fade_controls.fade_delay != 'none' %}animate--fade-delay--2{% endif %}{% endif %} {% if module.header_size_responsiveness != "default" || "" %}h1-responsive{% endif %} {% if module.featured_media_type == "none" || module.section_controls.content_alignment_desktop == "center" %}hard--bottom{% else %} lap-and-up-margin--short--bottom {% endif %} portable-hard--bottom" style="{% if module.section_controls.fade_controls.fade_delay == 'custom' %}-webkit-transition-delay: {{ module.section_controls.fade_controls.custom_fade_delay }}s; transition-delay: {{ module.section_controls.fade_controls.custom_fade_delay }}s;{% endif %}">
+            {# Custom Image Above Header #}
+            {% if module.image_above_content.src %}
+            <img class="lazy absolute" data-src="{{ module.image_above_content.src }}" alt="{{ module.image_above_content.alt }}" width="{{ module.image_above_content.width }}" height="{{ module.image_above_content.height }}" style="top: calc(-{{ module.image_above_content.height }}px - 5px); left: calc(50% / 2);">
+            {% endif %}
+            {{ module.header|replace('<h1>','')|replace('</h1>','') }}
+          </div>
+          {% endif %}
+          {% if module.cta|length > 0 %}
+          <div class="{% if (module.cta|length > 1) && (module.cta_layout_settings.cta_width_style == "equalize") %}btn-cta-position--{{ module.cta_layout_settings.cta_button_position }}{% else %}lap-and-up-flex tablet-flex portable-flex-justify--center palm--btn-max-width{% endif %} margin--petite--top">
+            {% for sectionBlockCTA in module.cta %}
+            {% if sectionBlockCTA.cta_type == "none" || sectionBlockCTA.cta_type is undefined %}
+            {% else %}
+            <div class="btn-cta-inner animate--fade animate--fade-up btn-text--{{ module.cta_layout_settings.cta_button_size }} animate--fade-delay--{{ loop.index }} {% if loop.first %}btn--margin-right{% elif loop.last %}btn--margin-left{% else %}btn--margin-ends{% endif %}">
+              {{ snippets.button(sectionBlockCTA) }}
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+          {% if module.cta_below_button_cta_text %}<div class="block"><div class="p margin--standard--top hard--bottom animate--fade animate--fade-up animate--fade-delay--6">{{ module.cta_below_button_cta_text }}</div></div>{% endif %}
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {{ snippets.gridCustomSpacingNum(name,module.spacing,".grid",".grid") }}
+  </div>
+</div>

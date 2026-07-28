@@ -1,0 +1,106 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{% import '../_config.css' as config %}
+{% import '../mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ******************************** BASE CSS *********************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.fade--in, .fade--up, .fade--down, .fade--left, .fade--right, .fade--load { opacity: 0; -webkit-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; -moz-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; -ms-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; -o-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; }
+
+.fade--up, .fade--down, .fade--left, .fade--right { -webkit-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}, transform {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; -moz-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}, transform {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; -ms-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}, transform {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; -o-transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}, transform {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; transition: opacity {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}, transform {{ config.fade_AnimationDuration }} {{ config.fade_AnimationEasing }}; }
+
+.fade--up { transform: translateY({{ config.fade_VerticalDistance }}); }
+.fade--down { transform: translateY({{ "-" + config.fade_VerticalDistance }}); }
+.fade--left { transform: translateX({{ config.fade_HorizontalDistance }}); }
+.fade--right { transform: translateX({{ "-" + config.fade_HorizontalDistance }}); }
+
+.production--fade.fade--in, .production--fade.fade--up, .production--fade.fade--down, .production--fade.fade--left, .production--fade.fade--right, .production--fade.fade--load { opacity: 1; }
+.production--fade.fade--up, .production--fade.fade--down { transform: translateY(0); }
+.production--fade.fade--left, .production--fade.fade--right { transform: translateX(0); }
+{% for n in range(1,11) %}.fade--delay--{{ n }} { -webkit-transition-delay: {{ (n * .33) }}s; transition-delay: {{ (n * .33) }}s; }
+{% endfor %}
+
+{% call mediaQuery("portable") %}
+  .fade--left,
+  .fade--right { transform: translateX(0); }
+  .fade--in,
+  .fade--up,
+  .fade--down,
+  .fade--left,
+  .fade--right {opacity:1;}
+{% endcall %}
+
+{# ANIMATE #}
+.animate--fade {
+  opacity: 0;
+  -webkit-transition: opacity 1s cubic-bezier(0.6, 0, 0.2, 1), -webkit-transform 1s cubic-bezier(0.6, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.6, 0, 0.2, 1), -webkit-transform 1s cubic-bezier(0.6, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.6, 0, 0.2, 1), transform 1s cubic-bezier(0.6, 0, 0.2, 1);
+  transition: opacity 1s cubic-bezier(0.6, 0, 0.2, 1), transform 1s cubic-bezier(0.6, 0, 0.2, 1), -webkit-transform 1s cubic-bezier(0.6, 0, 0.2, 1);
+}
+.hs-inline-edit .animate--fade {
+  opacity: 1;
+}
+.animate--fade-up {
+  -webkit-transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 20px, 0);
+}
+.animate--fade-left {
+  -webkit-transform: translate3d(20px, 0, 0);
+  transform: translate3d(20px, 0, 0);
+}
+.animate--fade-right {
+  -webkit-transform: translate3d(-20px, 0, 0);
+  transform: translate3d(-20px, 0, 0);
+}
+.animate--fade--active {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+{% for number in range(1,31) %}
+  .animate--fade-delay--{{ number }} {
+    -webkit-transition-delay: .{{ number }}s;
+    transition-delay: .{{ number }}s;
+  }
+{% endfor %}
+
+{# BLOG #}
+.pagetype--blog .animate--fade-delay--1 {
+  -webkit-transition-delay: .05s;
+  transition-delay: .05s;
+}
+.pagetype--blog .animate--fade-delay--2 {
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
+}
+.pagetype--blog .animate--fade-delay--3 {
+  -webkit-transition-delay: .15s;
+  transition-delay: .15s;
+}
+.pagetype--blog .animate--fade-delay--4 {
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+.pagetype--blog .animate--fade-delay--5 {
+  -webkit-transition-delay: .25s;
+  transition-delay: .25s;
+}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ********************************* CUSTOM CSS ******************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}

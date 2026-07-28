@@ -1,0 +1,32 @@
+{{ require_css( get_asset_url("../Learning Center Hero.css"), { async: true } ) }}
+<style>
+  .lc-content--pillar{
+
+  }
+
+  .lc-content--supporting_article{
+
+  }
+</style>
+
+<div class="lc-content--{{ widget_data.indpost.post_settings.template_type }} flexgrid valign--middle palm-direction--column hard--ends {% if widget_data.indpost.post_settings.template_type == 'pillar'%}align--center{% else %}align--left{% endif %} relative z-index--2">
+  <div class="{% if widget_data.indpost.post_settings.template_type == 'pillar'%}text--center{% else %}text--left flex flex-align--center{% endif %}" style="{% if widget_data.indpost.post_settings.template_type != 'pillar' %}gap: 12px;{% endif %}"> 
+    {% if module.preheader_type == 'image' || module.preheader_type == 'image_text' %}
+    {% if module.preheader_image.src %}
+    {% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+    {% set sizeAttrs = 'width="70" height="auto"' %}
+    {% else %}
+    {% set sizeAttrs = 'width="48" height="auto"' %}
+    {% endif %}
+    {% endif %}
+    {% set loadingAttr = module.preheader_image.loading != 'disabled' ? 'loading="{{ module.preheader_image.loading|escape_attr }}"' : '' %}
+    <img class="{{ snippets.deviceVisibility(module.preheader_image_visibility) }} {% if widget_data.indpost.post_settings.template_type == 'pillar'%}margin--short--bottom{% else %}hard--ends{% endif %}" src="{{ module.preheader_image.src|escape_url }}" alt="{{ module.preheader_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+    {% endif %}
+    {% if module.preheader_type == 'text' || module.preheader_type == 'image_text' %}
+    {% if module.preheader %}
+    <span class="h6 preheader {% if module.preheader_type == 'image_text' %}hard--top {% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}hard--bottom{% endif %}{% endif %}">{{ module.preheader }}</span>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+

@@ -1,0 +1,129 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--leftrightmediaform--share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  border-radius:50%;
+  text-decoration:none!important;
+  position:relative;
+  {{ transition("background .3s ease-in-out") }}
+}
+.section--leftrightmediaform--share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--leftrightmediaform--share--icon:first-child {
+  margin-left:0px;
+}
+.section--leftrightmediaform--share--icon--facebook {
+  background:{{ color("facebook") }};
+}
+.section--leftrightmediaform--share--icon--facebook:hover {
+  background:{{ colorShade(color("facebook")) }};
+}
+.section--leftrightmediaform--share--icon--twitter {
+  background:{{ color("twitter") }};
+}
+.section--leftrightmediaform--share--icon--twitter:hover {
+  background:{{ colorShade(color("twitter")) }};
+}
+.section--leftrightmediaform--share--icon--linkedin {
+  background:{{ color("linkedin") }};
+}
+.section--leftrightmediaform--share--icon--linkedin:hover {
+  background:{{ colorShade(color("linkedin")) }};
+}
+
+.section--leftrightmediaform form.hs-form.stacked .actions{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--leftrightmediaform .production--form input.hs-button, 
+.section--leftrightmediaform form.hs-form .hs_submit input.hs-button{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--leftrightmediaform .background--white .production--form input[type=email], 
+.section--leftrightmediaform .background--white .production--form input[type=file], 
+.section--leftrightmediaform .background--white .production--form input[type=number], 
+.section--leftrightmediaform .background--white .production--form input[type=password], 
+.section--leftrightmediaform .background--white .production--form input[type=search], 
+.section--leftrightmediaform .background--white .production--form input[type=tel], 
+.section--leftrightmediaform .background--white .production--form input[type=text], 
+.section--leftrightmediaform .background--white .production--form textarea, 
+.section--leftrightmediaform .background--white form.hs-form input[type=email].hs-input, 
+.section--leftrightmediaform .background--white form.hs-form input[type=file].hs-input, 
+.section--leftrightmediaform .background--white form.hs-form input[type=number].hs-input, 
+.section--leftrightmediaform .background--white form.hs-form input[type=tel].hs-input, 
+.section--leftrightmediaform .background--white form.hs-form input[type=text].hs-input, 
+.section--leftrightmediaform .background--white form.hs-form textarea.hs-input,
+.section--leftrightmediaform .background--white .production--form select, 
+.section--leftrightmediaform .background--white form.hs-form select.hs-input{
+  background: #F3F7FF;
+  border-radius: 8px;
+  padding: 14px 20px 14px;
+}
+
+.section--leftrightmediaform--content p, 
+.section--leftrightmediaform--content .p,
+.section--leftrightmediaform--content li{
+  color: #4F5465;
+}
+
+.section--leftrightmediaform form{
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.section--leftrightmediaform form .form-columns-1:has(>.legal-consent-container){
+  -webkit-box-ordinal-group: 3;
+  order: 3;
+}
+
+.section--leftrightmediaform form .legal-consent-container .hs-richtext{
+  color: #1d1d1f;
+  display: block;
+  font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25em;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: left !important;
+}
+
+.section--leftrightmediaform .section--leftrightmediaform--content .btn{
+  width: 100%;
+}

@@ -1,0 +1,11 @@
+<div class="richtext--case-study grid hard--ends relative z-index--10 lap-and-up-flex tablet-flex" style="flex-flow: wrap;">
+  <div class="grid__item one-fourth portable-visuallyhidden"></div>
+  <div class="richtext--case-study-body grid__item nine-twelfths tablet-one-whole palm-one-whole hard--ends text--left">
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"></div>
+    <div class="first--hard--top last--hard--bottom">
+      {{ module.content }}
+    </div>
+  </div>
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}"></div>
+</div>
+{{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}

@@ -1,0 +1,271 @@
+{# CSS #}
+{{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Table of Contents/Learning Center Table of Contents.css'), { async: true }) }}
+
+{% set sidebarMenuItems = module.sidebar_menu_items %}
+
+{% set sidebar = module.sidebar_menu_items %}
+{% set lvlOneChild = [] %}
+
+{% for child in sidebar %}
+{% if child.children|length > 0 %}
+{% do lvlOneChild.append(child.linkLabel) %}
+{% endif %}
+{% endfor %}
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--lp-chapters-content background--white">
+  <div class="section--chapter-list--container hard--top">
+    <div class="chapter--overflow-scroller text--left">
+      <h6 class="hard--top margin--short--bottom">{{ module.sidebar_menu_title }}</h6>
+      <div id="hs_menu_wrapper_widget_1631046267538_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="54748351895" aria-label="Navigation Menu">
+        <ul class="section--chapter-list--page-menu section--chapter-list--depth-1" role="menu">
+          {% for child in sidebar %}
+          <li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative {% if child.children|length > 0 %}hs-menu-depth-1--has-children {% if loop.first %}{% else %}chapter--closed{% endif %}{% endif %}{% if loop.first %}hs-menu-item--active{% endif %}" role="none"> 
+            <span class="section--chapter-list-marker-container flex flex-align--center" aria-haspopup="true" aria-expanded="false">
+              <a class="relative flex" href="{{ child.url }}" role="menuitem">
+                <span class="section--chapter-list--index">{{ child.linkLabel }}</span>
+                <img class="section--chapter-list-marker {% if child.children|length > 0 %}section--chapter-list-marker--visible{% endif %} inline-block hover--pointer" src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/arrow-down.svg" alt="{{ child.linkLabel }} Dropdown Arrow" style="width: 10px; height: 7px; {% if child.children|length > 0 %}{% else %}visibility: hidden;{% endif %}">
+              </a>
+            </span>
+            {% if child.children|length > 0 %}
+            <ul class="sidebar-menu--depth-2 section--chapter-list--page-menu section--chapter-list--depth-2" role="menu" style="display:none;">
+              {% for child2 in child.children %}
+              <li class="hs-menu-item hs-menu-depth-2" role="none"> 
+                <a class="relative" href="{{ child2.linkParams }}" role="menuitem">
+                  <span class="section--chapter-list--index">{{ child2.linkLabel }}</span>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {#<div class="sidebar--action-items margin--standard--top">
+              <div class="sidebar--cta btn-cta-inner btn-text--small btn--margin-ends">
+                {{ snippets.button(module.cta) }}
+              </div>
+              <ul class="section--return-top" role="menu">
+                <li class="sidebar-menu--return-top hover--pointer"><a class="no--underline color--middle-grey" href="#headerIMPlus"><span class="sidebar-menu--return-top-arrow">⬆</span> Top</a></li>
+              </ul>
+            </div>#}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% require_js %}
+<script>
+
+  {# Flex Sidebar and Secondary Nav Hash Scroll #}
+  $(document).ready(function() {
+    $('a[href*="#"]').on("click", function(e) {
+      e.preventDefault();
+
+      var target = $(this).attr("href");
+      console.log("Clicked link with href:", target);
+
+      try {
+        // skip if target is just "#"
+        if (target === "#" || !target) {
+          console.warn("Skipping invalid target:", target);
+          return;
+        }
+
+        // check if an element exists with that ID
+        if ($(target).length === 0) {
+          console.warn("No element found for selector:", target);
+          return;
+        }
+
+        // Checking if the click was on the secondary navigation mobile accordion
+        if ($(this).closest('.headerIMPlus--navigation-links--menu').hasClass("tray--open")) {
+          subnavClosePortDown();
+        }
+
+        // perform animated scrolling
+        $('html, body').stop().animate({
+          scrollTop: $(target).offset().top - $('.headerIMPlus--secondary').height() - 20
+        }, 400);
+
+        location.hash = target;
+      } catch (err) {
+        console.error("Scroll script error for target:", target, err);
+      }
+    });
+  });
+
+  {# End Secondary Navigation Menu Dropdowns #}
+
+  // Cache selectors
+  var topMenu = $(".section--chapter-list--page-menu"),
+      topMenuHeight = 110,
+      // All list items
+      menuItems = topMenu.find("a"),
+      // Anchors corresponding to menu items
+      scrollItems = menuItems.map(function(){
+        var item = $($(this).attr("href"));
+        if (item.length) { return item; }
+      });
+
+  console.log(scrollItems);
+  /* end Activate */
+
+  // Sidebar Fixed Function
+
+  $(document).ready(function () {
+    var parentWidth,
+        pageContent,
+        sidebar,
+        pageContentOffset,
+        pageContentHeight,
+        sidebarHeight,
+        distScrolled,
+        navigationHeight;
+
+    $(window).on("scroll resize", function() {
+
+      parentWidth = $('.flex-sidebar--width').width();
+      pageContent = $('#flex-sidebar-wrapper');
+      sidebar = $("#flex-sidebar--sidebar-container");
+
+      /*pageContentOffset = pageContent.offset().top;
+      pageContentHeight = pageContent.height();
+      sidebarHeight = $('.chapter--overflow-scroller').height();
+      distScrolled = $(document).scrollTop();
+      navigationHeight = 85;
+
+      if (distScrolled + sidebarHeight + 140 > pageContentOffset + pageContentHeight) {
+        // bottom
+        sidebar.removeClass('section--chapter-list--page-menu--fixed');
+        sidebar.find('.section--chapter-list--container').css({
+          'top' : '',
+          'position' : 'absolute',
+          'bottom' : '0'
+        });
+      }
+      else if (distScrolled + navigationHeight < pageContentOffset) {
+        // top
+        sidebar.removeClass('section--chapter-list--page-menu--fixed');
+        sidebar.find('.section--chapter-list--container').css({
+          'width' : '',
+          'top' : '',
+          'position' : ''
+        });
+      }
+      else {
+        // middle
+        sidebar.addClass('section--chapter-list--page-menu--fixed');
+        sidebar.find('.section--chapter-list--container').css({
+          'width' : parentWidth,
+          'top' : '',
+          'position' : ''
+        });
+      }*/
+
+      // Get container scroll position
+      var fromTop = $(this).scrollTop()+topMenuHeight;
+
+      // Get id of current scroll item
+      var cur = scrollItems.map(function(){
+        if ($(this).offset().top < fromTop)
+          return this;
+      });
+
+      // Get the id of the current element
+      cur = cur[cur.length-1];
+      var id = cur && cur.length ? cur[0].id : "";
+      // Set/remove active class
+
+      $(menuItems).filter(function() {
+
+        // Returning the currently active element
+        if ((this.href.indexOf(id) != -1) && ($(this).closest('li').hasClass('hs-menu-item--active'))) {
+
+          if (($(this).parents('li').hasClass('hs-menu-depth-1--has-children')) && (($(this).parents('li').find("span a[href='#"+id+"']").length) || ($(this).parents('.sidebar-menu--depth-2').find("li a[href='#"+id+"']").length))) {
+
+            // If this is a parent with Children
+            if ($(this).parents('li').hasClass('hs-menu-depth-1--has-children')){
+
+              $(this).parents('.hs-menu-depth-1--has-children').find('ul.sidebar-menu--depth-2').slideDown(400, function() {});
+
+              $(this).parents('.hs-menu-depth-1--has-children').find('ul.sidebar-menu--depth-2').slideDown(400, function() {});
+              $(this).parents('li').addClass('hs-menu-depth-1--children-active');
+              $(this).parents('li').removeClass('chapter--closed');
+            } else {
+              $(this).parents('ul.sidebar-menu--depth-2').slideDown(400, function() {});
+              $('.section--chapter-list--page-menu li').removeClass('hs-menu-depth-1--children-active');
+
+            }
+          } else {
+            $('.section--chapter-list--page-menu ul.sidebar-menu--depth-2').slideUp(400, function() {});
+            $('.section--chapter-list--page-menu li').removeClass('hs-menu-depth-1--children-active');
+            $('.section--chapter-list--page-menu li').addClass('chapter--closed');
+          }
+        } 
+      });
+
+      menuItems.closest('li').removeClass("hs-menu-item--active").end().filter("[href='#"+id+"']").closest('li').addClass("hs-menu-item--active");
+
+
+      $(".chapter--overflow-scroller .sidebar-menu--item.hs-menu-depth-1--has-children").each(function(i) {
+        // If one of its inner li's has the active class
+
+        if (($(this).hasClass("hs-menu-item--active")) || ($(this).find(".hs-menu-depth-2").hasClass("hs-menu-item--active"))) {
+          // Do nothing, the section has a active class
+        } else {
+
+          $(this).find("ul.sidebar-menu--depth-2").slideUp(400, function() {});
+          $(this).removeClass('hs-menu-depth-1--children-active');
+          $(this).addClass('chapter--closed');
+        }
+      });
+    });
+  });
+
+
+  // Opening the accordian sidebar menu on click
+  $(".sidebar-menu--item.hs-menu-depth-1 a").on("click", function() {
+    if ($(this).parents('.hs-menu-depth-1').hasClass('hs-menu-depth-1--has-children')){
+      $(this).parents('.hs-menu-depth-1--has-children').find('ul.sidebar-menu--depth-2').slideDown(400, function() {});
+      $(this).parents('li').addClass('hs-menu-depth-1--children-active');
+      $(this).parents('li').removeClass('chapter--closed');
+    } else {
+      $('ul.sidebar-menu--depth-2').slideUp(400, function() {});
+      $('li').removeClass('hs-menu-depth-1--children-active');
+      $('li').addClass('chapter--closed');
+    }
+  });
+
+
+  {# Opening and closing the secondary navigation on mobile #}
+  /*$(".headerIMPlus--sidebar-dropdown-arrow").on("click", function() {
+    if ($(".headerIMPlus--sidebar-dropdown").hasClass("opened")) {
+      $(".headerIMPlus--sidebar-dropdown").removeClass('opened');
+      $("#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-items").slideUp(400, function() {});
+    } else {
+      $(".headerIMPlus--sidebar-dropdown").addClass('opened');
+      $("#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-items").slideDown(400, function() {});
+    }
+  });
+
+  $('.headerIMPlus--sidebar-dropdown .sidebar-menu--item a[href*=#]').on("click", function() {
+    $(".headerIMPlus--sidebar-dropdown").removeClass('opened');
+    $("#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-items").slideUp(400, function() {});
+  });
+
+  $(".headerIMPlus--sidebar-items .hs-menu-depth-1--has-children").on("click", function() {
+    if ($(this).hasClass("chapter--closed")) {
+      $(this).find('.headerIMPlus--sidebar--depth-2').slideDown(400, function() { });
+      $(this).removeClass('chapter--closed');
+    } else {
+      $(this).find('.headerIMPlus--sidebar--depth-2').slideUp(400, function() {});
+      $(this).addClass('chapter--closed');
+    }
+  });*/
+
+
+
+</script>
+{% end_require_js %}

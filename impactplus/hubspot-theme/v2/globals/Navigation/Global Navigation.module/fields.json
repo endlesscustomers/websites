@@ -1,0 +1,2602 @@
+[ {
+  "id" : "da9706df-994c-a920-9286-2dc4d456f748",
+  "name" : "cta_banners",
+  "label" : "Top Sticky CTA Banners",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "f9fdaf25-64c2-9bc9-5c43-0e4ca2a8c17b",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "5bf20ecc-989a-9bc1-72ba-e433957a0483",
+    "name" : "hide_hello_bar",
+    "label" : "Hide Top CTA Banner?",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "64ab7f41-3ad7-69a2-0099-8bc65402959c",
+    "name" : "banner_default_custom_setting",
+    "label" : "Set as default banner for all pages?",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "yes", "Yes" ], [ "no", "No (set custom pages to show on)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "yes"
+  }, {
+    "id" : "4eec93b6-141c-d0d7-9347-9a7588693996",
+    "name" : "cta_banner_urls_visibility",
+    "label" : "Banner: URLs to Show on",
+    "required" : true,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cta_banners.banner_default_custom_setting",
+      "controlling_value_regex" : "no",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "supported_types" : [ "CONTENT" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : [ {
+      "content_id" : null,
+      "href" : "",
+      "type" : "CONTENT"
+    } ]
+  }, {
+    "id" : "a3dceb81-8034-437c-0ab9-a5bbc9ea1a4f",
+    "name" : "banner_blog_topic_tag",
+    "label" : "Banner: Blog Tags to Show on",
+    "required" : true,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cta_banners.banner_default_custom_setting",
+      "controlling_value_regex" : "no",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "tag_value" : "NAME",
+    "type" : "tag",
+    "display_width" : null,
+    "default" : [ "Getting Started with They Ask, You Answer" ]
+  }, {
+    "id" : "cae59d0e-6c07-841c-2968-a8061085952e",
+    "name" : "banner_cookie_name",
+    "label" : "Banner: Cookie Name",
+    "help_text" : "",
+    "inline_help_text" : "This is the cookie name that saved to track whether or not a user has closed the banner. Rename this when changing the banners contents. Format it with no spaces or special characters, if using multiple words, make the letter of the next word uppercase (ex; 'cookieName')",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "imHelloBar"
+  }, {
+    "id" : "78f85a3d-876c-71bb-0205-aa71c135f90e",
+    "name" : "background",
+    "label" : "Banner: Background Layers",
+    "help_text" : "Using multiple layers allows you to stack levels of imagery on top of each other such as a background image with an overlay or texture. Depending on the imagery, you might consider using the Device Visibility controls to display a different set of backgrounds for certain screen sizes.",
+    "inline_help_text" : "Add one or more background layers here. Layers are overlaid on top of each other with the first layer in your list being the back and the last layer in your list being the front. After changing settings in this module group, click Apply to preview your changes.",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "name" : "background_type",
+      "label" : "Background: Type",
+      "required" : true,
+      "locked" : true,
+      "display" : "select",
+      "choices" : [ [ "image", "Image" ], [ "color", "Color" ], [ "gradient", "Gradient" ], [ "video", "Video" ], [ "swoop", "Swoop/Angle" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "color"
+    }, {
+      "id" : "6f5206ac-d0d5-8bca-c853-8eb62881c436",
+      "name" : "device_visibility",
+      "label" : "Device Visibility",
+      "inline_help_text" : "Use these inputs to show/hide this background layer for certain device sizes. When only showing this layer on certain screen sizes, ensure this layer is not necessary for your content to be legible.",
+      "required" : false,
+      "locked" : true,
+      "children" : [ {
+        "id" : "0dd4c48e-0e41-0819-a8bb-2cbe935e8282",
+        "name" : "hide_on_desktop",
+        "label" : "Hide on Desktop",
+        "inline_help_text" : "",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "791c66ca-bc78-51ef-9a56-901f4708bc53",
+        "name" : "hide_on_laptop",
+        "label" : "Hide on Laptop",
+        "inline_help_text" : "",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "d9e06fae-e60f-f967-f7f7-80f3427bea6f",
+        "name" : "hide_on_tablet",
+        "label" : "Hide on Tablet",
+        "inline_help_text" : "",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "eb1d3379-950d-701b-46ec-128a8d5b91ad",
+        "name" : "hide_on_mobile",
+        "label" : "Hide on Mobile",
+        "inline_help_text" : "",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "hide_on_desktop" : false,
+        "hide_on_laptop" : false,
+        "hide_on_tablet" : false,
+        "hide_on_mobile" : false
+      }
+    }, {
+      "id" : "060ae3ea-cde5-bed3-5df7-1584b2450f9b",
+      "name" : "background_opacity",
+      "label" : "Background: Opacity",
+      "help_text" : "",
+      "inline_help_text" : "Use this module to adjust this background layer's opacity (transparency). 100 is solid and 0 is completely transparent.",
+      "required" : true,
+      "locked" : true,
+      "visibility" : {
+        "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "swoop",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "c2718646-ce77-7c3c-7e8e-d39d8c211ebd",
+      "name" : "background_color",
+      "label" : "Background: Color",
+      "required" : false,
+      "locked" : true,
+      "visibility" : {
+        "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "color",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+        "name" : "background_color",
+        "label" : "Background: Color",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "darkgrey", "Dark Grey" ], [ "grey", "Grey" ], [ "lightrey", "Light Grey" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "white"
+      }, {
+        "id" : "fa3f8f10-ba2d-a90c-9c54-949a4e2b2728",
+        "name" : "background_custom_color",
+        "label" : "Background: Custom Color",
+        "help_text" : "",
+        "inline_help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "custom",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_color" : "white",
+        "background_custom_color" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        }
+      }
+    }, {
+      "id" : "90216235-1b15-56c3-5d4f-6c1944438b92",
+      "name" : "background_gradient",
+      "label" : "Background: Gradient",
+      "required" : false,
+      "locked" : true,
+      "visibility" : {
+        "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "gradient",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+        "name" : "background_gradient_type",
+        "label" : "Background: Gradient Type",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "linear", "Linear" ], [ "radial", "Radial (Inside to Outside)" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "linear"
+      }, {
+        "id" : "aecd7c17-ac43-9a98-6cfe-c8e4e938d38e",
+        "name" : "background_linear_gradient_direction",
+        "label" : "Background: Linear Gradient Direction",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "linear",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "display" : "select",
+        "choices" : [ [ "180", "Top to Bottom" ], [ "135", "Top-Left to Bottom-Right" ], [ "90", "Left to Right" ], [ "45", "Bottom-Left to Top-Right" ], [ "0", "Bottom to Top" ], [ "315", "Bottom-Right to Top-Left" ], [ "270", "Right to Left" ], [ "225", "Top-Right to Bottom-Left" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "90"
+      }, {
+        "id" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "name" : "background_gradient_start_color",
+        "label" : "Background: Gradient Start Color",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "darkgrey", "Dark Grey" ], [ "grey", "Grey" ], [ "lightrey", "Light Grey" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "white"
+      }, {
+        "id" : "d234f0ed-247b-24f9-1952-79e98864d481",
+        "name" : "background_gradient_start_color_opacity",
+        "label" : "Background Gradient: Start Color Opacity",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "custom",
+          "property" : null,
+          "operator" : "NOT_EQUAL",
+          "access" : null
+        },
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 100
+      }, {
+        "id" : "3ccb88cd-ce15-528b-e3dd-8498590d4df5",
+        "name" : "background_gradient_custom_start_color",
+        "label" : "Background: Gradient Custom Start Color",
+        "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "custom",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#084975",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "83ced365-4e17-b79b-9fcb-7614f35398e2",
+        "name" : "background_gradient_start_color_position",
+        "label" : "Background Gradient: Start Color Position",
+        "help_text" : "This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 0 will use your gradient start color, whereas anything between this number and the end color will be the transition between the colors.",
+        "inline_help_text" : "This number determines where the start color will be positioned in the gradient. This number must be less than the value of your gradient end color, otherwise it may cause issues with the direction of your gradient. (Default: 0)",
+        "required" : true,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 0.1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 0
+      }, {
+        "id" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "name" : "background_gradient_end_color",
+        "label" : "Background: Gradient End Color",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "darkgrey", "Dark Grey" ], [ "grey", "Grey" ], [ "lightrey", "Light Grey" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "white"
+      }, {
+        "id" : "6ca80323-4a65-5113-0e30-d5ec6bc76c2a",
+        "name" : "background_gradient_end_color_opacity",
+        "label" : "Background Gradient: End Color Opacity",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "custom",
+          "property" : null,
+          "operator" : "NOT_EQUAL",
+          "access" : null
+        },
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 100
+      }, {
+        "id" : "e0ad6c5f-f395-4b3d-ba23-b4071d680930",
+        "name" : "background_gradient_custom_end_color",
+        "label" : "Background: Gradient Custom End Color",
+        "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+        "required" : true,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "custom",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#4993C5",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "42fd95d0-1b0d-8086-b6e9-3c7a7ce6ecb0",
+        "name" : "background_gradient_end_color_position",
+        "label" : "Background Gradient: End Color Position",
+        "help_text" : "This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 100 will use your gradient end color, whereas anything between this number and the start color will be the transition between the colors.",
+        "inline_help_text" : "This number determines where the end color will be positioned in the gradient. This number must be greater than the value of your gradient start color, otherwise it may cause issues with the direction of your gradient. (Default: 100)",
+        "required" : true,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 0.1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 100
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_gradient_type" : "linear",
+        "background_linear_gradient_direction" : "90",
+        "background_gradient_start_color" : "white",
+        "background_gradient_start_color_opacity" : 100,
+        "background_gradient_custom_start_color" : {
+          "color" : "#084975",
+          "opacity" : 100
+        },
+        "background_gradient_start_color_position" : 0,
+        "background_gradient_end_color" : "white",
+        "background_gradient_end_color_opacity" : 100,
+        "background_gradient_custom_end_color" : {
+          "color" : "#4993C5",
+          "opacity" : 100
+        },
+        "background_gradient_end_color_position" : 100
+      }
+    }, {
+      "id" : "01110ebb-d579-d812-ff29-0966ea7c18d2",
+      "name" : "background_image",
+      "label" : "Background: Image",
+      "required" : false,
+      "locked" : true,
+      "visibility" : {
+        "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "33403847-1e61-ec0a-510a-60f40e191b3c",
+        "name" : "background_image",
+        "label" : "Background: Image",
+        "required" : true,
+        "locked" : false,
+        "responsive" : false,
+        "resizable" : false,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "size_type" : "exact",
+          "src" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/placeholders/placeholder-background-image.jpg",
+          "alt" : "Image ALT Tag",
+          "width" : 1600,
+          "height" : 774,
+          "loading" : "disabled"
+        }
+      }, {
+        "id" : "5b90124c-5f9a-bb90-d2a0-b9b4a932ddf2",
+        "name" : "background_image_size",
+        "label" : "Background: Image Size",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "background-size--cover", "Scale to Fill" ], [ "background-size--contain", "Scale to Fit" ], [ "background-size--contain--y", "Scale to Fit Height" ], [ "background-size--contain--x", "Scale to Fit Width" ], [ "background-size--stretch", "Stretch to Fill" ], [ "background-size--auto", "Native Size (use image's native height and width)" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "background-size--cover"
+      }, {
+        "id" : "3d70cb26-5d51-3e97-deaf-d9037bd23f34",
+        "name" : "background_image_repeat",
+        "label" : "Background: Image Repeat",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "background-repeat", "Repeat" ], [ "background-repeat--y", "Repeat Vertical" ], [ "background-repeat--x", "Repeat Horizontal" ], [ "background-repeat--none", "No Repeat" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "background-repeat--none"
+      }, {
+        "id" : "0940bcef-9bc6-e689-319c-399244d45c71",
+        "name" : "background_image_horizontal_alignment",
+        "label" : "Background: Image Horizontal Alignment",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "0%", "Left" ], [ "25%", "Left-Center" ], [ "50%", "Center" ], [ "75%", "Right-Center" ], [ "100%", "Right" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "50%"
+      }, {
+        "id" : "22dc7bb4-74d7-ff27-fad6-430b0820e61d",
+        "name" : "background_image_vertical_alignment",
+        "label" : "Background: Image Vertical Alignment",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "0%", "Top" ], [ "25%", "Top-Center" ], [ "50%", "Center" ], [ "75%", "Bottom-Center" ], [ "100%", "Bottom" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "50%"
+      }, {
+        "id" : "8f363a0e-3f3a-6659-b6bd-5103add6620e",
+        "name" : "background_image_parallax_fixed_when_scrolling",
+        "label" : "Background: Image Parallax / Fixed When Scrolling",
+        "help_text" : "When using this effect, pick your image carefully or use an overlay when needed since since the positioning of the image in relation to your content will be highly dependent on screen size and scroll distance.",
+        "inline_help_text" : "Enable this to make your image fixed so it does not scroll with the rest of the page (similar to a parallax effect but unlike a parallax the image will not move at all). This is useful when you need to use one background image across consecutive sections or your section changes height during use.",
+        "required" : false,
+        "locked" : false,
+        "display" : "checkbox",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_image" : {
+          "size_type" : "exact",
+          "src" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/placeholders/placeholder-background-image.jpg",
+          "alt" : "Image ALT Tag",
+          "width" : 1600,
+          "height" : 774,
+          "loading" : "disabled"
+        },
+        "background_image_size" : "background-size--cover",
+        "background_image_repeat" : "background-repeat--none",
+        "background_image_horizontal_alignment" : "50%",
+        "background_image_vertical_alignment" : "50%",
+        "background_image_parallax_fixed_when_scrolling" : false
+      }
+    }, {
+      "id" : "7f1e64f9-0ab1-5f1d-4def-7b316d5dc7e4",
+      "name" : "background_video",
+      "label" : "Background: Video",
+      "required" : false,
+      "locked" : true,
+      "visibility" : {
+        "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "video",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "7dc31c6e-af9a-c7db-7184-e06bd7d105f7",
+        "name" : "background_url_of_video_file_mp4",
+        "label" : "Background: URL of Video File (MP4)",
+        "required" : true,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE" ],
+        "type" : "url",
+        "display_width" : null,
+        "default" : {
+          "content_id" : null,
+          "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+          "type" : "EXTERNAL"
+        }
+      }, {
+        "id" : "231d7d69-8c72-3d50-dc8f-bc20088e0d9c",
+        "name" : "background_fallback_background_image",
+        "label" : "Background: Fallback Background Image",
+        "help_text" : "This image will show while the video is loading or on devices which cannot display the video.",
+        "inline_help_text" : "IMPORTANT: The height and width attributes of this image must match the size or aspect ratio of the video, otherwise your video may not be positioned properly. For best appearance, this image should usually be identical to the first frame of your video.",
+        "required" : true,
+        "locked" : false,
+        "responsive" : false,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "src" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video-poster.jpg",
+          "alt" : "Image ALT Tag",
+          "width" : 960,
+          "height" : 540
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : true,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_url_of_video_file_mp4" : {
+          "content_id" : null,
+          "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+          "type" : "EXTERNAL"
+        },
+        "background_fallback_background_image" : {
+          "src" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video-poster.jpg",
+          "alt" : "Image ALT Tag",
+          "width" : 960,
+          "height" : 540
+        }
+      }
+    }, {
+      "id" : "e2fcaf25-c813-922f-82b8-6d345953c77d",
+      "name" : "background_offset",
+      "label" : "Background: Offset",
+      "help_text" : "These inputs determine how much of the height and width of the section this background should cover. This is useful for when you only want a background layer to cover a certain percentage of the section. If your layer should cover the entire height and width of the section, the value of each of these inputs should be 0.",
+      "required" : false,
+      "locked" : true,
+      "visibility" : {
+        "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "swoop",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "27b6bc9c-f3ab-4df3-4adf-a63e55034515",
+        "name" : "background_left_offset_percentage",
+        "label" : "Background: Left Offset Percentage",
+        "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the left edge and 100 being the right edge. Use this input to control the offset from the left edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Right Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+        "required" : true,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 0.1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 0
+      }, {
+        "id" : "e5083a38-5e2a-ee83-7f40-d8054e8c072d",
+        "name" : "background_right_offset_percentage",
+        "label" : "Background: Right Offset Percentage",
+        "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the right edge and 100 being the left edge. Use this input to control the offset from the right edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Left Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+        "required" : true,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 0.1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 0
+      }, {
+        "id" : "c9c38c1c-b844-3923-e204-6792d23d4174",
+        "name" : "background_top_offset_percentage",
+        "label" : "Background: Top Offset Percentage",
+        "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the top edge and 100 being the bottom edge. Use this input to control the offset from the top edge of the section or set it to 0 if the background should go all the way to the top edge. This number must be less than 100 minus the value of your Bottom Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+        "required" : true,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 0.1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 0
+      }, {
+        "id" : "fe177880-4a33-33b7-5ecc-1c9aa4de61d5",
+        "name" : "background_bottom_offset_percentage",
+        "label" : "Background: Bottom Offset Percentage",
+        "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the bottom edge and 100 being the top edge. Use this input to control the offset from the bottom edge of the section or set it to 0 if the background should go all the way to the bottom edge. This number must be less than 100 minus the value of your Top Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+        "required" : true,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 100,
+        "step" : 0.1,
+        "type" : "number",
+        "display_width" : null,
+        "default" : 0
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_left_offset_percentage" : 0,
+        "background_right_offset_percentage" : 0,
+        "background_top_offset_percentage" : 0,
+        "background_bottom_offset_percentage" : 0
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "background_type" : "color",
+      "device_visibility" : {
+        "hide_on_desktop" : false,
+        "hide_on_laptop" : false,
+        "hide_on_tablet" : false,
+        "hide_on_mobile" : false
+      },
+      "background_opacity" : 100,
+      "background_color" : {
+        "background_color" : "white",
+        "background_custom_color" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        }
+      },
+      "background_gradient" : {
+        "background_gradient_type" : "linear",
+        "background_linear_gradient_direction" : "90",
+        "background_gradient_start_color" : "white",
+        "background_gradient_start_color_opacity" : 100,
+        "background_gradient_custom_start_color" : {
+          "color" : "#084975",
+          "opacity" : 100
+        },
+        "background_gradient_start_color_position" : 0,
+        "background_gradient_end_color" : "white",
+        "background_gradient_end_color_opacity" : 100,
+        "background_gradient_custom_end_color" : {
+          "color" : "#4993C5",
+          "opacity" : 100
+        },
+        "background_gradient_end_color_position" : 100
+      },
+      "background_image" : {
+        "background_image" : {
+          "size_type" : "exact",
+          "src" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/placeholders/placeholder-background-image.jpg",
+          "alt" : "Image ALT Tag",
+          "width" : 1600,
+          "height" : 774,
+          "loading" : "disabled"
+        },
+        "background_image_size" : "background-size--cover",
+        "background_image_repeat" : "background-repeat--none",
+        "background_image_horizontal_alignment" : "50%",
+        "background_image_vertical_alignment" : "50%",
+        "background_image_parallax_fixed_when_scrolling" : false
+      },
+      "background_video" : {
+        "background_url_of_video_file_mp4" : {
+          "content_id" : null,
+          "href" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video.mp4",
+          "type" : "EXTERNAL"
+        },
+        "background_fallback_background_image" : {
+          "src" : "https://f.hubspotusercontent40.net/hubfs/298890/Assets/videos/placeholder-video-poster.jpg",
+          "alt" : "Image ALT Tag",
+          "width" : 960,
+          "height" : 540
+        }
+      },
+      "background_offset" : {
+        "background_left_offset_percentage" : 0,
+        "background_right_offset_percentage" : 0,
+        "background_top_offset_percentage" : 0,
+        "background_bottom_offset_percentage" : 0
+      }
+    } ]
+  }, {
+    "id" : "7f04abe1-145c-8fdf-37ce-1d8487abafa6",
+    "name" : "banner_settings",
+    "label" : "Banner: Design Settings",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "4c0a3106-a4b2-da32-9622-7adda83b4c0c",
+      "name" : "banner_background_color_type",
+      "label" : "Banner: Background Color Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "solid", "Solid Color" ], [ "gradient", "Gradient" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "gradient"
+    }, {
+      "id" : "cdfd7234-c63f-4118-8c05-954c139e36ac",
+      "name" : "banner_background_color",
+      "label" : "Banner: Background Color",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.banner_settings.banner_background_color_type",
+        "controlling_value_regex" : "solid",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "blue-600", "Blue" ], [ "green-600", "Green" ], [ "livid-300", "Lightest Grey" ], [ "neutral-300", "Light Grey" ], [ "neutral-600", "Medium Grey" ], [ "neutral-700", "Black" ], [ "white", "White" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "blue-600"
+    }, {
+      "id" : "5ad87269-ddec-3672-f8b0-05b74d844ed6",
+      "name" : "banner_background_css_code",
+      "label" : "Banner: Background CSS Code",
+      "inline_help_text" : "Use this tool at the attached URL to create your gradient background, then, paste the gradient CSS style starting after 'background:'  o apply you color style: https://cssgradient.io/.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.banner_settings.banner_background_color_type",
+        "controlling_value_regex" : "gradient",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "linear-gradient(89deg, #0A6CFF 24.95%, #E4319A 87.91%)"
+    }, {
+      "id" : "7ac5b421-854b-fdd3-a5a1-d37c6f1c68f1",
+      "name" : "banner_font_color",
+      "label" : "Banner: Font Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "blue-600", "Blue" ], [ "green-600", "Green" ], [ "livid-300", "Lightest Grey" ], [ "neutral-300", "Light Grey" ], [ "neutral-600", "Medium Grey" ], [ "neutral-700", "Black" ], [ "white", "White" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "9e15d15d-8c21-2fde-894a-e460792ee353",
+      "name" : "left_side_bg_animated",
+      "label" : "[Optional] Animated Left-side Background Graphic",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/Endless%20Customers/Assets/Background/Endless_Customers_Repeat-Background--Left%20Justified.png",
+        "alt" : "Endless_Customers_Repeat-Background--Left Justified",
+        "loading" : "lazy",
+        "width" : 803,
+        "height" : 555,
+        "max_width" : 803,
+        "max_height" : 555
+      }
+    }, {
+      "id" : "4120eefb-f8cb-cbb6-c3bb-1db1b8a3283e",
+      "name" : "right_side_bg_animated",
+      "label" : "[Optional] Animated Right-side Background Graphic",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/hellobar/ec_bg_right.png",
+        "alt" : "ec_bg_right",
+        "loading" : "lazy",
+        "width" : 803,
+        "height" : 555,
+        "max_width" : 803,
+        "max_height" : 555
+      }
+    }, {
+      "id" : "16196b8c-d6e6-c22c-ba6b-af223c844bbd",
+      "name" : "bg_image_opacity",
+      "label" : "[Optional] Animated Background Image Opacity",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "%",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "banner_background_color_type" : "gradient",
+      "banner_background_color" : "blue-600",
+      "banner_background_css_code" : "linear-gradient(89deg, #0A6CFF 24.95%, #E4319A 87.91%)",
+      "banner_font_color" : "white",
+      "left_side_bg_animated" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/Endless%20Customers/Assets/Background/Endless_Customers_Repeat-Background--Left%20Justified.png",
+        "alt" : "Endless_Customers_Repeat-Background--Left Justified",
+        "loading" : "lazy",
+        "width" : 803,
+        "height" : 555,
+        "max_width" : 803,
+        "max_height" : 555
+      },
+      "right_side_bg_animated" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/hellobar/ec_bg_right.png",
+        "alt" : "ec_bg_right",
+        "loading" : "lazy",
+        "width" : 803,
+        "height" : 555,
+        "max_width" : 803,
+        "max_height" : 555
+      },
+      "bg_image_opacity" : 100
+    }
+  }, {
+    "id" : "f9fdaf25-64c2-9bc9-5c43-0e4ca2a8c17b",
+    "name" : "banner_header",
+    "label" : "Banner: Header [Desktop]",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Ready to get started on growing your website traffic?"
+  }, {
+    "id" : "aee590ec-db08-68f9-0f7b-e1d206fe1a3d",
+    "name" : "banner_header_mobile",
+    "label" : "Banner: Header [Mobile]",
+    "inline_help_text" : "Optional. Useful if the desktop text is too long on mobile.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Feeling stuck on how to improve your website? Get a FREE, live website critique from our experts."
+  }, {
+    "id" : "25330235-6c55-cc72-4898-357cd02053ec",
+    "name" : "banner_header_font_weight",
+    "label" : "Banner: Header Font Weight",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "light", "Light" ], [ "normal--weight", "Normal" ], [ "bold", "Bold" ], [ "bolder", "Extra Bold" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "bold"
+  }, {
+    "id" : "3a9a75c0-124b-034f-cf34-b160fd9d839f",
+    "name" : "hb_cta",
+    "label" : "Banner: CTA",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "7a73fc00-b02c-4b4e-529c-c4e36e54b8f8",
+      "name" : "cta_type",
+      "label" : "CTA: Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "cta"
+    }, {
+      "id" : "071119de-1c08-2b3e-f0c3-2ae1ae358f8d",
+      "name" : "cta",
+      "label" : "CTA",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "cta",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "cta",
+      "display_width" : null,
+      "default" : "150621846077"
+    }, {
+      "id" : "e6532db8-0f45-8f09-f7d8-1eb737fb9739",
+      "name" : "cta_button_text",
+      "label" : "CTA: Button Text",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "link|anchor|popup",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Get Started"
+    }, {
+      "id" : "5fd4936e-1646-3e67-89b8-a85ab08d2640",
+      "name" : "cta_hyperlink",
+      "label" : "CTA: Hyperlink",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "link|inline link",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : 18191346788,
+        "href" : null,
+        "type" : "CONTENT"
+      }
+    }, {
+      "id" : "4aecf78a-cf4d-55e2-06d6-db68431f7403",
+      "name" : "cta_button_color",
+      "label" : "CTA: Button Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "none",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "blue-600", "Blue" ], [ "green-600", "Green" ], [ "livid-300", "Lightest Grey" ], [ "neutral-300", "Light Grey" ], [ "neutral-600", "Medium Grey" ], [ "neutral-700", "Black" ], [ "white", "White" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "792d6817-64fb-83ba-9df9-0e68bd49bab8",
+      "name" : "cta_ghost_transparent_button",
+      "label" : "CTA: Ghost / Transparent Button",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "none",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "dd4b6db5-62df-daec-507d-c8ff4f56d568",
+      "name" : "include_arrow",
+      "label" : "CTA: Include Arrow Next to Text",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "none",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : true
+    }, {
+      "id" : "8b72f1f0-5350-2cb8-6270-3ad6be3ca3cc",
+      "name" : "cta_open_in_new_tab",
+      "label" : "CTA: Open in new tab?",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cta_banners.hb_cta.cta_type",
+        "controlling_value_regex" : "link",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "cta_type" : "cta",
+      "cta" : "150621846077",
+      "cta_button_text" : "Get Started",
+      "cta_hyperlink" : {
+        "content_id" : 18191346788,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "cta_button_color" : "white",
+      "cta_ghost_transparent_button" : false,
+      "include_arrow" : true,
+      "cta_open_in_new_tab" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+}, {
+  "id" : "63946245-57ce-cf54-5415-42666e263779",
+  "name" : "logo_settings",
+  "label" : "Logo Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "355ab2b1-ac7f-828d-6dee-d10e15617562",
+    "name" : "logo_solid",
+    "label" : "Logo: Solid Navigation",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "exact",
+      "src" : "https://www.impactplus.com/hubfs/Black%20Logo%20-%20Full/IMPACT-logo--Black-contained.svg",
+      "alt" : "IMPACT-logo--Black-contained",
+      "loading" : "lazy",
+      "width" : 90,
+      "height" : 28,
+      "max_width" : 479,
+      "max_height" : 149
+    }
+  }, {
+    "id" : "55a8e923-72a6-dce8-026b-188a880169de",
+    "name" : "logo_transparent",
+    "label" : "Logo: Transparent/Dark",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto_custom_max",
+      "src" : "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/Logo/White%20Logo%20-%20Full/IMPACT-logo--White-contained.svg",
+      "alt" : "IMPACT-logo--White-contained",
+      "loading" : "lazy",
+      "width" : 479,
+      "height" : 149,
+      "max_width" : 90,
+      "max_height" : 28
+    }
+  }, {
+    "id" : "cbe969aa-8707-53c0-a30d-33362be61e51",
+    "name" : "logo_url",
+    "label" : "Logo: Hyperlink URL",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : 187631808037,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "fc857c51-9c29-6b50-ae4e-b00941336f29",
+    "name" : "left_aligned_text",
+    "label" : "Logo: Byline Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Coaching & Training for <br>Endless Customers"
+  }, {
+    "id" : "788d7790-4907-5d2f-f92a-513b1160883b",
+    "name" : "logo_byline_url",
+    "label" : "Logo: Byline Hyperlink URL",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.impactplus.com/endless-customers-coaching",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "logo_solid" : {
+      "size_type" : "exact",
+      "src" : "https://www.impactplus.com/hubfs/Black%20Logo%20-%20Full/IMPACT-logo--Black-contained.svg",
+      "alt" : "IMPACT-logo--Black-contained",
+      "loading" : "lazy",
+      "width" : 90,
+      "height" : 28,
+      "max_width" : 479,
+      "max_height" : 149
+    },
+    "logo_transparent" : {
+      "size_type" : "auto_custom_max",
+      "src" : "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/Logo/White%20Logo%20-%20Full/IMPACT-logo--White-contained.svg",
+      "alt" : "IMPACT-logo--White-contained",
+      "loading" : "lazy",
+      "width" : 479,
+      "height" : 149,
+      "max_width" : 90,
+      "max_height" : 28
+    },
+    "logo_url" : {
+      "url" : {
+        "content_id" : 187631808037,
+        "href" : null,
+        "type" : "CONTENT"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "left_aligned_text" : "Coaching & Training for <br>Endless Customers",
+    "logo_byline_url" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.impactplus.com/endless-customers-coaching",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }
+}, {
+  "id" : "ddfed7d3-c3be-46e6-fad5-77b5137f2c41",
+  "name" : "primary_navigation_menu",
+  "label" : "Primary Navigation: Center Menu",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "4d9300c1-ad0f-85e7-1dfd-f079b15a591b",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "683c83ca-cc94-5807-2343-205e2518ee65",
+    "name" : "top_navigation_menu_type",
+    "label" : "Link/Menu Type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "no_dropdown", "No Dropdown" ], [ "simple_w_header", "Simple w/ Optional Header" ], [ "services", "Custom Services Dropdown" ], [ "learning-center", "Custom Learning Center Dropdown" ], [ "community", "Custom Community Dropdown" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "no_dropdown"
+  }, {
+    "id" : "4d9300c1-ad0f-85e7-1dfd-f079b15a591b",
+    "name" : "top_level_primary_menu_items",
+    "label" : "Top Level Menu Label",
+    "help_text" : "",
+    "inline_help_text" : "Used at the label in the top level navigation.",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Digital Sales & Marketing"
+  }, {
+    "id" : "19a005f1-a674-d421-cc5f-ebf3fa2adc6c",
+    "name" : "top_level_item_link",
+    "label" : "Top Level Menu Link",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "683c83ca-cc94-5807-2343-205e2518ee65",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "no_dropdown|button",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "BLOG", "CONTENT" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : null,
+      "href" : "",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "611d5caa-9d7b-8cf3-4cb1-2efb4bef100f",
+    "name" : "open_in_new_tab",
+    "label" : "Top Level Menu Link: Open in new tab?",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "ca498ff5-ec4a-4ff2-c020-37eeae6a58c4",
+    "name" : "primary_dropdown_menu_items",
+    "label" : "Dropdown: Menu Group",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : "1536f6a8-6ce1-bf62-6d00-9acb3becc3ae",
+      "default" : null
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation_menu.top_navigation_menu_type",
+      "controlling_value_regex" : "services|learning-center|simple_w_header",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "d9dae12e-5595-78dd-1211-afb1d5bf7708",
+      "name" : "menu_item_header",
+      "label" : "Dropdown Item: Header",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "They Ask, You Answer"
+    }, {
+      "id" : "9264b9b9-c798-0046-4cfa-fea80804bcbd",
+      "name" : "dropdown_font_size",
+      "label" : "Dropdown Items: Font Size",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "p--default", "Large" ], [ "p--sm", "Small" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    }, {
+      "id" : "1536f6a8-6ce1-bf62-6d00-9acb3becc3ae",
+      "name" : "dropdown_item_menu_group",
+      "label" : "Dropdown Item: Menu Group",
+      "required" : false,
+      "locked" : false,
+      "type" : "simplemenu",
+      "display_width" : null,
+      "default" : [ {
+        "isPublished" : true,
+        "pageLinkId" : 53234477694,
+        "contentGroupId" : null,
+        "pageLinkName" : "The IMPACT Learning Center",
+        "isDeleted" : false,
+        "categoryId" : 1,
+        "subCategory" : "site_page",
+        "contentType" : "site_page",
+        "state" : "PUBLISHED_OR_SCHEDULED",
+        "linkLabel" : "Learning Center",
+        "linkUrl" : null,
+        "linkParams" : null,
+        "linkTarget" : null,
+        "type" : "PAGE_LINK",
+        "children" : [ ]
+      }, {
+        "isPublished" : true,
+        "pageLinkId" : 187800896902,
+        "contentGroupId" : null,
+        "pageLinkName" : "What is Endless Customers?",
+        "isDeleted" : false,
+        "categoryId" : 3,
+        "subCategory" : "normal_blog_post",
+        "contentType" : "blog",
+        "state" : "PUBLISHED",
+        "linkLabel" : "What is Endless Customers",
+        "linkUrl" : null,
+        "linkParams" : null,
+        "linkTarget" : null,
+        "type" : "PAGE_LINK",
+        "children" : [ ]
+      }, {
+        "isPublished" : true,
+        "pageLinkId" : null,
+        "contentGroupId" : 185723554093,
+        "pageLinkName" : "Endless Customers Blog",
+        "isDeleted" : false,
+        "categoryId" : 3,
+        "subCategory" : null,
+        "contentType" : "blog",
+        "state" : "PUBLISHED",
+        "linkLabel" : "The Book: Learn more & Buy",
+        "linkUrl" : null,
+        "linkParams" : null,
+        "linkTarget" : "_blank",
+        "type" : "PAGE_LINK",
+        "children" : [ ]
+      }, {
+        "isPublished" : false,
+        "pageLinkId" : null,
+        "contentGroupId" : null,
+        "pageLinkName" : null,
+        "isDeleted" : null,
+        "categoryId" : null,
+        "subCategory" : null,
+        "contentType" : null,
+        "state" : null,
+        "linkLabel" : "Endless Customers Podcast",
+        "linkUrl" : "https://endlesscustomers.podbean.com/",
+        "linkParams" : null,
+        "linkTarget" : null,
+        "type" : "URL_LINK",
+        "children" : [ ]
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ ]
+  }, {
+    "id" : "97f70866-7fe5-0e45-1b5d-43f586dbc5a9",
+    "name" : "add_social_profiles",
+    "label" : "Add Social Profiles?",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "5c8cf471-0a9e-1ba9-e56d-9ceab5755b2b",
+    "name" : "social_links",
+    "label" : "Social Links",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation_menu.add_social_profiles",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "3e39be8a-bdb5-a6ee-584f-ee8ac44f35b6",
+      "name" : "social_item_header",
+      "label" : "Social Links: Header",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Follow and Subscribe"
+    }, {
+      "id" : "8aa12892-37f6-e9db-00a4-17fa6381b956",
+      "name" : "social_profiles_background_circle_size",
+      "label" : "Social Links: Background Circle Size",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "primary_navigation_menu.top_navigation_menu_type",
+        "controlling_value_regex" : "learning-center",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 32
+    }, {
+      "id" : "7d7020f1-b83d-5d6c-5ca5-fd8fedb21edc",
+      "name" : "social_profiles",
+      "label" : "Social Links",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : null,
+        "max" : null,
+        "sorting_label_field" : "a66869b4-8c12-152d-9de7-7f8997c4480b",
+        "default" : 3
+      },
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "primary_navigation_menu.top_navigation_menu_type",
+        "controlling_value_regex" : "learning-center",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "d7631a26-dcca-caf2-28bc-ea23a7dcfef9",
+        "name" : "social_custom_icon",
+        "label" : "Social: Icon",
+        "required" : true,
+        "locked" : false,
+        "responsive" : true,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        }
+      }, {
+        "id" : "34354902-f25f-82f9-318b-2425f28aac20",
+        "name" : "social_profile_link",
+        "label" : "Social: URL Link",
+        "required" : true,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "social_custom_icon" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        },
+        "social_profile_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "social_custom_icon" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        },
+        "social_profile_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "social_custom_icon" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        },
+        "social_profile_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "social_item_header" : "Follow and Subscribe",
+      "social_profiles_background_circle_size" : 32,
+      "social_profiles" : [ {
+        "social_custom_icon" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        },
+        "social_profile_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "social_custom_icon" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        },
+        "social_profile_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "social_custom_icon" : {
+          "size_type" : "auto",
+          "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+          "alt" : "tiktok-brands-solid",
+          "loading" : "lazy",
+          "width" : 131,
+          "height" : 150,
+          "max_width" : 131,
+          "max_height" : 150
+        },
+        "social_profile_link" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://www.facebook.com",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    }
+  }, {
+    "id" : "e8b45dfe-5a4b-0821-4bcb-2fae3ab35b5a",
+    "name" : "social_item_header",
+    "label" : "Social Profiles: Header",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Follow and Subscribe"
+  }, {
+    "id" : "c6cad1f2-3fc8-1e66-b12b-855eb4e68459",
+    "name" : "social_profiles_background_circle_size",
+    "label" : "Social Profiles: Background Circle Size",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation_menu.top_navigation_menu_type",
+      "controlling_value_regex" : "learning-center",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "step" : 1,
+    "suffix" : "px",
+    "type" : "number",
+    "display_width" : null,
+    "default" : 32
+  }, {
+    "id" : "132ff3fc-38c0-822b-0602-d968eff7e1bf",
+    "name" : "social_profiles",
+    "label" : "Social Profiles",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : null,
+      "sorting_label_field" : "a66869b4-8c12-152d-9de7-7f8997c4480b",
+      "default" : 3
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "primary_navigation_menu.top_navigation_menu_type",
+      "controlling_value_regex" : "learning-center",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "c995c52a-6e05-7011-6372-c0c1891f6866",
+      "name" : "social_custom_icon",
+      "label" : "Social: Icon",
+      "required" : true,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+        "alt" : "tiktok-brands-solid",
+        "loading" : "lazy",
+        "width" : 131,
+        "height" : 150,
+        "max_width" : 131,
+        "max_height" : 150
+      }
+    }, {
+      "id" : "a66869b4-8c12-152d-9de7-7f8997c4480b",
+      "name" : "social_profile_link",
+      "label" : "Social: URL Link",
+      "required" : true,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://www.facebook.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "social_icon" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+        "alt" : "tiktok-brands-solid",
+        "loading" : "lazy",
+        "width" : 131,
+        "height" : 150,
+        "max_width" : 131,
+        "max_height" : 150
+      },
+      "social_url_link" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://www.facebook.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "social_icon" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+        "alt" : "tiktok-brands-solid",
+        "loading" : "lazy",
+        "width" : 131,
+        "height" : 150,
+        "max_width" : 131,
+        "max_height" : 150
+      },
+      "social_url_link" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://www.facebook.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "social_icon" : {
+        "size_type" : "auto",
+        "src" : "https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/impact_site_2025_IM-UI/assets/logos/social/tiktok-brands-solid.svg",
+        "alt" : "tiktok-brands-solid",
+        "loading" : "lazy",
+        "width" : 131,
+        "height" : 150,
+        "max_width" : 131,
+        "max_height" : 150
+      },
+      "social_url_link" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://www.facebook.com",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ ]
+}, {
+  "id" : "2c41f082-eb12-b620-7463-c7bb936ebc43",
+  "name" : "right_side",
+  "label" : "Primary Navigation: Right Side Menu Items",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "0c8dc400-55ff-9d23-72d1-fd71858c366d",
+    "name" : "primary_navigation_right_menu",
+    "label" : "[Desktop] Primary Navigation: Right Menu",
+    "required" : false,
+    "locked" : false,
+    "type" : "simplemenu",
+    "display_width" : null,
+    "default" : [ {
+      "isPublished" : false,
+      "pageLinkId" : null,
+      "contentGroupId" : null,
+      "pageLinkName" : null,
+      "isDeleted" : null,
+      "categoryId" : null,
+      "subCategory" : null,
+      "contentType" : null,
+      "state" : null,
+      "linkLabel" : "IMPACT+ Login",
+      "linkUrl" : "https://app.impactplus.com/users/sign_in",
+      "linkParams" : null,
+      "linkTarget" : null,
+      "type" : "URL_LINK",
+      "children" : [ ]
+    }, {
+      "isPublished" : true,
+      "pageLinkId" : 89001547442,
+      "contentGroupId" : null,
+      "pageLinkName" : "Contact Us [Agency Services]",
+      "isDeleted" : false,
+      "categoryId" : 1,
+      "subCategory" : "landing_page",
+      "contentType" : "landing_page",
+      "state" : "PUBLISHED_AB",
+      "linkLabel" : "Talk to Us",
+      "linkUrl" : null,
+      "linkParams" : null,
+      "linkTarget" : null,
+      "type" : "PAGE_LINK",
+      "children" : [ ]
+    } ]
+  }, {
+    "id" : "fbf8e477-2f5b-82cd-55ea-051e1366f6b1",
+    "name" : "primary_navigation_right_last_btn",
+    "label" : "[Desktop] Primary Navigation: Make last menu link a button?",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "primary_navigation_right_menu" : [ {
+      "isPublished" : false,
+      "pageLinkId" : null,
+      "contentGroupId" : null,
+      "pageLinkName" : null,
+      "isDeleted" : null,
+      "categoryId" : null,
+      "subCategory" : null,
+      "contentType" : null,
+      "state" : null,
+      "linkLabel" : "IMPACT+ Login",
+      "linkUrl" : "https://app.impactplus.com/users/sign_in",
+      "linkParams" : null,
+      "linkTarget" : null,
+      "type" : "URL_LINK",
+      "children" : [ ]
+    }, {
+      "isPublished" : true,
+      "pageLinkId" : 89001547442,
+      "contentGroupId" : null,
+      "pageLinkName" : "Contact Us [Agency Services]",
+      "isDeleted" : false,
+      "categoryId" : 1,
+      "subCategory" : "landing_page",
+      "contentType" : "landing_page",
+      "state" : "PUBLISHED_AB",
+      "linkLabel" : "Talk to Us",
+      "linkUrl" : null,
+      "linkParams" : null,
+      "linkTarget" : null,
+      "type" : "PAGE_LINK",
+      "children" : [ ]
+    } ],
+    "primary_navigation_right_last_btn" : false
+  }
+}, {
+  "id" : "36508c4a-fc3f-1458-4953-b22e73f12c61",
+  "name" : "mobile_membership_menu_visible_to_impact_members_",
+  "label" : "Mobile Navigation: Sublinks Menu",
+  "required" : false,
+  "locked" : false,
+  "type" : "simplemenu",
+  "display_width" : null,
+  "default" : [ ]
+}, {
+  "id" : "fc89127c-d1a2-7a7d-a2b9-e8f0a26b5464",
+  "name" : "mobile_menu_cta",
+  "label" : "Mobile Navigation: Hamburger CTA",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "48cba920-3c07-0d1e-e1a5-94f26c01429d",
+    "name" : "cta_type",
+    "label" : "CTA: Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ], [ "inline link", "Simple Link (no button styling)" ], [ "anchor", "Scroll to Section" ], [ "none", "No CTA" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "cta"
+  }, {
+    "id" : "b4ffc6fd-6a00-9f88-6e8d-108ff94b5d7c",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "primary", "Blue" ], [ "black", "Black" ], [ "white", "White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "white"
+  }, {
+    "id" : "b18fc494-fe7f-45d9-90b3-ce6e5b27beff",
+    "name" : "include_arrow",
+    "label" : "CTA: Include Arrow Next to Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "2348945c-32e0-c146-1965-abd7686d360d",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "300f7620-ae36-7a73-d80b-75bafed6aa43",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "link|anchor|popup",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Get Started"
+  }, {
+    "id" : "680665b3-54a1-be93-18bb-4a6d8f7eeb50",
+    "name" : "cta_hyperlink",
+    "label" : "CTA: Hyperlink",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "link|inline link",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : 18191346788,
+      "href" : null,
+      "type" : "CONTENT"
+    }
+  }, {
+    "id" : "de9af06a-1ef9-f47a-f2b1-3bebea690f4b",
+    "name" : "cta_open_in_new_tab",
+    "label" : "CTA: Open in new tab?",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "f83caf6d-b520-a300-1908-335faa55fe44",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null,
+    "default" : "150621846077"
+  }, {
+    "id" : "4ddb4ded-644a-4a26-132f-1700d7db49e7",
+    "name" : "cta_section_anchor_id",
+    "label" : "CTA: Section Anchor ID",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "mobile_menu_cta.cta_type",
+      "controlling_value_regex" : "anchor",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "section-id"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "cta_type" : "cta",
+    "cta_button_color" : "white",
+    "include_arrow" : true,
+    "cta_ghost_transparent_button" : false,
+    "cta_button_text" : "Get Started",
+    "cta_hyperlink" : {
+      "content_id" : 18191346788,
+      "href" : null,
+      "type" : "CONTENT"
+    },
+    "cta_open_in_new_tab" : false,
+    "cta" : "150621846077",
+    "cta_section_anchor_id" : "section-id"
+  }
+}, {
+  "id" : "b88fc61a-7016-55be-f48d-74a75946055d",
+  "name" : "bottom_sticky_cta",
+  "label" : "Bottom Sticky CTA (Mobile Only)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "0149361e-b869-869d-16b6-c30ce7582376",
+    "name" : "cta_type",
+    "label" : "CTA: Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "link", "Custom Link" ], [ "cta", "HubSpot Call-to-Action" ], [ "inline link", "Simple Link (no button styling)" ], [ "anchor", "Scroll to Section" ], [ "none", "No CTA" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "link"
+  }, {
+    "id" : "45f6ae4f-a75b-4fed-eae4-39df2ae3727a",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null,
+    "default" : "150621846077"
+  }, {
+    "id" : "ae3eb46c-308f-3f69-c53d-6078df564dcf",
+    "name" : "cta_button_text",
+    "label" : "CTA: Button Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "link|anchor|popup",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Schedule an Initial Call"
+  }, {
+    "id" : "98391c1e-caed-0609-72a8-6e5526c77668",
+    "name" : "cta_hyperlink",
+    "label" : "CTA: Hyperlink",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "link|inline link",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "content_id" : null,
+      "href" : "https://www.impactplus.com/services/schedule-now",
+      "type" : "EXTERNAL"
+    }
+  }, {
+    "id" : "1572603d-be8c-68dc-7a0c-dcad9179f8d5",
+    "name" : "cta_button_color",
+    "label" : "CTA: Button Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "primary"
+  }, {
+    "id" : "dff47c23-b09a-f5dc-aad5-3d6d0e75b713",
+    "name" : "cta_ghost_transparent_button",
+    "label" : "CTA: Ghost / Transparent Button",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "7e38a07c-c80e-c038-ddf0-7511b50582b9",
+    "name" : "include_arrow",
+    "label" : "CTA: Include Arrow Next to Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "none",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "05a12841-c8cf-ccf7-9948-66490ec698a7",
+    "name" : "cta_open_in_new_tab",
+    "label" : "CTA: Open in new tab?",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "8e89e412-71a5-eece-16e8-2a24b8bfc495",
+    "name" : "cta_section_anchor_id",
+    "label" : "CTA: Section Anchor ID",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "bottom_sticky_cta.cta_type",
+      "controlling_value_regex" : "anchor",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "section-id"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "cta_type" : "link",
+    "cta" : "150621846077",
+    "cta_button_text" : "Schedule an Initial Call",
+    "cta_hyperlink" : {
+      "content_id" : null,
+      "href" : "https://www.impactplus.com/services/schedule-now",
+      "type" : "EXTERNAL"
+    },
+    "cta_button_color" : "primary",
+    "cta_ghost_transparent_button" : false,
+    "include_arrow" : true,
+    "cta_open_in_new_tab" : false,
+    "cta_section_anchor_id" : "section-id"
+  }
+}, {
+  "id" : "aad98675-e5f5-c3e3-bbed-23f8a9df4322",
+  "name" : "playbook_navigation_options",
+  "label" : "[HIDDEN] Playbook Navigation Option",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "72592e5b-1c9f-d282-4a8a-a73ed6a9e42a",
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "72592e5b-1c9f-d282-4a8a-a73ed6a9e42a",
+    "name" : "playbook_name",
+    "label" : "Playbook: Name",
+    "help_text" : "This is what's displayed on the left side of the navigation, next to the logo",
+    "required" : true,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "The Ultimate Inbound Marketing Strategy Playbook 2021"
+  }, {
+    "id" : "5b78b1b0-b76a-e9e9-7860-f0b451aec4c8",
+    "name" : "playbook_lp_url",
+    "label" : "Playbook: Landing Page URL",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "type" : "CONTENT",
+      "href" : null,
+      "content_id" : 54740643115
+    }
+  }, {
+    "id" : "4e29491d-bfcd-f58f-8a12-1d4fb4976b5a",
+    "name" : "playbook_top_level_menu",
+    "label" : "Playbook: Top Level Menu",
+    "required" : false,
+    "locked" : true,
+    "type" : "menu",
+    "display_width" : null,
+    "default" : 55001071509
+  }, {
+    "id" : "3f501f8b-696d-8718-32e7-fd662c062f14",
+    "name" : "playbook_sidebar_mobile_menu",
+    "label" : "Playbook: Sidebar Mobile Menu",
+    "inline_help_text" : "Use the same menu that will be used in the sidebar on desktop",
+    "required" : false,
+    "locked" : true,
+    "type" : "menu",
+    "display_width" : null,
+    "default" : 59870738853
+  }, {
+    "id" : "30c09857-5dff-59f9-4d21-d5a21379767f",
+    "name" : "playbook_popup_button_text",
+    "label" : "Playbook: Popup Button Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Download PDF"
+  }, {
+    "id" : "1becdc38-9fea-3cb2-73cb-5e806551a055",
+    "name" : "playbook_popup_form_header",
+    "label" : "Playbook: Popup Form Header",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Download Your Playbook Now"
+  }, {
+    "id" : "a24a72bd-824e-f40a-7ccc-a252f4b74acd",
+    "name" : "playbook_popup_form_redirect",
+    "label" : "Playbook: Popup Form Redirect (Thank You Page URL)",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+    "type" : "url",
+    "display_width" : null,
+    "default" : {
+      "type" : "CONTENT",
+      "href" : null,
+      "content_id" : 55350406575
+    }
+  }, {
+    "id" : "b7b8cce3-0f04-a23e-bf56-4656e53de2c2",
+    "name" : "playbook_form_settings",
+    "label" : "Playbook: Form Lock",
+    "required" : false,
+    "locked" : false,
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "bda190f3-c237-4fec-8a2c-7ef74adf4e2e",
+      "response_type" : "redirect",
+      "message" : "Thanks for submitting the form.",
+      "redirect_id" : 55350406575,
+      "redirect_url" : null,
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "playbook_name" : "The Ultimate Inbound Marketing Strategy Playbook 2021",
+    "playbook_lp_url" : {
+      "type" : "CONTENT",
+      "href" : null,
+      "content_id" : 54740643115
+    },
+    "playbook_top_level_menu" : 55001071509,
+    "playbook_sidebar_mobile_menu" : 59870738853,
+    "playbook_popup_button_text" : "Download PDF",
+    "playbook_popup_form_header" : "Download Your Playbook Now",
+    "playbook_popup_form_redirect" : {
+      "type" : "CONTENT",
+      "href" : null,
+      "content_id" : 55350406575
+    },
+    "playbook_form_settings" : {
+      "form_id" : "bda190f3-c237-4fec-8a2c-7ef74adf4e2e",
+      "response_type" : "redirect",
+      "message" : "Thanks for submitting the form.",
+      "redirect_id" : 55350406575,
+      "redirect_url" : null,
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  } ]
+} ]

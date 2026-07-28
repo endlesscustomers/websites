@@ -1,0 +1,501 @@
+{% macro page_social_share(
+  url=content.absolute_url,
+  title=content.html_title,
+  desc=content.meta_description,
+  icon_height=18
+) %}
+<div class="section section--lcsocialshare relative">
+  <div class="block relative z-index--10 grid__item hard--sides hard--ends">
+    <h4 class="hard--ends">Share</h4>
+    <div class="section--lcsocialshare--share flex flex-align--center flex-wrap--wrap hard--top palm-margin--hard--top">
+      <div class="section--lcsocialshare--share-group margin--petite--top flex">
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item"
+           rel="noopener" target="_blank" title="Share on LinkedIn"
+           href="https://www.linkedin.com/shareArticle?url={{ url }}&title={{ title|urlencode }}&summary={{ desc|urlencode }}">
+          <img class="section--lcsocialshare-share--icon lazy"
+               data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg"
+               alt="Share on LinkedIn" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share on LinkedIn</span>
+        </a>
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--twitter mini-nav__item"
+           rel="noopener" target="_blank" title="Share on X"
+           href="https://twitter.com/intent/tweet?url={{ url }}&text={{ title|urlencode }}">
+          <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+               data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/x%20corp.svg"
+               alt="Share on X" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share on X</span>
+        </a>
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--facebook mini-nav__item"
+           rel="noopener" target="_blank" title="Share on Facebook"
+           href="https://www.facebook.com/sharer/sharer.php?u={{ url }}">
+          <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+               data-src="https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/facebook-logo.svg"
+               alt="Share on Facebook" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share on Facebook</span>
+        </a>
+
+        <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--email mini-nav__item"
+           rel="noopener" target="_blank" title="Mail to"
+           href="mailto:?subject={{ title|urlencode }}&body={{ ('I came across this resource and thought it would be valuable: ' ~ url)|urlencode }}">
+          <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+               data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/mail-to.svg"
+               alt="Email link" style="max-width:100%;height:{{ icon_height }}px;">
+          <span class="mini-nav__tooltip semibold">Share via Email</span>
+        </a>
+
+        <div class="tooltip-container inline-block mini-nav__item" onclick="lcCopyToClipboard(this, '{{ url }}')">
+          <a class="section--lcsocialshare--share--link" rel="noopener" title="Copy Link" href="javascript:void(0);">
+            <img class="section--lcsocialshare-share--icon footer-social--custom-icon lazy"
+                 data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Learning%20Center%20Resource%20Category%20Icons/Website%20link.svg"
+                 alt="Copy link" style="max-width:100%;height:{{ icon_height }}px;">
+          </a>
+          <span class="mini-nav__tooltip semibold font--reading">Copy to Clipboard</span>
+          <div class="copy-tooltip p hard--ends">Link copied!</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+{# CSS #}
+{{ require_css( get_asset_url("../Webinar Hero - Scrolling Form.css"), { async: true} ) }}
+
+{# FORM COLUMN WIDTH #}
+{% set formClasses = "one-half tablet-ten-twelfths palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set formClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set formClasses = "four-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set formClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set formClasses = "five-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+
+{# CONTENT COLUMN WIDTH #}
+{% set contentClasses = "five-half-twelfths portable-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set contentClasses = "three-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set contentClasses = "two-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set contentClasses = "four-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set contentClasses = "six-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+
+{# WEBINAR LP DEFAULT CONTENT #}
+{% set webinar_defaults = [] %}
+
+{% if widget_data.webinar_ind_template.template_type == 'upcoming_lp' %}
+{% do webinar_defaults.append({
+    "preheader": webinar_defaults['preheader'] or widget_data.webinar_global_controls.upcoming_lp_webinar_defaults.preheader,
+    "form_header": module.form.form_header or widget_data.webinar_global_controls.upcoming_lp_webinar_defaults.form_header,
+  }) %}
+{% elif widget_data.webinar_ind_template.template_type == 'ondemand_lp' %}
+{% do webinar_defaults.append({
+    "preheader": webinar_defaults['preheader'] or widget_data.webinar_global_controls.ondemand_lp_webinar_defaults.preheader,
+    "form_header": module.form.form_header or widget_data.webinar_global_controls.ondemand_lp_webinar_defaults.form_header,
+  }) %}
+{% endif %}
+
+{% set webinar_defaults = webinar_defaults[0] %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--heroform relative {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  {% if widget_data.controls.header_design == "transparent" %}
+  <div class="header--anchor"></div>
+  {% endif %}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+
+    {% if ( not module.disable_breadcrumbs ) and widget_data.breadcrumb_controls.show_breadcrumbs %}
+    <div class="section--breadcrumbs">
+      <div class="grid hard--ends">
+        <div class="grid__item one-whole short--top hard--bottom palm-hard--bottom text--left {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          {% menu id="{{ widget_data.breadcrumb_controls.breadcrumbs.breadcrumbs_menu }}", root_type="breadcrumb" %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+
+    {% if module.header || webinar_defaults['preheader'] %}
+    {% if module.layout_controls.header_location == 'above' %}
+    <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item eight-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if webinar_defaults['preheader'] %}
+        <span class="p p--default preheader hard--top uppercase bold">
+          {{ webinar_defaults['preheader'] }} {% if (module.webinar_on_demand_length) && (widget_data.webinar_ind_template.template_type == 'ondemand_lp') %}| {{ module.webinar_on_demand_length }}{% endif %}
+        </span>
+        {% else %}
+        <div class="header--rule"></div>
+        {% endif %}
+        {% if module.header %}
+        <h1 class="{{ module.header_font_size }}{% if webinar_defaults['preheader'] %}{% else %} hard--top{% endif %}">{{ module.header }}</h1>
+        {% endif %}
+        {% if module.subheader %}
+        <p class="color--midgrey line-height--basic">{{ module.subheader }}</p>
+        {% endif %}
+
+        {% if widget_data.webinar_ind_template.template_type == "upcoming_lp" %}
+        {% if widget_data.webinar_ind_template.webinar_date_and_time %}
+        <p class="bold">{{ widget_data.webinar_ind_template.webinar_date_and_time|datetimeformat('%B %-d, %Y @ %-I:%M %p %Z') }}</p>
+        {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    <div class="grid flexgrid {{ module.layout_controls.content_vertical_alignment }} {% if module.layout_controls.content_position == 'right' %}row--reverse{% endif %} portable-justify--center hard--ends">
+      <div class="grid__item {{ contentClasses }} short first--hard--top last--hard--bottom text--left {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+        {% if module.header || webinar_defaults['preheader'] %}
+        {% if module.layout_controls.header_location == 'left' %}
+        <div class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+          {% if webinar_defaults['preheader'] %}
+          <span class="p p--default preheader hard--top uppercase bold">
+            {{ webinar_defaults['preheader'] }} {% if (module.webinar_on_demand_length) && (widget_data.webinar_ind_template.template_type == 'ondemand_lp') %}| {{ module.webinar_on_demand_length }}{% endif %}
+          </span>
+          {% endif %}
+          {% if module.header %}
+          <h1 class="{{ module.header_font_size }}{% if webinar_defaults['preheader'] %}{% else %} hard--top{% endif %}">{{ module.header }}</h1>
+          {% endif %}
+          {% if module.subheader %}
+          <p class="color--midgrey line-height--basic">{{ module.subheader }}</p>
+          {% endif %}
+          {% if widget_data.webinar_ind_template.template_type == "upcoming_lp" %}
+          {% if widget_data.webinar_ind_template.webinar_date_and_time %}
+          <p class="bold">{{ widget_data.webinar_ind_template.webinar_date_and_time|datetimeformat('%B %-d, %Y @ %-I:%M %p %Z') }}</p>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+
+        </div>
+        {% endif %}
+        {% endif %}
+        <div class="flexgrid {% if module.media_location == 'above' %}column--reverse no--wrap{% else %}direction--column no--wrap{% endif %}">
+          <div class="section--heroform--content block first--hard--top {% if module.layout_controls.content_position_mobile == 'bottom' %}portable-visuallyhidden{% endif %}">
+            {% if 'above' == module.bullets.bullets_location %}
+            {{ snippets.bulletsList(module.bullets) }}
+            {% endif %}
+            {{ module.content }}
+            {% if 'below' == module.bullets.bullets_location %}
+            {{ snippets.bulletsList(module.bullets) }}
+            {% endif %}
+          </div>
+
+          {% if module.media_type == 'image' %}
+          <div class="block {% if module.media_location == 'above' %}margin--short--bottom{% else %}margin--tall--top{% endif %}">
+
+            {% if module.image.image.src %}
+            {% set sizeAttrs = 'width="{{ module.image.image.width }}" height="{{ module.image.image.height }}"' %}
+            {% if module.image.image.size_type == 'auto' %}
+            {% set sizeAttrs = 'width="{{ module.image.image.width }}" height="{{ module.image.image.height }}" style="max-width: 100%; height: auto;"' %}
+            {% elif module.image.image.size_type == 'auto_custom_max' %}
+            {% set sizeAttrs = 'width="{{ module.image.image.max_width }}" height="{{ module.image.image.max_height }}" style="max-width: 100%; height: auto;"' %}
+            {% endif %}
+            <img class="block {{ 'border-radius' if module.add_media_border_radius }} {{ 'box-shadow' if module.add_media_dropshadow }} overflow--hidden" src="{{ module.image.image.src }}" alt="{{ module.image.image.alt }}" {{ sizeAttrs }}>
+
+          </div>
+          {% endif %}
+
+          {% elif module.media_type == 'video' %}
+          <div class="block {% if module.media_location == 'above' %}margin--short--bottom{% else %}margin--tall--top{% endif %} {% if module.video.video_label_text %}video--label-active{% endif %}">
+            {% if module.video.video_type == "embed" %}
+            <div class="block all--aspectratio {{ 'border-radius' if module.add_media_border_radius }} {{ 'box-shadow' if module.add_media_dropshadow }} overflow--hidden">
+              {{ module.video.video_embed_code }}
+            </div>
+            {% elif (module.video.video_type == "modal")||(module.video.video_type == "vidyard")||(module.video.video_type == "hubspot") %}
+            <div class="block relative {{ 'border-radius' if module.add_media_border_radius }} {{ 'box-shadow' if module.add_media_dropshadow }} overflow--hidden text--center {% if module.video.video_thumbnail_type == 'none' %}lap-and-up-visuallyhidden tablet-visuallyhidden{% endif %} {% if module.video.video_thumbnail_type_mobile == 'none' %}palm-visuallyhidden{% endif %}">
+              <a
+                 class="block block--video"
+                 {% if module.video.video_type == "modal" %}
+                 data-fancybox
+                 href="{{ module.video.video_url_of_iframe_embeddable_video_file.href }}"
+                 {% elif module.video.video_type == 'hubspot' %}
+                 data-src="#{{ name }}--embed"
+                 data-fancybox
+                 {% elif module.video.video_type == "vidyard" %}
+                 href="javascript:;" onclick="playInline_{{ name|replace('-','_') }}('{{ module.video.vidyard_video_uuid|trim }}');"
+                 {% endif %}
+                 >
+                {% if module.video.video_type == "vidyard" %}
+                {# Video Label #}
+                <div class="video--vidyard-group">
+                  <div class="video--vidyard-label-poster">
+                    {% if module.video.video_label_text %}
+                    <div class="video--overlay-block video-standard--wrapper hover--pointer absolute top--0 left--0 right--0 bottom--0 border-radius--10 z-index--10">
+                      <div class="video--play-caption flex flex-align--center absolute bottom--0 left--0 right--0">
+                        <div class="video--play-pulse--container">
+                          <img class="video--play-btn--small" src="https://www.impactplus.com/hubfs/Photography/Icons/White%20Icons/play-btn--icon-white.svg" alt="Video Play" width="40" height="40">
+                        </div>
+                        <div class="video-caption--text-small p color--white hard--ends line-height--small semibold">{{ module.video.video_label_text }}</div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <img class="block {{ 'border-radius' if module.add_media_border_radius }} {{ 'box-shadow' if module.add_media_dropshadow }} overflow--hidden" src="https://play.vidyard.com/{{ module.video.vidyard_video_uuid|trim }}.jpg" alt="{{ module.video.video_thumbnail_image.alt }}" width="{% if (module.video.video_thumbnail_image.size_type == 'auto_custom_max') %}{{ module.video.video_thumbnail_image.max_width }}{% elif (module.video.video_thumbnail_image.size_type == 'exact') %}{{ module.video.video_thumbnail_image.width }}{% else %}{{ module.video.video_thumbnail_image.width }}{% endif %}" height="{% if (module.video.video_thumbnail_image.size_type == 'auto_custom_max') %}{{ module.video.video_thumbnail_image.max_height }}{% else %}{{ module.video.video_thumbnail_image.height }}{% endif %}" />
+                  </div>                
+                  {# End Video Label #}
+                  <div class="video--vidyard-inline visuallyhidden">
+                    <img class="vidyard-player-embed" alt="{{ module.video.vidyard_video_image_alt_tag }}" data-uuid="{{ module.video.vidyard_video_uuid|trim }}" data-type="inline" data-v="4">
+                  </div>
+                </div>
+                {% else %}
+                <img class="block {{ 'border-radius' if module.add_media_border_radius }} {{ 'box-shadow' if module.add_media_dropshadow }} overflow--hidden" src="{{ module.video.video_thumbnail_image.src }}" alt="{{ module.video.video_thumbnail_image.alt }}" width="{% if (module.video.video_thumbnail_image.size_type == 'auto_custom_max') %}{{ module.video.video_thumbnail_image.max_width }}{% elif (module.video.video_thumbnail_image.size_type == 'exact') %}{{ module.video.video_thumbnail_image.width }}{% else %}{{ module.video.video_thumbnail_image.width }}{% endif %}" height="{% if (module.video.video_thumbnail_image.size_type == 'auto_custom_max') %}{{ module.video.video_thumbnail_image.max_height }}{% else %}{{ module.video.video_thumbnail_image.height }}{% endif %}" />
+                {% endif %}
+              </a>
+            </div>
+            {% endif %}
+            {% if module.video.video_type == 'hubspot' %}
+            {% if module.video.video_hubspot_video.player_id %}
+            <div id="{{ name }}--embed" class="video--popover all--aspectratio" style="display:none;">
+              {% set max_width  = module.video.video_hubspot_video.size_type == 'auto_custom_max' ? module.video.video_hubspot_video.max_width : module.video.video_hubspot_video.width %}
+              {% set max_height = module.video.video_hubspot_video.size_type == 'auto_custom_max' ? module.video.video_hubspot_video.max_height : module.video.video_hubspot_video.height %}
+              {% set playColor  = module.video.video_hubspot_play_button_color.color %}
+              {% video_player "embed_player"
+											placeholder_alt_text = {{ module.video.video_image_alt_tag }}
+											play_button_color    = {{ playColor }}
+											player_id            = {{ module.video.video_hubspot_video.player_id }}
+											type                 = {{ module.video.video_hubspot_video.player_type || 'scriptV4' }}
+											full_width           = {{ module.video.video_hubspot_video.size_type == 'auto_full_width' }},
+											conversion_asset     = {{ module.video.video_hubspot_video.conversion_asset|tojson|safe }}
+										%}
+            </div>
+            {% endif %}
+            {% endif %}
+            {#{% if module.video.video_label_text %}
+            <div class="block short--top all--text--center block--video--label {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} {% if ((module.video.video_type == 'modal')||(module.video.video_type == 'vidyard')||(module.video.video_type == 'hubspot'))&&(module.video.video_thumbnail_type == 'none') %}lap-and-up-visuallyhidden tablet-visuallyhidden{% endif %} {% if ((module.video.video_type == 'modal')||(module.video.video_type == 'vidyard')||(module.video.video_type == 'hubspot'))&&(module.video.video_thumbnail_type_mobile == 'none') %}palm-visuallyhidden{% endif %}">
+              <p class="hard--ends">
+                {{ module.video.video_label_text }}
+              </p>
+            </div>
+            {% endif %}#}
+          </div>
+          {% endif %}
+        </div>
+        {% if module.media_location == 'below' %}
+        {{ module.content_below_media }}
+        {% endif %}
+
+        {# Speakers #}
+        <div class="container--author {% if module.layout_controls.content_position_mobile == 'bottom' %}portable-visuallyhidden{% endif %}"> 
+          <h3>
+            {{ module.speakers_heading }}
+          </h3>
+          {% for item in module.speakers %}
+          <div class="last--hard--bottom background--offwhite margin--short--top" style="padding: 32px !important; border-radius: 24px;">
+            <div class="author-section" style="display:flex; {% if item.speaker_bio %}align-items:flex-start;{% else %}align-items:center;{% endif %}gap:24px;">
+              <img class="lazy" data-src="{{ item.speaker_image.src }}" alt="{{ item.speaker_name }}" style="width:90px; height:90px; border-radius:50%; object-fit:cover;">
+              <div class="author-section--details">
+                <div class="author-section--name-social flex">
+                  <div class="author-section--name">
+                    <span class="h3 hard--ends flex" style="margin-top: 0px !important;">
+                      {{ item.speaker_name }} {% if item.linkedin_url.href|escape_url %}<a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item palm-visuallyhidden" style="margin-left: 12px !important; width: 30px; height: 30px;" rel="noopener" target="_blank" title="{{ item.speaker_name }}'s LinkedIn" href="{{ item.linkedin_url.href|escape_url }}"><img class="section--lcsocialshare-share--icon lazy" style="max-width: 100%; height: 13px; width: 13px;" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="{{ item.speaker_name }}'s LinkedIn"></a>{% endif %}
+                    </span>
+                    <div class="p p--default all--color--midgrey hard--ends first--hard--top last--hard--bottom" style="margin-top: 2px !important;">{{ item.speaker_title_company }}</div>
+                  </div>
+                </div>
+                <div class="p p--default all--color--midgrey hard--ends margin--petite--top first--hard--top last--hard--bottom palm-visuallyhidden">{{ item.speaker_bio }}</div>
+              </div>
+            </div>
+            <div class="p p--default all--color--midgrey hard--ends margin--short--top first--hard--top last--hard--bottom lap-and-up-visuallyhidden tablet-visuallyhidden">{{ item.speaker_bio }}</div>
+            {% if item.linkedin_url.href|escape_url %}
+            <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item lap-and-up-visuallyhidden tablet-visuallyhidden" style="margin-top: 20px !important; margin-left: 0px !important; width: 30px; height: 30px;" rel="noopener" target="_blank" title="{{ item.speaker_name }}'s LinkedIn" href="{{ item.linkedin_url.href|escape_url }}">
+              <img class="section--lcsocialshare-share--icon lazy" style="max-width: 100%; height: 13px; width: 13px;" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="{{ item.speaker_name }}'s LinkedIn">
+            </a>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {# End Speakers #}
+
+      </div>
+      <div id="heroForm" class="heroForm--position-{{ module.form.form_position }} grid__item {{ formClasses }} short portable-hard--top animate--fade animate--fade-up">
+        <div id="heroformContainer" class="section--heroform--form border-radius background--white box-shadow">
+          <div class="block {% if module.conversion_type == 'hs-form' %} form--padding {% elif module.conversion_type == 'typeform' %} {{ module.typeform.typeform_form_header ? 'tall--top' : 'hard--top' }} hard--bottom {% else %} hard--ends {% endif %} all--btn all--btn--{% if module.form.form_ghost_transparent_button %}transparent--{% endif %}{{ module.form.form_button_color }} all--btn--{{ module.layout_controls.form_button_alignment }} palm-all--btn--{{ module.layout_controls.form_button_alignment_mobile }}">
+            {% if module.conversion_type == 'hs-form' %}
+            {% if webinar_defaults["form_header"] %}
+            <div class="first--hard--top section--heroform--form--header text--{{ module.layout_controls.form_title_alignment }} palm-text--{{ module.layout_controls.form_title_alignment_mobile }}">
+              {{ webinar_defaults["form_header"] }}
+            </div>
+            {% endif %}
+            {% if widget_data.webinar_ind_template.template_type == 'upcoming_lp' %}
+            {% form
+                form_to_use                            = "{{ module.form.form.form_id }}"
+                response_response_type                 = "{{ module.form.form.response_type }}"
+                response_message                       = "{{ module.form.form.message }}"
+                response_redirect_id                   = "{{ module.form.form.redirect_id }}"
+                response_redirect_url                  = "{{ module.form.form.redirect_url }}"
+                gotowebinar_webinar_key                = "{{ module.form.form.gotowebinar_webinar_key }}"
+                no_title                               = True
+              %}
+            {% elif widget_data.webinar_ind_template.template_type == 'ondemand_lp' %}
+            {% form
+                form_to_use                            = "{{ module.form.on_demand_form.form_id }}"
+                response_response_type                 = "{{ module.form.on_demand_form.response_type }}"
+                response_message                       = "{{ module.form.on_demand_form.message }}"
+                response_redirect_id                   = "{{ module.form.on_demand_form.redirect_id }}"
+                response_redirect_url                  = "{{ module.form.on_demand_form.redirect_url }}"
+                gotowebinar_webinar_key                = "{{ module.form.on_demand_form.gotowebinar_webinar_key }}"
+                no_title                               = True
+              %}
+            {% endif %}
+            {% elif module.conversion_type == 'hs-calendar' %}
+            {% if module.hubspot_meeting_calendar.form_header %}
+            <div class="first--hard--top padding--tall section--heroform--form--header text--{{ module.layout_controls.form_title_alignment }} palm-text--{{ module.layout_controls.form_title_alignment_mobile }}">
+              {{ module.hubspot_meeting_calendar.form_header }}
+            </div>
+            {% endif %}
+            <div class="meetings-iframe-container" data-src="{{ module.hubspot_meeting_calendar.hubspot_meeting_calendar }}?embed=true" data-ab="{{ content.ab }}" data-ab-status="{{ content.abStatus }}" data-content-id="{{ content.id }}"></div>
+            {% require_js %}
+            <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" data-hs-ignore="true"></script>
+            {% end_require_js %}
+            {% elif module.conversion_type == 'calendly' %}
+            {% if module.calendly.calendly_header %}
+            <div class="first--hard--top padding--tall section--heroform--form--header text--{{ module.layout_controls.form_title_alignment }} palm-text--{{ module.layout_controls.form_title_alignment_mobile }}">
+              {{ module.calendly.calendly_form_header }}
+            </div>
+            {% endif %}
+            {% require_js %}
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+            {% end_require_js %}
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                Calendly.initInlineWidget({
+                  url: '{{ module.calendly.calendly_url }}',
+                  parentElement: document.getElementById('{{ name|replace('-','_') }}--calendly'),
+                  prefill: {},
+                                          utm: {}
+                                        });
+              });
+            </script>
+            <div id="{{ name|replace('-','_') }}--calendly" style="width: 100%; height: 1000px;"></div>
+            {% elif module.conversion_type == 'typeform' %}
+            {% if module.typeform.typeform_form_header %}
+            <div class="first--hard--top padding--tall section--heroform--form--header text--{{ module.layout_controls.form_title_alignment }} palm-text--{{ module.layout_controls.form_title_alignment_mobile }}">
+              {{ module.typeform.typeform_form_header }}
+            </div>
+            {% endif %}
+
+            <div data-tf-live="{{ module.typeform.typeform_form_id }}"></div>
+            {% require_js %}
+            <script src="//embed.typeform.com/next/embed.js"></script>
+            {% end_require_js %}
+            {% endif %}
+          </div>
+        </div>
+
+        {# SOCIAL SHARE #}
+        <div class="socialshare--desktop margin--tall--top all--text--left portable-visuallyhidden">
+          {{ page_social_share(content.absolute_url, content.html_title, content.meta_description, 16) }} 
+        </div>
+        {# END SOCIAL SHARE #}
+
+        {% if module.layout_controls.content_position_mobile == 'bottom' %}
+        <div class="grid__item one-whole tall--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom lap-and-up-visuallyhidden all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }}">
+          {{ module.content }}
+
+          <div class="container--author"> 
+            <h3>
+              {{ module.speakers_heading }}
+            </h3>
+            {% for item in module.speakers %}
+            <div class="last--hard--bottom background--offwhite margin--short--top" style="padding: 32px !important; border-radius: 24px;">
+              <div class="author-section" style="display:flex; {% if item.speaker_bio %}align-items:flex-start;{% else %}align-items:center;{% endif %}gap:24px;">
+                <img class="lazy" data-src="{{ item.speaker_image.src }}" alt="{{ item.speaker_name }}" style="width:90px; height:90px; border-radius:50%; object-fit:cover;">
+                <div class="author-section--details">
+                  <div class="author-section--name-social flex">
+                    <span class="h3 hard--ends" style="margin-top: 0px !important;">{{ item.speaker_name }}</span>
+                    <div class="p p--default all--color--midgrey hard--ends margin--petite--top first--hard--top last--hard--bottom palm-visuallyhidden">{{ item.speaker_title_company }}</div>
+                    {% if item.linkedin_url.href|escape_url %}
+                    <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item palm-visuallyhidden" style="margin-left: 20px !important; width: 30px; height: 30px;" rel="noopener" target="_blank" title="{{ item.speaker_name }}'s LinkedIn" href="{{ item.linkedin_url.href|escape_url }}">
+                      <img class="section--lcsocialshare-share--icon lazy" style="max-width: 100%; height: 13px; width: 13px;" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="{{ item.speaker_name }}'s LinkedIn">
+                    </a>
+                    {% endif %}
+                  </div>
+                  <div class="p p--default all--color--midgrey hard--ends margin--petite--top first--hard--top last--hard--bottom palm-visuallyhidden">{{ item.speaker_bio }}</div>
+                </div>
+              </div>
+              <div class="p p--default all--color--midgrey hard--ends margin--short--top first--hard--top last--hard--bottom lap-and-up-visuallyhidden tablet-visuallyhidden">{{ item.speaker_bio }}</div>
+              {% if item.linkedin_url.href|escape_url %}
+              <a class="section--lcsocialshare--share--link section--lcsocialshare-share--icon--linkedin mini-nav__item lap-and-up-visuallyhidden tablet-visuallyhidden" style="margin-top: 20px !important; margin-left: 0px !important; width: 30px; height: 30px;" rel="noopener" target="_blank" title="{{ item.speaker_name }}'s LinkedIn" href="{{ item.linkedin_url.href|escape_url }}">
+                <img class="section--lcsocialshare-share--icon lazy" style="max-width: 100%; height: 13px; width: 13px;" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/linkedin-logo.svg" alt="{{ item.speaker_name }}'s LinkedIn">
+              </a>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+
+          {# SOCIAL SHARE #}
+          <div class="socialshare--desktop margin--tall--top all--text--left lap-and-up-visuallyhidden">
+            {{ page_social_share(content.absolute_url, content.html_title, content.meta_description, 16) }} 
+          </div>
+          {# END SOCIAL SHARE #}
+        </div>
+
+        {% endif %}
+
+      </div>
+    </div>
+    {% if (module.video.video_type == "vidyard") && (module.enable_video != 'none') %}
+    {{ require_js( "https://play.vidyard.com/embed/v4.js", { async: true } ) }}
+    <script>
+      function playInline_{{ name|replace('-','_') }}(uuid) {
+        var poster = document.querySelector('.video--vidyard-label-poster');
+        var inlinePlayer = document.querySelector('.video--vidyard-inline');
+        var container = poster.parentElement;
+
+        // Add transition styles
+        container.style.position = 'relative';
+        poster.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        inlinePlayer.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+        // Fade out and scale down poster
+        poster.style.opacity = '0';
+
+        setTimeout(function() {
+          // Hide poster
+          poster.style.display = 'none';
+
+          // Prepare inline player
+          inlinePlayer.classList.remove('visuallyhidden');
+          inlinePlayer.style.display = 'block';
+          inlinePlayer.style.opacity = '0';
+
+          // Fade in and scale to normal
+          setTimeout(function() {
+            inlinePlayer.style.opacity = '1';
+          }, 50);
+
+        }, 400);
+
+        // Play video after transition
+        setTimeout(function() {
+          var players = VidyardV4.api.getPlayersByUUID(uuid);
+          if (players && players.length > 0) {
+            var player = players[0];
+            player.play();
+          }
+        }, 450);
+      }
+    </script>
+    {% endif %}
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+    </div>
+    {{ snippets.swoopSpacerBottom(module.background) }}
+  </div>
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

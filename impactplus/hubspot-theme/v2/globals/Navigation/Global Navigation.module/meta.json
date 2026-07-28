@@ -1,0 +1,8 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 188932739728,
+  "icon" : "https://www.impactplus.com/hubfs/impact-logo-highres-black-half.svg",
+  "is_available_for_new_content" : true
+}

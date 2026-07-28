@@ -1,0 +1,161 @@
+[ {
+  "id" : "aa40e685-ddb4-f510-af98-a53f66ec9675",
+  "name" : "breadcrumb_controls",
+  "label" : "Breadcrumb Settings",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "10b568da-35f4-0df9-9c1e-2ab991242429",
+    "name" : "hide_breadcrumbs",
+    "label" : "Hide Breadcrumbs",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "0b4b5d79-c897-f69f-91b3-7ce4650fdbf2",
+    "name" : "breadcrumb_type",
+    "label" : "Breadcrumb Type",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "breadcrumb_controls.hide_breadcrumbs",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "hubdb", "HubDB Mapping" ], [ "custom", "Custom Menu" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "hubdb"
+  }, {
+    "id" : "3949d532-f5f5-82e7-a05f-a9e67e4ae579",
+    "name" : "custom_breadcrumb_menu",
+    "label" : "Custom Breadcrumb Menu",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : null,
+      "max" : 3,
+      "sorting_label_field" : "b76543f8-7f8a-bca3-6866-22c100c0aa33",
+      "default" : 1
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "breadcrumb_controls.breadcrumb_type",
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "b76543f8-7f8a-bca3-6866-22c100c0aa33",
+      "name" : "breadcrumb_menu_text",
+      "label" : "Breadcrumb: Menu Text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Item Text"
+    }, {
+      "id" : "3acdb857-4a20-81a5-2964-e08c6330a771",
+      "name" : "breadcrumb_link_field",
+      "label" : "Breadcrumb: Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "BLOG" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : 187631808037,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "breadcrumb_menu_text" : "Item Text",
+      "breadcrumb_link_field" : {
+        "url" : {
+          "content_id" : 187631808037,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "hide_breadcrumbs" : false,
+    "breadcrumb_type" : "hubdb",
+    "custom_breadcrumb_menu" : [ {
+      "breadcrumb_menu_text" : "Item Text",
+      "breadcrumb_link_field" : {
+        "url" : {
+          "content_id" : 187631808037,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }
+}, {
+  "id" : "8953bef8-7618-3dad-3e16-8877d1f32d85",
+  "name" : "post_body_section",
+  "label" : "[HIDDEN] Post Body Section",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "9d529ab3-89ca-c1f7-da97-e59da812df00",
+    "name" : "narration_caption",
+    "label" : "Narration Caption",
+    "inline_help_text" : "Enter text here to show a little description under the post narration player.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "79e7e746-23db-1600-4488-c444656aaa7b",
+    "name" : "related_resources_topic_slug",
+    "label" : "Related Resources Topic Slug",
+    "inline_help_text" : "If you wish to overwrite the default related articles slug, select one here.",
+    "required" : false,
+    "locked" : false,
+    "tag_value" : "SLUG",
+    "type" : "tag",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : true,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : { }
+} ]

@@ -1,0 +1,119 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+/*.section--faqs-leftright--faq:first-child {
+border-top: 1px solid {{ color("lightgrey") }};
+}*/
+
+.section--faqs-leftright--faq {
+  display:block;
+  position:relative;
+  /*border-bottom: 1px solid {{ color("lightgrey") }};*/
+}
+
+.section--faqs-leftright--faq--toggle {
+  display:block;
+  position:relative;
+  padding: 20px 64px 20px 20px;
+  cursor:pointer;
+}
+
+.section--faqs-leftright--faq--content{
+  padding: 0px 20px 20px 20px;
+}
+
+.section--faqs-leftright--faq--toggle--icon {
+  width: 26px;
+  height: 26px;
+  border: 2px solid #1d1d1f;
+  border-radius: 50%;
+  background: transparent;
+  position: absolute;
+  right: 0;
+  overflow: visible;
+  top: calc(50% - 13px);
+  right: 20px;
+}
+.section--faqs-leftright--faq--toggle--icon .icon--axis {
+  position: absolute;
+  left: 49.5%;
+  top: 49.5%;
+  width: 10px;
+  height: 2px;
+  background: #1d1d1f;
+}
+
+.section--faqs-leftright--faq--toggle--icon .icon--vertical--line {
+  transform-origin: center;
+  transform: translate(-45%, -50%) rotate(90deg) ;
+  {{ transition('all .3s ease-in-out') }}
+}
+.section--faqs-leftright--faq--toggle--icon .icon--horizontal--line {
+  background: {{ color('secondary') }};
+  transform: translate(-45%, -50%);
+}
+.section--faqs-leftright--faq.active .section--faqs-leftright--faq--toggle .section--faqs-leftright--faq--toggle--icon .icon--vertical--line {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.section--faqs-leftright--faq--content {
+  width:100%;
+}
+
+.section--faqs-leftright--faq--content--inner--spacer {
+  display:block;
+  width:100%;
+  height:{{ short }};
+}
+
+.section--faqs-leftright .block--singlebtn.all--btn.all--btn--simple a{
+  font-weight: bold;
+  position: relative;
+  display: inline;
+  background-image: linear-gradient(currentColor, currentColor) !important;
+  background-size: 100% 1px;
+  background-repeat: repeat-x;
+  background-position: 0 94%;
+  box-decoration-break: clone !important;
+  -webkit-box-decoration-break: clone !important;
+  text-decoration: none !important;
+  line-height: inherit;
+  border-radius: 0px !important;
+  padding-right: 0px !important;
+}
+
+@media (max-width: 768px) {
+  .section--faqs-leftright .block--singlebtn.all--btn.all--btn--simple a{
+    font-size: 17px !important;
+  }
+}
+
+{% call mediaLoop() %}
+.{{ media }}all--color--white .section--faqs-leftright--faq {
+  border-bottom-color:{{ color("white") }};
+}
+.{{ media }}all--color--white .section--faqs-leftright--faq--toggle--icon .icon--axis,
+.{{ media }}all--color--white .section--faqs-leftright--faq--toggle--icon .icon--horizontal--line {
+  background:{{ color("white") }}!important;
+}
+.{{ media }}all--color--white .section--faqs-leftright--faq--toggle--icon {
+  border-color:{{ color("white") }}!important;
+}
+{% endcall %}

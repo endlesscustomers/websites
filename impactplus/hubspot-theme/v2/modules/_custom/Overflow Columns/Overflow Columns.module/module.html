@@ -1,0 +1,223 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Overflow Columns.css"), { async: true} ) }}
+
+{% set columnWidthsKey = {
+  "one-whole":1,
+  "one-half":2,
+  "one-third":3,
+  "one-fourth":4,
+  "one-fifth":5,
+  "one-sixth":6
+} %}
+{% set columnWidths = {
+  "desk":columnWidthsKey[module.layout_controls.number_of_columns_desktop],
+  "lap":columnWidthsKey[module.layout_controls.number_of_columns_laptop|replace("lap-","")],
+  "tablet":columnWidthsKey[module.layout_controls.number_of_columns_tablet|replace("tablet-","")],
+  "palm":columnWidthsKey[module.layout_controls.number_of_columns_mobile|replace("palm-","")]
+} %}
+
+{% if module.layout_controls.columns_background_color.columns_background_color == "custom" %}
+{% set backgroundColor = module.layout_controls.columns_background_color.columns_custom_background_color.color %}
+{% set backgroundOpacity = module.layout_controls.columns_background_color.columns_custom_background_color.opacity|int/100 %}
+{% set backgroundColorRgba = "rgba("+backgroundColor|convert_rgb+", "+backgroundOpacity+")" %}
+{% else %}
+{% set backgroundColor = functions.color(module.layout_controls.columns_background_color.columns_background_color) %}
+{% set backgroundOpacity = 1 %}
+{% set backgroundColorRgba = "rgba("+backgroundColor|convert_rgb+", "+backgroundOpacity+")" %}
+{% endif %}
+
+{% if module.layout_controls.columns_add_border_radius_around_columns %}
+{% if module.layout_controls.columns_border_radius.columns_border_radius_type == "custom" %}
+{% set borderRadius = module.layout_controls.columns_border_radius.columns_custom_border_radius %}
+{% set borderRadiusClass = "border-radius--"+borderRadius %}
+{% else %}
+{% set borderRadiusClass = "border-radius" %}
+{% endif %}
+{% else %}
+{% set borderRadiusClass = "" %}
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--columns {% if (module.layout_controls.show_border_divider_between_columns) %}section--columns--hasdividers{% endif %} {% if module.layout_controls.columns_horizontally_align_buttons %}section--columns--equalizebuttons{% endif %} relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3 section--columns--outer">
+    <div class="section--columns--inner text--center">
+      {{ snippets.swoopSpacerTop(module.background) }}
+      <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+      </div>
+      {% if module.header || module.content || module.preheader %}
+      <div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }} {% if module.layout_controls.header_container_width == 'wide' %}hard--sides{% endif %} flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }}">
+        <div class="grid__item {{ module.layout_controls.header_container_width }} tablet-{{ module.layout_controls.header_container_width_tablet }} palm-one-whole hard--top hard--bottom margin--{{ module.layout_controls.header_margin_bottom_spacing }}--bottom palm-margin--short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+          {% if module.preheader %}
+          <span class="h6 preheader preheader--{{ module.layout_controls.preheader_color }} margin--short--bottom">{{ module.preheader }}</span>
+          {% endif %}
+
+          {% if module.header %}
+          <h2 class="hard--top">{{ module.header }}</h2>
+          {% endif %} 
+          {{ module.content }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="grid section--columns--grid relative hard--ends {% if module.layout_controls.columns_width == 'wide' %}hard--sides{% endif %} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--center flexgrid justify--{{ 'start' if 'left' == module.layout_controls.header_and_content_container_alignment else 'center' }} columns-image-placement--{{ module.layout_controls.columns_icon_placement }} columns-image-type--{{ module.layout_controls.columns_image_type }}" data-columns--desk="{{ columnWidths['desk'] }}" data-columns--lap="{{ columnWidths['lap'] }}" data-columns--tablet="{{ columnWidths['tablet'] }}" data-columns--palm="{{ columnWidths['palm'] }}">
+        <div class="grid__item {{ module.layout_controls.columns_width }} tablet-{{ module.layout_controls.columns_width_tablet }} palm-one-whole section--columns--columns--wrapper flexgrid justify--{{ 'start' if 'left' == module.layout_controls.columns_content_alignment else 'center' }} hard--ends text--{{ module.layout_controls.columns_content_alignment }} palm-all--text--{{ module.layout_controls.columns_content_alignment_mobile }}">
+
+          {% if module.layout_controls.columns_background_color.columns_background_color != 'none' %}
+          <div class="section--columns--column--negative"> 
+            {% endif %}
+
+            {% set animationClasses = '' %}
+            {% if module.layout_controls.enable_animation %}
+            {% set animationClasses = animationClasses ~ 'animate--fade animate--fade-up' %}
+            {% endif %}
+
+            {% for item in module.column_content %}
+            <div class="section--columns--column relative grid__item {{ module.layout_controls.number_of_columns_desktop }} {{ module.layout_controls.number_of_columns_laptop }} {{ module.layout_controls.number_of_columns_tablet }} {{ module.layout_controls.number_of_columns_mobile }} tall first--hard--top last--hard--bottom valign--top {% if module.layout_controls.columns_width == 'wide' %}padding--short{% endif %} {{ animationClasses }} {% if module.layout_controls.columns_background_color.columns_background_color != "none" %}section--columns--column--padding{% endif %}" style="flex-grow: 1;">
+              {% if (module.layout_controls.show_border_divider_between_columns) %}
+              <span class="section--columns--divider--vertical {% if loop.first %}visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['desk'] == 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['lap'] == 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['tablet'] == 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - 1) % columnWidths['palm'] == 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+              {% endif %}
+              {% if (module.layout_controls.show_border_divider_between_columns) %}
+              <span class="section--columns--divider--horizontal {% if (loop.index - (1 + columnWidths['desk'])) < 0 %}desk-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['lap'])) < 0 %}lap-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['tablet'])) < 0 %}tablet-visuallyhidden{% endif %} {% if (loop.index - (1 + columnWidths['palm'])) < 0 %}palm-visuallyhidden{% endif %} opacity--{{ module.layout_controls.columns_divider_color.opacity }}" style="background:{{ module.layout_controls.columns_divider_color.color }};"></span>
+              {% endif %}
+              <span class="h4 font--script section--columns--prehead-script color--{{ item.script_preheader_color }} margin--short--bottom palm-visuallyhidden">
+                {{ item.script_preheader }}
+              </span>
+              <div class="section--columns--column--body flexgrid {% if (module.layout_controls.columns_image_type != 'full') %}{{ module.layout_controls.columns_inner_column_padding_desktop }}{% else %}section--columns--column--body-padding{% endif %} {{ borderRadiusClass }} {{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'valign--top justify--start' : 'direction--column justify--start no--wrap' }}" style="background-color:{{ backgroundColorRgba }}; {{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'gap:{{ module.layout_controls.icon_gap_between_icon_and_content }}px;' : '' }}">
+                 <span class="h4 font--script section--columns--prehead-script hard--top margin--short--bottom lap-and-up-visuallyhidden tablet-visuallyhidden">
+                {{ item.script_preheader }}
+              </span>
+                {% if "lottie" == module.layout_controls.columns_image_type %}
+                <div class="inline-block" {{ 'left' == module.layout_controls.columns_icon_placement ? 'style="flex-basis:' ~ module.layout_controls.columns_image_size_controls.columns_native_image_icon_max_width ~ 'margin-top:{{ module.layout_controls.icon_gap_between_icon_and_content }}px;"' : '' }}>
+                  {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0">
+                    {% endif %}
+                    <lottie-player
+                                   autoplay
+                                   {% if item.lottie_animation.lottie_embed_loop %}
+                                   loop
+                                   {% endif %}
+                                   id    = "{{ name }}--lottieplayer--{{ loop.index }}"
+                                   class = "inline-block"
+                                   mode  = "normal"
+                                   style = "padding:0; {{ 'width:' ~ item.lottie_animation.lottie_embed_width ~ 'px;' if item.lottie_animation.lottie_embed_width }} {% if 'left' == module.layout_controls.columns_icon_placement %}height:auto;{% else %}{{ 'height:' ~ item.lottie_animation.lottie_embed_height ~ 'px;' if item.lottie_animation.lottie_embed_height }}{% endif %}"
+                                   >
+                    </lottie-player>
+                    {{ require_js( 'https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js', { async: true } ) }}
+                    <script>
+                      const {{ name|replace('-','_') }}LottiePlayer{{ loop.index }} = document.querySelector("#{{ name }}--lottieplayer--{{ loop.index }}");
+                                                                                                             {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.addEventListener("rendered", (e) => {
+                        {% if 'url' == item.lottie_animation.lottie_embed_type %}
+                        {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load("{{ item.lottie_animation.lottie_embed }}");
+                                                                                     {% else %}
+                                                                                     {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load({{ item.lottie_animation.lottie_embed|tojson }});
+                        {% endif %}
+                      });
+                    </script>
+                    {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  </a>
+                  {% endif %}
+                </div>
+                {% elif 'native' == module.layout_controls.columns_image_type %}
+                {% if item.disable_image %}
+                {% else %}
+                <div class="block" {{ 'left' == module.layout_controls.columns_icon_placement ? 'style="flex-basis:' ~ module.layout_controls.columns_image_size_controls.columns_native_image_icon_max_width ~ 'px;margin-top:7px;"' : 'style="margin-bottom:{{ module.layout_controls.icon_gap_between_icon_and_content }}px"' }}>
+                  {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0">
+                    {% endif %}
+                    <img class="inline-block" src="{{ item.image_native.image.src }}" {% if module.section_controls.lazy_load_images %}loading="lazy"{% endif %} alt="{{ item.image_native.image.alt }}" width="{{ item.image_native.image.width }}" height="{{ item.image_native.image.width }}" style="width:auto;height:{{ module.layout_controls.columns_image_size_controls.columns_native_image_icon_max_height }}px;" />
+                    {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                  </a>
+                  {% endif %}
+                </div>
+                {% endif %}
+                {% elif "logos" == module.layout_controls.columns_image_type %}
+                {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0 block">
+                  {% endif %}
+                  <span class="block relative">
+                    <img {{ module.section_controls.lazy_load_images == 'true' ? 'loading="lazy"' : '' }} class="block absolute z-index--2" style="object-fit: contain;width:{{ '80%' if (item.image_full.image.width > item.image_full.image.height * 2) else 'auto' }};height:{{ 'auto' if (item.image_full.image.width > item.image_full.image.height * 2) else '80%' }};object-position:{{ item.image_full.image_horizontal_alignment }} {{ item.image_full.image_vertical_alignment }};top:50%;bottom:0%;right:0%;left:0%;margin-left:auto;margin-right:auto;transform:translateY(-50%);" alt="{{ item.image_full.image.alt }}" width="{{ item.image_full.image.width }}" height="{{ item.image_full.image.height }}" src="{{ item.image_full.image.src }}" />
+                    {{ snippets.aspectSpacer('2x1') }}
+                  </span>
+                  {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                </a>
+                {% endif %}
+                {% elif module.layout_controls.columns_image_type == "full" %}
+                {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline border--0 block">
+                  {% endif %}
+                  <span class="block relative border-radius--20 overflow--hidden">
+                    <img {{ module.section_controls.lazy_load_images == 'true' ? 'loading="lazy"' : '' }} class="block absolute z-index--2 object--background-size--cover" style="object-position:{{ item.image_full.image_horizontal_alignment }} {{ item.image_full.image_vertical_alignment }};top:0%;bottom:0%;right:0%;left:0%;" alt="{{ item.image_full.image.alt }}" width="{{ item.image_full.image.width }}" height="{{ item.image_full.image.height }}" src="{{ item.image_full.image.src }}" />
+                    {{ snippets.aspectSpacer(module.layout_controls.columns_image_aspect_ratio) }}
+                  </span>
+                  {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                </a>
+                {% endif %}
+                {% endif %}
+                <div class="section--columns--column--body--wrapper" style="{{ ('native' ==  module.layout_controls.columns_image_type or 'lottie' ==  module.layout_controls.columns_image_type) and 'left' == module.layout_controls.columns_icon_placement ? 'flex:1;' : ( 'none' != module.layout_controls.columns_image_type ? 'margin-top:{{ module.layout_controls.columns_space_between_icon_and_content }}px;' : '' ) }}">
+                  <div class="section--columns--column--body--content block {% if module.layout_controls.columns_inner_column_padding_desktop == 'full' %}lap-and-up-{{ module.layout_controls.columns_inner_content_padding_desktop }}{% endif %} first--hard--top last--hard--bottom {{ 'native' == module.layout_controls.columns_image_type and 'lott' == module.layout_controls.columns_image_type and 'left' == module.layout_controls.columns_icon_placement ? 'padding--short--right hard--left' : '' }}">
+                    {% if item.header_label %}
+                    <{{ 'h3' if module.header else 'h2' }} class="{{ module.layout_controls.column_header_size }} margin--{{ module.layout_controls.column_header_margin_bottom }}--bottom">
+                      {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                      <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" href="{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}" {% if item.cta.cta_open_in_new_tab %}target="_blank"{% endif %} class="no--underline color--inherit">
+                        {% endif %}
+                        {{ item.header_label }}
+                        {% if ((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text)) %}
+                      </a>
+                      {% endif %}
+                      </{{ 'h3' if module.header else 'h2' }}>
+                      {% endif %}
+                      {{ item.description }}
+                      </div>
+                    {% if ((item.cta.cta_type == "cta")&&(item.cta.cta))||((item.cta.cta_type == "link")&&(item.cta.cta_hyperlink.href)&&(item.cta.cta_button_text))||((item.cta.cta_type == "anchor")&&(item.cta.cta_section_anchor_id)&&(item.cta.cta_button_text)) %}
+                    <div class="section--columns--column--body--cta">
+                      <div class="block--singlebtn p all--btn all--btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} margin--short--top hard--bottom" style="padding-top: 12px;">
+                        {% if item.cta.cta_type == "cta" %}
+                        {{ cta(item.cta.cta) }}
+                        {% elif (item.cta.cta_type == "link")||(item.cta.cta_type == "anchor") %}
+                        <a title="{% if item.cta.cta_title_attribute %}{{ item.cta.cta_title_attribute }}{% else %}{{ item.cta.cta_button_text }}{% endif %}" class="btn btn--{% if item.cta.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta.cta_button_color }} {% if item.cta.cta_arrow %}btn--arrow{% endif %}" href="{% if item.cta.cta_type == 'anchor' %}#{{ item.cta.cta_section_anchor_id|replace('#','') }}{% else %}{% if item.cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta.cta_hyperlink.href }}{% endif %}" {% if (item.cta.cta_type == "link")&&(item.cta.cta_open_in_new_tab) %}target="_blank"{% endif %}>{{ item.cta.cta_button_text }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                    {% endif %}
+                     {% if ((item.cta_secondary.cta_type == "cta")&&(item.cta_secondary.cta))||((item.cta_secondary.cta_type == "link")&&(item.cta_secondary.cta_hyperlink.href)&&(item.cta_secondary.cta_button_text))||((item.cta_secondary.cta_type == "anchor")&&(item.cta_secondary.cta_section_anchor_id)&&(item.cta_secondary.cta_button_text)) %}
+                    <div class="section--columns--column--body--cta">
+                      <div class="block--singlebtn p all--btn all--btn--{% if item.cta_secondary.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta_secondary.cta_button_color }} margin--short--top hard--bottom" style="padding-top: 12px;">
+                        {% if item.cta_secondary.cta_type == "cta" %}
+                        {{ cta(item.cta_secondary.cta) }}
+                        {% elif (item.cta_secondary.cta_type == "link")||(item.cta_secondary.cta_type == "anchor") %}
+                        <a title="{% if item.cta_secondary.cta_title_attribute %}{{ item.cta_secondary.cta_title_attribute }}{% else %}{{ item.cta_secondary.cta_button_text }}{% endif %}" class="btn btn--{% if item.cta_secondary.cta_ghost_transparent_button %}transparent--{% endif %}{{ item.cta_secondary.cta_button_color }} {% if item.cta_secondary.cta_arrow %}btn--arrow{% endif %}" href="{% if item.cta_secondary.cta_type == 'anchor' %}#{{ item.cta_secondary.cta_section_anchor_id|replace('#','') }}{% else %}{% if item.cta_secondary.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ item.cta_secondary.cta_hyperlink.href }}{% endif %}" {% if (item.cta_secondary.cta_type == "link")&&(item.cta_secondary.cta_open_in_new_tab) %}target="_blank"{% endif %}>{{ item.cta_secondary.cta_button_text }}</a>
+                        {% endif %}
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% if module.layout_controls.columns_background_color.columns_background_color != 'none' %}   
+          </div>
+          {% endif %}
+        </div>
+        {% if snippets.multiButton(module.cta) %}
+        <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+            {{ snippets.multiButton(module.cta) }}
+          </div>
+        </div>
+        {% endif %}
+        {% if module.cta_bottom_content %}
+        <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item {{ module.layout_controls.columns_width }} tablet-{{ module.layout_controls.columns_width_tablet }} palm-one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+            {{ module.cta_bottom_content }}
+          </div>
+        </div>
+        {% endif %}
+        <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+        </div>
+        {{ snippets.swoopSpacerBottom(module.background) }}
+      </div>
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>

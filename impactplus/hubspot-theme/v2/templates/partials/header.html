@@ -1,0 +1,25 @@
+<!--
+  templateType: global_partial
+  label: Header - IMPACT Prod Theme
+-->
+
+{{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/globals/Navigation/_css/navigation_main_styles.css'), { async: false } ) }}
+{{ require_css(get_asset_url('/IM-IMPACT-Prod-Theme-2025/globals/Navigation/_css/navigation_mobile_menu.css'), { async: true } ) }}
+{{ require_css(get_asset_url('/_IMPACT_Production/_globals/_header/_css/primary_navigation--white_theme.css'), { async: true } ) }}
+
+{% if (widget_data.controls.primary_navigation.primary_navigation_theme == 'black') || (widget_data.controls.primary_navigation_select_type == 'playbook') %}
+{{ require_css(get_asset_url('/_IMPACT_Production/_globals/_header/_css/primary_navigation--black_theme.css'), { async: false } ) }}
+{% endif %}
+
+{# Playbook Chapter Module for Playbook Menu #}
+{% if widget_data.controls.primary_navigation_select_type == 'playbook' %}
+{% module "playbookMenu" path="/IMPACT Publisher Modules/Playbook Chapters and Content/Playbook Chapters and Content - IMPACT Publisher", label="Playbook Chapters and Content - IMPACT Publisher", export_to_template_context=True, overrideable=False %}
+{% module "playbookLPHero" path="/IMPACT Publisher Modules/Hero - Playbook Offer - Half and Half - IMPACT Publisher/Hero - Playbook Offer - Half and Half - IMPACT Publisher", label="Popup for Ebook Download and Form Paywall", export_to_template_context=True, overrideable=False %}
+{% endif %}
+
+{% module "global_header" path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Global Navigation', label="Navigation" %}
+<!-- isthisheretoo -->
+
+
+
+

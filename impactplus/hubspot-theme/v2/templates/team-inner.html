@@ -1,0 +1,194 @@
+<!--
+templateType: "page"
+isAvailableForNewContent: true
+label: --IMPACT-- Team Inner v2
+-->
+
+{% module
+    "controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/Navigation/Navigation and Footer Page Settings',
+    label="Page and Navigation Controls",
+    no_wrapper=True,
+    export_to_template_context= True,
+    header_design= "solid",
+    hide_navigation= false,
+    disable_sticky_header= false,
+    disable_hello_bar_on_this_page= false,
+    page_type= "other"
+  %}
+{# module
+    "breadcrumb_controls"
+    path='/IM-IMPACT-Prod-Theme-2025/globals/_unused/Breadcrumbs',
+    label="Breadcrumb Controls",
+    no_wrapper=True,
+    export_to_template_context=True
+  #}
+
+{# ### CUSTOM ADDED CONTROLS - NEED TO BE MIGRATED TO SETTINGS & CONTROLS ### #}
+{% set body_id = widget_data.controls.page_settings_options.body_id %}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--site pagetype--{{ widget_data.controls.page_type }}') %}
+{% do body_classes_array.append('header--{{ widget_data.controls.header_design }}') %}
+{% if widget_data.controls.header_design == "transparent" %}
+{% do body_classes_array.append('header--notfixed header--isanchored') %}
+{% endif %}
+
+{% if widget_data.controls.hide_navigation %}
+{% do body_classes_array.append('no--navigation header--static') %}
+{% elif widget_data.controls.disable_sticky_header %}
+{% do body_classes_array.append('header--static') %}
+{% endif %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+
+{% block body %}
+
+    {% module "teamMemberTable" path="@hubspot/text" label="Team HubDB Table: Enter ID", value="849412", export_to_template_context=true %}
+
+    {% set teamMembers = hubdb_table_rows(widget_data.teamMemberTable.value) %}
+
+    {% set teamNames = [] %}
+
+    {% for members in teamMembers %}
+    {% set teamNames2 = teamNames.append([members.hs_id, members.name]) %}
+    {% endfor %}
+
+    {% choice "teamMemberChoices" label="Team Members: Choose a Name", value="Bob Ruffolo", export_to_template_context=True, choices={{ teamNames }}, no_wrapper=True %}
+
+    {% set teamChoice = widget_data.teamMemberChoices.value %}
+    {% set teamChoice = teamChoice|int %}
+
+    {% set data = hubdb_table_rows(widget_data.teamMemberTable.value, "&hs_id="~teamChoice|urlencode)[0] %}
+
+    {% dnd_area "dnd_area"
+          label="Main section",
+          class="body-container body-container--flex"
+        %}
+    {% end_dnd_area %}
+
+{% if data["allow_speaker_request"] %}
+  {% require_js %}
+  <script>
+    var formScript = 'https://js.hsforms.net/forms/v2.js';
+    const hubspotFormsLoaded = document.querySelector("script[src$='"+formScript+"']");
+
+    function injectScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.addEventListener('load', resolve);
+        script.addEventListener('error', e => reject(e.error));
+        document.head.appendChild(script);
+
+        if (!hubspotFormsLoaded) {
+          document.head.appendChild(script);
+        }
+      });
+    } 
+
+    function speakerFormInj(){
+      if (!$("#speaker--form-target form").length){
+
+        // Script has been added, load our hubspot form
+        hbspt.forms.create({
+          region: "na1",
+          portalId: "145335",
+          target: '#speaker--form-target',
+          formId: $('#speaker--form-target').attr('data-subId')
+        });
+      } 
+    }
+
+    // Inject form
+    ['click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+      window.addEventListener(e, formInteraction, {
+        once: true
+      });
+    });
+    var userInter = false;
+
+    function formInteraction() {
+      if (!userInter) {
+
+        userInter = true;
+        if (hubspotFormsLoaded) {
+          speakerFormInj();
+        }
+        injectScript('https://js.hsforms.net/forms/v2.js')
+          .then(() => {
+          speakerFormInj()
+        }).catch(error => {
+          console.error(error);
+        });
+      }
+    }
+
+    window.addEventListener("message", function(event) {
+      if(event.data.eventName === 'onFormReady') {
+        $('.speaker-form--wrapper .actions .hs-button').attr("value","Submit Request");
+
+        var buttonText = 'Submit Request';
+        $('.hs-submit .actions .hs-button').after('<span class="btn--faux">'+buttonText+'<img class="svg-icon-pallete--white" src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/Icon%20Library/Arrows/arrow-black-pointing-right.svg" width="12" height="12" alt="'+buttonText+'"></span>');
+      }
+    });
+
+    if ($('body').hasClass('popupTemplate--apple-white-filter relative')) {
+    } else {
+      $('body').addClass('popupTemplate--apple-white-filter relative');
+    }
+
+    function peoplePopClose(){
+      $('#productionPopUp.popupTemplate--apple-white').removeClass('popupTemplate--apple-white--zoom-up');
+      $('.productionPopupInner, .popupTemplate--apple-white-overlay').css('opacity','0');
+      $('#hs_cos_wrapper_flexColumn .section, #hs_cos_wrapper_flexSection .section').css('filter','blur(0px)'); 
+
+      setTimeout(function () {
+        $('html').removeClass('popupTemplate--apple-white--active');
+        $('.section--cards-popup-container').removeClass('popupTemplate--apple-white--section-active');  
+        $('.productionPopupInner, .popupTemplate--apple-white-overlay').css('opacity','1');
+        $('#hs_cos_wrapper_flexColumn .section, #hs_cos_wrapper_flexSection .section').css('filter','');
+        $('.popupTemplate--apple-white-overlay').css({
+          'backdrop-filter' : '',
+          'background' : '', 
+          '-webkit-backdrop-filter' : '',
+        });
+      }, 730); 
+    }
+
+    function materialPop(thisClick){
+      $('html').addClass('popupTemplate--apple-white--active'); 
+      $('html').find('.section--cards-popup-container').addClass('popupTemplate--apple-white--section-active'); 
+      $('#productionPopUp.popupTemplate--apple-white').addClass('popupTemplate--apple-white--zoom-up');
+    }
+
+    $(document).ready(function() {
+
+      $('.team-inner--bio-request-to-speak').click(function()  {
+        var thisClick = $(this);
+        materialPop(thisClick);
+        console.log("clicked");
+      });
+
+      $('.productionClose--container').click(function(){ 
+        peoplePopClose();
+      });
+
+      $(document).on('mouseup touchstart', function(e){
+        if ($(".section--cards-popup-container").hasClass("popupTemplate--apple-white--section-active")) {
+
+          var containerOne = $(".productionPopupContainer");
+
+          if ((!containerOne.is(e.target) && containerOne.has(e.target).length === 0))  {
+            peoplePopClose();
+          }
+        }
+      });
+    });
+  </script>
+  {% end_require_js %}
+{% endif %}
+
+{% endblock body %}

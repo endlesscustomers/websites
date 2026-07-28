@@ -1,0 +1,131 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--tablewithrows--header + .section--tablewithrows--contents {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--tablewithrows--tables {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.section--tablewithrows--table {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  border-radius: 20px;
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.section--tablewithrows--table + .section--tablewithrows--table {
+  margin-top: 16px;
+}
+
+.section--tablewithrows--table--content {
+  flex: 1 1 auto;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.all--color--white .section--tablewithrows--table--intro p {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.section--tablewithrows--table--content h3 + .section--tablewithrows--table--intro {
+  margin-top: -15px;
+}
+
+.section--tablewithrows--table--content h3 + .section--tablewithrows--table--rows,
+.section--tablewithrows--table--content h3 + .section--tablewithrows--table--intro + .section--tablewithrows--table--rows,
+.section--tablewithrows--table--content  + .section--tablewithrows--table--rows {
+  margin-top: 25px;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row {
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row:first-child {
+  padding-top: 0;
+  padding-bottom: 20px;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row:last-child:not(:only-child) {
+  padding-bottom: 0;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row:not(:first-child) {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row:last-child:not(:only-child):not(:first-child) {
+  padding-bottom: 0;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--rows:has(.section--tablewithrows--table--row:nth-child(3)) .section--tablewithrows--table--row:last-child {
+  padding-top: 32px;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row:not(:last-child) {
+  border-bottom: 1px solid var(--tablewithrows-row-divider, rgba(255, 255, 255, 0.15));
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row--label {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row--label .supporting-text {
+  display: block;
+  font-family: {{ config.p_FontFamily }};
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: {{ config.medium }};
+  letter-spacing: -0.0094em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.section--tablewithrows--table--content .section--tablewithrows--table--row--value {
+  flex: 0 0 auto;
+  max-width: 48%;
+}
+
+{% call mediaQuery('palm') %}
+  .section--tablewithrows--table--content .section--tablewithrows--table--row--value {
+    max-width: 42%;
+  }
+{% endcall %}

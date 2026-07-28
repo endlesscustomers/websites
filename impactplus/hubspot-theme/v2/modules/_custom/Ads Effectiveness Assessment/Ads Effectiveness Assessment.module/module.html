@@ -1,0 +1,144 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Ads Effectiveness Assessment.css"), { async: false } ) }}
+
+<script async="" src="https://play.vidyard.com/embed/v4.js" type="text/javascript"></script>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+
+{% set scoreBucketTable = hubdb_table_rows(205745954) %}
+
+<div id="bucketMeta">
+  {% for row in scoreBucketTable %}
+  <div class="bucketMeta--data" data-bucketname="{{ row.name }}" data-bucketen="{{ row.external_bucket_name }}" data-bucketcp="{{ row.bucket_contact_property }}" data-bucketmax="{{ row.max_possible_score }}"></div>
+  {% endfor %}
+</div>
+
+<div id="assessmentQuiz" class="overflow-x--hidden background--offwhite">
+
+  <div class="fixed--header z-index--10" style="display:none;">
+    <a href="https://www.impactplus.com">
+      <img alt="IMPACT Inbound Marketing Agency" height="40" src="https://www.impactbnd.com/hubfs/IMPACT%20Live/2019/Logo/IMPACT-logo--Black.svg" width="130">
+    </a>
+  </div>
+  {#{{ snippets.background(module.background) }}#}
+
+  {#{{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}"></div>
+    <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} text--{{ module.layout_controls.header_content_alignment }} palm-text--{{ module.layout_controls.header_content_alignment_mobile }}">#}
+
+  <div class="section section--ecScorecard-questions {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }} upform" data-weighted="" data-highscore="100" data-total="{{ module.scorecard_settings.scorecard_total_score_hubspot_internal_value }}" data-totalname="{{ module.scorecard_settings.total_score_cookie_name }}">
+    {# fade--up fade--load #}
+    <form class="relative upform-form">
+      <div class="upform-main" style="overflow:scroll;">
+        <div id="section--inbound-scorecard-questions">
+
+          {% set questionContactProperties = module.question_group|map('question_contact_property') %} 
+          {% if questionContactProperties|length > 0 %}
+          <style>
+            {% for item in questionContactProperties %}.successForm .hs_{{ item }}{% if not loop.last %}, {% endif %}{% endfor %} {display:none;}
+          </style> 
+          {% endif %}
+
+          {# Introduction Group #}
+          <div class="scorecard--introduction-block scorecard--block grid__item one-whole hard--bottom margin--venti--bottom text--left first-input active">  
+            <div class="question--text font--heading h4 bold line-height--basic hard--bottom" style="opacity:.8;">{{ module.scorecard_introduction.quiz_intro }}</div> 
+            <div class="scorecardResults--intro-btn btn btn--primary">
+              {{ module.scorecard_introduction.button_content }}
+            </div>
+          </div>
+          {# End Introduction Group #}
+
+          {% for item in module.question_group %}
+          <div class="input-block scorecardResults--question scorecard--block grid__item one-whole hard--bottom margin--venti--bottom text--left" rel="{{ item.question_contact_property|regex_replace('[^a-zA-Z0-9 -]', '') }}" data-scorebucket="{{ item.question_bucket.columns.bucket_contact_property }}" data-externalbucket="{{ item.question_bucket.columns.external_bucket_name|lower|replace(' ', '_') }}">  
+            <div class="scorecard--question-label font--reading font--16 bold color--blue uppercase letter-spacing--1 line-height--basic">Question {{ loop.index }}</div>
+            <div class="question--text font--heading h4 bold line-height--basic hard--bottom" style="opacity:.8;">{{ item.question }}</div> 
+            <div class="question--subheader p p--default line-height--basic hard--top first--hard--top" style="margin-top: 12px !important; opacity:.8;">{{ item.question_subheader }}</div> 
+            <div class="input-control all--valign--middle" rel="{{ item.question_contact_property }}">
+              {% for item2 in item.answer_options %}
+              <input id="toggle--{{ item.question_contact_property }}-{{ loop.index }}" class="toggle toggle-left" name="{{ item.question_contact_property }}" value="{{ item2.score_weight }}" rel="{{ item2.answer_internal_value|regex_replace('[^a-zA-Z0-9 -]', '')|lower }}" type="radio" >
+              <label for="toggle--{{ item.question_contact_property }}-{{ loop.index }}" class="background--white shadow-1dp p border-radius--8 inline-block" style="margin-top: 0px !important; line-height: 1em;" rel="{{ item.question_contact_property }}-{{ loop.index }}"><span class="toggle-letter border-radius--8"></span><span class="question--container">{{ item2.answer }}</span></label>
+              <br>
+              {% endfor %} 
+            </div>
+
+            {% if item.vidyard_video_id|length %}
+            {% set videoUUID = item.vidyard_video_id %}
+            <div class="input-video all--text--right">
+              <a class="video--lightbox light opacity--80 hover--pointer all--valign--middle no--underline" onclick=launchLightbox{{ loop.index }}()>
+                <img class="lazy svg-icon-pallete--blue-600" style="margin-right:8px;" data-src="https://145335.fs1.hubspotusercontent-na1.net/hubfs/145335/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/social/youtube-logo.svg" alt="youtube-logo" loading="lazy" width="22" height="20"><p class="hard--ends inline-block font--14 line-height--small color--primary" style="border-bottom: 1px solid var(--blue600);">See Why This Matters</p>
+              </a>
+            </div>
+            <div class="visuallyhidden">
+              <img class="vidyard-player-embed" src="#" data-uuid="{{ videoUUID }}" data-v="4" data-type="lightbox" />
+            </div> 
+            <script>
+              function launchLightbox{{ loop.index }}() {
+                var players = VidyardV4.api.getPlayersByUUID("{{ videoUUID }}");
+                                                             var player = players[0];
+                player.showLightbox();
+              }
+            </script>
+            {% endif %}
+
+          </div>
+          {% endfor %}
+        </div>
+
+        {# Completion Button #}
+        <div class="upform-footer">
+          <a class="btn--assessment-btn-styles btn btn--large btn--blue bolder btn--basic-transition" href="" id="btn--complete-assessment">
+            Complete the Assessment
+            <img alt="Assessment Arrow" height="15" src="https://www.impactbnd.com/hubfs/IMPACT_Framework_3/Score%20Your%20Company/assessment-arrow.svg" style="margin-left: 5px; bottom: -1px; position: relative;" width="17">
+          </a>
+        </div>
+        {# End Completion Button #}
+        {#
+  {% if snippets.multiButton(module.cta) %}
+  <div class="grid hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+    <div class="grid__item one-whole tall--top palm-short--top hard--bottom first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      {{ snippets.multiButton(module.cta) }}
+    </div>
+  </div>
+  {% endif %}
+          <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}"></div>#}
+        {#{{ snippets.swoopSpacerBottom(module.background) }}
+          {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}#}
+      </div>
+    </form>
+
+    <div class="successForm" style="display:none;" data-form="{{ module.scorecard_settings.scorecard_results_form.scorecard_form.form_id }}">
+      <div class="successForm--scolling relative">
+        <div class="grid hard--ends">
+          <div class="grid__item one-whole tall--top text--center">
+            <a href="https://www.impactbnd.com">
+              <img alt="IMPACT Inbound Marketing Agency" height="54" src="https://www.impactbnd.com/hubfs/IMPACT%20Live/2019/Logo/IMPACT-logo--Black.svg" width="175">
+            </a>
+          </div>
+          <div class="grid__item eight-twelfths tablet-ten-twelfths palm-eleven-twelfths hard--top tall--bottom text--center portable-one-whole">
+            <div class="h2 bolder color--neutral-700 margin--short--top line-height--small hard--bottom">
+              {{ module.scorecard_settings.scorecard_results_form.form_header }}
+            </div>
+          </div>
+          <div class="margin--short--bottom">
+            <div class="successForm--for-results grid__item eight-twelfths tablet-ten-twelfths palm-one-whole background--white border-radius--10 form--box-shadow all--btn all--btn--blue all--btn--large btn--basic-transition hs_cos_wrapper_type_form" style="padding:30px;" data-formid="{{ module.scorecard_settings.scorecard_results_form.scorecard_form.form_id }}"></div>
+          </div>
+          <div class="grid__item ten-twelfths hard--top tall--bottom text--center">
+            <h6>
+              {#<a class="normal--weight underline color--med-grey font--16 successForm--skip-email" href="{{ module.results_page_url }}?skipEmail=true">
+                Skip to the Results Page
+              </a>#}
+            </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="progress-container" style="display:none;">
+    <div id="assessment-progress" style="width:0;"></div>
+  </div>
+
+</div>
+
+
+{{ require_js('https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js', { async: false } ) }}
+{{ require_js( get_asset_url("/IM-IMPACT-Prod-Theme-2025/modules/_custom/Ads Effectiveness Assessment/Ads Effectiveness Assessment.js" ), { async: false } ) }}

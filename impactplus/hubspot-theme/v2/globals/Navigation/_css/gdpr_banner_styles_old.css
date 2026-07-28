@@ -1,0 +1,290 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+/* START DEV GDPR BANNER CODE */
+
+#hs-banner-parent{
+  --hs-banner-decline-text-color:#1D1D1F;
+  --hs-banner-accentColor:;
+  --hs-banner-decline-color:#F6F9FC;
+  --hs-banner-decline-border-color:#E1E7F4;
+}
+
+#hs-banner-parent #hs-eu-cookie-confirmation{
+  border-radius: 16px;
+}
+
+div#hs-eu-policy-wording > div:before {
+  content: 'We use cookies 🍪';
+  font-size: 28px;
+  line-height: 1.25em;
+  color: var(--neutral700);
+  font-weight: 900 !important;
+  text-transform: none;
+  font-family: var(--fontSerif);
+  margin-bottom: 12px !important;
+  display: block;
+  margin-top: 0px;
+}
+
+.block--singlebtn .btn--arrow:after,
+.block--multibutton--btn .btn--arrow:after{
+  content:"";
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 12"><path fill="%23FFFFFF" d="M12.425 5.61946C12.3773 5.49681 12.3059 5.38476 12.2149 5.28973L7.21279 0.29385C7.11951 0.200688 7.00878 0.126788 6.8869 0.0763693C6.76503 0.0259505 6.63441 0 6.50249 0C6.23608 0 5.98058 0.105701 5.7922 0.29385C5.69892 0.387011 5.62493 0.49761 5.57445 0.619332C5.52397 0.741054 5.49799 0.871514 5.49799 1.00326C5.49799 1.26935 5.60382 1.52453 5.7922 1.71268L9.09357 4.99997H1.50042C1.23509 4.99997 0.980629 5.10524 0.793015 5.29262C0.605401 5.48001 0.5 5.73415 0.5 5.99915C0.5 6.26415 0.605401 6.51829 0.793015 6.70567C0.980629 6.89305 1.23509 6.99832 1.50042 6.99832H9.09357L5.7922 10.2856C5.69843 10.3785 5.62401 10.489 5.57322 10.6108C5.52243 10.7325 5.49628 10.8631 5.49628 10.995C5.49628 11.1269 5.52243 11.2575 5.57322 11.3793C5.62401 11.501 5.69843 11.6116 5.7922 11.7044C5.8852 11.7981 5.99585 11.8724 6.11776 11.9232C6.23967 11.9739 6.37043 12 6.50249 12C6.63456 12 6.76532 11.9739 6.88723 11.9232C7.00914 11.8724 7.11979 11.7981 7.21279 11.7044L12.2149 6.70856C12.3059 6.61354 12.3773 6.50149 12.425 6.37883C12.525 6.13557 12.525 5.86272 12.425 5.61946Z"/></svg>');
+  background-size:12px 13px;
+  background-position:center;
+  background-repeat:no-repeat;
+  margin-left: 8px;
+  padding-left:10px;
+  left:0;
+  position:relative;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;;
+}
+
+#hs-banner-parent{
+  --hs-banner-translate-x: 0 !important;
+}
+
+body #hs-banner-parent *{
+  font-family: var(--fontHeading) !important;
+}
+
+body #hs-banner-parent button{
+  font-weight: 700;
+}
+
+body div#hs-eu-cookie-confirmation{
+  background: white !important;
+  box-shadow: 0 8px 20px 0 rgba(95,109,137,.25);
+  bottom: -300px !important;
+  z-index: 2000!important;
+  left: 30px !important;
+  transform: unset !important;
+  -webkit-transform: unset !important;
+  width: 490px !important;
+  -webkit-transition: bottom .4s ease-in-out;
+  -moz-transition: bottom .4s ease-in-out;
+  -ms-transition: bottom .4s ease-in-out;
+  -o-transition: bottom .4s ease-in-out;
+  transition: bottom .4s ease-in-out;
+}
+
+body div#hs-eu-cookie-confirmation.hs-cookie--slidein{
+  bottom: 30px !important;
+}
+
+body button{
+  -webkit-transition: background .4s ease-in-out, border-color .4s ease-in-out;
+  -moz-transition: background .4s ease-in-out, border-color .4s ease-in-out;
+  -ms-transition: background .4s ease-in-out, border-color .4s ease-in-out;
+  -o-transition: background .4s ease-in-out, border-color .4s ease-in-out;
+  transition: background .4s ease-in-out, border-color .4s ease-in-out;
+}
+
+body button#hs-eu-confirmation-button:hover,
+body button#hs-modal-accept-all:hover,
+body button#hs-modal-save-settings:hover{
+  background-color: #0056d6 !important;
+  border-color: #0056d6 !important;
+}
+
+body button#hs-modal-save-settings:hover{
+  color: white !important;
+}
+
+body div#hs-eu-cookie-confirmation p,
+body div#hs-eu-cookie-confirmation a,
+body div#hs-eu-cookie-confirmation button{
+  font-family: var(--fontHeading);
+  line-height: 1.45em;
+}
+
+body #hs-eu-cookie-confirmation #hs-eu-header-container{
+  position: absolute;
+}
+
+body div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 680px){
+  body div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
+    padding: 30px !important;
+    /*flex-flow: nowrap;*/
+    text-align: left;
+  }
+
+  body div#hs-eu-cookie-confirmation #hs-eu-policy-wording p,
+  body div#hs-eu-cookie-confirmation #hs-eu-policy-wording a{
+    font-size: 16px;
+  }
+
+  body #hs-eu-cookie-confirmation #hs-eu-header-container{
+    right: 20px;
+    top: 24px;
+  }
+
+  body #hs-modal-content #hs-modal-body{
+    padding: 0px 24px 20px 24px !important;
+  }
+
+  body #hs-modal-content #hs-modal-footer{
+    padding: 0px 24px !important;
+  }
+}
+
+@media screen and (max-width: 860px){
+  body div#hs-eu-cookie-confirmation{
+    bottom: -300px !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #hs-eu-cookie-confirmation-inner * {
+    text-align: center;
+  }
+
+  div#hs-eu-policy-wording > div:before{ 
+    font-size: calc(28px - 5px) !important;
+  }
+  
+  body #hs-eu-cookie-confirmation #hs-eu-header-container{
+    right: 20px;
+  }
+}
+
+
+@media screen and (max-width: 679px){
+  body div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner {
+    padding: 24px !important;
+    text-align: center;
+  }
+
+
+
+  body div#hs-eu-cookie-confirmation #hs-eu-policy-wording p,
+  body div#hs-eu-cookie-confirmation #hs-eu-policy-wording a{
+    font-size: 15px !important;
+  }
+
+
+  /*body div#hs-eu-cookie-confirmation #hs-eu-policy-wording p,
+  body div#hs-eu-cookie-confirmation #hs-eu-policy-wording a{
+  font-size: 14px;
+}
+
+  body #hs-modal-content #hs-modal-body{
+  padding: 0px 24px 20px 12px !important;
+}*/
+
+  body #hs-modal-content #hs-modal-footer{
+    padding: 0px 24px;
+  }
+}
+
+body div#hs-eu-cookie-confirmation #hs-eu-cookie-confirmation-buttons-area{
+  display:block;
+  width: 100%;
+}
+
+body div#hs-eu-cookie-confirmation #hs-eu-policy-wording p{
+  margin-bottom: 10px;
+}
+
+body div#hs-eu-cookie-confirmation #hs-eu-policy-wording p,
+body div#hs-eu-cookie-confirmation #hs-eu-policy-wording a{
+  color: #1D1D1F;
+}
+
+body #hs-eu-cookie-disclaimer{
+  display:none;
+}
+
+
+body #hs-eu-cookie-confirmation #hs-eu-confirmation-button-group{
+  flex-flow: column-reverse;
+}
+
+body #hs-eu-cookie-confirmation #hs-eu-confirmation-button{ 
+  background: var(--colorLink);
+  border: none !important;
+  font-weight: 700;
+  height: unset;
+  padding: 10px;
+}
+
+body  #hs-eu-cookie-confirmation #hs-eu-confirmation-button, body #hs-eu-cookie-confirmation #hs-eu-cookie-settings-button, body #hs-eu-cookie-confirmation #hs-eu-decline-button{
+  font-size: 15px;
+}
+
+body #hs-eu-cookie-confirmation #hs-eu-cookie-settings-button{
+  font-weight: 500;
+  font-size: 13px !important;
+  margin-top: 4px;
+  color: white !important;
+  border: 0px !important;
+}
+
+body #hs-eu-cookie-confirmation #hs-eu-close-button{
+  width: 18px;
+  height: 18px;
+}
+
+/*body button#hs-eu-close-button:after {
+content: '';
+background-image: url(https://cdn.cookielaw.org/logos/static/ot_close.svg);
+height: 18px;
+width: 18px;
+background-size: 13px;
+display: inline-block;
+background-repeat: no-repeat;
+filter: invert(100%) sepia(4%) saturate(10%) hue-rotate(219deg) brightness(105%) contrast(100%);
+opacity: .5;
+}*/
+
+body #hs-eu-cookie-confirmation #hs-eu-close-button svg{
+  height: 16px;
+  width: 16px;
+}
+
+body .hs-category-description{
+  margin-top: 8px !important;
+}
+
+body #hs-modal-content #hs-modal-body-container{
+  display: block !important;
+}
+
+body #hs-modal-introduction-description{
+  margin-bottom: 20px !important;
+}
+
+body #hs-modal-content{
+  max-width: 90%;
+  padding: 20px 10px !important;
+}
+
+body #hs-modal-header-container{
+  margin: 0px 10px !important;
+}
+
+body #hs-modal-footer-container button{
+  height: 2.6em !important;
+}
+
+/* END GDPR BANNER CODE */

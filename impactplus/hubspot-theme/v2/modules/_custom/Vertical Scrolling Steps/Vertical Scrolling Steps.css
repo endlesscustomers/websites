@@ -1,0 +1,168 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--verticalscrollingsteps--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Figma: PROCESS / MONTH label text (New/H6 + fill_IMBDC3 / fill_WO3END) */
+.section--verticalscrollingsteps .h6.column--preheader {
+  background-image: linear-gradient(
+    90deg,
+    rgb(96, 168, 255) 0%,
+    rgb(244, 114, 200) 50%,
+    rgb(125, 216, 122) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline-block;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.section--verticalscrollingsteps--column--step {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.section--verticalscrollingsteps--column--step:not(:first-child) {
+  margin-top: 20px;
+}
+
+.section--verticalscrollingsteps--column--item.flexgrid.valign--top > .section--verticalscrollingsteps--column--step {
+  align-self: stretch;
+}
+
+.section--verticalscrollingsteps--column--step::after {
+  box-sizing: border-box;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  left: 24px;
+  top: 48px;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+  background-color: #e1e7f4;
+}
+
+.section--verticalscrollingsteps--column--item:not(:last-child) .section--verticalscrollingsteps--column--step::after {
+  bottom: -50px;
+}
+
+.section--verticalscrollingsteps--column--item:last-child .section--verticalscrollingsteps--column--step::after {
+  background: linear-gradient(to bottom, #e1e7f4 0%, #e1e7f4 72%, rgba(20, 18, 33, 0) 100%);
+}
+
+.section--verticalscrollingsteps--column--step--number {
+  border-radius: 50%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    rgb(96, 168, 255) 0%,
+    rgb(244, 114, 200) 52%,
+    rgb(125, 216, 122) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section--verticalscrollingsteps--column--step--number > span {
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: {{ color('white') }};
+  color: {{ color('black') }};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  font-family: "Felt Tip Roman" !important;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.0625em;
+}
+
+.all--color--white .section--verticalscrollingsteps--column--step--number > span {
+  background-color: #1d1d1f;
+  color: #ffffff;
+}
+
+.all--color--white .section--verticalscrollingsteps--column p,
+.all--color--white .section--verticalscrollingsteps--column h4,
+.all--color--white .section--verticalscrollingsteps--column span,
+.all--color--white .section--verticalscrollingsteps--column li {
+  color: rgb({{ color('white')|convert_rgb }}, 0.8) !important;
+}
+
+.section--verticalscrollingsteps--column .content--after--bullet--list {
+  box-sizing: border-box;
+  margin-top: 25px;
+  padding: 16px;
+  border-radius: 12px;
+  border: solid 1px transparent;
+  background:
+    linear-gradient({{ color('white') }}, {{ color('white') }}) padding-box,
+    linear-gradient(
+      90deg,
+      rgb(96, 168, 255) 0%,
+      rgb(244, 114, 200) 50%,
+      rgb(125, 216, 122) 100%
+    )
+    border-box;
+}
+
+.all--color--white .section--verticalscrollingsteps--column .content--after--bullet--list {
+  background:
+    linear-gradient(#252235, #252235) padding-box,
+    linear-gradient(
+      90deg,
+      rgb(96, 168, 255) 0%,
+      rgb(244, 114, 200) 50%,
+      rgb(125, 216, 122) 100%
+    )
+    border-box;
+}
+
+.all--color--white .section--verticalscrollingsteps--column .content--after--bullet--list p,
+.all--color--white .section--verticalscrollingsteps--column .content--after--bullet--list h4,
+.all--color--white .section--verticalscrollingsteps--column .content--after--bullet--list span,
+.all--color--white .section--verticalscrollingsteps--column .content--after--bullet--list li {
+  color: #ffffff !important;
+}

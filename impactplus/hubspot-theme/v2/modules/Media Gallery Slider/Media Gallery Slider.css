@@ -1,0 +1,149 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/HubUI/assets/Config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/HubUI/assets/Functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{###############################
+	MARK: Media Gallery Slider
+###############################}
+.section--mediagalleryslider .gallery--slider--container {
+	position: relative;
+}
+
+{###############################
+	MARK: Main Slider
+###############################}
+.section--mediagalleryslider .gallery--slider .f-carousel__viewport {
+	margin-bottom: 8px;
+	overflow:hidden;
+	opacity: 0;
+	{{ transition('opacity 1s ease-in-out') }};
+}
+
+.section--mediagalleryslider .gallery--slider .f-carousel__viewport.is-draggable {
+	opacity: 1;
+}
+
+.section--mediagalleryslider .gallery--slider .f-carousel__slide {
+	padding: 0;
+}
+.section--mediagalleryslider .f-carousel__slide .gallery--image {
+	border-radius: {{ config.default_BorderRadius }};
+	overflow: hidden;
+}
+
+.section--mediagalleryslider .gallery--image--caption {
+	background: transparent;
+	padding: 8px 0;
+}
+
+.section--mediagalleryslider .gallery--image--caption--text {
+	display: block;
+	font-family: {{ config.p_FontFamily }};
+	font-size: {{ config.p_FontSize }};
+	font-weight: {{ config.p_FontWeight }};
+	line-height: 30px;
+	margin: 0;
+	color: {{ color('darkgrey') }};
+}
+
+.section--mediagalleryslider .f-button {
+	color: {{ color('darkgrey') }};
+}
+
+.section--mediagalleryslider .f-button.is-prev {
+	left: -40px !important;
+	background: transparent;
+}
+
+.section--mediagalleryslider .f-button.is-next {
+	right: -40px !important;
+	background: transparent;
+}
+
+{% call mediaQuery('lap-and-up') %}
+	.section--mediagalleryslider .f-button {
+		color: {{ color('darkgrey') }};
+	}
+
+	.section--mediagalleryslider .f-button.is-prev {
+		left: -35px !important;
+		background: transparent;
+	}
+
+	.section--mediagalleryslider .f-button.is-next {
+		right: -35px !important;
+		background: transparent;
+	}
+{% endcall %}
+
+{###############################
+	MARK: Nav Slider
+###############################}
+.section--mediagalleryslider .gallery--nav {
+	/* margin: 0 0 0 -5px; */
+	position: relative;
+}
+.section--mediagalleryslider .gallery--nav .f-carousel__slide {
+	width: {{ 100 / 5  }}%;
+	margin: 0;
+	padding: 0 5px;
+}
+.section--mediagalleryslider .gallery--nav .f-carousel__slide .block--video:before {
+	width: 2.8rem;
+	height: 2.8rem;
+}
+.section--mediagalleryslider .gallery--nav .f-carousel__slide .block--video:hover:before {
+	background-color: {{ color('primary') }};
+}
+.section--mediagalleryslider .gallery--nav .f-carousel__nav {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	pointer-events: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+}
+.section--mediagalleryslider .gallery--nav .f-carousel__nav button.f-button {
+	content: '';
+	position: relative;
+	z-index: 10;
+	pointer-events: all;
+	color: {{ color('white') }};
+	background: rgba({{ color('black')|convert_rgb }}, .5);
+	border-radius: {{ config.default_BorderRadius }};
+	width: calc( ( {{ 100 / 5 }}% ) - 10px );
+	cursor: pointer;
+	height: auto;
+	transform: translateY(-50%) scaleX(-1);
+}
+.section--mediagalleryslider .gallery--nav .f-carousel__nav button.f-button svg {
+	height: 20%;
+}
+
+.section--mediagalleryslider .gallery--nav .f-carousel__nav .f-button.is-prev {
+	left: -5px !important;
+}
+
+.section--mediagalleryslider .gallery--nav .f-carousel__nav .f-button.is-next {
+	right: -5px !important;
+}

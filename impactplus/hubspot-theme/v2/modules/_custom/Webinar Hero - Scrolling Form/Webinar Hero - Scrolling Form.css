@@ -1,0 +1,252 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--heroform--content li p {
+  margin-bottom: 16px !important;
+  margin-top: 16px;
+}
+
+.form--padding{
+  padding: 32px 28px;
+}
+
+{% call mediaQuery("lap-and-up") %}
+.heroForm--position-sticky{
+  position: sticky;
+  top: 20px;
+}
+
+#heroForm.five-twelfths.grid__item {
+  width: 40.966667%;
+  flex-basis: 40.966667%;
+}
+
+h1, .h1{
+  font-size: 46px !important;
+  line-height: 1.2em;
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+{% endcall %}
+
+#heroForm form.hs-form .hs-form-field > .input {
+  margin-bottom: 20px;
+}
+
+.section--heroform--share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  text-align:center; 
+  border-radius:50%;
+  text-decoration:none!important;
+  position:relative;
+  {{ transition("background .3s ease-in-out") }}
+}
+.section--heroform--share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--heroform--share--icon:first-child {
+  margin-left:0px;
+}
+.section--heroform--share--icon--facebook {
+  background:{{ color("facebook") }};
+}
+.section--heroform--share--icon--facebook:hover {
+  background:{{ colorShade(color("facebook")) }};
+}
+.section--heroform--share--icon--twitter {
+  background:{{ color("twitter") }};
+}
+.section--heroform--share--icon--twitter:hover {
+  background:{{ colorShade(color("twitter")) }};
+}
+.section--heroform--share--icon--linkedin {
+  background:{{ color("linkedin") }};
+}
+.section--heroform--share--icon--linkedin:hover {
+  background:{{ colorShade(color("linkedin")) }};
+}
+
+.section--heroform form.hs-form.stacked .actions{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--heroform .production--form input.hs-button, 
+.section--heroform form.hs-form .hs_submit input.hs-button{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--heroform form.hs-form .legal-consent-container .hs-richtext{
+  line-height: 1.25em;
+}
+
+.section--heroform .production--form input[type=email], 
+.section--heroform .production--form input[type=file], 
+.section--heroform .production--form input[type=number], 
+.section--heroform .production--form input[type=password], 
+.section--heroform .production--form input[type=search], 
+.section--heroform .production--form input[type=tel], 
+.section--heroform .production--form input[type=text], 
+.section--heroform .production--form textarea, 
+.section--heroform form.hs-form input[type=email].hs-input, 
+.section--heroform form.hs-form input[type=file].hs-input, 
+.section--heroform form.hs-form input[type=number].hs-input, 
+.section--heroform form.hs-form input[type=tel].hs-input, 
+.section--heroform form.hs-form input[type=text].hs-input, 
+.section--heroform form.hs-form textarea.hs-input,
+.section--heroform .production--form select, 
+.section--heroform form.hs-form select.hs-input{
+  background: #F3F7FF;
+  border-radius: 8px;
+  padding: 14px 20px 14px;
+}
+
+.section--heroform--content p, 
+.section--heroform--content .p,
+.section--heroform--content li{
+  color: #4F5465;
+}
+
+.section--heroform--form--header p, .section--heroform--form--header li{
+  font-size: 16px;
+  line-height: 1.25em;
+  margin-top: -28px !important;
+}
+
+/* Social Share */
+
+.section--lcsocialshare-share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:20px;
+  height:20px;
+  line-height:20px;
+  text-align:center;
+  text-decoration:none!important;
+  position:relative;
+  filter: invert(100%) sepia(0%) saturate(7450%) hue-rotate(50deg) brightness(115%) contrast(112%);
+}
+.section--lcsocialshare-share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--lcsocialshare-share--icon:first-child {
+  margin-left:0px;
+}
+
+.section--lcsocialshare--share--link{
+  position: relative;
+  border-radius: 50%;
+  height: 34px;
+  width: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #AAC6E3;
+  {{ transition("background .2s ease-in-out") }}
+}
+
+.mini-nav__item:not(:first-child){
+  margin-left: 10px;
+}
+
+.section--lcsocialshare--share--link:hover{
+  background: {{ color('black') }};
+}
+
+.section--lcsocialshare--share--link .mini-nav__tooltip,
+.tooltip-container .mini-nav__tooltip{
+  top: calc(100% + 4px);
+}
+
+.section--lcsocialshare .section--lcsocialshare--share--link .socialshare--share--icon{
+  filter: invert(32%) sepia(6%) saturate(1298%) hue-rotate(189deg) brightness(94%) contrast(89%);
+  margin-right: 16px;
+}
+
+.section--lcsocialshare .copy-tooltip {
+  position: absolute;
+  background: #fff;
+  color: #1d1d1f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.2s ease;
+  bottom: -54px;
+  left: calc(50% + 8px);
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.section--lcsocialshare .tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+{% call mediaQuery("tablet-and-up") %}
+.section--lcsocialshare h6{
+  margin-top: 5px !important;
+}
+{% endcall %}
+
+.section--lcsocialshare .tooltip-container.show-tooltip .copy-tooltip {
+  opacity: 1;
+}
+
+/* Video */
+.video--overlay-block {
+  background: linear-gradient(180deg,transparent 30%,rgba(0,0,0,.43) 80.92%);
+  z-index: 10;
+}
+
+.video--overlay-block .video--play-caption {
+  padding: 20px;
+}
+
+.video--overlay-block .video--play-caption .video-caption--text-small {
+  padding-left: 12px;
+  text-align: left !important;
+}
+
+.video--label-active .block--video::before{
+  content: none;
+}

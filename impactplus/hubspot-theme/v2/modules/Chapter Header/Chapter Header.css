@@ -1,0 +1,37 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--chapterheader h2 + .section--chapterheader-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--chapterheader .section--chapterheader-content h2,
+.section--chapterheader .section--chapterheader-content h3,
+.section--chapterheader .section--chapterheader-content h4,
+.section--chapterheader .section--chapterheader-content h5,
+.section--chapterheader .section--chapterheader-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+.section--chapterheader .hs-embed-wrapper {
+  margin-top:28px!important;
+}

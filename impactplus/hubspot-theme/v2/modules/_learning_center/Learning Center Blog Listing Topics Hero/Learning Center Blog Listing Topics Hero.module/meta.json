@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 195759004452,
+  "label" : "[IM-UI] Learning Center Blog Listing Topics Heros",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : true
+}

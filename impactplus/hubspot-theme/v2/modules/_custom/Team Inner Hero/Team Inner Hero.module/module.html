@@ -1,0 +1,417 @@
+{{ require_css( get_asset_url("../Team Inner Hero.css"), { async: true } ) }}
+
+{#####################################################
+  MARK: Macros - Breadcrumbs
+#####################################################}
+{% macro breadcrumb_label_classes(is_first, is_last, loop_length) -%}
+  {% set classes = [
+    'section--breadcrumbs--customlink',
+    'hs-breadcrumb-label',
+    'hard--ends'
+  ] %}
+  {% if loop_length > 1 and is_first %}
+    {% do classes.append('bold') %}
+  {% else %}
+    {% do classes.append('medium') %}
+  {% endif %}
+  {{ classes|join(' ')|trim }}
+{%- endmacro %}
+
+{% macro breadcrumb_list_item_classes(is_first, is_last, loop_length) -%}
+  {% set classes = ['hs-breadcrumb-menu-item'] %}
+  {% if loop_length > 2 and is_last %}
+    {% do classes.append('palm-visuallyhidden') %}
+  {% endif %}
+  {% if is_first %}
+    {% do classes.append('customlink-first') %}
+  {% endif %}
+  {% if is_last %}
+    {% do classes.append('customlink-last') %}
+  {% endif %}
+  {{ classes|join(' ')|trim }}
+{%- endmacro %}
+
+{% macro breadcrumb_mobile_list_item_classes() -%}
+  {% set classes = [
+    'hs-breadcrumb-menu-item',
+    'customlink-last'
+  ] %}
+  {{ classes|join(' ')|trim }}
+{%- endmacro %}
+
+{% macro breadcrumb_mobile_last_label_classes() -%}
+  {% set classes = [
+    'section--breadcrumbs--customlink',
+    'hs-breadcrumb-label',
+    'medium',
+    'hard--ends',
+    'lap-and-up-visuallyhidden',
+    'tablet-visuallyhidden'
+  ] %}
+  {{ classes|join(' ')|trim }}
+{%- endmacro %}
+
+{% macro breadcrumb_link_label(item, is_last, is_over_limit) -%}
+  {%- if is_last and is_over_limit -%}
+    {{- item.link_name|striptags|truncate(50, false, '...') -}}
+  {%- else -%}
+    {{- item.link_name -}}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro render_breadcrumb_list_item(item, is_first, is_last, loop_length, total_len) -%}
+  {% set is_over_limit = total_len > 140 %}
+  {% set label_classes = breadcrumb_label_classes(is_first, is_last, loop_length)|trim %}
+
+  <li class="{{ breadcrumb_list_item_classes(is_first, is_last, loop_length)|trim }}">
+    {% if item.link_href and not is_last %}
+      <a class="{{ label_classes }}" href="{{ item.link_href }}">
+        {{ breadcrumb_link_label(item, is_last, is_over_limit) }}
+      </a>
+    {% else %}
+      <span class="{{ label_classes }}">
+        {{ breadcrumb_link_label(item, is_last, is_over_limit) }}
+      </span>
+    {% endif %}
+
+    {% if not is_last %}
+      <span class="hs-breadcrumb-menu-divider section--teaminnerhero--breadcrumb-divider" aria-hidden="true">
+        <svg width="5" height="8" viewBox="0 0 5 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.75 0.75L3.75 4L0.75 7.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    {% endif %}
+  </li>
+
+  {# Mobile duplicate last crumb when trail has 3+ levels #}
+  {% if loop_length > 2 and is_last %}
+    <li class="{{ breadcrumb_mobile_list_item_classes()|trim }}">
+      <span class="{{ breadcrumb_mobile_last_label_classes()|trim }}">
+        {{ item.link_name|striptags|truncate(50, false, '...') }}
+      </span>
+    </li>
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_breadcrumb_schema(node, current_page_url) -%}
+  {% set schema_node = [] %}
+  {% for item in node %}
+    {% set href = item.link_href %}
+    {% if not href and loop.last and current_page_url %}
+      {% set href = current_page_url %}
+    {% endif %}
+    {% do schema_node.append({
+      'link_name': item.link_name,
+      'link_href': href
+    }) %}
+  {% endfor %}
+  {% require_head %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {% for crumb in schema_node %}
+          {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "name": "{{ crumb.link_name|striptags }}",
+            "item": "{{ crumb.link_href }}"
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% end_require_head %}
+{%- endmacro %}
+
+{% macro render_breadcrumbs_nav(node) -%}
+  {% set lengths = [] %}
+  {% for item in node %}
+    {% do lengths.append(item.link_name|striptags|length) %}
+  {% endfor %}
+  {% set total_len = lengths|sum %}
+
+  <div class="section--teaminnerhero--breadcrumbs">
+    <div class="grid hard--ends">
+      <div class="grid__item one-whole hard--ends text--left">
+        <div class="hs-breadcrumb-menu-wrapper" role="navigation">
+          <ul class="hs-breadcrumb-menu">
+            {% for item in node %}
+              {{ render_breadcrumb_list_item(item, loop.first, loop.last, loop.length, total_len) }}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro breadcrumbs_subnav() -%}
+  {% set current_page_url = content.absolute_url|default('') %}
+  {% set node = [
+    {
+      'link_name': 'Meet the Team',
+      'link_href': 'https://www.impactplus.com/team'
+    },
+    {
+      'link_name': data.name
+    }
+  ] %}
+
+  {{ render_breadcrumb_schema(node, current_page_url) }}
+  {{ render_breadcrumbs_nav(node) }}
+{%- endmacro %}
+
+{#####################################################
+  MARK: Macros - General
+#####################################################}
+{% macro render_section_shell(section_slug, module) -%}
+  <div class="section section--{{ section_slug }} relative overflow--hidden">
+    {{ render_background() }}
+    <div class="block relative z-index--3">
+      <div class="section--{{ section_slug }}--inner">
+        {{ breadcrumbs_subnav() }}
+        <div class="block gridspacer--top tablet-venti--top palm-tall--top">
+
+        </div>
+
+        {{ caller() }}
+
+        <div class="block gridspacer--bottom">
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+{%- endmacro %}
+
+{% macro render_animation_classes(index) -%}
+  {% if
+    (not is_in_editor) and
+    (not Query.disableAnimation == 'true')
+  %}
+    {% set classes = [
+      'animate--fade',
+      'animate--fade-up',
+      'animate--fade-delay--' ~ index
+    ] %}
+    {{ classes|join(' ')|trim }}
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_social_link(href, social) -%}
+  <a class="inline-block" href="{{ href }}" title="{{ data.first_name }} {{ social }}" target="_blank">
+    {{ caller() }}
+  </a>
+{%- endmacro %}
+
+{% macro render_background() -%}
+  <div class="background">
+    {% set background_classes = [
+      'default',
+      'z-index--2',
+      'opacity--100'
+    ] %}
+    {% if data.hero_background_image %}
+      {% do background_classes.append('background-size--contain--x background-repeat--none') %}
+    {% else %}
+      {% do background_classes.append('background--black') %}
+    {% endif %}
+    {% set styles = [
+      'top:0%',
+      'bottom:33%',
+      'right:0%',
+      'left:0%'
+    ] %}
+    <div class="background--layer {{ background_classes|join(' ')|trim }}" style="{{ styles|join(';') }}">
+      {% if data.hero_background_image %}
+        <img
+          src    = "{{ data.hero_background_image.url }}"
+          alt    = "{{ data.name }}"
+          width  = "1600"
+          height = "900"
+          style  = "{{-
+            'object-fit: cover;' ~
+            'object-position: center;' ~
+            'width: 100%;' ~
+            'height: 100%;' ~
+            'aspect-ratio: 16/9;'
+          -}}"
+        />
+      {% endif %}
+    </div>
+  </div>
+{%- endmacro %}
+
+{% macro render_main_content() -%}
+  {% if data.name or data.job_title %}
+    <div class="section--hero--name first--hard--top last--hard--bottom hard--top {{ render_animation_classes(1)|trim }}">
+      <h1>
+        {{ data.name }}
+      </h1>
+      {% if data.job_title %}
+        <span class="h5 bold">
+          {{ data.job_title }}
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if data.quote %}
+    <div class="section--hero--quote {{ render_animation_classes(5)|trim }}">
+      <blockquote>
+        {{ data.quote }}
+      </blockquote>
+    </div>
+  {% endif %}
+
+  {% if
+    data.linkedin_profile_url or
+    data.twitter_profile_url or
+    data.website_url
+  %}
+    <div class="section--teaminnerhero--social {{ render_animation_classes(4) }}">
+      <p class="font--18 bold hard--ends">
+        Connect with {{ data.first_name}}:
+      </p>
+      <div class="section--teaminnerhero--social--mediums">
+        {% if data.linkedin_profile_url %}
+          {% call render_social_link(data.linkedin_profile_url, 'LinkedIn') %}
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#AAC6E3"/>
+              <g clip-path="url(#clip0_12009_7077)">
+                <path d="M24.0002 24.0001V18.1401C24.0002 15.2601 23.3802 13.0601 20.0202 13.0601C18.4002 13.0601 17.3202 13.9401 16.8802 14.7801H16.8402V13.3201H13.6602V24.0001H16.9802V18.7001C16.9802 17.3001 17.2402 15.9601 18.9602 15.9601C20.6602 15.9601 20.6802 17.5401 20.6802 18.7801V23.9801H24.0002V24.0001Z" fill="white"/>
+                <path d="M8.25977 13.3201H11.5798V24.0001H8.25977V13.3201Z" fill="white"/>
+                <path d="M9.92 8C8.86 8 8 8.86 8 9.92C8 10.98 8.86 11.86 9.92 11.86C10.98 11.86 11.84 10.98 11.84 9.92C11.84 8.86 10.98 8 9.92 8Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_12009_7077">
+                  <rect width="16" height="16" fill="white" transform="translate(8 8)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          {% endcall %}
+        {% endif %}
+        {% if data.twitter_profile_url %}
+          {% call render_social_link(data.twitter_profile_url, 'Twitter') %}
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#AAC6E3"/>
+              <g clip-path="url(#clip0_12009_7080)">
+                <path d="M8.03901 8.63989L14.2164 16.8997L8 23.6153H9.39907L14.8415 17.7357L19.2389 23.6153H24L17.475 14.8909L23.2612 8.63989H21.8621L16.8499 14.0549L12.8001 8.63989H8.03901ZM10.0964 9.67045H12.2837L21.9422 22.5845H19.755L10.0964 9.67045Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_12009_7080">
+                  <rect width="16" height="16" fill="white" transform="translate(8 8)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          {% endcall %}
+        {% endif %}
+        {% if data.website_url %}
+          {% call render_social_link(data.website_url, 'Website') %}
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#AAC6E3"/>
+              <g clip-path="url(#clip0_12009_7092)">
+                <path d="M17.7612 14.2365C17.5717 14.0458 17.3615 13.8768 17.1346 13.7326C16.5337 13.3478 15.8352 13.1433 15.1217 13.1433C14.1313 13.1415 13.1812 13.535 12.4821 14.2365L9.09074 17.6305C8.39287 18.3297 8.00063 19.2771 8 20.265C7.99869 22.3265 9.66876 23.9987 11.7303 24C12.7191 24.0035 13.6683 23.6118 14.3671 22.9122L17.1666 20.1127C17.2175 20.0623 17.2459 19.9935 17.2455 19.9219C17.2447 19.7746 17.1246 19.656 16.9773 19.6568H16.8707C16.2858 19.6589 15.7061 19.5465 15.1643 19.3262C15.0645 19.2851 14.9498 19.3083 14.8737 19.3849L12.8608 21.4005C12.2357 22.0256 11.2222 22.0256 10.5972 21.4005C9.97208 20.7754 9.97208 19.762 10.5972 19.1369L14.0019 15.7349C14.6265 15.1111 15.6383 15.1111 16.2628 15.7349C16.6838 16.131 17.3403 16.131 17.7612 15.7349C17.9423 15.5536 18.0521 15.3132 18.0705 15.0576C18.09 14.7522 17.9773 14.4531 17.7612 14.2365Z" fill="white"/>
+                <path d="M22.9045 9.09333C21.4468 7.63556 19.0833 7.63556 17.6255 9.09333L14.8286 11.8875C14.7518 11.9647 14.7297 12.0807 14.7727 12.1808C14.8151 12.2811 14.9144 12.3455 15.0233 12.3434H15.1219C15.7061 12.3423 16.2849 12.4555 16.8256 12.6767C16.9254 12.7178 17.0402 12.6946 17.1162 12.618L19.1238 10.6131C19.7489 9.98798 20.7624 9.98798 21.3874 10.6131C22.0125 11.2381 22.0125 12.2516 21.3874 12.8766L18.8865 15.3749L18.8652 15.3989L17.9907 16.268C17.3661 16.8918 16.3543 16.8918 15.7298 16.268C15.3088 15.8719 14.6523 15.8719 14.2314 16.268C14.0491 16.4507 13.9392 16.6931 13.9221 16.9506C13.9026 17.256 14.0152 17.5551 14.2314 17.7718C14.54 18.0817 14.901 18.3344 15.2978 18.5183C15.3538 18.5449 15.4098 18.5663 15.4658 18.5903C15.5218 18.6143 15.5804 18.6329 15.6364 18.6543C15.6924 18.6756 15.7511 18.6943 15.8071 18.7103L15.9644 18.7529C16.071 18.7796 16.1777 18.8009 16.287 18.8195C16.4186 18.8391 16.5512 18.8516 16.6843 18.8569H16.8709H16.8869L17.0468 18.8382C17.1055 18.8356 17.1668 18.8222 17.2362 18.8222H17.3268L17.5108 18.7956L17.5961 18.7796L17.7507 18.7476H17.7801C18.435 18.5831 19.033 18.244 19.5104 17.7664L22.9044 14.3724C24.3623 12.9146 24.3623 10.5511 22.9045 9.09333Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_12009_7092">
+                  <rect width="16" height="16" fill="white" transform="translate(8 8)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          {% endcall %}
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro %}
+
+{% macro render_bio_video_link() -%}
+  {% if data.bio_video -%}
+    {% set bio_link_attributes = {
+    'class': 'no--underline',
+    'href': 'javascript:;',
+    'onclick': "launchVidLightbox('" ~ data.bio_video ~ "');"
+    } %}
+    <a {{ bio_link_attributes|xmlattr }}>
+      {{ caller() }}
+    </a>
+  {% else %}
+    {{ caller() }}
+  {%- endif %}
+{%- endmacro %}
+
+{% macro render_media_content() -%}
+  {% call render_bio_video_link() %}
+    {% if data.square_team_photo.url %}
+      <span class="block relative border-radius--12 overflow--hidden hover--pointer height--max">
+        <img
+          loading       = "eager"
+          fetchpriority = "high"
+          alt           = "Video Placeholder"
+          class         = "relative z-index--1"
+          src           = "{{ data.square_team_photo.url }}"
+          width         = "284"
+          height        = "378"
+          style         = "{{-
+            'width: 100%;' ~
+            'height: 100%;' ~
+            'object-fit: cover;' ~
+            'object-position: center;'
+          -}}"
+        />
+        <span class="block image--overlay absolute z-index--2" aria-hidden="true"></span>
+        {% if data.bio_video %}
+          <span class="section--teaminnerhero--bio-video-link absolute bottom--0 left--0 z-index--3">
+            <span class="section--teaminnerhero--bio-video-link--icon" aria-hidden="true">
+              <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="14.0859" y="11.917" width="23.8333" height="28.1667" fill="white"/>
+                <path d="M26 0C11.6408 0 0 11.6406 0 26C0 40.3594 11.6408 52 26 52C40.3592 52 52 40.3594 52 26C52 11.6406 40.3592 0 26 0ZM34.9862 27.3782L21.9862 35.5032C21.7232 35.6674 21.4241 35.75 21.125 35.75C20.854 35.75 20.5827 35.6826 20.3371 35.5461C19.8205 35.2597 19.5 34.7161 19.5 34.125V17.875C19.5 17.2839 19.8205 16.7403 20.3371 16.4539C20.8536 16.1659 21.4852 16.1834 21.9862 16.4968L34.9862 24.6218C35.4612 24.9194 35.75 25.4399 35.75 26C35.75 26.5601 35.4612 27.0807 34.9862 27.3782Z" fill="#0A6CFF"/>
+              </svg>
+            </span>
+            <span class="section--teaminnerhero--bio-video-link--label font--18 bold color--white">
+              Get to know {{ data.first_name }}
+            </span>
+          </span>
+        {% endif %}
+      </span>
+      {% if data.bio_video %}
+        <img
+          loading       = "eager"
+          fetchpriority = "high"
+          alt           = "Video Placeholder"
+          class         = "visuallyhidden"
+          data-bg       = "//play.vidyard.com/{{ data.bio_video }}.jpg"
+          width         = "760"
+          data-type     = "lightbox"
+          data-uuid     = "{{ data.bio_video }}"
+          data-v        = "4"
+        />
+      {% endif %}
+    {% endif %}
+  {% endcall %}
+{%- endmacro %}
+
+
+{#####################################################
+######################################################
+  IMPORTANT: THE HUBDB DATA CALL IS IN THE TEMPLATE
+  THE DATA RETURNED IS FED TO A VARIABLE NAMED `data`
+######################################################
+######################################################}
+{% call render_section_shell('teaminnerhero') %}
+  <div class="grid hard--ends">
+    <div class="grid__item one-whole flexgrid row--reverse background--offwhite padding--short short border-radius--12">
+      <div class="grid__item nine-twelfths tablet-one-half palm-one-whole venti portable-short lap-and-up-padding--short lap-and-up-padding--tall--left tablet-padding--tall--left all--text--left">
+        {{ render_main_content() }}
+      </div>
+      <div class="grid__item three-twelfths tablet-one-half palm-one-whole hard">
+        {{ render_media_content() }}
+      </div>
+    </div>
+  </div>
+{% endcall %}

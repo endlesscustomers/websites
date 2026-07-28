@@ -1,0 +1,10 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "inline_help_text" : "This popup will only show to users who have not filled out the assessment",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 200207141249,
+  "label" : "[IM-UI] Popup with Reminder Form",
+  "icon" : "https://www.impactplus.com/hubfs/impact-logo-highres-black-half.svg",
+  "is_available_for_new_content" : true
+}

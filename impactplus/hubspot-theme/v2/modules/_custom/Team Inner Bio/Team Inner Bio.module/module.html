@@ -1,0 +1,183 @@
+{{ require_css( get_asset_url("../Team Inner Bio.css"), { async: true } ) }}
+
+<div class="section--cards-popup-container">
+  <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+  </div>
+  
+  <div class="team-inner--bio relative z-index--10">
+    <div class="grid flexgrid hard--top tall--bottom palm-tall--top palm-hard--bottom">
+      <div class="team-inner--bio--container grid__item nine-twelfths hard--ends palm-eleven-twelfths palm-hard--sides animate--fade animate--fade-up animate--fade-delay--1 text--left">
+        <h2 class='hard--top'>About {{ data['first_name'] }}</h2>
+        <div class="team-inner--bio-details p p--default margin--tall--bottom">
+          {{ data['bio'] }}
+        </div>
+        <div class="team-inner--bio-btns flex palm-margin--petite--bottom">
+          {% if data["allow_speaker_request"] %}
+          <a href="javascript:;" title="Request to have {{ data['first_name'] }} Speak" class="team-inner--bio-request-to-speak btn btn--blue">
+            Request to have {{ data['first_name'] }} Speak
+          </a>
+          {% endif %}
+          {% if content.absolute_url is string_containing '/team' %}
+          <a download='{{ data["high_res_image"]["url"] }}' title="Download {{ data['first_name'] }}'s Headshot" href="{{ data['high_res_image']['url'] }}" class="btn btn--transparent--primary">
+            Download {{ data['first_name'] }}'s Headshot
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="grid__item three-twelfths hard--ends palm-eleven-twelfths palm-hard--sides animate--fade animate--fade-up animate--fade-delay--2 relative text--left">
+        <div class="team-inner--location--wrapper">
+          <div class="team-inner--location">
+            <p class="team--heading-line margin--short--top hard--bottom bold all--color--obsidian font--16">
+              Location
+            </p>
+            <p class="font--16 color--slate-500 margin--petite--top">{{ data["location"] }}</p>
+          </div>
+          {% if (data["specializations"]|length > 0) || (module.custom_specializations|length > 0) %}
+        <div class="team-inner--expertise">
+          <p class="team--heading-line margin--short--top margin--petite--bottom bold all--color--obsidian font--16">
+            Area of Expertise
+          </p>
+          <div class="{% if data["specializations"] is not string %}team-inner--expertise-tags{% endif %} flex flex-wrap--wrap">
+            {# Used for the Certified Coach HubDB Table #}
+            {% if data["specializations"] is string %}
+            <div class="p font--16 flex hard--ends normalcase light">
+              <span class="flex flex-align--center">
+                <span>{{ data["specializations"] }}</span>
+              </span>
+            </div>
+            {% else %}
+            {% for item in data["specializations"] %}
+            <span class="team-inner--expertise-tag overflow--visible">
+              <div class="p font--16 flex hard--ends normalcase light">
+                <span class="flex flex-align--center">
+                  <span>{{ item['name'] }}</span>
+                </span>
+              </div>
+            </span>
+            {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+          {% if (data["areas_of_expertise"]|length > 0) %}
+          <div class="team-inner--expertise">
+            <p class="team--heading-line margin--short--top margin--petite--bottom bold all--color--obsidian font--16">
+              Industry Area of Expertise
+            </p>
+            <div class="{% if data["areas_of_expertise"] is not string %}team-inner--expertise-tags{% endif %} flex flex-wrap--wrap">
+              {% if data["areas_of_expertise"] is string %}
+              <div class="p font--16 flex hard--ends normalcase light">
+                <span class="flex flex-align--center">
+                  <span>{{ data["areas_of_expertise"] }}</span>
+                </span>
+              </div>
+              {% else %}
+              {% for item in data["areas_of_expertise"] %}
+              <span class="team-inner--expertise-tag overflow--visible">
+                <div class="p font--16 flex hard--ends normalcase light">
+                  <span class="flex flex-align--center">
+                    <span>{{ item['label'] }}</span>
+                  </span>
+                </div>
+              </span>
+              {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+          {% if data['hubspot_certifications']|length > 0 %}
+          <div class="team-inner--hs-certs">
+            <p class="team--heading-line margin--short--top margin--petite--bottom bold all--color--obsidian font--16">
+              HubSpot Certifications
+            </p>
+            <div class="team-inner--cert-container">
+              {% for certification in data['hubspot_certifications'] %}
+              <div class='inline-block all--text--center tooltip relative'>
+                <img class='team-inner--hs-cert lazy' data-src="{{ certification['certification_badge']['url'] }}" width="58" height="58">
+                <p class='color--white tooltiptext'>
+                  {{ certification['name'] }}
+                </p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          {% if data['taya_certifications']|length > 0 %}
+          <div class="team-inner--hs-certs">
+            <p class="team--heading-line margin--short--top margin--petite--bottom bold all--color--obsidian font--16">
+              Endless Customers Certification
+            </p>
+            <div class="team-inner--cert-container">
+              {% for certification in data['taya_certifications'] %}
+              <div class='inline-block all--text--center tooltip relative'>
+                <img class='team-inner--hs-cert lazy' data-src="{{ certification['taya_certification_badge']['url'] }}" width="58" height="58">
+                <p class='color--white font--heading tooltiptext'>
+                  {{ certification['name'] }}
+                </p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          {% if module.custom_certifications|length > 0 %}
+          <div class="team-inner--certs">
+            <p class="team--heading-line margin--short--top margin--petite--bottom bold all--color--obsidian font--16">
+              Other Certifications
+            </p>
+            <div class="team-inner--cert-container">
+              {% for certification in module.custom_certifications %}
+              <div class='inline-block all--text--center tooltip relative'>
+                <img class='team-inner--hs-cert lazy' data-src="{{ certification.cc_image.src }}" width="60" height="60">
+                <p class='color--white font--heading tooltiptext'>
+                  {{ certification.cc_name }}
+                </p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if data["allow_speaker_request"] %}
+  <div id='productionPopUp' class='popupTemplate--apple-white'>
+    <div id='productionPopUpVcenter'></div>
+    <div class='productionPopupInner expertsInner'>
+      <div class='grid relative hard--ends' style="z-index:999;">
+        <div class='productionPopupContainer'>
+          <div class='productionClose hover--pointer'> 
+            <div class="productionClose--container absolute">
+              <img src="https://www.impactplus.com/hubfs/IMPACT%20Plus/Assets/close--_Inverted.svg" class="absolute productionClose--inverted" width="26" height="26" alt="close">
+              <img src="https://www.impactplus.com/hubfs/IMPACT%20Plus/Assets/close--_Default.svg" class="absolute productionClose--default" width="26" height="26" alt="close">
+            </div>
+          </div>
+          <div class='productionPopupContainer--padding'>
+            <div class='productionPopupContent' id='unlockContentWrapper'> 
+              {# Request a Speaker Form #} 
+              <h2 class="hard--top">Talk to us about having {{ data['first_name'] }} speaking at your event</h2>
+              <div class='productionPopup--singles text--left grid hard'>
+                <div class="productionPopUp--event-content section--simple-form">
+                  <div class="speaker-form--wrapper form-btn-alignment--center all--btn all--btn--blue hs_cos_wrapper_type_form">
+                    <div id="speaker--form-target" data-subId="7efcf1fa-c228-4f21-8897-a8d8f8568d40"></div>
+                  </div>
+                </div>
+              </div>
+              {# End request a Speaker Form #} 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='popupTemplate--apple-white-overlay'></div>
+  {% endif %}
+  
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+  </div>
+</div>
+
+

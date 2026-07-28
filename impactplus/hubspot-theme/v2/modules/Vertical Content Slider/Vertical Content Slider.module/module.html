@@ -1,0 +1,268 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Vertical Content Slider.css"), { async: true} ) }}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="{{ name }} section section--verticalcontentslider {% if not module.layout_controls.disable_scroll %}section--verticalcontentslider--scroll{% endif %}  relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends">
+      <div class="flexgrid section--verticalcontentslider--anchor section--verticalcontentslider--scrollwrapper relative">
+        <div class="section--verticalcontentslider--panel grid__item five-half-twelfths palm-one-whole hard--ends palm-margin--tall--bottom text--left {{ module.layout_controls.content_alignment_mobile }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="section--verticalcontentslider--scrollitem--outer">
+            <div class="section--verticalcontentslider--scrollitem first--hard--top last--hard--bottom">
+              {% if module.preheader %}
+              <span class="h6 preheader">{{ module.preheader }}</span>
+              {% endif %}
+              {% if module.header %}
+              <h2>{{ module.header }}</h2>
+              {% endif %}
+              {{ module.content }}
+              {% if snippets.multiButton(module.cta) %}
+              {{ snippets.multiButton(module.cta) }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="grid__item one-half palm-one-whole hard--ends palm-short first--hard--top last--hard--bottom text--left {{ module.layout_controls.content_alignment_mobile }} {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }}">
+          <div class="grid__item one-whole hard--side hard--top palm-short--top hard--bottom text--left overflow--visible">
+            <div class="section--verticalcontentslider--wrapper">
+              {# Start column content #}
+              <div class="block">
+                <div class="grid__item one-whole hard">
+                  {% for row in module.column.bullet_list %}
+
+                  <div class="section--verticalcontentslider--row all--text--left palm-all--text--left section--verticalcontentslider--row--{{ loop.index }} {% if loop.first %}active--list--item{% endif %} {% if not loop.last %}short--bottom margin--short--bottom border--0 border--bottom--1{% endif %} {% if loop.last %}section--verticalcontentslider--lastrow{% endif %}">
+
+                    <span class="section--verticalcontentslider--row--inner">
+                      <span class="flexgrid">
+                        {% if module.column.bullet_list_icon_style != "none" %}
+                        <span class="section--verticalcontentslider--row--icon" style="flex-basis:{{ module.column.icons_maximum_width.icons_max_pixel_width }}px;padding-right:20px;top:{{ row.icon.image_icon_vertical_offset }}px;position:relative;">
+
+                          {% if module.column.bullet_list_icon_style == "icon" %}
+                          <img
+                               src    = "{{ row.icon.image_icon.src }}"
+                               width  = "{{ row.icon.image_icon.width }}"
+                               height = "{{ row.icon.image_icon.height }}"
+                               style  = "max-width:{{ module.column.icons_maximum_width.icons_max_pixel_width }}px;height:auto;"
+                               alt    = "{{ row.icon.image_icon.alt }}"
+                               {% if module.section_controls.lazy_load_images %}
+                               loading="lazy"
+                               {% endif %}
+                          />
+                          {% elif module.column.bullet_list_icon_style == "lottie" %}
+                          <lottie-player
+                            autoplay
+                            {% if row.lottie_animation.lottie_embed_loop %}
+                            loop
+                            {% endif %}
+                            id    = "{{ name }}--lottieplayer--{{ loop.index }}"
+                            class = "inline-block"
+                            mode  = "normal"
+                            style = "{{ 'width:' ~ row.lottie_animation.lottie_embed_width ~ 'px;' if row.lottie_animation.lottie_embed_width }}height:auto;"
+                          >
+                          </lottie-player>
+                          {{ require_js( 'https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js', { async: true } ) }}
+													{% require_js %}
+                          <script>
+                            const {{ name|replace('-','_') }}LottiePlayer{{ loop.index }} = document.querySelector("#{{ name }}--lottieplayer--{{ loop.index }}");
+                            {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.addEventListener("rendered", (e) => {
+                              {% if 'url' == row.lottie_animation.lottie_embed_type %}
+                                {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load("{{ row.lottie_animation.lottie_embed }}");
+                              {% else %}
+                                {{ name|replace('-','_') }}LottiePlayer{{ loop.index }}.load({{ row.lottie_animation.lottie_embed|tojson }});
+                              {% endif %}
+                            });
+                          </script>
+													{% end_require_js %}
+                          {% endif %}
+
+                        </span>
+                        {% endif %}
+                        <span class="section--verticalcontentslider--row--content first--hard--top last--hard--bottom">
+                          {% if row.header_label %}
+                          <h3 class="h4">
+                            {{ row.header_label }}
+                          </h3>
+                          {% endif %}
+                          {% if row.description %}
+                          {{ row.description }}
+                          {% endif %}
+                        </span>
+                        <span class="block clear"></span>
+                      </span>
+                    </span>
+                    {% if loop.last %}
+                      <div class="last-item-spacer palm-visuallyhidden"></div>
+                    {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {# End column content #}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+  </div>
+  {{ snippets.swoopSpacerBottom(module.background) }}
+  {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>
+
+{% if not module.layout_controls.disable_scroll %}
+	{% require_js %}
+		<script>
+			let position = window.scrollY;
+
+			function delay() {
+				let timer = 0;
+				return function (callback, ms) {
+					clearTimeout(timer);
+					timer = setTimeout(callback, ms);
+				};
+			}
+
+			function lastItemSpacer() {
+				document.querySelectorAll('.section--verticalcontentslider.section--verticalcontentslider--scroll').forEach(function (section) {
+					const lastItem = section.querySelector('.section--verticalcontentslider--lastrow');
+					const scrollItem = section.querySelector('.section--verticalcontentslider--scrollitem');
+					const spacerItem = section.querySelector('.last-item-spacer');
+
+					const lastItemHeight = lastItem.offsetHeight;
+					const elementHeight = scrollItem.offsetHeight;
+					const spacerHeight = spacerItem ? spacerItem.offsetHeight : 0;
+
+					if (window.innerWidth >= 768) {
+						if ((lastItemHeight - spacerHeight) < elementHeight) {
+							const lastItemSpacerHeight = elementHeight - (lastItemHeight - spacerHeight) + 'px';
+							spacerItem.style.height = lastItemSpacerHeight;
+						} else {
+							spacerItem.style.height = '0px';
+						}
+					}
+				});
+			}
+
+			function stickyHeaderContent() {
+				document.querySelectorAll('.section--verticalcontentslider.section--verticalcontentslider--scroll').forEach(function (section) {
+					const panelItem = section.querySelector('.section--verticalcontentslider--scrollitem--outer');
+					const scrollBody = section.querySelector('.section--verticalcontentslider--scrollwrapper');
+					const scrollItem = section.querySelector('.section--verticalcontentslider--scrollitem');
+					const scrollAnchor = section.querySelector('.section--verticalcontentslider--anchor');
+					const lastItem = section.querySelector('.section--verticalcontentslider--lastrow');
+
+					const scrollAnchorOffset = scrollAnchor.getBoundingClientRect().top + window.scrollY;
+					const scrollTop = window.scrollY;
+					const lastItemOffset = lastItem.getBoundingClientRect().top + window.scrollY;
+					const lastItemHeight = lastItem.offsetHeight;
+
+					const stickyStart = scrollAnchorOffset;
+					const stickyTop = 0;
+					const stickyOffset = 0;
+
+					const windowHeight = window.innerHeight;
+					const elementHeight = scrollItem.offsetHeight;
+
+					const stickyEnd = scrollBody.getBoundingClientRect().top + scrollBody.offsetHeight - (scrollItem.offsetHeight + stickyOffset);
+					const panelItemWidth = panelItem.offsetWidth;
+
+					const stickyContainerOffset = scrollAnchorOffset - scrollTop;
+					const lastItemElementOffset = lastItemOffset - scrollTop;
+					const stickyTopPosition = windowHeight / 2 - elementHeight / 2;
+					const lastItemPosition = lastItem.offsetHeight - elementHeight;
+
+					if (window.innerWidth >= 769) {
+						let scroll = window.scrollY;
+						let scrollDirection = "neutral";
+						if (scroll > position) {
+							scrollDirection = "down";
+						} else {
+							scrollDirection = "up";
+						}
+						position = scroll;
+
+						// Add sticky behavior
+						if (stickyContainerOffset < stickyTopPosition) {
+							if (!scrollItem.classList.contains("sticky--active--class") || !scrollItem.classList.contains("sticky--passed--class")) {
+								scrollItem.classList.add("sticky--active--class");
+								scrollItem.classList.remove("sticky--passed--class");
+								scrollItem.style.position = "fixed";
+								scrollItem.style.top = stickyTopPosition + "px";
+								scrollItem.style.width = panelItemWidth + "px";
+								scrollItem.style.bottom = "";
+							}
+						}
+
+						// Remove sticky behavior
+						if (stickyContainerOffset >= stickyTopPosition) {
+							if (scrollItem.classList.contains("sticky--active--class")) {
+								scrollItem.classList.remove("sticky--active--class");
+								scrollItem.style.top = "";
+								scrollItem.style.position = "";
+								scrollItem.style.width = "";
+							}
+						}
+
+						// Bottom align element reaches sticky
+						if (lastItemElementOffset < stickyTopPosition) {
+							if (!scrollItem.classList.contains("sticky--passed--class")) {
+								scrollItem.classList.remove("sticky--active--class");
+								scrollItem.classList.add("sticky--passed--class");
+								scrollItem.style.position = "absolute";
+								scrollItem.style.bottom = lastItemPosition + "px";
+								scrollItem.style.top = "";
+							}
+						}
+
+						// Scrolling up and bottom align element is no longer past
+						if (scrollDirection === 'up' && lastItemElementOffset >= stickyTopPosition && scrollItem.classList.contains("sticky--passed--class")) {
+							scrollItem.classList.remove("sticky--passed--class");
+						}
+
+						section.querySelectorAll(".section--verticalcontentslider--row").forEach(function (row) {
+							const scrollItemOffset = scrollItem.getBoundingClientRect().top - scrollTop;
+							const bulletItemOffset = row.getBoundingClientRect().top - scrollTop;
+							const bulletItemHeight = row.offsetHeight;
+
+							const bulletItemOffsetStart = bulletItemOffset - 20;
+							const bulletItemOffsetEnd = bulletItemOffset + bulletItemHeight + 10;
+
+							if (scrollItemOffset >= bulletItemOffsetStart && scrollItemOffset <= bulletItemOffsetEnd) {
+								row.classList.add('active--list--item');
+							} else {
+								row.classList.remove('active--list--item');
+							}
+						});
+					} else {
+							scrollItem.style.position = "relative";
+							scrollItem.style.top = "";
+							scrollItem.style.width = "";
+							scrollItem.style.bottom = "";
+					}
+				});
+			}
+
+			document.addEventListener('DOMContentLoaded', function () {
+				stickyHeaderContent();
+				lastItemSpacer();
+			});
+
+			window.addEventListener('scroll', function () {
+				stickyHeaderContent();
+			});
+
+			window.addEventListener('resize', function () {
+				stickyHeaderContent();
+				delay(function () {
+					lastItemSpacer();
+				}, 1000);
+			});
+		</script>
+	{% end_require_js %}
+{% endif %}

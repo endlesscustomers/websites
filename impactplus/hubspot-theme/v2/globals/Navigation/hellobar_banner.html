@@ -1,0 +1,19 @@
+<!--
+    templateType: page
+    isAvailableForNewContent: false
+-->
+{{ require_css(get_asset_url('/IMPACT_Publisher_Production/- Global Blocks -/IMPACT Navigation and Footer/Sticky Banner/Sticky Banner - IMPACT Grid.css'), { async: true } ) }}
+
+<div class="headerIMPlus-navigation--hb relative {% if bannerCtaData.banner_settings.banner_background_color_type == "solid" %}background--{{ bannerCtaData.banner_settings.banner_background_color }}{% endif %}" style="display:none; {% if bannerCtaData.banner_settings.banner_background_color_type == "gradient" %}background: {{ bannerCtaData.banner_settings.banner_background_css_code }};{% endif %}" data-tr="{{ bannerCtaData.banner_settings.banner_cookie_name|escape_html }}">
+  <div class="grid hard--ends flex flex-align--center">
+    <div class="headerIMPlus-navigation--hb-container grid__item one-whole hard--ends flex flex-align--center lap-and-up-relative tablet-relative">
+      <div class="headerIMPlus-navigation--hb--text all--color--{{ bannerCtaData.banner_settings.banner_font_color }} p p--sm line-height--small hard--ends">
+        <span class="headerIMPlus-navigation--hb--text-inner {{ bannerCtaData.banner_header_font_weight }} palm-visuallyhidden">{{ bannerCtaData.banner_header|escape_html }}</span>
+        <span class="headerIMPlus-navigation--hb--text-inner {{ bannerCtaData.banner_header_font_weight }} lap-and-up-visuallyhidden tablet-visuallyhidden">{{ bannerCtaData.banner_header_mobile|escape_html }}</span>
+        <span class="headerIMPlus-navigation--hb-button-mobile lap-and-up-visuallyhidden tablet-visuallyhidden bold">{% cta guid="{{ bannerCtaData.cta.cta }}" %}</span>
+      </div>
+      <div class="headerIMPlus-navigation--hb-button palm-visuallyhidden btn--cta-reset">{{ snippets.button(bannerCtaData.cta) }}</div>
+      <img class="headerIMPlus-hb--close hover--pointer svg-icon-pallete--white absolute right--0 hover--pointer btn--basic-transition lazy" alt="Close Hello Bar Banner" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Close.svg">
+    </div>
+  </div>
+</div>

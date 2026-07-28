@@ -1,0 +1,311 @@
+@media (min-width: 1025px) {
+  .questionContent h3{
+    font-size: 36px;
+  }
+}
+
+.playbook--blocks .resultsScore .resultsScore--container .resultsScore--number--center{
+  font-size:120px;
+}
+
+.faq-accordian .faq-accordian--container .scorecardResults--question{
+  margin-bottom: 32px;
+  border: 1px solid #E1E7F4;
+  padding: 36px 32px 28px 32px !important;
+}
+
+@media (max-width: 768px) {
+  .faq-accordian--title-spacing .flex > img{
+    width: 32px;
+    top: 10px;
+    position: relative;
+  }
+
+  .faq-accordian .faq-accordian--container .scorecardResults--question{
+    padding: 24px !important;
+  }
+
+  .accoridan--correct,
+  .accoridan--incorrect,
+  .scorecardResults--next-steps--icon img{
+    width: 28px;
+  }
+
+
+  .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-question {
+    margin-left: 16px !important;
+    margin-right: 36px !important;
+    line-height: 1.35em !important;
+  }
+
+  .scorecardResults--next-steps--content{
+    margin-left: 16px !important;
+    margin-top: 0px !impotant;
+  }
+
+  .scorecardResults--next-steps--content h3{
+    font-size: 20px !important;
+  }
+
+  .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main{
+    padding-left: 44px !important;
+  }
+
+  .faq-accordian--single-main p{
+    font-size: 16px !important;
+  }
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single {
+  -webkit-transition: margin 0.4s ease-in-out;
+  -moz-transition: margin 0.4s ease-in-out;
+  -ms-transition: margin 0.4s ease-in-out;
+  -o-transition: margin 0.4s ease-in-out;
+  transition: margin 0.4s ease-in-out; 
+}
+
+/*.faq-accordian .faq-accordian--container .faq-accordian--single:not(:last-child):after{
+background: linear-gradient(90deg, rgba(66, 71, 112, .09), rgba(66, 71, 112, .09) 50%, transparent 0, transparent);
+background-size: 8px 1px;
+bottom: 0;
+height: 1px;
+left: 0;
+position: absolute;
+right: 0;
+width: 100%;
+z-index: 999;
+}*/
+
+.section--faqs--faq--content{
+  border-bottom: 1px solid #E1E7F4;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--title {
+  transition-delay: .5s; 
+  line-height: 1.25em;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--title .fa {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  text-align: right;
+  right: 30px;
+  transition: all .25s ease; 
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-question{
+  margin-left: 24px;
+  margin-right: 104px;
+}
+
+.scorecardResults--next-steps--content{
+  margin-left: 24px;
+}
+
+@media screen and (max-width: 679px) {
+  .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--title .fa {
+    right: 30px; 
+  } 
+  .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--title {
+
+  } 
+  .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main {
+
+  }
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main {
+  padding-left: 58px;
+  padding-bottom: 12px !important;
+  margin-top: 12px;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main li{
+  line-height: 1.25em;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main ul li:not(:last-child){
+  margin-bottom: 12px;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main li + p{
+  margin-bottom: 0px; 
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main li:last-child {
+  margin-bottom: 30px; 
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main ul{
+  padding-left: 20px;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main li a[rel~="noopener"]:after,
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main li a[rel~=" noopener"]:after {
+  content: "";
+  background-image: url('https://www.impactplus.com/hubfs/new%20tab.svg');
+  background-repeat: no-repeat;
+  background-size: 11px 13px;
+  content: "";
+  display: inline-block;
+  filter: var(--filterblue600);
+  height: 14px;
+  margin: 0 0 0 4px;
+  width: 13px;
+}
+
+.faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main p:first-child, .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main h2:first-child, .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main h3:first-child, .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main h4:first-child, .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main h5:first-child, .faq-accordian .faq-accordian--container .faq-accordian--single .faq-accordian--single-main h6:first-child {
+  margin-top: 0px; 
+}
+
+.faq-accordian .faq-accordian--action + .faq-accordian--action {
+  margin-top: 30px; 
+}
+
+.faq-accordian .faq-accordian--action + .faq-accordian--single {
+  border-top: 0px !important; 
+}
+
+.faq-accordian .faq-accordian--action + .faq-accordian--single .faq-accordian--title {
+  border-top: 0px !important; 
+}
+
+.faq-accordian .faq-accordian-action {
+  margin: 20px 0px; 
+}
+
+.scorecardResults--question .questionContent{
+  margin-left: 14px;
+}
+
+@media (min-width: 1024px) {
+  .scorecardResults--question .questionContent{
+    margin-right: 32px;
+  }
+}
+
+.section--faqs-leftright--faq--toggle--icon {
+  background: transparent;
+  border: 2px solid #1d1d1f;
+  border-radius: 50%;
+  height: 26px;
+  overflow: visible;
+  position: absolute;
+  right: 0px;
+  top: 2px;
+  width: 26px
+}
+
+.section--faqs-leftright--faq--toggle--icon .icon--axis {
+  background: #1d1d1f;
+  height: 2px;
+  left: 49.5%;
+  position: absolute;
+  top: 49.5%;
+  width: 10px
+}
+
+.section--faqs-leftright--faq--toggle--icon .icon--vertical--line {
+  transform: translate(-45%,-50%) rotate(90deg);
+  transform-origin: center;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out
+}
+
+.section--faqs-leftright--faq--toggle--icon .icon--horizontal--line {
+  background: #1d1d1f;
+  transform: translate(-45%,-50%)
+}
+
+.section--faqs--faq--content.faq-accordian--action .section--faqs-leftright--faq--toggle--icon .icon--vertical--line {
+  transform: translate(-50%,-50%) rotate(0)
+}
+
+.faq-accordian--item-score{
+  border-radius: 50%;
+  color: white;
+}
+
+.faq-accordian--item-score .faq-accordian--item-score-inner{
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .faq-accordian--item-score .faq-accordian--item-score-inner{
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .faq-accordian--item-score .faq-accordian--item-score-inner{
+    width: 85px;
+    height: 85px;
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-accordian--item-score{
+    margin-bottom: 30px !important;
+    position: absolute;
+    right: 0;
+    top: -4px;
+  }
+
+  .faq-accordian--item-score .faq-accordian--item-score-inner{
+    height: 60px;
+    width: 60px;
+    font-size: 16px;
+  }
+
+  .questionContent h3{
+    margin-bottom: 8px;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    margin-right: 70px;
+  }
+
+}
+
+.scorecardResults--next-steps ul,
+.scorecardResults--next-steps ol{
+  padding-left: 16px;
+  margin-bottom: 0px;
+}
+
+.scorecardResults--next-steps li{
+  margin-bottom: 12px;
+}
+
+@media (min-width: 1023px) {
+  .faq-accordian--item-score{
+    font-size: 28px;
+  }
+}
+
+.faq-accordian--item-score.score--low{
+  background-color: rgb(212, 31, 52);
+}
+
+.faq-accordian--item-score.score--medium{
+  background-color: rgb(242, 101, 39);
+}
+
+.faq-accordian--item-score.score--high{
+  background-color: rgb(102, 188, 70);
+}

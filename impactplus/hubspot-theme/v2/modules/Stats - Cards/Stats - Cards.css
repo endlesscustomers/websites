@@ -1,0 +1,129 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+{#############################################################
+  VARIABLES
+#############################################################}
+{% set number_FontFamily     = "{{ config.h1_FontFamily }}" %}
+{% set number_FontWeight     = "{{ config.h1_FontWeight }}" %}
+{% set number_Color          = "{{ color('black') }}" %}
+{% set number_FontSize       = "{{ config.h1_FontSize }}" %}
+{% set number_TabletFontSize = "{{ config.h1_MobileFontSize }}" %}
+{% set number_MobileFontSize = "{{ config.h1_MobileFontSize }}" %}
+
+{#############################################################
+  CSS
+#############################################################}
+{% set section = 'section--statscards' %}
+
+.{{ section }} .{{ section }}--cards--wrapper {
+  display:flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left:-{{ config.short }};
+  margin-right:-{{ config.short }};
+}
+
+.{{ section }} .{{ section }}--cards--wrapper.justify--start {
+  justify-content: flex-start;
+}
+
+.{{ section }} .{{ section }}--card--inner {
+  padding: {{ config.short }};
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+{% call mediaQuery('palm') %}
+  .{{ section }} .{{ section }}--card--inner {
+    padding: 10px;
+
+  }
+{% endcall %}
+
+.{{ section }} .{{ section }}--card--body--wrapper {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+
+.{{ section }} .{{ section }}--card--body {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+
+.{{ section }} .{{ section }}--card--body {
+  {{ transition('all .3s ease-in-out') }}
+}
+
+.{{ section }}--number {
+  --stat-number-font-size: {{ number_FontSize }};
+  font-family: {{ number_FontFamily }};
+  font-weight: {{ number_FontWeight }};
+  color: {{ number_Color }};
+  font-size: 0;
+  line-height: 0;
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+  min-height: 1em;
+  word-break: break-all;
+}
+
+.{{ section }}--number > .{{ section }}--prefix,
+.{{ section }}--number > .{{ section }}--number--inner,
+.{{ section }}--number > .{{ section }}--suffix {
+  font-size: var(--stat-number-font-size);
+  line-height: 1em;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.{{ section }}--prefix.{{ section }}--prefix--super,
+.{{ section }}--suffix.{{ section }}--suffix--super {
+  font-size: calc(var(--stat-number-font-size) * 0.5);
+  line-height: 1em;
+}
+
+{% call mediaQuery("tablet") %}
+  .{{ section }} .{{ section }}--number {
+    --stat-number-font-size: {{ number_TabletFontSize }};
+  }
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+  .{{ section }} .{{ section }}--card {
+    max-width:450px;
+  }
+
+  .{{ section }} .{{ section }}--cards--wrapper {
+    justify-content:center;
+  }
+
+  .{{ section }} .{{ section }}--number {
+    --stat-number-font-size: {{ number_MobileFontSize }};
+  }
+{% endcall %}

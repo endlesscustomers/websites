@@ -1,0 +1,172 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--webinar-leftrightmediaform--share--icon {
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:10px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  border-radius:50%;
+  text-decoration:none!important;
+  position:relative;
+  {{ transition("background .3s ease-in-out") }}
+}
+.section--webinar-leftrightmediaform--share--icon svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height:16px;
+  fill:#FFF!important;
+}
+.section--webinar-leftrightmediaform--share--icon:first-child {
+  margin-left:0px;
+}
+.section--webinar-leftrightmediaform--share--icon--facebook {
+  background:{{ color("facebook") }};
+}
+.section--webinar-leftrightmediaform--share--icon--facebook:hover {
+  background:{{ colorShade(color("facebook")) }};
+}
+.section--webinar-leftrightmediaform--share--icon--twitter {
+  background:{{ color("twitter") }};
+}
+.section--webinar-leftrightmediaform--share--icon--twitter:hover {
+  background:{{ colorShade(color("twitter")) }};
+}
+.section--webinar-leftrightmediaform--share--icon--linkedin {
+  background:{{ color("linkedin") }};
+}
+.section--webinar-leftrightmediaform--share--icon--linkedin:hover {
+  background:{{ colorShade(color("linkedin")) }};
+}
+
+.section--webinar-leftrightmediaform form.hs-form.stacked .actions{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--webinar-leftrightmediaform .production--form input.hs-button, 
+.section--webinar-leftrightmediaform form.hs-form .hs_submit input.hs-button{
+  width: 100% !important;
+  display: block !important;
+}
+
+.section--webinar-leftrightmediaform .background--white .production--form input[type=email], 
+.section--webinar-leftrightmediaform .background--white .production--form input[type=file], 
+.section--webinar-leftrightmediaform .background--white .production--form input[type=number], 
+.section--webinar-leftrightmediaform .background--white .production--form input[type=password], 
+.section--webinar-leftrightmediaform .background--white .production--form input[type=search], 
+.section--webinar-leftrightmediaform .background--white .production--form input[type=tel], 
+.section--webinar-leftrightmediaform .background--white .production--form input[type=text], 
+.section--webinar-leftrightmediaform .background--white .production--form textarea, 
+.section--webinar-leftrightmediaform .background--white form.hs-form input[type=email].hs-input, 
+.section--webinar-leftrightmediaform .background--white form.hs-form input[type=file].hs-input, 
+.section--webinar-leftrightmediaform .background--white form.hs-form input[type=number].hs-input, 
+.section--webinar-leftrightmediaform .background--white form.hs-form input[type=tel].hs-input, 
+.section--webinar-leftrightmediaform .background--white form.hs-form input[type=text].hs-input, 
+.section--webinar-leftrightmediaform .background--white form.hs-form textarea.hs-input,
+.section--webinar-leftrightmediaform .background--white .production--form select, 
+.section--webinar-leftrightmediaform .background--white form.hs-form select.hs-input{
+  background: #F3F7FF;
+  border-radius: 8px;
+  padding: 14px 20px 14px;
+}
+
+.section--webinar-leftrightmediaform--content .section--webinar-leftrightmediaform--contentgroups p, 
+.section--webinar-leftrightmediaform--content .section--webinar-leftrightmediaform--contentgroups .p,
+.section--webinar-leftrightmediaform--content .section--webinar-leftrightmediaform--contentgroups li{
+  color: #4F5465;
+}
+
+.section--webinar-leftrightmediaform form{
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+}
+
+.section--webinar-leftrightmediaform form .form-columns-1:has(>.legal-consent-container){
+  -webkit-box-ordinal-group: 3;
+  order: 3;
+}
+
+.section--webinar-leftrightmediaform form .legal-consent-container .hs-richtext{
+  color: #1d1d1f;
+  display: block;
+  font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25em;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  text-align: left !important;
+}
+
+.section--webinar-leftrightmediaform .section--webinar-leftrightmediaform--content .btn{
+  width: 100%;
+}
+
+.section--webinar-leftrightmediaform--content ul,
+.section--webinar-leftrightmediaform--content ol{
+  padding-left: 20px;
+}
+
+.section--webinar-leftrightmediaform--content li p{
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.section--webinar-leftrightmediaform .section--socialshare--share--link .socialshare--share--icon{
+  filter: invert(32%) sepia(6%) saturate(1298%) hue-rotate(189deg) brightness(94%) contrast(89%);
+  margin-right: 16px;
+}
+
+.section--webinar-leftrightmediaform .copy-tooltip {
+  position: absolute;
+  background: #fff;
+  color: #1d1d1f;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.2s ease;
+  bottom: -54px;
+  left: calc(50% + 8px);
+  transform: translateX(-50%) translateY(-100%);
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.section--webinar-leftrightmediaform .tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.section--webinar-leftrightmediaform .tooltip-container.show-tooltip .copy-tooltip {
+  opacity: 1;
+}

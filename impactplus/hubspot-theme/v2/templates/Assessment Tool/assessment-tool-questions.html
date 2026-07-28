@@ -1,0 +1,31 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Assessment Tool Questions - IMPACT Production Theme
+-->
+
+  {% module
+    "tool_header"
+    path="/IMPACT-Prod-Modules/foundational/Assessment Tool/Header - Assessment Tool.module",
+    label="Header - Assessment Tool",
+    no_wrapper=True,
+    export_to_template_context=True
+  %}
+
+  {% extends "../layouts/base.html" %}
+  
+  {% set body_classes_array = [] %}
+  {% do body_classes_array.append('pagetype--site assessmentQuiz overflow-x--hidden') %}
+
+  {% set template_css = "" %}
+  {% set hide_header  = "yes" %}
+  {% set hide_footer  = "yes" %}
+  {% set body_id = '' %}
+  {% set body_classes = body_classes_array|join(' ') %}
+  {% set main_container_classes = '' %}
+  
+  {% block body %}
+    <div class="body-container body-container--flex assessmentQuiz overflow-x--hidden">
+      {% module "module_16890151074893" path="/IMPACT-Prod-Modules/foundational/Assessment Tool/Questions - Assessment Tool", label="Questions - Assessment Tool" %}
+    </div>
+  {% endblock body %}

@@ -1,0 +1,2079 @@
+[ {
+  "id" : "010f968e-9b16-b03a-0d59-d5d913fe96d5",
+  "name" : "section_controls",
+  "label" : "Section Controls",
+  "help_text" : "This group contains modules which affect various parts of this section, such as layout, spacing, or miscellaneous settings specific to this section.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "06b3428d-0244-3077-686b-8ceb97544fcc",
+    "name" : "anchor_id",
+    "label" : "Anchor ID",
+    "help_text" : "Add a unique ID to allow anchor links to this section. Only alphanumeric characters, hyphens, and underscores are permitted. (Example: section-name) When linking to this section in an inline hyperlink, place a hashtag before the anchor ID.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "a8c57824-54f3-9b41-7357-78fbff5fde01",
+    "name" : "device_visibility",
+    "label" : "Device Visibility",
+    "help_text" : "Use this dropdown to determine when to show/hide this section. When only showing this section on certain screen sizes, ensure this section does not contain necessary features like an anchor or design elements that are necessary for the page's appearance such as angles or background gradients. Also ensure any related sections such as dividers are also appropriately configured to only show when needed.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Show at all screen sizes" ], [ "lap-and-up-visuallyhidden", "Hide on Desktop" ], [ "lap-and-up-visuallyhidden tablet-visuallyhidden", "Hide on Desktop and Tablet" ], [ "portable-visuallyhidden", "Hide on Tablet and Mobile" ], [ "palm-visuallyhidden", "Hide on Mobile" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "d5f24b76-559a-5df9-0d22-92880c27c71d",
+    "name" : "text_color_override",
+    "label" : "Text Color Override",
+    "help_text" : "This module will override any text which appears directly on your background. Use this module to make all text white when using a darker background color to ensure the text is legible.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Default" ], [ "all--color--white", "White" ], [ "lap-and-up-all--color--white", "White (Desktop only)" ], [ "lap-and-up-all--color--white tablet-all--color--white", "White (Desktop and Tablet only)" ], [ "portable-all--color--white", "White (Tablet and Mobile only)" ], [ "palm-all--color--white", "White (Mobile only)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "9365dd29-831a-860c-729d-42e199553050",
+    "name" : "content_alignment_desktop",
+    "label" : "Content Alignment (Desktop)",
+    "help_text" : "If using a Video with a Video Label for the Featured Media in this section, please note that the Center alignment option for this input includes the height of the video label which will cause your alignment not to appear centered.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center (Default)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "90848c99-d53e-fcb9-384f-055de7c5506b",
+    "name" : "content_alignment_mobile",
+    "label" : "Content Alignment (Mobile)",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center (Default)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "a8bccb33-84d0-a7ae-e161-fe812b78e8de",
+    "name" : "column_alignment",
+    "label" : "Column Alignment",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "device_visibility" : "default",
+    "text_color_override" : "default",
+    "content_alignment_desktop" : "center",
+    "content_alignment_mobile" : "center",
+    "column_alignment" : "center"
+  }
+}, {
+  "id" : "78f85a3d-876c-71bb-0205-aa71c135f90e",
+  "name" : "background",
+  "label" : "Background Layers",
+  "help_text" : "Add one or more background layers here. Layers are overlaid on top of each other with the first layer in your list being the back and the last layer in your list being the front. Using multiple layers allows you to stack multiple levels of imagery on top of each other such as a background image with an overlay or texture. After changing settings in this module group, click Apply to preview your changes.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+    "default" : null
+  },
+  "children" : [ {
+    "id" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+    "name" : "background_type",
+    "label" : "Background: Type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "image", "Image" ], [ "color", "Color" ], [ "gradient", "Gradient" ], [ "video", "Video" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "color"
+  }, {
+    "id" : "ab149ea9-e69b-fa57-06af-91f8e497a1b0",
+    "name" : "device_visibility",
+    "label" : "Device Visibility",
+    "help_text" : "Use this dropdown to determine when to show/hide this background layer. When only showing this layer on certain screen sizes, ensure this layer is not necessary for your content to be legible.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Show at all screen sizes" ], [ "lap-and-up-visuallyhidden", "Hide on Desktop" ], [ "lap-and-up-visuallyhidden tablet-visuallyhidden", "Hide on Desktop and Tablet" ], [ "portable-visuallyhidden", "Hide on Tablet and Mobile" ], [ "palm-visuallyhidden", "Hide on Mobile" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  }, {
+    "id" : "c0fed185-874a-18e5-7c95-9415b39cb1ad",
+    "name" : "background_accent",
+    "label" : "Background: Accent",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f0382e43-fb9a-5d7c-83d0-1ccfc3054ef1",
+      "name" : "background_accent_pattern",
+      "label" : "Background: Accent Design",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "dotted-square-top-left", "Dotted Square Top Left" ], [ "dotted-square-top-right", "Dotted Square Top Right" ], [ "dotted-pattern-left", "Dotted Pattern Left Side" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "none"
+    }, {
+      "id" : "b17fb012-0f4c-679a-c832-f0dbef6f86d2",
+      "name" : "background_dotted_color_choice",
+      "label" : "Background: Accent Color",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "off-white", "Off White" ], [ "neutral-500", "Light Grey" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_accent_pattern" : "none"
+    }
+  }, {
+    "id" : "060ae3ea-cde5-bed3-5df7-1584b2450f9b",
+    "name" : "background_opacity",
+    "label" : "Background: Opacity",
+    "help_text" : "Use this module to adjust this background layer's opacity (transparency). 100 is solid and 0 is completely transparent.",
+    "required" : true,
+    "locked" : false,
+    "display" : "slider",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 100
+  }, {
+    "id" : "c2718646-ce77-7c3c-7e8e-d39d8c211ebd",
+    "name" : "background_color",
+    "label" : "Background: Color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "color",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+      "name" : "background_color",
+      "label" : "Background: Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "white", "White" ], [ "livid-100", "Off White (Light)" ], [ "neutral-200", "Off White (Dark)" ], [ "neutral-500", "Light Grey" ], [ "neutral-600", "Medium Grey" ], [ "neutral-700", "Dark Grey" ], [ "black", "Black" ], [ "blue", "Blue" ], [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "fa3f8f10-ba2d-a90c-9c54-949a4e2b2728",
+      "name" : "background_custom_color",
+      "label" : "Background: Custom Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "e091a658-702e-2c3f-85d1-65a4994db6ad",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "c19118ac-f02d-b44d-0515-f5d0601b35f6",
+    "name" : "background_slant_top_and_bottom",
+    "label" : "Background: Slant Top and Bottom",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "90216235-1b15-56c3-5d4f-6c1944438b92",
+    "name" : "background_gradient",
+    "label" : "Background: Gradient",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "gradient",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+      "name" : "background_gradient_type",
+      "label" : "Background: Gradient Type",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "linear", "Linear" ], [ "radial", "Radial (Inside to Outside)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "linear"
+    }, {
+      "id" : "aecd7c17-ac43-9a98-6cfe-c8e4e938d38e",
+      "name" : "background_linear_gradient_direction",
+      "label" : "Background: Linear Gradient Direction",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "b5c58c4e-2810-abd7-f128-725a713002e7",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "linear",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "180", "Top to Bottom" ], [ "135", "Top-Left to Bottom-Right" ], [ "90", "Left to Right" ], [ "45", "Bottom-Left to Top-Right" ], [ "0", "Bottom to Top" ], [ "315", "Bottom-Right to Top-Left" ], [ "270", "Right to Left" ], [ "225", "Top-Right to Bottom-Left" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "90"
+    }, {
+      "id" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+      "name" : "background_gradient_start_color",
+      "label" : "Background: Gradient Start Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "d234f0ed-247b-24f9-1952-79e98864d481",
+      "name" : "background_gradient_start_color_opacity",
+      "label" : "Background Gradient: Start Color Opacity",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "3ccb88cd-ce15-528b-e3dd-8498590d4df5",
+      "name" : "background_gradient_custom_start_color",
+      "label" : "Background: Gradient Custom Start Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "df233824-8afa-c2a5-437c-b8b63ea4b479",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#084975",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "83ced365-4e17-b79b-9fcb-7614f35398e2",
+      "name" : "background_gradient_start_color_position",
+      "label" : "Background Gradient: Start Color Position",
+      "help_text" : "This number determines where the start color will be positioned in the gradient. This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 0 will use your gradient start color settings, whereas anything between this number and the end color will be the transition area between the two colors.  This number must be less than the value of your gradient end color, otherwise it may cause issues with the direction of your gradient. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+      "name" : "background_gradient_end_color",
+      "label" : "Background: Gradient End Color",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "black", "Black" ], [ "white", "White" ], [ "custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "white"
+    }, {
+      "id" : "6ca80323-4a65-5113-0e30-d5ec6bc76c2a",
+      "name" : "background_gradient_end_color_opacity",
+      "label" : "Background Gradient: End Color Opacity",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    }, {
+      "id" : "e0ad6c5f-f395-4b3d-ba23-b4071d680930",
+      "name" : "background_gradient_custom_end_color",
+      "label" : "Background: Gradient Custom End Color",
+      "help_text" : "The opacity for this module is intended to be 100%, otherwise your color will display lighter than intended.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "cb31000c-5150-5551-aa7e-b036cbf864bf",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "42fd95d0-1b0d-8086-b6e9-3c7a7ce6ecb0",
+      "name" : "background_gradient_end_color_position",
+      "label" : "Background Gradient: End Color Position",
+      "help_text" : "This number determines where the end color will be positioned in the gradient. This number represents a percentage of the linear gradient from start to finish, with 0 being the start and 100 being the end. Anything between this number and 100 will use your gradient end color settings, whereas anything between this number and the start color will be the transition area between the two colors.  This number must be greater than the value of your gradient start color, otherwise it may cause issues with the direction of your gradient. (Default: 100)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 100
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_gradient_type" : "linear",
+      "background_linear_gradient_direction" : "90",
+      "background_gradient_start_color" : "white",
+      "background_gradient_start_color_opacity" : 100,
+      "background_gradient_custom_start_color" : {
+        "color" : "#084975",
+        "opacity" : 100
+      },
+      "background_gradient_start_color_position" : 0,
+      "background_gradient_end_color" : "white",
+      "background_gradient_end_color_opacity" : 100,
+      "background_gradient_custom_end_color" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      },
+      "background_gradient_end_color_position" : 100
+    }
+  }, {
+    "id" : "01110ebb-d579-d812-ff29-0966ea7c18d2",
+    "name" : "background_image",
+    "label" : "Background: Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "33403847-1e61-ec0a-510a-60f40e191b3c",
+      "name" : "background_image",
+      "label" : "Background: Image",
+      "required" : true,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      }
+    }, {
+      "id" : "5b90124c-5f9a-bb90-d2a0-b9b4a932ddf2",
+      "name" : "background_image_size",
+      "label" : "Background: Image Size",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "background-size--cover", "Scale to Fill" ], [ "background-size--contain", "Scale to Fit" ], [ "background-size--contain--y", "Scale to Fit Height" ], [ "background-size--contain--x", "Scale to Fit Width" ], [ "background-size--stretch", "Stretch to Fill" ], [ "background-size--auto", "Native Size (use image's native height and width)" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "background-size--cover"
+    }, {
+      "id" : "3d70cb26-5d51-3e97-deaf-d9037bd23f34",
+      "name" : "background_image_repeat",
+      "label" : "Background: Image Repeat",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "background-repeat", "Repeat" ], [ "background-repeat--y", "Repeat Vertical" ], [ "background-repeat--x", "Repeat Horizontal" ], [ "background-repeat--none", "No Repeat" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "background-repeat--none"
+    }, {
+      "id" : "0940bcef-9bc6-e689-319c-399244d45c71",
+      "name" : "background_image_horizontal_alignment",
+      "label" : "Background: Image Horizontal Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "0%", "Left" ], [ "25%", "Left-Center" ], [ "50%", "Center" ], [ "75%", "Right-Center" ], [ "100%", "Right" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "50%"
+    }, {
+      "id" : "22dc7bb4-74d7-ff27-fad6-430b0820e61d",
+      "name" : "background_image_vertical_alignment",
+      "label" : "Background: Image Vertical Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "0%", "Top" ], [ "25%", "Top-Center" ], [ "50%", "Center" ], [ "75%", "Bottom-Center" ], [ "100%", "Bottom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "50%"
+    }, {
+      "id" : "8f363a0e-3f3a-6659-b6bd-5103add6620e",
+      "name" : "background_image_parallax_fixed_when_scrolling",
+      "label" : "Background: Image Parallax / Fixed When Scrolling",
+      "help_text" : "Enable this to make your image fixed so it does not scroll with the rest of the page. The image will remain still regardless of where the user is scrolled. This is similar to a parallax effect but unlike a parallax the image will not move at all. This feature is useful when you need to use the same background image in consecutive sections since it will cause the images to line up with each other when they otherwise wouldn’t. When using this effect, pick your image carefully or use an overlay when needed since since the positioning of the image in relation to your content will be highly dependent on screen size and scroll distance.",
+      "required" : false,
+      "locked" : false,
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      },
+      "background_image_size" : "background-size--cover",
+      "background_image_repeat" : "background-repeat--none",
+      "background_image_horizontal_alignment" : "50%",
+      "background_image_vertical_alignment" : "50%",
+      "background_image_parallax_fixed_when_scrolling" : false
+    }
+  }, {
+    "id" : "7f1e64f9-0ab1-5f1d-4def-7b316d5dc7e4",
+    "name" : "background_video",
+    "label" : "Background: Video",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "c2186cad-477e-10c7-96c3-257e08a1c087",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "video",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "7dc31c6e-af9a-c7db-7184-e06bd7d105f7",
+      "name" : "background_url_of_video_file_mp4",
+      "label" : "Background: URL of Video File (MP4)",
+      "required" : true,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      }
+    }, {
+      "id" : "231d7d69-8c72-3d50-dc8f-bc20088e0d9c",
+      "name" : "background_fallback_background_image",
+      "label" : "Background: Fallback Background Image",
+      "help_text" : "This image will show while the video is still loading or on devices which cannot display the video. For best appearance, this image should be identical to the first frame of your video so it seamlessly transitions once the video begins playing. Set the height and width attributes of this input to the height and width of your video file.",
+      "required" : true,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_url_of_video_file_mp4" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      },
+      "background_fallback_background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      }
+    }
+  }, {
+    "id" : "e2fcaf25-c813-922f-82b8-6d345953c77d",
+    "name" : "background_offset",
+    "label" : "Background: Offset",
+    "help_text" : "These inputs determine how much of the height and width of the section this background should cover. This is useful for when you only want a background layer to cover a certain percentage of the section. If your layer should cover the entire height and width of the section, the value of each of these inputs should be 0.",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "27b6bc9c-f3ab-4df3-4adf-a63e55034515",
+      "name" : "background_left_offset_percentage",
+      "label" : "Background: Left Offset Percentage",
+      "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the left edge and 100 being the right edge. Use this input to control the offset from the left edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Right Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "e5083a38-5e2a-ee83-7f40-d8054e8c072d",
+      "name" : "background_right_offset_percentage",
+      "label" : "Background: Right Offset Percentage",
+      "help_text" : "This number determines how much of the width of the section this background should cover. This number represents a percentage of the section's width, with 0 being the right edge and 100 being the left edge. Use this input to control the offset from the right edge of the section or set it to 0 if the background should go all the way to the left edge. This number must be less than 100 minus the value of your Left Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "c9c38c1c-b844-3923-e204-6792d23d4174",
+      "name" : "background_top_offset_percentage",
+      "label" : "Background: Top Offset Percentage",
+      "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the top edge and 100 being the bottom edge. Use this input to control the offset from the top edge of the section or set it to 0 if the background should go all the way to the top edge. This number must be less than 100 minus the value of your Bottom Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "fe177880-4a33-33b7-5ecc-1c9aa4de61d5",
+      "name" : "background_bottom_offset_percentage",
+      "label" : "Background: Bottom Offset Percentage",
+      "help_text" : "This number determines how much of the height of the section this background should cover. This number represents a percentage of the section's height, with 0 being the bottom edge and 100 being the top edge. Use this input to control the offset from the bottom edge of the section or set it to 0 if the background should go all the way to the bottom edge. This number must be less than 100 minus the value of your Top Offset Percentage value, otherwise your background may not display properly. (Default: 0)",
+      "required" : true,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 100,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_left_offset_percentage" : 0,
+      "background_right_offset_percentage" : 0,
+      "background_top_offset_percentage" : 0,
+      "background_bottom_offset_percentage" : 0
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "background_type" : "color",
+    "device_visibility" : "default",
+    "background_accent" : {
+      "background_accent_pattern" : "none"
+    },
+    "background_opacity" : 100,
+    "background_color" : {
+      "background_color" : "white",
+      "background_custom_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    },
+    "background_slant_top_and_bottom" : false,
+    "background_gradient" : {
+      "background_gradient_start_color_position" : 0,
+      "background_linear_gradient_direction" : "90",
+      "background_gradient_end_color_position" : 100,
+      "background_gradient_custom_start_color" : {
+        "color" : "#084975",
+        "opacity" : 100
+      },
+      "background_gradient_end_color_opacity" : 100,
+      "background_gradient_type" : "linear",
+      "background_gradient_end_color" : "white",
+      "background_gradient_start_color" : "white",
+      "background_gradient_custom_end_color" : {
+        "color" : "#4993C5",
+        "opacity" : 100
+      },
+      "background_gradient_start_color_opacity" : 100
+    },
+    "background_image" : {
+      "background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/assets/backgrounds/sunset.jpg",
+        "alt" : "sunset",
+        "width" : 1600,
+        "height" : 774
+      },
+      "background_image_vertical_alignment" : "50%",
+      "background_fixed_background_image" : false,
+      "background_image_horizontal_alignment" : "50%",
+      "background_image_size" : "background-size--cover",
+      "background_image_repeat" : "background-repeat--none"
+    },
+    "background_video" : {
+      "background_fixed_background_image" : false,
+      "background_fallback_background_image" : {
+        "src" : "https://cdn2.hubspot.net/hubfs/298890/Production/videos/sample-video-poster.jpg",
+        "alt" : "sample-video-poster",
+        "width" : 960,
+        "height" : 540
+      },
+      "background_url_of_video_file_mp4" : {
+        "content_id" : null,
+        "href" : "https://cdn2.hubspot.net/hubfs/298890/assets/videos/sample-video.mp4",
+        "type" : "EXTERNAL"
+      }
+    },
+    "background_offset" : {
+      "background_left_offset_percentage" : 0,
+      "background_bottom_offset_percentage" : 0,
+      "background_top_offset_percentage" : 0,
+      "background_right_offset_percentage" : 0
+    }
+  } ]
+}, {
+  "id" : "52489128-67ea-497e-5e82-89617a6ad79c",
+  "name" : "block_controls",
+  "label" : "Layout Controls",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "c5d4ab2f-c596-fe63-3384-0df6df352449",
+    "name" : "paragraph_font_size_option",
+    "label" : "Paragraph Font Size Option",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "df", "Default" ], [ "small", "Small" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "df"
+  }, {
+    "id" : "589ed49f-9a13-5f10-b05b-5d209abf0daa",
+    "name" : "column_container_width",
+    "label" : "Column Container Width",
+    "help_text" : "",
+    "inline_help_text" : "This is the width of the section containing each block. This is not the individual widths of the blocks.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "seven-twelfths", "55% [Container Width]" ], [ "eight-twelfths", "63% [Container Width]" ], [ "nine-twelfths", "72% [Container Width]" ], [ "ten-twelfths", "80% [Container Width]" ], [ "eleven-twelfths", "90% [Container Width]" ], [ "one-whole", "100% [Container Width]" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "one-whole"
+  }, {
+    "id" : "ac2792dd-1a74-28bd-9281-cdd466fb1a6d",
+    "name" : "column_widths",
+    "label" : "Column Widths",
+    "inline_help_text" : "This is the width of the individual blocks.",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "three-twelfths", "25% [Block Width]" ], [ "four-twelfths", "33% [Block Width]" ], [ "six-twelfths", "50% [Block Width]" ], [ "one-whole", "100% [Block Width]" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "six-twelfths"
+  }, {
+    "id" : "6a7fff13-cf22-fbbb-43fa-99403ff0dc46",
+    "name" : "content_alignment",
+    "label" : "Horizontal Alignment",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center" ], [ "right", "Right" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "center"
+  }, {
+    "id" : "3d0dd4a4-1052-dfbc-73e3-c2b90e80f013",
+    "name" : "content_margin_top",
+    "label" : "Vertical Space Between Blocks",
+    "help_text" : "This is the margin on top the content, which can create additional space between it and the image above.",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "hard", "None" ], [ "short", "Small (20px)" ], [ "small", "Medium (30px)" ], [ "tall", "Large (40px)" ], [ "basic", "Extra Large (50px)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "basic"
+  }, {
+    "id" : "a3c269c9-3734-8c1b-d8f1-e588f28d9a9a",
+    "name" : "card_image_aspect_ratio",
+    "label" : "Card: Image Aspect Ratio",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "1x1", "1x1" ], [ "2x1", "2x1" ], [ "3x1", "3x1" ], [ "3x2", "3x2" ], [ "4x3", "4x3" ], [ "5x2", "5x2" ], [ "16x9", "16x9" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "16x9"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "paragraph_font_size_option" : "df",
+    "column_container_width" : "one-whole",
+    "column_widths" : "six-twelfths",
+    "content_alignment" : "center",
+    "content_margin_top" : "basic",
+    "card_image_aspect_ratio" : "16x9"
+  }
+}, {
+  "id" : "6bda5543-1d75-2780-3fda-ea2c659ed181",
+  "name" : "spacing",
+  "label" : "Spacing",
+  "help_text" : "Use these modules to control the spacing at the top and bottom of this section. This is especially useful for reducing white space between sections which share the same background color.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+    "name" : "top_padding",
+    "label" : "Top Padding",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "lap-and-up-hard--top tablet-hard--top", "None" ], [ "short--top", "Extra Small" ], [ "tall--top", "Small" ], [ "grande--top", "Medium" ], [ "venti--top", "Large (Default)" ], [ "trenta--top", "Extra Large" ], [ "custom", "Custom" ], [ "x_large", "2x Large" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "venti--top"
+  }, {
+    "id" : "69afd11f-7070-505e-cc0a-69a6c2276421",
+    "name" : "top_padding_custom",
+    "label" : "Top Padding: Custom Padding Amount",
+    "help_text" : "The significance of this number is determined by the Top Padding: Custom Padding Measurement Unit input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "94c9024f-3f0a-fc38-6aba-6e64bc1b0935",
+    "name" : "top_padding_custom_measurement_unit",
+    "label" : "Top Padding: Custom Padding Measurement Unit",
+    "help_text" : "This input determines the significance of the Top Padding: Custom Padding Amount input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "8e03260c-7788-14d0-d620-b4e37b24dfad",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "vw"
+  }, {
+    "id" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+    "name" : "top_padding_mobile",
+    "label" : "Top Padding (Mobile)",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "palm-hard--top", "None" ], [ "palm-short--top", "Extra Small" ], [ "palm-tall--top", "Small (Default)" ], [ "palm-grande--top", "Medium" ], [ "palm-venti--top", "Large" ], [ "palm-trenta--top", "Extra Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "palm-tall--top"
+  }, {
+    "id" : "04f69a1d-5825-e743-42cc-fc33f3d6fbcc",
+    "name" : "top_padding_mobile_custom",
+    "label" : "Top Padding: Custom Padding Amount (Mobile)",
+    "help_text" : "The significance of this number is determined by the Top Padding: Custom Padding Measurement Unit (Mobile) input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "690ee351-05f4-58d3-0b97-d517499251c5",
+    "name" : "top_padding_mobile_custom_measurement_unit",
+    "label" : "Top Padding: Custom Padding Measurement Unit (Mobile)",
+    "help_text" : "This input determines the significance of the Top Padding: Custom Padding Amount (Mobile) input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "5c21cccf-fce1-ab0d-8682-b1e8c9bd6a5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "px"
+  }, {
+    "id" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+    "name" : "bottom_padding",
+    "label" : "Bottom Padding",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "lap-and-up-hard--bottom tablet-hard--bottom", "None" ], [ "short--bottom", "Extra Small" ], [ "tall--bottom", "Small" ], [ "grande--bottom", "Medium" ], [ "venti--bottom", "Large (Default)" ], [ "trenta--bottom", "Extra Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "venti--bottom"
+  }, {
+    "id" : "0fcbfc06-166f-4ef4-35e8-da4761fe0543",
+    "name" : "bottom_padding_custom",
+    "label" : "Bottom Padding: Custom Padding Amount",
+    "help_text" : "The significance of this number is determined by the Bottom Padding: Custom Padding Measurement Unit input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "e9173a48-901a-b720-d9f0-421f4eae5282",
+    "name" : "bottom_padding_custom_measurement_unit",
+    "label" : "Bottom Padding: Custom Padding Measurement Unit",
+    "help_text" : "This input determines the significance of the Bottom Padding: Custom Padding Amount input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "93d7a4a9-d8b3-f3d9-9e8d-23ee1037658f",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "px"
+  }, {
+    "id" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+    "name" : "bottom_padding_mobile",
+    "label" : "Bottom Padding (Mobile)",
+    "help_text" : "",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "palm-hard--bottom", "None" ], [ "palm-short--bottom", "Extra Small" ], [ "palm-tall--bottom", "Small" ], [ "palm-grande--bottom", "Medium" ], [ "palm-venti--bottom", "Large (Default)" ], [ "palm-trenta--bottom", "Extra Large" ], [ "custom", "Custom" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "palm-tall--bottom"
+  }, {
+    "id" : "bc95e219-3a18-83ee-16c2-75b6e6bdcfd6",
+    "name" : "bottom_padding_mobile_custom",
+    "label" : "Bottom Padding: Custom Padding Amount (Mobile)",
+    "help_text" : "The significance of this number is determined by the Bottom Padding: Custom Padding Measurement Unit (Mobile) input.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "text",
+    "min" : 0,
+    "step" : 0.1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 26
+  }, {
+    "id" : "6f103824-1239-6af5-0521-228bc8a8770b",
+    "name" : "bottom_padding_mobile_custom_measurement_unit",
+    "label" : "Bottom Padding: Custom Padding Measurement Unit (Mobile)",
+    "help_text" : "This input determines the significance of the Bottom Padding: Custom Padding Amount (Mobile) input. This can be set to a static number of pixels, a percentage based on screen width, or a percentage based on screen height. This is useful when the background of this section requires a specific amount of space that should either be a static amount of space or scale based on screen width or height.",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "0cc99aad-a9d0-43d5-ef77-6f82d448cd5e",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "px", "Pixels" ], [ "vw", "Percentage of Screen Width" ], [ "vh", "Percentage of Screen Height" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "vw"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "top_padding" : "venti--top",
+    "top_padding_custom" : 26,
+    "top_padding_custom_measurement_unit" : "vw",
+    "top_padding_mobile" : "palm-tall--top",
+    "top_padding_mobile_custom" : 26,
+    "top_padding_mobile_custom_measurement_unit" : "px",
+    "bottom_padding" : "venti--bottom",
+    "bottom_padding_custom" : 26,
+    "bottom_padding_custom_measurement_unit" : "px",
+    "bottom_padding_mobile" : "palm-tall--bottom",
+    "bottom_padding_mobile_custom" : 26,
+    "bottom_padding_mobile_custom_measurement_unit" : "vw"
+  }
+}, {
+  "id" : "1f0b3fad-11fd-9ab4-4b4f-9b2b3caac33d",
+  "name" : "header",
+  "label" : "Header",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<h2>Experience more from IMPACT</h2>"
+}, {
+  "id" : "9eaecaea-e5f9-6c0b-4f1f-92d2e7552ba2",
+  "name" : "section_heading_width",
+  "label" : "Heading Width (Desktop)",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "seven-twelfths", "55%" ], [ "eight-twelfths", "63%" ], [ "nine-twelfths", "72%" ], [ "ten-twelfths", "80%" ], [ "eleven-twelfths", "91%" ], [ "one-whole", "100%" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "eight-twelfths"
+}, {
+  "id" : "b85bfedc-5ac5-dd53-b9ec-1dd9141be127",
+  "name" : "subheader",
+  "label" : "Subheader",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : ""
+}, {
+  "id" : "bd6c567f-ba07-ca6a-4cc5-66277a0cb700",
+  "name" : "subheader_width",
+  "label" : "Subheader Width (Desktop)",
+  "required" : false,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "seven-twelfths", "55%" ], [ "eight-twelfths", "63%" ], [ "nine-twelfths", "72%" ], [ "ten-twelfths", "80%" ], [ "eleven-twelfths", "91%" ], [ "one-whole", "100%" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "eight-twelfths"
+}, {
+  "id" : "3794ba88-b246-9985-edfe-0e2916ee9bde",
+  "name" : "hide_featured_cta",
+  "label" : "Hide Featured CTA?",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "2f4e3c5b-a5df-37a6-0157-6fad37d75e31",
+  "name" : "featured_cta",
+  "label" : "Featured CTA",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "hide_featured_cta",
+    "controlling_value_regex" : "false",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "d72862b7-f27c-5178-42de-9e486e19f6fe",
+    "name" : "featured_cta_content",
+    "label" : "Featured CTA: Content",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h6 class=\"uppercase\"><strong>Earn trust and win more customers in the age of AI</strong></h6>"
+  }, {
+    "id" : "9d584d0e-5801-618e-dfc8-21d3a7f6e0dc",
+    "name" : "cta",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+      "name" : "cta_type",
+      "label" : "CTA: Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ], [ "inline link", "Inline Link" ], [ "anchor", "Scroll to Section" ], [ "popup", "Popup" ], [ "none", "No CTA" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "cta"
+    }, {
+      "id" : "fe0a21f0-815e-2c39-f864-b8a2e57dcb00",
+      "name" : "cta_button_color",
+      "label" : "CTA: Button Color",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "none",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "blue-600", "Blue" ], [ "green-500", "Green" ], [ "blue-300", "Lightest Grey" ], [ "neutral-300", "Light Grey" ], [ "slate-500", "Dark Grey" ], [ "neutral-700", "Black" ], [ "white", "White" ], [ "gradient", "Gradient" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "neutral-700"
+    }, {
+      "id" : "1155b800-0f75-e7c2-144c-6e58735fb181",
+      "name" : "cta_mobile_width",
+      "label" : "CTA: Mobile Width",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "palm--btn-default", "Default" ], [ "palm--btn-max-width", "Full Width" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "palm--btn-default"
+    }, {
+      "id" : "ba1a10ff-6dff-4366-bf5b-f2aed72e22be",
+      "name" : "cta_ghost_transparent_button",
+      "label" : "CTA: Ghost / Transparent Button",
+      "help_text" : "Enable this to use a transparent “ghost” style for your button.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "fe0a21f0-815e-2c39-f864-b8a2e57dcb00",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "simple",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "0ebb4caf-634b-8eba-b941-f267da9bf8a4",
+      "name" : "cta_button_text",
+      "label" : "CTA: Button Text",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|anchor|popup",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Take the Assessment"
+    }, {
+      "id" : "f58f2efa-59b2-a875-f787-d24b15295b38",
+      "name" : "cta_hyperlink",
+      "label" : "CTA: Hyperlink",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|inline link",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      }
+    }, {
+      "id" : "5ebd7a93-1734-4d04-1078-4ae78422677f",
+      "name" : "cta_open_in_new_tab",
+      "label" : "CTA: Open in new tab?",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "311af241-43c1-27ae-53cd-c33f1e907b2a",
+      "name" : "include_arrow",
+      "label" : "CTA: Include Arrow?",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|inline link|anchor|popup",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "edcce1d9-78f7-8835-836e-c3be94b68d15",
+      "name" : "cta",
+      "label" : "CTA",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "cta",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "cta",
+      "display_width" : null,
+      "default" : "157308203014"
+    }, {
+      "id" : "64add369-a7a0-14ea-1416-1442dccfc4ec",
+      "name" : "cta_section_anchor_id",
+      "label" : "CTA: Section Anchor ID",
+      "help_text" : "Add the anchor ID of a section on this page to link to it. To link to a section on a different page, use the Custom Link option and add the section ID to the end of the URL preceded by a hashtag.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "13f41626-d8aa-e9a2-b84a-160ec3722811",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "anchor",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "section-id"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "cta_type" : "cta",
+      "cta_button_color" : "neutral-700",
+      "cta_mobile_width" : "palm--btn-default",
+      "cta_ghost_transparent_button" : false,
+      "cta_button_text" : "Take the Assessment",
+      "cta_hyperlink" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      },
+      "cta_open_in_new_tab" : false,
+      "include_arrow" : false,
+      "cta" : "157308203014",
+      "cta_section_anchor_id" : "section-id"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "featured_cta_content" : "<h6 class=\"uppercase\"><strong>Earn trust and win more customers in the age of AI</strong></h6>",
+    "cta" : {
+      "cta_type" : "cta",
+      "cta_button_color" : "neutral-700",
+      "cta_mobile_width" : "palm--btn-default",
+      "cta_ghost_transparent_button" : false,
+      "cta_button_text" : "Take the Assessment",
+      "cta_hyperlink" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      },
+      "cta_open_in_new_tab" : false,
+      "include_arrow" : false,
+      "cta" : "157308203014",
+      "cta_section_anchor_id" : "section-id"
+    }
+  }
+}, {
+  "id" : "5316630f-1b8b-161f-23c2-2f2a783c8ea3",
+  "name" : "icon_and_content_columns",
+  "label" : "Media and Content Columns",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : null,
+    "max" : null,
+    "sorting_label_field" : "220ac3a1-d29f-fc96-05b9-46baf970a118",
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "f3cc4d38-516e-b244-7932-840ac4e44c66",
+    "name" : "media_type",
+    "label" : "Media Type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "image", "Image" ], [ "icon", "Icon" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "image"
+  }, {
+    "id" : "5a07f4a7-34da-0eba-7a6a-4032cb44a967",
+    "name" : "icon_svg",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "icon_and_content_columns.media_type",
+      "controlling_value_regex" : "icon",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "fdc64142-73ff-0850-1feb-fb79b8748220",
+      "name" : "icon_file_location_type",
+      "label" : "Icon: File Location/Type",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : null,
+        "controlling_value_regex" : null,
+        "property" : null,
+        "operator" : "NOT_EMPTY",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "hubdb", "HubDB Icon Library" ], [ "custom", "File Manager" ], [ "none", "No Icon" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "custom"
+    }, {
+      "id" : "c51ca47e-5c65-9735-6d40-640e59879910",
+      "name" : "svg_hubdb",
+      "label" : "Icon Selection",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "icon_and_content_columns.icon_svg.icon_file_location_type",
+        "controlling_value_regex" : "hubdb",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "table_name_or_id" : "6281389",
+      "columns_to_fetch" : [ ],
+      "display_columns" : [ "icon_name", "svg_image" ],
+      "type" : "hubdbrow",
+      "display_width" : null,
+      "default" : {
+        "id" : 119605777057
+      }
+    }, {
+      "id" : "c2806dec-2339-0c64-7d0d-eab8ed44713f",
+      "name" : "svg_height",
+      "label" : "Icon Height",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "icon_and_content_columns.icon_svg.icon_file_location_type",
+        "controlling_value_regex" : "hubdb",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "text",
+      "min" : 0,
+      "step" : 1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 40
+    }, {
+      "id" : "5624a946-87df-7f98-36d7-377147fd6232",
+      "name" : "svg_color",
+      "label" : "Icon Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "icon_and_content_columns.icon_svg.icon_file_location_type",
+        "controlling_value_regex" : "hubdb",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "blue600", "Blue" ], [ "green", "Green" ], [ "orange", "Orange" ], [ "purple", "Purple" ], [ "red", "Red" ], [ "teal", "Teal" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "blue600"
+    }, {
+      "id" : "955be9ba-8f7d-b166-51ae-ebac3326da35",
+      "name" : "svg_custom",
+      "label" : "Custom Icon",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "icon_and_content_columns.icon_svg.icon_file_location_type",
+        "controlling_value_regex" : "custom",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "responsive" : false,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "exact",
+        "src" : "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Our%20Promises%20Icons/Trusted-Voice.svg",
+        "alt" : "Trusted-Voice",
+        "loading" : "lazy",
+        "width" : 60,
+        "height" : 60,
+        "max_width" : 60,
+        "max_height" : 60
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "icon_file_location_type" : "custom",
+      "svg_hubdb" : {
+        "id" : 119605777057
+      },
+      "svg_height" : 40,
+      "svg_color" : "blue600",
+      "svg_custom" : {
+        "size_type" : "exact",
+        "src" : "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Our%20Promises%20Icons/Trusted-Voice.svg",
+        "alt" : "Trusted-Voice",
+        "loading" : "lazy",
+        "width" : 60,
+        "height" : 60,
+        "max_width" : 60,
+        "max_height" : 60
+      }
+    }
+  }, {
+    "id" : "9d2b71db-fa25-5374-eeab-74fcd4abc5c3",
+    "name" : "resource_image",
+    "label" : "Card Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "icon_and_content_columns.media_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/why-determining-culture-fit-is-so-important-in-the-hiring-process-featured.jpg",
+      "alt" : "why-determining-culture-fit-is-so-important-in-the-hiring-process-featured",
+      "loading" : "lazy",
+      "width" : 1200,
+      "height" : 630,
+      "max_width" : 1200,
+      "max_height" : 630
+    }
+  }, {
+    "id" : "220ac3a1-d29f-fc96-05b9-46baf970a118",
+    "name" : "description",
+    "label" : "Header and Description",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<h4>IMPACT Live 2024</h4>\n<p><span>A Business Event for CEOs, Organizational Leaders, Content Creators and Marketing Agencies</span></p>"
+  }, {
+    "id" : "780369fc-b253-7ceb-bb9b-a15c793eb8a7",
+    "name" : "cta",
+    "label" : "CTA ",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+      "name" : "cta_type",
+      "label" : "CTA: Type",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "cta", "HubSpot Call-to-Action" ], [ "link", "Custom Link" ], [ "anchor", "Scroll to Section" ], [ "none", "No CTA" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "cta"
+    }, {
+      "id" : "4882e003-4208-0c01-87e0-47db095f4b32",
+      "name" : "cta_button_color",
+      "label" : "CTA: Button Color",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "none",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "select",
+      "choices" : [ [ "primary", "Primary" ], [ "secondary", "Secondary" ], [ "white", "White" ], [ "gradient", "Gradient" ], [ "simple", "Simple Link" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "primary"
+    }, {
+      "id" : "c215c1ac-36c6-a62f-0a8a-f0976f4cb3bf",
+      "name" : "cta_ghost_transparent_button",
+      "label" : "CTA: Ghost / Transparent Button",
+      "help_text" : "Enable this to use a transparent “ghost” style for your button.",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "4882e003-4208-0c01-87e0-47db095f4b32",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "simple",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "d791c5fc-915e-f22b-21ee-00f24ad849f9",
+      "name" : "cta_button_text",
+      "label" : "CTA: Button Text",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|anchor|popup",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Take the Assessment"
+    }, {
+      "id" : "f7a1f16d-3e85-7c2f-2875-8990a679a24a",
+      "name" : "cta_hyperlink",
+      "label" : "CTA: Hyperlink",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|inline link",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG" ],
+      "type" : "url",
+      "display_width" : null,
+      "default" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      }
+    }, {
+      "id" : "e8f6dfd2-097f-9886-bea4-43bbebbf3b57",
+      "name" : "cta_open_in_new_tab",
+      "label" : "CTA: Open in new tab?",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "7342f1c0-b12b-0d62-6fb7-d42e44a5d94e",
+      "name" : "include_arrow",
+      "label" : "CTA: Include Arrow?",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "link|anchor",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "display" : "checkbox",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "942efa41-be10-d895-c9c1-b45012ee6e13",
+      "name" : "cta",
+      "label" : "CTA",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "cta",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "cta",
+      "display_width" : null,
+      "default" : "2ee9c9ce-988e-460e-bce4-b6272251c65b"
+    }, {
+      "id" : "5d675580-daa9-c3a0-8442-a986093311aa",
+      "name" : "cta_section_anchor_id",
+      "label" : "CTA: Section Anchor ID",
+      "help_text" : "Add the anchor ID of a section on this page to link to it. To link to a section on a different page, use the Custom Link option and add the section ID to the end of the URL preceded by a hashtag.",
+      "required" : true,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "288fbf7d-4726-f97c-01a4-1ce4790e49f4",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "anchor",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "section-id"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : true,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "cta_type" : "cta",
+      "cta_button_color" : "primary",
+      "cta_ghost_transparent_button" : false,
+      "cta_button_text" : "Take the Assessment",
+      "cta_hyperlink" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      },
+      "cta_open_in_new_tab" : false,
+      "include_arrow" : false,
+      "cta" : "2ee9c9ce-988e-460e-bce4-b6272251c65b",
+      "cta_section_anchor_id" : "section-id"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "media_type" : "image",
+    "icon_svg" : {
+      "icon_file_location_type" : "custom",
+      "svg_hubdb" : {
+        "id" : 119605777057
+      },
+      "svg_height" : 40,
+      "svg_color" : "blue600",
+      "svg_custom" : {
+        "size_type" : "exact",
+        "src" : "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Our%20Promises%20Icons/Trusted-Voice.svg",
+        "alt" : "Trusted-Voice",
+        "loading" : "lazy",
+        "width" : 60,
+        "height" : 60,
+        "max_width" : 60,
+        "max_height" : 60
+      }
+    },
+    "resource_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/why-determining-culture-fit-is-so-important-in-the-hiring-process-featured.jpg",
+      "alt" : "why-determining-culture-fit-is-so-important-in-the-hiring-process-featured",
+      "loading" : "lazy",
+      "width" : 1200,
+      "height" : 630,
+      "max_width" : 1200,
+      "max_height" : 630
+    },
+    "description" : "<h4>IMPACT Live 2024</h4>\n<p><span>A Business Event for CEOs, Organizational Leaders, Content Creators and Marketing Agencies</span></p>",
+    "cta" : {
+      "cta_type" : "cta",
+      "cta_button_color" : "primary",
+      "cta_mobile_width" : "palm--btn-default",
+      "cta_ghost_transparent_button" : false,
+      "cta_button_text" : "Take the Assessment",
+      "cta_hyperlink" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      },
+      "cta_open_in_new_tab" : false,
+      "include_arrow" : false,
+      "cta" : "2ee9c9ce-988e-460e-bce4-b6272251c65b",
+      "cta_section_anchor_id" : "section-id"
+    }
+  }, {
+    "media_type" : "image",
+    "icon_svg" : {
+      "icon_file_location_type" : "custom",
+      "svg_hubdb" : {
+        "id" : 119605777057
+      },
+      "svg_height" : 40,
+      "svg_color" : "blue600",
+      "svg_custom" : {
+        "size_type" : "exact",
+        "src" : "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Homepage/Assets/Our%20Promises%20Icons/Trusted-Voice.svg",
+        "alt" : "Trusted-Voice",
+        "loading" : "lazy",
+        "width" : 60,
+        "height" : 60,
+        "max_width" : 60,
+        "max_height" : 60
+      }
+    },
+    "resource_image" : {
+      "size_type" : "auto",
+      "src" : "https://www.impactplus.com/hubfs/why-determining-culture-fit-is-so-important-in-the-hiring-process-featured.jpg",
+      "alt" : "why-determining-culture-fit-is-so-important-in-the-hiring-process-featured",
+      "loading" : "lazy",
+      "width" : 1200,
+      "height" : 630,
+      "max_width" : 1200,
+      "max_height" : 630
+    },
+    "description" : "<h4>IMPACT Live 2024</h4>\n<p><span>A Business Event for CEOs, Organizational Leaders, Content Creators and Marketing Agencies</span></p>",
+    "cta" : {
+      "cta_type" : "cta",
+      "cta_button_color" : "primary",
+      "cta_mobile_width" : "palm--btn-default",
+      "cta_ghost_transparent_button" : false,
+      "cta_button_text" : "Take the Assessment",
+      "cta_hyperlink" : {
+        "content_id" : null,
+        "href" : "https://www.impactbnd.com",
+        "type" : "EXTERNAL"
+      },
+      "cta_open_in_new_tab" : false,
+      "include_arrow" : false,
+      "cta" : "2ee9c9ce-988e-460e-bce4-b6272251c65b",
+      "cta_section_anchor_id" : "section-id"
+    }
+  } ]
+}, {
+  "id" : "ae2c951d-f848-6cc5-25be-a0cf2cb29e35",
+  "name" : "show_form_section",
+  "label" : "Show Form Section?",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "42a4cccd-ba8c-d293-e175-49bd90b015ba",
+  "name" : "subscribe_form",
+  "label" : "Form Section",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "show_form_section",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "adc41f49-6278-e426-2344-0f9355087193",
+    "name" : "form_header",
+    "label" : "Form: Header",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Join 40,000+ sales and marketing pros who receive our weekly insights, tips, and best practices."
+  }, {
+    "id" : "1d3fe480-2fb1-534e-fed9-df25c9eec296",
+    "name" : "form_settings",
+    "label" : "Form: Settings",
+    "required" : false,
+    "locked" : false,
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "form_id" : "7af9c8bf-8c4e-42f2-b0c0-68b6baeee1d9",
+      "response_type" : "inline",
+      "message" : "<p>Thanks! Stay tuned for the upcoming edition.</p>",
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "form_header" : "Join 40,000+ sales and marketing pros who receive our weekly insights, tips, and best practices.",
+    "form_settings" : {
+      "form_id" : "7af9c8bf-8c4e-42f2-b0c0-68b6baeee1d9",
+      "response_type" : "inline",
+      "message" : "<p>Thanks! Stay tuned for the upcoming edition.</p>",
+      "gotowebinar_webinar_key" : null,
+      "form_type" : "HUBSPOT"
+    }
+  }
+} ]

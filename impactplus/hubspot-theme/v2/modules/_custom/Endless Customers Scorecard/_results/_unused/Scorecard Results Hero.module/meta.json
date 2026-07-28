@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 191771235708,
+  "label" : "[IM-UI] Scorecard Results Hero",
+  "icon" : "https://www.impactplus.com/hubfs/im_module-library-icon--v2-01-1.svg",
+  "is_available_for_new_content" : true
+}

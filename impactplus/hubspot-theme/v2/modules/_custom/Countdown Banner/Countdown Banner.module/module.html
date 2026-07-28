@@ -1,0 +1,121 @@
+{# CSS #}
+{{ require_css( get_asset_url("../Social Share.css"), { async: true} ) }}
+
+{# FORM COLUMN WIDTH #}
+{% set formClasses = "one-half tablet-ten-twelfths palm-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set formClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set formClasses = "four-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set formClasses = "seven-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set formClasses = "five-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+
+{# CONTENT COLUMN WIDTH #}
+{% set contentClasses = "five-half-twelfths portable-one-whole" %}
+
+{% if module.layout_controls.column_widths == "four-twelfths" %}
+{% set contentClasses = "three-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "eight-twelfths" %}
+{% set contentClasses = "two-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "five-twelfths" %}
+{% set contentClasses = "four-half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% elif module.layout_controls.column_widths == "seven-twelfths" %}
+{% set contentClasses = "six -half-twelfths tablet-ten-twelfths palm-one-whole" %}
+{% endif %}
+
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--countdownbanner relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  {% if widget_data.controls.header_design == "transparent" %}
+  <div class="header--anchor"></div>
+  {% endif %}
+  <div class="block relative z-index--10">
+    {{ snippets.swoopSpacerTop(module.background) }}
+
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+    </div>
+
+    {% if module.header || module.preheader %}
+    {#<div class="grid relative hard--ends {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+      <div class="grid__item eight-twelfths tablet-ten-twelfths palm-one-whole hard--top tall--bottom palm-short--bottom first--hard--top last--hard--bottom all--text--{{ module.layout_controls.header_content_alignment }} palm-all--text--{{ module.layout_controls.header_content_alignment_mobile }}">
+        {% if module.preheader %}
+        <span class="h6 preheader">
+          {{ module.preheader }}
+        </span>
+        {% else %}
+        <div class="header--rule"></div>
+        {% endif %}
+        {% if module.header %}
+        <h2 class="{{ module.header_font_size }}">{{ module.header }}</h2>
+        {% endif %}
+      </div>
+    </div>#}
+    {% endif %}
+
+    <div class="grid {{ module.layout_controls.content_vertical_alignment }} {% if module.layout_controls.content_position_mobile == 'bottom' %}palm-column--reverse{% endif %} {% if module.layout_controls.content_position == 'right' %}row--reverse{% endif %} portable-justify--center hard--ends">
+      <div class="{{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} all--text--{{ module.layout_controls.countdown_alignment }} palm-all--text--{{ module.layout_controls.countdown_alignment_mobile }}">
+        <div class="grid__item one-whole palm-one-whole hard--ends all--text--{{ module.layout_controls.countdown_alignment }} palm-all--text--{{ module.layout_controls.countdown_alignment_mobile }}">
+          {% if module.hide_countdown_timer %}
+          {% else %}
+          {% set eventCountdown = module.start_date_and_time_of_event %}
+          {% set eventCountdown = eventCountdown|unixtimestamp() %}
+          {% if local_dt|unixtimestamp() <= eventCountdown|unixtimestamp() %}
+          <div class='all--inline' id='countdown' data-count='{{ eventCountdown }}'>
+            <div class="countdown--wrapper" style="display: inline-flex; justify-content: center; border-radius: 24px;">
+              <span id='countdown--days' class="countdown--container flex flex-flow--column">
+                <span class='countdown--count light h2 hard--ends color--primary'>00</span><label class="p p--sm uppercase hard--ends bold color--obsidian inline">Days</label>
+              </span>
+              <span class='countdown--count hard--ends background--mist' style="width: 1px; height: inherit;"></span>
+              <span id='countdown--hours' class="countdown--container flex flex-flow--column">
+                <span class='countdown--count light h2 hard--ends color--primary'>00</span><label class="p p--sm uppercase hard--ends bold color--obsidian inline">Hours</label>
+              </span>
+              <span class='countdown--count light hard--ends background--mist' style="width: 1px; height: inherit;"></span>
+              <span id='countdown--minutes' class="countdown--container flex flex-flow--column">
+                <span class='countdown--count light h2 hard--ends color--primary'>00</span><label class="p p--sm uppercase hard--ends bold color--obsidian inline">Minutes</label>
+              </span>
+              <span class='countdown--count  hard--ends background--mist' style="width: 1px; height: inherit;"></span>
+              <span id='countdown--seconds' class="countdown--container flex flex-flow--column">
+                <span class='countdown--count light h2 hard--ends color--primary'>00</span><label class="p p--sm uppercase hard--ends bold color--obsidian inline">Seconds</label>
+              </span>
+            </div>
+          </div>
+          {% endif %}
+          {% endif %}
+
+          {% if module.ctas|length > 0 %}
+          <div class="btn-minwidth--{{ module.cta_layout_options.cta_minimum_width_desktop }} {{ module.cta_layout_options.cta_mobile_width }}" style=" {% if module.hide_countdown_timer %}margin-top:10px;{% else %}margin-top:30px;{% endif %}">
+            {{ snippets.multiButton(module.ctas) }}
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+      </div>
+      {{ snippets.swoopSpacerBottom(module.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+</div>
+
+{% require_js %}
+<script>
+  function copyToClipboard(container, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const tooltip = container.querySelector('.copy-tooltip');
+      container.classList.add('show-tooltip');
+      setTimeout(() => {
+        container.classList.remove('show-tooltip');
+      }, 1500);
+    }).catch(err => {
+      console.error('Copy failed', err);
+    });
+  }
+</script>
+{% end_require_js %}

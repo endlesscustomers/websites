@@ -1,0 +1,613 @@
+{{ require_css( get_asset_url("../BOFU Form with Steps.css"), { async: true } ) }}
+
+{% if module.form.customize_multi_select_first_question_styles %}
+<style>
+  /* Hide default list styling */
+  .{{ module.form.question_hs_form_field_identifier_class }} label.h2{
+    font-family: Merriweather, serif;
+    font-size: 34px;
+    line-height: 1.2702702702702702em; 
+    font-weight: 900;
+    color: #1d1d1f;
+    text-align: center !important;
+    margin-top: 0px;
+    margin-bottom: 20px !important;
+  } 
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .{{ module.form.question_hs_form_field_identifier_class }} label.h2{
+      font-size: 33px !important;
+      line-height: 1.2727272727272727em !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .{{ module.form.question_hs_form_field_identifier_class }} label.h2{
+      font-size: 28px !important;
+      line-height: 1.2142857142857142em !important;
+    }
+  }
+
+  .{{ module.form.question_hs_form_field_identifier_class }} label.h2 .hs-form-required{
+    display: none;
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .inputs-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 20px 0;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .inputs-list {
+      grid-template-columns: 1fr; /* Single column instead of 2 */
+    }
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox {
+    list-style: none;
+    margin: 0;
+  }
+
+  /* Card styling */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox-display {
+    gap: 16px;
+    padding: 24px;
+    border: 2px solid #f9fafb;
+    border-radius: 16px;
+    background: #f9fafb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    height: 100%;
+    position: relative;
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox-display:hover {
+    border-color: #3b82f6;
+  }
+
+  /* Hide checkbox */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* Circle icon */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox-display::before {
+    content: '';
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 16px;
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox-display.has-custom-icon::before {
+    background-image: var(--checkbox-icon);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+  }
+
+  /* Selected state */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} input:checked + span {
+    /* Target parent label */
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} input:checked ~ * {
+    border-color: #3b82f6 !important;
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox:has(input:checked) .hs-form-checkbox-display {
+    border-color: #3b82f6;
+  }
+
+  /* Checkmark */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox:has(input:checked) .hs-form-checkbox-display::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    background: #3b82f6;
+    border-radius: 50%;
+    background-size: 12px 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('https://www.impactplus.com/hubfs/Photography/Icons/White%20Icons/checkmark-white-icon.svg');
+  }
+
+  /* Text styling */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox-display > span:not(.checkbox-description) {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    display: block;
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .checkbox-description {
+    display: block;
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 4px;
+    margin-left: 56px !important;
+  }
+
+  /* Text container */
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .hs-form-checkbox-display {
+    flex-direction: row;
+  }
+
+  .bofuForm--inner .{{ module.form.question_hs_form_field_identifier_class }} .no-list.hs-error-msgs.inputs-list{
+    grid-template-columns: none;
+  }
+</style>
+{% endif %}
+
+
+{% if module.layout_controls.container_alignment == 'center' %}
+{% set gridAlignmentDesktop = 'center' %}
+{% endif %}
+
+{% if module.layout_controls.container_alignment == 'left' %}
+{% set gridAlignmentDesktop = 'left' %}
+{% endif %}
+
+{% if module.form.customize_multi_select_first_question_styles %}
+<div id="formCustomQuest" class="visuallyhidden">
+  {% for item in module.form.first_question_customizations %}
+  <div rel="{{ item.internal_property_name }}" data-icon="{{ item.custom_icon.src|escape_url }}" data-subhead="{{ item.subheader_description }}"></div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div {% if module.section_controls.anchor_id %}id="{{ module.section_controls.anchor_id|trim }}"{% endif %} class="section section--fullwidth relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }}">
+  {{ snippets.background(module.background) }}
+  <div class="block relative z-index--3">
+    {{ snippets.swoopSpacerTop(module.background) }}
+    <div class="block gridspacer--top {{ snippets.sectionPadding(module.section_controls.spacing,"top")|trim }}">
+
+    </div>
+    <div class="grid hard--ends relative">
+      {{ snippets.background(module.container_background) }}
+      {% if module.preheader || module.header || module.content %}
+      <div class="section--fullwidth--content {% if module.layout_controls.container_width != 'default' %} grid__item tall padding--tall {{ module.layout_controls.container_width }} {% if module.layout_controls.add_colored_border_to_container_background %}border--1 border--mist{% endif %} {% if module.layout_controls.add_border_radius_to_container_background %}border-radius overflow--hidden{% endif %}{% endif %} tablet-ten-twelfths palm-one-whole">
+        <div class="grid__item one-whole hard--top {% if module.enable_lightbox_video %}tall--bottom palm-short--bottom{% else %}hard--bottom{% endif %} last--hard--bottom all--text--{{ module.layout_controls.content_alignment }} palm-all--text--{{ module.layout_controls.content_alignment_mobile }} {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+          <div class="section--fullwidth--content-container first--hard--top last--hard--bottom {{ snippets.textColorOverride(module.section_controls.text_color_override)|trim }} flex flex-flow--column flex-align--{{ gridAlignmentDesktop }}">
+            {% if module.preheader %}
+            <span class="h6 preheader">{{ module.preheader }}</span>
+            {% endif %}
+            {% if module.header %}
+            <div class="section--fullwidth--header grid__item hard--sides hard--ends margin--short--bottom {% if module.layout_controls.content_width == 'narrow' %}ten-twelfths tablet-{{ module.layout_controls.content_width }} palm-one-whole{% else %}{{ module.layout_controls.content_width }} tablet-{{ module.layout_controls.content_width }} palm-one-whole{% endif %} first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              <h1>{{ module.header }}</h1>
+            </div>
+            {% endif %}
+            <div class="section--fullwidth--contents grid__item hard {{ module.layout_controls.subheader_width }} tablet-one-whole palm-one-whole first--hard--top last--hard--bottom {% if module.layout_controls.container_width != 'default' %}hard--sides{% endif %}">
+              {% if module.content %}
+              {{ module.content }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="grid hard--ends section--fullwidth--video-{{ module.enable_lightbox_video }} relative palm-hard--sides palm-width--max">
+      <div class="bofuForm--container grid__item nine-twelfths tablet-one-whole palm-one-whole palm-hard--sides margin--tall--top tall padding--tall lap-and-up-all--text--{{ module.section_controls.content_alignment_desktop }} portable-all--text--{{ module.section_controls.content_alignment_mobile }}">
+        <div class="animate--fade animate--fade-up">
+
+          {# Progress Bar #}
+          <div class="progress--container width--max relative">
+            <div class="progress-wrapper">
+              <div class="progress-items">
+
+                {% set totalSteps = module.progress_bar_steps|length %}
+                {% set totalStepsLessOne = totalSteps - 1 %}
+                {% set numberOfCompleted = module.progress_bar_steps|map('set_step_to_completed_active') %}
+                {% set numberOfCompleted = numberOfCompleted.count(true) %}
+
+
+                {% for item in module.progress_bar_steps %}
+                <div class="progress-item p hard--ends normal--weight font--14 all--valign--middle {% if loop.first %}active{% endif %}" style="">
+                  <div class="indicator" style=""><span class="number absolute p font--12 hard--ends">{{ loop.index }}</span></div>
+                  <span class="font--reading">{{ item.progress_bar_text }}</span></div>
+                {% if loop.last %}
+                {% else %}
+                <div class="progress-wrapper-line absolute" style="width:calc((100% - (12px * ({{totalSteps}} - 1)))/({{totalSteps}} - 1));"></div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {# End Progress Bar #}
+
+          <div class="bofuForm--inner">
+            {% form form_to_use="{{ module.form.form.form_id }}" response_response_type="{{ module.form.form.response_type }}" response_message="{{ module.form.form.message }}" response_redirect_id="{{ module.form.form.redirect_id }}" response_redirect_url="{{module.form.form.redirect_url}}" %}
+          </div>
+
+          <div class="bofu--meetingInv" style="display:none;">
+            <h2 class="margin--petite--bottom">{{ module.meeting_settings.meeting_header }}</h2>
+            <div class="meetings-iframe-container" data-src="{{ module.meeting_settings.hubspot_meetings_calendar_link }}?embed=true"></div>            
+          </div>
+
+          <div class="bofu--confirm">
+            <div class="grid__item one-whole hard--ends">
+              <div class="last--hard--bottom margin--standard--bottom">
+                {{ module.step_3_confirmation.header_and_subheader }}
+              </div>
+              {% if module.step_3_confirmation.vidyard_video_uuid %}
+              <div class="bofu--videoInj overflow--hidden" style="border-radius: 12px;" data-uuid="{{ module.step_3_confirmation.vidyard_video_uuid }}">
+                <!-- Video will be injected here -->
+              </div>
+              {% endif %}
+            </div>
+
+            {# Cards #}
+            <div class="section--card-content-columns--center flex flex-justify--left all--text--left">
+
+              {% macro link_attrs(link_field, title="") %}
+              {% set href = link_field.url.href %}
+              {% if link_field.url.type is equalto "EMAIL_ADDRESS" %}
+              {% set href = "mailto:" + href %}
+              {% elif link_field.url.type is equalto "PHONE_NUMBER" %}
+              {% set href = "tel:" + href %}
+              {% endif %}
+
+              {% if title %}title="{{ title }}"{% endif %}
+              {% if link_field.url.type is equalto "CALL_TO_ACTION" %}
+              href="{{ href }}"
+              {% else %}
+              href="{{ href|escape_url }}"
+              {% endif %}
+              {% if link_field.open_in_new_tab %}target="_blank"{% endif %}
+              {% if link_field.rel %}rel="{{ link_field.rel|escape_attr }}"{% endif %}
+              {% endmacro %}
+
+              {% for item in module.step_3_confirmation.resource_cards %}
+              <div class="section--cards-column-group section--cards-layout--two-col grid__item one-half tablet-one-half palm-one-whole hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center animate--fade animate--fade-up animate--fade-delay-list--2 margin--standard--top relative z-index--30 animate--fade--active">
+                <div class="section--card-content-columns-container flex overflow--hidden border--1 border--mist" style="width: 100%; border-radius: 16px;">
+                  <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative border--1 border--mist border--left--0 border--top--0 border--right--0 border--mist">
+                    <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer z-index--1" {{ link_attrs(item.card_inline_link_url, item.card_heading) }}></a>
+                    <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ item.card_heading }}" data-bg="{{ item.card_image.src }}" style="background-size: cover; background-position: center center; background-repeat: no-repeat;">
+                      <span style="display: block; width: 100%; margin: 0px; padding: 52.25% 0px 0px;"></span>
+                    </div>
+                  </div>
+                  <div class="section--card-content-columns-wrapper relative width--max">
+                    <div class="section--card-content-columns-group">
+                      <div class="section--card-content-columns-header h5 hard--top margin--petite--bottom last--hard--bottom relative">
+                        <a class="section--cards--card--link no--underline border--0 hover--pointer z-index--1 no--underline h5 hard--ends color--obsidian" {{ link_attrs(item.card_inline_link_url, item.card_heading) }}>
+                          {{ item.card_heading }}
+                        </a>
+                      </div>
+                      <div class="section--card-content-columns-description p p--sm hard--ends last--hard--bottom color--midgrey">
+                        {{ item.card_subheading }}                    
+                      </div>
+                    </div>
+                    <div class="section--richtext-columns--button-container" style="text--center">
+                      <span class="section--cards--card--body--cta">
+                        <span class="p p--sm all--btn all--btn--simple margin--petite--top hard--bottom">
+                          <a class="section--cards--card--link no--underline border--0 hover--pointer z-index--1 relative" {{ link_attrs(item.card_inline_link_url, item.card_heading) }}>
+                            <span class="btn btn--simple p--sm">
+                              {{ item.card_link_text }}
+                            </span>
+                          </a>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {# End Cards #}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {# end bofuForm--container #}
+  
+
+  {% require_js %}
+  <script>
+    function customizeCheckboxField() {
+      // Get customization data from hidden div
+      const customData = {};
+      const customDivs = document.querySelectorAll('#formCustomQuest [rel]');
+
+      customDivs.forEach((div) => {
+        const key = div.getAttribute('rel');
+        customData[key] = {
+          description: div.getAttribute('data-subhead'),
+          icon: div.getAttribute('data-icon')
+        };
+      });
+
+      // Add 'h2' class to the label
+      const fieldLabel = document.querySelector('.hs_what_would_you_like_to_talk_about label');
+      if (fieldLabel) {
+        fieldLabel.classList.add('h2');
+      }
+
+      // Find all checkboxes in this specific field
+      const checkboxes = document.querySelectorAll('.hs_what_would_you_like_to_talk_about .hs-form-checkbox');
+
+      checkboxes.forEach((checkbox) => {
+        const label = checkbox.querySelector('.hs-form-checkbox-display');
+
+        // Check if description already exists - prevent duplicates
+        if (label.querySelector('.checkbox-description')) {
+          return; // Skip if already customized
+        }
+
+        const input = checkbox.querySelector('input[type="checkbox"]');
+        const value = input.value;
+
+        // Add description if it exists
+        if (customData[value]) {
+          // Add description text
+          if (customData[value].description) {
+            const descSpan = document.createElement('span');
+            descSpan.className = 'checkbox-description';
+            descSpan.textContent = customData[value].description;
+            label.appendChild(descSpan);
+          }
+
+          // Add icon as background image
+          if (customData[value].icon) {
+            label.style.setProperty('--checkbox-icon', `url(${customData[value].icon})`);
+            label.classList.add('has-custom-icon');
+          }
+        }
+      });
+    }
+
+    function updateProgressBar() {
+      // Find the first progress-item without the active class
+      const firstInactive = document.querySelector('.progress-item:not(.active)');
+
+      if (firstInactive) {
+        firstInactive.classList.add('active');
+      }
+
+      // Find the first progress-wrapper-line without the fill class
+      const firstUnfilledLine = document.querySelector('.progress-wrapper-line:not(.progress-wrapper-bar--fill)');
+
+      if (firstUnfilledLine) {
+        firstUnfilledLine.classList.add('progress-wrapper-bar--fill');
+      }
+    }
+
+    function injectVidyardVideo() {
+      const videoContainer = document.querySelector('.bofu--videoInj');
+
+      if (videoContainer) {
+        const uuid = videoContainer.getAttribute('data-uuid');
+
+        if (uuid) {
+          // Create and inject the video player first
+          const img = document.createElement('img');
+          img.style.width = '100%';
+          img.style.margin = 'auto';
+          img.style.display = 'block';
+          img.className = 'vidyard-player-embed';
+          img.src = `https://play.vidyard.com/${uuid}.jpg`;
+          img.setAttribute('data-uuid', uuid);
+          img.setAttribute('data-v', '4');
+          img.setAttribute('data-type', 'inline');
+
+          videoContainer.appendChild(img);
+
+          // Load Vidyard script after the image is in the DOM
+          if (!document.querySelector('script[src*="play.vidyard.com"]')) {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = 'https://play.vidyard.com/embed/v4.js';
+            document.head.appendChild(script);
+          } else {
+            // If script already exists, manually trigger Vidyard to process the new player
+            if (window.vidyardEmbed) {
+              window.vidyardEmbed.api.renderPlayer(img);
+            }
+          }
+        }
+      }
+    }
+
+    function handleMeetingBooked() {
+      // Scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+
+      // Wait 2 seconds, then fade out meeting and fade in confirmation
+      setTimeout(() => {
+        const meetingInv = document.querySelector('.bofu--meetingInv');
+        const confirmSection = document.querySelector('.bofu--confirm');
+
+        if (meetingInv && confirmSection) {
+          // Fade out meeting
+          meetingInv.style.opacity = '0';
+
+          setTimeout(() => {
+            // Hide meeting
+            meetingInv.style.display = 'none';
+
+            // Show confirmation section
+            confirmSection.style.display = 'block';
+
+            // Force reflow
+            void confirmSection.offsetHeight;
+
+            // Fade in confirmation
+            setTimeout(() => {
+              confirmSection.style.opacity = '1';
+
+              // Update progress bar to final step
+              updateProgressBar();
+
+              // Inject Vidyard video
+              injectVidyardVideo();
+            }, 50);
+
+          }, 500); // Wait for fade out
+        }
+      }, 2000); // Wait 2 seconds after scroll
+    }
+
+    function handleFormSubmission(data) {
+      // Handle different data structures
+      let formData = data;
+
+      // If data is an object with a submissionValues property
+      if (data.submissionValues) {
+        formData = data.submissionValues;
+      }
+
+      // Get form values - handle both array and object formats
+      let firstName = '';
+      let lastName = '';
+      let email = '';
+
+      if (Array.isArray(formData)) {
+        const firstNameField = formData.find(field => field.name === 'firstname');
+        const lastNameField = formData.find(field => field.name === 'lastname');
+        const emailField = formData.find(field => field.name === 'email');
+
+        firstName = firstNameField ? firstNameField.value : '';
+        lastName = lastNameField ? lastNameField.value : '';
+        email = emailField ? emailField.value : '';
+      } else {
+        // Object format
+        firstName = formData.firstname || '';
+        lastName = formData.lastname || '';
+        email = formData.email || '';
+      }
+
+      // Build URL parameters
+      const params = new URLSearchParams();
+      if (firstName) params.append('firstName', firstName);
+      if (lastName) params.append('lastName', lastName);
+      if (email) params.append('email', email);
+
+      // Get meeting container and build new URL
+      const meetingContainer = document.querySelector('.meetings-iframe-container');
+
+      if (meetingContainer) {
+        const currentSrc = meetingContainer.getAttribute('data-src');
+        const baseUrl = currentSrc.split('?')[0];
+        const newUrl = baseUrl + '?embed=true&' + params.toString();
+
+        // Update data-src to new URL with parameters
+        meetingContainer.setAttribute('data-src', newUrl);
+      }
+
+      // Update progress bar
+      updateProgressBar();
+
+      // Load meeting script if not already loaded
+      if (!document.querySelector('script[src*="MeetingsEmbedCode.js"]')) {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
+
+        // Wait for script to load before showing meeting
+        script.onload = function() {
+          showMeetingSection();
+        };
+
+        document.body.appendChild(script);
+      } else {
+        // Script already loaded, just show meeting
+        showMeetingSection();
+      }
+    }
+
+    function showMeetingSection() {
+      // Fade out form and fade in meeting
+      const formInner = document.querySelector('.bofuForm--inner');
+      const meetingInv = document.querySelector('.bofu--meetingInv');
+
+      if (formInner && meetingInv) {
+        // Start fade out of form
+        formInner.style.opacity = '0';
+
+        setTimeout(() => {
+          // Hide form after fade completes
+          formInner.style.display = 'none';
+
+          // Show meeting (keep it invisible initially)
+          meetingInv.style.display = 'block';
+
+          // Force reflow
+          void meetingInv.offsetHeight;
+
+          // Start fade in
+          setTimeout(() => {
+            meetingInv.style.opacity = '1';
+
+            // Listen for meeting booking confirmation
+            setupMeetingListener();
+
+          }, 50);
+
+        }, 500); // Match CSS transition duration
+      }
+    }
+
+    function setupMeetingListener() {
+      // Listen for HubSpot meeting booking events
+      window.addEventListener('message', function(event) {
+        // Check if this is a HubSpot meeting booking confirmation
+        if (event.data && event.data.meetingBookSucceeded) {
+          handleMeetingBooked();
+        }
+      });
+    }
+
+    // Wait for HubSpot form to be ready
+    window.addEventListener('message', event => {
+      if(event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+        customizeCheckboxField();
+      }
+
+      // Scroll to top before form submission
+      if(event.data.type === 'hsFormCallback' && event.data.eventName === 'onBeforeFormSubmit') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+
+        // Hides what to expect section
+        const whatToExpect = document.querySelector('#whatToExpect');
+        if (whatToExpect) {
+          whatToExpect.classList.add('visuallyhidden');
+        }
+      }
+
+      // Handle form submission
+      if(event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormSubmitted') {
+        handleFormSubmission(event.data.data);
+      }
+    });
+  </script>
+  {% end_require_js %}
+
+  <div class="block gridspacer--bottom {{ snippets.sectionPadding(module.section_controls.spacing,"bottom")|trim }}">
+
+  </div>
+  {{ snippets.swoopSpacerBottom(module.background) }}
+</div>
+{{ snippets.sectionPaddingCustomStyles(name,module.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+</div>

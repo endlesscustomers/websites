@@ -1,0 +1,28 @@
+{
+  "content_tags" : [ {
+    "name" : "COMPATIBLE_BLOG",
+    "source" : "MARKETPLACE"
+  }, {
+    "name" : "COMPATIBLE_PAGE",
+    "source" : "MARKETPLACE"
+  }, {
+    "name" : "SEARCH",
+    "source" : "USER"
+  } ],
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_POST", "BLOG_LISTING" ],
+  "module_id" : 99922656271,
+  "js_assets" : [ {
+    "url" : "https://cdn2.hubspot.net/hubfs/298890/Copied%20Assets/Search%20Results%20copy/url-search-params.js",
+    "autoload" : true,
+    "name" : "url-search-params.js"
+  }, {
+    "url" : "https://cdn2.hubspot.net/hubfs/298890/Copied%20Assets/Search%20Results%20copy/template.js",
+    "autoload" : true,
+    "name" : "template.js"
+  } ],
+  "label" : "Trust - Search Results",
+  "icon" : "https://cdn2.hubspot.net/hubfs/3403577/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : false
+}

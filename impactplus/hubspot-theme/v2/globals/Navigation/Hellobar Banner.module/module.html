@@ -1,0 +1,107 @@
+{% set blogSmartCTA = [] %}
+
+{% for ctas in module.cta_options %}
+{% if ctas.hide_cta %}
+{% else %}
+{% do blogSmartCTA.append(ctas) %}
+{% endif %}
+{% endfor %}
+
+{% set defaultCTAIndex = [] %}
+{% set smartCtaDefaultInnerIndex = [] %}
+
+{% for ctaVariant in blogSmartCTA %}
+
+{% if ctaVariant.set_as_default_cta == True %}
+
+{# ***** NEW DEFAULT ***** #}
+{% do defaultCTAIndex.append(loop.index - 1) %}
+
+{% endif %}
+{% endfor %}
+
+{# If for some reason, there was ever 2 default CTAs, get the first #}
+{% set defaultCTAIndex = defaultCTAIndex[0] %}
+ 
+{# **** End default CTA Check **** #}
+
+{# **** Setup the Topic Checker **** #}
+{% set smartCtaTopicMatches = [] %}
+{% set smartCtaTopicInnerIndex = [] %}
+
+{% set postTopics = [] %}
+{% for topic in content.topic_list %}
+{% set postTopics2 = postTopics.append(topic.label|lower) %}
+{% endfor %}
+
+{% for ctaVariant in blogSmartCTA %}
+{% set ctaTopics = [] %}
+
+{% for topic in ctaVariant.cta_page_topic_visibility.topic %}
+{% set ctaTopics2 = ctaTopics.append(topic|trim|lower) %}
+{% endfor %}
+
+{% if ctaTopics|intersect(postTopics)|length > 0 %}
+
+{# ***** SET TO SMART, FILTER THROUGH LISTS AS WELL ***** #}
+{% do smartCtaTopicMatches.append(loop.index - 1) %}
+{% endif %} 
+{% endfor %}
+
+{# First index of the matching topic CTA #}
+{% set smartCtaTopicMatches = smartCtaTopicMatches[0] %}
+{# End Setup for Topic Checker #}
+
+{# **** Set up the URL Checker - The URL Should Prevail Over Topic **** #}
+{% set smartCtaURLMatches = [] %}
+{% set smartCtaURLInnerIndex = [] %}
+{% set ifUrlSmartSuccessful = [] %}
+
+{% set currentpageURL = [content.absolute_url] %}
+
+{% for ctaURLOps in blogSmartCTA %}
+{% set ctaURLs = [] %}
+{% for urlMatch in ctaURLOps.cta_page_topic_visibility.urls %}
+{% set ctaURLs2 = ctaURLs.append(urlMatch.href|trim|lower) %}
+{% endfor %}
+
+{# If one of the URLs matches the current pages URL #}
+{% if ctaURLs|intersect(currentpageURL)|length > 0 %}
+{# NOT SET TO SMART, GET THE MATCHING INDEX #}
+{% set smartCtaURLMatches2 = smartCtaURLMatches.append(loop.index - 1) %}
+
+{% endif %}
+{% endfor %}
+{# **** End Setup for URL Checker **** #}
+
+{# If for some reason, the URL was used twice, get the first so the CTA doesn't fail #}
+{% set smartCtaURLMatches = smartCtaURLMatches[0] %}
+
+{# ***** Time to see what exists for the options ***** #}
+{% if smartCtaURLMatches > 0 %}
+
+{# A URL has been matched #}
+{% set smartCtaDataPush = blogSmartCTA[smartCtaURLMatches] %}
+
+{% elif smartCtaTopicMatches %}
+{# A Topic has been matched #}
+{% set smartCtaDataPush = blogSmartCTA[smartCtaTopicMatches] %}
+
+{% elif blogSmartCTA|map('set_as_default_cta') == true %}
+
+{# No matches found, use default if exists #}
+{% set smartCtaDataPush = blogSmartCTA[defaultCTAIndex] %}
+
+{% endif %}
+{# end default check #}
+
+{% if smartCtaDataPush.bottom_cta_vertical_image_offset %}
+{% set vOffset = smartCtaDataPush.bottom_cta_vertical_image_offset %}
+{% else %}
+{% set vOffset = 0 %}
+{% endif %}
+
+
+{# Push to array variables in the template that includes this module #}
+{% do smartCtaData.append(smartCtaDataPush) %}
+{% do smartCtaDataSidebar.append(smartCtaDataSidebarPush) %}

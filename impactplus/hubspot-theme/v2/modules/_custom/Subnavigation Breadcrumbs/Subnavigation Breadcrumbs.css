@@ -1,0 +1,79 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--breadcrumbs-custom .section--breadcrumbs .hs-breadcrumb-menu{
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs .section--breadcrumbs--customlink,
+.section--breadcrumbs-custom .section--breadcrumbs li, 
+.section--breadcrumbs-custom .section--breadcrumbs li a{
+  font-size: 14px !important;
+}
+
+.section--breadcrumbs .hs-breadcrumb-menu-item {
+  padding: 0 8px 0 0;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs li, 
+.section--breadcrumbs-custom .section--breadcrumbs li a{
+  color: {{ color("black") }};
+  font-weight: 700;
+  transition: none;
+  margin-top: 8px;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs li a,
+.section--breadcrumbs-custom .section--breadcrumbs .hs-breadcrumb-menu-divider,
+.section--breadcrumbs-custom .section--breadcrumbs .hs-breadcrumb-menu-divider:before{
+  line-height: 1em;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs li.last-crumb{
+  font-weight: 600;
+  color:  {{ color("midgrey") }};
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs .hs-breadcrumb-menu-divider{
+  display: inline-block;
+  vertical-align: bottom;
+  top: .5px;
+  position: relative;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs .hs-breadcrumb-menu-divider:before {
+  content: '›';
+  padding-left: 4px;
+  font-size: 25px;
+  display: inline-block;
+  font-weight: 300;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs li a .hs-breadcrumb-back{
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(0%);
+  transition: filter 0.3s ease-in-out;
+}
+
+.section--breadcrumbs-custom .section--breadcrumbs li a:hover .hs-breadcrumb-back{
+  filter: invert(27%) sepia(74%) saturate(2569%) hue-rotate(210deg) brightness(99%) contrast(104%);
+}

@@ -1,0 +1,1294 @@
+{% import '/_IMPACT_Production/_globals/_macros/Global_Snippets_Marcos.html' as snippets %}
+
+{{ require_css(get_asset_url("/IM-IMPACT-Prod-Theme-2025/globals/Navigation/_css/gdpr_banner_styles.css"), { async: true } ) }}
+
+{% if widget_data.controls.page_settings_options.hide_navigation == "true" %}
+{% elif widget_data.controls.primary_navigation.primary_navigation_select_type == 'logo-only' %}
+
+  <header class="no-fix header--main--dropdown background--white no--shadow" id='old--header'>
+    <div class="old--header--top relative background--{{ widget_data.controls.primary_navigation.navigation_background_color }}">
+      <div class="grid hard--ends all--valign--middle">
+        <div class='grid__item one-whole hard--ends'>
+          <div class="grid__item one-whole hard--sides portable-one-whole {% if widget_data.controls.logo_settings.logo_spacing == "custom" %}hard--ends{% else %}{{ widget_data.controls.logo_settings.logo_spacing }}{% endif %} {% if widget_data.controls.logo_settings.placement_of_logo == 'center' %}all--text--center{% else %}all--text--left{% endif %} all--valign--middle" style="{% if widget_data.controls.logo_settings.logo_spacing == "custom" %}{{ widget_data.controls.logo_settings.logo_top_spacing_unit }}:{{ widget_data.controls.logo_settings.logo_top_spacing }}px !important; {{ widget_data.controls.logo_settings.logo_bottom_spacing_unit }}:{{ widget_data.controls.logo_settings.logo_bottom_spacing }}px !important;{% endif %}">
+            <div class='grid__item one-whole hard--ends hard--sides'>
+              {% if widget_data.controls.logo_settings.logo_option == "custom" %}
+                <a class="z-index--10" href='{{ widget_data.controls.logo_settings.logo_custom_link.url.href }}' {% if widget_data.controls.logo_settings.logo_custom_link.open_in_new_tab %}target="_blank"{% endif %} {% if widget_data.controls.logo_settings.logo_custom_link.rel %}rel="{{ widget_data.controls.logo_settings.logo_custom_link.rel }}"{% endif %}>
+                  <img class="{{ widget_data.controls.logo_settings.logo_spacing }}" alt='{{ widget_data.controls.logo_settings.logo_custom_image.alt }}' src='{{ widget_data.controls.logo_settings.logo_custom_image.src }}' width='{{ widget_data.controls.logo_settings.logo_custom_image.width }}' height='{{ widget_data.controls.logo_settings.logo_custom_image.height }}' style="height: auto;">
+                </a>
+              {% else %}
+                <a href='https://www.impactplus.com'>
+                  {% if widget_data.controls.logo_settings.navigation_color_option == 'white' %}
+                    <img alt='IMPACT Inbound Marketing Agency' height='46' src='https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/White%20Logo%20-%20Full/impact-logo-highres-white.svg' width='150'>
+                  {% elif widget_data.controls.logo_settings.navigation_color_option == 'black' %}
+                    <img alt='IMPACT Inbound Marketing Agency' height='46' src='https://www.impactplus.com/hubfs/Photography/Icons/Navigation_3_2023/Logos/IMPACT-logo--black.svg' width='150'>
+                  {% elif widget_data.controls.logo_settings.navigation_color_option == 'blue-square-white-text' %}
+                    <img alt='IMPACT Inbound Marketing Agency' height='46' src='https://taya.impactplus.com/hubfs/IMPACT_Logo/IMPACT_Logo--Blue%20and%20White.svg' width='150'>
+                  {% else %}
+                    <img alt='IMPACT Inbound Marketing Agency' height='46' src='http://cdn2.hubspot.net/hubfs/145335/IMPACT_Logo/impact-logo-highres-blue.svg' width='150'>
+                  {% endif %}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% else %}
+  <header id='headerIMPlus' class="headerIMPlus--prod-theme">
+    <div class="headerIMPlus-container {% if widget_data.controls.navigation_position == 'static' %} relative {% endif %}">
+
+      {# CORE NAVIGATION #}
+      {% if content.absolute_url is string_containing '/blog' || content.absolute_url is string_containing '/learning-center' || content.absolute_url is string_containing '/dev-blog' %}
+        {% set secondaryNavType = 'learning-center' %}
+      {% endif %}
+
+      {# Learning Center Navigation Stylesheet #}
+      {% if secondaryNavType == 'learning-center' %}
+
+      {% endif %}
+
+      <div class="headerIMPlus-navigation-container headerIMPlus-navigation-container--is{{ widget_data.controls.navigation_position }} header--hamburger--down {% if (content.absolute_url is string_containing '/blog/' && smartCtaData|length > 0) || (content.absolute_url is string_containing '/dev-blog/' && smartCtaData|length > 0) %}lap-and-up-absolute tablet-absolute{% endif %} {% if secondaryNavType == 'learning-center' %}headerIMPlus-navigation-container--learning-center header--hamburger--down{% endif %}" style="{% if widget_data.controls.navigation_position == 'static' %}position:absolute{% endif %}">
+        <div class="headerIMPlus-navigation-container--inner-container">
+          {# PLAYBOOK LAYOUTS #}
+          {% if widget_data.controls.primary_navigation_select_type == 'playbook' %}
+            <div class="headerIMPlus-main--playbook-theme headerIMPlus-main--playbook-menu-mobile lap-and-up-visuallyhidden">
+              <div class="headerIMPlus--nav-icon-container">
+                <div class="headerIMPlus--nav-icon" onclick="$('body').toggleClass('mobile-nav--showing');" tabindex="0">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+              {% for playbook in module.playbook_navigation_options %}
+                {% if widget_data.controls.playbook_navigation_title == playbook.playbook_name %}
+                  <a class="headerIMPlus-playbook--download-button hover--pointer btn btn--blue inline-block bold font--16" style="padding: 10px 20px !important;">
+                    {{ playbook.playbook_popup_button_text }}
+                  </a>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class='headerIMPlus-main headerIMPlus-main--background--black-theme headerIMPlus-main--playbook-theme portable-visuallyhidden'>
+              {% for playbook in module.playbook_navigation_options %}
+                {% if widget_data.controls.playbook_navigation_title == playbook.playbook_name %}
+                  <div class="headerIMPlus-main-wrapper">
+                    {# Logo #}
+                    <div class='headerIMPlus-logo-wrapper all--valign--middle'>
+                      <div class="headerIMPlus-logo-and-pbtitle">
+                        <a class='headerIMPlus-logo-link' href='http://www.impactplus.com' aria-label="IMPACT">
+                          <img rel="preload" fetchpriority="high" alt='IMPACT Inbound Marketing Agency' height='30' src='https://www.impactplus.com/hubfs/IMPACT_Logo/IMPACT_Logo--Blue%20and%20White.svg' width='97'>
+
+                        </a>
+                        <div class="headerIMPlus-playbook-title">
+                          <h5 class="color--white bolder hard--ends">
+                            <a class="headerIMPlus-playbook-lp" href="{{ playbook.playbook_lp_url.href }}" title="{{ playbook.playbook_name }}">
+                              {{ playbook.playbook_name }}
+                            </a>
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class='headerIMPlus-playbook--main--links'>
+                      <div class="all--color--white inline-block">
+                        {% menu id="{{ playbook.playbook_top_level_menu }}" %}
+                      </div>
+                      <a class="headerIMPlus-playbook--download-button hover--pointer btn btn--blue inline-block bold" style="padding: 10px 20px !important;">
+                        {{ playbook.playbook_popup_button_text }}
+                      </a>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            {# END PLAYBOOK LAYOUTS #}
+
+          {% else %}
+
+            {# NOT the Playbook Navigation #}
+            <div class='headerIMPlus-main headerIMPlus-main--preview {% if widget_data.controls.primary_navigation.primary_navigation_theme %}headerIMPlus-main--background--{{ widget_data.controls.primary_navigation.primary_navigation_theme }}-theme{% else %}headerIMPlus-main--background--white-theme{% endif %}'>
+              <div class="headerIMPlus-main--border">
+                <div class='headerIMPlus-main-wrapper grid hard--ends tablet-relative'>
+                  <div class='headerIMPlus-main-wrapper--inner grid__item one-whole hard--ends {% if content.template_path == "IM-IMPACT-Prod-Theme-2025/templates/flex.html" || builtin_body_classes is string_containing 'hs-blog-id-194887237743' || builtin_body_classes is string_containing 'hs-blog-id-194889627688' %}palm-one-whole{% else %}palm-eleven-twelfths palm-hard--sides{% endif %}'>
+                    {# Logo #}
+                    <div class='headerIMPlus-logo-wrapper all--valign--middle'>
+                      {% set href = module.logo_settings.logo_url.url.href %}
+                      {% if module.logo_settings.logo_url.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      <a {% if module.logo_settings.logo_url.url.type is equalto "CALL_TO_ACTION"  %}
+                      href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                    {% else %}
+                      href="{{ href|escape_url }}"
+                    {% endif %}
+                    {% if module.logo_settings.logo_url.open_in_new_tab %}
+                      target="_blank"
+                    {% endif %}
+                    aria-label="IMPACT"
+                    {% if module.logo_settings.logo_url.rel %}
+                      rel="{{ module.logo_settings.logo_url.rel|escape_attr }}"
+                    {% endif %}
+                    >
+                    {% if module.logo_settings.logo_solid.src %}
+                      {% set sizeAttrs = 'width="{{ module.logo_settings.logo_solid.width|escape_attr }}" height="{{ module.logo_settings.logo_solid.height|escape_attr }}"' %}
+                      {% if module.logo_settings.logo_solid.size_type == 'auto' %}
+                        {% set sizeAttrs = 'width="{{ module.logo_settings.logo_solid.width|escape_attr }}" height="{{ module.logo_settings.logo_solid.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                      {% elif module.logo_settings.logo_solid.size_type == 'auto_custom_max' %}
+                        {% set sizeAttrs = 'width="{{ module.logo_settings.logo_solid.max_width|escape_attr }}" height="{{ module.logo_settings.logo_solid.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                      {% endif %}
+                      <img src="{{ module.logo_settings.logo_solid.src|escape_url }}" alt="{{ module.logo_settings.logo_solid.alt|escape_attr }}"  {{ sizeAttrs }}>
+                    {% endif %}
+
+                  </a>
+
+                  {% if (module.logo_settings.left_aligned_text) && (module.logo_settings.logo_byline_url|length > 0) %}
+                    {% set href = module.logo_settings.logo_byline_url.url.href %}
+                    {% if module.logo_settings.logo_byline_url.url.type is equalto "EMAIL_ADDRESS" %}
+                      {% set href = "mailto:" + href %}
+                    {% endif %}
+                    <a class="p font--12 line-height--small hard--ends color--slate-500 no--underline text--left border--left--1 border--mist border--top--0 border--bottom--0 border--right--0" style="margin-left: 10px; padding-left: 10px;"
+                    {% if module.logo_settings.logo_byline_url.url.type is equalto "CALL_TO_ACTION"  %}
+                      href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                    {% else %}
+                      href="{{ href|escape_url }}"
+                    {% endif %}
+                    {% if module.logo_settings.logo_byline_url.open_in_new_tab %}
+                      target="_blank"
+                    {% endif %}
+                    {% if module.logo_settings.logo_byline_url.rel %}
+                      rel="{{ module.logo_settings.logo_byline_url.rel|escape_attr }}"
+                    {% endif %}
+                    >
+                    {{ module.logo_settings.left_aligned_text }}
+                  </a>
+                {% endif %}
+
+                <div class="headerIMPlus-back-link">
+                  <div class="mobilenav--nav--back--area" rel="0">
+                    <div class="mobilenav--nav--back--label flex" style="align-items: center;">
+                      <img class="lazy" data-src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/arrow-facing-left--black-01.svg" alt="Back" style="margin-right: 10px; height: 12px; position: relative;">
+                      <span class="p hard--ends color--obsidian">Back</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {# Primary Center Navigation #}
+              <div class='headerIMPlus-main--links portable-visuallyhidden' style="">
+                <div class="headerIMPlus-top-level-menu">
+                  {# Custom Menu Function #}
+                  <nav id="hs_menu_wrapper_primary_and_secondary_navigation_options_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" data-sitemap-name="default" data-menu-id="40889376849" aria-label="Main navigation" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                    <ul>
+                      {% for firstChild in module.primary_navigation_menu %}
+                        {% if firstChild.show_mobile_only %}
+                          {# Menu dropdown will only show in the hamburger #}
+                        {% else %}
+                          {% set hasDropdown = firstChild.top_navigation_menu_type != "" and firstChild.top_navigation_menu_type != "no_dropdown" and firstChild.top_navigation_menu_type != "button" %}
+                          <li class="headerIMPlus--menu-top-center-item hs-menu-item hs-menu-depth-1 lap-and-up-relative {% if not hasDropdown %}hover--pointer{% endif %} {% if content.absolute_url is string_containing firstChild.top_level_item_link.href %}active{% endif %} {% if firstChild.top_navigation_menu_type == "" || firstChild.top_navigation_menu_type == "no_dropdown" || firstChild.top_navigation_menu_type == "button" %}{% else %}hs-item-has-children{% endif %}" data-label="{{ firstChild.top_level_primary_menu_items }}" itemprop="hasPart" itemscope itemtype="https://schema.org/SiteNavigationElement">
+
+                            <a data-menu-type="primary" data-hs-track="{{ firstChild.top_level_primary_menu_items }}" {% if firstChild.open_in_new_tab %}target="_blank"{% endif %} {% if firstChild.top_navigation_menu_type == "" || firstChild.top_navigation_menu_type == "no_dropdown" %}href="{{ firstChild.top_level_item_link.href }}"{% else %}{% endif %} {% if hasDropdown %}aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu-{{ loop.index }}"{% endif %} {% if content.absolute_url is string_containing firstChild.top_level_item_link.href %}aria-current="page"{% endif %} class="headerIMPlus--menu-item headerIMPlus--menu-top-center-text-label headerIMPlus--menu-top-center-text-{{ firstChild.top_level_primary_menu_items|lower|replace('&','')|replace(' ','-')|replace(',','') }} headerIMPlus-main--hs-link headerIMPlus-main--hs-link--{{ firstChild.menu_item_font_weight }} primary--click-track color--black" itemprop="url">
+                              <span itemprop="name">{{ firstChild.top_level_primary_menu_items }}</span>
+                              {% if hasDropdown %}
+                                <img class="headerIMPlus--menu-top-dropdown" src="https://www.impactplus.com/hubfs/Photography/Icons/Black%20Icons/arrow%20down%20icon%20-%20black.svg" alt="{{ firstChild.top_level_primary_menu_items }} Drop Down" height="8" width="11">
+                              {% endif %}
+                            </a>
+
+                            {% if firstChild.top_navigation_menu_type != 'no_dropdown' %}
+                              <div id="nav-submenu-{{ loop.index }}" class="header-IMPlus--custom-menu header-IMPlus--community-menu border-radius--10 background--white" aria-label="{{ firstChild.top_level_primary_menu_items }} submenu" itemprop="hasPart" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                                {% if firstChild.top_navigation_menu_type == 'learning-center' || firstChild.top_navigation_menu_type == 'simple_w_header' %}
+                                  <div class="header-IMPlus--simple-menu">
+                                    {% for item in firstChild.primary_dropdown_menu_items %}
+                                      {% if item.menu_item_header %}
+                                        <h6 class="header-IMPlus--simple-menu--hdr hard--ends relative color--neutralgrey font--12">{{ item.menu_item_header }}</h6>
+                                      {% endif %}
+                                      <ul class="header-IMPlus--simple-menu--group">
+                                        {% for simpleLvl1 in item.dropdown_item_menu_group %}
+                                          <li class="headerIMPlus--simple-menu-li hs-menu-item hs-menu-arrow-group hs-item-has-children valign--top text--left background--white hover--cursor" itemprop="hasPart" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                                            <a id="nav--{{ simpleLvl1.linkLabel|lower|replace('&','')|replace(' ','-')|replace(',','')|replace('?','') }}" href="{{ simpleLvl1.url }}" target="{{ simpleLvl1.linkTarget }}" aria-label="{{ simpleLvl1.linkLabel }}" class="headerIMPlus--menu-item headerIMPlus--simple-menu-li-background no--underline primary--click-track {% if item.dropdown_font_size %}{{ item.dropdown_font_size }} semibold{% else %}font--15{% endif %}" data-label="{{ simpleLvl1.linkLabel }}" data-hs-track="{{ simpleLvl1.linkLabel }}" data-menu-type="primary" itemprop="url">
+                                              <span itemprop="name">{{ simpleLvl1.linkLabel }}</span>
+                                              {% if simpleLvl1.linkTarget == "_blank" %}
+                                                <img class="headerIMPlus--services-menu-new-tab" src="https://www.impactplus.com/hubfs/new%20tab.svg" width="10" height="10" alt="Opens in new tab" style="margin-left:5px;">
+                                              {% endif %}
+                                              <img class="headerIMPlus--services-menu-arrow" src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Navigation%20Icons/navigation%20arrow%20-%20facing%20right-01.svg" width="10" height="10" alt="">
+                                            </a>
+                                          </li>
+                                        {% endfor %}
+                                      </ul>
+                                    {% endfor %}
+
+                                    {% if (firstChild.social_links.social_profiles|length) && (firstChild.add_social_profiles == true) %}
+                                      <div class="header-IMPlus--social">
+                                        <div class="header-IMPlus--social-wrapper">
+                                          <h6 class="hard--ends relative color--neutralgrey font--12 hard--bottom" style="margin-bottom: 10px !important;">{{ firstChild.social_links.social_item_header }}</h6>
+                                          <div class="flex flex-align--center">
+                                            {% for item2 in firstChild.social_links.social_profiles %}
+                                              <a class="flex flex-align--center flex-justify--center z-index--5 relative tablet-margin--short--top" href="{{ item2.social_profile_link.url.href }}" {% if item2.social_profile_link.open_in_new_tab %}target="_blank"{% endif %} aria-label="Follow us on {{ item2.social_app_icon }}{% if item2.social_profile_link.open_in_new_tab %} (opens in new tab){% endif %}" {% if item2.social_profile_link.rel %}rel="{{ item2.social_profile_link.rel }}"{% endif %} itemprop="url">
+                                                <span itemprop="name">{{ item2.social_app_icon }}</span>
+                                                {% set sizeAttrs = 'width="{{ item2.social_custom_icon.width }}" height="{{ item2.social_custom_icon.height }}"' %}
+                                                {% if item2.social_custom_icon.size_type == 'auto' %}
+                                                  {% set sizeAttrs = 'style="max-width:100%;height:auto;"' %}
+                                                {% elif item2.social_custom_icon.size_type == 'auto_custom_max' %}
+                                                  {% set sizeAttrs = 'width="{{ item2.social_custom_icon.max_width }}" height="{{ item2.social_custom_icon.max_height }}" style="max-width:100%;height:auto;"' %}
+                                                {% endif %}
+                                                {% set loadingAttr = item2.social_custom_icon.loading != 'disabled' ? 'loading="{{ item2.social_custom_icon.loading }}"' : '' %}
+                                                <span class="footer--social-size footer--social-size--icon flex flex-align--center flex-justify--center" style="filter:{{ item2.badge_and_social_color_choice }};width:{{ firstChild.social_links.social_profiles_background_circle_size }}px;height:{{ firstChild.social_links.social_profiles_background_circle_size }}px">
+                                                  <img class="footer-social-color footer-social--custom-icon lazy" data-src="{{ item2.social_custom_icon.src }}" alt="{{ item2.social_custom_icon.alt }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                                                </span>
+                                              </a>
+                                            {% endfor %}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {% endif %}
+
+                                  </div>
+                                {% endif %}
+                              </div>
+                            {% endif %}
+
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </nav>
+
+                </div>
+              </div>
+              {# Login and About #}
+              {# remove .headerIMPlus-search-and-membership styles #}
+              {% if widget_data.controls.primary_navigation_select_type == 'playbook' %}
+              {% else %}
+                <div class='headerIMPlus-search-and-membership relative'>
+                  <div class="headerIMPlus-search-and-membership--menu headerIMPlus-login-about--menu flex">
+                    {% for rightNav in module.right_side.primary_navigation_right_menu %}
+                      <span id="hs_cos_wrapper_primary_and_secondary_navigation_" class="headerIMPlus-about-and-membership--wrapper portable-visuallyhidden hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_simple_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="simple_menu"><div id="hs_menu_wrapper_primary_and_secondary_navigation_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="" data-menu-id="" aria-label="Navigation Menu">
+                          <ul role="menu">
+                            <li class="hs-menu-item hs-menu-depth-1 {% if (module.right_side.primary_navigation_right_last_btn) && (loop.last) %}block--singlebtn hs-link--btn{% else %}headerIMPlus-search-and-membership--menu-desktop{% endif %} {% if rightNav.children|length %}hs-item-has-children{% endif %}" role="none">
+                              <a class="headerIMPlus--menu-item primary--click-track {% if (module.right_side.primary_navigation_right_last_btn) && (loop.last) %} btn btn--arrow btn--basic-transition border-radius--pill btn--blue portable-visuallyhidden{% else %}color--black{% endif %}" data-hs-track="{{ rightNav.linkLabel }}" href="{% if rightNav.children|length %}javascript:void(0);{% else %}{{ rightNav.url }}{% endif %}" aria-haspopup="true" aria-expanded="false" aria-label="{{ rightNav.linkLabel }}" role="menuitem" target="_self">{{ rightNav.linkLabel }}
+                                {% if not (module.right_side.primary_navigation_right_last_btn) && not (loop.last) %}<div class="headerIMPlus--menu-top-triangle"></div>{% endif %}
+                                </a>
+                                {% if rightNav.children|length %}
+                                  <ul role="menu" class="hs-menu-children-wrapper">
+                                    {% for rightNavChild in rightNav.children %}
+                                      <li class="hs-menu-item hs-menu-depth-2 hs-menu-arrow-group" role="none">
+                                        <a class="primary--click-track" aria-label="{{ rightNavChild.linkLabel }}" data-hs-track="{{ rightNavChild.linkLabel }}" href="{{ rightNavChild.url }}" role="menuitem" target="_self">{{ rightNavChild.linkLabel }}<img class="headerIMPlus--services-menu-arrow lazy" alt="{{ simpleLvl1.primary_menu_item_header }}" data-src="https://www.impactplus.com/hubfs/Services%20(4-2023)/Assets/base/Navigation%20Icons/navigation%20arrow%20-%20facing%20right-01.svg" width="10" height="10"></a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </li>
+                            </ul>
+                          </div>
+                        </span>
+                      {% endfor %}
+
+                      <div class="headerIMPlus--nav-icon-container lap-and-up-visuallyhidden">
+                        <div class="headerIMPlus--nav-icon" onclick="$('body').toggleClass('mobile-nav--showing');" tabindex="0">
+                          <div class="headerIMPlus--nav-icon--hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <div class="headerIMPlus--nav-icon--close">
+                            <img class="lazy" alt="Close Hamburger Navigation" height="14" data-src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/navigation-global--close-symbol-black-01-1.svg" width="14">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          {% if builtin_body_classes is string_containing 'hs-landing-page' %}
+          {% else %}
+            {# HELLOBAR - Variables for navBannerCTA and 'helloActive' are set in .base.html #}
+            {% for ctas in module.cta_banners %}
+              {% do navBannerCTA.append(ctas) %}
+            {% endfor %}
+
+            {% set defaultCTAIndex = [] %}
+
+            {% for ctaVariant in navBannerCTA %}
+
+              {% if ctaVariant.banner_default_custom_setting|lower == 'yes' %}
+
+                {# ***** NEW DEFAULT ***** #}
+                {% do defaultCTAIndex.append(loop.index0) %}
+
+              {% endif %}
+            {% endfor %}
+
+            {# If for some reason, there was ever 2 default CTAs, get the first #}
+            {% set defaultCTAIndex = defaultCTAIndex[0] %}
+
+            {# **** End default CTA Check **** #}
+
+            {# **** Setup the Topic Checker **** #}
+            {% if (content.absolute_url is string_containing "/blog/") && (content.topic_list|length > 0) %}
+
+              {% set smartCtaTopicMatches = [] %}
+
+              {% set postTopics = [] %}
+              {% for topic in content.topic_list %}
+                {% set postTopics2 = postTopics.append(topic.label|lower) %}
+              {% endfor %}
+
+              {% for ctaVariant in navBannerCTA %}
+                {% set ctaTopics = [] %}
+
+                {% for topic in ctaVariant.banner_blog_topic_tag %}
+                  {% set ctaTopics2 = ctaTopics.append(topic|trim|lower) %}
+                {% endfor %}
+
+                {% if ctaTopics|intersect(postTopics)|length > 0 %}
+                  {% do smartCtaTopicMatches.append(loop.index0) %}
+                {% endif %}
+              {% endfor %}
+
+              {# First index of the matching topic CTA #}
+              {% set smartCtaTopicMatches = smartCtaTopicMatches[0] %}
+            {% endif %}
+            {# End Setup for Topic Checker #}
+
+            {# **** Set up the URL Checker - The URL Should Prevail Over Default Banner **** #}
+            {% set smartCtaURLMatches = [] %}
+
+            {% set currentpageURL = [content.absolute_url] %}
+
+            {% for ctaURLOps in navBannerCTA %}
+              {% set ctaURLs = [] %}
+              {% for urlMatch in ctaURLOps.cta_banner_urls_visibility %}
+                {% set ctaURLs2 = ctaURLs.append(urlMatch.href|escape_url|trim|lower) %}
+              {% endfor %}
+
+              {# If one of the URLs matches the current pages URL #}
+              {% if ctaURLs|intersect(currentpageURL)|length > 0 %}
+                {% set smartCtaURLMatches2 = smartCtaURLMatches.append(loop.index0) %}
+
+              {% endif %}
+            {% endfor %}
+            {# **** End Setup for URL Checker **** #}
+
+            {# If for some reason, the URL was used twice, get the first so the CTA doesn't fail #}
+            {% set smartCtaURLMatches = smartCtaURLMatches[0] %}
+
+            {# ***** Time to see what exists for the options ***** #}
+            {% if smartCtaURLMatches > 0 %}
+
+              {# A URL has been matched #}
+              {% set bannerCtaData = navBannerCTA[smartCtaURLMatches] %}
+
+            {% elif smartCtaTopicMatches %}
+              {# A Topic has been matched #}
+              {% set bannerCtaData = navBannerCTA[smartCtaTopicMatches] %}
+
+            {% else %}
+
+              {% set checkForDefault = navBannerCTA|map('banner_default_custom_setting') %}
+
+              {% if checkForDefault is containing 'yes' %}
+
+                {# No matches found, use default if exists #}
+                {% set bannerCtaData = navBannerCTA[defaultCTAIndex] %}
+
+              {% endif %}
+            {% endif %}
+            {# end default check #}
+
+            {# Used to manage whether or not JS code is on the site #}
+            {% do helloActive.append(bannerCtaData.hide_hello_bar) %}
+
+            {% if bannerCtaData.hide_hello_bar || bannerCtaData|length < 1 || widget_data.controls.page_settings_options.hide_navigation_sticky_banner %}
+            {% else %}
+
+              {{ require_css(get_asset_url('/IMPACT_Publisher_Production/- Global Blocks -/IMPACT Navigation and Footer/Sticky Banner/Sticky Banner - IMPACT Grid.css'), { async: true } ) }}
+
+              <div class="headerIMPlus-navigation--hb relative {% if bannerCtaData.banner_settings.banner_background_color_type == "solid" %}background--{{ bannerCtaData.banner_settings.banner_background_color }}{% endif %}" style=" {% if bannerCtaData.banner_settings.banner_background_color_type == "gradient" %}background: {{ bannerCtaData.banner_settings.banner_background_css_code }};{% endif %}" data-tr="{{ bannerCtaData.banner_settings.banner_cookie_name|escape_html }}">
+                {% if (bannerCtaData.banner_settings.left_side_bg_animated.src) || (bannerCtaData.banner_settings.right_side_bg_animated.src) %}
+                  <style>
+                    .headerIMPlus-navigation--hb--bg{
+                    opacity: {{ bannerCtaData.banner_settings.bg_image_opacity }}%;
+                    }
+
+                    .headerIMPlus-navigation--hb--bg-left img{
+                    top: calc(50% - ({{ bannerCtaData.banner_settings.left_side_bg_animated.max_height }}px / 2));
+                    left: -20px;
+                    }
+
+                    .headerIMPlus-navigation--hb--bg-right img{
+                    top: calc(50% - ({{ bannerCtaData.banner_settings.right_side_bg_animated.max_height }}px / 2));
+                    right: -20px;
+                    }
+
+                    @media (min-width: 769px) and (max-width: 1024px) {
+                    .headerIMPlus-navigation--hb--bg-left img{
+                    top: calc(50% - {{ tabletImageWidthLeft }}px);
+                    }
+
+                    .headerIMPlus-navigation--hb--bg-right img{
+                    top: calc(50% - {{ tabletImageWidthRight }}px);
+                    }
+                    }
+
+                    @media (max-width: 768px){
+                    .headerIMPlus-navigation--hb--bg-left img,
+                    .headerIMPlus-navigation--hb--bg-right img {
+                    max-width: 100px !important;
+                    }
+
+                    .headerIMPlus-navigation--hb--bg-left img{
+                    top: calc(50% - ({{ palmImageWidthLeft }}px / 2));
+                    }
+
+                    .headerIMPlus-navigation--hb--bg-right img{
+                    top: calc(50% - ({{ palmImageWidthRight }}px / 2));
+                    }
+                    }
+                  </style>
+                {% endif %}
+
+                {% if bannerCtaData.banner_settings.left_side_bg_animated.src %}
+                  <div class="headerIMPlus-navigation--hb--bg headerIMPlus-navigation--hb--bg-left">
+                    {% set imgSrc = bannerCtaData.banner_settings.left_side_bg_animated.src|escape_url %}
+
+                    {% if bannerCtaData.banner_settings.left_side_bg_animated.size_type == 'auto' %}
+                      {% set displayW = bannerCtaData.banner_settings.left_side_bg_animated.width %}
+                      {% set szAttrs = 'width="' ~ displayW ~ '" height="' ~ bannerCtaData.banner_settings.left_side_bg_animated.height|escape_attr ~ '" style="max-width: 100%; height: auto;" sizes="(max-width: 400px) 100vw, 400px"' %}
+                    {% elif bannerCtaData.banner_settings.left_side_bg_animated.size_type == 'auto_custom_max' %}
+                      {% set displayW = bannerCtaData.banner_settings.left_side_bg_animated.max_width %}
+                      {% set szAttrs = 'width="' ~ displayW ~ '" height="' ~ bannerCtaData.banner_settings.left_side_bg_animated.max_height|escape_attr ~ '" style="max-width: 100%; height: auto;" sizes="(max-width: 400px) 100vw, 400px"' %}
+                    {% else %}
+                      {% set displayW = bannerCtaData.banner_settings.left_side_bg_animated.width %}
+                      {% set szAttrs = 'width="' ~ displayW ~ '" height="' ~ bannerCtaData.banner_settings.left_side_bg_animated.height|escape_attr ~ '"' %}
+                    {% endif %}
+
+                    {% set loadingAttr = bannerCtaData.banner_settings.left_side_bg_animated.loading != 'disabled' ? 'loading="' ~ bannerCtaData.banner_settings.left_side_bg_animated.loading|escape_attr ~ '"' : '' %}
+
+                    <img class="absolute" data-updatedleft="truet"
+                    src="{{ imgSrc }}?width=175"
+                    srcset="{{ imgSrc }}?width=100 100w, {{ imgSrc }}?width=175 175w"
+                    sizes="(max-width: 768px) 100px, 175px"
+                    alt="{{ bannerCtaData.banner_settings.left_side_bg_animated.alt|escape_attr }}"
+                    {{ loadingAttr }}
+                    {{ szAttrs }}>
+                  </div>
+                {% endif %}
+
+                <div class="grid hard--ends flex flex-align--center">
+                  <div class="headerIMPlus-navigation--hb-container grid__item one-whole hard--ends flex flex-align--center lap-and-up-relative tablet-relative">
+                    <div class="headerIMPlus-navigation--hb--text all--color--{{ bannerCtaData.banner_settings.banner_font_color }} p p--sm line-height--small hard--ends">
+                      <span class="headerIMPlus-navigation--hb--text-inner {{ bannerCtaData.banner_header_font_weight }} palm-visuallyhidden">{{ bannerCtaData.banner_header }}</span>
+                      <span class="headerIMPlus-navigation--hb--text-inner {{ bannerCtaData.banner_header_font_weight }} lap-and-up-visuallyhidden tablet-visuallyhidden">{{ bannerCtaData.banner_header_mobile }}</span>
+                      <span class="headerIMPlus-navigation--hb-button-mobile lap-and-up-visuallyhidden tablet-visuallyhidden bold">
+                        {% if bannerCtaData.hb_cta.cta_type == 'cta' && bannerCtaData.hb_cta.cta %}
+                          {% cta guid="{{ bannerCtaData.hb_cta.cta }}" %}
+                        {% elif bannerCtaData.hb_cta.cta_type == 'link' && bannerCtaData.hb_cta.cta_hyperlink.href && bannerCtaData.hb_cta.cta_button_text %}
+                          <a href="{% if bannerCtaData.hb_cta.cta_hyperlink.type == 'EMAIL_ADDRESS' %}mailto:{% endif %}{{ bannerCtaData.hb_cta.cta_hyperlink.href }}" {% if bannerCtaData.hb_cta.cta_open_in_new_tab %}target="_blank"{% endif %}>{{ bannerCtaData.hb_cta.cta_button_text }}</a>
+                        {% endif %}
+                      </span>
+                    </div>
+                    <div class="headerIMPlus-navigation--hb-button palm-visuallyhidden btn--cta-reset">{{ snippets.button(bannerCtaData.hb_cta) }}</div>
+                    <img class="headerIMPlus-hb--close hover--pointer svg-icon-pallete--white absolute right--0 hover--pointer btn--basic-transition lazy" alt="Close Hello Bar Banner" data-src="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Close.svg">
+                  </div>
+                </div>
+
+                {% if bannerCtaData.banner_settings.right_side_bg_animated %}
+                  <div class="headerIMPlus-navigation--hb--bg headerIMPlus-navigation--hb--bg-right">
+                    {% if bannerCtaData.banner_settings.right_side_bg_animated.src %}
+                      {% set imgSrcRight = bannerCtaData.banner_settings.right_side_bg_animated.src|escape_url %}
+
+                      {% if bannerCtaData.banner_settings.right_side_bg_animated.size_type == 'auto' %}
+                        {% set displayWRight = bannerCtaData.banner_settings.right_side_bg_animated.width %}
+                        {% set sizeAttrs = 'width="' ~ displayWRight ~ '" height="' ~ bannerCtaData.banner_settings.right_side_bg_animated.height|escape_attr ~ '" style="max-width: 100%; height: auto;" sizes="(max-width: 400px) 100vw, 400px"' %}
+                      {% elif bannerCtaData.banner_settings.right_side_bg_animated.size_type == 'auto_custom_max' %}
+                        {% set displayWRight = bannerCtaData.banner_settings.right_side_bg_animated.max_width %}
+                        {% set sizeAttrs = 'width="' ~ displayWRight ~ '" height="' ~ bannerCtaData.banner_settings.right_side_bg_animated.max_height|escape_attr ~ '" style="max-width: 100%; height: auto;" sizes="(max-width: 400px) 100vw, 400px"' %}
+                      {% else %}
+                        {% set displayWRight = bannerCtaData.banner_settings.right_side_bg_animated.width %}
+                        {% set sizeAttrs = 'width="' ~ displayWRight ~ '" height="' ~ bannerCtaData.banner_settings.right_side_bg_animated.height|escape_attr ~ '"' %}
+                      {% endif %}
+
+                      {% set loadingAttr = bannerCtaData.banner_settings.right_side_bg_animated.loading != 'disabled' ? 'loading="' ~ bannerCtaData.banner_settings.right_side_bg_animated.loading|escape_attr ~ '"' : '' %}
+
+                      <img class="absolute"
+                      src="{{ imgSrcRight }}?width=175"
+                      srcset="{{ imgSrcRight }}?width=100 100w, {{ imgSrcRight }}?width=175 175w"
+                      sizes="(max-width: 768px) 100px, 175px"
+                      alt="{{ bannerCtaData.banner_settings.right_side_bg_animated.alt|escape_attr }}"
+                      {{ loadingAttr }}
+                      {{ sizeAttrs }}>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+            {# Hellobar #}
+          {% endif %}
+
+          <div id='headerIMPlus--mobile-navs'>
+            {# START Mobile Navigation/Hamburger #}
+            <div id='headerIMPlus--mobile' class="headerIMPlus-mobile--background--black-theme lap-and-up-visuallyhidden">
+              <div class='headerIMPlus--mobile--main-navigation--wrapper headerIMPlus--mobile--main-navigation--varients'>
+                <div class='headerIMPlus--mobile--main-navigation'>
+
+                  {% if widget_data.controls.primary_navigation_select_type == 'playbook' %}
+
+                    {% for playbook in module.playbook_navigation_options %}
+                      {% if widget_data.controls.playbook_navigation_title == playbook.playbook_name %}
+                        {% set playbookMenu = menu(playbook.playbook_sidebar_mobile_menu) %}
+
+                        {# START Playbook Mobile Navigation #}
+                        <div class="mobilenav-playbook-panel mobilenav--panel mobilenav--panel--depth--0 mobilenav--panel--active" rel="0" data-depth="0">
+                          <div class="mobilenav--panel--body">
+                            <div class='mobilenav--mobile--playbook--logo-close'>
+                              <div class='mobilenav--mobile--playbook close-icon'>
+                                <a href="https://www.impactplus.com" class="font--18" style="font-weight:800; color:#9D9D9D;">Back to impactplus.com</a>
+                                <img class="lazy" onclick="$('body').toggleClass('mobile-nav--showing');" alt='Close Hamburger Navigation' height='14' data-src='https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/navigation-global--close-symbol-black-01-1.svg' width='14'>
+                              </div>
+                            </div>
+                            <div class="mobilenav--nav--playbook-title-wrapper all--text--center">
+                              <div class="mobilenav--nav--playbook-title line-height--small">{{ widget_data.controls.playbook_navigation_title }}</div>
+                            </div>
+                            <div class="mobilenav--nav--playbook-wrapper">
+                              <div class="mobilenav--nav--parent-title">
+                                Chapters
+                              </div>
+                              {% for playbookItems in playbookMenu.children %}
+                                <div class="mobilenav--nav--item mobilenav--nav--item--depth--00">
+                                  <a href="{{ playbookItems.url }}" class="mobilenav--nav--item--label {% if content.absolute_url is string_containing child.url %}hs-menu-item--active{% endif %}">
+                                    <span class="mobilenav--nav--item--index">{% if loop.index < 10 %}0{% endif %}{{ loop.index0 }}</span>
+                                    {{ playbookItems.label }}
+                                  </a>
+                                </div>
+                              {% endfor %}
+                            </div>
+                            <div class="mobilenav--nav--playbook-bottom-wrapper">
+                              <div class="mobilenav--nav--playbook-bottom-border text--center">
+                                <img alt='IMPACT' class='headerGlobal--main--logo--white' width='171' height='53' src='https://www.impactplus.com/hubfs/Photography/Icons/Navigation_3_2023/Logos/IMPACT-logo--black.svg'>
+                                <div class='all--color--blue-grey'>
+                                  {% menu id="{{ playbook.playbook_top_level_menu }}" %}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                    {# End Playbook Mobile Navigation #}
+
+                  {% else %}
+                    {# START Standard Mobile Navigation #}
+
+                    {# START Level 0 #}
+                    <div class="mobilenav--panel mobilenav--panel--depth--0 mobilenav--panel--active" rel="0" data-depth="0">
+                      <div class="mobilenav--panel--body">
+                        {% for item1 in module.primary_navigation_menu %}
+                          {% set item1Index = loop.index %}
+                          {% if item1.top_navigation_menu_type == "button" && item1.show_mobile_only %}
+                          {% else %}
+                            <div class="mobilenav--nav--item mobilenav--nav--item--depth--0 {% if item1.top_navigation_menu_type == 'no_dropdown' || item1.top_navigation_menu_type == 'button' %}{% else %}mobilenav--nav--item--parent-0{% endif %}" rel="{{ item1Index }}">
+                              <a {% if item1.top_navigation_menu_type == 'no_dropdown' %}href="{{ item1.top_level_item_link.href }}"{% else %}href="javascript:;"{% endif %} class="mobilenav--nav--item--label text--left">
+                                {{ item1.top_level_primary_menu_items }}
+                                {% if item1.top_navigation_menu_type != 'no_dropdown' %}<img class="headerIMPlus--menu-top-triangle" src="https://www.impactplus.com/hubfs/Navigation%20%28Tailwind%29/Assets/arrow-down.svg" alt="{{ item1.top_level_primary_menu_items }} Drop Down" width="18" height="10">{% endif %}
+                                </a>
+
+                                {% if (item1.top_navigation_menu_type == 'learning-center') || (item1.top_navigation_menu_type == 'simple_w_header') %}
+                                  <div class="mobilenav--nav--simple-menu" style="display:none; padding: 12px 32px;">
+                                    {% for item2 in item1.primary_dropdown_menu_items %}
+
+                                      <ul class="mobilenav--nav--simple-menu--group hard">
+                                        <div class="text--left">
+                                          {% if item2.menu_item_header %}
+                                            <h6 class="header-IMPlus--simple-menu--hdr mobilenav--nav--header hard--ends relative color--neutralgrey font--12">{{ item2.menu_item_header }}</h6>
+                                          {% endif %}
+                                          {% for simpleLvl1 in item2.dropdown_item_menu_group %}
+                                            <li class="mobilenav--nav--simple-menu-li hs-menu-item hs-menu-arrow-group hs-item-has-children valign--top hover--cursor" role="menuheader" {% if not loop.last %}style="margin-bottom: 10px;"{% endif %}>
+                                              <a id="nav--{{ simpleLvl1.linkLabel|lower|replace('&','')|replace(' ','-')|replace(',','')|replace('?','') }}" href="{{ simpleLvl1.url }}" target="{{ simpleLvl1.linkTarget }}" aria-label="{{ simpleLvl1.linkLabel }}" class="no--underline primary--click-track color--white text--center {% if item2.dropdown_font_size %}{{ item2.dropdown_font_size }} semibold{% else %}font--15{% endif %}" data-label="{{ simpleLvl1.linkLabel }}" data-hs-track="{{ simpleLvl1.linkLabel }}" data-menu-type="primary">
+                                                {{ simpleLvl1.linkLabel }}
+                                              </a>
+                                            </li>
+                                          {% endfor %}
+                                        </div>
+                                      </ul>
+                                    {% endfor %}
+                                  </div>
+                                {% endif %}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+
+                          {% for item1 in module.right_side.primary_navigation_right_menu|reverse %}
+
+                            {% set primaryNavLength = module.primary_navigation_menu|length %}
+                            {% set rightNavIndex = loop.index %}
+                            {% set itemPosition = primaryNavLength + rightNavIndex %}
+
+                            {% if (module.right_side.primary_navigation_right_last_btn) && (loop.first) %}
+                            {% else %}
+                            {% endif %}
+                          {% endfor %}
+
+                          {# Mobile CTA #}
+                          <div class="header-IMPlus--mobile-cta text--center margin--short--top">
+                            {{ snippets.button(module.mobile_menu_cta) }}
+                          </div>
+                          {# Mobile CTA #}
+
+                          {# Mobile Navgiation Social #}
+                          {% for item in module.primary_navigation_menu %}
+                            {% if item.top_navigation_menu_type == 'learning-center' %}
+                              <div class="header-IMPlus--social">
+                                <div class="flex flex-align--center flex-justify--center">
+                                  {% for item2 in item.social_profiles %}
+                                    <a class="flex flex-align--center flex-justify--center z-index--5 relative palm-margin--short--top" href="{{ item2.social_profile_link.url.href }}" {% if item2.social_profile_link.open_in_new_tab %}target="_blank"{% endif %} aria-label="Follow us on {{ item2.social_app_icon }} {% if item2.social_profile_link.open_in_new_tab %}(Opens in new tab){% endif %}" {% if item2.social_profile_link.rel %}rel="{{ item2.social_profile_link.rel }}"{% endif %}>
+                                      {% set sizeAttrs = 'width="{{ item2.social_custom_icon.width }}" height="{{ item2.social_custom_icon.height }}"' %}
+                                      {% if item2.social_custom_icon.size_type == 'auto' %}
+                                        {% set sizeAttrs = 'style="max-width: 100%; height: auto;"' %}
+                                      {% elif item2.social_custom_icon.size_type == 'auto_custom_max' %}
+                                        {% set sizeAttrs = 'width="{{ item2.social_custom_icon.max_width }}" height="{{ item2.social_custom_icon.max_height }}" style="max-width: 100%; height: auto;"' %}
+                                      {% endif %}
+                                      {% set loadingAttr = item2.social_custom_icon.loading != 'disabled' ? 'loading="{{ item2.social_custom_icon.loading }}"' : '' %}
+                                      <span class="mobile-nav--social-size mobile-nav--social-size--icon flex flex-align--center flex-justify--center" style="filter: {{ item2.badge_and_social_color_choice }}; width: {{ item.social_profiles_background_circle_size }}px; height: {{ item.social_profiles_background_circle_size }}px">
+                                        <img class="mobile-nav-social-color footer-social--custom-icon lazy" data-src="{{ item2.social_custom_icon.src }}" alt="{{ item2.social_custom_icon.alt }}" {{ loadingAttr }} {{ sizeAttrs }}></span>
+                                    </a>
+                                  {% endfor %}
+                                </div>
+                              </div>
+                              {# End Navgiation Social #}
+
+                              {# Mobile Navgiation Sublinks #}
+                              <div class="mobilenav--nav--item--wrapper flex--column mobilenav--nav--item--bottom-items mobilenav--nav--item--borders">
+                                <div class="mobilenav--nav--item--bottom-items-no-bg">
+                                  <div class="mobilenav--nav--item--bottom-items-wrapper flex flex-justify--center text--center">
+                                    <div class="mobilenav--nav--mastery--items">
+                                      <div class="mobilenav--nav--header-subheader-resources">
+                                        <div class="mobilenav--nav--header-subheader-resources--inline mobilenav--nav--header-subheader-resources--inline--new">
+                                          {% simple_menu menu_tree="{{ module.mobile_membership_menu_visible_to_impact_members_ }}" %}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                          {# End Mobile Navgiation Sublinks #}
+                        </div>
+                      </div>
+                      {# END Level 0 #}
+
+                      {# END Standard Mobile Navigation #}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {# End Mobile Navigation/Hamburger #}
+            {% endif %}
+
+            {% if content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_flex_sidebar/_templates/IMPACT_Flex_w_Sidebar.html' %}
+
+              <div class='headerIMPlus--sidebar-dropdown'>
+                <div class="grid hard--ends">
+                  <div class="grid__item one-whole palm-eleven-twelfths palm-hard--sides hard--ends">
+                    <div class="flex" style="justify-content:space-between;">
+                      <div class="headerIMPlus--sidebar-name flex" style="align-items: center;">
+                        {% if widget_data.controls.secondary_navigation_standard_layout_settings.mobile_secondary_navigation_icon.src %}
+                          <img src="{{ widget_data.controls.secondary_navigation_standard_layout_settings.mobile_secondary_navigation_icon.src }}" alt="{{ widget_data.controls.secondary_navigation_standard_layout_settings.mobile_secondary_navigation_icon.alt }}" loading='lazy' style="width: 30px; margin-right: 15px;">
+                        {% endif %}
+                        <p class="color--theme-primary bold font--16" style="margin: 16px 0px;">{{ flexSidebarTitle }}</p>
+                      </div>
+                      <div class="headerIMPlus--sidebar-dropdown-arrow hover--pointer" style="display: flex; align-items: center;">
+                        <img src="https://www.impactplus.com/hubfs/Photography/Icons/Black%20Icons/arrow%20down%20icon%20-%20black.svg" alt="Mobile Hamburger Menu" height='8' style="filter: {{ themeData[0]['bullets'] }};">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="headerIMPlus--sidebar-items">
+                    <div class="headerIMPlus--sidebar-items--divider"></div>
+                    <div class="grid__item one-whole palm-eleven-twelfths palm-hard--sides hard--ends">
+                      <div id="hs_menu_wrapper_widget_1631046267538_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="54748351895" aria-label="Navigation Menu">
+                        <ul class="headerIMPlus--sidebar--page-menu headerIMPlus--sidebar--depth-1" role="menu">
+                          {% for child in sidebar %}
+                            <li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative {% if child.children|length > 0 %}hs-menu-depth-1--has-children chapter--closed{% endif %} {% if loop.first %}hs-menu-item--active{% endif %}" role="none">
+                              <span class="headerIMPlus--sidebar-marker-container flex flex-align--center">
+                                <a class="relative flex no--underline" href="{% if child.children|length > 0 %}javascript:;{% else %}{{ child.linkParams }}{% endif %}" role="menuitem">
+                                  <span class="headerIMPlus--sidebar--index">{{ child.linkLabel }}</span>
+                                </a>
+                                <img class="headerIMPlus--sidebar-marker {% if child.children|length > 0 %}headerIMPlus--sidebar-marker--visible{% endif %} inline-block hover--pointer" alt="{{ child.linkLabel }} Drop Down" src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/arrow-down.svg" style="width: 10px; height: 7px; {% if child.children|length > 0 %}{% else %}visibility: hidden;{% endif %}">
+                              </span>
+                              {% if child.children|length > 0 %}
+                                <ul class="sidebar-menu--depth-2 headerIMPlus--sidebar--page-menu headerIMPlus--sidebar--depth-2" role="menu">
+                                  {% for child2 in child.children %}
+                                    <li class="hs-menu-item hs-menu-depth-2" role="none">
+                                      <a class="relative no--underline" href="{{ child2.linkParams }}" role="menuitem">
+                                        <span class="headerIMPlus--sidebar--index">{{ child2.linkLabel }}</span>
+                                      </a>
+                                    </li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if widget_data.indpost.post_settings.template_type == 'pillar' %}
+
+            <div class="headerIMPlus--ecsubnav lap-and-up-visuallyhidden tablet-visuallyhidden relative">
+              <div class="grid hard--ends">
+                <div class="grid__item one-whole hard--ends palm-one-whole palm-hard--sides">
+
+                  <span class="headerIMPlus--ecsubnav--wrapper hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_simple_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="simple_menu">
+                    <div class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="" data-menu-id="" aria-label="Learning Center Menu">
+                      <ul class="headerIMPlus--ecsubnav--ul" role="menu">
+                        <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children block" role="none">
+                          <a class="headerIMPlus--ecsubnav--pillar-details headerIMPlus--menu-item color--black no--underline font--13 medium flex flex-align--center" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" aria-label="{{ rightNav.linkLabel }}" role="menuitem" target="_self" style="justify-content: space-between;">
+                            {% if widget_data.indpost.preheader_settings.preheader_type == "hubdb" %}
+                              {% set topic_name = widget_data.indpost.post_settings.pillar_selection.columns.resource_topic[0].name %}
+                              {% set rows = hubdb_table_rows(131654582, "resource_topic__contains=" ~ topic_name) %}
+
+                              {% set icon = rows[0]['topic_icon']['url'] %}
+                              {% set preheader = widget_data.indpost.post_settings.pillar_selection.columns.resource_topic[0]['name'] %}
+                            {% else %}
+
+                              {# Custom #}
+                              {% set icon = widget_data.indpost.preheader_settings.preheader_image.src %}
+                              {% set preheader = widget_data.indpost.preheader_settings.preheader_text %}
+                            {% endif %}
+
+                            {% set query = 'pillar_name__eq=' ~ widget_data.indpost.post_settings.pillar_selection.id %}
+                            {% set resource_groups = hubdb_table_rows(130854918, query) %}
+                            {% set resource_groups = resource_groups|sort(attribute='columns.resource_group_name') %}
+
+                            {% if icon || preheader %}
+                              <span class="headerIMPlus--menu-icon-pre flex flex-align--center" style="gap: 8px;">
+                                {% if icon %}
+                                  <img class="hard--ends" src="{{ icon }}" alt="{{ preheader }}" loading="lazy" height="32" width="auto">
+                                {% endif %}
+                                {% if preheader %}
+                                  <span class="h6 preheader hard--ends font--14">{{ preheader }}</span>
+                                {% endif %}
+                              </span>
+                            {% endif %}
+
+                            <div class="headerIMPlus--subnav-dropdown-arrow hover--pointer" style="align-items: center;">
+                              <img src="https://www.impactplus.com/hubfs/Photography/Icons/Black%20Icons/arrow%20down%20icon%20-%20black.svg" alt="Mobile Hamburger Menu" height="auto" width="19">
+                            </div>
+                          </a>
+
+                          <div class="headerIMPlus--subnav-toggles" style="display:none;">
+                            <div class="headerIMPlus--subnav-toggleborder flex margin--standard--top margin--petite--bottom">
+                              <div class="headerIMPlus--subnav-toggleitem grid__item {% if resource_groups|length > 0 %}one-half active{% else %}one-whole{% endif %} hard relative" data-menu="hs-menu-children-toc">
+                                <p class="p--sm hard--ends">Table of Contents</p>
+                              </div>
+                              {% if resource_groups|length > 0 %}
+                                <div class="headerIMPlus--subnav-toggleitem grid__item one-half hard relative" data-menu="hs-menu-additional-resources">
+                                  <p class="p--sm hard--ends">Additional Resources</p>
+                                </div>
+                              {% endif %}
+                            </div>
+
+                            <ul role="menu" class="section--chapter-list--container section--chapter-list--page-menu headerIMPlus--subnav-toggle-child headerIMPlus--ecsubnav--toc hs-menu-children-wrapper text--left" role="menu" style="display: block;" data-menu="hs-menu-children-toc">
+                              {# Default Intro Item #}
+                              <li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative {{ active }}" role="none" style="display: flex !important;">
+                                <span class="sidebar-menu--num flex bold">00</span>
+                                <span class="section--chapter-list-marker-containe fler" aria-expanded="false">
+                                  <a class="headerIMPlus--ecsubnav--link no--underline relative flex" href="#introduction" role="menuitem">
+                                    <span class="section--chapter-list--index">Introduction</span>
+                                  </a>
+                                </span>
+                              </li>
+                              {# End Default Intro Item #}
+                              {% for child in widget_data.indpost.table_of_contents_settings.toc_menu_items %}
+                                <li class="sidebar-menu--item hs-menu-item hs-menu-depth-1 relative" role="none" style="display: flex !important;">
+                                  <span class="section--chapter-list-marker-container" aria-haspopup="{{ 'true' if child.children|length else 'false' }}" aria-expanded="false">
+                                    <a class="headerIMPlus--ecsubnav--link no--underline relative flex" href="{{ child.url or child.linkParams or '#' }}" role="menuitem">
+                                      <span class="sidebar-menu--num flex bold">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+                                      <span class="section--chapter-list--index">{{ child.linkLabel }}</span>
+                                    </a>
+                                  </span>
+                                </li>
+                              {% endfor %}
+                            </ul>
+
+                            {% if resource_groups|length > 0 %}
+                              <ul role="menu" class="headerIMPlus--subnav-toggle-child hs-menu-children-wrapper" style="display: none;" data-menu="hs-menu-additional-resources">
+                                <div class="section section--faqs relative overflow--hidden">
+                                  <div class="block relative z-index--10 grid__item hard--sides hard--ends hard--top">
+                                    <div class="section--pillars all--text--left">
+                                      {% for group_row in resource_groups %}
+                                        <div class="section--pillar--group {% if loop.first %}hard--top{% endif %}">
+                                          <div class="section--pillar--group--toggle" tabindex="0">
+                                            <p class="hard--ends p--small bold line-height--small">{{ group_row.resource_group_name }}</p>
+                                            <div class="section--pillar--group--toggle--icon">
+                                              <div class="icon--axis icon--vertical--line"></div>
+                                              <div class="icon--axis icon--horizontal--line"></div>
+                                            </div>
+                                          </div>
+
+                                          <div class="section--pillar--group--content" style="{% if is_active == 'active' %}display:block;{% else %}display:none;{% endif %}">
+                                            <div class="section--pillar--group--content--wrapper">
+                                              {% set inner = group_row.related_inner_resources %}
+                                              {% for res in inner %}
+
+                                                {# Topics in the Primary Learning Center Table #}
+                                                {% set topics = [
+                                                { "name": "Article", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Article.svg" },
+                                                { "name": "Webinar", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Webinar.svg" },
+                                                { "name": "Podcast", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Podcast.svg" },
+                                                { "name": "Pillar", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/pillar.svg" },
+                                                { "name": "Guides & Downloads", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/Download.svg" },
+                                                { "name": "Assessment", "icon": "https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/Icon%20Library/learning-center/assessment.svg" }
+                                                ] %}
+
+                                                {% set topicMatch = false %}
+
+                                                {% for topic in topics %}
+                                                  {% if topic.name == res.resource_type[0].name %}
+
+                                                  {% endif %}
+                                                {% endfor %}
+
+                                                <div class="section--pillar--group--content--inner first--hard--top last--hard--bottom">
+                                                  <a class="p p--small color--mid-grey no--underline line-height--small flex" href="{{ res.resource_link }}" style="align-items: self-start; gap: 12px;">
+                                                    {% for topic in topics %}
+                                                      {% if topic.name == res.resource_type[0].name %}
+                                                        <img src="{{ topic.icon }}" alt="{{ topic.name }}" width="20" style="margin-top: 1px;">
+                                                      {% endif %}
+                                                    {% endfor %}
+
+                                                    {{ res.resource_title }}
+                                                  </a>
+                                                </div>
+                                                <div class="section--pillar--group--content--inner--spacer"></div>
+                                                <span class="clear"></span>
+                                              {% endfor %}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </ul>
+                            {% endif %}
+                          </div>
+
+                        </li>
+
+                      </ul>
+                    </div>
+                  </span>
+
+                </div>
+              </div>
+            </div>
+
+            {% require_js %}
+              <script>
+                $(function () {
+                var $doc = $(document);
+                var MQ = 768; // breakpoint in px
+
+                // --- Helpers ---
+                function showChild($scope, key) {
+                var $children = $scope.find('.headerIMPlus--subnav-toggle-child');
+                var $target = $children.filter('[data-menu="' + key + '"]');
+
+                if (!$target.length) return;
+                if ($target.is(':visible') && $children.filter(':visible').length === 1) return;
+
+                $children.stop(true, true);
+                var $toHide = $children.not($target).filter(':visible');
+
+                if ($toHide.length) {
+                $toHide.fadeOut(150, function () {
+                $target
+                .css('opacity', 0)
+                .show()
+                .animate({ opacity: 1 }, 150);
+                });
+                } else {
+                $target
+                .css('opacity', 0)
+                .show()
+                .animate({ opacity: 1 }, 150);
+                }
+                }
+
+                function updateAria($trigger, expanded) {
+                $trigger.attr('aria-expanded', expanded ? 'true' : 'false');
+                }
+
+                function getScope($el) {
+                return $el.closest('li.hs-menu-item');
+                }
+
+                // --- Toggle subnav ---
+                $doc.on('click', '.headerIMPlus--ecsubnav--pillar-details', function (e) {
+                e.preventDefault();
+                var $trigger = $(this);
+                var $scope = getScope($trigger);
+                var $toggles = $scope.find('.headerIMPlus--subnav-toggles').first();
+                var isCurrentlyExpanded = $trigger.hasClass('expanded');
+
+                if ($(window).width() <= MQ) {
+                // Instantly toggle .expanded class + ARIA
+                $trigger.toggleClass('expanded', !isCurrentlyExpanded);
+                updateAria($trigger, !isCurrentlyExpanded);
+
+                if (isCurrentlyExpanded) {
+                $toggles.stop(true, true).slideUp(180);
+                } else {
+                $toggles.stop(true, true).slideDown(180, function () {
+                // Ensure correct child is showing after open
+                var $active = $scope.find('.headerIMPlus--subnav-toggleitem.active').first();
+                var key = $active.data('menu');
+                if (key) showChild($scope, key);
+                });
+                }
+                } else {
+                // Above breakpoint: always close per requirements
+                $trigger.removeClass('expanded');
+                updateAria($trigger, false);
+                $toggles.stop(true, true).slideUp(180);
+                }
+                });
+
+                // --- Toggle item switching ---
+                $doc.on('click', '.headerIMPlus--subnav-toggleitem', function (e) {
+                e.preventDefault();
+                var $item = $(this);
+                var $scope = getScope($item);
+                var key = $item.data('menu');
+
+                $item.addClass('active')
+                .siblings('.headerIMPlus--subnav-toggleitem')
+                .removeClass('active');
+
+                if (key) showChild($scope, key);
+                });
+
+                // ---Collapse toggles on content link click ---
+                $doc.on('click', '.headerIMPlus--ecsubnav--link', function () {
+                var $link = $(this);
+                var $scope = getScope($link);
+                var $toggles = $('.headerIMPlus--subnav-toggles')
+                var $trigger = $('.headerIMPlus--ecsubnav--pillar-details');
+
+                // Collapse immediately
+                $trigger.removeClass('expanded');
+                updateAria($trigger, false);
+                $toggles.stop(true, true).slideUp(180);
+                // No preventDefault — allow normal navigation/anchor behavior
+                });
+
+                // --- Initialize panels ---
+                (function initActivePanels() {
+                $('.headerIMPlus--subnav-toggles').each(function () {
+                var $scope = $(this).closest('li.hs-menu-item');
+                var $children = $scope.find('.headerIMPlus--subnav-toggle-child');
+                $children.hide();
+
+                var $active = $scope.find('.headerIMPlus--subnav-toggleitem.active').first();
+                var key = $active.data('menu');
+
+                if (!key) {
+                $active = $scope.find('.headerIMPlus--subnav-toggleitem').first().addClass('active');
+                key = $active.data('menu');
+                }
+
+                if (key) {
+                $children.filter('[data-menu="' + key + '"]').show();
+                }
+                });
+                })();
+
+                // --- Resize behavior: >768 closes ---
+                var resizeTimer;
+                $(window).on('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                $('.headerIMPlus--ecsubnav--pillar-details').each(function () {
+                var $trigger = $(this);
+                var $scope = getScope($trigger);
+                var $toggles = $scope.find('.headerIMPlus--subnav-toggles').first();
+
+                if ($(window).width() > MQ) {
+                $trigger.removeClass('expanded');
+                updateAria($trigger, false);
+                $toggles.stop(true, true).slideUp(180);
+                }
+                });
+                }, 120);
+                });
+                });
+
+                /*$(function () {
+                const mq = window.matchMedia('(max-width: 769px)');
+                const $menu = $('.headerIMPlus--ecsubnav--ul');
+
+                function closeAll() {
+                $menu.find('> li.hs-item-has-children')
+                .removeClass('active')
+                .find('> a').attr('aria-expanded','false');
+                $menu.find('> li.hs-item-has-children .hs-menu-children-wrapper')
+                .stop(true, true).slideUp(200);
+                }
+
+                $menu.on('touchstart click', '> li.hs-item-has-children > a', function (e) {
+                if (!mq.matches) return; // desktop: do nothing
+                e.preventDefault();
+                e.stopPropagation();
+
+                const $a = $(this);
+                const $li = $a.closest('li');
+                const $submenu = $a.siblings('.hs-menu-children-wrapper').first();
+                const isOpen = $submenu.is(':visible');
+
+                closeAll();
+                if (!isOpen) {
+                $a.attr('aria-expanded','true');
+                $li.addClass('active');
+                $submenu.stop(true, true).slideDown(200);
+                }
+                });
+
+                $(document).on('touchstart click', function (e) {
+                if (!mq.matches) return;
+                if ($(e.target).closest('.headerIMPlus--ecsubnav--ul').length === 0) {
+                closeAll();
+                }
+                });
+
+                $(window).on('resize', function () { if (!mq.matches) closeAll(); });
+                });*/
+              </script>
+            {% end_require_js %}
+          {% endif %}
+          {# end EC Subnav #}
+        </div>
+
+        <div class='headerIMPlus--search headerIMPlus-main--background--white-theme'>
+          <div class='headerIMPlus--main headerIMPlus--search-bar relative grid hard--ends' style="display:none;">
+            {# Seach bar. This is also located in the resources menu #}
+            <form class='cludo-search site--head--search header--search--main border-radius--10 relative grid__item one-whole hard--ends' id='nav-cludo-search-form'>
+              <i aria-hidden="true" class="fa fa-search absolute" style="color:#65676B"></i>
+              <input id="im-site-search--input" class='font--16 header--search--box--input border-radius--pill' placeholder='Search for topics or resources' type='search'>
+            </form>
+          </div>
+        </div>
+
+        <div class="headerIMPlus--underlay" style="z-index: 70;"></div>
+
+        {# ****** BEGIN SECONDARY NAVIGATION ****** #}
+
+        {# START OF THE LEARNING CENTER/BLOG SECONDARY #}
+        {% if secondaryNavType == "learning-center" %}
+
+          {% set lcsubNavData = module.secondary_navigation_options|selectattr('secondary_menu_internal_value','equalto','blog-resources') %}
+          {% set lcsubNavData = lcsubNavData[0] %}
+
+          <div class="hsformScript"></div>
+
+          {% set formContents2 = formContents.append({
+          "heading":"Join 40,000+ sales and marketing pros who receive our weekly newsletter.",
+          "subheading":"Get the most relevant, actionable digital sales and marketing insights you need to make smarter decisions faster... all in under five minutes.",
+          "formId":'4322ca96-4f67-4615-a1e0-110c4a109b42',
+          "thankYou":'Thanks, stay tuned for our upcoming edition.'
+          }) %}
+        {% endif %}
+
+      </div>
+      {# EC Learning Center Mobile Navigation #}
+      {% if (builtin_body_classes is string_containing "hs-blog-name-impact-learning-center") && (builtin_body_classes is string_containing "hs-blog-post") %}
+        <div class="article-bar--progress palm-visuallyhidden" style="width: 0%;"></div>
+      {% endif %}
+    </div>
+
+    {# END OF THE LEARNING CENTER/BLOG SECONDARY #}
+
+    {# START OF THE LEARNING CENTER/BLOG TERTIARY #}
+    {# Forms message for injected article forms #}
+    {% set inlineFormsMessage = '<div class="test text--center"><p style="margin-bottom:0px !important;">Thanks for downloading {{ smartCtaData.cta_name }}! Your copy is at the top of your inbox.</p></div>' %}
+
+    {% if (blogPost == true) && (smartCtaData|length > 0) && (content.absolute_url is not string_containing '/topic/') && (content.absolute_url is not string_containing '/author/') %}
+      <div class="headerIMPlus--tertiary palm-visuallyhidden z-index--20 headerIMPlus--tertiary--lc">
+        <div class="headerIMPlus-tertiary-navigation background--white">
+          <div class='headerIMPlus-tertiary-wrapper relative grid hard--ends'>
+            <div class='headerIMPlus--main grid__item one-whole'>
+              <div class='header--main--logo no--underline'>
+                <a href="https://www.impactplus.com">
+                  <img class="lazy" data-src="https://www.impactplus.com/hubfs/Photography/Icons/Navigation_3_2023/Logos/IMPACT-logo--black.svg" alt="IMPACT Inbound Marketing Agency" width="100" height="32">
+                </a>
+              </div>
+              <div class='headerIMPlus--navigation-cta'>
+                <p class="headerIMPlus--navigation-cta-headings hard--ends font--15 inline-block all--text--right line-height--small" style="color:#626262; margin-right:20px !important;"><span class="bold">{{ smartCtaData.preheader }}</span>&nbsp;{{ smartCtaData.cta_name }}</p>
+
+                {% if smartCtaData.cta_layout_type == 'textform' %}
+                  <div class='headerIMPlus--tertiary-navigation-subscribe-leadform-btn btn btn--blue border-radius--4 hover--pointer'>
+                    {{ smartCtaData.button_text }}
+                  </div>
+                  <div class="smartCTA--navigation-form headerIMPlus--navigation-subscribe-leadform headerIMPlus--tertiary-subscribe-leadform overflow--hidden color--white all--btn all--btn--blue production--form text--center" style="right: 2em;">
+                    <div class="headerIMPlus--navigation-subscribe-leadform-pt1 headerIMPlus--tertiary--navigation-subscribe-leadform-pt1">
+                      {% if smartCtaData.downloadable_offer_settings.tertiary_navigation_popup_header %}<div class="hard--ends h4 headerIMPlus--tertiary--navigation-subscribe-leadform-pt1-heading">{{ smartCtaData.downloadable_offer_settings.tertiary_navigation_popup_header }}</div>{% endif %}
+                        <div class="headerIMPlus--tertiary-navigation-subscribe-leadform--target"></div>
+                      </div>
+                      <div class="headerIMPlus--navigation-subscribe-leadform-pt2">
+                        <img class="margin--short--bottom" src="https://www.impactplus.com/hubfs/Photography/Icons/White/check-box-icon--white.svg" width="60" height="60">
+                        <div class="h5 hard--ends all--color--white">
+                          {{ lcsubNavData.form_field.message }}
+                        </div>
+                      </div>
+                    </div>
+                  {% else %}
+                    <div class='all--btn all--btn--blue border-radius--4' style="margin-right:10px;">
+                      {{ smartCtaButton }}
+                    </div>
+                  {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="headerIMPlus--tertiary--scroll-bar"></div>
+        </div>
+
+        {# END OF THE LEARNING CENTER/BLOG TERTIARY #}
+
+      {% else %}
+
+        {# OLD LOCATION OF THE SECONDARY NAVIGATION #}
+
+      {% endif %}
+
+      {# Popup form for playbook navigation #}
+      {% if widget_data.controls.primary_navigation_select_type == 'playbook' %}
+        {% for playbook in module.playbook_navigation_options %}
+
+          {% if widget_data.controls.playbook_navigation_title == playbook.playbook_name %}
+
+            {% set playbookFormContents2 = playbookFormContents.append({
+            "redirect": playbook.playbook_popup_form_redirect.href,
+            "formId": playbook.playbook_form_settings.form_id
+            }) %}
+
+            <div id='productionPopUp' class='popupTemplate--apple-white headerIMPlus-playbook-navPopup agency---lazy--default'>
+              <div id='productionPopUpVcenter'></div>
+              <div class='productionPopupInner expertsInner'>
+                <div class='grid relative hard--ends' style="z-index:999;">
+                  <div class='productionPopupContainer background--white'>
+                    <div class='productionClose hover--pointer'>
+                      <div class="productionClose--container absolute">
+                        <img data-src="https://www.impactplus.com/hubfs/IMPACT%20Plus/Assets/close--_Inverted.svg" class="lazy absolute productionClose--inverted" width="26" height="26" alt="Close Hover Icon">
+                        <img data-src="https://www.impactplus.com/hubfs/IMPACT%20Plus/Assets/close--_Default.svg" class="lazy background--white absolute productionClose--default" width="26" height="26" alt="Close Hover Icon">
+                      </div>
+                    </div>
+                    <div class='productionPopupContainer--padding'>
+                      <div class='productionPopupContent' id='unlockContentWrapper'>
+                        <div class='productionPopup--singles'>
+                          <div class="text--center">
+                            <div class="h3 bolder">{{ playbook.playbook_popup_form_header }}</div>
+                          </div>
+                          <div id="productionPopUp--playbook-navigation" class="productionPopUp--event-content all--text--left all--btn all--btn--blue">
+                            <div id="productionPopUp--playbook-target"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='popupTemplate--apple-white-overlay'></div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {# END CORE NAVIGATION #}
+
+    </div>
+  </header>
+
+  {# AI CHATBOT WIDGET #}
+  {% if (widget_data.controls.page_settings_options.sticky_mobile_cta_display != 'hide') || (widget_data.controls.page_settings_options.disable_ai_chatbot != true) %}
+    <div class="headerIMPlus--bottom-sticky-cta-aichat bottom--0 right--0 collapsed" style="z-index: 30 !important;">
+      {% if widget_data.controls.page_settings_options.disable_ai_chatbot != true %}
+        <div class="headerIMPlus--bottom-sticky--aichat">
+          <div class="headerIMPlus--bottom-sticky--aichat--bubble relative aichat--visuallyhidden">
+            <div class="aichat--message-container">
+              <div class="aichat--welcome-message" aria-label="Welcome message">
+                <div class="aichat--message-content relative">
+                  <div class="aichat--text-box" tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open live chat">
+                    <div class="vfChatbot">
+                      <p class="ai-initial-message" data-test-id="initial-message-text" style="margin-top: 0px !important; margin-bottom: 0px !important;">
+                        <span class="palm-block">👋 <strong>Have a question?</strong> I'm Ecee, an AI</span> Chatbot here to help you find what you need.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="aichat-triangle"></div>
+                  <div class="aichat--close-container absolute">
+                    <div class="aichat--close">
+                      <img class="lazy" style="opacity: .5;" alt="Close AI Chatbot" height="14" data-src="https://www.impactplus.com/hubfs/Navigation%20(Tailwind)/Assets/navigation-global--close-symbol-black-01-1.svg" width="10">
+                    </div>
+                  </div>
+                  <div class="aichat--welcome-avatar palm-visuallyhidden vfChatbot">
+                    <div class="aichat--welcome-avatar-inner">
+                      <div class="aichat--chat-head">
+                        <div class="aichat--head-avatar">
+                          <div src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/general/ecee_chatbot.jpg" class="aichat--head-src"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="headerIMPlus--bottom-sticky--aichat--circle relative vfChatbot">
+            <div class="headerIMPlus--bottom-sticky--aichat--icons">
+              <img class="headerIMPlus--bottom-sticky--aichat--chat absolute" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/white/ai_icon_chat.svg" alt="AI Chat">
+              <img class="headerIMPlus--bottom-sticky--aichat--search absolute" src="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/white/ai_icon_search.svg" style="display:none;" alt="AI Search">
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      <div class="headerIMPlus--bottom-sticky-cta lap-and-up-visuallyhidden tablet-visuallyhidden">
+        <div class="headerIMPlus--bottom-sticky-cta--inner background--white flex flex-align--center flex-justify--center">
+          <div class="headerIMPlus--bottom-sticky-cta--btn flex">
+            {% if widget_data.controls.page_settings_options.sticky_mobile_cta_display == 'show' %}
+              {{ snippets.button(module.bottom_sticky_cta) }}
+            {% elif widget_data.controls.page_settings_options.sticky_mobile_cta_display == 'custom'  %}
+              {{ snippets.button(widget_data.controls.mobile_sticky_cta_settings[0]) }}
+            {% elif widget_data.controls.page_settings_options.sticky_mobile_cta_display == 'hide'  %}
+            {% else %}
+              {{ snippets.button(module.bottom_sticky_cta) }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# SPACER #}
+  {% if widget_data.controls.primary_navigation.primary_navigation_theme == "transparent" %}
+
+  {% else %}
+    {% if content.absolute_url is string_containing "https://www.impactplus.com/blog" || content.absolute_url is string_containing "https://www.impactplus.com/dev-blog" %}
+      <div class='headerIMPlus--flex-nav-spacer headerIMPlus--spacer--small'></div>
+    {% else %}
+      <!-- testing: {{ widget_data.controls.page_settings_options.hide_navigation_sticky_banner }} -->
+      <div class="headerIMPlus--flex-nav-spacer {% if "hs-blog-post" in builtin_body_classes %}body--template-type--{{ widget_data.indpost.post_settings.template_type }}{% endif %} {% if content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_flex_sidebar/_templates/IMPACT_Flex_w_Sidebar.html' %}headerIMPlus--spacer--sidebar{% else %} {% if (helloActive|join == 'false') && (navBannerCTA|length) && (widget_data.controls.page_settings_options.hide_navigation_sticky_banner) != true %}headerIMPlus--spacer--large{% else %}headerIMPlus--spacer--small{% endif %}{% endif %}"></div>
+    {% endif %}
+  {% endif %}
+
+{% endif %}
+
+<div id="hs-cookie-overlay"></div>

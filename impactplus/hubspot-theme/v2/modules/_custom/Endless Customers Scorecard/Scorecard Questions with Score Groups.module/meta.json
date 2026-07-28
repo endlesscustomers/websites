@@ -1,0 +1,10 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "inline_help_text" : "Overview for editing the Assessment: https://share.vidyard.com/watch/Lcgse5AvQq9S72Uq9gZ2Z4\nOverview of modules and functionality for developers: https://share.vidyard.com/watch/C1FzVr7aoraM1X1zG2brUZ",
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 191572477327,
+  "label" : "[IM-UI] Scorecard Questions with Score Groups",
+  "icon" : "https://cdn2.hubspot.net/hubfs/298890/assets/images/IMPACT-Logo-Square.svg",
+  "is_available_for_new_content" : true
+}

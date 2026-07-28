@@ -1,0 +1,20 @@
+[ {
+  "id" : "e75bef76-6568-6550-8840-1d97bfc93c0b",
+  "name" : "placeholder",
+  "label" : "Field Placeholder",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Search"
+}, {
+  "id" : "d7644a33-944a-3b21-7faa-133195962602",
+  "name" : "field_label",
+  "label" : "Field label",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+} ]

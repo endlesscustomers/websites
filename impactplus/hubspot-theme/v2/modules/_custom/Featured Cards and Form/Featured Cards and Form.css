@@ -1,0 +1,180 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+
+.section--card-content-columns .section--card-content-columns-container,
+.section--card-columns--form-container{
+  border-radius: 24px;
+}
+
+.section--card-content-columns .section--card-content-columns-container .section--card-content-columns-wrapper{
+  padding: 24px 28px 24px !important;
+}
+
+.section--card-content-columns .section--card-content-columns-container .section--card-content-columns-wrapper .section--card-content-columns-description :first-child,
+.section--card-content-columns .section--card-content-columns-container .section--card-content-columns-wrapper .section--card-content-columns-description >:first-child{
+  margin-top: 10px !important;
+}
+
+.section--card-content-columns--center{
+  flex-flow: wrap;
+}
+
+#learningCenter--subscribe-form-target form {
+  align-items: baseline;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  vertical-align: middle;
+}
+
+#learningCenter--subscribe-form-target form .form-columns-1 {
+  -webkit-box-flex: 100%;
+  -webkit-box-ordinal-group: 3;
+  flex: 100%;
+  order: 3;
+  text-align: center;
+}
+
+.grid #learningCenter--subscribe-form-target form.hs-form .hs-error-msgs.inputs-list li label{
+  margin: -15px 0 15px;
+}
+
+.legal-consent-container .hs-error-msg{
+  margin: 0px 0 15px !important;
+}
+
+#learningCenter--subscribe-form-target form .hs_submit .actions,
+#learningCenter--subscribe-form-target form .hs_submit .hs-button{
+  width: 100% !important;
+}
+
+.grid #learningCenter--subscribe-form-target form.hs-form .hs-error-msgs.inputs-list li label:before{
+  display:none;
+}
+
+#learningCenter--subscribe-form-target form .hs-form-field.hs-fieldtype-text > label {
+  display: none;
+}
+
+/*#learningCenter--subscribe-form-target form.hs-form .hs-form-field > .input{
+margin-bottom: 0px !important;
+}*/
+
+@media screen and (min-width: 680px){
+  #learningCenter--subscribe-form-target form .form-columns-2 {
+    -webkit-box-flex: 4;
+    flex: 4;
+    float: none;
+    align-items: baseline;
+    display: flex;
+  }
+
+  #learningCenter--subscribe-form-target form .hs_submit {
+    -webkit-box-flex: 1;
+    flex: 1;
+    margin-left: 15px;
+    padding: 0;
+    text-align: center !important;
+    width: 100% !important;
+    display: flex;
+    height: inherit;
+  }
+
+  #learningCenter--subscribe-form-target form .hs_submit .actions{
+    width: 100%;
+  }
+
+  #learningCenter--subscribe-form-target form .legal-consent-container ul,
+  #learningCenter--subscribe-form-target form .legal-consent-container .input{
+    margin-top: 0px;
+  }
+
+  #learningCenter--subscribe-form-target form.hs-form fieldset.form-columns-2 .hs-form-field:not(:first-child) {
+    margin-left: 2%;
+  }
+}
+
+@media screen and (max-width: 679px){
+  #learningCenter--subscribe-form-target form .hs_submit {
+    margin-bottom: 16px;
+    padding-top:0px;
+  }
+}
+
+#learningCenter--subscribe-form-target form .legal-consent-container p:empty{
+  display:none;
+}
+
+#learningCenter--subscribe-form-target form .legal-consent-container ul,
+#learningCenter--subscribe-form-target form .legal-consent-container .input{
+  margin-bottom: 0px;
+}
+
+#learningCenter--subscribe-form-target form .legal-consent-container *{
+  font-size: 14px !important;
+  margin-bottom: 0;
+  font-weight: 500;
+  font-family: {{ font("reading") }};
+  color: {{ color("midgrey") }} !important;
+}
+
+#learningCenter--subscribe-form-target form .legal-consent-container input{
+  margin-top: 6px;
+}
+
+#learningCenter--subscribe-form-target form .legal-consent-container a{
+  color: var(--slate500);
+}
+
+.grid #learningCenter--subscribe-form-target form.hs-form input[type=email].hs-input, 
+.grid #learningCenter--subscribe-form-target form.hs-form input[type=number].hs-input, 
+.grid #learningCenter--subscribe-form-target form.hs-form input[type=password].hs-input, 
+.grid #learningCenter--subscribe-form-target form.hs-form input[type=tel].hs-input, 
+.grid #learningCenter--subscribe-form-target form.hs-form input[type=text].hs-input, 
+.grid #learningCenter--subscribe-form-targetform.hs-form select.hs-input, 
+.grid #learningCenter--subscribe-form-target form.hs-form textarea.hs-input{
+  border-radius: 50px;
+}
+
+@media screen and (min-width: 1024px){
+  .ec--content{
+    padding-left: 290px;
+    padding-right: 290px;
+  }
+}
+
+@media screen and (min-width: 680px) and (max-width: 1023px){
+  .ec--content{
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .ec--hosts{
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 679px){
+  .ec--hosts{
+    display:none;
+  }
+}

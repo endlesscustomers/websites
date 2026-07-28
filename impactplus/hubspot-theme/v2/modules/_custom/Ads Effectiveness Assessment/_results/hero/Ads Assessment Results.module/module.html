@@ -1,0 +1,562 @@
+{{ require_css( get_asset_url("../Ads Assessment Half and Half Hero.css"), { async: true } ) }}
+
+{# Vars #}
+{% if module.media_type == "centered" %}
+  {% set contentClasses = "eight-twelfths tablet-ten-twelfths palm-one-whole" %}
+  {% set mediaClasses = "visuallyhidden" %}
+{% else %}
+
+  {# MEDIA COLUMN WIDTH #}
+  {% set mediaClasses = "one-half palm-one-whole" %}
+
+  {% if module.layout_controls.column_widths == "four-twelfths" %}
+    {% set mediaClasses = "eight-twelfths palm-one-whole" %}
+  {% elif module.layout_controls.column_widths == "eight-twelfths" %}
+    {% set mediaClasses = "four-twelfths palm-one-whole" %}
+  {% elif module.layout_controls.column_widths == "five-twelfths" %}
+    {% set mediaClasses = "seven-twelfths palm-one-whole" %}
+  {% elif module.layout_controls.column_widths == "seven-twelfths" %}
+    {% set mediaClasses = "five-twelfths palm-one-whole" %}
+  {% elif module.layout_controls.column_widths == "nine-twelfths" %}
+    {% set mediaClasses = "three-twelfths palm-one-whole" %}
+  {% elif module.layout_controls.column_widths == "ten-twelfths" %}
+    {% set mediaClasses = "two-twelfths palm-one-whole" %}
+  {% endif %}
+
+  {% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+    {% set mediaClasses = mediaClasses+" tablet-eight-twelfths" %}
+    {% set mediaTabletWidthNumerical = (8/12) %}
+  {% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+    {% set mediaClasses = mediaClasses+" tablet-four-twelfths" %}
+    {% set mediaTabletWidthNumerical = (4/12) %}
+  {% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+    {% set mediaClasses = mediaClasses+" tablet-seven-twelfths" %}
+    {% set mediaTabletWidthNumerical = (7/12) %}
+  {% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+    {% set mediaClasses = mediaClasses+" tablet-five-twelfths" %}
+    {% set mediaTabletWidthNumerical = (5/12) %}
+  {% elif module.layout_controls.column_widths_tablet == "three-twelfths" %}
+    {% set mediaClasses = mediaClasses+" tablet-nine-twelfths" %}
+    {% set mediaTabletWidthNumerical = (9/12) %}
+  {% elif module.layout_controls.column_widths_tablet == "two-twelfths" %}
+    {% set mediaClasses = mediaClasses+" tablet-ten-twelfths" %}
+    {% set mediaTabletWidthNumerical = (10/12) %}
+  {% else %}
+    {% set mediaClasses = mediaClasses+" tablet-one-half" %}
+    {% set mediaTabletWidthNumerical = (1/2) %}
+  {% endif %}
+
+  {% if module.media_type == "none" || module.media_type == "featured" %}
+    {% set mediaClasses = mediaClasses+" palm-visuallyhidden" %}
+  {% endif %}
+
+  {# CONTENT COLUMN WIDTH #}
+  {% if module.media_type == "none" %}
+    {% set contentClasses = "one-half palm-one-whole" %}
+
+    {% if module.layout_controls.column_widths == "four-twelfths" %}
+      {% set contentClasses = "four-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "eight-twelfths" %}
+      {% set contentClasses = "eight-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "five-twelfths" %}
+      {% set contentClasses = "five-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "seven-twelfths" %}
+      {% set contentClasses = "seven-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "nine-twelfths" %}
+      {% set contentClasses = "nine-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "ten-twelfths" %}
+      {% set contentClasses = "ten-twelfths palm-one-whole" %}
+    {% endif %}
+
+    {% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-four-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-eight-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-five-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-seven-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "nine-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-nine-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "ten-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-ten-twelfths" %}
+    {% else %}
+      {% set contentClasses = contentClasses+" tablet-one-half" %}
+    {% endif %}
+
+  {% else %}
+
+    {# 6/12 #}
+    {% set contentClasses = "six-twelfths palm-one-whole" %}
+
+    {% if module.layout_controls.column_widths == "four-twelfths" %}
+      {% set contentClasses = "three-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "five-twelfths" %}
+      {% set contentClasses = "four-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "seven-twelfths" %}
+      {% set contentClasses = "seven-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "eight-twelfths" %}
+      {% set contentClasses = "seven-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "nine-twelfths" %}
+      {% set contentClasses = "eight-twelfths palm-one-whole" %}
+    {% elif module.layout_controls.column_widths == "ten-twelfths" %}
+      {% set contentClasses = "nine-twelfths palm-one-whole" %}
+    {% endif %}
+
+    {% if module.layout_controls.column_widths_tablet == "four-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-four-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "five-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-five-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "seven-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-seven-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "eight-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-eight-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "nine-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-nine-twelfths" %}
+    {% elif module.layout_controls.column_widths_tablet == "ten-twelfths" %}
+      {% set contentClasses = contentClasses+" tablet-ten-twelfths" %}
+    {% else %}
+      {% set contentClasses = contentClasses+" tablet-six-twelfths" %}
+    {% endif %}
+
+  {% endif %}
+{% endif %}
+
+{% set scoreBucketTable = hubdb_table_rows(205745954) %}
+
+<div id="bucketMeta">
+  {% for row in scoreBucketTable %}
+    <div class="bucketMeta--data" data-bucketname="{{ row.name }}" data-bucketen="{{ row.external_bucket_name }}" data-bucketcp="{{ row.bucket_contact_property }}" data-bucketmax="{{ row.max_possible_score }}"></div>
+  {% endfor %}
+</div>
+
+<!--
+  ============================================================
+  PAID ADS ASSESSMENT — RESULTS MODULE ONLY
+  HubSpot Custom Module Drop-in
+  ============================================================
+  DEPENDENCIES:
+    - jQuery (loaded by HubSpot)
+    - jquery.cookie plugin (already in use on page)
+
+  COOKIE NAMES READ:
+    Section totals (numeric):
+      business_goals_and_alignment__ads_assessment_sg_total
+      transparency_and_access__ads_assessment_sg_total
+      strategy_and_decision_making__ads_assessment_sg_total
+      creative_testing_and_learning__ads_assessment_sg_total
+      proactivity_and_optimization__ads_assessment_sg_total
+      accountability_and_confidence__ads_assessment_sg_total
+
+    Individual answers (numeric 0–3):
+      assessment__account_ownership_and_access   (Q5)
+      assessment__confidence_without_agency      (Q21)
+      assessment__agency_partnership_quality     (Q22)
+  ============================================================
+-->
+
+<div id="adsResultsModule" class="section section--hero section--scorecard-hero relative overflow--hidden {{ snippets.deviceVisibility(module.section_controls.device_visibility)|trim }} {% if (is_in_page_editor) || (is_in_page_previewer) %}ineditor{% endif %}" {% if (is_in_page_editor) || (is_in_page_previewer) %}{% else %}data-redirect="{{ module.scorecard_settings.redirect_link_add_main_landing_page_url }}"{% endif %} data-totalname="{{ module.scorecard_settings.total_score_cookie_name }}">
+  {{ snippets.background(module.background) }}
+  {% if widget_data.controls.header_design == "transparent" %}
+  <div class="header--anchor"></div>
+  {% endif %}
+
+  <div class="results-wrap relative z-index--2">
+    <div id="adsResultsInner">
+
+      <!-- HEADER — profile badge, headline, description -->
+      <div class="results-header background--offwhite">
+        <div class="grid valign--middle hard--ends relative">
+          <div id="adsResultsHeader" class="grid__item ten-twelfths palm-one-whole text--center grande"></div>
+        </div>
+      </div>
+
+      <!-- SCORES — section score cards grid -->
+      <div class="results-scores">
+        <div class="grid valign--middle relative grande--top hard--bottom">
+          <div id="adsResultsScores"></div>
+        </div>
+      </div>
+
+      <!-- BODY — key signals bullets + what to watch -->
+      <div class="results-body">
+        <div class="grid valign--middle hard--top tall--bottom relative flexgrid">
+          <div id="adsResultsBody" class="flexgrid">
+            <div id="adsResultsKeySignals" class="grid__item one-half margin--short--bottom palm-one-whole border-radius border--1 border--mist border-radius padding--tall tall--top tall--bottom all--text--left background--offwhite"></div>
+            <div id="adsResultsWhatToWatch" class="grid__item one-half margin--short--bottom palm-one-whole border-radius border--1 border--mist border-radius padding--tall tall--top tall--bottom all--text--left background--offwhite"></div>
+          </div>
+        </div>
+
+        <!-- CTA — title, body copy, button -->
+        <div id="adsResultsCta" class="section section--leftright relative overflow--hidden">
+          <div class="background">
+            <div role="img" aria-label="Blog Images (2)" class="background--layer z-index--1 opacity--100 background-size--cover background-repeat--none lozad" data-background-image="https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/images/paid-ads-laptop.jpg" style="background-position: 50% 75%; inset: 0%;"></div>
+            <div class="background--layer z-index--2 opacity--100" style="background: rgba(29, 29, 31, 0.8);background: -moz-linear-gradient(90deg, rgba(29, 29, 31, 0.85) 33%, rgba(29, 29, 31, 0.0) 80%);background: -ms-linear-gradient(90deg, rgba(29, 29, 31, 0.85) 33%, rgba(29, 29, 31, 0.0) 80%);background: -webkit-linear-gradient(90deg, rgba(29, 29, 31, 0.85) 33%, rgba(29, 29, 31, 0.0) 80%);background: linear-gradient(90deg, rgba(29, 29, 31, 0.85) 33%, rgba(29, 29, 31, 0.0) 80%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1D1D1F', endColorstr='#1D1D1F',GradientType=1 );top:0%;bottom:0%;right:0%;left:0%;"></div>
+          </div>
+          <div class="block relative z-index--3">
+            <div class="block gridspacer--top desk-venti--top lap-venti--top tablet-grande--top palm-grande--top"></div>
+            <div class="grid valign--middle hard--ends relative z-index--2">
+              <div class="section--leftright--wrapper grid__item full tablet-one-whole palm-one-whole hard--ends hard--sides flexgrid valign--middle" style="margin: 0 auto !important;">
+                <div class="grid__item eight-twelfths palm-one-whole tablet-five-twelfths palm-one-whole all--color--white hard--ends first--hard--top last--hard--bottom text--left palm-text--left">
+                  <!-- JS populates these three elements -->
+                  <h2 class="ctaTitle h2 hard--ends"></h2>
+                  <div class="ctabody p--default first--hard--top" style="margin-top: 12px !important;"></div>
+                  <div style="margin-top:28px">
+                    <span class="block"></span>
+                    <span class="hard--top block--multibutton">
+                      <span class="block--multibutton--btn all--btn all--btn--primary btn-type--link">
+                        {% set href = module.cta_link.url.href %}
+                        <a role="button" class="ctaBtn btn btn--primary btn--arrow"
+                           {% if module.cta_link.url.type is equalto "CALL_TO_ACTION" %}
+                           href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                           {% else %}
+                           href="{{ href|escape_url }}"
+                           {% endif %}
+                           {% if module.cta_link.open_in_new_tab %}
+                           target="_blank"
+                           {% endif %}
+                           {% if module.cta_link.rel %}
+                           rel="{{ module.cta_link.rel|escape_attr }}"
+                           {% endif %}
+                           >
+                          Link text
+                        </a>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="grid__item one-half palm-one-whole tablet-one-half palm-one-whole valign--middle tall--top hard--bottom tablet-hard--ends lap-and-up-hard--ends all--text--center"></div>
+              </div>
+            </div>
+            <div class="block gridspacer--bottom desk-venti--bottom lap-venti--bottom tablet-grande--bottom palm-grande--bottom"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% require_js %}
+<script>
+  (function($) {
+    /* ============================================================
+     LAYER 1 — CONFIG
+     Built dynamically from #bucketMeta — no hardcoded values.
+     ============================================================ */
+    var CONFIG = {
+      sectionCookies: {},  // populated by buildConfig()
+    };
+
+    // Reads #bucketMeta to build sectionCookies in section order.
+    // Expects .bucketMeta--data elements ordered 1–N to match assignProfile().
+    function buildConfig() {
+      $('#bucketMeta .bucketMeta--data').each(function(i) {
+        var cp   = $(this).data('bucketcp');
+        var name = $(this).data('bucketen');
+        var max  = parseInt($(this).data('bucketmax'), 10);
+        if (!cp || !name || isNaN(max)) return;
+
+        CONFIG.sectionCookies[i + 1] = {
+          cookie: cp + '_total',
+          band:   cp + '_band',
+          name:   name,
+          max:    max
+        };
+      });
+    }
+
+    /* ============================================================
+     LAYER 2 — CONTENT
+     ============================================================ */
+    var PROFILES = {
+      1: {
+        name:        "Healthy & Aligned",
+        headline:    "You're Ahead of Most But Are You Leaving Growth on the Table?",
+        description: "Your paid ads program appears to be working well. You have strong visibility into what's happening, your agency is proactive and strategic, and you feel confident in the partnership. Your goals are clearly connected to business outcomes, and transparency is flowing both ways.\n\nThis is the outcome most businesses aspire to and you're there.",
+        blockTitle:  "What This Means",
+        bullets: [
+          "Clear alignment: Your ads are tied to real business outcomes, not just vanity metrics",
+          "Strategic partnership: Your agency explains the \"why\" behind decisions and brings ideas to the table",
+          "Real transparency: You have access to the data that matters and feel comfortable asking questions",
+          "Genuine confidence: You could explain what's happening to your CEO or board without hesitation"
+        ],
+        watchNote: "The risk for high-performing programs isn't failure, it's complacency. Markets shift, customer behavior changes, and new channels or tactics emerge. The best partnerships stay sharp through regular check-ins and fresh perspectives.",
+        ctaTitle:  "What a Fresh Pair of Eyes Usually Finds",
+        ctaBody:   "You've built a solid foundation and that's pretty rare. The programs that stay ahead don't just maintain; they keep pressure-testing their assumptions.\n\nThe next step for a program at your level isn't fixing problems. It's a comprehensive audit that validates what's working, confirms your investment is doing exactly what it should, and surfaces any opportunities your current setup might be missing.\n\nSchedule a 30-minute call. We'll learn about your program, walk you through what our audit looks like, and figure out together whether it's the right fit.",
+        ctaBtn:    "Schedule a 30-Minute Call"
+      },
+      2: {
+        name:        "Strong Performance, Low Visibility",
+        headline:    "The Numbers Look Good But Do You Really Know Why?",
+        description: "Your paid ads results may look positive on the surface, but you don't have full clarity into how those results are being achieved. Reports are polished, but you lack deep access to raw data, strategic explanations, or the confidence to know what would happen if your agency disappeared tomorrow.\n\nThis creates a hidden dependency. As long as things look good, you don't feel it. But if performance drops or your agency exits, you're exposed.",
+        blockTitle:  "Key Signals in Your Responses",
+        bullets: [
+          "Limited or no direct access to ad account data",
+          "Reports focus heavily on positive results without explaining what's not working",
+          "Low confidence in your ability to understand what's happening if your agency left",
+          "Weak clarity around strategy and decision-making"
+        ],
+        watchNote: "When visibility is limited, you're operating on trust instead of understanding. That works until something changes. If performance dips, budgets shift, or your agency leaves, you may not have the information you need to respond quickly or make informed decisions.\n\nThis isn't a sign of bad work but it is a vulnerability.",
+        ctaTitle:  "You Deserve to Know What's Happening",
+        ctaBody:   "Good results and good visibility should go hand-in-hand. Let's make sure you truly understand what's driving your performance and what could put it at risk.\n\nA comprehensive account audit will give you the transparency you need to feel confident, ask better questions, and make smarter decisions.\n\nSchedule a 30-minute conversation. We'll dig into what you're seeing (and what you're not), walk you through what a full account audit would surface, and figure out together whether it's the right next step.",
+        ctaBtn:    "Schedule a 30-Minute Conversation"
+      },
+      3: {
+        name:        "Busy, but Not Strategic",
+        headline:    "Your Agency is Always Working. But Working Toward What?",
+        description: "Your agency is active and responsive. Changes are being made, optimizations are happening, and reports arrive on schedule. But it's not always clear how daily work connects to a broader strategy or if those optimizations are actually learning from anything meaningful.\n\nA busy account doesn't always mean progress toward hitting your goals.",
+        blockTitle:  "Key Signals in Your Responses",
+        bullets: [
+          "Weak understanding of the current strategy behind your ads",
+          "Limited explanation of what's being tested or why",
+          "Vague or inconsistent reasoning when results change",
+          "Moderate confidence, but a sense that things could be more intentional"
+        ],
+        watchNote: "Without a clear strategic framework, optimization becomes reactive and reactive programs rarely outperform the market. Decisions are being made based on platform prompts, industry best practices, or habit rather than a deliberate plan tied to your unique business goals.\n\nTesting happens, but learning may not. Changes occur, but the \"why\" remains unclear.",
+        ctaTitle:  "Your Program Needs a Strategy, Not More Optimization",
+        ctaBody:   "A strong ads program needs more than activity, it needs a plan. What your program is missing isn't more work. It's missing a clear strategy that connects every optimization to a business outcome.\n\nA full account audit will map what your program is actually doing, identify where that strategic clarity is lacking, and give you a concrete picture of what goal-driven advertising looks like for your business.\n\nSchedule a 30-minute conversation. We'll talk through how decisions are currently being made in your account, walk you through what a strategic audit looks like, and see if it's the right fit.",
+        ctaBtn:    "Schedule a 30-Minute Conversation"
+      },
+      4: {
+        name:        "Reactive & Vendor-Led",
+        headline:    "They Do the Work, But Who's Driving?",
+        description: "Your agency handles the day-to-day work and responds when you ask questions, but they rarely lead proactively. New ideas are scarce, risk isn't always anticipated, and progress often depends on you knowing what to ask for.\n\nThis isn't a partnership. It's a vendor relationship.",
+        blockTitle:  "Key Signals in Your Responses",
+        bullets: [
+          "Limited proactivity: new ideas come only when prompted",
+          "Reactive approach to performance changes and risk management",
+          "A sense that the agency is working \"for you\" rather than \"with you\"",
+          "Mixed or weak scores across strategy, learning, and accountability"
+        ],
+        watchNote: "When an agency operates reactively, the client ends up carrying too much strategic weight. You become responsible for spotting opportunities, raising concerns, and pushing for improvement — work that should be shared.\n\nThis dynamic creates two problems: you don't get the full value you're paying for and the agency doesn't feel accountable for driving results.",
+        ctaTitle:  "You Shouldn't Have to Do This Alone",
+        ctaBody:   "A great ads partnership means shared ownership of results, not just task execution. If you're the one consistently pushing for better strategy, flagging risks, and asking the questions your agency should be raising — that's a problem worth solving.\n\nA full account audit will show you what a proactive, accountable program actually looks like and where your current setup falls short of that standard.\n\nSchedule a 30-minute conversation. We'll dig into who's driving decisions in your account, who's raising flags, and who's accountable when results shift. Then we'll walk through what a full audit would surface.",
+        ctaBtn:    "Schedule a 30-Minute Conversation"
+      },
+      5: {
+        name:        "Unclear & At Risk",
+        headline:    "Your Paid Ads Program Has Red Flags and Nobody's Telling You.",
+        description: "You lack the clarity and confidence to know whether your paid ads program is truly working. Strategy feels uncertain, transparency is limited, and much of what you understand depends entirely on what's presented to you in reports.\n\nThis is more than a reporting problem, it's a business risk.",
+        blockTitle:  "Key Signals in Your Responses",
+        bullets: [
+          "Low confidence in whether your ads are connected to business goals",
+          "Limited or no direct access to account data",
+          "Multiple \"I'm not sure\" answers across critical areas",
+          "Weak understanding of strategy, decision-making, and continuity"
+        ],
+        watchNote: "Information asymmetry puts your business in a vulnerable position. If performance drops, budgets need to shift, or your agency leaves, you won't have the visibility or understanding to respond effectively. You're allocating significant budget without full clarity. That makes it difficult to confidently defend your marketing spend in front of leadership, especially if results fluctuate.\n\nThis profile often shows up right before a performance drop. It signals that the current agency relationship isn't built on partnership, education, or true accountability.",
+        ctaTitle:  "It's Time to Get Answers",
+        ctaBody:   "Right now, you're operating with too many unknowns. That creates risk for your budget, your results, and your business.\n\nA full account audit will give you an unfiltered picture of what's actually happening — what's working, what isn't, and what needs to change. You'll finally have the clarity you should have had all along.\n\nSchedule a 30-minute conversation. We'll go through what you're seeing (and what you're not) and by the end, you'll know exactly what an audit would uncover and whether it's the right next step.",
+        ctaBtn:    "Schedule a 30-Minute Conversation"
+      }
+    };
+
+    // Maps profile name strings (set as cookie on assessment page) → profile ID
+    var PROFILE_NAME_MAP = {
+      'Healthy & Aligned':                  1,
+      'Strong Performance, Low Visibility': 2,
+      'Busy, but Not Strategic':            3,
+      'Reactive & Vendor-Led':              4,
+      'Unclear & At Risk':                  5
+    };
+
+    /* ============================================================
+     LAYER 3 — TEMPLATES
+     ============================================================ */
+    var TEMPLATES = {
+
+      header: function(d) {
+        return `
+          <div class="results-profile-badge results-profile-badge--${d.badgeBand} h6 hard--ends">
+            Your Profile: ${d.profileName}
+          </div>
+          <h1 class="results-headline">
+            ${d.headline}
+          </h1>
+          <div class="last--hard--bottom">
+            ${d.description.split('\n\n').map(function(para) {
+              return `
+                <p class="results-description">
+                  ${para}
+                </p>
+              `;
+            }).join('')}
+          </div>
+          <div class="tall--top block--multibutton">
+            <div class="block--multibutton--btn all--btn all--btn--primary btn-type--link">
+              <a class="ctaBtn btn btn--primary btn--arrow" href="#adsResultsCta" role="button">
+                ${d.ctaBtn}
+              </a>
+            </div>
+          </div>
+        `.trim();
+      },
+
+      scores: function(d) {
+        return '<h2 class="scores-heading margin--standard--bottom hard--top">Your Scores by Section</h2>' +
+          '<div class="scores-grid flex flex-flow--wrap">' + d.scoreCardsHTML + '</div>';
+      },
+
+      keySignals: function(d) {
+        return '<h4 class="results-block-title hard--top">' + d.blockTitle + '</h4>' +
+          '<ul class="results-list p p--default hard--bottom last--hard--bottom">' + d.bulletsHTML + '</ul>';
+      },
+
+      whatToWatch: function(d) {
+        var parasHTML = d.watchNote.split('\n\n').map(function(para) {
+          return '<p class="results-watch p--default color--midgrey">' + para + '</p>';
+        }).join('');
+        return '<h4 class="results-block-title hard--top margin--petite--bottom">What\'s Really Happening</h4>' +
+          '<div class="results-watch-wrapper last--hard--bottom first--hard--top">' + parasHTML + '</div>';
+      },
+
+      cta: function(d) {
+        $('.ctaTitle').html(d.ctaTitle);
+        $('.ctabody').html(d.ctaBodyHTML);
+        $('.ctaBtn').text(d.ctaBtn);
+      },
+
+      scoreCard: function(d) {
+        return '<div class="score-card grid__item one-third palm-one-whole hard--top margin--standard--bottom all--text--left score-card--' + d.bandLower + '">' +
+          '<div class="score-card-name h5 hard--top">'  + d.name + '</div>' +
+          '<div class="score-card-band h4 font--reading bold hard--ends score-card-band--' + d.bandLower + '">' + d.band + '</div>' +
+          '<div class="score-card-pct p p--sm hard--bottom color--darkgrey bold">'   + d.pct + '% · ' + d.raw + '/' + d.max + '</div>' +
+          '</div>';
+      },
+
+      bullet: function(d) {
+        return '<li>' + d.text + '</li>';
+      },
+
+      error: function(d) {
+        var msg = d.missingCookies.length
+        ? 'The following score cookies could not be found:<br><code style="font-size:12px;color:#dc2626;">' + d.missingCookies.join('<br>') + '</code><br><br>Please complete the assessment first.'
+        : 'Your results could not be loaded. Please complete the assessment first.';
+        return '<div class="results-notice">' +
+          '<p style="font-weight:700;color:#dc2626;margin-bottom:8px;">Results Unavailable</p>' +
+          '<p>' + msg + '</p>' +
+          '</div>';
+      }
+    };
+
+
+    /* ============================================================
+     CORE LOGIC
+     ============================================================ */
+
+    // Reads all score cookies. Uses _band cookie set by assessment page,
+    // falls back to deriving band from _total if _band cookie is missing.
+    function readCookies() {
+      var scores  = {};
+      var missing = [];
+      var cfg     = CONFIG.sectionCookies;
+
+      for (var num in cfg) {
+        var c   = cfg[num];
+        var raw = parseInt($.cookie(c.cookie), 10);
+
+        if (isNaN(raw)) { missing.push(c.cookie); raw = 0; }
+
+        // Prefer the pre-calculated band cookie; derive as fallback
+        var band = $.cookie(c.band);
+        if (!band) {
+          var pct  = (raw / c.max) * 100;
+          band = pct >= 75 ? 'Strong' : pct >= 40 ? 'Mixed' : 'Weak';
+        }
+
+        var pct = Math.round((raw / c.max) * 100);
+        scores[num] = { name: c.name, raw: raw, max: c.max, pct: pct, band: band };
+      }
+
+      return { scores: scores, missing: missing };
+    }
+
+    // Reads the profile name cookie set by the assessment page and maps it to a profile ID.
+    // Falls back to profile 5 if cookie is missing or unrecognised.
+    function readProfileId() {
+      var assessmentScoreName = $('.section--scorecard-hero').attr('data-totalname');
+      var profileName = $.cookie(assessmentScoreName);
+      var profileId   = PROFILE_NAME_MAP[profileName] || 5;
+
+      console.log('[Results] Profile cookie:', profileName, '→ ID:', profileId);
+      return profileId;
+    }
+
+    function render(scores, profileId) {
+      var p         = PROFILES[profileId];
+      var badgeBand = profileId === 1 ? 'strong' : profileId <= 3 ? 'mixed' : 'weak';
+
+      var scoreCardsHTML = Object.values(scores).map(function(sc) {
+        return TEMPLATES.scoreCard({
+          name:      sc.name,
+          band:      sc.band,
+          bandLower: sc.band.toLowerCase(),
+          pct:       sc.pct,
+          raw:       sc.raw,
+          max:       sc.max
+        });
+      }).join('');
+
+      var bulletsHTML = p.bullets.map(function(b) {
+        return TEMPLATES.bullet({ text: b });
+      }).join('');
+
+      var ctaBodyHTML = p.ctaBody.split('\n\n').map(function(para) {
+        return '<p>' + para + '</p>';
+      }).join('');
+
+      $('#adsResultsHeader').html(TEMPLATES.header({ profileName: p.name, headline: p.headline, description: p.description, badgeBand: badgeBand }));
+      $('#adsResultsScores').html(TEMPLATES.scores({ scoreCardsHTML: scoreCardsHTML }));
+      $('#adsResultsKeySignals').html(TEMPLATES.keySignals({ blockTitle: p.blockTitle, bulletsHTML: bulletsHTML }));
+      $('#adsResultsWhatToWatch').html(TEMPLATES.whatToWatch({ watchNote: p.watchNote }));
+      TEMPLATES.cta({ ctaTitle: p.ctaTitle, ctaBodyHTML: ctaBodyHTML, ctaBtn: p.ctaBtn});
+    }
+
+
+    /* ============================================================
+     INIT
+     ============================================================ */
+    $(function() {
+      if (typeof $.cookie !== 'function') {
+        console.error('[AdsResults] jquery.cookie plugin not found.');
+        $('#adsResultsInner').html(TEMPLATES.error({ missingCookies: [] }));
+        return;
+      }
+      buildConfig();
+      var data      = readCookies();
+      var profileId = readProfileId();
+
+      if (data.missing.length === Object.keys(CONFIG.sectionCookies).length) {
+        if ($('#adsResultsModule').hasClass('ineditor')) {
+          // In editor with no cookies — build sample scores from config and render
+          var sampleScores = {};
+          $.each(CONFIG.sectionCookies, function(num, c) {
+            sampleScores[num] = {
+              name: c.name,
+              raw:  Math.round(c.max * 0.75),
+              max:  c.max,
+              pct:  75,
+              band: 'Strong'
+            };
+          });
+          render(sampleScores, 1);
+          return;
+        } else {
+          // Not in editor and no cookies — redirect
+          var redirectUrl = $('#adsResultsModule').data('redirect');
+          if (redirectUrl) {
+            window.location.href = redirectUrl;
+          } else {
+            console.error('[AdsResults] No redirect URL found on #adsResultsModule');
+          }
+          return;
+        }
+      }
+
+      render(data.scores, profileId);
+    });
+
+  })(jQuery);
+</script>
+{% end_require_js %}

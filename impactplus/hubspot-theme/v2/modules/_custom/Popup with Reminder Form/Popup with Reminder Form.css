@@ -1,0 +1,212 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import 'IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+
+/* Container for image + dialog side by side */
+
+.eclc-popup__steps {
+  display: flex;
+  flex-wrap: wrap; /* will wrap on small screens */
+  max-width: 940px;
+  min-height: 505px;
+  background: white;
+}
+
+.eclc-popup__image {
+  flex: 0 0 48%;       /* takes ~40% width */
+  max-width: 48%;
+  height: auto;        /* let height adjust naturally or specify a height if required */
+  overflow: hidden; 
+}
+
+.eclc-popup__img {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;        /* ensures the image fills its container while preserving aspect ratio */  /* :contentReference[oaicite:0]{index=0} */
+  object-position: left;    /* aligns the image’s visible area to the left side of its container */
+  display: block;
+}
+
+.eclc-popup__content {
+  flex: 1 0 52%;       /* takes the remaining ~60% */
+  max-width: 52%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive for small screens */
+@media (max-width: 1024px) {
+  .eclc-popup__steps,
+  .eclc-popup__overlay{
+    display: none;
+  }
+}
+
+.eclc-popup__btns{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eclc-popup__btns a{
+  padding: 16px 24px;
+}
+/* */
+
+
+/* Base (hidden) */
+.eclc-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;                 /* keep on */
+  align-items: center;
+  justify-content: center;
+  opacity: 0;                    /* animate this */
+  visibility: hidden;            /* hide from a11y/AT */
+  pointer-events: none;          /* block clicks */
+  transition: opacity .25s ease; /* container fade */
+}
+.eclc-popup.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.eclc-popup form{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.eclc-popup form.hs-form label{
+  display:none;
+}
+
+.eclc-popup form.hs-form input.hs-input{
+  background: white;
+  border-radius: 50px;
+}
+
+.eclc-popup form.hs-form .hs-form-field > .input{
+  margin-bottom: 16px;
+}
+
+.eclc-popup form .legal-consent-container{
+  -webkit-box-ordinal-group: 3;
+  order: 3;
+  margin-top: 20px;
+}
+.eclc-popup form.hs-form .hs_submit{
+  padding-top: 0px !important;
+  text-align: center;
+}
+.eclc-popup form .legal-consent-container * {
+  color: #4f5465 !important;
+  font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin-bottom: 0 !important;
+  text-align: center !important;
+  line-height: 1.35em;
+}
+
+.eclc-popup__overlay {
+  position: absolute; inset: 0;
+  background: rgba(29,29,31,.80);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+
+@media (min-width: 769px) { 
+  .eclc-popup__dialog {
+    /*border-radius: 12px;
+    width: calc(100% - 40px);
+    max-height: 90vh;*/
+  }
+}
+
+.eclc-popup__dialog{
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(6px) scale(.98);
+  transition: opacity .25s ease, transform .25s ease;
+  will-change: opacity, transform;
+  border-radius: 12px;
+  /*   max-width: 600px; */
+}
+
+.eclc-popup__content {
+  position: relative;
+  background: #fff;
+  padding: 48px 40px;
+}
+
+/* animate in */
+.eclc-popup.is-open .eclc-popup__overlay { opacity: 1; }
+.eclc-popup.is-open .eclc-popup__dialog  { opacity: 1; transform: translateY(0) scale(1); }
+
+/* optional closing */
+.eclc-popup.closing .eclc-popup__overlay { opacity: 0; }
+.eclc-popup.closing .eclc-popup__dialog  { opacity: 0; transform: translateY(6px) scale(.98); }
+
+@media (max-width: 768px) { 
+  .eclc-popup__dialog { 
+    padding: 80px 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+  } 
+
+  .eclc-popup__dialog .hs_submit *{
+    width: 100% !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eclc-popup, .eclc-popup__overlay, .eclc-popup__dialog { transition: none; }
+}
+
+/* Close button */
+.eclc-popup__close {
+  position: absolute; 
+  top: 12px; 
+  right: 12px;
+  background: transparent; 
+  border: 0; 
+  font-size: 28px; 
+  line-height: 1;
+  cursor: pointer; 
+  color: #444;
+  outline: 0;
+  z-index: 10;
+}
+
+/* Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .eclc-popup__overlay,
+  .eclc-popup__dialog {
+    transition: none;
+  }
+}

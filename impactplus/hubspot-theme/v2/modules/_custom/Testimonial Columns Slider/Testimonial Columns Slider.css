@@ -1,0 +1,208 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--testimonialcolumns-slider--divider--vertical {
+  display:inline;
+  position:absolute;
+  /* left:{{ ( -1 * (grid_ColumnSpacing)|float()|string|replace(".0","") ) + '%!important' }}; */
+  left: 0 !important;
+  top:auto;
+  width:1px;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:0px;
+}
+.section--testimonialcolumns-slider--divider--horizontal {
+  display:block;
+  position:absolute;
+  background:{{ color("black") }};
+  opacity:.15;
+  filter:alpha(opacity=15);
+  height:1px;
+  top:0px;
+  left:{{ (config.grid_ColumnSpacing) }} !important;
+  right:{{ (config.grid_ColumnSpacing) }} !important;
+  /* left:0%; */
+  /* right:0px; */
+}
+/*.section--testimonialcolumns-slider--grid > .grid__item {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: stretch;
+}
+.section--testimonialcolumns-slider--grid .section--testimonialcolumns-slider--testimonial-columns--wrapper.justify--start {
+justify-content: flex-start;
+}
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--testimonial-column {
+display: flex;
+flex-flow: column;
+align-items: stretch;
+}*/
+
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--testimonial-column:not(.section--testimonialcolumns-slider--testimonial-column--body--padding){
+  margin: 0 !important;
+}
+
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .section--testimonialcolumns-slider--testimonial-column,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .section--testimonialcolumns-slider--testimonial-column,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .section--testimonialcolumns-slider--testimonial-column,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .section--testimonialcolumns-slider--testimonial-column,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .section--testimonialcolumns-slider--testimonial-column{
+  padding: {{ config.tall }} {{ ( 3 / 2 ) }}% !important;
+}
+
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .p+.p,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .p+ol,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid .p+ul,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid h6+ol,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid h6+ul,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid ol+.p,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid ol+h6,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid ol+p,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid p+ol,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid p+p,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid p+ul,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid ul+h6,
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--grid ul+p{
+  margin-top: -16px;
+}
+
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--testimonial-column--body{
+  height: 100%;
+}
+.section--testimonialcolumns-slider .section--testimonialcolumns-slider--testimonial-column--body--wrapper {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+}
+.section--testimonialcolumns-slider.section--testimonialcolumns-slider--equalizebuttons .section--testimonialcolumns-slider--testimonial-column--body--cta {
+  margin-top: auto;
+}
+.section--testimonialcolumns-slider .grid.hard .section--testimonialcolumns-slider--divider--horizontal,
+.section--testimonialcolumns-slider .grid.hard--sides .section--testimonialcolumns-slider--divider--horizontal {
+  left:{{ config.short }};
+  right:{{ config.short }};
+}
+{% call mediaQuery("palm") %}
+/*.section--testimonialcolumns-slider .section--testimonialcolumns-slider--testimonial-column {
+max-width:450px;
+}*/
+{% endcall %}
+
+.section--testimonialcolumns-slider--testimonial-column--body--padding .section--testimonialcolumns-slider--testimonial-column--body--wrapper{
+  padding: 32px;
+  border-radius: {{ config.default_BorderRadius }};
+}
+
+.section--testimonialcolumns-slider--testimonial-column--byline .section--testimonialcolumns-slider--testimonial-column--image--container{
+  flex: 0 0 auto;
+  max-width: 82px;
+  padding-right: 20px;
+}
+
+.section--testimonialcolumns-slider--testimonial-column .section--testimonialcolumns-slider--testimonial-column--image {
+  border-radius: 50%;
+  display: block;
+  height: 67px;
+  width: 67px;
+}
+
+.section--testimonialcolumns-slider--testimonial-column--source p span:first-child{
+  margin-bottom: 5px;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-carousel__slide{
+  display: flex;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-carousel__slide .section--testimonialcolumns-slider--testimonial-column--body--content{
+  height: 100%;
+  display: flex !important;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.section--testimonialcolumns-slider--wrapper {
+  --f-carousel-slide-width: 362px !important;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-carousel__nav{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-button{
+  border: 1px solid;
+  background: #fff;
+  border-radius: 50px;
+  align-items: center;
+  height: 35px;
+  width: 35px;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-button svg{
+  stroke: none;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-button .section--testimonialcolumns-slider--arrow{
+  height: 16px;
+  width: 16px;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-carousel__nav{
+  margin-top: 20px;
+}
+
+.section--testimonialcolumns-slider--wrapper .f-button.is-next{
+  right: calc(50% - 42px) !important
+}
+
+.section--testimonialcolumns-slider--wrapper .f-button.is-prev{
+  left: calc(50% - 42px) !important
+}
+
+{% call mediaQuery("lap-and-up") %}
+.section--testimonialcolumns-slider--grid .f-carousel__viewport{
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+{% endcall %}
+
+{% call mediaQuery("tablet") %}
+.section--testimonialcolumns-slider--grid .f-carousel__viewport{
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+{% endcall %}
+
+{% call mediaQuery("palm") %}
+.section--testimonialcolumns-slider--grid .f-carousel__viewport{
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+{% endcall %}

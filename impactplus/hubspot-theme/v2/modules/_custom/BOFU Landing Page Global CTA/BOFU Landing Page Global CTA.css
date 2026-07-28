@@ -1,0 +1,56 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #} 
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+.section--bofuglobalcta h2 + .section--bofuglobalcta-content {
+  margin-top:{{ config.textSpacing_Top }}!important;
+}
+
+.section--bofuglobalcta .section--bofuglobalcta-content h2,
+.section--bofuglobalcta .section--bofuglobalcta-content h3,
+.section--bofuglobalcta .section--bofuglobalcta-content h4,
+.section--bofuglobalcta .section--bofuglobalcta-content h5,
+.section--bofuglobalcta .section--bofuglobalcta-content h6 {
+  margin-bottom:0px!important;
+  margin-top:50px!important;
+}
+
+/*.section--bofuglobalcta p,
+.section--bofuglobalcta ul,
+.section--bofuglobalcta ol,
+.section--bofuglobalcta blockquote,
+.section--bofuglobalcta picture,
+.section--bofuglobalcta img,
+.section--bofuglobalcta table {
+	margin-bottom:0px!important;
+	margin-top:28px!important;
+}*/
+
+.section--bofuglobalcta .hs-embed-wrapper {
+  margin-top:28px!important;
+}
+
+/*.section--bofuglobalcta h2+p,
+.section--bofuglobalcta h3+p,
+.section--bofuglobalcta h4+p,
+.section--bofuglobalcta h5+p,
+.section--bofuglobalcta h6+p {
+	margin-top:10px!important;
+}*/

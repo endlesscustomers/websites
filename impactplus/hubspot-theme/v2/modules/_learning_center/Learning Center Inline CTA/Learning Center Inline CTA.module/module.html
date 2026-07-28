@@ -1,0 +1,66 @@
+{% set globalCtaData = globalCtaData[0] %}
+
+{# Matching the CTA #}
+{% set matchedCTA = [] %} 
+
+{% for item in globalCtaData %}
+
+{% if item.cta_internal_name == module.inline_cta_list_select_option.columns.name %}
+{% do matchedCTA.append(item) %}
+{% endif %}
+{% endfor %}
+
+{% for item in matchedCTA %}
+
+{% set webinarDateTime = item.expiration_date_optional|unixtimestamp() %} 
+
+{% if local_dt|unixtimestamp() <= webinarDateTime|unixtimestamp() %}
+<div class="section section--fullwidth relative overflow--hidden {{ snippets.deviceVisibility(item.section_controls.device_visibility)|trim }}">
+
+  <div class="block">
+    {{ snippets.swoopSpacerTop(item.background) }}
+    <div class="section--cta-borders relative border-radius--20 overflow--hidden">
+      {{ snippets.background(item.background) }}
+
+      <div class="section--cta-wrapper flex flex-align--center all--color--{{ item.layout_controls.text_color }}">
+        {# Image #}
+        <div class="section--featuredImage relative z-index--3 grid__item four-twelfths portable-one-whole hard--top hard--bottom palm-padding--short last--hard--bottom portable-visuallyhidden">
+          {% if item.cta_image.image.src %}
+          <img class="hard--top inline-block {{ 'border-radius' if item.cta_image.add_media_border_radius }} {{ 'box-shadow' if item.cta_image.add_media_dropshadow }} overflow--hidden" src="{{ item.cta_image.image.src }}" loading="lazy" alt="{{ item.cta_image.image.alt }}" width="{% if (item.cta_image.image.size_type == 'auto_custom_max') %}{{ item.cta_image.image.max_width }}{% elif (item.cta_image.image.size_type == 'exact') %}{{ item.cta_image.image.width }}{% else %}{{ item.cta_image.image.width }}{% endif %}" height="{% if (item.cta_image.image.size_type == 'auto_custom_max') %}{{ item.cta_image.image.max_height }}{% else %}{{ item.cta_image.image.height }}{% endif %}">
+          {% endif %}
+        </div>
+        {# End Image #}
+
+        {# Content #}
+        <div class="section--cta-content relative z-index--3 grid__item eight-twelfths portable-one-whole hard--top hard--bottom palm-padding--short last--hard--bottom all--text--left palm-all--text--left">
+          <div class="first--hard--top last--hard--bottom {{ snippets.textColorOverride(item.section_controls.text_color_override)|trim }}  flex flex-flow--column flex-align--left">
+            {% if item.preheader %}
+            <span class="h6 preheader margin--short--bottom">{{ item.preheader }}</span>
+            {% endif %}
+            {% if item.header %}
+            <div class="margin--petite--bottom first--hard--top last--hard--bottom">
+              <h4>{{ item.header }}</h4>
+            </div>
+            {% endif %}
+            <div class="first--hard--top last--hard--bottom hard--ends p p--sm">
+              {% if item.content %}
+              {{ item.content }}
+              {% endif %}
+            </div>
+            <span class="{{ snippets.textColorOverride(item.section_controls.text_color_override)|trim }} inline-block margin--short--top">
+              {{ snippets.multiButton(item.cta) }}
+            </span>
+          </div>
+        </div>
+        {# End Content #}
+      </div>
+
+    </div>
+    <div class="block gridspacer--bottom {{ snippets.sectionPadding(item.section_controls.spacing,"bottom")|trim }}">
+      {{ snippets.swoopSpacerBottom(item.background) }}
+    </div>
+    {{ snippets.sectionPaddingCustomStyles(name,item.section_controls.spacing,".gridspacer--top",".gridspacer--bottom") }}
+  </div>
+</div>
+{% endif %}
+{% endfor %}

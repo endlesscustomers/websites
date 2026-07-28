@@ -1,0 +1,774 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Podcasts Blog Post - IMPACT Production Theme
+-->
+
+{% set ecEpisodes = hubdb_table_rows(127897189, query='podcast_name__eq=Endless Customers Podcast') %} 
+
+{% module
+	"bop"
+	path="../modules/_learning_center_podcast/Podcast Blog - Global Post Controls",
+	label="Global Blog Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% module
+	"indpost"
+	path="../modules/_learning_center_podcast/Podcast Blog - Ind Post Controls",
+	label="Individual Blog Post Settings",
+	no_wrapper=True,
+	export_to_template_context=True
+%}
+
+{% import '/IM-IMPACT-Prod-Theme-2025/css/mixins/_lcsnippets.css' as lcsnippets %}
+
+{% extends "./layouts/base.html" %}
+
+{% set body_classes_array = [] %}
+{% do body_classes_array.append('pagetype--blog') %}
+{% do body_classes_array.append('header--static') %}
+
+{% set body_classes = body_classes_array|join(' ') %}
+{% set template_css = "../../css/templates/learning_center_blog.css" %}
+
+
+{% block additional_head_content %}
+<!-- Start Additional Head -->
+{% if not is_listing_view %}
+<meta content="{{ content.publish_date_local_time }}" itemprop="datePublished">
+<meta content="{{ widget_data.indpost.hero_section.updated_blog_article_date|format_date('YYYY-MM-dd HH:mm:ss') }}" itemprop="dateModified">
+<meta content="{{ content.blog_author.display_name|replace("'","’")|replace('%27','’')|replace('%22','”') }}" name="author">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+{% set videoArticle = [] %}
+{% for topic in content.topic_list %}
+{% if (topic.name|lower == 'videos') || (topic.name|lower == 'video') || (topic.name|lower == 'podcasts') || (topic.name|lower == 'podcast') %}
+{% do videoArticle.append('true') %}
+{% endif %}
+{% endfor %}
+
+{% set videoArticle = videoArticle|join %}
+
+{# HIDE FEATURED IMAGE IN BLOG POST #}
+
+{% set hideFeatured = [] %}
+{% for controls in widget_data.bop.blog_controls %}
+
+{% if controls.select_blog == content.parent_blog.id %}
+
+{% if controls.additional_controls.hide_featured_image_from_post_content %}
+{% do hideFeatured.append('true') %}
+{% endif %}
+
+{% endif %}
+
+{% endfor %}
+
+{% set hideFeatured = hideFeatured|join %}
+
+{% if (content.post_list_summary_featured_image)&&(hideFeatured == 'true') %}
+
+{% set featuredImageSlug = content.post_list_summary_featured_image|split('//') %}
+{% set featuredImageSlug = featuredImageSlug[1] %}
+{% set featuredImageSlug = featuredImageSlug|join("/") %}
+{% set featuredImageSlug = featuredImageSlug|split('/') %}
+{% set featuredImageDomain = featuredImageSlug[0] %}
+{% set featuredImageSlug = featuredImageSlug|join("/") %}
+{% set featuredImageSlug = featuredImageSlug|replace(featuredImageDomain,"") %}
+{% set hubID = hub_id %}
+{% set featuredImageSlug = featuredImageSlug|replace(hub_id,"") %}
+
+<style>
+  {% if request.postDict.inpageEditorUI %}
+  body .bop--single--body img[src*="{{ featuredImageSlug|replace("//","/") }}"] {display:block!important;}
+  {% else %}
+  body .bop--single--body img[src*="{{ featuredImageSlug|replace("//","/") }}"] {display:none!important;}
+  {% endif %}
+</style>
+{% else %}
+{% endif %}
+
+{# Subscribe Popup #}
+{% module "subpop" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Popup/Learning Center Popup", label="Subscription Popup", no_wrapper=True %}
+
+{# Mobile Bottom Bar #}
+{# module "indpost" path='/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Popup/Learning Center Mobile Bottom Navigation', label="Bottom Bar Navigation", no_wrapper=True #}
+
+{# Hero or Sidebar CTA #}
+{% set articleCTA = [] %}
+
+{% for topicMatch in widget_data.bop.article_pillar_inner_ctas %}
+{% if topicMatch.select_topic_for_cta.columns.resource_topic == widget_data.indpost.post_settings.pillar_selection.columns.resource_topic[0]['name'] %}
+{% do articleCTA.append(topicMatch) %}
+{% endif %}
+{% endfor %}
+
+<div class="header--anchor"></div>
+<div class="body-container body-container--blog-post body--template-type--{{ widget_data.indpost.post_settings.template_type }}">
+  {# Blog post #}
+  <div class="content-wrapper">
+    <article class="post-inner">
+      {# Breadcrumbs #}
+      <div class="background--white">
+        {{ lcsnippets.breadcrumbs_subnav() }}
+      </div>
+      {# End Breadcrumbs #}
+
+      {# Blog Inner Contents #}
+      <div id="flex-sidebar-wrapper" class="grid flexgrid hard--top margin--petite--top">
+        <div class="grid__item one-whole palm-one-whole text--left margin--standard--bottom hard--bottom palm-tall--top">
+          <div class="relative overflow--hidden">
+            <div class="block relative z-index--3">
+              {# lcsnippets.lc_preheader() #}
+              <div class="flexgrid valign--middle hard--ends align--left relative z-index--2">
+                <div class="text--left flex flex-align--center" style="gap: 12px;"> 
+                  <img src="https://www.impactplus.com/hubfs/Hand-drawn%20Icons/Endless-Customers.svg" alt="Endless Customers" loading="lazy" width="48">
+                  <span class="h6 preheader hard--ends">Endless Customers Podcast</span>
+                </div>
+              </div>
+              <div class="block gridspacer--bottom desk-hard--bottom lap-hard--bottom tablet-hard--bottom palm-hard--bottom"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="post--single main-body--content grid__item text--left eight-twelfths tablet-seven-twelfths palm-one-whole hard--top hard--bottom palm-hard--top">
+          <div class="post--single--title section--hero-content">
+            <h1 class="hard--top margin--short--bottom" style="font-size: 48px;">{{ content.name }}</h1>
+            {# Share Links #}
+            <div class="lap-and-up-visuallyhidden tablet-visuallyhidden hard--top margin--short--bottom">
+              {{ lcsnippets.lc_social_share(content.absolute_url, content.html_title, content.meta_description, 18) }}
+            </div>
+          </div>
+
+          {# Featured Image or Video #}
+          {% set videoType = [] %}
+          <div class="margin--short--bottom">
+            {% module "featured_image" path="/_IMPACT_Production/_modules/_IMPACT_UI/_custom/_IMPACT_blog/Post Inner/Article Featured Image or Video/Podcast Learning Center Featured Video or Image", label="Featured Video/Image" %}
+          </div>
+          {% set videoType = videoType[0] %}
+
+          {# ***** FEATURED SNIPPET MODULE ***** #}
+          {#<div class="container--featuredsnippet">
+            {% module "featured_snippet" path="/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Featured Snippet/Learning Center Featured Snippet", label="Featured Snippet" %}
+          </div>#}
+          <div class="container--postbody last--hard--bottom">
+            {% if content.post_body %}
+            {{ content.post_body|replace('img src','img class="lazy" data-src')|replace('http:','https:')|replace('hs-responsive-embed-target-iframe','hs-responsive-embed-target-iframe lazy')|replace('src="//www.youtube.com/embed','class="lazy" data-src="//www.youtube.com/embed')|replace('src="https://www.youtube.com/embed','class="lazy" data-src="https://www.youtube.com/embed')|replace('<!--more-->','<!--more-->{{ readMoreCTA }}')|replace('h1','h2')|replace('class="giphy-embed"','class="giphy-embed lazy"')|replace('src="https://giphy.com','data-src="https://giphy.com') }}
+            {% endif %}
+          </div>
+
+          {% if widget_data.indpost.post_settings.article_author_type == "hide" %}
+          {% else %}
+          {#<div class="container--author last--hard--bottom border--1 border--left--0 border--right--0 border--mist margin--tall--top">
+            <div class="author-section" style="display:flex; align-items:center; gap:24px;">
+              <img src="{% if widget_data.indpost.post_settings.article_author_type == "general_author" %}https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/learning_center/impact_author.png{% else %}{{ content.blog_post_author.avatar }}{% endif %}" 
+                   alt="{% if widget_data.indpost.post_settings.article_author_type == "general_author" %}{% else %}{{ content.blog_post_author.display_name }}{% endif %}" 
+                   style="width:90px; height:90px; border-radius:50%; object-fit:cover; margin: 25px 0;">
+              <p>
+                {% if widget_data.indpost.post_settings.article_author_type == "general_author" %}
+                This article was produced as a collective effort of the <a href="https://www.impactplus.com/team" target='_blank' class="underline" style="font-weight: 500 !important;">IMPACT Team</a> and is regularly updated.
+                {% else %}
+                By {{ content.blog_post_author.first_name }} {{ content.blog_post_author.last_name }}
+                {% endif %}
+              </p>
+            </div>
+          </div>#}
+          {% endif %}
+
+          {# Related Episodes #}
+          <div class="margin--tall--top">
+
+            {# === Previous / Next for single blog post === #}
+            {% set BLOG_ID = '53829978' %}
+            {% set MAX_LOOKBACK = 2000 %} {# bump if your blog is very large #}
+
+            {% set posts = blog_recent_posts(BLOG_ID, MAX_LOOKBACK) %}
+
+            {% set prev = [] %}
+            {% set next = [] %}
+            {% set found = [] %} {# flag to avoid multiple appends since we can't break #}
+
+            {% for p in posts %}
+            {% if (found|length == 0) and (p.id == content.id) %}
+            {% if not loop.first %}
+            {% do next.append(posts[loop.index0 - 1]) %}  {# newer #}
+            {% endif %}
+            {% if not loop.last %}
+            {% do prev.append(posts[loop.index0 + 1]) %}  {# older #}
+            {% endif %}
+            {% do found.append(1) %} {# mark as handled #}
+            {% endif %}
+            {% endfor %}
+
+            {% if prev or next %}
+            {#<nav class="post-nav flex margin--standard--bottom" aria-label="Article navigation" style="justify-content: space-between;">
+              {% if prev|length %}
+              {% set prev = prev[0] %}
+              <span class="post-nav--prev p hard--ends all--btn all--btn--simple line-height--small">
+                <a class="section--webinar-cards--card--link no--underline border--0 hover--pointer line-height--small" title="{{ prev.name }}" href="{{ prev.absolute_url }}" rel="prev">
+                  <span class="btn btn--simple font--16" style="padding-right: 0px !important;">
+                    Previous Episode
+                  </span>
+                </a>
+              </span>
+              {% endif %}
+              {% if next|length %}
+              {% set next = next[0] %}
+              <span class="post-nav--next p hard--ends all--btn all--btn--simple line-height--small">
+                <a class="section--webinar-cards--card--link no--underline border--0 hover--pointer line-height--small" title="{{ next.name }}" href="{{ next.absolute_url }}" rel="prev">
+                  <span class="btn btn--simple font--16" style="padding-right: 0px !important;">
+                    Next Episode
+                  </span>
+                </a>
+              </span>
+              {% endif %}
+            </nav>#}
+            {% endif %}
+
+            <h3 class="hard--ends">
+              Recent Episodes
+            </h3>
+
+            <div class="section--card-content-columns-headings--content-columns margin--standard--bottom">
+              <div class="section--card-content-columns--grid grid__item palm-one-whole hard--ends hard--sides">
+                <div class="section--card-content-columns--center flex flex-justify--left all--text--left" style="flex-wrap: wrap;">
+
+                  <style>
+                    .section--cards-column-guides .section--card-content-columns-container {
+                      display: flex;
+                      flex-direction: column;  
+                      gap: 20px;
+                    }
+
+                    /* image column (left) */
+                    .section--cards-column-guides .section--resource-slider--featured-image-wrapper {
+                      flex: 0 0 152px;                                  
+                    }
+
+                    @media (min-width: 768px) {
+                      .section--cards-column-guides .section--card-content-columns-header{
+                        font-size: 30px;
+                      }
+
+                      .section--cards-column-guides .section--resource-slider--featured-image-wrapper{
+                        /*min-height: 390px;*/
+                      }
+                    }
+
+                    /* ratio box keeps aspect */
+                    .section--cards-column-guides .section--resource-slider--featured-image {
+                      position: relative;
+                      width: 100%;
+                      background-size: cover;
+                      background-repeat: no-repeat;
+                      overflow: hidden;
+                      height: 100%;
+                    }
+                    .section--cards-column-guides .section--resource-slider--featured-image > span {
+                      display: block;
+                      width: 100%;
+                      padding-top: 53%;                  
+                    }
+
+                    .section--cards-column-guides .section--card-content-columns-wrapper {
+                      flex: 1 1 auto;
+                      min-width: 0; 
+                      padding: 20px 32px;
+                    }
+                  </style>
+
+                  {% set ecEpisodesRecent = hubdb_table_rows(127897189, query='podcast_name__eq=Endless Customers Podcast&orderBy=-published_date&limit=3') %}
+
+                  {% for item in ecEpisodesRecent %}
+                  <div class="section--cards-column-guides section--cards-column-group-primary section--cards-column-group grid__item one-whole tablet-one-whole palm-one-whole hard--top hard--bottom lap-and-up-flex tablet-flex flex-justify--center relative animate--fade animate--fade-up animate--fade-delay-list--{{ loop.index + 1 }} margin--standard--top relative z-index--30 overflow--hidden" style="border-radius: 16px;">
+                    <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer z-index--10" title="{{ item.resource_title }}" href="{{ item.resource_link }}"></a>
+                    <div class="flex overflow--hidden border--1 border--mist background--offwhite" style="width:100%;border-radius:16px;">
+                      <div class="overflow--hidden section--resource-slider--featured-image-wrapper relative">
+                        <div class="section--resource-slider--featured-image grid__item one-whole hard lazy" role="img" aria-label="{{ item.resource_title }}" data-bg="{{ item.podbean_graphic.url }}">
+                          <span style="display:block;width:100%;margin:0;padding:53% 0 0;"></span>
+                        </div>
+                      </div>
+                      <div class="section--card-content-columns-wrapper relative width--max text--left">
+                        <div class="section--card-content-columns-top">
+                          <div class="section--card-content-columns-inner">
+                            <h6 class="color--midgrey hard--top margin--petite--bottom" style="color: #777779 !important;">Episode {{ item.episode_number }}</h6>
+                          </div>
+                          <div class="section--card-content-columns-header h4 hard--top margin--petite--bottom last--hard--bottom relative">
+                            <a class="section--cards--card--link absolute left--0 right--0 top--0 bottom--0 hover--pointer" title="{{ item.resource_title }}" href="{{ item.resource_link }}"></a>
+                            {{ item.resource_title }}
+                          </div>
+                          <div class="section--richtext-columns--button-container" style="text--center">
+                            <span class="section--webinar-cards--card--body--cta">
+                              <span class="p all--btn all--btn--simple margin--petite--top hard--bottom line-height--small">
+                                <a class="section--webinar-cards--card--link no--underline border--0 hover--pointer line-height--small" title="{{ item.resource_title }}" href="{{ item.resource_link }}">
+                                  <span class="btn btn--simple font--16" style="padding-right: 0px !important;">
+                                    Listen Now
+                                  </span>
+                                </a>
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="sidebar-sticky--content grid__item text--left hard--top hard--left four-twelfths tablet-five-twelfths hard--bottom palm-visuallyhidden">
+          <div class="flex-sidebar--width" style="opacity:0;">.</div>
+
+          {# Publish Date #}
+          <div class="post-single--publish-date">
+            <p class="post-single--heading-line uppercase p--sm color--obsidian bold hard--ends">Posted On:</p>
+            <p class="post--single--pubslish-date p--sm color--midgrey" style="margin-top: 4px;">{{ content.publish_date_local_time|datetimeformat('%b %e, %Y') }}</p>
+          </div>
+
+          {# Topics #}
+          {% if content.tag_list|length > 0 %}
+          <div class="post-single--topics">
+            <p class="post-single--heading-line uppercase p--sm color--obsidian bold hard--ends">Topics:</p>
+            <div class="flex" style="flex-direction: row; flex-wrap: wrap;">
+              {% for tag in content.tag_list %}
+              <!--href="{{ blog_tag_url(group.id, tag.slug) }}"-->
+              <div class="post-single--topic-link p p--sm no--underline medium hard--ends color--black" style="margin-top: 8px !important; margin-right: 10px;">{{ tag.name }}</div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+
+          {# Share Links #}
+          <div class="margin--short--top">
+            {{ lcsnippets.lc_social_share(content.absolute_url, content.html_title, content.meta_description, 18) }} 
+          </div>
+
+          {# Podcast Form #}
+          <div class="eclc-inline--form border--1 border--mist border-radius--12 margin--short--top" aria-hidden="true" data-hs-form-id="{{ widget_data.bop.sidebar_form.sidebar_form.form_id }}" data-hs-response-type="{{ widget_data.bop.sidebar_form.sidebar_form.response_type }}" data-hs-message="{{ widget_data.bop.sidebar_form.sidebar_form.message }}">
+            <div class="eclc-inline__dialog text--center" role="dialog" aria-modal="true">
+              <div class="lap-and-up-text--left tablet-text--left palm-text--left">
+                <p class="bold p--sm hard--ends margin--petite--bottom">{{ widget_data.bop.sidebar_form.preheader }}</p>
+                <h4 id="eclcPopupTitle" class="hard--ends">{{ widget_data.bop.sidebar_form.header }}</h4>
+                <p class="eclc-inline__subhead p--sm margin--petite--top">{{ widget_data.bop.sidebar_form.subheader }}</p>
+              </div>
+
+              <div class="eclc-inline__form">
+                <div id="eclc-inline--form-placeholder" class="p hard--bottom margin--petite--top">
+                  <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                  <script>
+                    hbspt.forms.create({
+                      portalId: "145335",
+                      formId: "{{ widget_data.bop.sidebar_form.sidebar_form.form_id }}",
+                      region: "na1"
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {# ADDITIONAL RESOURCES #}
+          {% if widget_data.bop.additional_offers_or_resources|length > 0 %}
+          <div class="section section--faqs relative overflow--hidden">
+            <div class="block relative z-index--10 grid__item hard--sides hard--ends">
+              <div class="section--pillars">
+                {% for item in widget_data.bop.additional_offers_or_resources %}
+                <div class="section--cta--group">
+                  <a class="no--underline" href="{{ item.resource_url.url.href }}" {% if item.resource_url.open_in_new_tab %} target="_blank" {% endif %} {% if item.resource_url.rel %} rel="{{ item.resource_url.rel|escape_attr }}" {% endif %}></a>
+                  <div class="section--pillar--group--toggle relative">
+                    <span class="block hard--ends p p--small line-height--small bold">
+                      {{ item.heading }}
+                    </span>
+                    <div class="section--pillar--group--icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 12"><path fill="%231d1d1f" d="M12.425 5.61946C12.3773 5.49681 12.3059 5.38476 12.2149 5.28973L7.21279 0.29385C7.11951 0.200688 7.00878 0.126788 6.8869 0.0763693C6.76503 0.0259505 6.63441 0 6.50249 0C6.23608 0 5.98058 0.105701 5.7922 0.29385C5.69892 0.387011 5.62493 0.49761 5.57445 0.619332C5.52397 0.741054 5.49799 0.871514 5.49799 1.00326C5.49799 1.26935 5.60382 1.52453 5.7922 1.71268L9.09357 4.99997H1.50042C1.23509 4.99997 0.980629 5.10524 0.793015 5.29262C0.605401 5.48001 0.5 5.73415 0.5 5.99915C0.5 6.26415 0.605401 6.51829 0.793015 6.70567C0.980629 6.89305 1.23509 6.99832 1.50042 6.99832H9.09357L5.7922 10.2856C5.69843 10.3785 5.62401 10.489 5.57322 10.6108C5.52243 10.7325 5.49628 10.8631 5.49628 10.995C5.49628 11.1269 5.52243 11.2575 5.57322 11.3793C5.62401 11.501 5.69843 11.6116 5.7922 11.7044C5.8852 11.7981 5.99585 11.8724 6.11776 11.9232C6.23967 11.9739 6.37043 12 6.50249 12C6.63456 12 6.76532 11.9739 6.88723 11.9232C7.00914 11.8724 7.11979 11.7981 7.21279 11.7044L12.2149 6.70856C12.3059 6.61354 12.3773 6.50149 12.425 6.37883C12.525 6.13557 12.525 5.86272 12.425 5.61946Z"/></svg>
+                    </div>
+
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          <div class="flex-sidebar--width--sticky margin--tall--top">
+            {% if widget_data.indpost.post_settings.template_type == 'supporting_article' %}
+            {% if articleCTA|length %}
+            {% for cta in articleCTA %}
+            <div class="section section--global-topic-cta relative overflow--hidden">
+              <div class="block relative z-index--3">
+                <div class="relative border--1 border--mist border-radius overflow--hidden" style="padding: 32px !important;">
+                  <div class="background learning_center_cta">
+                    <div class="background--layer z-index--1 opacity--100 background--white" style="top:0; bottom:0; right:0; left:0;"></div>
+                  </div>
+
+                  <div class="relative z-index--4">
+                    <div class="grid__item one-whole hard--top hard--bottom last--hard--bottom palm-all--text--center hard--sides">
+                      <div class="first--hard--top last--hard--bottom flex flex-flow--column flex-align--center all--text--left">
+                        <div class="grid__item hard--sides hard--ends margin--petite--bottom full tablet-one-whole palm-one-whole first--hard--top last--hard--bottom hard--sides">
+                          <h6 class="line-height--small margin--petite--bottom">{{ cta.header }}</h6>
+                        </div>
+                        <div class="p p--default hard--ends first--hard--top last--hard--bottom all--color--midgrey">
+                          {{ cta.content }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-flow--column flex-align--center">
+                      <div class="grid__item one-whole hard--ends margin--short--top first--hard--top last--hard--bottom text--center palm-text--center">
+                        <span>
+                          <span class="block"></span>
+                          <span class="hard--top block--multibutton block--multibuttons" style="gap: 12px;">
+                            <span class="block--multibutton--btn all--btn all--btn--primary width--max">
+                              <a role="button" title="Our Coaching Program" class="btn btn--primary width--max" href="{{ cta.primary_button.primary_button_url.href }}" target="_blank">
+                                {{ cta.primary_button.primary_button_text }}
+                              </a>
+                            </span>
+
+                            <span class="block--multibutton--btn all--btn all--btn--transparent--mist width--max">
+                              <a role="button" title="Schedule a Call" class="btn btn--transparent--mist width--max" href="{{ cta.secondary_button.secondary_button_url.href }}" target="_blank">
+                                {{ cta.secondary_button.secondary_button_text }}
+                              </a>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endif %}
+
+            {# Share Links Sticky #}
+            {{ lcsnippets.lc_social_share(content.absolute_url, content.html_title, content.meta_description, 18) }} 
+
+            {% require_js %}
+            <script>
+              $(function() {
+                var $el = $('.flex-sidebar--width--sticky');
+                var elTop = $el.offset().top;
+                var duration = 200;
+                var visible = false;
+
+                // hide initially
+                $el.hide();
+
+                $(window).on('scroll resize', function() {
+                  var scrollTop = $(window).scrollTop();
+
+                  if (scrollTop >= elTop && !visible) {
+                    $el.stop(true, true).fadeIn(duration);
+                    visible = true;
+                  } else if (scrollTop < elTop && visible) {
+                    $el.stop(true, true).fadeOut(duration);
+                    visible = false;
+                  }
+                });
+              });
+            </script>
+            {% end_require_js %}
+            {# End Pillar Module #}
+
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+{# For Articles with Video #}
+
+<!-- checkingtype: {{ videoType }} -->
+{% if videoType == 'youtube' %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+{% endif %}
+
+{# end Blog Inner Contents #}
+
+{% endblock body %}
+
+{% require_js %}
+
+<script>
+
+  {# Flex Sidebar and Secondary Nav Hash Scroll #}
+  $(document).ready(function() {
+    $('a[href*="#"]').on("click", function(e) {
+      e.preventDefault();
+
+      var target = $(this).attr("href");
+      console.log("Clicked link with href:", target);
+
+      try {
+        // skip if target is just "#"
+        if (target === "#" || !target) {
+          console.warn("Skipping invalid target:", target);
+          return;
+        }
+
+        // check if an element exists with that ID
+        if ($(target).length === 0) {
+          console.warn("No element found for selector:", target);
+          return;
+        }
+
+        // Checking if the click was on the secondary navigation mobile accordion
+        if ($(this).closest('.headerIMPlus--navigation-links--menu').hasClass("tray--open")) {
+          subnavClosePortDown();
+        }
+
+        // perform animated scrolling
+        $('html, body').stop().animate({
+          scrollTop: $(target).offset().top - $('.headerIMPlus--secondary').height() - 20
+        }, 400);
+
+        location.hash = target;
+      } catch (err) {
+        console.error("Scroll script error for target:", target, err);
+      }
+    });
+  });
+
+  {# End Secondary Navigation Menu Dropdowns #}
+
+  // Cache selectors
+  var topMenu = $(".section--chapter-list--page-menu"),
+      topMenuHeight = 110,
+      menuItems = topMenu.find("a"),
+      scrollItems = menuItems.map(function(){
+        var item = $($(this).attr("href"));
+        if (item.length) return item;
+      });
+
+  $(function () {
+    // Initial active: hash match or first item
+    var initHash = window.location.hash;
+    menuItems.closest('li').removeClass("hs-menu-item--active");
+    if (initHash && menuItems.filter("[href='" + initHash + "']").length) {
+      menuItems.filter("[href='" + initHash + "']").closest('li').addClass("hs-menu-item--active");
+    } else {
+      menuItems.first().closest('li').addClass("hs-menu-item--active");
+    }
+
+    $(window).on("scroll resize", function() {
+      var fromTop = $(this).scrollTop() + topMenuHeight;
+
+      var cur = scrollItems.map(function(){
+        if ($(this).offset().top < fromTop) return this;
+      });
+      cur = cur[cur.length - 1];
+      var id = cur && cur.length ? cur[0].id : "";
+
+      menuItems.closest('li').removeClass("hs-menu-item--active");
+      if (id) {
+        menuItems.closest('li').removeClass("hs-menu-item--active").end().filter("[href='#"+id+"']").closest('li').addClass("hs-menu-item--active");
+      } else {
+        // Fallback when nothing matches
+        menuItems.first().closest('li').addClass("hs-menu-item--active");
+      }
+    }).trigger("scroll"); // run once on load
+  });
+
+
+  {# Copy to Clipboard #}
+  function copyToClipboard(container, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const tooltip = container.querySelector('.copy-tooltip');
+      container.classList.add('show-tooltip');
+      setTimeout(() => {
+        container.classList.remove('show-tooltip');
+      }, 1500);
+    }).catch(err => {
+      console.error('Copy failed', err);
+    });
+  }
+  {# End Copy to Clipboard #}
+
+
+  {# Expand Topic Clusters #}
+  {#document.addEventListener('DOMContentLoaded', function () {
+    const faqToggles = document.querySelectorAll('.section--pillar--group--toggle')
+
+    console.log('faqToggles');
+
+
+    faqToggles.forEach(function (toggle) {
+      toggle.addEventListener('click', function (event) {
+        if (a11yClick(event) === true) {
+          console.log('clickkkk');
+          toggleFaq(toggle)
+        }
+      })
+
+      toggle.addEventListener('keypress', function (event) {
+        if (a11yClick(event) === true) {
+          toggleFaq(toggle)
+        }
+      })
+    })
+
+    const contentInners = document.querySelectorAll(
+      '.section--pillar--group--content--inner'
+    )
+
+    contentInners.forEach(function (contentInner) {
+      contentInner.addEventListener('scroll', function () {
+        this.scrollTop = 0 // Reset scroll position to the top
+      })
+    })
+
+    function toggleFaq(toggle) {
+      const thisGroup = toggle.closest('.section--pillar--group')
+      const thisContent = thisGroup.querySelector('.section--pillar--group--content')
+
+      if (!thisGroup.classList.contains('active')) {
+        thisGroup.classList.add('active')
+        slideDown(thisContent)
+      } else {
+        thisGroup.classList.remove('active')
+        slideUp(thisContent)
+      }
+    }
+  })#}
+
+  function a11yClick(event) {
+    // Add your accessibility click check here
+    return event.type === 'click' || event.key === 'Enter' || event.key === ' '
+  }
+
+
+  {# Opening and Closing Search #}
+  $(function () {
+    const $searchIcon   = $('.mini-nav__search');
+    const $searchWrap   = $('.mini-nav__search-container');
+    const $searchBar    = $('.section--eclc--search');
+
+    // Start hidden
+    $searchBar.hide();
+
+    // Toggle search on icon click
+    $searchIcon.on('click', function (e) {
+      e.stopPropagation(); // prevent immediate outside-click close
+      $searchIcon.fadeOut(200, function () {
+        $searchBar.fadeIn(200);
+      });
+    });
+
+    // Revert when clicking outside the container
+    $(document).on('click', function (e) {
+      if (!$searchWrap.is(e.target) && $searchWrap.has(e.target).length === 0) {
+        if ($searchBar.is(':visible')) {
+          $('#searchBoxEclc').blur();
+
+          $searchBar.fadeOut(200, function () {
+            $searchIcon.fadeIn(200);
+
+          });
+        }
+      }
+    });
+  });
+</script>
+
+{% if content.absolute_url is string_containing '/endless-customers-podcast/how-integra-electrical-turned-big-5-content-into-a-sales-machine-endless-customers-podcast-ep-126' %}
+<script>
+(function () {
+  // Grab pathname + query params
+  const { pathname, search } = window.location;
+  const params = new URLSearchParams(search);
+
+  // Target path
+  const targetPath = "/endless-customers-podcast/how-integra-electrical-turned-big-5-content-into-a-sales-machine-endless-customers-podcast-ep-126";
+
+  // Check for exact path AND specific query params
+  if (
+    pathname === targetPath &&
+    params.get("_hsmi") === "394937994" &&
+    params.get("utm_content") === "394937994"
+  ) {
+    // Redirect to the correct article
+    window.location.replace("https://www.impactplus.com/endless-customers-podcast/transparency-helped-roofing-company-triple-growth");
+  }
+})();
+</script>
+{% endif %}
+
+
+{# For Articles with Video #}
+
+<script>
+  // Initialize Plyr with YouTube
+  const player = new Plyr('#plyrplayer', {
+    youtube: {
+      noCookie: true,
+      rel: 0,
+      showinfo: 0,
+      iv_load_policy: 3,
+    }
+  });
+
+  document.getElementById('featured-plyr').addEventListener('click', function () {
+    const youtubeId = document
+    .querySelector('.featured-plyr--container')
+    .getAttribute('data-youtubeid');
+
+    // Set the video source
+    player.source = {
+      type: 'video',
+      sources: [{
+        src: youtubeId,
+        provider: 'youtube'
+      }]
+    };
+
+    // Play once the new source is ready
+    const playWhenReady = () => {
+      player.off('ready', playWhenReady);
+      player.play().catch(() => {
+        // If autoplay is blocked for any reason, user can still click play
+      });
+    };
+
+    player.on('ready', playWhenReady);
+
+    // Small fallback in case ready fires before the handler attaches in some edge cases
+    setTimeout(() => player.play().catch(() => {}), 150);
+
+  }, { once: true });
+
+
+  /*['click', 'scroll', 'mousemove', 'touchstart'].forEach(function(e) {
+    window.addEventListener(e, lcVideo, {
+      once: true
+    });
+  });
+  var vidTrig = false;
+
+  function lcVideo() {
+    if (!vidTrig) {
+      if ($(".featured-type--youtube").length > 0){
+        // Used for video dynamic pages
+        const player = new Plyr('#plyrplayer');
+      }
+    }
+  }*/
+</script>
+
+{% end_require_js %}

@@ -1,0 +1,282 @@
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+{# ******************** DO NOT EDIT VALUES BELOW THIS LINE ******************** #}
+{# **************************************************************************** #}
+{# ************************* ADD YOUR CUSTOM CSS TO THE *********************** #}
+{# ****************** BOTTOM OF THIS DOCUMENT WHERE SPECIFIED ***************** #}
+{# **************************************************************************** #}
+{# **************************************************************************** #}
+
+{# IMPORT CONFIG #}
+{% import '/IMPACT-Prod-Theme/css/_config.css' as config %}
+
+{# IMPORT FUNCTIONS #}
+{% import '/IMPACT-Prod-Theme/css/mixins/_functions.css' %}
+
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+{# ***************************** BASE & CUSTOM CSS ***************************** #}
+{# ***************************************************************************** #}
+{# ***************************************************************************** #}
+
+/* Grid */
+
+@media screen and (max-width: 1023px) and (min-width: 769px) {
+  .im-impact-prod-theme .tablet-flex{
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .im-impact-prod-theme .palm-flex{
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .palm-one-whole.grid__item.palm-hard--sides {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+/* Fonts */
+
+.h1, h1{
+  margin-bottom: 40px;
+}
+
+@media (min-width: 1025px) {
+  sup{
+    font-size: 1.75rem;
+    line-height: .5em;
+  }
+}
+
+@media (max-width: 1024px) {
+  sup{
+    font-size:1.25rem;
+    line-height: .5em;
+  }
+}
+
+.p--body p,
+.p--body.p,
+.p--body li:has(> p),
+.p--body li:has(> h6),
+.p--body a,
+p.p--body,
+li.p--body,
+a.p--body{
+  font-size: 18px;
+}
+
+.p--small p,
+p.p--small,
+.p .p--small,
+.p--small li:has(> p),
+.p--small li:not(:has(> h6)),
+.p.p--small,
+.p--small a{
+  font-size: 16px !important;
+}
+
+.line-height--small {
+  line-height: 1.2em !important;
+}
+
+.line-height--small * {
+  line-height: 1.2em !important;
+}
+
+.line-height--medium {
+  line-height: 1.35em;
+}
+
+.line-height--medium * {
+  line-height: 1.35em;
+}
+
+.line-height--basic {
+  line-height: 1.5em;
+}
+
+.line-height--basic * {
+  line-height: 1.5em;
+}
+
+.line-height--large {
+  line-height: 2em;
+}
+
+.line-height--large * {
+  line-height: 2em;
+}
+
+/* Colors */
+.emphasis{
+  background: linear-gradient(269deg, #01C4A2 23.89%, #0A6CFF 86.6%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.padding--lr-ten{
+  padding:0px 10px;
+}
+
+.padding--lr-twenty{
+  padding:0px 20px;
+}
+
+.padding--twenty{
+  padding:20px;
+}
+
+.padding--lr-thirty{
+  padding:0px 30px;
+}
+
+.padding--lr-fourty{
+  padding:0px 40px;
+}
+
+.padding--lr-fifty{
+  padding:0px 50px;
+}
+
+@media (min-width: 1025px) {
+  .lap-and-up-padding--lr-ten{
+    padding:0px 10px;
+  }
+
+  .lap-and-up-padding--lr-twenty{
+    padding:0px 20px;
+  }
+
+  .lap-and-up-padding--lr-thirty{
+    padding:0px 30px;
+  }
+
+  .lap-and-up-padding--lr-fourty{
+    padding:0px 40px;
+  }
+
+  .lap-and-up-padding--lr-fifty{
+    padding:0px 50px;
+  }
+}
+
+.margin--auto{
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .palm--margin--auto{
+    margin: 0 auto;
+  }
+}
+
+.btn-padding--small{
+  padding: 12px 20px;
+}
+
+.block--multibutton--btn.all--btn--simple a{
+  font-size: 16px !important;
+}
+
+@media (min-width: 769px) {
+  .btn-minwidth--medium .btn{
+    min-width: 300px;
+  }
+
+  .btn-minwidth--large .btn{
+    min-width: 500px;
+  }
+}
+
+.btn--mist, .all--btn--mist .hs-cta-wrapper a,.all--btn--mist .hs-web-interactive-inline a, .all--btn--mist form input.hs-button, .all--btn--mist.fourohfour--menu .hs-menu-wrapper > ul > li > a {
+  background-color: {{ color("mist") }} !important;
+  border-color: {{ color("mist") }}; !important;
+  color: {{ color("black") }} !important;
+}
+
+.btn--mist:hover, .all--btn--mist .hs-cta-wrapper a:hover,.all--btn--mist .hs-web-interactive-inline a:hover, .all--btn--mist form input.hs-button:hover, .all--btn--mist.fourohfour--menu .hs-menu-wrapper > ul > li > a:hover {
+  background-color: #D2DAED!important;
+  border-color: #D2DAED!important;
+}
+
+.btn--transparent--mist, .all--btn--transparent--mist .hs-cta-wrapper a,.all--btn--transparent--mist .hs-web-interactive-inline a, .all--btn--transparent--mist form input.hs-button, .all--btn--transparent--mist.fourohfour--menu .hs-menu-wrapper > ul > li > a {
+  background-color: transparent !important;
+  border-color: {{ color("mist") }} !important;
+  color: {{ color("primary") }} !important;
+  border-width: 2px !important;
+}
+
+.btn--transparent--mist:hover, .all--btn--transparent--mist .hs-cta-wrapper a:hover,.all--btn--transparent--mist .hs-web-interactive-inline a:hover, .all--btn--transparent--mist form input.hs-button:hover, .all--btn--transparent--mist.fourohfour--menu .hs-menu-wrapper > ul > li > a:hover {
+  background-color: #D2DAED !important;
+  border-color: #D2DAED !important;
+  color: {{ color("primary") }} !important;
+}
+
+
+.btn-type--modal a{
+  position: relative;
+  padding: 16px 20px 16px 53px;
+}
+
+.btn-type--modal .btn--white:before{
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3E%3Crect x='10.1992' y='9' width='10.8' height='12' fill='white'/%3E%3Cpath d='M15 0C6.71584 0 0 6.71572 0 15C0 23.2843 6.71584 30 15 30C23.2842 30 30 23.2843 30 15C30 6.71572 23.2842 0 15 0ZM20.1844 15.7951L12.6844 20.4826C12.5326 20.5774 12.3601 20.625 12.1875 20.625C12.0312 20.625 11.8746 20.5861 11.7329 20.5073C11.4349 20.3421 11.25 20.0285 11.25 19.6875V10.3125C11.25 9.97148 11.4349 9.65789 11.7329 9.49266C12.0309 9.32648 12.3953 9.33656 12.6844 9.51738L20.1844 14.2049C20.4584 14.3766 20.625 14.6769 20.625 15C20.625 15.3231 20.4584 15.6235 20.1844 15.7951Z' fill='%231D1D1F'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+  top: calc(50% - 14px);
+  left: 15px;
+  -moz-transform: translateY(-50%) translateX(-50%);
+  background-size: 28px 28px;
+  z-index: 10;
+  width: 28px;
+  height: 28px;
+}
+
+.block--multibutton .btn-type--modal a{
+  text-align: left !important;
+}
+
+/* Form */
+
+.grid form.hs-form .inputs-list label.hs-form-checkbox-display input {
+  float: left;
+}
+
+.grid form.hs-form .hs-fieldtype-checkbox .hs-form-checkbox-display span {
+  display: block;
+  line-height: 1.25em;
+  margin-left: 26px;
+}
+
+form.hs-form .hs-error-msgs.inputs-list {
+  top: calc(100% - 28px);
+}
+
+form .legal-consent-container * {
+  font-size: 14px !important;
+  margin-bottom: 0;
+  font-weight: 500 !important;
+  font-family: proxima-nova, Helvetica Neue, Arial, sans-serif;
+  color: #4F5465 !important;
+}
+
+form .legal-consent-container ul{
+  margin-top: 0px !important;
+  padding-bottom: 8px !important;
+}
+
+{# Class to add if button and legal need to be swapped #}

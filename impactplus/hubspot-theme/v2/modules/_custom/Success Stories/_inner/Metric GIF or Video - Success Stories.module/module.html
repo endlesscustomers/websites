@@ -1,0 +1,15 @@
+<div class="grid hard--ends relative z-index--10 lap-and-up-flex tablet-flex" style="flex-flow: wrap;">
+  <div class="grid__item one-fourth portable-visuallyhidden hard--top"></div>
+  <div class="grid__item success-stories--metrics body--article-reading nine-twelfths tablet-one-whole palm-eleven-twelfths short--top hard--bottom palm-hard--sides">
+    {% for metricVideo in module.image_and_header %}
+    <div class="{% if content.template_path == '_IMPACT_Production/_modules/_IMPACT_UI/_templates/IMPACT_Flex_v2.html' %}{% if not loop.last %}margin--grande--bottom{% endif %}{% else %}grid__item one-whole hard--top margin--short--bottom hard--sides{% endif %}">
+      <div class="first--hard--top">{{ metricVideo.text_description }}</div>
+      <div class="video-metric-container margin--short--top">
+        <video autoplay='' class='lazy live-hero--video' data-src='{{ metricVideo.video_of_gif_file }}' poster="https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Placeholder_1100x354.jpg" loop='' muted='' oncanplay='this.muted=true' poster='' playsinline='' webkit-playsinline='' preload='https://www.impactplus.com/hubfs/IMPACT%20Production%20Website%20(2023)/Assets/base/Placeholder_1100x354.jpg'>
+          <source src='{{ metricVideo.video_of_gif_file }}' type='video/mp4'>
+        </video>
+      </div> 
+    </div>
+    {% endfor %} 
+  </div>
+</div>

@@ -1,0 +1,135 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+/* Black Theme */
+/* SIDEBAR STYLES */
+
+.headerIMPlus--flex-nav-spacer.headerIMPlus--spacer--sidebar{
+  height: 75px;
+}
+
+@media (min-width: 900px) and (max-width: 1220px) {
+  .headerIMPlus--flex-nav-spacer.headerIMPlus--spacer--sidebar{
+    height: 65px;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .headerIMPlus--flex-nav-spacer.headerIMPlus--spacer--sidebar{
+    height: 123px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-dropdown{
+    display: none;
+  }
+}
+
+.headerIMPlus--sidebar-items--divider{
+  width: 100%;
+  background: linear-gradient(90deg,rgba(66,71,112,0.09),rgba(66,71,112,0.09) 50%, transparent 0, transparent);
+  background-size: 8px 1px;
+  z-index: 999;
+  height: 1px;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-items{
+  display:none;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-items--divider{
+  margin-bottom: 25px;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-dropdown{
+  background: rgba(246, 249, 252, 0.85); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  box-shadow: 0px 4px 15px rgba(95, 109, 137, 0.25);
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item{
+  display:block;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item.hs-menu-depth-1{
+  display: block!important;
+  font-weight: 500;
+  line-height: 1.45em;
+  margin-bottom: 20px;
+  -webkit-transition: color .3s ease-in-out;
+  -moz-transition: color .3s ease-in-out;
+  -ms-transition: color .3s ease-in-out;
+  -o-transition: color .3s ease-in-out;
+  transition: color .3s ease-in-out;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-marker {
+  margin-left: 7px;
+  transform: rotate(0deg);
+  -webkit-transition: color .4s ease-in-out, transform .4s ease-in-out;
+  -moz-transition: color .4s ease-in-out, transform .4s ease-in-out;
+  -ms-transition: color .4s ease-in-out, transform .4s ease-in-out;
+  -o-transition: color .4s ease-in-out, transform .4s ease-in-out;
+  transition: color .4s ease-in-out, transform .4s ease-in-out;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-dropdown .headerIMPlus--sidebar-dropdown-arrow img{
+  transform: rotate(0deg);
+  -webkit-transition: transform .4s ease-in-out;
+  -moz-transition: transform .4s ease-in-out;
+  -ms-transition: transform .4s ease-in-out;
+  -o-transition: transform .4s ease-in-out;
+  transition: transform .4s ease-in-out;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-dropdown.opened .headerIMPlus--sidebar-dropdown-arrow img{
+  transform: rotate(180deg);
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar-dropdown .hs-menu-depth-1--has-children:not(.chapter--closed) .headerIMPlus--sidebar-marker{
+  transform: rotate(180deg);
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu .headerIMPlus--sidebar-list--container .hs-menu-item--active .headerIMPlus--sidebar-list-marker{
+  color: #1d1d1f;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item.hs-menu-depth-1 .headerIMPlus--sidebar-marker-container > a{
+  color: #4f5465;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25em;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item.hs-menu-depth-1.chapter--closed .headerIMPlus--sidebar--depth-2{
+  display: none;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item.hs-menu-depth-1 ul.headerIMPlus--sidebar--depth-2{
+  margin-top: 19px;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item.hs-menu-depth-2 >a{
+  align-items: center;
+  color: #6f7787;
+  display: flex;
+  text-align: left;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+#headerIMPlus .headerIMPlus-navigation-container .headerIMPlus--sidebar--page-menu li.hs-menu-item.hs-menu-depth-2:not(:first-child)>a{
+  margin-top: 15px;
+}
+
+/* End Sidebar to sticky stopdown styles */

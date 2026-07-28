@@ -1,0 +1,92 @@
+{# CSS #}
+{{ require_css( get_asset_url("/IM-IMPACT-Prod-Theme-2025/modules/_learning_center/Learning Center Sidebar Pillar Topic Cluster/Learning Center Pillar Topic Cluster Links.css"), { async: false } ) }}
+
+
+<div  class="section section--lc-related-resources">
+  <div class="section section--faqs relative overflow--hidden">
+    <div class="block relative z-index--10 grid__item hard--sides hard--top">
+      <h6 class="hard--ends">Additional Resources &amp; Featured Learning</h6>
+      <div class="section--pillars">
+        {% for cluster in module.topics_clusters %}
+        <div class="section--pillar--group">
+          <div class="section--pillar--group--toggle" tabindex="0">
+            <p class="hard--ends p--small bold">{{ cluster.topic_cluster_group_header }}</p>
+            <div class="section--pillar--group--toggle--icon">
+              <div class="icon--axis icon--vertical--line"></div>
+              <div class="icon--axis icon--horizontal--line"></div>
+            </div>
+          </div>
+          <div class="section--pillar--group--content" style="display:none;">
+            <div class="section--pillar--group--content--wrapper">
+              {% for group in cluster.resource_item %}
+              <div class="section--pillar--group--content--inner first--hard--top last--hard--bottom">
+                <a class="p p--small color--mid-grey no--underline line-height--small" href="{{ group.topic_cluster_url.url.href }}">
+                  {{ group.topic_cluster_resource_header }}
+                </a>
+              </div>
+              <div class="section--pillar--group--content--inner--spacer"></div>
+              <span class="clear"></span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% require_js %}
+<script>
+
+  {# Expand Topic Clusters #}
+  document.addEventListener('DOMContentLoaded', function () {
+    const faqToggles = document.querySelectorAll('.section--pillar--group--toggle')
+
+    faqToggles.forEach(function (toggle) {
+      toggle.addEventListener('click', function (event) {
+        if (a11yClick(event) === true) {
+          toggleFaq(toggle)
+        }
+      })
+
+      toggle.addEventListener('keypress', function (event) {
+        if (a11yClick(event) === true) {
+          toggleFaq(toggle)
+        }
+      })
+    })
+
+    const contentInners = document.querySelectorAll(
+      '.section--pillar--group--content--inner'
+    )
+
+    contentInners.forEach(function (contentInner) {
+      contentInner.addEventListener('scroll', function () {
+        this.scrollTop = 0 // Reset scroll position to the top
+      })
+    })
+
+    function toggleFaq(toggle) {
+      const thisGroup = toggle.closest('.section--pillar--group')
+      const thisContent = thisGroup.querySelector('.section--pillar--group--content')
+
+      if (!thisGroup.classList.contains('active')) {
+        thisGroup.classList.add('active')
+        slideDown(thisContent)
+      } else {
+        thisGroup.classList.remove('active')
+        slideUp(thisContent)
+      }
+    }
+  })
+
+  function a11yClick(event) {
+    // Add your accessibility click check here
+    return event.type === 'click' || event.key === 'Enter' || event.key === ' '
+  }
+
+
+</script>
+{% end_require_js %}
