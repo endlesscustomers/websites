@@ -39,6 +39,10 @@
   --radius-lg: var(--v2-radius-card);
   --radius-xl: 12px;
   --section-py: var(--v2-section-space);
+
+  /* Default every V2 text node to higher-quality responsive line wrapping.
+     Display roles below opt into stronger balancing. */
+  text-wrap: pretty;
 }
 
 .impact-v2[data-v2-theme="magenta"] {
@@ -75,6 +79,19 @@
   background: var(--v2-theme-tint);
   color: var(--ec-navy);
 }
+
+/* Responsive editorial wrapping: balance short display copy and prevent
+   avoidable single-word hangers in reading copy without hard-coded breaks. */
+.impact-v2 :where(
+  h1, h2, h3, h4, h5, h6,
+  .hero-eyebrow, .chapter-eyebrow, .post-eyebrow, .wyg-kicker,
+  [data-text-wrap="balance"], .v2-balance
+) { text-wrap: balance; }
+
+.impact-v2 :where(
+  p, li, blockquote,
+  [data-text-wrap="pretty"], .v2-pretty
+) { text-wrap: pretty; }
 
 .impact-v2 .hl-box {
   padding-inline: .045em;

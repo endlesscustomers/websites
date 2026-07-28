@@ -1,6 +1,11 @@
+@import "../../design-system/tokens/v2.css?v=20260728-5";
+
 /* Deep Diagnostic & Roadmap — first coded-body proof of approved IMPACT V2. */
 
 .ddr-v2 {
+  --ddr-section-space: clamp(68px, 7vw, 96px);
+  --ddr-section-open-space: clamp(64px, 6vw, 88px);
+  --ddr-section-gap: clamp(34px, 4vw, 56px);
   background: var(--surface-page);
   color: var(--text-body);
   font-family: var(--font-body);
@@ -27,10 +32,11 @@
 .ddr-v2 .hero-grid {
   width: min(calc(100% - 48px), 1240px);
   max-width: none;
-  gap: clamp(52px, 7vw, 104px);
-  padding: clamp(96px, 10vw, 140px) 0 clamp(104px, 11vw, 150px);
+  gap: clamp(40px, 5vw, 72px);
+  padding: clamp(72px, 7vw, 96px) 0 clamp(76px, 7.5vw, 104px);
 }
 .ddr-v2 .hero-eyebrow {
+  max-width: 100%;
   margin-bottom: 22px;
   color: white;
   font-size: 13px;
@@ -71,11 +77,11 @@
 .ddr-v2 .hero-video-caption { border-top: 2px solid var(--ec-navy); }
 
 /* Editorial rhythm and hierarchy. */
-.ddr-v2 .sec-open { padding-top: clamp(88px, 10vw, 128px); }
+.ddr-v2 .sec-open { padding-top: var(--ddr-section-open-space); }
 .ddr-v2 .band,
 .ddr-v2 .wyg-beat,
 .ddr-v2 .pg-pricing,
-.ddr-v2 .post-section { padding-block: var(--v2-section-space); }
+.ddr-v2 .post-section { padding-block: var(--ddr-section-space); }
 .ddr-v2 .sec-line {
   width: 72px;
   height: 4px;
@@ -118,6 +124,9 @@
 .ddr-v2 .sec-desc { margin-top: 28px; }
 .ddr-v2 .prose-lead { line-height: 1.55; }
 .ddr-v2 .prose-body { line-height: 1.62; }
+.ddr-v2 .wyg-split { gap: var(--ddr-section-gap); }
+.ddr-v2 .post-proof-grid,
+.ddr-v2 .post-about-grid { margin-top: var(--ddr-section-gap); }
 
 /* Flat, bordered components replace soft legacy cards and heavy shadows. */
 .ddr-v2 .fit2-not,
@@ -183,17 +192,58 @@
   color: white;
 }
 
+@media (max-width: 1180px) {
+  .ddr-v2 .hero-wrap > header nav,
+  .ddr-v2 .hero-wrap > header > div > div { display: none !important; }
+}
+
 @media (max-width: 980px) {
-  .ddr-v2 .hero-grid { padding-top: 92px; }
+  .ddr-v2 .hero-grid { padding: 64px 0 82px; }
+  .ddr-v2 .how-path { margin-top: 64px; }
+  .ddr-v2 .how-effort { margin-top: 58px; }
+  .ddr-v2 .how-cta { margin-top: 48px; }
+  .ddr-v2 .post-booking-grid,
+  .ddr-v2 .post-faq-grid { gap: 40px; }
 }
 
 @media (max-width: 760px) {
   .ddr-v2 .hero-wrap > header > div,
   .ddr-v2 .hero-grid { width: min(calc(100% - 36px), 680px); }
-  .ddr-v2 .hero-wrap > header nav,
-  .ddr-v2 .hero-wrap > header > div > div { display: none !important; }
-  .ddr-v2 .hero-grid { padding: 78px 0 94px; }
+  .ddr-v2 .hero-grid { gap: 36px; padding: 56px 0 72px; }
   .ddr-v2 .hero-h1 { font-size: clamp(46px, 13vw, 58px); }
   .ddr-v2 .wynter-h2,
-  .ddr-v2 .post-h2 { font-size: clamp(38px, 11vw, 48px); }
+  .ddr-v2 .post-h2 { font-size: clamp(36px, 10vw, 44px); }
+  .ddr-v2 .hero-sub { margin-top: 24px; }
+  .ddr-v2 .hero-cta-row { margin-top: 28px; }
+  .ddr-v2 .hero-trust { margin-top: 24px; }
+  .ddr-v2 .wyg-split,
+  .ddr-v2 .wyg-split-flip { gap: 32px; }
+  .ddr-v2 .how-path { margin-top: 52px; }
+  .ddr-v2 .how-step { min-height: 190px; padding-bottom: 34px; }
+  .ddr-v2 .how-effort { margin-top: 48px; }
+  .ddr-v2 .pg-grid { gap: 36px; margin-top: 38px; }
+  .ddr-v2 .pg-after { margin-top: 36px; }
+  .ddr-v2 .pg-promises { margin-top: 32px; }
+  .ddr-v2 .pg-ongoing { margin-top: 36px; }
+  .ddr-v2 .post-about-lead { margin-top: 20px; }
+  .ddr-v2 .post-credentials { margin-top: 40px; }
+  .ddr-v2 .post-final-grid { gap: 32px; }
+}
+
+@media (max-width: 520px) {
+  .ddr-v2 {
+    --ddr-section-space: 64px;
+    --ddr-section-open-space: 60px;
+    --ddr-section-gap: 36px;
+  }
+  .ddr-v2 .hero-wrap > header > div { padding-block: 14px !important; }
+  .ddr-v2 .hero-grid { padding: 44px 0 64px; }
+  .ddr-v2 .hero-h1 { font-size: clamp(43px, 12.5vw, 50px); line-height: .98; }
+  .ddr-v2 .hero-eyebrow { max-width: 34ch; }
+  .ddr-v2 .hero-sub { font-size: 18px; line-height: 1.5; }
+  .ddr-v2 .hero-trust { gap: 12px 18px; }
+  .ddr-v2 .sec-desc { margin-top: 22px; }
+  .ddr-v2 .how-step { min-height: 176px; }
+  .ddr-v2 .post-faq-grid { gap: 34px; }
+  .ddr-v2 .post-faq summary { padding-block: 18px; }
 }

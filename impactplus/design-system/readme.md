@@ -46,6 +46,13 @@ plain-spoken and benefit-led, never jargon-heavy.
 You'll Get", "Is This Program Right for You?"). Body copy is sentence case. The
 brand name is always **IMPACT** in all-caps when written without the logo.
 
+**Responsive wrapping.** All V2 text inherits pretty wrapping to reduce
+avoidable widows. H1–H6 headings and eyebrow/display labels use stronger
+balanced wrapping so a final word does not hang by itself when a cleaner
+distribution is available. Do not insert manual line breaks for visual balance
+unless the approved copy requires the break semantically; use `.v2-balance`,
+`.v2-pretty`, or the matching `data-text-wrap` attribute for an explicit role.
+
 **Signature vocabulary.** "Endless Customers System", "the most known, trusted
 and recommended company in their market", "Alignment Day", "own your growth
 (don't outsource it)", "assignment selling". The trademark is *Endless Customers™*.
