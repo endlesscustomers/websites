@@ -22,6 +22,18 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - Reworked the specimen to express more of Wynter's visual grammar while retaining General Sans, Proxima Nova, and IMPACT's accessible palette.
 - Added the reusable commercial patterns identified on the Deep Diagnostic & Roadmap page.
 
+## Bob-directed theme revision — 2026-07-28
+
+- Removed boxes from all eyebrow labels.
+- Made the hero H1 and lead copy black, with white hero highlights.
+- Reduced the vertical padding around every inline highlight.
+- Converted the hero's “See the decisions” action into a thin black-outline ghost pill with a darker theme-color hover.
+- Made the main-navigation CTA black.
+- Removed the multicolor rail below the navigation and added a four-pixel black rule below the hero.
+- Made blue the default root theme. The interactive specimen control can switch the complete active system to magenta, green, or orange.
+- Active-theme tokens govern the hero, highlights, links, buttons, form accents, list marks, tinted surfaces, proof blocks, service patterns, and final CTA. The four palette cards and four selector swatches intentionally retain their literal colors because they document and control the available themes.
+- The magenta full-field role uses the accessibility-adjusted `#CD43DC`; raw brand magenta remains `#C026D3` in the palette.
+
 ## Review gate
 
 Bob must approve or amend these five decisions before the values become V2 production tokens:
@@ -35,6 +47,7 @@ Bob must approve or amend these five decisions before the values become V2 produ
 ## Validation completed
 
 - Automated color contrast audit: zero failures.
+- Specimen theme contrast audit across blue, magenta, green, and orange: zero failures.
 - Browser QA at 1440, 768, and 390 CSS pixels: no horizontal overflow.
 - Browser console: no warnings or errors.
 - Computed font roles: General Sans for headings and Proxima Nova for body copy.

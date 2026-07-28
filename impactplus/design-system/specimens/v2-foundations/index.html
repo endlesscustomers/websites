@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="./foundations.css">
 </head>
-<body class="v2-specimen">
+<body class="v2-specimen" data-v2-theme="blue">
   <a class="v2-skip" href="#main">Skip to specimen</a>
 
   <header class="v2-masthead">
@@ -26,16 +26,23 @@
   </header>
 
   <main id="main">
-    <section class="v2-hero accent-blue" id="top">
+    <section class="v2-hero" id="top">
       <div class="v2-wrap v2-hero__grid">
         <div>
           <p class="v2-eyebrow v2-eyebrow--label">IMPACT Design System V2</p>
-          <h1>Clear, bold, and<br><span class="v2-highlight v2-highlight--orange">built to earn trust.</span></h1>
+          <h1>Clear, bold, and<br><span class="v2-highlight">built to earn trust.</span></h1>
           <p class="v2-lead">The shared visual and content system for every IMPACT page—whether Bob codes it, AI specifies it, or the marketing team assembles it in HubSpot.</p>
           <div class="v2-actions">
             <a class="v2-button" href="#type">Explore the system</a>
-            <a class="v2-text-link" href="#decision">See the decisions →</a>
+            <a class="v2-button v2-button--ghost" href="#decision">See the decisions →</a>
           </div>
+          <fieldset class="v2-theme-picker">
+            <legend>Preview the system color</legend>
+            <button type="button" data-v2-theme-choice="blue" aria-pressed="true"><span aria-hidden="true"></span>Blue</button>
+            <button type="button" data-v2-theme-choice="magenta" aria-pressed="false"><span aria-hidden="true"></span>Magenta</button>
+            <button type="button" data-v2-theme-choice="green" aria-pressed="false"><span aria-hidden="true"></span>Green</button>
+            <button type="button" data-v2-theme-choice="orange" aria-pressed="false"><span aria-hidden="true"></span>Orange</button>
+          </fieldset>
         </div>
         <div class="v2-hero__proof" aria-label="Foundation principles">
           <p class="v2-proof-label">One system. Two ways to build.</p>
@@ -52,7 +59,7 @@
     <section class="v2-purpose" aria-labelledby="purpose-title">
       <div class="v2-wrap">
         <p class="v2-eyebrow v2-eyebrow--label">What this system is for</p>
-        <h2 id="purpose-title">One source of truth.<br><span class="v2-highlight v2-highlight--magenta">Many ways to build.</span></h2>
+        <h2 id="purpose-title">One source of truth.<br><span class="v2-highlight">Many ways to build.</span></h2>
         <div class="v2-purpose-grid">
           <article><span>01</span><h3>Make decisions once</h3><p>Typography, color, spacing, components, and content rules stay consistent across the site.</p></article>
           <article><span>02</span><h3>Build faster with AI</h3><p>Page briefs can name approved patterns instead of inventing new layouts and styles every time.</p></article>
@@ -65,7 +72,7 @@
       <div class="v2-wrap">
         <div class="v2-section-heading">
           <p class="v2-eyebrow v2-eyebrow--label">01 — Typography</p>
-          <h2>Strong headlines.<br><span class="v2-highlight v2-highlight--green">Comfortable reading.</span></h2>
+          <h2>Strong headlines.<br><span class="v2-highlight">Comfortable reading.</span></h2>
           <p class="v2-lead">General Sans carries the assertion. Proxima Nova carries the explanation. Two paragraph sizes create hierarchy without making pages feel assembled from unrelated parts.</p>
         </div>
 
@@ -110,7 +117,7 @@
       <div class="v2-wrap">
         <div class="v2-section-heading">
           <p class="v2-eyebrow v2-eyebrow--label">02 — Accessible color</p>
-          <h2>Brand color,<br><span class="v2-highlight v2-highlight--blue">assigned by job.</span></h2>
+          <h2>Brand color,<br><span class="v2-highlight">assigned by job.</span></h2>
           <p class="v2-lead">Raw hues create the visual identity. Accessible variants handle text, rules, controls, focus, and white-label fills.</p>
         </div>
 
@@ -174,7 +181,7 @@
 
           <article class="v2-component-panel">
             <p class="v2-sample-label">Card hierarchy</p>
-            <div class="v2-mini-card accent-magenta">
+            <div class="v2-mini-card">
               <span class="v2-mini-card__number">01</span>
               <h3>Find the real constraint</h3>
               <p>Separate surface-level symptoms from the issue your team must solve first.</p>
@@ -189,7 +196,7 @@
       <div class="v2-wrap">
         <div class="v2-section-heading v2-section-heading--inverse">
           <p class="v2-eyebrow v2-eyebrow--label">04 — Content patterns</p>
-          <h2><span class="v2-highlight v2-highlight--orange">One assertion</span><br>per section.</h2>
+          <h2><span class="v2-highlight">One assertion</span><br>per section.</h2>
           <p class="v2-lead">Short headlines, focused paragraphs, visible proof, and a clear next action create the Wynter-like confidence without copying Wynter’s brand.</p>
         </div>
 
@@ -224,11 +231,11 @@
       </div>
     </section>
 
-    <section class="v2-section v2-section--orange" id="patterns">
+    <section class="v2-section v2-section--theme" id="patterns">
       <div class="v2-wrap">
         <div class="v2-section-heading">
           <p class="v2-eyebrow v2-eyebrow--label">05 — Service-page patterns</p>
-          <h2>Answer the questions<br><span class="v2-highlight v2-highlight--dark">buyers ask before they call.</span></h2>
+          <h2>Answer the questions<br><span class="v2-highlight v2-highlight--inverse">buyers ask before they call.</span></h2>
           <p class="v2-lead">The design system governs the reusable presentation and authoring rules. Individual pages supply the price, process, proof, qualification, and guarantee content.</p>
         </div>
 
@@ -304,5 +311,19 @@
       </div>
     </section>
   </main>
+  <script>
+    (() => {
+      const specimen = document.querySelector('.v2-specimen');
+      const choices = document.querySelectorAll('[data-v2-theme-choice]');
+
+      choices.forEach((choice) => {
+        choice.addEventListener('click', () => {
+          const theme = choice.dataset.v2ThemeChoice;
+          specimen.dataset.v2Theme = theme;
+          choices.forEach((item) => item.setAttribute('aria-pressed', String(item === choice)));
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
