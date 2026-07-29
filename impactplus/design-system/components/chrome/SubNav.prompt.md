@@ -1,5 +1,12 @@
 One-sentence: A responsive white service rail — product label, optically centered in-page links with a thin accent underline and restrained settle/expand transition for the active section, and a black **Let’s Talk** CTA that becomes the sole navigation CTA once the rail activates after the hero and compacts on mobile; all motion respects reduced-motion preferences.
 
+Integration rule: The host page owns scrollspy and anchor movement. Use the
+service rail's live viewport bottom plus 24px as both the section activation
+line and the anchor destination. Set the clicked item active immediately during
+smooth scrolling, then return control to scrollspy after the movement ends.
+Do not use a hard-coded viewport threshold; the global header can appear or
+disappear above the rail as scroll direction changes.
+
 ```jsx
 <SubNav label="EC Coaching & Training" activeHref="/overview"
   links={[

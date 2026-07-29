@@ -303,7 +303,10 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
   collapses at tablet widths; mobile keeps a compact CTA and automatically
   centers the active link without wrapping the rail. Section changes use a
   restrained label-settle and underline-expansion transition; reduced-motion
-  preferences disable both animations.
+  preferences disable both animations. Host-page scrollspy must use the rail's
+  live bottom edge plus 24px for both active-section detection and anchor
+  destinations; hard-coded viewport thresholds drift whenever the global
+  header hides or returns.
 - **HelloBar** — dismissible promo bar.
 - **Footer** — dark V2 commercial bridge with a human-led clarity CTA, governed
   navigation columns, a balanced IMPACT identity and credential row, the

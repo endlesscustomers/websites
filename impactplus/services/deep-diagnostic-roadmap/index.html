@@ -117,6 +117,23 @@
   }
   @keyframes subnav-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
+  /* Keep direct anchor jumps clear of the fixed service rail. JavaScript uses
+     the rail's live viewport position for submenu clicks; this is the no-JS
+     and ordinary in-page-link fallback. */
+  #overview,
+  #what-you-get,
+  #how-it-works,
+  #reviews,
+  #pricing { scroll-margin-top: 96px; }
+
+  @media (max-width: 760px) {
+    #overview,
+    #what-you-get,
+    #how-it-works,
+    #reviews,
+    #pricing { scroll-margin-top: 78px; }
+  }
+
   /* Section openers (.sec-open/.sec-line/.chapter-eyebrow/.sec-desc)
      are provided by the design system. */
 
@@ -1146,6 +1163,8 @@ function Page() {
   const bookingStateHeading = React.useRef(null);
   const videoTrigger = React.useRef(null);
   const videoClose = React.useRef(null);
+  const pendingAnchor = React.useRef(null);
+  const pendingAnchorTimer = React.useRef(null);
   const hubspotReady = Boolean(
     HUBSPOT_EXPLORE_CALL.portalId &&
     HUBSPOT_EXPLORE_CALL.formId &&
@@ -1153,18 +1172,62 @@ function Page() {
   );
   React.useEffect(() => {
     const ids = ["overview", "what-you-get", "how-it-works", "reviews", "pricing"];
-    const onScroll = () => {
-      setShowSubNav(window.scrollY > window.innerHeight * 0.55);
+    let frame = null;
+
+    const getActivationLine = () => {
+      const subNav = document.querySelector(".subnav-fixed");
+      return subNav ? Math.round(subNav.getBoundingClientRect().bottom + 24) : 90;
+    };
+
+    const update = () => {
+      const hero = document.querySelector(".hero-wrap");
+      const globalNav = document.querySelector(".v2-site-nav");
+      const visibleGlobalNavHeight = globalNav && !globalNav.classList.contains("is-scroll-hidden")
+        ? globalNav.offsetHeight
+        : 0;
+      setShowSubNav(hero ? hero.getBoundingClientRect().bottom <= visibleGlobalNavHeight : false);
+
+      if (pendingAnchor.current) {
+        setActiveAnchor(pendingAnchor.current);
+        frame = null;
+        return;
+      }
+
+      const activationLine = getActivationLine();
       let current = "#overview";
       for (const id of ids) {
         const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 90) current = "#" + id;
+        if (el && el.getBoundingClientRect().top <= activationLine) current = "#" + id;
+      }
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
+        current = `#${ids[ids.length - 1]}`;
       }
       setActiveAnchor(current);
+      frame = null;
     };
+
+    const onScroll = () => {
+      if (frame === null) frame = window.requestAnimationFrame(update);
+    };
+
+    const cancelPendingAnchor = () => {
+      if (!pendingAnchor.current) return;
+      pendingAnchor.current = null;
+      window.clearTimeout(pendingAnchorTimer.current);
+      onScroll();
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("wheel", cancelPendingAnchor, { passive: true });
+    window.addEventListener("touchstart", cancelPendingAnchor, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", cancelPendingAnchor);
+      window.removeEventListener("touchstart", cancelPendingAnchor);
+      if (frame !== null) window.cancelAnimationFrame(frame);
+      window.clearTimeout(pendingAnchorTimer.current);
+    };
   }, []);
 
   React.useEffect(() => {
@@ -1194,11 +1257,27 @@ function Page() {
 
   const handleSubNavClick = (event) => {
     const anchor = event.target.closest('a[href^="#"]');
-    const target = anchor && document.querySelector(anchor.getAttribute("href"));
+    const href = anchor?.getAttribute("href");
+    const target = href && document.querySelector(href);
     if (!target) return;
     event.preventDefault();
-    window.history.pushState(null, "", anchor.getAttribute("href"));
-    target.scrollIntoView({ behavior: "smooth" });
+    const targetDocumentTop = window.scrollY + target.getBoundingClientRect().top;
+    const subNavHeight = document.querySelector(".subnav-fixed")?.offsetHeight || (window.innerWidth <= 760 ? 54 : 64);
+    const globalNavHeight = document.querySelector(".v2-site-nav")?.offsetHeight || 0;
+    const activationGap = 24;
+    const movingUp = targetDocumentTop < window.scrollY + subNavHeight + activationGap;
+    const destination = Math.max(0, targetDocumentTop - subNavHeight - activationGap - (movingUp ? globalNavHeight : 0));
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    pendingAnchor.current = href;
+    setActiveAnchor(href);
+    window.clearTimeout(pendingAnchorTimer.current);
+    window.history.pushState(null, "", href);
+    window.scrollTo({ top: destination, behavior: reducedMotion ? "auto" : "smooth" });
+    pendingAnchorTimer.current = window.setTimeout(() => {
+      pendingAnchor.current = null;
+      window.dispatchEvent(new Event("scroll"));
+    }, reducedMotion ? 0 : 900);
   };
 
   const handleExploreSubmit = (event) => {
