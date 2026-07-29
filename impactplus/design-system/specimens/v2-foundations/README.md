@@ -12,6 +12,8 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - Wynter-inspired full-color fields, dark label blocks, inline headline highlights, oversized assertions, numbered editorial rows, and assertion-first section rhythm.
 - Orbit-inspired paragraph, list, and bold-emphasis patterns.
 - Shared service-page patterns for pricing facts, process, fit/not-fit qualification, risk reversal, FAQs, proof, and testimonials.
+- A post-hero decision snapshot that defines the service, names the provider and methodology, clarifies AI and human responsibility when relevant, and exposes the essential commercial facts before the long-form argument begins.
+- A contextual three-resource Learning Center cluster that supports the buyer's decision without turning the service page into a generic content feed.
 - A desktop viewport hero that reveals a small strip of the next section, with content-driven height on tablet and mobile.
 - Responsive behavior at desktop, tablet, and mobile widths.
 
@@ -42,6 +44,10 @@ Open `index.html` to review the proposed shared foundation for both coded-body p
 - The main navigation is a transparent overlay on the hero field, so it always shares the active theme color instead of creating a separate navigation band.
 - Highlights below the hero use white text on the active accessible strong color, with only a few pixels of vertical extension and slightly more below the letterforms. The hero does not use a headline highlight.
 - Primary heroes nearly fill the desktop viewport and deliberately reveal the next section; the behavior is disabled at 980px and below.
+- Every V2 service page places the reusable **decision snapshot** directly below the hero. Its order is fixed: direct definition, provider/methodology relationship, AI/human responsibility when relevant, four essential facts, then a bridge to verified proof. The snapshot describes the service positively; it does not compare the offer with free or lower-cost alternatives unless verified buyer research makes that comparison necessary. Later sections expand the argument without repeating this copy verbatim.
+- Detailed client proof appears before pricing and the conversion form. Earlier proof links may preview an outcome, but full testimonials are not duplicated in multiple sections.
+- Service pages may surface exactly three closely related Learning Center resources near the FAQ/decision end of the page. Each resource must answer a buyer question that supports the service; generic recent-content feeds are not allowed.
+- Canonical URLs, Open Graph/X tags, and JSON-LD are required production outputs but are not hard-coded into local visual prototypes. The prototype governs visible facts and required fields; the HubSpot template injects final URL-dependent values from the centralized entity registry during staging and publishing.
 
 ## Approval
 

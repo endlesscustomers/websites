@@ -49,7 +49,9 @@ Bob builds pages himself (Claude Design / Cowork), then hands the finished build
 
 | Page | Status | Folder |
 |---|---|---|
-| Deep Diagnostic & Roadmap | In progress — Overview section done; What You Get / How It Works / Pricing / Reviews still need the design sweep | `impactplus/services/deep-diagnostic-roadmap/` |
+| Deep Diagnostic & Roadmap | Complete V2 coded-body proof with approved global navigation/footer; GitHub review build, not in HubSpot | `impactplus/services/deep-diagnostic-roadmap/` |
+| V2 Design-System Foundations | Approved review specimen | `impactplus/design-system/specimens/v2-foundations/` |
+| V2 Global Navigation & Footer | Approved global-shell review specimen | `impactplus/design-system/specimens/v2-global-shell/` |
 | Money-Back Guarantee | Not started | `impactplus/services/money-back-guarantee/` (create when started) |
 
 Project tracking: [[../../30-projects/websites/impactplus/index|30-projects/websites/impactplus]] · offer-level projects: [[../../30-projects/deep-diagnostic-roadmap/index|deep-diagnostic-roadmap]], [[../../30-projects/money-back-guarantee/index|money-back-guarantee]].

@@ -1,4 +1,4 @@
-One-sentence: A responsive floating white pill rail for service pages — product label, horizontally scrollable in-page pills with a transparent blue-outline active state, and a black arrow CTA that compacts on mobile.
+One-sentence: A responsive white service rail — product label, optically centered in-page links with a thin accent underline and restrained settle/expand transition for the active section, and a black **Let’s Talk** CTA that becomes the sole navigation CTA once the rail activates after the hero and compacts on mobile; all motion respects reduced-motion preferences.
 
 ```jsx
 <SubNav label="EC Coaching & Training" activeHref="/overview"
@@ -7,5 +7,5 @@ One-sentence: A responsive floating white pill rail for service pages — produc
     { label: "How it Works", href: "/how-it-works" },
     { label: "Pricing", href: "/pricing" },
     { label: "Success Stories", href: "/success" },
-  ]} ctaHref="/schedule" />
+  ]} ctaLabel="Let’s Talk" ctaHref="/schedule" />
 ```

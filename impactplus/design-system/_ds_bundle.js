@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"IMPACTDesignSystem_9efa99","components":[{"name":"BlogCard","sourcePath":"components/cards/BlogCard.jsx"},{"name":"Card","sourcePath":"components/cards/Card.jsx"},{"name":"FEATURE_ICONS","sourcePath":"components/cards/FeatureCard.jsx"},{"name":"FeatureCard","sourcePath":"components/cards/FeatureCard.jsx"},{"name":"ProgramCard","sourcePath":"components/cards/ProgramCard.jsx"},{"name":"StepCard","sourcePath":"components/cards/StepCard.jsx"},{"name":"TeamCard","sourcePath":"components/cards/TeamCard.jsx"},{"name":"TestimonialCard","sourcePath":"components/cards/TestimonialCard.jsx"},{"name":"ChatWidget","sourcePath":"components/chrome/ChatWidget.jsx"},{"name":"Footer","sourcePath":"components/chrome/Footer.jsx"},{"name":"HelloBar","sourcePath":"components/chrome/HelloBar.jsx"},{"name":"NavBar","sourcePath":"components/chrome/NavBar.jsx"},{"name":"SubNav","sourcePath":"components/chrome/SubNav.jsx"},{"name":"ComparisonBlock","sourcePath":"components/comparison/ComparisonBlock.jsx"},{"name":"FaqAccordion","sourcePath":"components/content/FaqAccordion.jsx"},{"name":"LogoWall","sourcePath":"components/content/LogoWall.jsx"},{"name":"NewsletterForm","sourcePath":"components/content/NewsletterForm.jsx"},{"name":"PricingTable","sourcePath":"components/content/PricingTable.jsx"},{"name":"Prose","sourcePath":"components/content/Prose.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Callout","sourcePath":"components/core/Callout.jsx"},{"name":"CheckItem","sourcePath":"components/core/CheckItem.jsx"},{"name":"SectionHeading","sourcePath":"components/core/SectionHeading.jsx"},{"name":"StarRating","sourcePath":"components/core/StarRating.jsx"},{"name":"StatCallout","sourcePath":"components/core/StatCallout.jsx"},{"name":"AnnotatedVisual","sourcePath":"components/diagrams/annotated/AnnotatedVisual.jsx"},{"name":"BarChartDiagram","sourcePath":"components/diagrams/bar-chart/BarChartDiagram.jsx"},{"name":"BrandDiagram","sourcePath":"components/diagrams/brand/BrandDiagram.jsx"},{"name":"FlowDiagram","sourcePath":"components/diagrams/flow/FlowDiagram.jsx"},{"name":"DiagramFrame","sourcePath":"components/diagrams/frame/DiagramFrame.jsx"},{"name":"PriceHighlight","sourcePath":"components/pricing/PriceHighlight.jsx"},{"name":"PricingMatrix","sourcePath":"components/pricing/PricingMatrix.jsx"},{"name":"ResultTile","sourcePath":"components/proof/ResultTile.jsx"},{"name":"ResultTileGrid","sourcePath":"components/proof/ResultTileGrid.jsx"},{"name":"CtaBand","sourcePath":"components/sections/cta-band/CtaBand.jsx"},{"name":"FeatureGrid","sourcePath":"components/sections/feature-grid/FeatureGrid.jsx"},{"name":"Hero","sourcePath":"components/sections/hero/Hero.jsx"},{"name":"PeekingVideo","sourcePath":"components/sections/peeking-video/PeekingVideo.jsx"},{"name":"QualifierBand","sourcePath":"components/sections/qualifier-band/QualifierBand.jsx"},{"name":"QuoteBand","sourcePath":"components/sections/quote-band/QuoteBand.jsx"},{"name":"SplitFeature","sourcePath":"components/sections/split-feature/SplitFeature.jsx"},{"name":"StepBand","sourcePath":"components/sections/step-band/StepBand.jsx"},{"name":"TeamGrid","sourcePath":"components/sections/team-grid/TeamGrid.jsx"},{"name":"TestimonialWall","sourcePath":"components/sections/testimonial-wall/TestimonialWall.jsx"},{"name":"VideoFeature","sourcePath":"components/sections/video-feature/VideoFeature.jsx"}],"sourceHashes":{"components/cards/BlogCard.jsx":"9483574f5d34","components/cards/Card.jsx":"dbe03cd420be","components/cards/FeatureCard.jsx":"da5463c42fab","components/cards/ProgramCard.jsx":"48d280c87e77","components/cards/StepCard.jsx":"d7449ed35c66","components/cards/TeamCard.jsx":"92b1b67ee14a","components/cards/TestimonialCard.jsx":"016e83136c6e","components/chrome/ChatWidget.jsx":"dedf717e0ea5","components/chrome/Footer.jsx":"700f5b2c5ef1","components/chrome/HelloBar.jsx":"54e75005d3ff","components/chrome/NavBar.jsx":"9627d65639a7","components/chrome/SubNav.jsx":"6c77d961a273","components/comparison/ComparisonBlock.jsx":"dbedfe9e1a5d","components/content/FaqAccordion.jsx":"232472fc9c0d","components/content/LogoWall.jsx":"59b9b4679c35","components/content/NewsletterForm.jsx":"0dfbf572347a","components/content/PricingTable.jsx":"8c91d995b5e7","components/content/Prose.jsx":"ad51a6ff27d5","components/core/Badge.jsx":"e185529815ad","components/core/Button.jsx":"0362136e7f40","components/core/Callout.jsx":"84d375c7c501","components/core/CheckItem.jsx":"1986f49200e7","components/core/SectionHeading.jsx":"7b64babbde09","components/core/StarRating.jsx":"a4bdf6ad6489","components/core/StatCallout.jsx":"47bb58644b27","components/diagrams/annotated/AnnotatedVisual.jsx":"065da80c9432","components/diagrams/bar-chart/BarChartDiagram.jsx":"70204d43539f","components/diagrams/brand/BrandDiagram.jsx":"e97869b2100a","components/diagrams/flow/FlowDiagram.jsx":"3f438e24eb43","components/diagrams/frame/DiagramFrame.jsx":"dc21aabf29b1","components/pricing/PriceHighlight.jsx":"c0724b0029d9","components/pricing/PricingMatrix.jsx":"7aa080612a8c","components/proof/ResultTile.jsx":"f22ce0ac44ca","components/proof/ResultTileGrid.jsx":"8db15c977f59","components/sections/cta-band/CtaBand.jsx":"be80f89da877","components/sections/feature-grid/FeatureGrid.jsx":"9e985b1b3904","components/sections/hero/Hero.jsx":"df04882415c1","components/sections/peeking-video/PeekingVideo.jsx":"b7731cf12293","components/sections/qualifier-band/QualifierBand.jsx":"5a461a1e377d","components/sections/quote-band/QuoteBand.jsx":"91f4a22058e8","components/sections/split-feature/SplitFeature.jsx":"dc852cd00976","components/sections/step-band/StepBand.jsx":"a07417383d93","components/sections/team-grid/TeamGrid.jsx":"29ad017d553b","components/sections/testimonial-wall/TestimonialWall.jsx":"c251de9c2f8a","components/sections/video-feature/VideoFeature.jsx":"6958c3fbb6be","ui_kits/website/Home.jsx":"cd4e457b8ca0","ui_kits/website/HowItWorks.jsx":"5f6a75e04232","ui_kits/website/Pricing.jsx":"d6444dd27709"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"IMPACTDesignSystem_9efa99","components":[{"name":"BlogCard","sourcePath":"components/cards/BlogCard.jsx"},{"name":"Card","sourcePath":"components/cards/Card.jsx"},{"name":"FEATURE_ICONS","sourcePath":"components/cards/FeatureCard.jsx"},{"name":"FeatureCard","sourcePath":"components/cards/FeatureCard.jsx"},{"name":"ProgramCard","sourcePath":"components/cards/ProgramCard.jsx"},{"name":"StepCard","sourcePath":"components/cards/StepCard.jsx"},{"name":"TeamCard","sourcePath":"components/cards/TeamCard.jsx"},{"name":"TestimonialCard","sourcePath":"components/cards/TestimonialCard.jsx"},{"name":"ChatWidget","sourcePath":"components/chrome/ChatWidget.jsx"},{"name":"Footer","sourcePath":"components/chrome/Footer.jsx"},{"name":"HelloBar","sourcePath":"components/chrome/HelloBar.jsx"},{"name":"NavBar","sourcePath":"components/chrome/NavBar.jsx"},{"name":"SubNav","sourcePath":"components/chrome/SubNav.jsx"},{"name":"ComparisonBlock","sourcePath":"components/comparison/ComparisonBlock.jsx"},{"name":"FaqAccordion","sourcePath":"components/content/FaqAccordion.jsx"},{"name":"LogoWall","sourcePath":"components/content/LogoWall.jsx"},{"name":"NewsletterForm","sourcePath":"components/content/NewsletterForm.jsx"},{"name":"PricingTable","sourcePath":"components/content/PricingTable.jsx"},{"name":"Prose","sourcePath":"components/content/Prose.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Callout","sourcePath":"components/core/Callout.jsx"},{"name":"CheckItem","sourcePath":"components/core/CheckItem.jsx"},{"name":"SectionHeading","sourcePath":"components/core/SectionHeading.jsx"},{"name":"StarRating","sourcePath":"components/core/StarRating.jsx"},{"name":"StatCallout","sourcePath":"components/core/StatCallout.jsx"},{"name":"AnnotatedVisual","sourcePath":"components/diagrams/annotated/AnnotatedVisual.jsx"},{"name":"BarChartDiagram","sourcePath":"components/diagrams/bar-chart/BarChartDiagram.jsx"},{"name":"BrandDiagram","sourcePath":"components/diagrams/brand/BrandDiagram.jsx"},{"name":"FlowDiagram","sourcePath":"components/diagrams/flow/FlowDiagram.jsx"},{"name":"DiagramFrame","sourcePath":"components/diagrams/frame/DiagramFrame.jsx"},{"name":"PriceHighlight","sourcePath":"components/pricing/PriceHighlight.jsx"},{"name":"PricingMatrix","sourcePath":"components/pricing/PricingMatrix.jsx"},{"name":"ResultTile","sourcePath":"components/proof/ResultTile.jsx"},{"name":"ResultTileGrid","sourcePath":"components/proof/ResultTileGrid.jsx"},{"name":"CtaBand","sourcePath":"components/sections/cta-band/CtaBand.jsx"},{"name":"FeatureGrid","sourcePath":"components/sections/feature-grid/FeatureGrid.jsx"},{"name":"Hero","sourcePath":"components/sections/hero/Hero.jsx"},{"name":"PeekingVideo","sourcePath":"components/sections/peeking-video/PeekingVideo.jsx"},{"name":"QualifierBand","sourcePath":"components/sections/qualifier-band/QualifierBand.jsx"},{"name":"QuoteBand","sourcePath":"components/sections/quote-band/QuoteBand.jsx"},{"name":"SplitFeature","sourcePath":"components/sections/split-feature/SplitFeature.jsx"},{"name":"StepBand","sourcePath":"components/sections/step-band/StepBand.jsx"},{"name":"TeamGrid","sourcePath":"components/sections/team-grid/TeamGrid.jsx"},{"name":"TestimonialWall","sourcePath":"components/sections/testimonial-wall/TestimonialWall.jsx"},{"name":"VideoFeature","sourcePath":"components/sections/video-feature/VideoFeature.jsx"}],"sourceHashes":{"components/cards/BlogCard.jsx":"9483574f5d34","components/cards/Card.jsx":"dbe03cd420be","components/cards/FeatureCard.jsx":"da5463c42fab","components/cards/ProgramCard.jsx":"48d280c87e77","components/cards/StepCard.jsx":"d7449ed35c66","components/cards/TeamCard.jsx":"92b1b67ee14a","components/cards/TestimonialCard.jsx":"016e83136c6e","components/chrome/ChatWidget.jsx":"dedf717e0ea5","components/chrome/Footer.jsx":"700f5b2c5ef1","components/chrome/HelloBar.jsx":"54e75005d3ff","components/chrome/NavBar.jsx":"1509f556c3d1","components/chrome/SubNav.jsx":"6c77d961a273","components/comparison/ComparisonBlock.jsx":"dbedfe9e1a5d","components/content/FaqAccordion.jsx":"232472fc9c0d","components/content/LogoWall.jsx":"59b9b4679c35","components/content/NewsletterForm.jsx":"0dfbf572347a","components/content/PricingTable.jsx":"8c91d995b5e7","components/content/Prose.jsx":"ad51a6ff27d5","components/core/Badge.jsx":"e185529815ad","components/core/Button.jsx":"0362136e7f40","components/core/Callout.jsx":"84d375c7c501","components/core/CheckItem.jsx":"1986f49200e7","components/core/SectionHeading.jsx":"7b64babbde09","components/core/StarRating.jsx":"a4bdf6ad6489","components/core/StatCallout.jsx":"47bb58644b27","components/diagrams/annotated/AnnotatedVisual.jsx":"065da80c9432","components/diagrams/bar-chart/BarChartDiagram.jsx":"70204d43539f","components/diagrams/brand/BrandDiagram.jsx":"e97869b2100a","components/diagrams/flow/FlowDiagram.jsx":"3f438e24eb43","components/diagrams/frame/DiagramFrame.jsx":"dc21aabf29b1","components/pricing/PriceHighlight.jsx":"c0724b0029d9","components/pricing/PricingMatrix.jsx":"7aa080612a8c","components/proof/ResultTile.jsx":"f22ce0ac44ca","components/proof/ResultTileGrid.jsx":"8db15c977f59","components/sections/cta-band/CtaBand.jsx":"be80f89da877","components/sections/feature-grid/FeatureGrid.jsx":"9e985b1b3904","components/sections/hero/Hero.jsx":"df04882415c1","components/sections/peeking-video/PeekingVideo.jsx":"b7731cf12293","components/sections/qualifier-band/QualifierBand.jsx":"5a461a1e377d","components/sections/quote-band/QuoteBand.jsx":"91f4a22058e8","components/sections/split-feature/SplitFeature.jsx":"dc852cd00976","components/sections/step-band/StepBand.jsx":"a07417383d93","components/sections/team-grid/TeamGrid.jsx":"29ad017d553b","components/sections/testimonial-wall/TestimonialWall.jsx":"c251de9c2f8a","components/sections/video-feature/VideoFeature.jsx":"6958c3fbb6be","ui_kits/website/Home.jsx":"cd4e457b8ca0","ui_kits/website/HowItWorks.jsx":"5f6a75e04232","ui_kits/website/Pricing.jsx":"d6444dd27709"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -1595,96 +1595,132 @@ try { (() => {
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const LOGO_WHITE = "https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/White%20Logo%20-%20Full/IMPACT-Logo--White-Full.png";
 const LOGO_BLACK = "https://www.impactplus.com/hubfs/Black%20Logo%20-%20Full/IMPACT-logo--Black-contained.svg";
-const Caret = () => /*#__PURE__*/React.createElement("svg", {
-  width: "12",
-  height: "12",
-  viewBox: "0 0 24 24",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: "2.4",
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  style: {
-    opacity: 0.8
-  }
-}, /*#__PURE__*/React.createElement("polyline", {
-  points: "6 9 12 15 18 9"
-}));
-const DEFAULT_LINKS = ["Learn The System", "Get Coaching", "Experience The Conference"];
+const DEFAULT_ITEMS = [{
+  label: "How We Help",
+  href: "/services",
+  panel: "wide",
+  groups: [{
+    title: "Start Here",
+    links: [{ label: "Deep Diagnostic & Roadmap", href: "/services/deep-diagnostic-roadmap", description: "Find what is holding back growth and what to fix first." }, { label: "Endless Customers Coaching & Training", href: "/endless-customers-coaching", description: "Build the internal skills and habits to win more customers." }, { label: "Instant Pricing Estimate", href: "/services/pricing#instant-estimate", description: "Get useful planning guidance before you book a call." }]
+  }, {
+    title: "Win With AI",
+    featured: true,
+    links: [{ label: "AI Visibility", href: "/services#ai-visibility", description: "See whether AI systems can find, understand, and recommend you." }, { label: "AI Content Workflows", href: "/services#ai-content-workflows", description: "Help your team use AI without sacrificing expertise or trust." }]
+  }, {
+    title: "Specific Services",
+    links: [{ label: "Website Redesign", href: "/services/website-redesign" }, { label: "Website Optimization & Training", href: "/services/website-optimization-and-training" }, { label: "HubSpot Training & Services", href: "/services/hubspot-training" }, { label: "Learning Center Development", href: "/services/learning-center" }, { label: "Self-Service Tools", href: "/services/self-service-tools" }, { label: "Explore All Services", href: "/services/", emphasis: true }]
+  }]
+}, { label: "Pricing", href: "/services/pricing" }, {
+  label: "Results",
+  href: "/services/success-stories",
+  panel: "medium",
+  groups: [{ title: "Customer Results", links: [{ label: "Success Stories", href: "/services/success-stories" }, { label: "Coaching Results", href: "/services/success-stories#coaching" }, { label: "Website Results", href: "/services/success-stories#website" }, { label: "HubSpot Results", href: "/services/success-stories#hubspot" }, { label: "AI and Content Results", href: "/services/success-stories#ai-content" }] }, { title: "Trust & Recognition", links: [{ label: "Reviews", href: "/services/reviews" }, { label: "Awards & Recognition", href: "/awards" }, { label: "Money-Back Guarantee", href: "/services/guarantee" }] }]
+}, {
+  label: "Learning Center",
+  href: "/learn",
+  panel: "medium",
+  groups: [{ title: "Learning Center", variant: "directory", links: [{ label: "Explore the Learning Center", href: "/learn" }, { label: "Articles", href: "/blog" }, { label: "Guides & Downloads", href: "/learn/guides-and-downloads" }, { label: "Webinars", href: "/webinars" }, { label: "Subscribe", href: "/learn#subscribe", emphasis: true, accent: true }] }, { title: "Endless Customers", variant: "directory", links: [{ label: "What Is the System?", href: "/learn/what-is-endless-customers" }, { label: "The Book", href: "https://www.endlesscustomers.com/" }, { label: "Academy", href: "https://academy.endlesscustomers.com/" }, { label: "Conference", href: "https://www.endlesscustomers.com/live" }, { label: "Podcast", href: "/endless-customers-podcast" }, { label: "Get a Free Chapter", href: "https://www.endlesscustomers.com/preview-edition", emphasis: true, accent: true }] }]
+}, {
+  label: "About",
+  href: "/impact-company-profile",
+  panel: "compact",
+  groups: [{ title: "IMPACT", links: [{ label: "Our Story, Vision, and Values", href: "/impact-company-profile" }, { label: "Meet the Team", href: "/team" }, { label: "Careers", href: "/careers" }, { label: "Request a Speaker", href: "/request-a-speaker" }, { label: "Contact", href: "/contact-us" }] }]
+}];
+const Caret = () => /*#__PURE__*/React.createElement("svg", { className: "v2-site-nav__caret", width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2.4", strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" }, /*#__PURE__*/React.createElement("polyline", { points: "6 9 12 15 18 9" }));
+const MenuIcon = ({ open }) => open ? /*#__PURE__*/React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", "aria-hidden": "true" }, /*#__PURE__*/React.createElement("path", { d: "M6 6l12 12M18 6L6 18" })) : /*#__PURE__*/React.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", "aria-hidden": "true" }, /*#__PURE__*/React.createElement("path", { d: "M4 7h16M4 12h16M4 17h16" }));
+const cx = (...names) => names.filter(Boolean).join(" ");
 
-/** Global site header: IMPACT logo + tagline, dropdown nav, Login link, and a
- * blue "Schedule Call" CTA. Dark by default (as on marketing pages). */
+/** V2 global navigation for the governed commercial journey. */
 function NavBar({
-  links = DEFAULT_LINKS,
+  items = DEFAULT_ITEMS,
   onDark = true,
-  ctaLabel = "Schedule Call",
-  ctaHref,
-  loginHref,
-  maxWidth = "var(--container-max, 1150px)",
-  ctaVariant = "primary",
+  ctaLabel = "Book an Explore Call",
+  ctaHref = "/services/schedule-now",
+  homeHref = "/",
+  descriptorHref = "/endless-customers-coaching",
+  showDescriptor = true,
+  activeHref,
+  maxWidth,
   style,
+  className,
   ...rest
 }) {
-  const fg = onDark ? "var(--ec-white)" : "var(--text-heading)";
+  const [openMenu, setOpenMenu] = React.useState(null);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const headerRef = React.useRef(null);
+  const menuId = React.useId();
+  const closeAll = React.useCallback(() => { setOpenMenu(null); setMobileOpen(false); }, []);
+  React.useEffect(() => {
+    const onPointerDown = event => { if (!headerRef.current?.contains(event.target)) closeAll(); };
+    const onKeyDown = event => { if (event.key === "Escape") closeAll(); };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => { document.removeEventListener("pointerdown", onPointerDown); document.removeEventListener("keydown", onKeyDown); };
+  }, [closeAll]);
+  React.useEffect(() => {
+    if (!mobileOpen) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previousOverflow; };
+  }, [mobileOpen]);
+  const renderGroup = group => /*#__PURE__*/React.createElement("section", {
+    className: cx("v2-site-nav__group", group.featured && "v2-site-nav__group--featured", group.variant && `v2-site-nav__group--${group.variant}`),
+    key: group.title
+  }, /*#__PURE__*/React.createElement("p", { className: "v2-site-nav__group-title" }, group.title), /*#__PURE__*/React.createElement("ul", null, ...group.links.map(link => /*#__PURE__*/React.createElement("li", { className: cx(link.emphasis && "v2-site-nav__directory-action-item"), key: link.label }, /*#__PURE__*/React.createElement("a", {
+    className: cx(link.emphasis && "is-emphasis", link.accent && "is-accent"),
+    href: link.href,
+    onClick: closeAll
+  }, /*#__PURE__*/React.createElement("span", null, link.label), link.description && /*#__PURE__*/React.createElement("small", null, link.description))))));
+  const renderItem = (item, index) => {
+    const hasGroups = Boolean(item.groups?.length);
+    const isOpen = openMenu === index;
+    const isActive = activeHref && (activeHref === item.href || activeHref.startsWith(`${item.href}/`));
+    const trigger = hasGroups ? /*#__PURE__*/React.createElement("button", {
+      className: cx("v2-site-nav__top-link", isActive && "is-active"),
+      type: "button",
+      "aria-haspopup": "true",
+      "aria-expanded": isOpen,
+      "aria-controls": `${menuId}-panel-${index}`,
+      onClick: () => setOpenMenu(isOpen ? null : index)
+    }, item.label, /*#__PURE__*/React.createElement(Caret, null)) : /*#__PURE__*/React.createElement("a", {
+      className: cx("v2-site-nav__top-link", isActive && "is-active"),
+      href: item.href,
+      onClick: closeAll
+    }, item.label);
+    const panel = hasGroups && /*#__PURE__*/React.createElement("div", {
+      className: cx("v2-site-nav__mega", item.panel && `v2-site-nav__mega--${item.panel}`),
+      id: `${menuId}-panel-${index}`,
+      "aria-hidden": !isOpen
+    }, /*#__PURE__*/React.createElement("div", { className: "v2-site-nav__mega-inner" }, ...item.groups.map(renderGroup)));
+    return /*#__PURE__*/React.createElement("div", {
+      className: cx("v2-site-nav__item", hasGroups && "has-panel", isOpen && "is-open"),
+      key: item.label
+    }, trigger, panel);
+  };
   return /*#__PURE__*/React.createElement("header", _extends({
-    style: {
-      background: onDark ? "var(--ec-neutral-700)" : "var(--ec-white)",
-      borderBottom: onDark ? "none" : "1px solid var(--border-subtle)",
-      ...style
-    }
-  }, rest), /*#__PURE__*/React.createElement("div", {
-    style: {
-      maxWidth: maxWidth,
-      margin: "0 auto",
-      display: "flex",
-      alignItems: "center",
-      gap: "28px",
-      padding: "18px 0"
-    }
-  }, /*#__PURE__*/React.createElement("a", {
-    href: "#",
-    style: { display: "flex", alignItems: "center", gap: 14, flex: "0 0 auto" }
-  }, /*#__PURE__*/React.createElement("img", {
-    src: onDark ? LOGO_WHITE : LOGO_BLACK,
-    alt: "IMPACT",
-    style: { height: 32 }
-  }), /*#__PURE__*/React.createElement("span", {
-    style: { width: 1, height: 32, background: onDark ? "rgba(255,255,255,0.3)" : "var(--border-subtle)" }
-  }), /*#__PURE__*/React.createElement("span", {
-    style: { fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.25, color: fg, maxWidth: 130 }
-  }, "Coaching & Training for Endless Customers")), /*#__PURE__*/React.createElement("nav", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "38px",
-      flex: "1 1 auto",
-      minWidth: 0
-    }
-  }, links.map((l, i) => /*#__PURE__*/React.createElement("a", {
-    key: i,
-    href: "#",
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 6,
-      color: fg,
-      fontFamily: "var(--font-body)",
-      fontWeight: 600,
-      fontSize: 16.5,
-      textDecoration: "none",
-      whiteSpace: "nowrap"
-    }
-  }, l, " ", /*#__PURE__*/React.createElement(Caret, null)))), /*#__PURE__*/React.createElement("div", {
-    style: { display: "flex", alignItems: "center", gap: 24, flex: "0 0 auto" }
-  }, /*#__PURE__*/React.createElement("a", {
-    href: loginHref || "#",
-    style: { color: fg, fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 16.5, textDecoration: "none" }
-  }, "Login"), /*#__PURE__*/React.createElement(__ds_scope.Button, {
-    variant: ctaVariant,
-    withArrow: true,
-    href: ctaHref
-  }, ctaLabel))));
+    ref: headerRef,
+    className: cx("v2-site-nav", onDark ? "v2-site-nav--dark" : "v2-site-nav--light", mobileOpen && "is-mobile-open", className),
+    style: { "--v2-nav-max": maxWidth, ...style }
+  }, rest),
+  /*#__PURE__*/React.createElement("a", { className: "v2-site-nav__skip", href: "#main-content" }, "Skip to content"),
+  /*#__PURE__*/React.createElement("div", { className: "v2-site-nav__bar" },
+    /*#__PURE__*/React.createElement("div", { className: "v2-site-nav__brand" },
+      /*#__PURE__*/React.createElement("a", { className: "v2-site-nav__logo", href: homeHref, "aria-label": "IMPACT home", onClick: closeAll }, /*#__PURE__*/React.createElement("img", { src: onDark ? LOGO_WHITE : LOGO_BLACK, alt: "IMPACT", width: "482", height: "150" })),
+      showDescriptor && /*#__PURE__*/React.createElement("a", { className: "v2-site-nav__descriptor", href: descriptorHref, onClick: closeAll }, "Coaching & Training", /*#__PURE__*/React.createElement("br", null), "for Endless Customers")
+    ),
+    /*#__PURE__*/React.createElement("button", {
+      className: "v2-site-nav__mobile-toggle",
+      type: "button",
+      "aria-expanded": mobileOpen,
+      "aria-controls": `${menuId}-menu`,
+      "aria-label": mobileOpen ? "Close menu" : "Open menu",
+      onClick: () => { setMobileOpen(value => !value); setOpenMenu(null); }
+    }, /*#__PURE__*/React.createElement(MenuIcon, { open: mobileOpen })),
+    /*#__PURE__*/React.createElement("div", { className: "v2-site-nav__drawer", id: `${menuId}-menu` },
+      /*#__PURE__*/React.createElement("nav", { className: "v2-site-nav__links", "aria-label": "Primary navigation" }, ...items.map(renderItem)),
+      /*#__PURE__*/React.createElement("div", { className: "v2-site-nav__cta" }, /*#__PURE__*/React.createElement(__ds_scope.Button, { variant: "dark", withArrow: true, href: ctaHref, onClick: closeAll }, ctaLabel))
+    )
+  ));
 }
 Object.assign(__ds_scope, { NavBar });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/chrome/NavBar.jsx", error: String((e && e.message) || e) }); }

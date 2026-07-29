@@ -11,7 +11,7 @@ The publishable files for pages Bob builds for the **current** impactplus.com. S
 
 | Page | Status | Folder |
 |---|---|---|
-| Deep Diagnostic & Roadmap | In progress — Overview done; What You Get / How It Works / Pricing / Reviews still need the design sweep | `services/deep-diagnostic-roadmap/` |
+| Deep Diagnostic & Roadmap | Complete local V2 coded-body proof with approved global navigation/footer; desktop and mobile regression passed; not in HubSpot | `services/deep-diagnostic-roadmap/` |
 | Money-Back Guarantee | Not started | `services/money-back-guarantee/` |
 
 ## The three rules
@@ -20,7 +20,7 @@ The publishable files for pages Bob builds for the **current** impactplus.com. S
 2. **This repo is public.** No client names, pricing rationale, meeting notes, or internal process in these files.
 3. **Design-system drift gets announced, not absorbed.** If page work overrides a token, invents a reusable pattern, or hard-codes something the system already defines, say so in the moment and ask Bob whether to promote it into `design-system/`, keep it page-specific with a comment explaining why, or revert it. Never ship a page with an uncatalogued override. Full rule: [[../../../50-resources/impact/service-page-build-sop|service-page-build-sop]] step 9b.
 
-## Design system status (updated 2026-07-25)
+## Design system status (updated 2026-07-29)
 
 Re-based on the **Endless Customers** brand system (`endlesscustomers.com/brand-guidelines`) so both brands read as one company during the transition.
 
@@ -29,6 +29,7 @@ Re-based on the **Endless Customers** brand system (`endlesscustomers.com/brand-
 - **Accessible variants, per hue.** The brand hues mostly fail contrast on their own (EC Blue is 4.05:1, Green 2.28:1, Orange 2.20:1), so each carries `-ui` (≥3:1, rules/icons/large text), `-text` (≥4.5:1, body and links) and `-strong` (safe under a white label). **Pick by job, not by eye.** Rules and traps: [[design-system/guidelines/accessibility-color-roles|accessibility-color-roles]]. Verify with `python3 design-system/tools/contrast-audit.py`, which must end in `TOTAL FAILURES: 0`.
 - **The gradient rule:** Magenta → Blue → Green, for borders, lines, and underlines only, 2–6px. Never a background fill, button fill, or text colour.
 - **Promoted from the DD&R build:** prose scale (`.prose-lead` / `.prose-body` / `.prose-bridge`), the five-variant accent system (`.accent-blue|magenta|green|orange|grey`), section openers (`.sec-open` / `.sec-line` / `.sec-eyebrow` / `.sec-desc`), layout primitives (`.band` / `.wrap`), `.hl-box`, `.num-badge`, and the frameless visual treatment.
+- **Promoted from the service-page decision audit:** the post-hero decision snapshot, contextual three-resource Learning Center cluster, reusable media dialog, and the [[design-system/guidelines/service-page-content-contract|V2 Service Page Content Contract]]. Final canonical/social/schema values remain HubSpot publishing responsibilities; the local template now governs the visible facts and required fields.
 
 ## Context
 

@@ -128,7 +128,11 @@ never opacity-hidden. Post-hero reveals wait until their content enters the lowe
 viewport, so the transition remains visible instead of completing offscreen.
 The process timeline may draw and reveal its nodes in sequence because that
 motion explains order. `prefers-reduced-motion` removes all reveal and timeline
-motion.
+motion. The V2 footer uses the same progressive helper for a restrained,
+one-time hierarchy sequence: CTA, identity and credentials, grouped navigation
+columns, then contact/social utility. It animates opacity and transforms only,
+uses faster mobile timings, and never hides the footer when JavaScript is
+unavailable.
 
 **Desktop canvas.** V2 pages use a shared 1240px maximum content grid with 24px
 minimum side gutters. Major section grids—including the Money-Back Guarantee—
@@ -198,6 +202,12 @@ sits under the header for promos.
 - **Green checkmarks** (`#01C4A2`, Green 500) mark included features and benefit
   lists — a recurring, recognizable device.
 - **No icon font.** Icons are individual SVG files, not a webfont.
+- **Doodle icons are optional editorial assets, not interface controls.** The
+  user-provided library contains 451 SVG/PNG icons and a Figma source. Use them
+  sparingly for human accents, annotations, and supporting illustrations; keep
+  navigation, forms, validation, and transactional UI on the clean governed
+  glyph system. Browse `specimens/v2-doodle-icons/` and use `DoodleIcon` when an
+  approved theme color is needed.
 - **Emoji** is not used decoratively (only the 👋 in the chat greeting). **Unicode
   arrows** (→) appear inline in text-links and CTAs.
 - **In this system:** the brand-specific **Ecee AI glyph** is hotlinked from the
@@ -206,6 +216,9 @@ sits under the header for promos.
   clean single-stroke look. For net-new icon needs, substitute **Lucide**
   (MIT-licensed, matching stroke weight) and flag it. ⚠️ Swap for IMPACT's own
   SVGs when localizing to production.
+- **Doodle rights checkpoint:** the supplied icon archive included no license,
+  attribution, creator, or usage terms. It is approved for local design
+  exploration only until IMPACT confirms production rights.
 
 ---
 
@@ -218,6 +231,7 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 - **Badge** — uppercase pill label / eyebrow (green / blue / dark / outline / solid).
 - **StarRating** — gold review stars.
 - **CheckItem** — benefit row with the green circular check.
+- **DoodleIcon** — optional, colorable wrapper for the governed hand-drawn editorial icon library.
 - **Callout** — handwritten Kalam annotation + optional hand-drawn arrow.
 - **SectionHeading** — unboxed eyebrow + General Sans title (+optional trimmed highlight) + subtitle.
 - **StatCallout** — oversized General Sans/rare handwritten number + label.
@@ -272,13 +286,29 @@ Reusable React primitives (import from `window.IMPACTDesignSystem_9efa99`).
 - **PricingTable** — plan comparison grid (checks / values / "Not Available").
 
 **Chrome** (`components/chrome/`)
-- **NavBar** — dark global header (logo + tagline + nav + Login + Schedule Call).
-- **SubNav** — floating white pill rail: product label, horizontally scrollable
-  in-page pills with a transparent blue-outline active state, and a black arrow CTA. The
-  label collapses at tablet widths; mobile keeps a compact circular CTA and
-  automatically centers the active link without wrapping the rail.
+- **NavBar** — transparent V2 global header with the locked How We Help,
+  Pricing, Results, Learning Center, About, and Explore Call journey; accessible
+  wide, medium, and compact menus and a responsive mobile drawer are built in.
+  Dropdowns use Wynter-inspired two-column scanning where the content benefits,
+  but compact menus stay content-sized. Parent destinations appear once as
+  clearly named links inside their relevant group—never as a competing
+  full-width footer row.
+- **SubNav** — quiet white service rail: product label, horizontally scrollable
+  in-page links with a thin accent underline for the active section, and a black
+  arrow CTA. Before the service rail activates, the global header owns the
+  **Let’s Talk** action. Once the rail activates after the hero, its CTA remains
+  visible and the global CTA yields—even when the global header returns on
+  upward scroll—so there is always one clear action. Desktop links are optically
+  centered against the full viewport using symmetrical outer columns. The label
+  collapses at tablet widths; mobile keeps a compact CTA and automatically
+  centers the active link without wrapping the rail. Section changes use a
+  restrained label-settle and underline-expansion transition; reduced-motion
+  preferences disable both animations.
 - **HelloBar** — dismissible promo bar.
-- **Footer** — link columns + brand lockup + social + legal.
+- **Footer** — dark V2 commercial bridge with a human-led clarity CTA, governed
+  navigation columns, a balanced IMPACT identity and credential row, the
+  IMPACT/Endless Customers relationship, prominent social and podcast links,
+  contact information, and legal routes.
 - **ChatWidget** — fixed "Ecee" AI chat launcher.
 
 > **Intentional additions** (not patterns on the live site today, built on request): **ComparisonBlock**, **ResultTile / ResultTileGrid**, and the **Diagrams** kit. The diagram kit's `BrandDiagram` slots in your real exported graphics; the generated diagrams (Flow/Bar/Annotated) are palette-correct layouts, never reconstructions of your signature graphics.

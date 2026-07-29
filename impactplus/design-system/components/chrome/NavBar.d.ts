@@ -1,17 +1,47 @@
 import * as React from "react";
-/**
- * Global site header — logo + tagline, dropdown nav, Login, blue Schedule Call CTA.
- */
+
+export interface NavLink {
+  label: string;
+  href: string;
+  description?: string;
+  emphasis?: boolean;
+  accent?: boolean;
+}
+
+export interface NavGroup {
+  title: string;
+  featured?: boolean;
+  variant?: "primary" | "secondary" | "directory";
+  subgroups?: Array<{
+    title: string;
+    links: NavLink[];
+  }>;
+  links: NavLink[];
+}
+
+export interface NavItem {
+  label: string;
+  href: string;
+  panel?: "wide" | "medium" | "compact";
+  groups?: NavGroup[];
+}
+
+/** V2 global navigation for the locked IMPACT light-refresh journey. */
 export interface NavBarProps extends React.HTMLAttributes<HTMLElement> {
-  /** Top-level nav labels. */
-  links?: string[];
-  /** Dark header (marketing default). @default true */
+  items?: NavItem[];
   onDark?: boolean;
-  /** @default "Schedule Call" */
   ctaLabel?: string;
   ctaHref?: string;
-  loginHref?: string;
-  /** Centered inner container width. @default 1320 */
+  homeHref?: string;
+  descriptorHref?: string;
+  showDescriptor?: boolean;
+  academyHref?: string;
+  academyLabel?: string;
+  academyTooltip?: string;
+  academyIconBasePath?: string;
+  activeHref?: string;
   maxWidth?: number | string;
 }
+
+export const IMPACT_V2_NAV_ITEMS: NavItem[];
 export function NavBar(props: NavBarProps): JSX.Element;

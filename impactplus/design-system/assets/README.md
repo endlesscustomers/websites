@@ -35,6 +35,11 @@ reconstructing any logo from memory.
 
 ## Icons
 
+- **Doodle icon library** (optional editorial accents): 451 user-provided icons
+  in SVG and PNG, plus the original Figma source, live in
+  `icons/doodle/`. Browse them in `../specimens/v2-doodle-icons/` and use the
+  `DoodleIcon` component for theme-color rendering. The supplied archive did
+  not contain licensing terms, so confirm production usage rights first.
 - **Ecee AI chat / search glyphs** (brand-specific):
   `https://www.impactplus.com/hubfs/impact_site_2025_IM-UI/assets/icons/white/ai_icon_chat.svg`,
   `.../ai_icon_search.svg`

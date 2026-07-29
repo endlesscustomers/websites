@@ -17,16 +17,15 @@ function NavLink({ label, href, active }) {
   }, [active]);
   const base = {
     fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 15,
-    textDecoration: "none", whiteSpace: "nowrap", padding: "9px 18px",
-    borderRadius: "var(--radius-pill)", lineHeight: 1,
+    textDecoration: "none", whiteSpace: "nowrap", padding: "0 12px",
+    borderRadius: 0, lineHeight: 1,
     transition: "background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard)",
   };
   let bg = "transparent", color = "var(--ec-slate-500)", boxShadow = "none";
   if (active) {
     color = "var(--color-brand)";
-    boxShadow = "inset 0 0 0 1px var(--color-brand-strong)";
   }
-  else if (hover) { bg = "var(--ec-neutral-100)"; color = "var(--text-heading)"; }
+  else if (hover) { color = "var(--color-brand)"; }
   return (
     <a ref={linkRef} className={`impact-subnav__link${active ? " is-active" : ""}`}
       href={href} aria-current={active ? "location" : undefined}
@@ -37,9 +36,8 @@ function NavLink({ label, href, active }) {
 
 /** Sticky secondary/section nav (as on the coaching + service pages): a product
  * label (or logo) on the left, horizontally scrollable in-page anchors, and a
- * black CTA on the right. V2 presents the inner rail as a floating white pill
- * and uses a transparent blue-outline active state rather than competing
- * filled pills. */
+ * black CTA on the right. V2 uses a quiet white rail and a thin active underline
+ * so it reads as secondary navigation rather than a competing primary header. */
 export function SubNav({
   logoSrc, label = "", links = [], activeHref, ctaLabel = "Schedule Call", ctaHref,
   sticky = true, style, ...rest

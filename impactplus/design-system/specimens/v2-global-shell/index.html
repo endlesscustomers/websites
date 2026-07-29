@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMPACT V2 Global Navigation &amp; Footer Review</title>
+<meta name="description" content="Local review specimen for the IMPACT V2 global navigation and footer.">
+<link rel="stylesheet" href="../../styles.css?v=20260729-shell-44">
+<!-- Direct, versioned V2 load prevents Chrome from retaining a stale nested @import. -->
+<link rel="stylesheet" href="../../tokens/v2.css?v=20260729-shell-44">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&amp;display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--surface-page); }
+  .shell-hero {
+    display: flex;
+    min-height: calc(100svh - 80px - 48px);
+    flex-direction: column;
+    border-bottom: 4px solid #000;
+    background: var(--v2-theme-strong);
+  }
+  .shell-hero__content {
+    display: grid;
+    flex: 1;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+    align-items: center;
+    width: min(var(--v2-container-max), calc(100% - 48px));
+    margin-inline: auto;
+    gap: clamp(48px, 8vw, 110px);
+    padding: 50px 0 82px;
+  }
+  .shell-eyebrow {
+    margin: 0 0 18px;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .14em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+  .shell-hero h1 {
+    max-width: 13ch;
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: var(--v2-h1-size);
+    font-weight: 700;
+    letter-spacing: -.03em;
+    line-height: var(--v2-h1-leading);
+  }
+  .shell-hero__lead {
+    max-width: 52ch;
+    margin: 26px 0 0;
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--v2-prose-lead);
+    line-height: var(--v2-prose-lead-leading);
+  }
+  .shell-hero__aside {
+    padding: clamp(28px, 4vw, 44px);
+    border: 2px solid #000;
+    border-radius: var(--v2-radius-card);
+    background: #fff;
+    box-shadow: 14px 14px 0 var(--ec-navy);
+  }
+  .shell-hero__aside h2 {
+    margin: 0;
+    color: var(--text-heading);
+    font-family: var(--font-display);
+    font-size: 28px;
+    line-height: 1.16;
+  }
+  .shell-hero__aside ol {
+    display: grid;
+    gap: 14px;
+    margin: 24px 0 0;
+    padding-left: 22px;
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .shell-body {
+    padding: var(--v2-section-space) 0;
+    background: var(--surface-page);
+  }
+  .shell-body__inner {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    width: min(var(--v2-container-max), calc(100% - 48px));
+    margin-inline: auto;
+    gap: clamp(48px, 8vw, 110px);
+  }
+  .shell-body h2 {
+    margin: 0;
+    color: var(--text-heading);
+    font-family: var(--font-display);
+    font-size: var(--v2-h2-size);
+    letter-spacing: var(--v2-h2-tracking);
+    line-height: var(--v2-h2-leading);
+  }
+  .shell-body__copy p {
+    margin: 0 0 22px;
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: var(--v2-prose-lead);
+    line-height: var(--v2-prose-lead-leading);
+  }
+  .shell-body__copy p + p { font-size: 16px; line-height: 24px; }
+  @media (max-width: 800px) {
+    .shell-hero { min-height: calc(100svh - 72px - 48px); }
+    .shell-hero__content, .shell-body__inner { grid-template-columns: 1fr; }
+    .shell-hero__content, .shell-body__inner { width: min(100% - 36px, var(--v2-container-max)); }
+  }
+</style>
+</head>
+<body class="impact-v2" data-v2-theme="blue">
+  <div class="shell-page">
+    <header class="v2-site-nav v2-site-nav--dark" data-v2-site-nav>
+      <a class="v2-site-nav__skip" href="#main-content">Skip to content</a>
+      <div class="v2-site-nav__bar">
+        <div class="v2-site-nav__brand">
+          <a class="v2-site-nav__logo" href="/" aria-label="IMPACT home">
+            <img src="https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/White%20Logo%20-%20Full/IMPACT-Logo--White-Full.png" alt="IMPACT" width="482" height="150">
+          </a>
+          <a class="v2-site-nav__descriptor" href="/endless-customers-coaching">Coaching &amp; Training<br>for Endless Customers</a>
+        </div>
+        <button class="v2-site-nav__mobile-toggle" type="button" aria-expanded="false" aria-controls="review-mobile-menu" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+        </button>
+        <div class="v2-site-nav__drawer" id="review-mobile-menu">
+          <nav class="v2-site-nav__links" aria-label="Primary navigation">
+            <div class="v2-site-nav__item has-panel">
+              <button class="v2-site-nav__top-link" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="review-how-panel" data-menu-button>
+                How We Help
+                <svg class="v2-site-nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="v2-site-nav__mega v2-site-nav__mega--wide" id="review-how-panel" aria-hidden="true">
+                <div class="v2-site-nav__mega-inner">
+                  <section class="v2-site-nav__group v2-site-nav__group--primary">
+                    <a class="v2-site-nav__journey-link" href="/services/deep-diagnostic-roadmap">
+                      <p class="v2-site-nav__group-title">Recommended First Step</p>
+                      <span>Deep Diagnostic &amp; Roadmap</span>
+                      <small>Find out why you’re not winning more customers, what is getting in the way, and what to fix first—with a prioritized 3-, 6-, and 12-month roadmap.</small>
+                    </a>
+                  </section>
+                  <section class="v2-site-nav__group v2-site-nav__group--secondary">
+                    <a class="v2-site-nav__journey-link" href="/endless-customers-coaching">
+                      <p class="v2-site-nav__group-title">Our Core Program</p>
+                      <span>Endless Customers Coaching Program</span>
+                      <small>Build the sales and marketing skills, systems, and accountability your team needs to implement Endless Customers and own your growth.</small>
+                    </a>
+                  </section>
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">Content, Video &amp; AI</p>
+                    <ul>
+                      <li><a href="/services/content-and-video-training"><span>Content &amp; Video Training</span></a></li>
+                      <li><a href="/services/youtube-training"><span>YouTube Training</span></a></li>
+                      <li><a href="/services#ai-content-workflows"><span>AI Content Workflows</span></a></li>
+                      <li><a href="/services#ai-visibility"><span>AI Visibility</span></a></li>
+                    </ul>
+                  </section>
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">Websites, HubSpot &amp; Acquisition</p>
+                    <ul>
+                      <li><a href="/services/website-redesign"><span>Website Redesign</span></a></li>
+                      <li><a href="/services/website-optimization-and-training"><span>Website Optimization &amp; Training</span></a></li>
+                      <li><a href="/services/hubspot-training"><span>HubSpot Training &amp; Services</span></a></li>
+                      <li><a href="/services/learning-center"><span>Learning Center Development</span></a></li>
+                      <li><a href="/services/self-service-tools"><span>Self-Service Tools</span></a></li>
+                      <li><a href="/services/paid-ads"><span>Paid Advertising</span></a></li>
+                      <li class="v2-site-nav__directory-action-item"><a class="is-emphasis" href="/services/"><span>Explore All Services</span></a></li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="v2-site-nav__item"><a class="v2-site-nav__top-link" href="/services/pricing">Pricing</a></div>
+            <div class="v2-site-nav__item has-panel">
+              <button class="v2-site-nav__top-link" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="review-results-panel" data-menu-button>
+                Results
+                <svg class="v2-site-nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="v2-site-nav__mega v2-site-nav__mega--medium" id="review-results-panel" aria-hidden="true">
+                <div class="v2-site-nav__mega-inner">
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">Customer Results</p>
+                    <ul>
+                      <li><a href="/services/success-stories"><span>Success Stories</span></a></li>
+                      <li><a href="/services/success-stories#coaching"><span>Coaching Results</span></a></li>
+                      <li><a href="/services/success-stories#website"><span>Website Results</span></a></li>
+                      <li><a href="/services/success-stories#hubspot"><span>HubSpot Results</span></a></li>
+                      <li><a href="/services/success-stories#ai-content"><span>AI and Content Results</span></a></li>
+                    </ul>
+                  </section>
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">Trust &amp; Recognition</p>
+                    <ul>
+                      <li><a href="/services/reviews"><span>Reviews</span></a></li>
+                      <li><a href="/awards"><span>Awards &amp; Recognition</span></a></li>
+                      <li><a href="/services/guarantee"><span>Money-Back Guarantee</span></a></li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="v2-site-nav__item has-panel">
+              <button class="v2-site-nav__top-link" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="review-learning-panel" data-menu-button>
+                Learning Center
+                <svg class="v2-site-nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="v2-site-nav__mega v2-site-nav__mega--medium" id="review-learning-panel" aria-hidden="true">
+                <div class="v2-site-nav__mega-inner">
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">Learning Center</p>
+                    <ul>
+                      <li><a href="/learn"><span>Explore the Learning Center</span></a></li>
+                      <li><a href="/blog"><span>Articles</span></a></li>
+                      <li><a href="/learn/guides-and-downloads"><span>Guides &amp; Downloads</span></a></li>
+                      <li><a href="/webinars"><span>Webinars</span></a></li>
+                      <li class="v2-site-nav__directory-action-item"><a class="is-emphasis is-accent" href="/learn#subscribe"><span>Subscribe</span></a></li>
+                    </ul>
+                  </section>
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">Endless Customers</p>
+                    <ul>
+                      <li><a href="/learn/what-is-endless-customers"><span>What Is Endless Customers?</span></a></li>
+                      <li><a href="https://www.endlesscustomers.com/"><span>The Book</span></a></li>
+                      <li><a href="https://academy.endlesscustomers.com/"><span>Academy</span></a></li>
+                      <li><a href="https://www.endlesscustomers.com/live"><span>Conference</span></a></li>
+                      <li><a href="/endless-customers-podcast"><span>Podcast</span></a></li>
+                      <li class="v2-site-nav__directory-action-item"><a class="is-emphasis is-accent" href="https://www.endlesscustomers.com/preview-edition"><span>Get a Free Chapter</span></a></li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <div class="v2-site-nav__item has-panel">
+              <button class="v2-site-nav__top-link" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="review-about-panel" data-menu-button>
+                About
+                <svg class="v2-site-nav__caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="v2-site-nav__mega v2-site-nav__mega--compact" id="review-about-panel" aria-hidden="true">
+                <div class="v2-site-nav__mega-inner">
+                  <section class="v2-site-nav__group v2-site-nav__group--directory">
+                    <p class="v2-site-nav__group-title">IMPACT</p>
+                    <ul>
+                      <li><a href="/impact-company-profile"><span>Our Story, Vision, and Values</span></a></li>
+                      <li><a href="/team"><span>Meet the Team</span></a></li>
+                      <li><a href="/careers"><span>Careers</span></a></li>
+                      <li><a href="/request-a-speaker"><span>Request a Speaker</span></a></li>
+                      <li><a href="/contact-us"><span>Contact</span></a></li>
+                    </ul>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </nav>
+          <a class="v2-site-nav__academy-login v2-site-nav__academy-login--desktop" href="https://academy.endlesscustomers.com/" aria-label="Log in to the Endless Customers Academy" aria-describedby="academy-login-tooltip">
+            <span class="v2-site-nav__academy-icon v2-doodle-icon" aria-hidden="true" style="--v2-doodle-icon-source:url('/design-system/assets/icons/doodle/svg/interface/user.svg?v=20260729-shell-23');--v2-doodle-icon-size:16px"></span>
+            <span class="v2-site-nav__academy-label">Log in to the Endless Customers Academy</span>
+            <span class="v2-site-nav__academy-tooltip" id="academy-login-tooltip" role="tooltip">Log in to the Academy</span>
+          </a>
+          <div class="v2-site-nav__cta"><a data-impact-button="true" data-impact-button-variant="dark" href="/services/schedule-now" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-body);font-weight:700;font-size:16px;line-height:1.1;border-radius:999px;border:2px solid transparent;padding:12px 24px;color:#fff;text-decoration:none;white-space:nowrap">Let’s Talk<span aria-hidden="true">→</span></a></div>
+          <a class="v2-site-nav__academy-login v2-site-nav__academy-login--mobile" href="https://academy.endlesscustomers.com/" aria-label="Log in to the Endless Customers Academy">
+            <span class="v2-site-nav__academy-icon v2-doodle-icon" aria-hidden="true" style="--v2-doodle-icon-source:url('/design-system/assets/icons/doodle/svg/interface/user.svg?v=20260729-shell-23');--v2-doodle-icon-size:16px"></span>
+            <span class="v2-site-nav__academy-label">Log in to the Endless Customers Academy</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="shell-hero">
+    <main id="main-content" class="shell-hero__content">
+      <div>
+        <p class="shell-eyebrow">Global Shell Review</p>
+        <h1>One Clear Path From Question To Conversation</h1>
+        <p class="shell-hero__lead">The navigation helps unsure buyers find a starting point, lets high-intent buyers jump directly to a service, and keeps every commercial route connected to a simple Let’s Talk invitation.</p>
+      </div>
+      <aside class="shell-hero__aside">
+        <h2>What To Test</h2>
+        <ol>
+          <li>Open How We Help and confirm that the Deep Diagnostic is the clearest first step.</li>
+          <li>Confirm that the Endless Customers Coaching Program reads as the core program—not another specialist service.</li>
+          <li>Resize the page and test the mobile menu and nested sections.</li>
+          <li>Confirm that every current specialist service is easy to scan without competing with the journey.</li>
+        </ol>
+      </aside>
+    </main>
+  </div>
+
+  <section class="shell-body" aria-labelledby="shell-body-title">
+    <div class="shell-body__inner">
+      <h2 id="shell-body-title">Built Around The Buyer’s Decision</h2>
+      <div class="shell-body__copy">
+        <p>How We Help orients. Pricing reduces uncertainty. Results establishes trust. The Learning Center supports self-directed research. About explains the company. Let’s Talk is the consistent human invitation into the Explore Call process.</p>
+        <p>This specimen intentionally excludes a permanent conference destination and avoids a separate top-level Services item. Paid Advertising remains available through IMPACT; its destination page explains that the service is delivered by Swell.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="v2-site-footer" id="review-footer">
+    <div class="v2-site-footer__inner">
+      <section class="v2-site-footer__cta" aria-labelledby="review-footer-cta-title" data-v2-reveal>
+        <div><p class="v2-site-footer__eyebrow">Start With Clarity</p><h2 id="review-footer-cta-title">Let’s Find Out What’s Holding You Back.</h2></div>
+        <div class="v2-site-footer__cta-content"><p>Talk with Tom about where growth is getting stuck. He’ll help you decide whether the Deep Diagnostic &amp; Roadmap is the right first step—and what to do next.</p><div class="v2-site-footer__cta-action-row"><div class="v2-site-footer__cta-person"><img src="../../assets/people/tom-discipio.jpg" alt="" width="72" height="72"><span><strong>Talk with Tom DiScipio</strong><small>Managing Partner &amp; Client Advisor</small></span></div><a class="v2-site-footer__cta-link" href="/services/schedule-now" aria-describedby="review-footer-cta-assurance">Let’s Talk<span aria-hidden="true">→</span></a></div><p class="v2-site-footer__cta-assurance" id="review-footer-cta-assurance">A real conversation. No pitch. No obligation.</p></div>
+      </section>
+
+      <div class="v2-site-footer__identity-trust">
+        <section class="v2-site-footer__identity" aria-label="About IMPACT" data-v2-reveal>
+          <div class="v2-site-footer__brand">
+            <a href="/" aria-label="IMPACT home"><img src="https://www.impactplus.com/hubfs/IMPACT%20Style%20and%20Branding%20Assets/White%20Logo%20-%20Full/IMPACT-Logo--White-Full.png" alt="IMPACT" width="482" height="150"></a>
+            <p class="v2-site-footer__brand-description">We help companies build the skills and systems to become the most known, trusted, and recommended company in their market. IMPACT is the parent company of the <a href="https://www.endlesscustomers.com/">Endless Customers</a> and <a href="https://www.swellsquad.com/">Swell</a> brands.</p>
+          </div>
+        </section>
+
+        <section class="v2-site-footer__trust" aria-labelledby="review-footer-trust-title">
+          <div class="v2-site-footer__trust-intro" data-v2-reveal><p class="v2-site-footer__eyebrow">Credentials</p><h2 id="review-footer-trust-title">Trusted systems, independently verifiable.</h2></div>
+          <div class="v2-site-footer__credentials" data-v2-stagger="footer-credentials">
+            <a class="v2-site-footer__credential" href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener noreferrer" data-v2-reveal><span class="v2-site-footer__credential-image"><img src="../../../services/deep-diagnostic-roadmap/assets/SolutionPartnerTierBadges_FINAL_DIAMOND_CREAM.svg" alt="" width="1080" height="1080" loading="lazy"></span><span><strong>HubSpot Diamond Solutions Partner</strong><small>View IMPACT’s verified HubSpot partner profile and reviews.</small><span class="v2-site-footer__credential-action">Verify credential <span aria-hidden="true">↗</span></span></span><span class="v2-visually-hidden"> (opens in a new tab)</span></a>
+            <a class="v2-site-footer__credential" href="https://www.eosworldwide.com/we-run-on-eos-new-2" target="_blank" rel="noopener noreferrer" data-v2-reveal><span class="v2-site-footer__credential-image"><img src="https://www.eosworldwide.com/wp-content/uploads/2023/03/EOS-WeRunOnEOS-Badge.png" alt="" width="600" height="396" loading="lazy"></span><span><strong>We Run on EOS</strong><small>See the operating system IMPACT uses to create focus and accountability.</small><span class="v2-site-footer__credential-action">Learn what it means <span aria-hidden="true">↗</span></span></span><span class="v2-visually-hidden"> (opens in a new tab)</span></a>
+          </div>
+        </section>
+      </div>
+
+      <nav class="v2-site-footer__columns" aria-label="Footer navigation" data-v2-stagger="footer-columns">
+        <section class="v2-site-footer__column" data-v2-reveal><h3><a href="/services">How We Help</a></h3><ul><li><a href="/services/deep-diagnostic-roadmap">Deep Diagnostic &amp; Roadmap</a></li><li><a href="/endless-customers-coaching">Endless Customers Coaching Program</a></li><li><a href="/services/content-and-video-training">Content &amp; Video Training</a></li><li><a href="/services/website-redesign">Website Redesign</a></li><li><a href="/services#ai-visibility">AI Visibility</a></li><li><a href="/industries">Industries</a></li><li><a href="/services">Explore All Services</a></li></ul></section>
+        <section class="v2-site-footer__column" data-v2-reveal><h3>Pricing &amp; Results</h3><ul><li><a href="/services/pricing">Pricing</a></li><li><a href="/services/pricing#instant-estimate">Instant Pricing Estimate</a></li><li><a href="/services/success-stories">Success Stories</a></li><li><a href="/services/reviews">Google Reviews</a></li><li><a href="/services/guarantee">Money-Back Guarantee</a></li><li><a href="/awards">Awards &amp; Recognition</a></li></ul></section>
+        <section class="v2-site-footer__column" data-v2-reveal><h3><a href="/learn">Learning Center</a></h3><ul><li><a href="/learn">Explore the Learning Center</a></li><li><a href="/blog">Articles</a></li><li><a href="/learn/guides-and-downloads">Guides &amp; Downloads</a></li><li><a href="/webinars">Webinars</a></li><li><a href="/learn#subscribe">Subscribe</a></li></ul></section>
+        <section class="v2-site-footer__column" data-v2-reveal><h3><a href="https://www.endlesscustomers.com/">Endless Customers</a></h3><ul><li><a href="/learn/what-is-endless-customers">What Is Endless Customers?</a></li><li><a href="/what-is-they-ask-you-answer">They Ask, You Answer</a></li><li><a href="https://www.endlesscustomers.com/book/">The Book</a></li><li><a href="https://academy.endlesscustomers.com/">Academy</a></li><li><a href="https://www.endlesscustomers.com/live">Conference</a></li><li><a href="/endless-customers-podcast">Podcast</a></li><li><a href="https://www.endlesscustomers.com/editorial-process">Editorial Process</a></li></ul></section>
+        <section class="v2-site-footer__column" data-v2-reveal><h3><a href="/impact-company-profile">About IMPACT</a></h3><ul><li><a href="/impact-company-profile">Our Story, Vision, and Values</a></li><li><a href="/team">Meet the Team</a></li><li><a href="/careers">Careers</a></li><li><a href="/request-a-speaker">Request a Speaker</a></li><li><a href="/contact-us">Contact</a></li><li><a href="/brands">Our Brands</a></li><li><a href="/hubspot-solutions-partner">HubSpot Solutions Partner</a></li><li><a href="https://www.endlesscustomers.com/for-ai-agents">For AI Agents</a></li></ul></section>
+      </nav>
+
+      <div class="v2-site-footer__utility" data-v2-reveal>
+        <div><p class="v2-site-footer__legal-name">IMPACT Branding &amp; Design, LLC</p><address>125 Commerce Ct STE 9<br>Cheshire, CT 06410<br><a href="tel:2032654377">(203)&nbsp;265&#8209;4377</a></address></div>
+        <div class="v2-site-footer__social-block"><p class="v2-site-footer__social-label" id="review-footer-social-title">Follow &amp; Listen</p><nav class="v2-site-footer__social" aria-labelledby="review-footer-social-title"><ul><li><a href="https://www.linkedin.com/company/1210178" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: IMPACT social profile (opens in a new tab)"><img src="../../assets/icons/doodle/png/logos/linkedin.png" alt="" width="25" height="25" loading="lazy"></a></li><li><a href="https://www.youtube.com/@IMPACTbnd" target="_blank" rel="noopener noreferrer" aria-label="YouTube: IMPACT social profile (opens in a new tab)"><img src="../../assets/icons/doodle/png/logos/youtube.png" alt="" width="25" height="25" loading="lazy"></a></li><li><a href="https://www.instagram.com/impactbnd/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: IMPACT social profile (opens in a new tab)"><img src="../../assets/icons/doodle/png/logos/instagram.png" alt="" width="25" height="25" loading="lazy"></a></li><li><a href="https://www.tiktok.com/@impactbnd" target="_blank" rel="noopener noreferrer" aria-label="TikTok: IMPACT social profile (opens in a new tab)"><img src="../../assets/icons/doodle/png/logos/tik%20tok.png" alt="" width="25" height="25" loading="lazy"></a></li><li><a href="https://www.facebook.com/impactbnd/" target="_blank" rel="noopener noreferrer" aria-label="Facebook: IMPACT social profile (opens in a new tab)"><img src="../../assets/icons/doodle/png/logos/facebook.png" alt="" width="25" height="25" loading="lazy"></a></li><li><a href="https://open.spotify.com/show/1w2rStYbPKwKKsrf8Ofleu" target="_blank" rel="noopener noreferrer" aria-label="Spotify: Listen to the Endless Customers podcast (opens in a new tab)"><img src="../../assets/icons/doodle/png/logos/spotify.png" alt="" width="25" height="25" loading="lazy"></a></li></ul></nav></div>
+      </div>
+      <div class="v2-site-footer__legal"><nav aria-label="Legal"><ul><li><a href="/privacy-policy">Privacy Policy</a></li><li><a href="/accessibility">Accessibility</a></li><li><a href="/brand">Brand Guidelines</a></li><li><a href="/trademarks">Trademarks</a></li></ul></nav><p>© 2026 IMPACT. All rights reserved.</p></div>
+    </div>
+  </footer>
+  </div>
+
+<script src="../../motion/v2-motion.js?v=20260729-shell-44"></script>
+<script>
+(() => {
+  const header = document.querySelector('[data-v2-site-nav]');
+  const mobileToggle = header.querySelector('.v2-site-nav__mobile-toggle');
+  const menuButtons = [...header.querySelectorAll('[data-menu-button]')];
+  let keyboardMode = false;
+  const closeMenus = () => {
+    header.querySelectorAll('.v2-site-nav__item.is-open').forEach((item) => item.classList.remove('is-open'));
+    menuButtons.forEach((button) => button.setAttribute('aria-expanded', 'false'));
+    header.querySelectorAll('.v2-site-nav__mega').forEach((panel) => panel.setAttribute('aria-hidden', 'true'));
+  };
+  const closeAll = () => {
+    closeMenus();
+    header.classList.remove('is-mobile-open');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+    mobileToggle.setAttribute('aria-label', 'Open menu');
+    mobileToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>';
+    document.body.style.overflow = '';
+  };
+
+  menuButtons.forEach((button) => button.addEventListener('click', () => {
+    const item = button.closest('.v2-site-nav__item');
+    const panel = document.getElementById(button.getAttribute('aria-controls'));
+    const opening = !item.classList.contains('is-open');
+    closeMenus();
+    if (opening) {
+      header.classList.remove('is-scroll-hidden');
+      item.classList.add('is-open');
+      button.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+    }
+  }));
+
+  mobileToggle.addEventListener('click', () => {
+    const opening = !header.classList.contains('is-mobile-open');
+    closeAll();
+    if (opening) {
+      header.classList.remove('is-scroll-hidden');
+      header.classList.add('is-mobile-open');
+      mobileToggle.setAttribute('aria-expanded', 'true');
+      mobileToggle.setAttribute('aria-label', 'Close menu');
+      mobileToggle.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>';
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    keyboardMode = false;
+    if (!header.contains(event.target)) closeMenus();
+  });
+  document.addEventListener('keydown', (event) => {
+    keyboardMode = true;
+    if (event.key === 'Escape') closeAll();
+  });
+  header.addEventListener('focusin', () => header.classList.remove('is-scroll-hidden'));
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1100) closeAll();
+  });
+
+  let lastScrollY = Math.max(window.scrollY, 0);
+  let directionStart = lastScrollY;
+  let lastDirection = null;
+  let scrollFrame = null;
+
+  const updateHeaderOnScroll = () => {
+    const y = Math.max(window.scrollY, 0);
+    const direction = y > lastScrollY ? 'down' : y < lastScrollY ? 'up' : lastDirection;
+    const menuOpen = header.classList.contains('is-mobile-open') || header.querySelector('.v2-site-nav__item.is-open');
+    const hasKeyboardFocus = keyboardMode && header.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
+
+    header.classList.toggle('is-scrolled', y > 12);
+
+    if (menuOpen || hasKeyboardFocus || y <= 16) {
+      header.classList.remove('is-scroll-hidden');
+    } else if (direction) {
+      if (direction !== lastDirection) {
+        directionStart = lastScrollY;
+        lastDirection = direction;
+      }
+
+      const distance = Math.abs(y - directionStart);
+      if (direction === 'down' && y > 120 && distance >= 18) {
+        header.classList.add('is-scroll-hidden');
+      } else if (direction === 'up' && distance >= 10) {
+        header.classList.remove('is-scroll-hidden');
+      }
+    }
+
+    lastScrollY = y;
+    scrollFrame = null;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (scrollFrame === null) scrollFrame = window.requestAnimationFrame(updateHeaderOnScroll);
+  }, { passive: true });
+  updateHeaderOnScroll();
+  if (window.IMPACTV2Motion) window.IMPACTV2Motion.init(document.body);
+
+  // Keep the local design proof on one page while its destinations are staged.
+  document.querySelectorAll('a[href^="/"]').forEach((link) => link.addEventListener('click', (event) => {
+    if (link.getAttribute('href') !== '#main-content') event.preventDefault();
+  }));
+})();
+</script>
+</body>
+</html>

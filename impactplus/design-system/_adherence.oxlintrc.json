@@ -185,8 +185,8 @@
         "message": "<LogoWall> doesn't accept that prop. Declared props: logos, grayscale."
       },
       {
-        "selector": "JSXOpeningElement[name.name='NavBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:links|onDark|ctaLabel|ctaHref|loginHref|key|ref|className|style|children)$/]",
-        "message": "<NavBar> doesn't accept that prop. Declared props: links, onDark, ctaLabel, ctaHref, loginHref."
+        "selector": "JSXOpeningElement[name.name='NavBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:items|onDark|ctaLabel|ctaHref|homeHref|activeHref|maxWidth|key|ref|className|style|children)$/]",
+        "message": "<NavBar> doesn't accept that prop. Declared props: items, onDark, ctaLabel, ctaHref, homeHref, activeHref, maxWidth."
       },
       {
         "selector": "JSXOpeningElement[name.name='NewsletterForm'] > JSXAttribute > JSXIdentifier[name!=/^(?:placeholder|buttonLabel|onDark|layout|onSubmit|key|ref|className|style|children)$/]",

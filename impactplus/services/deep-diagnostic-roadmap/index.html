@@ -1,19 +1,26 @@
 <!-- DDR Service Page — approved V2 coded-body proof, 2026-07-28.
-     Section 1 (Overview) remains approved and unchanged. Section 2 (What You
-     Get) follows the approved four-beat visual blueprint: roadmap, 13-area and
-     124-point investigation, benchmark-to-priority evidence, and the live
-     coach-led recommendation. Section 3 (How It Works) follows its approved
-     four-step blueprint. Pricing and the Money-Back Guarantee follow their
-     approved blueprint. The approved post-guarantee sequence now carries the
-     Explore Call flow, client results, FAQ, IMPACT context, and final CTA. -->
+     The outcome-led hero is followed by the shared decision snapshot: direct
+     definition, provider/methodology relationship, AI/human responsibility,
+     essential facts, and a proof bridge. The five anchored chapters remain
+     Overview, What You Get, How It Works, Reviews, and Pricing. Detailed proof
+     now appears before price and conversion. FAQ copy expands rather than
+     repeats the snapshot, and a curated Learning Center cluster supports the
+     decision before the IMPACT authority and final CTA blocks. -->
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deep Diagnostic &amp; Roadmap | IMPACT</title>
-<meta name="description" content="Find out what is holding back your digital sales and marketing, what to fix first, and how to move forward with a coach-built Deep Diagnostic &amp; Roadmap.">
-<link rel="stylesheet" href="../../design-system/styles.css?v=20260728-2">
+<title>Deep Diagnostic &amp; Roadmap for Sales &amp; Marketing | IMPACT</title>
+<meta name="description" content="Find what is blocking growth and get a prioritized 3-, 6-, and 12-month roadmap. IMPACT's $5,000 Deep Diagnostic takes under two weeks.">
+<!-- HubSpot publish contract: the production template owns the canonical URL,
+     Open Graph/X values, and page-specific JSON-LD assembled from governed
+     fields and the shared entity registry. Do not hard-code those launch-only
+     values into this local design proof. -->
+<link rel="stylesheet" href="../../design-system/styles.css?v=20260729-shell-43">
+<!-- Direct V2 load keeps the approved shell synchronized in browsers that
+     retain a stale nested @import from styles.css. -->
+<link rel="stylesheet" href="../../design-system/tokens/v2.css?v=20260729-shell-43">
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <style>
@@ -24,7 +31,7 @@
      rather than duplicated. Only page-specific styles remain below. */
   :root { --peek: 150px; }
   html { scroll-behavior: smooth; }
-  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #faq, #about, #final-cta, #video, #start { scroll-margin-top: 76px; }
+  #overview, #what-you-get, #how-it-works, #pricing, #reviews, #faq, #about, #final-cta, #video, #start { scroll-margin-top: calc(var(--ddr-shell-nav-height, 80px) + 76px); }
   body { margin: 0; background: var(--surface-page, #fff); }
   #root { min-height: 100vh; }
 
@@ -88,8 +95,25 @@
   }
 
   .subnav-fixed {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    position: fixed; top: var(--ddr-shell-nav-height, 80px); left: 0; right: 0; z-index: 900;
     animation: subnav-in .22s ease;
+    transition: top 240ms var(--v2-motion-ease-out);
+  }
+  .ddr-v2 > .v2-site-nav.is-scrolled { box-shadow: none; }
+  .ddr-v2 > .v2-site-nav.is-scroll-hidden + .subnav-fixed { top: 0; }
+  .ddr-v2 > .v2-site-nav .v2-site-nav__cta {
+    max-width: 220px;
+    overflow: hidden;
+    transition:
+      max-width 220ms var(--v2-motion-ease-out),
+      opacity 160ms var(--v2-motion-ease-out),
+      visibility 160ms var(--v2-motion-ease-out);
+  }
+  .ddr-v2.has-service-subnav > .v2-site-nav .v2-site-nav__cta {
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
   @keyframes subnav-in { from { transform: translateY(-100%); } to { transform: translateY(0); } }
 
@@ -932,7 +956,7 @@
   /* .band/.band-sm/.wrap/.wrap-narrow promoted to the design system 2026-07-25. */
   .center { text-align: center; }
 </style>
-<link rel="stylesheet" href="v2.css?v=20260728-22">
+<link rel="stylesheet" href="v2.css?v=20260729-shell-43">
 </head>
 <body>
 <div id="root"></div>
@@ -940,8 +964,11 @@
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
-<script src="../../design-system/_ds_bundle.js?v=20260728-22"></script>
-<script src="../../design-system/motion/v2-motion.js?v=20260728-22"></script>
+<script src="../../design-system/_ds_bundle.js?v=20260729-shell-44"></script>
+<!-- V2-only override keeps the legacy component bundle recoverable while this
+     page proves the approved global navigation and footer. -->
+<script src="../../design-system/_v2_shell_bundle.js?v=20260729-shell-44"></script>
+<script src="../../design-system/motion/v2-motion.js?v=20260729-shell-44"></script>
 
 <script type="text/babel">
 const PLACEHOLDER_ROADMAP = "data:image/svg+xml;utf8," + encodeURIComponent(
@@ -1115,14 +1142,17 @@ function Page() {
   const [showSubNav, setShowSubNav] = React.useState(false);
   const [activeAnchor, setActiveAnchor] = React.useState("#overview");
   const [bookingStep, setBookingStep] = React.useState("form");
+  const [videoOpen, setVideoOpen] = React.useState(false);
   const bookingStateHeading = React.useRef(null);
+  const videoTrigger = React.useRef(null);
+  const videoClose = React.useRef(null);
   const hubspotReady = Boolean(
     HUBSPOT_EXPLORE_CALL.portalId &&
     HUBSPOT_EXPLORE_CALL.formId &&
     HUBSPOT_EXPLORE_CALL.meetingUrl
   );
   React.useEffect(() => {
-    const ids = ["overview", "what-you-get", "how-it-works", "pricing", "reviews"];
+    const ids = ["overview", "what-you-get", "how-it-works", "reviews", "pricing"];
     const onScroll = () => {
       setShowSubNav(window.scrollY > window.innerHeight * 0.55);
       let current = "#overview";
@@ -1141,12 +1171,25 @@ function Page() {
     if (bookingStep !== "form") bookingStateHeading.current?.focus();
   }, [bookingStep]);
 
+  React.useEffect(() => {
+    if (!videoOpen) return;
+    videoClose.current?.focus();
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setVideoOpen(false);
+        requestAnimationFrame(() => videoTrigger.current?.focus());
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [videoOpen]);
+
   const subNavLinks = [
     { label: "Overview", href: "#overview" },
     { label: "What You Get", href: "#what-you-get" },
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Pricing", href: "#pricing" },
     { label: "Reviews", href: "#reviews" },
+    { label: "Pricing", href: "#pricing" },
   ];
 
   const handleSubNavClick = (event) => {
@@ -1164,23 +1207,25 @@ function Page() {
   };
 
   return (
-    <div className="impact-v2 ddr-v2" data-v2-theme="blue">
+    <div className={`impact-v2 ddr-v2${showSubNav ? " has-service-subnav" : ""}`} data-v2-theme="blue">
+      <NavBar activeHref="/services/deep-diagnostic-roadmap" />
       {showSubNav && (
         <div className="subnav-fixed" onClick={handleSubNavClick}>
           <SubNav
             label="Deep Diagnostic & Roadmap"
             links={subNavLinks}
             activeHref={activeAnchor}
-            ctaLabel="Schedule an Explore Call"
+            ctaLabel="Let’s Talk"
             ctaHref="#start"
           />
         </div>
       )}
 
+      <main id="main-content">
+
       {/* ================= SECTION 1 · OVERVIEW ================= */}
 
       <div className="hero-wrap v2-viewport-hero">
-        <NavBar ctaVariant="dark" style={{ background: "transparent", position: "relative", zIndex: 3 }} />
         <div className="hero-grid">
           <div className="hero-left v2-hero-enter">
             <div className="hero-eyebrow">The Endless Customers Deep Diagnostic &amp; Roadmap</div>
@@ -1193,33 +1238,80 @@ function Page() {
             </div>
             <p className="hero-micro">A real first conversation. No pitch, no obligation.</p>
             <div className="hero-trust">
-              <span><StarRating rating={5} /><b>5.0 on HubSpot</b>&nbsp;· 327 reviews</span>
+              <a href="https://ecosystem.hubspot.com/marketplace/solutions/impact" target="_blank" rel="noopener noreferrer" aria-label="Read IMPACT's 327 client reviews on HubSpot"><StarRating rating={5} /><b>5.0 on HubSpot</b>&nbsp;· 327 reviews</a>
               <span><b>300+</b> companies coached</span>
-              <span className="guarantee-chip">
+              <a className="guarantee-chip" href="#guarantee">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <circle cx="12" cy="12" r="11" fill="var(--ec-green)"/>
                   <path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
                 Money-Back Guarantee
-              </span>
+              </a>
             </div>
           </div>
           <div className="hero-right v2-hero-enter v2-hero-enter-delay" id="video">
             <div className="hero-video-card v2-hero-media">
-              <a className="hero-video-poster" href="#" aria-label="Play the 2-minute overview">
-                <img src="assets/bob-video-poster-clean-1.png" alt="Bob Ruffolo, your Endless Customers coach" />
-              </a>
-              <a className="hero-video-caption" href="#">
-                <span className="play"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7 5 20 12 7 19"/></svg></span>
-                <span className="cap-text">
-                  <span className="cap-title">How the Deep Diagnostic &amp; Roadmap Works</span>
-                  <span className="cap-sub">Watch a 2-minute overview</span>
+              <button className="v2-media-trigger" type="button" ref={videoTrigger} onClick={() => setVideoOpen(true)} aria-haspopup="dialog">
+                <span className="hero-video-poster">
+                  <img src="assets/bob-video-poster-clean-1.png" alt="Bob Ruffolo introducing the Endless Customers Deep Diagnostic and Roadmap" width="1376" height="768" fetchpriority="high" decoding="async" />
                 </span>
-              </a>
+                <span className="hero-video-caption">
+                  <span className="play"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="7 5 20 12 7 19"/></svg></span>
+                  <span className="cap-text">
+                    <span className="cap-title">How the Deep Diagnostic &amp; Roadmap Works</span>
+                    <span className="cap-sub">Watch a 2-minute overview</span>
+                  </span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {videoOpen && (
+        <div className="v2-media-dialog" role="dialog" aria-modal="true" aria-labelledby="video-dialog-title" onMouseDown={(event) => {
+          if (event.target === event.currentTarget) {
+            setVideoOpen(false);
+            requestAnimationFrame(() => videoTrigger.current?.focus());
+          }
+        }}>
+          <div className="v2-media-dialog__panel">
+            <button className="v2-media-dialog__close" type="button" ref={videoClose} onClick={() => {
+              setVideoOpen(false);
+              requestAnimationFrame(() => videoTrigger.current?.focus());
+            }}>Close</button>
+            <h2 className="sr-only" id="video-dialog-title">How the Deep Diagnostic &amp; Roadmap Works</h2>
+            <div className="v2-media-dialog__media">
+              <img src="assets/bob-video-poster-clean-1.png" alt="" width="1376" height="768" />
+            </div>
+            <p className="v2-media-dialog__note"><strong>Video placeholder:</strong> the interaction, focus behavior, and responsive presentation are ready. The final hosted overview video and transcript will be connected before publication.</p>
+          </div>
+        </div>
+      )}
+
+      <section className="v2-decision-snapshot" aria-labelledby="decision-snapshot-title">
+        <div className="v2-decision-snapshot__wrap">
+          <div className="v2-decision-snapshot__definition">
+            <div>
+              <p className="v2-decision-snapshot__label">The Direct Answer</p>
+              <h2 id="decision-snapshot-title">What the Deep Diagnostic &amp; Roadmap Is</h2>
+            </div>
+            <div>
+              <p className="v2-decision-snapshot__answer">The Endless Customers Deep Diagnostic &amp; Roadmap is an AI-assisted, coach-led investigation for established companies that know growth has slowed but need to understand why. In under two weeks, IMPACT examines 124 factors across 13 areas and delivers a prioritized 3-, 6-, and 12-month plan.</p>
+              <p className="v2-decision-snapshot__provider"><strong>AI expands the analysis. Your coach owns the judgment.</strong> AI helps our coaches find patterns and examine more evidence, while an experienced IMPACT coach validates the findings, weighs them against your goals and constraints, and determines what your team should do first. The finished roadmap is yours to implement with IMPACT, internally, or with another partner.</p>
+            </div>
+          </div>
+
+          <dl className="v2-fact-grid" aria-label="Deep Diagnostic and Roadmap essential facts">
+            <div><dt>Investment</dt><dd>$5,000 one time</dd></div>
+            <div><dt>Turnaround</dt><dd>Under two weeks</dd></div>
+            <div><dt>Investigation</dt><dd>124 points, 13 areas</dd></div>
+            <div><dt>Deliverable</dt><dd>3-, 6-, and 12-month plan</dd></div>
+          </dl>
+
+          <a className="v2-decision-snapshot__proof-link" href="#reviews">See what clarity helped clients accomplish →</a>
+        </div>
+      </section>
 
       <div className="bucket" style={{ background: "#fff" }}>
       {/* The Shift — header + copy left, Then/Now visual right, one balanced 50/50 block */}
@@ -1258,17 +1350,16 @@ function Page() {
         </div>
       </div>
 
-      {/* Beat 3 — What It Is: copy left, roadmap + coach composite right, Overview's single CTA */}
+      {/* Beat 3 — What the investigation reveals: deeper value without
+          repeating the direct definition and facts above. */}
       <div className="band" style={{ paddingTop: 44 }}>
         <div className="wrap shift-split">
           <div className="shift-copy">
-            <h2 className="wynter-h2" style={{ marginBottom: 26 }}>What the Deep Diagnostic &amp; Roadmap <span className="hl-box">Actually Is</span></h2>
-            <p className="prose-lead">A clear read on your business, not another opinion.</p>
-            <p className="prose-body">A coach studies your business, your market, and the competitors you actually lose to, using AI to dig deep and their own experience to make sense of what it finds.</p>
-            <p className="prose-body">They check how you show up in Google and AI, where you're invisible, and where marketing and sales leak customers. Then they tell you <strong>what we'd do if it were our business.</strong></p>
-            <p className="prose-body"><strong>It's the smallest way to start.</strong> One-time, and nothing bigger to decide until you've seen the plan.</p>
-            <p className="prose-body"><strong>What it is:</strong> a clear read on what's going on, and what to fix first, second, and third.</p>
-            <p className="prose-body"><strong>What it isn't:</strong> a generic scorecard, an SEO scan, or a five-minute quiz.</p>
+            <h2 className="wynter-h2" style={{ marginBottom: 26 }}>See What Is Actually <span className="hl-box">Holding Growth Back</span></h2>
+            <p className="prose-lead">Surface metrics show what changed. The investigation connects those changes to the decisions buyers make before your team ever hears from them.</p>
+            <p className="prose-body">Your coach studies the business, market, and competitors buyers can actually choose. They examine how you appear in Google and AI, where trust breaks down, and where the website, content, and sales process make your company harder to select.</p>
+            <p className="prose-body">Then the evidence is weighed against your goals, resources, and capacity. <strong>You learn which few problems are suppressing growth and which tempting projects can wait.</strong></p>
+            <p className="prose-body">The recommendation may involve IMPACT, your internal team, another specialist, or no immediate investment. The goal is the order of operations we would choose if it were our business.</p>
             <div style={{ marginTop: 28 }}>
               <Button variant="primary" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
               <p className="prose-body" style={{ fontSize: 15, marginTop: 12, color: "var(--text-muted)" }}>A real first conversation. No pitch, no obligation.</p>
@@ -1498,6 +1589,57 @@ function Page() {
         </div>
       </section>
 
+      {/* ================= CLIENT RESULTS ================= */}
+      <section className="post-section post-results" id="reviews" aria-labelledby="results-title">
+        <div className="post-wrap">
+          <div className="sec-line" aria-hidden="true"></div>
+          <p className="post-eyebrow">Client Results</p>
+          <div className="post-results-heading">
+            <h2 className="post-h2" id="results-title">When Teams Know <span className="hl-box">What to Do Next</span></h2>
+            <p className="post-lead">The diagnostic is the starting point, not a promise that a report alone creates growth. These clients paired clearer priorities with the work required to carry them out.</p>
+          </div>
+
+          <div className="post-proof-grid">
+            <article className="post-testimonial">
+              <div>
+                <h3 className="post-outcome">Sales Opportunities Tripled</h3>
+                <blockquote>“We were stuck trying to DIY our marketing. IMPACT gave us the structure and clarity we needed. Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years. That’s the power of trust-building content.”</blockquote>
+              </div>
+              <div className="post-person">
+                <img src="assets/mike-ritzema.jpg" alt="Mike Ritzema, Founder and President of Superior Trucking Payroll" width="180" height="180" loading="lazy" decoding="async" />
+                <div className="post-person-copy"><strong>Mike Ritzema</strong><span>Founder and President</span><small>Superior Trucking Payroll</small></div>
+              </div>
+            </article>
+
+            <article className="post-testimonial">
+              <div>
+                <h3 className="post-outcome">Grew to an $8 Million Business</h3>
+                <blockquote>“We had a great product, but IMPACT helped us clarify our message and show our value through transparency. By educating instead of selling, we built trust, increased awareness, and accelerated growth in a way that felt authentic and sustainable.”</blockquote>
+              </div>
+              <div className="post-person">
+                <img src="assets/jeffery-linta.jpg" alt="Jeffery Linta, CEO of Linta Roofing" width="180" height="180" loading="lazy" decoding="async" />
+                <div className="post-person-copy"><strong>Jeffery Linta</strong><span>CEO</span><small>Linta Roofing</small></div>
+              </div>
+            </article>
+
+            <article className="post-testimonial">
+              <div>
+                <h3 className="post-outcome">Sales and Marketing Aligned</h3>
+                <blockquote>“Our coach brought our teams together and aligned them on a single methodology. The results speak for themselves.”</blockquote>
+              </div>
+              <div className="post-person">
+                <img src="assets/isabelle-braeutigam.jpg" alt="Isabelle Braeutigam, Marketing Manager at Custom Built Design and Remodeling" width="173" height="180" loading="lazy" decoding="async" />
+                <div className="post-person-copy"><strong>Isabelle Braeutigam</strong><span>Marketing Manager</span><small>Custom Built Design &amp; Remodeling</small></div>
+              </div>
+            </article>
+          </div>
+
+          <div className="post-results-footer">
+            <a className="post-link" href="https://www.impactplus.com/endless-customers-coaching/success-stories">See more IMPACT client success stories →</a>
+          </div>
+        </div>
+      </section>
+
       {/* ================= SECTION 4 · PRICING ================= */}
       <section className="pg-pricing" id="pricing" aria-labelledby="pricing-title">
         <div className="pg-wrap">
@@ -1627,7 +1769,7 @@ function Page() {
               <p className="post-lead">Tell us what is happening, what has changed, and why solving it matters now, then choose a time for a one-hour Explore Call. It is an honest working conversation about your goals, gaps, and whether this is the right next step, with no checkout or commitment.</p>
             </div>
 
-            <div className="post-booking-panel" aria-live="polite">
+            <div className="post-booking-panel">
               <ol className="post-stepper" aria-label="Explore Call booking progress">
                 {[
                   ["form", "1", "Tell Us What’s Going On"],
@@ -1674,7 +1816,7 @@ function Page() {
 
                   <div className="post-form-group">
                     <label htmlFor="explore-website">Company website</label>
-                    <input id="explore-website" name="website" autoComplete="url" inputMode="url" placeholder="company.com" required />
+                    <input id="explore-website" name="website" type="url" autoComplete="url" inputMode="url" placeholder="https://company.com" required />
                   </div>
 
                   <div className="post-form-group">
@@ -1760,56 +1902,6 @@ function Page() {
         </div>
       </section>
 
-      {/* ================= CLIENT RESULTS ================= */}
-      <section className="post-section post-results" id="reviews" aria-labelledby="results-title">
-        <div className="post-wrap">
-          <div className="sec-line" aria-hidden="true"></div>
-          <p className="post-eyebrow">Client Results</p>
-          <div className="post-results-heading">
-            <h2 className="post-h2" id="results-title">When Teams Know <span className="hl-box">What to Do Next</span></h2>
-          </div>
-
-          <div className="post-proof-grid">
-            <article className="post-testimonial">
-              <div>
-                <h3 className="post-outcome">Sales Opportunities Tripled</h3>
-                <blockquote>“We were stuck trying to DIY our marketing. IMPACT gave us the structure and clarity we needed. Sales opportunities tripled, especially from qualified leads. We even hired our first salesperson in four years. That’s the power of trust-building content.”</blockquote>
-              </div>
-              <div className="post-person">
-                <img src="assets/mike-ritzema.jpg" alt="Mike Ritzema, Founder and President of Superior Trucking Payroll" width="180" height="180" loading="lazy" />
-                <div className="post-person-copy"><strong>Mike Ritzema</strong><span>Founder and President</span><small>Superior Trucking Payroll</small></div>
-              </div>
-            </article>
-
-            <article className="post-testimonial">
-              <div>
-                <h3 className="post-outcome">Grew to an $8 Million Business</h3>
-                <blockquote>“We had a great product, but IMPACT helped us clarify our message and show our value through transparency. By educating instead of selling, we built trust, increased awareness, and accelerated growth in a way that felt authentic and sustainable.”</blockquote>
-              </div>
-              <div className="post-person">
-                <img src="assets/jeffery-linta.jpg" alt="Jeffery Linta, CEO of Linta Roofing" width="180" height="180" loading="lazy" />
-                <div className="post-person-copy"><strong>Jeffery Linta</strong><span>CEO</span><small>Linta Roofing</small></div>
-              </div>
-            </article>
-
-            <article className="post-testimonial">
-              <div>
-                <h3 className="post-outcome">Sales and Marketing Aligned</h3>
-                <blockquote>“Our coach brought our teams together and aligned them on a single methodology. The results speak for themselves.”</blockquote>
-              </div>
-              <div className="post-person">
-                <img src="assets/isabelle-braeutigam.jpg" alt="Isabelle Braeutigam, Marketing Manager at Custom Built Design and Remodeling" width="173" height="180" loading="lazy" />
-                <div className="post-person-copy"><strong>Isabelle Braeutigam</strong><span>Marketing Manager</span><small>Custom Built Design &amp; Remodeling</small></div>
-              </div>
-            </article>
-          </div>
-
-          <div className="post-results-footer">
-            <a className="post-link" href="https://www.impactplus.com/endless-customers-coaching/success-stories">See more IMPACT client success stories →</a>
-          </div>
-        </div>
-      </section>
-
       {/* ================= FREQUENTLY ASKED QUESTIONS ================= */}
       <section className="post-section post-faq-section" id="faq" aria-labelledby="faq-title">
         <div className="post-wrap post-faq-grid">
@@ -1817,36 +1909,16 @@ function Page() {
             <div className="sec-line" aria-hidden="true"></div>
             <p className="post-eyebrow">Common Questions</p>
             <h2 className="post-h2" id="faq-title">Answers Before You Schedule a Call</h2>
-            <p className="post-lead">If you are comparing this with an audit, a free assessment, or another consulting engagement, start here.</p>
+            <p className="post-lead">Practical answers about the investment, your team's role, ownership, timing, and what happens next.</p>
           </div>
 
           <div className="post-faq">
             <details open>
-              <summary><h3>What Is the Deep Diagnostic &amp; Roadmap?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
-              <div className="post-faq-answer">
-                <p className="post-quick-answer"><strong>Quick answer:</strong> It is a one-time, $5,000 investigation into why growth has stalled and what your team should do next.</p>
-                <p>IMPACT examines 13 areas of your sales, marketing, and customer-acquisition system through a 124-point inspection. That work includes outside research, a competitive benchmark, an AI visibility review, and a 90-minute working session with your leadership team.</p>
-                <p>Within two weeks, you receive the findings, the evidence behind them, and a written 3-, 6-, and 12-month roadmap. Your coach walks you through the plan live so your team understands what matters first and why.</p>
-                <p>It is a complete, standalone engagement. You can implement the roadmap internally, take it elsewhere, or talk with IMPACT about continuing.</p>
-              </div>
-            </details>
-
-            <details>
               <summary><h3>Why Does It Cost $5,000?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
               <div className="post-faq-answer">
-                <p>Free tools can be useful for getting an initial score or identifying visible issues. The Deep Diagnostic &amp; Roadmap is a different kind of engagement.</p>
-                <p>The fee covers the full investigation: external research, a 124-point inspection, competitor analysis, an AI visibility review, a 90-minute leadership session, experienced human judgment, a written 3-, 6-, and 12-month plan, and a live walkthrough of the recommendations.</p>
+                <p className="post-quick-answer"><strong>Quick answer:</strong> The fee pays for the research, experienced judgment, and prioritized roadmap—not access to an automated score.</p>
+                <p>It covers external research, competitor analysis, an AI visibility review, a leadership working session, the written plan, and a live walkthrough of the recommendations.</p>
                 <p>It is one flat fee. There are no surprise add-ons and no requirement to purchase ongoing coaching.</p>
-              </div>
-            </details>
-
-            <details>
-              <summary><h3>How Is This Different From Your Free Assessments?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
-              <div className="post-faq-answer">
-                <p>IMPACT’s free assessments are fast, self-guided starting points.</p>
-                <p>The AI Marketing Assessment asks 23 questions and provides an instant score in about five minutes. The Website Performance Assessment asks six questions to help you identify common website performance gaps.</p>
-                <p>The Deep Diagnostic &amp; Roadmap goes further. IMPACT investigates your business from the outside and the inside, compares you with competitors, speaks with your leadership team, and uses expert judgment to decide what deserves attention first.</p>
-                <p>The free assessments help you spot possible gaps. The diagnostic gives you an evidence-backed plan for addressing the ones that matter.</p>
               </div>
             </details>
 
@@ -1871,15 +1943,6 @@ function Page() {
             </details>
 
             <details>
-              <summary><h3>How Is This Different From an Audit?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
-              <div className="post-faq-answer">
-                <p>An audit usually focuses on identifying and documenting problems in a particular area. The Deep Diagnostic &amp; Roadmap is designed to help your leadership team make decisions across the full system.</p>
-                <p>It looks at 13 connected areas of sales, marketing, and customer acquisition, weighs the evidence against your goals and capacity, and puts the work in order.</p>
-                <p>You do not leave with a longer list of things that might be wrong. You leave knowing what should happen first, what can wait, and what the next year should look like.</p>
-              </div>
-            </details>
-
-            <details>
               <summary><h3>What Happens on the Explore Call?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
               <div className="post-faq-answer">
                 <p>The Explore Call is usually about one hour.</p>
@@ -1898,6 +1961,15 @@ function Page() {
             </details>
 
             <details>
+              <summary><h3>What Does Our Team Need to Provide?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
+              <div className="post-faq-answer">
+                <p className="post-quick-answer"><strong>Quick answer:</strong> Context, reasonable access to the people and systems that explain the business, and a leadership team willing to answer direct questions.</p>
+                <p>You do not need to prepare a polished presentation. We will ask for the goals, sales process, CRM reality, earlier marketing work, main competitors, and the constraints that affect what your team can realistically execute.</p>
+                <p>Your primary time commitments are the Explore Call, agreement review, a 90-minute working session, and the final walkthrough. IMPACT handles the research and synthesis between those meetings.</p>
+              </div>
+            </details>
+
+            <details>
               <summary><h3>What if We Already Know What Is Wrong?</h3><span className="post-faq-icon" aria-hidden="true">+</span></summary>
               <div className="post-faq-answer">
                 <p>You may be right. The diagnostic can help you confirm it.</p>
@@ -1905,6 +1977,40 @@ function Page() {
                 <p>The diagnostic tests your assumptions against evidence, your competitors, your AI visibility, and the realities of your team. If the result does not give you the clarity and plan promised, it is covered by the money-back guarantee.</p>
               </div>
             </details>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SUPPORTING LEARNING CENTER CLUSTER ================= */}
+      <section className="v2-resource-cluster" aria-labelledby="resource-cluster-title">
+        <div className="v2-resource-cluster__wrap">
+          <div className="v2-resource-cluster__heading">
+            <div>
+              <p className="v2-resource-cluster__label">Keep Learning</p>
+              <h2 id="resource-cluster-title">Understand the Shift Before You Decide</h2>
+            </div>
+            <p className="v2-resource-cluster__intro">These IMPACT resources explain why buyer trust and AI visibility are changing. The diagnostic applies those ideas to your company and puts the work in order.</p>
+          </div>
+
+          <div className="v2-resource-grid">
+            <article className="v2-resource-card">
+              <p className="v2-resource-card__type">Article</p>
+              <h3>How to Humanize Your Brand</h3>
+              <p>Why transparent processes, real people, pricing, and honest proof help buyers trust a company before they speak with sales.</p>
+              <a href="https://www.impactplus.com/learn/how-to-humanize-your-brand">Read the article →</a>
+            </article>
+            <article className="v2-resource-card">
+              <p className="v2-resource-card__type">On-Demand Workshop</p>
+              <h3>Why AI Isn't Recommending You</h3>
+              <p>See how biased, seller-first content weakens trust and what credible, buyer-focused language looks like instead.</p>
+              <a href="https://www.impactplus.com/why-ai-isnt-recommending-you-a-live-content-workshop">Watch the workshop →</a>
+            </article>
+            <article className="v2-resource-card">
+              <p className="v2-resource-card__type">Podcast</p>
+              <h3>How Businesses Stay Visible as AI Changes Search</h3>
+              <p>A practical conversation about the trust, content, and visibility signals companies need as buyer research changes.</p>
+              <a href="https://www.impactplus.com/endless-customers-podcast/ai-changes-search">Listen to the episode →</a>
+            </article>
           </div>
         </div>
       </section>
@@ -1960,23 +2066,8 @@ function Page() {
         </div>
       </section>
 
-      {/* ================= FINAL CTA ================= */}
-      <section className="post-final" id="final-cta" aria-labelledby="final-cta-title">
-        <div className="post-wrap post-final-grid">
-          <div>
-            <p className="post-eyebrow">Ready to Start?</p>
-            <h2 className="post-h2" id="final-cta-title">Stop Guessing About <span className="post-final-highlight">Why Growth Stalled</span></h2>
-            <p className="post-final-copy">Start with a conversation. If it is a fit, the diagnostic will tell you where you stand, what is getting in the way, and what your team should do next.</p>
-          </div>
-          <div className="post-final-action">
-            <Button className="post-final-button" variant="dark" size="lg" withArrow href="#start">Schedule an Explore Call</Button>
-            <p className="post-final-micro">A real first conversation. No pitch, no obligation.</p>
-            <p className="post-final-note">Evaluating this for your leadership team? Bring them to the first conversation so everyone hears the same questions.</p>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      </main>
+      <Footer id="final-cta" ctaHref="#start" />
     </div>
   );
 }

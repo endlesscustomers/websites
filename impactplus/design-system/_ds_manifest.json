@@ -94,6 +94,10 @@
    "sourcePath": "components/core/CheckItem.jsx"
   },
   {
+   "name": "DoodleIcon",
+   "sourcePath": "components/core/DoodleIcon.jsx"
+  },
+  {
    "name": "SectionHeading",
    "sourcePath": "components/core/SectionHeading.jsx"
   },

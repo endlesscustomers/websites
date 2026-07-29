@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>IMPACT Design System V2 — Foundations Specimen</title>
   <meta name="robots" content="noindex,nofollow">
-  <link rel="stylesheet" href="../../styles.css?v=20260728-17">
-  <link rel="stylesheet" href="./foundations.css?v=20260728-17">
+  <link rel="stylesheet" href="../../styles.css?v=20260728-25">
+  <link rel="stylesheet" href="./foundations.css?v=20260728-25">
 </head>
 <body class="v2-specimen impact-v2" data-v2-theme="blue">
   <a class="v2-skip" href="#main">Skip to specimen</a>
@@ -251,12 +251,25 @@
           <p class="v2-lead">The design system governs the reusable presentation and authoring rules. Individual pages supply the price, process, proof, qualification, and guarantee content.</p>
         </div>
 
-        <dl class="v2-fact-rail" aria-label="Commercial facts pattern">
+        <div class="v2-decision-snapshot__definition">
+          <div>
+            <p class="v2-decision-snapshot__label">The Direct Answer</p>
+            <h2>Define the service before asking buyers to interpret it.</h2>
+          </div>
+          <div>
+            <p class="v2-decision-snapshot__answer">Every service page opens its body with a concise, extractable definition: what the service is, who it helps, who provides it, what it produces, and how long it takes.</p>
+            <p class="v2-decision-snapshot__provider"><strong>Human responsibility:</strong> when AI assists the work, say exactly what it helps analyze and make clear that a qualified human validates the findings, applies judgment, and owns the recommendation.</p>
+          </div>
+        </div>
+
+        <dl class="v2-fact-grid" aria-label="Commercial facts pattern">
           <div><dt>Investment</dt><dd>Show the price</dd></div>
           <div><dt>Turnaround</dt><dd>Set timing</dd></div>
           <div><dt>Ownership</dt><dd>Name what is theirs</dd></div>
           <div><dt>Risk</dt><dd>State the guarantee</dd></div>
         </dl>
+
+        <a class="v2-decision-snapshot__proof-link" href="#decision">Connect the definition and facts to verified proof →</a>
 
         <div class="v2-pattern-grid">
           <article class="v2-pattern-panel">
@@ -299,6 +312,12 @@
             </details>
           </div>
         </div>
+
+        <div class="v2-resource-grid" aria-label="Contextual Learning Center pattern">
+          <article class="v2-resource-card"><p class="v2-resource-card__type">Article</p><h3>Explain the buyer's problem</h3><p>Link to one strong resource that helps the buyer understand the underlying change.</p><a href="#decision">Read the article →</a></article>
+          <article class="v2-resource-card"><p class="v2-resource-card__type">Video or Webinar</p><h3>Show the idea in practice</h3><p>Use a real expert and a closely related question, not a generic media feed.</p><a href="#decision">Watch the session →</a></article>
+          <article class="v2-resource-card"><p class="v2-resource-card__type">Decision Content</p><h3>Help the buyer compare</h3><p>Connect the service page to useful pricing, problem, comparison, or methodology content.</p><a href="#decision">Keep learning →</a></article>
+        </div>
       </div>
     </section>
 
@@ -324,7 +343,7 @@
       </div>
     </section>
   </main>
-  <script src="../../motion/v2-motion.js?v=20260728-22"></script>
+  <script src="../../motion/v2-motion.js?v=20260728-25"></script>
   <script>
     (() => {
       const specimen = document.querySelector('.v2-specimen');

@@ -1,0 +1,3248 @@
+{
+  "name": "IMPACT Doodle Icon Library",
+  "sourceArchive": "doodle icons (1).zip",
+  "licenseStatus": "not-included-in-source-archive",
+  "usageStatus": "local-design-exploration-until-rights-confirmed",
+  "formats": [
+    "svg",
+    "png",
+    "figma"
+  ],
+  "total": 451,
+  "categories": [
+    {
+      "name": "arrows",
+      "id": "arrows",
+      "count": 24
+    },
+    {
+      "name": "currency",
+      "id": "currency",
+      "count": 8
+    },
+    {
+      "name": "e-commerce",
+      "id": "e-commerce",
+      "count": 27
+    },
+    {
+      "name": "emojis",
+      "id": "emojis",
+      "count": 14
+    },
+    {
+      "name": "files",
+      "id": "files",
+      "count": 24
+    },
+    {
+      "name": "finance",
+      "id": "finance",
+      "count": 15
+    },
+    {
+      "name": "food",
+      "id": "food",
+      "count": 14
+    },
+    {
+      "name": "gender symbols",
+      "id": "gender-symbols",
+      "count": 12
+    },
+    {
+      "name": "hand gestures",
+      "id": "hand-gestures",
+      "count": 46
+    },
+    {
+      "name": "health",
+      "id": "health",
+      "count": 19
+    },
+    {
+      "name": "interface",
+      "id": "interface",
+      "count": 177
+    },
+    {
+      "name": "logos",
+      "id": "logos",
+      "count": 27
+    },
+    {
+      "name": "misc",
+      "id": "misc",
+      "count": 16
+    },
+    {
+      "name": "objects",
+      "id": "objects",
+      "count": 15
+    },
+    {
+      "name": "weather",
+      "id": "weather",
+      "count": 13
+    }
+  ],
+  "icons": [
+    {
+      "id": "arrows/arrow-circle-down",
+      "category": "arrows",
+      "name": "arrow-circle-down",
+      "svg": "svg/arrows/arrow-circle-down.svg",
+      "png": "png/arrows/arrow-circle-down.png"
+    },
+    {
+      "id": "arrows/arrow-circle-left",
+      "category": "arrows",
+      "name": "arrow-circle-left",
+      "svg": "svg/arrows/arrow-circle-left.svg",
+      "png": "png/arrows/arrow-circle-left.png"
+    },
+    {
+      "id": "arrows/arrow-circle-right",
+      "category": "arrows",
+      "name": "arrow-circle-right",
+      "svg": "svg/arrows/arrow-circle-right.svg",
+      "png": "png/arrows/arrow-circle-right.png"
+    },
+    {
+      "id": "arrows/arrow-circle-up",
+      "category": "arrows",
+      "name": "arrow-circle-up",
+      "svg": "svg/arrows/arrow-circle-up.svg",
+      "png": "png/arrows/arrow-circle-up.png"
+    },
+    {
+      "id": "arrows/arrow-down",
+      "category": "arrows",
+      "name": "arrow-down",
+      "svg": "svg/arrows/arrow-down.svg",
+      "png": "png/arrows/arrow-down.png"
+    },
+    {
+      "id": "arrows/arrow-left",
+      "category": "arrows",
+      "name": "arrow-left",
+      "svg": "svg/arrows/arrow-left.svg",
+      "png": "png/arrows/arrow-left.png"
+    },
+    {
+      "id": "arrows/arrow-ne",
+      "category": "arrows",
+      "name": "arrow-ne",
+      "svg": "svg/arrows/arrow-ne.svg",
+      "png": "png/arrows/arrow-ne.png"
+    },
+    {
+      "id": "arrows/arrow-nw",
+      "category": "arrows",
+      "name": "arrow-nw",
+      "svg": "svg/arrows/arrow-nw.svg",
+      "png": "png/arrows/arrow-nw.png"
+    },
+    {
+      "id": "arrows/arrow-right",
+      "category": "arrows",
+      "name": "arrow-right",
+      "svg": "svg/arrows/arrow-right.svg",
+      "png": "png/arrows/arrow-right.png"
+    },
+    {
+      "id": "arrows/arrow-se",
+      "category": "arrows",
+      "name": "arrow-se",
+      "svg": "svg/arrows/arrow-se.svg",
+      "png": "png/arrows/arrow-se.png"
+    },
+    {
+      "id": "arrows/arrow-single-down",
+      "category": "arrows",
+      "name": "arrow-single-down",
+      "svg": "svg/arrows/arrow-single-down.svg",
+      "png": "png/arrows/arrow-single-down.png"
+    },
+    {
+      "id": "arrows/arrow-single-left",
+      "category": "arrows",
+      "name": "arrow-single-left",
+      "svg": "svg/arrows/arrow-single-left.svg",
+      "png": "png/arrows/arrow-single-left.png"
+    },
+    {
+      "id": "arrows/arrow-single-right",
+      "category": "arrows",
+      "name": "arrow-single-right",
+      "svg": "svg/arrows/arrow-single-right.svg",
+      "png": "png/arrows/arrow-single-right.png"
+    },
+    {
+      "id": "arrows/arrow-single-up",
+      "category": "arrows",
+      "name": "arrow-single-up",
+      "svg": "svg/arrows/arrow-single-up.svg",
+      "png": "png/arrows/arrow-single-up.png"
+    },
+    {
+      "id": "arrows/arrow-square-down",
+      "category": "arrows",
+      "name": "arrow-square-down",
+      "svg": "svg/arrows/arrow-square-down.svg",
+      "png": "png/arrows/arrow-square-down.png"
+    },
+    {
+      "id": "arrows/arrow-square-left",
+      "category": "arrows",
+      "name": "arrow-square-left",
+      "svg": "svg/arrows/arrow-square-left.svg",
+      "png": "png/arrows/arrow-square-left.png"
+    },
+    {
+      "id": "arrows/arrow-square-right",
+      "category": "arrows",
+      "name": "arrow-square-right",
+      "svg": "svg/arrows/arrow-square-right.svg",
+      "png": "png/arrows/arrow-square-right.png"
+    },
+    {
+      "id": "arrows/arrow-square-up",
+      "category": "arrows",
+      "name": "arrow-square-up",
+      "svg": "svg/arrows/arrow-square-up.svg",
+      "png": "png/arrows/arrow-square-up.png"
+    },
+    {
+      "id": "arrows/arrow-sw",
+      "category": "arrows",
+      "name": "arrow-sw",
+      "svg": "svg/arrows/arrow-sw.svg",
+      "png": "png/arrows/arrow-sw.png"
+    },
+    {
+      "id": "arrows/arrow-up",
+      "category": "arrows",
+      "name": "arrow-up",
+      "svg": "svg/arrows/arrow-up.svg",
+      "png": "png/arrows/arrow-up.png"
+    },
+    {
+      "id": "arrows/chevrons-down",
+      "category": "arrows",
+      "name": "chevrons-down",
+      "svg": "svg/arrows/chevrons-down.svg",
+      "png": "png/arrows/chevrons-down.png"
+    },
+    {
+      "id": "arrows/chevrons-left",
+      "category": "arrows",
+      "name": "chevrons-left",
+      "svg": "svg/arrows/chevrons-left.svg",
+      "png": "png/arrows/chevrons-left.png"
+    },
+    {
+      "id": "arrows/chevrons-right",
+      "category": "arrows",
+      "name": "chevrons-right",
+      "svg": "svg/arrows/chevrons-right.svg",
+      "png": "png/arrows/chevrons-right.png"
+    },
+    {
+      "id": "arrows/chevrons-up",
+      "category": "arrows",
+      "name": "chevrons-up",
+      "svg": "svg/arrows/chevrons-up.svg",
+      "png": "png/arrows/chevrons-up.png"
+    },
+    {
+      "id": "currency/dollar",
+      "category": "currency",
+      "name": "dollar",
+      "svg": "svg/currency/dollar.svg",
+      "png": "png/currency/dollar.png"
+    },
+    {
+      "id": "currency/euro",
+      "category": "currency",
+      "name": "euro",
+      "svg": "svg/currency/euro.svg",
+      "png": "png/currency/euro.png"
+    },
+    {
+      "id": "currency/franc",
+      "category": "currency",
+      "name": "franc",
+      "svg": "svg/currency/franc.svg",
+      "png": "png/currency/franc.png"
+    },
+    {
+      "id": "currency/pound",
+      "category": "currency",
+      "name": "pound",
+      "svg": "svg/currency/pound.svg",
+      "png": "png/currency/pound.png"
+    },
+    {
+      "id": "currency/ruble",
+      "category": "currency",
+      "name": "ruble",
+      "svg": "svg/currency/ruble.svg",
+      "png": "png/currency/ruble.png"
+    },
+    {
+      "id": "currency/rupee",
+      "category": "currency",
+      "name": "rupee",
+      "svg": "svg/currency/rupee.svg",
+      "png": "png/currency/rupee.png"
+    },
+    {
+      "id": "currency/won",
+      "category": "currency",
+      "name": "won",
+      "svg": "svg/currency/won.svg",
+      "png": "png/currency/won.png"
+    },
+    {
+      "id": "currency/yen",
+      "category": "currency",
+      "name": "yen",
+      "svg": "svg/currency/yen.svg",
+      "png": "png/currency/yen.png"
+    },
+    {
+      "id": "e-commerce/bag-2",
+      "category": "e-commerce",
+      "name": "bag-2",
+      "svg": "svg/e-commerce/bag-2.svg",
+      "png": "png/e-commerce/bag-2.png"
+    },
+    {
+      "id": "e-commerce/bag",
+      "category": "e-commerce",
+      "name": "bag",
+      "svg": "svg/e-commerce/bag.svg",
+      "png": "png/e-commerce/bag.png"
+    },
+    {
+      "id": "e-commerce/basket",
+      "category": "e-commerce",
+      "name": "basket",
+      "svg": "svg/e-commerce/basket.svg",
+      "png": "png/e-commerce/basket.png"
+    },
+    {
+      "id": "e-commerce/box-2",
+      "category": "e-commerce",
+      "name": "box-2",
+      "svg": "svg/e-commerce/box-2.svg",
+      "png": "png/e-commerce/box-2.png"
+    },
+    {
+      "id": "e-commerce/box",
+      "category": "e-commerce",
+      "name": "box",
+      "svg": "svg/e-commerce/box.svg",
+      "png": "png/e-commerce/box.png"
+    },
+    {
+      "id": "e-commerce/card-2",
+      "category": "e-commerce",
+      "name": "card-2",
+      "svg": "svg/e-commerce/card-2.svg",
+      "png": "png/e-commerce/card-2.png"
+    },
+    {
+      "id": "e-commerce/card-3",
+      "category": "e-commerce",
+      "name": "card-3",
+      "svg": "svg/e-commerce/card-3.svg",
+      "png": "png/e-commerce/card-3.png"
+    },
+    {
+      "id": "e-commerce/card",
+      "category": "e-commerce",
+      "name": "card",
+      "svg": "svg/e-commerce/card.svg",
+      "png": "png/e-commerce/card.png"
+    },
+    {
+      "id": "e-commerce/cart-add",
+      "category": "e-commerce",
+      "name": "cart-add",
+      "svg": "svg/e-commerce/cart-add.svg",
+      "png": "png/e-commerce/cart-add.png"
+    },
+    {
+      "id": "e-commerce/cart-delete",
+      "category": "e-commerce",
+      "name": "cart-delete",
+      "svg": "svg/e-commerce/cart-delete.svg",
+      "png": "png/e-commerce/cart-delete.png"
+    },
+    {
+      "id": "e-commerce/cart-remove",
+      "category": "e-commerce",
+      "name": "cart-remove",
+      "svg": "svg/e-commerce/cart-remove.svg",
+      "png": "png/e-commerce/cart-remove.png"
+    },
+    {
+      "id": "e-commerce/conveyor-belt",
+      "category": "e-commerce",
+      "name": "conveyor-belt",
+      "svg": "svg/e-commerce/conveyor-belt.svg",
+      "png": "png/e-commerce/conveyor-belt.png"
+    },
+    {
+      "id": "e-commerce/factory",
+      "category": "e-commerce",
+      "name": "factory",
+      "svg": "svg/e-commerce/factory.svg",
+      "png": "png/e-commerce/factory.png"
+    },
+    {
+      "id": "e-commerce/hand-truck",
+      "category": "e-commerce",
+      "name": "hand-truck",
+      "svg": "svg/e-commerce/hand-truck.svg",
+      "png": "png/e-commerce/hand-truck.png"
+    },
+    {
+      "id": "e-commerce/location",
+      "category": "e-commerce",
+      "name": "location",
+      "svg": "svg/e-commerce/location.svg",
+      "png": "png/e-commerce/location.png"
+    },
+    {
+      "id": "e-commerce/offer",
+      "category": "e-commerce",
+      "name": "offer",
+      "svg": "svg/e-commerce/offer.svg",
+      "png": "png/e-commerce/offer.png"
+    },
+    {
+      "id": "e-commerce/qr",
+      "category": "e-commerce",
+      "name": "qr",
+      "svg": "svg/e-commerce/qr.svg",
+      "png": "png/e-commerce/qr.png"
+    },
+    {
+      "id": "e-commerce/sale",
+      "category": "e-commerce",
+      "name": "sale",
+      "svg": "svg/e-commerce/sale.svg",
+      "png": "png/e-commerce/sale.png"
+    },
+    {
+      "id": "e-commerce/shop",
+      "category": "e-commerce",
+      "name": "shop",
+      "svg": "svg/e-commerce/shop.svg",
+      "png": "png/e-commerce/shop.png"
+    },
+    {
+      "id": "e-commerce/shopping-cart-2",
+      "category": "e-commerce",
+      "name": "shopping-cart-2",
+      "svg": "svg/e-commerce/shopping-cart-2.svg",
+      "png": "png/e-commerce/shopping-cart-2.png"
+    },
+    {
+      "id": "e-commerce/shopping-cart-3",
+      "category": "e-commerce",
+      "name": "shopping-cart-3",
+      "svg": "svg/e-commerce/shopping-cart-3.svg",
+      "png": "png/e-commerce/shopping-cart-3.png"
+    },
+    {
+      "id": "e-commerce/shopping-cart",
+      "category": "e-commerce",
+      "name": "shopping-cart",
+      "svg": "svg/e-commerce/shopping-cart.svg",
+      "png": "png/e-commerce/shopping-cart.png"
+    },
+    {
+      "id": "e-commerce/tag-2",
+      "category": "e-commerce",
+      "name": "tag-2",
+      "svg": "svg/e-commerce/tag-2.svg",
+      "png": "png/e-commerce/tag-2.png"
+    },
+    {
+      "id": "e-commerce/tag",
+      "category": "e-commerce",
+      "name": "tag",
+      "svg": "svg/e-commerce/tag.svg",
+      "png": "png/e-commerce/tag.png"
+    },
+    {
+      "id": "e-commerce/truck",
+      "category": "e-commerce",
+      "name": "truck",
+      "svg": "svg/e-commerce/truck.svg",
+      "png": "png/e-commerce/truck.png"
+    },
+    {
+      "id": "e-commerce/unbox",
+      "category": "e-commerce",
+      "name": "unbox",
+      "svg": "svg/e-commerce/unbox.svg",
+      "png": "png/e-commerce/unbox.png"
+    },
+    {
+      "id": "e-commerce/warehouse",
+      "category": "e-commerce",
+      "name": "warehouse",
+      "svg": "svg/e-commerce/warehouse.svg",
+      "png": "png/e-commerce/warehouse.png"
+    },
+    {
+      "id": "emojis/confused-emoji",
+      "category": "emojis",
+      "name": "confused-emoji",
+      "svg": "svg/emojis/confused-emoji.svg",
+      "png": "png/emojis/confused-emoji.png"
+    },
+    {
+      "id": "emojis/cool-emoji",
+      "category": "emojis",
+      "name": "cool-emoji",
+      "svg": "svg/emojis/cool-emoji.svg",
+      "png": "png/emojis/cool-emoji.png"
+    },
+    {
+      "id": "emojis/crying-emoji",
+      "category": "emojis",
+      "name": "crying-emoji",
+      "svg": "svg/emojis/crying-emoji.svg",
+      "png": "png/emojis/crying-emoji.png"
+    },
+    {
+      "id": "emojis/grinning-squinting-emoji",
+      "category": "emojis",
+      "name": "grinning-squinting-emoji",
+      "svg": "svg/emojis/grinning-squinting-emoji.svg",
+      "png": "png/emojis/grinning-squinting-emoji.png"
+    },
+    {
+      "id": "emojis/happy-emoji",
+      "category": "emojis",
+      "name": "happy-emoji",
+      "svg": "svg/emojis/happy-emoji.svg",
+      "png": "png/emojis/happy-emoji.png"
+    },
+    {
+      "id": "emojis/heart-eyes-emoji",
+      "category": "emojis",
+      "name": "heart-eyes-emoji",
+      "svg": "svg/emojis/heart-eyes-emoji.svg",
+      "png": "png/emojis/heart-eyes-emoji.png"
+    },
+    {
+      "id": "emojis/laugh-emoji",
+      "category": "emojis",
+      "name": "laugh-emoji",
+      "svg": "svg/emojis/laugh-emoji.svg",
+      "png": "png/emojis/laugh-emoji.png"
+    },
+    {
+      "id": "emojis/sad-emoji",
+      "category": "emojis",
+      "name": "sad-emoji",
+      "svg": "svg/emojis/sad-emoji.svg",
+      "png": "png/emojis/sad-emoji.png"
+    },
+    {
+      "id": "emojis/shocked-emoji",
+      "category": "emojis",
+      "name": "shocked-emoji",
+      "svg": "svg/emojis/shocked-emoji.svg",
+      "png": "png/emojis/shocked-emoji.png"
+    },
+    {
+      "id": "emojis/smiling-emoji",
+      "category": "emojis",
+      "name": "smiling-emoji",
+      "svg": "svg/emojis/smiling-emoji.svg",
+      "png": "png/emojis/smiling-emoji.png"
+    },
+    {
+      "id": "emojis/smiling-with-eyes-emoji",
+      "category": "emojis",
+      "name": "smiling-with-eyes-emoji",
+      "svg": "svg/emojis/smiling-with-eyes-emoji.svg",
+      "png": "png/emojis/smiling-with-eyes-emoji.png"
+    },
+    {
+      "id": "emojis/surprised-emoji",
+      "category": "emojis",
+      "name": "surprised-emoji",
+      "svg": "svg/emojis/surprised-emoji.svg",
+      "png": "png/emojis/surprised-emoji.png"
+    },
+    {
+      "id": "emojis/wink-emoji",
+      "category": "emojis",
+      "name": "wink-emoji",
+      "svg": "svg/emojis/wink-emoji.svg",
+      "png": "png/emojis/wink-emoji.png"
+    },
+    {
+      "id": "emojis/worried-emoji",
+      "category": "emojis",
+      "name": "worried-emoji",
+      "svg": "svg/emojis/worried-emoji.svg",
+      "png": "png/emojis/worried-emoji.png"
+    },
+    {
+      "id": "files/file-attachment",
+      "category": "files",
+      "name": "file-attachment",
+      "svg": "svg/files/file-attachment.svg",
+      "png": "png/files/file-attachment.png"
+    },
+    {
+      "id": "files/file-audio",
+      "category": "files",
+      "name": "file-audio",
+      "svg": "svg/files/file-audio.svg",
+      "png": "png/files/file-audio.png"
+    },
+    {
+      "id": "files/file-code",
+      "category": "files",
+      "name": "file-code",
+      "svg": "svg/files/file-code.svg",
+      "png": "png/files/file-code.png"
+    },
+    {
+      "id": "files/file-contract",
+      "category": "files",
+      "name": "file-contract",
+      "svg": "svg/files/file-contract.svg",
+      "png": "png/files/file-contract.png"
+    },
+    {
+      "id": "files/file-csv",
+      "category": "files",
+      "name": "file-csv",
+      "svg": "svg/files/file-csv.svg",
+      "png": "png/files/file-csv.png"
+    },
+    {
+      "id": "files/file-figma",
+      "category": "files",
+      "name": "file-figma",
+      "svg": "svg/files/file-figma.svg",
+      "png": "png/files/file-figma.png"
+    },
+    {
+      "id": "files/file-form",
+      "category": "files",
+      "name": "file-form",
+      "svg": "svg/files/file-form.svg",
+      "png": "png/files/file-form.png"
+    },
+    {
+      "id": "files/file-image-2",
+      "category": "files",
+      "name": "file-image-2",
+      "svg": "svg/files/file-image-2.svg",
+      "png": "png/files/file-image-2.png"
+    },
+    {
+      "id": "files/file-image",
+      "category": "files",
+      "name": "file-image",
+      "svg": "svg/files/file-image.svg",
+      "png": "png/files/file-image.png"
+    },
+    {
+      "id": "files/file-invoice",
+      "category": "files",
+      "name": "file-invoice",
+      "svg": "svg/files/file-invoice.svg",
+      "png": "png/files/file-invoice.png"
+    },
+    {
+      "id": "files/file-jpg",
+      "category": "files",
+      "name": "file-jpg",
+      "svg": "svg/files/file-jpg.svg",
+      "png": "png/files/file-jpg.png"
+    },
+    {
+      "id": "files/file-list",
+      "category": "files",
+      "name": "file-list",
+      "svg": "svg/files/file-list.svg",
+      "png": "png/files/file-list.png"
+    },
+    {
+      "id": "files/file-mov",
+      "category": "files",
+      "name": "file-mov",
+      "svg": "svg/files/file-mov.svg",
+      "png": "png/files/file-mov.png"
+    },
+    {
+      "id": "files/file-mp4",
+      "category": "files",
+      "name": "file-mp4",
+      "svg": "svg/files/file-mp4.svg",
+      "png": "png/files/file-mp4.png"
+    },
+    {
+      "id": "files/file-notes",
+      "category": "files",
+      "name": "file-notes",
+      "svg": "svg/files/file-notes.svg",
+      "png": "png/files/file-notes.png"
+    },
+    {
+      "id": "files/file-pdf",
+      "category": "files",
+      "name": "file-pdf",
+      "svg": "svg/files/file-pdf.svg",
+      "png": "png/files/file-pdf.png"
+    },
+    {
+      "id": "files/file-png",
+      "category": "files",
+      "name": "file-png",
+      "svg": "svg/files/file-png.svg",
+      "png": "png/files/file-png.png"
+    },
+    {
+      "id": "files/file-spreadsheet",
+      "category": "files",
+      "name": "file-spreadsheet",
+      "svg": "svg/files/file-spreadsheet.svg",
+      "png": "png/files/file-spreadsheet.png"
+    },
+    {
+      "id": "files/file-svg",
+      "category": "files",
+      "name": "file-svg",
+      "svg": "svg/files/file-svg.svg",
+      "png": "png/files/file-svg.png"
+    },
+    {
+      "id": "files/file-text",
+      "category": "files",
+      "name": "file-text",
+      "svg": "svg/files/file-text.svg",
+      "png": "png/files/file-text.png"
+    },
+    {
+      "id": "files/file-vector",
+      "category": "files",
+      "name": "file-vector",
+      "svg": "svg/files/file-vector.svg",
+      "png": "png/files/file-vector.png"
+    },
+    {
+      "id": "files/file-zip",
+      "category": "files",
+      "name": "file-zip",
+      "svg": "svg/files/file-zip.svg",
+      "png": "png/files/file-zip.png"
+    },
+    {
+      "id": "files/file",
+      "category": "files",
+      "name": "file",
+      "svg": "svg/files/file.svg",
+      "png": "png/files/file.png"
+    },
+    {
+      "id": "files/png",
+      "category": "files",
+      "name": "png",
+      "svg": "svg/files/png.svg",
+      "png": "png/files/png.png"
+    },
+    {
+      "id": "finance/bank",
+      "category": "finance",
+      "name": "bank",
+      "svg": "svg/finance/bank.svg",
+      "png": "png/finance/bank.png"
+    },
+    {
+      "id": "finance/bill",
+      "category": "finance",
+      "name": "bill",
+      "svg": "svg/finance/bill.svg",
+      "png": "png/finance/bill.png"
+    },
+    {
+      "id": "finance/cash",
+      "category": "finance",
+      "name": "cash",
+      "svg": "svg/finance/cash.svg",
+      "png": "png/finance/cash.png"
+    },
+    {
+      "id": "finance/coin-2",
+      "category": "finance",
+      "name": "coin-2",
+      "svg": "svg/finance/coin-2.svg",
+      "png": "png/finance/coin-2.png"
+    },
+    {
+      "id": "finance/coin",
+      "category": "finance",
+      "name": "coin",
+      "svg": "svg/finance/coin.svg",
+      "png": "png/finance/coin.png"
+    },
+    {
+      "id": "finance/dollar",
+      "category": "finance",
+      "name": "dollar",
+      "svg": "svg/finance/dollar.svg",
+      "png": "png/finance/dollar.png"
+    },
+    {
+      "id": "finance/money-plant",
+      "category": "finance",
+      "name": "money-plant",
+      "svg": "svg/finance/money-plant.svg",
+      "png": "png/finance/money-plant.png"
+    },
+    {
+      "id": "finance/piggy-bank",
+      "category": "finance",
+      "name": "piggy-bank",
+      "svg": "svg/finance/piggy-bank.svg",
+      "png": "png/finance/piggy-bank.png"
+    },
+    {
+      "id": "finance/safe",
+      "category": "finance",
+      "name": "safe",
+      "svg": "svg/finance/safe.svg",
+      "png": "png/finance/safe.png"
+    },
+    {
+      "id": "finance/saving",
+      "category": "finance",
+      "name": "saving",
+      "svg": "svg/finance/saving.svg",
+      "png": "png/finance/saving.png"
+    },
+    {
+      "id": "finance/trend-down-square",
+      "category": "finance",
+      "name": "trend-down-square",
+      "svg": "svg/finance/trend-down-square.svg",
+      "png": "png/finance/trend-down-square.png"
+    },
+    {
+      "id": "finance/trend-down",
+      "category": "finance",
+      "name": "trend-down",
+      "svg": "svg/finance/trend-down.svg",
+      "png": "png/finance/trend-down.png"
+    },
+    {
+      "id": "finance/trend-up-square",
+      "category": "finance",
+      "name": "trend-up-square",
+      "svg": "svg/finance/trend-up-square.svg",
+      "png": "png/finance/trend-up-square.png"
+    },
+    {
+      "id": "finance/trend-up",
+      "category": "finance",
+      "name": "trend-up",
+      "svg": "svg/finance/trend-up.svg",
+      "png": "png/finance/trend-up.png"
+    },
+    {
+      "id": "finance/wallet",
+      "category": "finance",
+      "name": "wallet",
+      "svg": "svg/finance/wallet.svg",
+      "png": "png/finance/wallet.png"
+    },
+    {
+      "id": "food/burger",
+      "category": "food",
+      "name": "burger",
+      "svg": "svg/food/burger.svg",
+      "png": "png/food/burger.png"
+    },
+    {
+      "id": "food/cake",
+      "category": "food",
+      "name": "cake",
+      "svg": "svg/food/cake.svg",
+      "png": "png/food/cake.png"
+    },
+    {
+      "id": "food/candy",
+      "category": "food",
+      "name": "candy",
+      "svg": "svg/food/candy.svg",
+      "png": "png/food/candy.png"
+    },
+    {
+      "id": "food/cutlery",
+      "category": "food",
+      "name": "cutlery",
+      "svg": "svg/food/cutlery.svg",
+      "png": "png/food/cutlery.png"
+    },
+    {
+      "id": "food/dish",
+      "category": "food",
+      "name": "dish",
+      "svg": "svg/food/dish.svg",
+      "png": "png/food/dish.png"
+    },
+    {
+      "id": "food/drink",
+      "category": "food",
+      "name": "drink",
+      "svg": "svg/food/drink.svg",
+      "png": "png/food/drink.png"
+    },
+    {
+      "id": "food/egg",
+      "category": "food",
+      "name": "egg",
+      "svg": "svg/food/egg.svg",
+      "png": "png/food/egg.png"
+    },
+    {
+      "id": "food/fork",
+      "category": "food",
+      "name": "fork",
+      "svg": "svg/food/fork.svg",
+      "png": "png/food/fork.png"
+    },
+    {
+      "id": "food/ice-cream",
+      "category": "food",
+      "name": "ice-cream",
+      "svg": "svg/food/ice-cream.svg",
+      "png": "png/food/ice-cream.png"
+    },
+    {
+      "id": "food/pizza-2",
+      "category": "food",
+      "name": "pizza-2",
+      "svg": "svg/food/pizza-2.svg",
+      "png": "png/food/pizza-2.png"
+    },
+    {
+      "id": "food/pizza",
+      "category": "food",
+      "name": "pizza",
+      "svg": "svg/food/pizza.svg",
+      "png": "png/food/pizza.png"
+    },
+    {
+      "id": "food/popsicle",
+      "category": "food",
+      "name": "popsicle",
+      "svg": "svg/food/popsicle.svg",
+      "png": "png/food/popsicle.png"
+    },
+    {
+      "id": "food/spoon",
+      "category": "food",
+      "name": "spoon",
+      "svg": "svg/food/spoon.svg",
+      "png": "png/food/spoon.png"
+    },
+    {
+      "id": "food/water",
+      "category": "food",
+      "name": "water",
+      "svg": "svg/food/water.svg",
+      "png": "png/food/water.png"
+    },
+    {
+      "id": "gender-symbols/bisexual",
+      "category": "gender symbols",
+      "name": "bisexual",
+      "svg": "svg/gender symbols/bisexual.svg",
+      "png": "png/gender symbols/bisexual.png"
+    },
+    {
+      "id": "gender-symbols/femaile",
+      "category": "gender symbols",
+      "name": "femaile",
+      "svg": "svg/gender symbols/femaile.svg",
+      "png": "png/gender symbols/femaile.png"
+    },
+    {
+      "id": "gender-symbols/gay",
+      "category": "gender symbols",
+      "name": "gay",
+      "svg": "svg/gender symbols/gay.svg",
+      "png": "png/gender symbols/gay.png"
+    },
+    {
+      "id": "gender-symbols/genderless",
+      "category": "gender symbols",
+      "name": "genderless",
+      "svg": "svg/gender symbols/genderless.svg",
+      "png": "png/gender symbols/genderless.png"
+    },
+    {
+      "id": "gender-symbols/hetro",
+      "category": "gender symbols",
+      "name": "hetro",
+      "svg": "svg/gender symbols/hetro.svg",
+      "png": "png/gender symbols/hetro.png"
+    },
+    {
+      "id": "gender-symbols/intersex",
+      "category": "gender symbols",
+      "name": "intersex",
+      "svg": "svg/gender symbols/intersex.svg",
+      "png": "png/gender symbols/intersex.png"
+    },
+    {
+      "id": "gender-symbols/lesbian",
+      "category": "gender symbols",
+      "name": "lesbian",
+      "svg": "svg/gender symbols/lesbian.svg",
+      "png": "png/gender symbols/lesbian.png"
+    },
+    {
+      "id": "gender-symbols/male",
+      "category": "gender symbols",
+      "name": "male",
+      "svg": "svg/gender symbols/male.svg",
+      "png": "png/gender symbols/male.png"
+    },
+    {
+      "id": "gender-symbols/non-binary-transgender",
+      "category": "gender symbols",
+      "name": "non-binary-transgender",
+      "svg": "svg/gender symbols/non-binary-transgender.svg",
+      "png": "png/gender symbols/non-binary-transgender.png"
+    },
+    {
+      "id": "gender-symbols/other-gender",
+      "category": "gender symbols",
+      "name": "other-gender",
+      "svg": "svg/gender symbols/other-gender.svg",
+      "png": "png/gender symbols/other-gender.png"
+    },
+    {
+      "id": "gender-symbols/transgender-2",
+      "category": "gender symbols",
+      "name": "transgender-2",
+      "svg": "svg/gender symbols/transgender-2.svg",
+      "png": "png/gender symbols/transgender-2.png"
+    },
+    {
+      "id": "gender-symbols/transgender",
+      "category": "gender symbols",
+      "name": "transgender",
+      "svg": "svg/gender symbols/transgender.svg",
+      "png": "png/gender symbols/transgender.png"
+    },
+    {
+      "id": "hand-gestures/2-double-tap",
+      "category": "hand gestures",
+      "name": "2-double-tap",
+      "svg": "svg/hand gestures/2-double-tap.svg",
+      "png": "png/hand gestures/2-double-tap.png"
+    },
+    {
+      "id": "hand-gestures/2-scroll-left",
+      "category": "hand gestures",
+      "name": "2-scroll-left",
+      "svg": "svg/hand gestures/2-scroll-left.svg",
+      "png": "png/hand gestures/2-scroll-left.png"
+    },
+    {
+      "id": "hand-gestures/2-scroll-right",
+      "category": "hand gestures",
+      "name": "2-scroll-right",
+      "svg": "svg/hand gestures/2-scroll-right.svg",
+      "png": "png/hand gestures/2-scroll-right.png"
+    },
+    {
+      "id": "hand-gestures/2-scroll-up-1",
+      "category": "hand gestures",
+      "name": "2-scroll-up-1",
+      "svg": "svg/hand gestures/2-scroll-up-1.svg",
+      "png": "png/hand gestures/2-scroll-up-1.png"
+    },
+    {
+      "id": "hand-gestures/2-scroll-up",
+      "category": "hand gestures",
+      "name": "2-scroll-up",
+      "svg": "svg/hand gestures/2-scroll-up.svg",
+      "png": "png/hand gestures/2-scroll-up.png"
+    },
+    {
+      "id": "hand-gestures/2-tap-1",
+      "category": "hand gestures",
+      "name": "2-tap-1",
+      "svg": "svg/hand gestures/2-tap-1.svg",
+      "png": "png/hand gestures/2-tap-1.png"
+    },
+    {
+      "id": "hand-gestures/2-tap",
+      "category": "hand gestures",
+      "name": "2-tap",
+      "svg": "svg/hand gestures/2-tap.svg",
+      "png": "png/hand gestures/2-tap.png"
+    },
+    {
+      "id": "hand-gestures/2-touch-hold",
+      "category": "hand gestures",
+      "name": "2-touch-hold",
+      "svg": "svg/hand gestures/2-touch-hold.svg",
+      "png": "png/hand gestures/2-touch-hold.png"
+    },
+    {
+      "id": "hand-gestures/3-scroll-down",
+      "category": "hand gestures",
+      "name": "3-scroll-down",
+      "svg": "svg/hand gestures/3-scroll-down.svg",
+      "png": "png/hand gestures/3-scroll-down.png"
+    },
+    {
+      "id": "hand-gestures/3-scroll-up",
+      "category": "hand gestures",
+      "name": "3-scroll-up",
+      "svg": "svg/hand gestures/3-scroll-up.svg",
+      "png": "png/hand gestures/3-scroll-up.png"
+    },
+    {
+      "id": "hand-gestures/3-tap-scroll",
+      "category": "hand gestures",
+      "name": "3-tap-scroll",
+      "svg": "svg/hand gestures/3-tap-scroll.svg",
+      "png": "png/hand gestures/3-tap-scroll.png"
+    },
+    {
+      "id": "hand-gestures/3-tap",
+      "category": "hand gestures",
+      "name": "3-tap",
+      "svg": "svg/hand gestures/3-tap.svg",
+      "png": "png/hand gestures/3-tap.png"
+    },
+    {
+      "id": "hand-gestures/clap",
+      "category": "hand gestures",
+      "name": "clap",
+      "svg": "svg/hand gestures/clap.svg",
+      "png": "png/hand gestures/clap.png"
+    },
+    {
+      "id": "hand-gestures/double-tap",
+      "category": "hand gestures",
+      "name": "double-tap",
+      "svg": "svg/hand gestures/double-tap.svg",
+      "png": "png/hand gestures/double-tap.png"
+    },
+    {
+      "id": "hand-gestures/folded-hands",
+      "category": "hand gestures",
+      "name": "folded-hands",
+      "svg": "svg/hand gestures/folded-hands.svg",
+      "png": "png/hand gestures/folded-hands.png"
+    },
+    {
+      "id": "hand-gestures/free-drag",
+      "category": "hand gestures",
+      "name": "free-drag",
+      "svg": "svg/hand gestures/free-drag.svg",
+      "png": "png/hand gestures/free-drag.png"
+    },
+    {
+      "id": "hand-gestures/hand",
+      "category": "hand gestures",
+      "name": "hand",
+      "svg": "svg/hand gestures/hand.svg",
+      "png": "png/hand gestures/hand.png"
+    },
+    {
+      "id": "hand-gestures/horizontal-scroll",
+      "category": "hand gestures",
+      "name": "horizontal-scroll",
+      "svg": "svg/hand gestures/horizontal-scroll.svg",
+      "png": "png/hand gestures/horizontal-scroll.png"
+    },
+    {
+      "id": "hand-gestures/multi-touch",
+      "category": "hand gestures",
+      "name": "multi-touch",
+      "svg": "svg/hand gestures/multi-touch.svg",
+      "png": "png/hand gestures/multi-touch.png"
+    },
+    {
+      "id": "hand-gestures/ok",
+      "category": "hand gestures",
+      "name": "ok",
+      "svg": "svg/hand gestures/ok.svg",
+      "png": "png/hand gestures/ok.png"
+    },
+    {
+      "id": "hand-gestures/page-move",
+      "category": "hand gestures",
+      "name": "page-move",
+      "svg": "svg/hand gestures/page-move.svg",
+      "png": "png/hand gestures/page-move.png"
+    },
+    {
+      "id": "hand-gestures/point-down",
+      "category": "hand gestures",
+      "name": "point-down",
+      "svg": "svg/hand gestures/point-down.svg",
+      "png": "png/hand gestures/point-down.png"
+    },
+    {
+      "id": "hand-gestures/point-left",
+      "category": "hand gestures",
+      "name": "point-left",
+      "svg": "svg/hand gestures/point-left.svg",
+      "png": "png/hand gestures/point-left.png"
+    },
+    {
+      "id": "hand-gestures/point-right",
+      "category": "hand gestures",
+      "name": "point-right",
+      "svg": "svg/hand gestures/point-right.svg",
+      "png": "png/hand gestures/point-right.png"
+    },
+    {
+      "id": "hand-gestures/point-up",
+      "category": "hand gestures",
+      "name": "point-up",
+      "svg": "svg/hand gestures/point-up.svg",
+      "png": "png/hand gestures/point-up.png"
+    },
+    {
+      "id": "hand-gestures/rotate",
+      "category": "hand gestures",
+      "name": "rotate",
+      "svg": "svg/hand gestures/rotate.svg",
+      "png": "png/hand gestures/rotate.png"
+    },
+    {
+      "id": "hand-gestures/scan-fingerprint",
+      "category": "hand gestures",
+      "name": "scan-fingerprint",
+      "svg": "svg/hand gestures/scan-fingerprint.svg",
+      "png": "png/hand gestures/scan-fingerprint.png"
+    },
+    {
+      "id": "hand-gestures/scan",
+      "category": "hand gestures",
+      "name": "scan",
+      "svg": "svg/hand gestures/scan.svg",
+      "png": "png/hand gestures/scan.png"
+    },
+    {
+      "id": "hand-gestures/screen-rotate",
+      "category": "hand gestures",
+      "name": "screen-rotate",
+      "svg": "svg/hand gestures/screen-rotate.svg",
+      "png": "png/hand gestures/screen-rotate.png"
+    },
+    {
+      "id": "hand-gestures/scroll-down",
+      "category": "hand gestures",
+      "name": "scroll-down",
+      "svg": "svg/hand gestures/scroll-down.svg",
+      "png": "png/hand gestures/scroll-down.png"
+    },
+    {
+      "id": "hand-gestures/scroll-left-1",
+      "category": "hand gestures",
+      "name": "scroll-left-1",
+      "svg": "svg/hand gestures/scroll-left-1.svg",
+      "png": "png/hand gestures/scroll-left-1.png"
+    },
+    {
+      "id": "hand-gestures/scroll-left",
+      "category": "hand gestures",
+      "name": "scroll-left",
+      "svg": "svg/hand gestures/scroll-left.svg",
+      "png": "png/hand gestures/scroll-left.png"
+    },
+    {
+      "id": "hand-gestures/scroll-up",
+      "category": "hand gestures",
+      "name": "scroll-up",
+      "svg": "svg/hand gestures/scroll-up.svg",
+      "png": "png/hand gestures/scroll-up.png"
+    },
+    {
+      "id": "hand-gestures/swipe-left",
+      "category": "hand gestures",
+      "name": "swipe-left",
+      "svg": "svg/hand gestures/swipe-left.svg",
+      "png": "png/hand gestures/swipe-left.png"
+    },
+    {
+      "id": "hand-gestures/swipe-right",
+      "category": "hand gestures",
+      "name": "swipe-right",
+      "svg": "svg/hand gestures/swipe-right.svg",
+      "png": "png/hand gestures/swipe-right.png"
+    },
+    {
+      "id": "hand-gestures/tap-1",
+      "category": "hand gestures",
+      "name": "tap-1",
+      "svg": "svg/hand gestures/tap-1.svg",
+      "png": "png/hand gestures/tap-1.png"
+    },
+    {
+      "id": "hand-gestures/tap",
+      "category": "hand gestures",
+      "name": "tap",
+      "svg": "svg/hand gestures/tap.svg",
+      "png": "png/hand gestures/tap.png"
+    },
+    {
+      "id": "hand-gestures/thumbs-down",
+      "category": "hand gestures",
+      "name": "thumbs-down",
+      "svg": "svg/hand gestures/thumbs-down.svg",
+      "png": "png/hand gestures/thumbs-down.png"
+    },
+    {
+      "id": "hand-gestures/thumbs-up",
+      "category": "hand gestures",
+      "name": "thumbs-up",
+      "svg": "svg/hand gestures/thumbs-up.svg",
+      "png": "png/hand gestures/thumbs-up.png"
+    },
+    {
+      "id": "hand-gestures/touch-hold",
+      "category": "hand gestures",
+      "name": "touch-hold",
+      "svg": "svg/hand gestures/touch-hold.svg",
+      "png": "png/hand gestures/touch-hold.png"
+    },
+    {
+      "id": "hand-gestures/v",
+      "category": "hand gestures",
+      "name": "v",
+      "svg": "svg/hand gestures/v.svg",
+      "png": "png/hand gestures/v.png"
+    },
+    {
+      "id": "hand-gestures/vibrate",
+      "category": "hand gestures",
+      "name": "vibrate",
+      "svg": "svg/hand gestures/vibrate.svg",
+      "png": "png/hand gestures/vibrate.png"
+    },
+    {
+      "id": "hand-gestures/wave-left",
+      "category": "hand gestures",
+      "name": "wave-left",
+      "svg": "svg/hand gestures/wave-left.svg",
+      "png": "png/hand gestures/wave-left.png"
+    },
+    {
+      "id": "hand-gestures/wave-right",
+      "category": "hand gestures",
+      "name": "wave-right",
+      "svg": "svg/hand gestures/wave-right.svg",
+      "png": "png/hand gestures/wave-right.png"
+    },
+    {
+      "id": "hand-gestures/zoom-in",
+      "category": "hand gestures",
+      "name": "zoom-in",
+      "svg": "svg/hand gestures/zoom-in.svg",
+      "png": "png/hand gestures/zoom-in.png"
+    },
+    {
+      "id": "hand-gestures/zoom-out",
+      "category": "hand gestures",
+      "name": "zoom-out",
+      "svg": "svg/hand gestures/zoom-out.svg",
+      "png": "png/hand gestures/zoom-out.png"
+    },
+    {
+      "id": "health/blood-bag",
+      "category": "health",
+      "name": "blood-bag",
+      "svg": "svg/health/blood-bag.svg",
+      "png": "png/health/blood-bag.png"
+    },
+    {
+      "id": "health/blood",
+      "category": "health",
+      "name": "blood",
+      "svg": "svg/health/blood.svg",
+      "png": "png/health/blood.png"
+    },
+    {
+      "id": "health/bottle",
+      "category": "health",
+      "name": "bottle",
+      "svg": "svg/health/bottle.svg",
+      "png": "png/health/bottle.png"
+    },
+    {
+      "id": "health/dropper",
+      "category": "health",
+      "name": "dropper",
+      "svg": "svg/health/dropper.svg",
+      "png": "png/health/dropper.png"
+    },
+    {
+      "id": "health/first-aid",
+      "category": "health",
+      "name": "first-aid",
+      "svg": "svg/health/first-aid.svg",
+      "png": "png/health/first-aid.png"
+    },
+    {
+      "id": "health/firstaid-2",
+      "category": "health",
+      "name": "firstaid-2",
+      "svg": "svg/health/firstaid-2.svg",
+      "png": "png/health/firstaid-2.png"
+    },
+    {
+      "id": "health/flask-round",
+      "category": "health",
+      "name": "flask-round",
+      "svg": "svg/health/flask-round.svg",
+      "png": "png/health/flask-round.png"
+    },
+    {
+      "id": "health/flask",
+      "category": "health",
+      "name": "flask",
+      "svg": "svg/health/flask.svg",
+      "png": "png/health/flask.png"
+    },
+    {
+      "id": "health/heart-beat",
+      "category": "health",
+      "name": "heart-beat",
+      "svg": "svg/health/heart-beat.svg",
+      "png": "png/health/heart-beat.png"
+    },
+    {
+      "id": "health/injection",
+      "category": "health",
+      "name": "injection",
+      "svg": "svg/health/injection.svg",
+      "png": "png/health/injection.png"
+    },
+    {
+      "id": "health/lungs",
+      "category": "health",
+      "name": "lungs",
+      "svg": "svg/health/lungs.svg",
+      "png": "png/health/lungs.png"
+    },
+    {
+      "id": "health/medical-logo",
+      "category": "health",
+      "name": "medical-logo",
+      "svg": "svg/health/medical-logo.svg",
+      "png": "png/health/medical-logo.png"
+    },
+    {
+      "id": "health/microscope",
+      "category": "health",
+      "name": "microscope",
+      "svg": "svg/health/microscope.svg",
+      "png": "png/health/microscope.png"
+    },
+    {
+      "id": "health/pills",
+      "category": "health",
+      "name": "pills",
+      "svg": "svg/health/pills.svg",
+      "png": "png/health/pills.png"
+    },
+    {
+      "id": "health/stethoscope",
+      "category": "health",
+      "name": "stethoscope",
+      "svg": "svg/health/stethoscope.svg",
+      "png": "png/health/stethoscope.png"
+    },
+    {
+      "id": "health/tablet",
+      "category": "health",
+      "name": "tablet",
+      "svg": "svg/health/tablet.svg",
+      "png": "png/health/tablet.png"
+    },
+    {
+      "id": "health/test-tube",
+      "category": "health",
+      "name": "test-tube",
+      "svg": "svg/health/test-tube.svg",
+      "png": "png/health/test-tube.png"
+    },
+    {
+      "id": "health/tooth",
+      "category": "health",
+      "name": "tooth",
+      "svg": "svg/health/tooth.svg",
+      "png": "png/health/tooth.png"
+    },
+    {
+      "id": "health/wheelchair",
+      "category": "health",
+      "name": "wheelchair",
+      "svg": "svg/health/wheelchair.svg",
+      "png": "png/health/wheelchair.png"
+    },
+    {
+      "id": "interface/analytics",
+      "category": "interface",
+      "name": "analytics",
+      "svg": "svg/interface/analytics.svg",
+      "png": "png/interface/analytics.png"
+    },
+    {
+      "id": "interface/arrow-down",
+      "category": "interface",
+      "name": "arrow-down",
+      "svg": "svg/interface/arrow-down.svg",
+      "png": "png/interface/arrow-down.png"
+    },
+    {
+      "id": "interface/arrow-up",
+      "category": "interface",
+      "name": "arrow-up",
+      "svg": "svg/interface/arrow-up.svg",
+      "png": "png/interface/arrow-up.png"
+    },
+    {
+      "id": "interface/arrow",
+      "category": "interface",
+      "name": "arrow",
+      "svg": "svg/interface/arrow.svg",
+      "png": "png/interface/arrow.png"
+    },
+    {
+      "id": "interface/at-the-rate",
+      "category": "interface",
+      "name": "at-the-rate",
+      "svg": "svg/interface/at-the-rate.svg",
+      "png": "png/interface/at-the-rate.png"
+    },
+    {
+      "id": "interface/backward",
+      "category": "interface",
+      "name": "backward",
+      "svg": "svg/interface/backward.svg",
+      "png": "png/interface/backward.png"
+    },
+    {
+      "id": "interface/bell-2",
+      "category": "interface",
+      "name": "bell-2",
+      "svg": "svg/interface/bell-2.svg",
+      "png": "png/interface/bell-2.png"
+    },
+    {
+      "id": "interface/bell",
+      "category": "interface",
+      "name": "bell",
+      "svg": "svg/interface/bell.svg",
+      "png": "png/interface/bell.png"
+    },
+    {
+      "id": "interface/bluetooth",
+      "category": "interface",
+      "name": "bluetooth",
+      "svg": "svg/interface/bluetooth.svg",
+      "png": "png/interface/bluetooth.png"
+    },
+    {
+      "id": "interface/bookmark",
+      "category": "interface",
+      "name": "bookmark",
+      "svg": "svg/interface/bookmark.svg",
+      "png": "png/interface/bookmark.png"
+    },
+    {
+      "id": "interface/bulb",
+      "category": "interface",
+      "name": "bulb",
+      "svg": "svg/interface/bulb.svg",
+      "png": "png/interface/bulb.png"
+    },
+    {
+      "id": "interface/calculator",
+      "category": "interface",
+      "name": "calculator",
+      "svg": "svg/interface/calculator.svg",
+      "png": "png/interface/calculator.png"
+    },
+    {
+      "id": "interface/calendar",
+      "category": "interface",
+      "name": "calendar",
+      "svg": "svg/interface/calendar.svg",
+      "png": "png/interface/calendar.png"
+    },
+    {
+      "id": "interface/call",
+      "category": "interface",
+      "name": "call",
+      "svg": "svg/interface/call.svg",
+      "png": "png/interface/call.png"
+    },
+    {
+      "id": "interface/camera",
+      "category": "interface",
+      "name": "camera",
+      "svg": "svg/interface/camera.svg",
+      "png": "png/interface/camera.png"
+    },
+    {
+      "id": "interface/caution",
+      "category": "interface",
+      "name": "caution",
+      "svg": "svg/interface/caution.svg",
+      "png": "png/interface/caution.png"
+    },
+    {
+      "id": "interface/center-align-2",
+      "category": "interface",
+      "name": "center-align-2",
+      "svg": "svg/interface/center-align-2.svg",
+      "png": "png/interface/center-align-2.png"
+    },
+    {
+      "id": "interface/center-align",
+      "category": "interface",
+      "name": "center-align",
+      "svg": "svg/interface/center-align.svg",
+      "png": "png/interface/center-align.png"
+    },
+    {
+      "id": "interface/checklist",
+      "category": "interface",
+      "name": "checklist",
+      "svg": "svg/interface/checklist.svg",
+      "png": "png/interface/checklist.png"
+    },
+    {
+      "id": "interface/clock",
+      "category": "interface",
+      "name": "clock",
+      "svg": "svg/interface/clock.svg",
+      "png": "png/interface/clock.png"
+    },
+    {
+      "id": "interface/cloud-down",
+      "category": "interface",
+      "name": "cloud-down",
+      "svg": "svg/interface/cloud-down.svg",
+      "png": "png/interface/cloud-down.png"
+    },
+    {
+      "id": "interface/cloud-up",
+      "category": "interface",
+      "name": "cloud-up",
+      "svg": "svg/interface/cloud-up.svg",
+      "png": "png/interface/cloud-up.png"
+    },
+    {
+      "id": "interface/cloud",
+      "category": "interface",
+      "name": "cloud",
+      "svg": "svg/interface/cloud.svg",
+      "png": "png/interface/cloud.png"
+    },
+    {
+      "id": "interface/cookie",
+      "category": "interface",
+      "name": "cookie",
+      "svg": "svg/interface/cookie.svg",
+      "png": "png/interface/cookie.png"
+    },
+    {
+      "id": "interface/copy",
+      "category": "interface",
+      "name": "copy",
+      "svg": "svg/interface/copy.svg",
+      "png": "png/interface/copy.png"
+    },
+    {
+      "id": "interface/crop",
+      "category": "interface",
+      "name": "crop",
+      "svg": "svg/interface/crop.svg",
+      "png": "png/interface/crop.png"
+    },
+    {
+      "id": "interface/cross",
+      "category": "interface",
+      "name": "cross",
+      "svg": "svg/interface/cross.svg",
+      "png": "png/interface/cross.png"
+    },
+    {
+      "id": "interface/cut",
+      "category": "interface",
+      "name": "cut",
+      "svg": "svg/interface/cut.svg",
+      "png": "png/interface/cut.png"
+    },
+    {
+      "id": "interface/dashboard-2",
+      "category": "interface",
+      "name": "dashboard-2",
+      "svg": "svg/interface/dashboard-2.svg",
+      "png": "png/interface/dashboard-2.png"
+    },
+    {
+      "id": "interface/dashboard-3",
+      "category": "interface",
+      "name": "dashboard-3",
+      "svg": "svg/interface/dashboard-3.svg",
+      "png": "png/interface/dashboard-3.png"
+    },
+    {
+      "id": "interface/dashboard-4",
+      "category": "interface",
+      "name": "dashboard-4",
+      "svg": "svg/interface/dashboard-4.svg",
+      "png": "png/interface/dashboard-4.png"
+    },
+    {
+      "id": "interface/dashboard",
+      "category": "interface",
+      "name": "dashboard",
+      "svg": "svg/interface/dashboard.svg",
+      "png": "png/interface/dashboard.png"
+    },
+    {
+      "id": "interface/delete",
+      "category": "interface",
+      "name": "delete",
+      "svg": "svg/interface/delete.svg",
+      "png": "png/interface/delete.png"
+    },
+    {
+      "id": "interface/diamond",
+      "category": "interface",
+      "name": "diamond",
+      "svg": "svg/interface/diamond.svg",
+      "png": "png/interface/diamond.png"
+    },
+    {
+      "id": "interface/doc-add",
+      "category": "interface",
+      "name": "doc-add",
+      "svg": "svg/interface/doc-add.svg",
+      "png": "png/interface/doc-add.png"
+    },
+    {
+      "id": "interface/doc-remove",
+      "category": "interface",
+      "name": "doc-remove",
+      "svg": "svg/interface/doc-remove.svg",
+      "png": "png/interface/doc-remove.png"
+    },
+    {
+      "id": "interface/doc",
+      "category": "interface",
+      "name": "doc",
+      "svg": "svg/interface/doc.svg",
+      "png": "png/interface/doc.png"
+    },
+    {
+      "id": "interface/download",
+      "category": "interface",
+      "name": "download",
+      "svg": "svg/interface/download.svg",
+      "png": "png/interface/download.png"
+    },
+    {
+      "id": "interface/drawer",
+      "category": "interface",
+      "name": "drawer",
+      "svg": "svg/interface/drawer.svg",
+      "png": "png/interface/drawer.png"
+    },
+    {
+      "id": "interface/eject",
+      "category": "interface",
+      "name": "eject",
+      "svg": "svg/interface/eject.svg",
+      "png": "png/interface/eject.png"
+    },
+    {
+      "id": "interface/eraser",
+      "category": "interface",
+      "name": "eraser",
+      "svg": "svg/interface/eraser.svg",
+      "png": "png/interface/eraser.png"
+    },
+    {
+      "id": "interface/fast-forward",
+      "category": "interface",
+      "name": "fast-forward",
+      "svg": "svg/interface/fast-forward.svg",
+      "png": "png/interface/fast-forward.png"
+    },
+    {
+      "id": "interface/fast-rewind",
+      "category": "interface",
+      "name": "fast-rewind",
+      "svg": "svg/interface/fast-rewind.svg",
+      "png": "png/interface/fast-rewind.png"
+    },
+    {
+      "id": "interface/filter",
+      "category": "interface",
+      "name": "filter",
+      "svg": "svg/interface/filter.svg",
+      "png": "png/interface/filter.png"
+    },
+    {
+      "id": "interface/flag-2",
+      "category": "interface",
+      "name": "flag-2",
+      "svg": "svg/interface/flag-2.svg",
+      "png": "png/interface/flag-2.png"
+    },
+    {
+      "id": "interface/flag",
+      "category": "interface",
+      "name": "flag",
+      "svg": "svg/interface/flag.svg",
+      "png": "png/interface/flag.png"
+    },
+    {
+      "id": "interface/flip",
+      "category": "interface",
+      "name": "flip",
+      "svg": "svg/interface/flip.svg",
+      "png": "png/interface/flip.png"
+    },
+    {
+      "id": "interface/floppy",
+      "category": "interface",
+      "name": "floppy",
+      "svg": "svg/interface/floppy.svg",
+      "png": "png/interface/floppy.png"
+    },
+    {
+      "id": "interface/folder-add",
+      "category": "interface",
+      "name": "folder-add",
+      "svg": "svg/interface/folder-add.svg",
+      "png": "png/interface/folder-add.png"
+    },
+    {
+      "id": "interface/folder-delete",
+      "category": "interface",
+      "name": "folder-delete",
+      "svg": "svg/interface/folder-delete.svg",
+      "png": "png/interface/folder-delete.png"
+    },
+    {
+      "id": "interface/folder-empty",
+      "category": "interface",
+      "name": "folder-empty",
+      "svg": "svg/interface/folder-empty.svg",
+      "png": "png/interface/folder-empty.png"
+    },
+    {
+      "id": "interface/folder-remove",
+      "category": "interface",
+      "name": "folder-remove",
+      "svg": "svg/interface/folder-remove.svg",
+      "png": "png/interface/folder-remove.png"
+    },
+    {
+      "id": "interface/folder",
+      "category": "interface",
+      "name": "folder",
+      "svg": "svg/interface/folder.svg",
+      "png": "png/interface/folder.png"
+    },
+    {
+      "id": "interface/forward",
+      "category": "interface",
+      "name": "forward",
+      "svg": "svg/interface/forward.svg",
+      "png": "png/interface/forward.png"
+    },
+    {
+      "id": "interface/gift",
+      "category": "interface",
+      "name": "gift",
+      "svg": "svg/interface/gift.svg",
+      "png": "png/interface/gift.png"
+    },
+    {
+      "id": "interface/globe",
+      "category": "interface",
+      "name": "globe",
+      "svg": "svg/interface/globe.svg",
+      "png": "png/interface/globe.png"
+    },
+    {
+      "id": "interface/grid-2",
+      "category": "interface",
+      "name": "grid-2",
+      "svg": "svg/interface/grid-2.svg",
+      "png": "png/interface/grid-2.png"
+    },
+    {
+      "id": "interface/grid",
+      "category": "interface",
+      "name": "grid",
+      "svg": "svg/interface/grid.svg",
+      "png": "png/interface/grid.png"
+    },
+    {
+      "id": "interface/headphone",
+      "category": "interface",
+      "name": "headphone",
+      "svg": "svg/interface/headphone.svg",
+      "png": "png/interface/headphone.png"
+    },
+    {
+      "id": "interface/heart",
+      "category": "interface",
+      "name": "heart",
+      "svg": "svg/interface/heart.svg",
+      "png": "png/interface/heart.png"
+    },
+    {
+      "id": "interface/hide",
+      "category": "interface",
+      "name": "hide",
+      "svg": "svg/interface/hide.svg",
+      "png": "png/interface/hide.png"
+    },
+    {
+      "id": "interface/home-1",
+      "category": "interface",
+      "name": "home-1",
+      "svg": "svg/interface/home-1.svg",
+      "png": "png/interface/home-1.png"
+    },
+    {
+      "id": "interface/home",
+      "category": "interface",
+      "name": "home",
+      "svg": "svg/interface/home.svg",
+      "png": "png/interface/home.png"
+    },
+    {
+      "id": "interface/info",
+      "category": "interface",
+      "name": "Info",
+      "svg": "svg/interface/Info.svg",
+      "png": "png/interface/Info.png"
+    },
+    {
+      "id": "interface/key",
+      "category": "interface",
+      "name": "key",
+      "svg": "svg/interface/key.svg",
+      "png": "png/interface/key.png"
+    },
+    {
+      "id": "interface/layer",
+      "category": "interface",
+      "name": "layer",
+      "svg": "svg/interface/layer.svg",
+      "png": "png/interface/layer.png"
+    },
+    {
+      "id": "interface/left-align-2",
+      "category": "interface",
+      "name": "left-align-2",
+      "svg": "svg/interface/left-align-2.svg",
+      "png": "png/interface/left-align-2.png"
+    },
+    {
+      "id": "interface/left-align",
+      "category": "interface",
+      "name": "left-align",
+      "svg": "svg/interface/left-align.svg",
+      "png": "png/interface/left-align.png"
+    },
+    {
+      "id": "interface/link",
+      "category": "interface",
+      "name": "link",
+      "svg": "svg/interface/link.svg",
+      "png": "png/interface/link.png"
+    },
+    {
+      "id": "interface/list",
+      "category": "interface",
+      "name": "list",
+      "svg": "svg/interface/list.svg",
+      "png": "png/interface/list.png"
+    },
+    {
+      "id": "interface/location-pin",
+      "category": "interface",
+      "name": "location-pin",
+      "svg": "svg/interface/location-pin.svg",
+      "png": "png/interface/location-pin.png"
+    },
+    {
+      "id": "interface/lock",
+      "category": "interface",
+      "name": "lock",
+      "svg": "svg/interface/lock.svg",
+      "png": "png/interface/lock.png"
+    },
+    {
+      "id": "interface/login",
+      "category": "interface",
+      "name": "login",
+      "svg": "svg/interface/login.svg",
+      "png": "png/interface/login.png"
+    },
+    {
+      "id": "interface/logout",
+      "category": "interface",
+      "name": "logout",
+      "svg": "svg/interface/logout.svg",
+      "png": "png/interface/logout.png"
+    },
+    {
+      "id": "interface/magic-wand",
+      "category": "interface",
+      "name": "magic-wand",
+      "svg": "svg/interface/magic-wand.svg",
+      "png": "png/interface/magic-wand.png"
+    },
+    {
+      "id": "interface/mail-gift",
+      "category": "interface",
+      "name": "mail-gift",
+      "svg": "svg/interface/mail-gift.svg",
+      "png": "png/interface/mail-gift.png"
+    },
+    {
+      "id": "interface/mail-open",
+      "category": "interface",
+      "name": "mail-open",
+      "svg": "svg/interface/mail-open.svg",
+      "png": "png/interface/mail-open.png"
+    },
+    {
+      "id": "interface/mail-surprise",
+      "category": "interface",
+      "name": "mail-surprise",
+      "svg": "svg/interface/mail-surprise.svg",
+      "png": "png/interface/mail-surprise.png"
+    },
+    {
+      "id": "interface/mail",
+      "category": "interface",
+      "name": "mail",
+      "svg": "svg/interface/mail.svg",
+      "png": "png/interface/mail.png"
+    },
+    {
+      "id": "interface/map",
+      "category": "interface",
+      "name": "map",
+      "svg": "svg/interface/map.svg",
+      "png": "png/interface/map.png"
+    },
+    {
+      "id": "interface/maximize",
+      "category": "interface",
+      "name": "maximize",
+      "svg": "svg/interface/maximize.svg",
+      "png": "png/interface/maximize.png"
+    },
+    {
+      "id": "interface/megaphone",
+      "category": "interface",
+      "name": "megaphone",
+      "svg": "svg/interface/megaphone.svg",
+      "png": "png/interface/megaphone.png"
+    },
+    {
+      "id": "interface/menu-2",
+      "category": "interface",
+      "name": "menu-2",
+      "svg": "svg/interface/menu-2.svg",
+      "png": "png/interface/menu-2.png"
+    },
+    {
+      "id": "interface/menu",
+      "category": "interface",
+      "name": "menu",
+      "svg": "svg/interface/menu.svg",
+      "png": "png/interface/menu.png"
+    },
+    {
+      "id": "interface/message-2",
+      "category": "interface",
+      "name": "message-2",
+      "svg": "svg/interface/message-2.svg",
+      "png": "png/interface/message-2.png"
+    },
+    {
+      "id": "interface/message",
+      "category": "interface",
+      "name": "message",
+      "svg": "svg/interface/message.svg",
+      "png": "png/interface/message.png"
+    },
+    {
+      "id": "interface/mic-2",
+      "category": "interface",
+      "name": "mic-2",
+      "svg": "svg/interface/mic-2.svg",
+      "png": "png/interface/mic-2.png"
+    },
+    {
+      "id": "interface/mic",
+      "category": "interface",
+      "name": "mic",
+      "svg": "svg/interface/mic.svg",
+      "png": "png/interface/mic.png"
+    },
+    {
+      "id": "interface/minimize",
+      "category": "interface",
+      "name": "minimize",
+      "svg": "svg/interface/minimize.svg",
+      "png": "png/interface/minimize.png"
+    },
+    {
+      "id": "interface/move",
+      "category": "interface",
+      "name": "move",
+      "svg": "svg/interface/move.svg",
+      "png": "png/interface/move.png"
+    },
+    {
+      "id": "interface/music-2",
+      "category": "interface",
+      "name": "music-2",
+      "svg": "svg/interface/music-2.svg",
+      "png": "png/interface/music-2.png"
+    },
+    {
+      "id": "interface/music-3",
+      "category": "interface",
+      "name": "music-3",
+      "svg": "svg/interface/music-3.svg",
+      "png": "png/interface/music-3.png"
+    },
+    {
+      "id": "interface/music",
+      "category": "interface",
+      "name": "music",
+      "svg": "svg/interface/music.svg",
+      "png": "png/interface/music.png"
+    },
+    {
+      "id": "interface/mute",
+      "category": "interface",
+      "name": "mute",
+      "svg": "svg/interface/mute.svg",
+      "png": "png/interface/mute.png"
+    },
+    {
+      "id": "interface/navigation-2",
+      "category": "interface",
+      "name": "navigation-2",
+      "svg": "svg/interface/navigation-2.svg",
+      "png": "png/interface/navigation-2.png"
+    },
+    {
+      "id": "interface/navigation",
+      "category": "interface",
+      "name": "navigation",
+      "svg": "svg/interface/navigation.svg",
+      "png": "png/interface/navigation.png"
+    },
+    {
+      "id": "interface/note",
+      "category": "interface",
+      "name": "note",
+      "svg": "svg/interface/note.svg",
+      "png": "png/interface/note.png"
+    },
+    {
+      "id": "interface/paint-bucket",
+      "category": "interface",
+      "name": "paint-bucket",
+      "svg": "svg/interface/paint-bucket.svg",
+      "png": "png/interface/paint-bucket.png"
+    },
+    {
+      "id": "interface/paper-clip-2",
+      "category": "interface",
+      "name": "paper-clip-2",
+      "svg": "svg/interface/paper-clip-2.svg",
+      "png": "png/interface/paper-clip-2.png"
+    },
+    {
+      "id": "interface/paper-clip",
+      "category": "interface",
+      "name": "paper-clip",
+      "svg": "svg/interface/paper-clip.svg",
+      "png": "png/interface/paper-clip.png"
+    },
+    {
+      "id": "interface/paste",
+      "category": "interface",
+      "name": "paste",
+      "svg": "svg/interface/paste.svg",
+      "png": "png/interface/paste.png"
+    },
+    {
+      "id": "interface/pause",
+      "category": "interface",
+      "name": "pause",
+      "svg": "svg/interface/pause.svg",
+      "png": "png/interface/pause.png"
+    },
+    {
+      "id": "interface/pen-tool",
+      "category": "interface",
+      "name": "pen-tool",
+      "svg": "svg/interface/pen-tool.svg",
+      "png": "png/interface/pen-tool.png"
+    },
+    {
+      "id": "interface/pen",
+      "category": "interface",
+      "name": "pen",
+      "svg": "svg/interface/pen.svg",
+      "png": "png/interface/pen.png"
+    },
+    {
+      "id": "interface/pencil-2",
+      "category": "interface",
+      "name": "pencil-2",
+      "svg": "svg/interface/pencil-2.svg",
+      "png": "png/interface/pencil-2.png"
+    },
+    {
+      "id": "interface/pencil-3",
+      "category": "interface",
+      "name": "pencil-3",
+      "svg": "svg/interface/pencil-3.svg",
+      "png": "png/interface/pencil-3.png"
+    },
+    {
+      "id": "interface/pencil-ruler",
+      "category": "interface",
+      "name": "pencil-ruler",
+      "svg": "svg/interface/pencil-ruler.svg",
+      "png": "png/interface/pencil-ruler.png"
+    },
+    {
+      "id": "interface/pencil",
+      "category": "interface",
+      "name": "pencil",
+      "svg": "svg/interface/pencil.svg",
+      "png": "png/interface/pencil.png"
+    },
+    {
+      "id": "interface/phone-setting",
+      "category": "interface",
+      "name": "phone-setting",
+      "svg": "svg/interface/phone-setting.svg",
+      "png": "png/interface/phone-setting.png"
+    },
+    {
+      "id": "interface/phone",
+      "category": "interface",
+      "name": "phone",
+      "svg": "svg/interface/phone.svg",
+      "png": "png/interface/phone.png"
+    },
+    {
+      "id": "interface/photo",
+      "category": "interface",
+      "name": "photo",
+      "svg": "svg/interface/photo.svg",
+      "png": "png/interface/photo.png"
+    },
+    {
+      "id": "interface/pie",
+      "category": "interface",
+      "name": "pie",
+      "svg": "svg/interface/pie.svg",
+      "png": "png/interface/pie.png"
+    },
+    {
+      "id": "interface/pin",
+      "category": "interface",
+      "name": "pin",
+      "svg": "svg/interface/pin.svg",
+      "png": "png/interface/pin.png"
+    },
+    {
+      "id": "interface/play",
+      "category": "interface",
+      "name": "play",
+      "svg": "svg/interface/play.svg",
+      "png": "png/interface/play.png"
+    },
+    {
+      "id": "interface/puzzle-2",
+      "category": "interface",
+      "name": "puzzle-2",
+      "svg": "svg/interface/puzzle-2.svg",
+      "png": "png/interface/puzzle-2.png"
+    },
+    {
+      "id": "interface/puzzle",
+      "category": "interface",
+      "name": "puzzle",
+      "svg": "svg/interface/puzzle.svg",
+      "png": "png/interface/puzzle.png"
+    },
+    {
+      "id": "interface/question-2",
+      "category": "interface",
+      "name": "question-2",
+      "svg": "svg/interface/question-2.svg",
+      "png": "png/interface/question-2.png"
+    },
+    {
+      "id": "interface/question",
+      "category": "interface",
+      "name": "question",
+      "svg": "svg/interface/question.svg",
+      "png": "png/interface/question.png"
+    },
+    {
+      "id": "interface/record",
+      "category": "interface",
+      "name": "record",
+      "svg": "svg/interface/record.svg",
+      "png": "png/interface/record.png"
+    },
+    {
+      "id": "interface/rectangle",
+      "category": "interface",
+      "name": "rectangle",
+      "svg": "svg/interface/rectangle.svg",
+      "png": "png/interface/rectangle.png"
+    },
+    {
+      "id": "interface/right-align-2",
+      "category": "interface",
+      "name": "right-align-2",
+      "svg": "svg/interface/right-align-2.svg",
+      "png": "png/interface/right-align-2.png"
+    },
+    {
+      "id": "interface/right-align",
+      "category": "interface",
+      "name": "right-align",
+      "svg": "svg/interface/right-align.svg",
+      "png": "png/interface/right-align.png"
+    },
+    {
+      "id": "interface/rss",
+      "category": "interface",
+      "name": "rss",
+      "svg": "svg/interface/rss.svg",
+      "png": "png/interface/rss.png"
+    },
+    {
+      "id": "interface/ruler",
+      "category": "interface",
+      "name": "ruler",
+      "svg": "svg/interface/ruler.svg",
+      "png": "png/interface/ruler.png"
+    },
+    {
+      "id": "interface/scan",
+      "category": "interface",
+      "name": "scan",
+      "svg": "svg/interface/scan.svg",
+      "png": "png/interface/scan.png"
+    },
+    {
+      "id": "interface/search",
+      "category": "interface",
+      "name": "search",
+      "svg": "svg/interface/search.svg",
+      "png": "png/interface/search.png"
+    },
+    {
+      "id": "interface/send-2",
+      "category": "interface",
+      "name": "send-2",
+      "svg": "svg/interface/send-2.svg",
+      "png": "png/interface/send-2.png"
+    },
+    {
+      "id": "interface/send-3",
+      "category": "interface",
+      "name": "send-3",
+      "svg": "svg/interface/send-3.svg",
+      "png": "png/interface/send-3.png"
+    },
+    {
+      "id": "interface/send",
+      "category": "interface",
+      "name": "send",
+      "svg": "svg/interface/send.svg",
+      "png": "png/interface/send.png"
+    },
+    {
+      "id": "interface/server",
+      "category": "interface",
+      "name": "server",
+      "svg": "svg/interface/server.svg",
+      "png": "png/interface/server.png"
+    },
+    {
+      "id": "interface/setting-2",
+      "category": "interface",
+      "name": "setting-2",
+      "svg": "svg/interface/setting-2.svg",
+      "png": "png/interface/setting-2.png"
+    },
+    {
+      "id": "interface/setting-3",
+      "category": "interface",
+      "name": "setting-3",
+      "svg": "svg/interface/setting-3.svg",
+      "png": "png/interface/setting-3.png"
+    },
+    {
+      "id": "interface/setting",
+      "category": "interface",
+      "name": "setting",
+      "svg": "svg/interface/setting.svg",
+      "png": "png/interface/setting.png"
+    },
+    {
+      "id": "interface/shape",
+      "category": "interface",
+      "name": "shape",
+      "svg": "svg/interface/shape.svg",
+      "png": "png/interface/shape.png"
+    },
+    {
+      "id": "interface/shield-2",
+      "category": "interface",
+      "name": "shield-2",
+      "svg": "svg/interface/shield-2.svg",
+      "png": "png/interface/shield-2.png"
+    },
+    {
+      "id": "interface/shield",
+      "category": "interface",
+      "name": "shield",
+      "svg": "svg/interface/shield.svg",
+      "png": "png/interface/shield.png"
+    },
+    {
+      "id": "interface/shuffle",
+      "category": "interface",
+      "name": "shuffle",
+      "svg": "svg/interface/shuffle.svg",
+      "png": "png/interface/shuffle.png"
+    },
+    {
+      "id": "interface/signal",
+      "category": "interface",
+      "name": "signal",
+      "svg": "svg/interface/signal.svg",
+      "png": "png/interface/signal.png"
+    },
+    {
+      "id": "interface/speaker",
+      "category": "interface",
+      "name": "speaker",
+      "svg": "svg/interface/speaker.svg",
+      "png": "png/interface/speaker.png"
+    },
+    {
+      "id": "interface/square",
+      "category": "interface",
+      "name": "square",
+      "svg": "svg/interface/square.svg",
+      "png": "png/interface/square.png"
+    },
+    {
+      "id": "interface/star",
+      "category": "interface",
+      "name": "star",
+      "svg": "svg/interface/star.svg",
+      "png": "png/interface/star.png"
+    },
+    {
+      "id": "interface/stopwatch",
+      "category": "interface",
+      "name": "stopwatch",
+      "svg": "svg/interface/stopwatch.svg",
+      "png": "png/interface/stopwatch.png"
+    },
+    {
+      "id": "interface/suitcase",
+      "category": "interface",
+      "name": "suitcase",
+      "svg": "svg/interface/suitcase.svg",
+      "png": "png/interface/suitcase.png"
+    },
+    {
+      "id": "interface/sun-2",
+      "category": "interface",
+      "name": "sun-2",
+      "svg": "svg/interface/sun-2.svg",
+      "png": "png/interface/sun-2.png"
+    },
+    {
+      "id": "interface/sun-3",
+      "category": "interface",
+      "name": "sun-3",
+      "svg": "svg/interface/sun-3.svg",
+      "png": "png/interface/sun-3.png"
+    },
+    {
+      "id": "interface/sun-4",
+      "category": "interface",
+      "name": "sun-4",
+      "svg": "svg/interface/sun-4.svg",
+      "png": "png/interface/sun-4.png"
+    },
+    {
+      "id": "interface/sun",
+      "category": "interface",
+      "name": "sun",
+      "svg": "svg/interface/sun.svg",
+      "png": "png/interface/sun.png"
+    },
+    {
+      "id": "interface/switch-1",
+      "category": "interface",
+      "name": "switch-1",
+      "svg": "svg/interface/switch-1.svg",
+      "png": "png/interface/switch-1.png"
+    },
+    {
+      "id": "interface/switch",
+      "category": "interface",
+      "name": "switch",
+      "svg": "svg/interface/switch.svg",
+      "png": "png/interface/switch.png"
+    },
+    {
+      "id": "interface/sync",
+      "category": "interface",
+      "name": "sync",
+      "svg": "svg/interface/sync.svg",
+      "png": "png/interface/sync.png"
+    },
+    {
+      "id": "interface/tablet",
+      "category": "interface",
+      "name": "tablet",
+      "svg": "svg/interface/tablet.svg",
+      "png": "png/interface/tablet.png"
+    },
+    {
+      "id": "interface/target-2",
+      "category": "interface",
+      "name": "target-2",
+      "svg": "svg/interface/target-2.svg",
+      "png": "png/interface/target-2.png"
+    },
+    {
+      "id": "interface/target",
+      "category": "interface",
+      "name": "target",
+      "svg": "svg/interface/target.svg",
+      "png": "png/interface/target.png"
+    },
+    {
+      "id": "interface/thumbs-up",
+      "category": "interface",
+      "name": "thumbs-up",
+      "svg": "svg/interface/thumbs-up.svg",
+      "png": "png/interface/thumbs-up.png"
+    },
+    {
+      "id": "interface/tick-2",
+      "category": "interface",
+      "name": "tick-2",
+      "svg": "svg/interface/tick-2.svg",
+      "png": "png/interface/tick-2.png"
+    },
+    {
+      "id": "interface/tick",
+      "category": "interface",
+      "name": "tick",
+      "svg": "svg/interface/tick.svg",
+      "png": "png/interface/tick.png"
+    },
+    {
+      "id": "interface/transform",
+      "category": "interface",
+      "name": "transform",
+      "svg": "svg/interface/transform.svg",
+      "png": "png/interface/transform.png"
+    },
+    {
+      "id": "interface/tree-2",
+      "category": "interface",
+      "name": "tree-2",
+      "svg": "svg/interface/tree-2.svg",
+      "png": "png/interface/tree-2.png"
+    },
+    {
+      "id": "interface/tree",
+      "category": "interface",
+      "name": "tree",
+      "svg": "svg/interface/tree.svg",
+      "png": "png/interface/tree.png"
+    },
+    {
+      "id": "interface/trophy",
+      "category": "interface",
+      "name": "trophy",
+      "svg": "svg/interface/trophy.svg",
+      "png": "png/interface/trophy.png"
+    },
+    {
+      "id": "interface/unhide",
+      "category": "interface",
+      "name": "unhide",
+      "svg": "svg/interface/unhide.svg",
+      "png": "png/interface/unhide.png"
+    },
+    {
+      "id": "interface/unlink",
+      "category": "interface",
+      "name": "unlink",
+      "svg": "svg/interface/unlink.svg",
+      "png": "png/interface/unlink.png"
+    },
+    {
+      "id": "interface/upload",
+      "category": "interface",
+      "name": "upload",
+      "svg": "svg/interface/upload.svg",
+      "png": "png/interface/upload.png"
+    },
+    {
+      "id": "interface/user-add",
+      "category": "interface",
+      "name": "user-add",
+      "svg": "svg/interface/user-add.svg",
+      "png": "png/interface/user-add.png"
+    },
+    {
+      "id": "interface/user-caution",
+      "category": "interface",
+      "name": "user-caution",
+      "svg": "svg/interface/user-caution.svg",
+      "png": "png/interface/user-caution.png"
+    },
+    {
+      "id": "interface/user-delete",
+      "category": "interface",
+      "name": "user-delete",
+      "svg": "svg/interface/user-delete.svg",
+      "png": "png/interface/user-delete.png"
+    },
+    {
+      "id": "interface/user-female",
+      "category": "interface",
+      "name": "user-female",
+      "svg": "svg/interface/user-female.svg",
+      "png": "png/interface/user-female.png"
+    },
+    {
+      "id": "interface/user-male",
+      "category": "interface",
+      "name": "user-male",
+      "svg": "svg/interface/user-male.svg",
+      "png": "png/interface/user-male.png"
+    },
+    {
+      "id": "interface/user-remove",
+      "category": "interface",
+      "name": "user-remove",
+      "svg": "svg/interface/user-remove.svg",
+      "png": "png/interface/user-remove.png"
+    },
+    {
+      "id": "interface/user",
+      "category": "interface",
+      "name": "user",
+      "svg": "svg/interface/user.svg",
+      "png": "png/interface/user.png"
+    },
+    {
+      "id": "interface/video-camera",
+      "category": "interface",
+      "name": "video-camera",
+      "svg": "svg/interface/video-camera.svg",
+      "png": "png/interface/video-camera.png"
+    },
+    {
+      "id": "interface/volume-down",
+      "category": "interface",
+      "name": "volume-down",
+      "svg": "svg/interface/volume-down.svg",
+      "png": "png/interface/volume-down.png"
+    },
+    {
+      "id": "interface/volume-up",
+      "category": "interface",
+      "name": "volume-up",
+      "svg": "svg/interface/volume-up.svg",
+      "png": "png/interface/volume-up.png"
+    },
+    {
+      "id": "interface/zap",
+      "category": "interface",
+      "name": "zap",
+      "svg": "svg/interface/zap.svg",
+      "png": "png/interface/zap.png"
+    },
+    {
+      "id": "interface/zoom-in",
+      "category": "interface",
+      "name": "zoom-in",
+      "svg": "svg/interface/zoom-in.svg",
+      "png": "png/interface/zoom-in.png"
+    },
+    {
+      "id": "interface/zoom-out-1",
+      "category": "interface",
+      "name": "zoom-out-1",
+      "svg": "svg/interface/zoom-out-1.svg",
+      "png": "png/interface/zoom-out-1.png"
+    },
+    {
+      "id": "interface/zoom-out",
+      "category": "interface",
+      "name": "zoom-out",
+      "svg": "svg/interface/zoom-out.svg",
+      "png": "png/interface/zoom-out.png"
+    },
+    {
+      "id": "logos/apple",
+      "category": "logos",
+      "name": "apple",
+      "svg": "svg/logos/apple.svg",
+      "png": "png/logos/apple.png"
+    },
+    {
+      "id": "logos/behance",
+      "category": "logos",
+      "name": "behance",
+      "svg": "svg/logos/behance.svg",
+      "png": "png/logos/behance.png"
+    },
+    {
+      "id": "logos/codepen",
+      "category": "logos",
+      "name": "codepen",
+      "svg": "svg/logos/codepen.svg",
+      "png": "png/logos/codepen.png"
+    },
+    {
+      "id": "logos/dribbble",
+      "category": "logos",
+      "name": "dribbble",
+      "svg": "svg/logos/dribbble.svg",
+      "png": "png/logos/dribbble.png"
+    },
+    {
+      "id": "logos/dropbox",
+      "category": "logos",
+      "name": "dropbox",
+      "svg": "svg/logos/dropbox.svg",
+      "png": "png/logos/dropbox.png"
+    },
+    {
+      "id": "logos/facebook-2",
+      "category": "logos",
+      "name": "facebook-2",
+      "svg": "svg/logos/facebook-2.svg",
+      "png": "png/logos/facebook-2.png"
+    },
+    {
+      "id": "logos/facebook",
+      "category": "logos",
+      "name": "facebook",
+      "svg": "svg/logos/facebook.svg",
+      "png": "png/logos/facebook.png"
+    },
+    {
+      "id": "logos/fb-messenger",
+      "category": "logos",
+      "name": "fb-messenger",
+      "svg": "svg/logos/fb-messenger.svg",
+      "png": "png/logos/fb-messenger.png"
+    },
+    {
+      "id": "logos/google",
+      "category": "logos",
+      "name": "google",
+      "svg": "svg/logos/google.svg",
+      "png": "png/logos/google.png"
+    },
+    {
+      "id": "logos/instagram",
+      "category": "logos",
+      "name": "instagram",
+      "svg": "svg/logos/instagram.svg",
+      "png": "png/logos/instagram.png"
+    },
+    {
+      "id": "logos/linkedin",
+      "category": "logos",
+      "name": "linkedin",
+      "svg": "svg/logos/linkedin.svg",
+      "png": "png/logos/linkedin.png"
+    },
+    {
+      "id": "logos/paypal",
+      "category": "logos",
+      "name": "paypal",
+      "svg": "svg/logos/paypal.svg",
+      "png": "png/logos/paypal.png"
+    },
+    {
+      "id": "logos/pinterest",
+      "category": "logos",
+      "name": "pinterest",
+      "svg": "svg/logos/pinterest.svg",
+      "png": "png/logos/pinterest.png"
+    },
+    {
+      "id": "logos/product-hunt",
+      "category": "logos",
+      "name": "product hunt",
+      "svg": "svg/logos/product hunt.svg",
+      "png": "png/logos/product hunt.png"
+    },
+    {
+      "id": "logos/skype",
+      "category": "logos",
+      "name": "skype",
+      "svg": "svg/logos/skype.svg",
+      "png": "png/logos/skype.png"
+    },
+    {
+      "id": "logos/snapchat",
+      "category": "logos",
+      "name": "snapchat",
+      "svg": "svg/logos/snapchat.svg",
+      "png": "png/logos/snapchat.png"
+    },
+    {
+      "id": "logos/spotify",
+      "category": "logos",
+      "name": "spotify",
+      "svg": "svg/logos/spotify.svg",
+      "png": "png/logos/spotify.png"
+    },
+    {
+      "id": "logos/tik-tok",
+      "category": "logos",
+      "name": "tik tok",
+      "svg": "svg/logos/tik tok.svg",
+      "png": "png/logos/tik tok.png"
+    },
+    {
+      "id": "logos/tumblr",
+      "category": "logos",
+      "name": "tumblr",
+      "svg": "svg/logos/tumblr.svg",
+      "png": "png/logos/tumblr.png"
+    },
+    {
+      "id": "logos/twitch",
+      "category": "logos",
+      "name": "twitch",
+      "svg": "svg/logos/twitch.svg",
+      "png": "png/logos/twitch.png"
+    },
+    {
+      "id": "logos/twitter",
+      "category": "logos",
+      "name": "twitter",
+      "svg": "svg/logos/twitter.svg",
+      "png": "png/logos/twitter.png"
+    },
+    {
+      "id": "logos/uber",
+      "category": "logos",
+      "name": "uber",
+      "svg": "svg/logos/uber.svg",
+      "png": "png/logos/uber.png"
+    },
+    {
+      "id": "logos/webflow",
+      "category": "logos",
+      "name": "webflow",
+      "svg": "svg/logos/webflow.svg",
+      "png": "png/logos/webflow.png"
+    },
+    {
+      "id": "logos/whatsapp",
+      "category": "logos",
+      "name": "whatsapp",
+      "svg": "svg/logos/whatsapp.svg",
+      "png": "png/logos/whatsapp.png"
+    },
+    {
+      "id": "logos/windows",
+      "category": "logos",
+      "name": "windows",
+      "svg": "svg/logos/windows.svg",
+      "png": "png/logos/windows.png"
+    },
+    {
+      "id": "logos/y-combinator",
+      "category": "logos",
+      "name": "y-combinator",
+      "svg": "svg/logos/y-combinator.svg",
+      "png": "png/logos/y-combinator.png"
+    },
+    {
+      "id": "logos/youtube",
+      "category": "logos",
+      "name": "youtube",
+      "svg": "svg/logos/youtube.svg",
+      "png": "png/logos/youtube.png"
+    },
+    {
+      "id": "misc/automation",
+      "category": "misc",
+      "name": "automation",
+      "svg": "svg/misc/automation.svg",
+      "png": "png/misc/automation.png"
+    },
+    {
+      "id": "misc/bot",
+      "category": "misc",
+      "name": "bot",
+      "svg": "svg/misc/bot.svg",
+      "png": "png/misc/bot.png"
+    },
+    {
+      "id": "misc/bug",
+      "category": "misc",
+      "name": "bug",
+      "svg": "svg/misc/bug.svg",
+      "png": "png/misc/bug.png"
+    },
+    {
+      "id": "misc/bus",
+      "category": "misc",
+      "name": "bus",
+      "svg": "svg/misc/bus.svg",
+      "png": "png/misc/bus.png"
+    },
+    {
+      "id": "misc/car",
+      "category": "misc",
+      "name": "car",
+      "svg": "svg/misc/car.svg",
+      "png": "png/misc/car.png"
+    },
+    {
+      "id": "misc/chip",
+      "category": "misc",
+      "name": "chip",
+      "svg": "svg/misc/chip.svg",
+      "png": "png/misc/chip.png"
+    },
+    {
+      "id": "misc/coffee-cup-1",
+      "category": "misc",
+      "name": "coffee-cup-1",
+      "svg": "svg/misc/coffee-cup-1.svg",
+      "png": "png/misc/coffee-cup-1.png"
+    },
+    {
+      "id": "misc/coffee-cup-2",
+      "category": "misc",
+      "name": "coffee-cup-2",
+      "svg": "svg/misc/coffee-cup-2.svg",
+      "png": "png/misc/coffee-cup-2.png"
+    },
+    {
+      "id": "misc/fire",
+      "category": "misc",
+      "name": "fire",
+      "svg": "svg/misc/fire.svg",
+      "png": "png/misc/fire.png"
+    },
+    {
+      "id": "misc/hot-air-balloon",
+      "category": "misc",
+      "name": "hot-air-balloon",
+      "svg": "svg/misc/hot-air-balloon.svg",
+      "png": "png/misc/hot-air-balloon.png"
+    },
+    {
+      "id": "misc/plane",
+      "category": "misc",
+      "name": "plane",
+      "svg": "svg/misc/plane.svg",
+      "png": "png/misc/plane.png"
+    },
+    {
+      "id": "misc/rocket",
+      "category": "misc",
+      "name": "rocket",
+      "svg": "svg/misc/rocket.svg",
+      "png": "png/misc/rocket.png"
+    },
+    {
+      "id": "misc/satellite",
+      "category": "misc",
+      "name": "satellite",
+      "svg": "svg/misc/satellite.svg",
+      "png": "png/misc/satellite.png"
+    },
+    {
+      "id": "misc/server",
+      "category": "misc",
+      "name": "server",
+      "svg": "svg/misc/server.svg",
+      "png": "png/misc/server.png"
+    },
+    {
+      "id": "misc/ship",
+      "category": "misc",
+      "name": "ship",
+      "svg": "svg/misc/ship.svg",
+      "png": "png/misc/ship.png"
+    },
+    {
+      "id": "misc/trophy",
+      "category": "misc",
+      "name": "trophy",
+      "svg": "svg/misc/trophy.svg",
+      "png": "png/misc/trophy.png"
+    },
+    {
+      "id": "objects/anchor",
+      "category": "objects",
+      "name": "anchor",
+      "svg": "svg/objects/anchor.svg",
+      "png": "png/objects/anchor.png"
+    },
+    {
+      "id": "objects/balloon-2",
+      "category": "objects",
+      "name": "balloon-2",
+      "svg": "svg/objects/balloon-2.svg",
+      "png": "png/objects/balloon-2.png"
+    },
+    {
+      "id": "objects/balloon",
+      "category": "objects",
+      "name": "balloon",
+      "svg": "svg/objects/balloon.svg",
+      "png": "png/objects/balloon.png"
+    },
+    {
+      "id": "objects/camera",
+      "category": "objects",
+      "name": "camera",
+      "svg": "svg/objects/camera.svg",
+      "png": "png/objects/camera.png"
+    },
+    {
+      "id": "objects/crown",
+      "category": "objects",
+      "name": "crown",
+      "svg": "svg/objects/crown.svg",
+      "png": "png/objects/crown.png"
+    },
+    {
+      "id": "objects/flashlight",
+      "category": "objects",
+      "name": "flashlight",
+      "svg": "svg/objects/flashlight.svg",
+      "png": "png/objects/flashlight.png"
+    },
+    {
+      "id": "objects/frame",
+      "category": "objects",
+      "name": "frame",
+      "svg": "svg/objects/frame.svg",
+      "png": "png/objects/frame.png"
+    },
+    {
+      "id": "objects/guitar",
+      "category": "objects",
+      "name": "guitar",
+      "svg": "svg/objects/guitar.svg",
+      "png": "png/objects/guitar.png"
+    },
+    {
+      "id": "objects/movie-clapper",
+      "category": "objects",
+      "name": "movie-clapper",
+      "svg": "svg/objects/movie-clapper.svg",
+      "png": "png/objects/movie-clapper.png"
+    },
+    {
+      "id": "objects/paint-brush-2",
+      "category": "objects",
+      "name": "paint-brush-2",
+      "svg": "svg/objects/paint-brush-2.svg",
+      "png": "png/objects/paint-brush-2.png"
+    },
+    {
+      "id": "objects/paint-brush",
+      "category": "objects",
+      "name": "paint-brush",
+      "svg": "svg/objects/paint-brush.svg",
+      "png": "png/objects/paint-brush.png"
+    },
+    {
+      "id": "objects/paint-bucket",
+      "category": "objects",
+      "name": "paint-bucket",
+      "svg": "svg/objects/paint-bucket.svg",
+      "png": "png/objects/paint-bucket.png"
+    },
+    {
+      "id": "objects/paint-roller",
+      "category": "objects",
+      "name": "paint-roller",
+      "svg": "svg/objects/paint-roller.svg",
+      "png": "png/objects/paint-roller.png"
+    },
+    {
+      "id": "objects/sofa",
+      "category": "objects",
+      "name": "sofa",
+      "svg": "svg/objects/sofa.svg",
+      "png": "png/objects/sofa.png"
+    },
+    {
+      "id": "objects/tv",
+      "category": "objects",
+      "name": "tv",
+      "svg": "svg/objects/tv.svg",
+      "png": "png/objects/tv.png"
+    },
+    {
+      "id": "weather/cloudy-day",
+      "category": "weather",
+      "name": "cloudy-day",
+      "svg": "svg/weather/cloudy-day.svg",
+      "png": "png/weather/cloudy-day.png"
+    },
+    {
+      "id": "weather/cloudy-night",
+      "category": "weather",
+      "name": "cloudy-night",
+      "svg": "svg/weather/cloudy-night.svg",
+      "png": "png/weather/cloudy-night.png"
+    },
+    {
+      "id": "weather/night",
+      "category": "weather",
+      "name": "night",
+      "svg": "svg/weather/night.svg",
+      "png": "png/weather/night.png"
+    },
+    {
+      "id": "weather/rain-heavy",
+      "category": "weather",
+      "name": "rain-heavy",
+      "svg": "svg/weather/rain-heavy.svg",
+      "png": "png/weather/rain-heavy.png"
+    },
+    {
+      "id": "weather/rain-light",
+      "category": "weather",
+      "name": "rain-light",
+      "svg": "svg/weather/rain-light.svg",
+      "png": "png/weather/rain-light.png"
+    },
+    {
+      "id": "weather/snow",
+      "category": "weather",
+      "name": "snow",
+      "svg": "svg/weather/snow.svg",
+      "png": "png/weather/snow.png"
+    },
+    {
+      "id": "weather/snowflake",
+      "category": "weather",
+      "name": "snowflake",
+      "svg": "svg/weather/snowflake.svg",
+      "png": "png/weather/snowflake.png"
+    },
+    {
+      "id": "weather/snowman",
+      "category": "weather",
+      "name": "snowman",
+      "svg": "svg/weather/snowman.svg",
+      "png": "png/weather/snowman.png"
+    },
+    {
+      "id": "weather/sunny",
+      "category": "weather",
+      "name": "sunny",
+      "svg": "svg/weather/sunny.svg",
+      "png": "png/weather/sunny.png"
+    },
+    {
+      "id": "weather/thunderstorm",
+      "category": "weather",
+      "name": "thunderstorm",
+      "svg": "svg/weather/thunderstorm.svg",
+      "png": "png/weather/thunderstorm.png"
+    },
+    {
+      "id": "weather/tornado",
+      "category": "weather",
+      "name": "tornado",
+      "svg": "svg/weather/tornado.svg",
+      "png": "png/weather/tornado.png"
+    },
+    {
+      "id": "weather/vector",
+      "category": "weather",
+      "name": "Vector",
+      "svg": "svg/weather/Vector.svg",
+      "png": "png/weather/Vector.png"
+    },
+    {
+      "id": "weather/wind",
+      "category": "weather",
+      "name": "wind",
+      "svg": "svg/weather/wind.svg",
+      "png": "png/weather/wind.png"
+    }
+  ]
+}
